@@ -27,3 +27,15 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+@media (min-width: 997px) {
+  :root {
+    --ifm-spacing-horizontal: 2.25rem;
+    --ifm-spacing-vertical: 2.25rem;
+    --ifm-navbar-padding-horizontal: 2rem;
+  }
+
+  main {
+    padding-top: 1rem;
+  }
+}
