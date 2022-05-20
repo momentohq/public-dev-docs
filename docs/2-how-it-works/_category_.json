@@ -1,0 +1,8 @@
+{
+  "label": "How it works",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn the concepts, architecture, and other basics of working with Momento."
+  }
+}
