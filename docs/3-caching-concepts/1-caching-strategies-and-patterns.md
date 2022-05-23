@@ -4,11 +4,17 @@ sidebar_position: 1
 
 # Caching Strategies and Patterns
 
-_Caching is fast_. With an in-memory system optimized for key-value access, you can get sub-millisecond p99 response times _as measured by the client_. That's fast. And because it's so fast …
+**_Caching is fast_**.
 
-_Caching is fun_. Nobody likes a slow website. Slow websites lead to bored users and [lost sales](https://www.gigaspaces.com/blog/amazon-found-every-100ms-of-latency-cost-them-1-in-sales/). Developers don't want to work on a slow website or deal with unhappy users. Caching can help your slow website by lowering the latency of complicated requests or reducing the load on your database. But you need to be careful when caching, because …
+With an in-memory system optimized for key-value access, you can get sub-millisecond p99 response times _as measured by the client_. That's fast. And because it's so fast …
 
-_Caching can be a footgun_. There are effective ways to add caching, and there are ineffective ways to add caching. But even worse than ineffective caching strategies are harmful caching strategies -- ones that confuse your users via stale, inconsistent data or that reduce your application availability.
+**_Caching is fun_.**
+
+Nobody likes a slow website. Slow websites lead to bored users and [lost sales](https://www.gigaspaces.com/blog/amazon-found-every-100ms-of-latency-cost-them-1-in-sales/). Developers don't want to work on a slow website or deal with unhappy users. Caching can help your slow website by lowering the latency of complicated requests or reducing the load on your database. But you need to be careful when caching, because …
+
+**_Caching can be a footgun_.**
+
+There are effective ways to add caching, and there are ineffective ways to add caching. But even worse than ineffective caching strategies are harmful caching strategies -- ones that confuse your users via stale, inconsistent data or that reduce your application availability.
 
 There are many different ways to implement a cache, and the caching strategy for your application will depend on a number of factors.
 
