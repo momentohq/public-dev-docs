@@ -8,10 +8,10 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Momento Docs",
   tagline: "The World's Fastest Cache",
-  url: "https://your-docusaurus-test-site.com",
+  url: "https://momento-docs-sandy.vercel.app/",
   baseUrl: "/",
-  onBrokenLinks: "ignore", // TODO -- change to 'throw'!
-  onBrokenMarkdownLinks: "warn",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.ico",
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -30,14 +30,12 @@ const config = {
         docs: {
           sidebarCollapsible: false,
           sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          // TODO -- Update!
           editUrl: "https://github.com/alexdebrie/momento-docs/tree/main/",
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          // TODO -- Update!
           editUrl: "https://github.com/alexdebrie/momento-docs/tree/main/",
         },
         theme: {
@@ -65,6 +63,7 @@ const config = {
           },
           { to: "/blog", label: "Blog", position: "left" },
           {
+            // TODO -- Update!
             href: "https://github.com/alexdebrie/momento-docs",
             label: "GitHub",
             position: "right",
@@ -84,6 +83,7 @@ const config = {
             ],
           },
           {
+            // TODO -- Update!
             title: "Community",
             items: [
               {
