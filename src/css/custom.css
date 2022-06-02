@@ -39,3 +39,7 @@
     padding-top: 1rem;
   }
 }
+
+.markdown p {
+  font-size: 20px;
+}
