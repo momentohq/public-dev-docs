@@ -44,7 +44,6 @@ const config = {
       }),
     ],
   ],
-
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -117,6 +116,7 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Momento, Inc.`,
       },
       prism: {
+        additionalLanguages: ['java', 'rust', 'csharp'],
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
