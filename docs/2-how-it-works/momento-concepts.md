@@ -24,7 +24,7 @@ Generally, you will create a SimpleCache object by passing in your authenticatio
 
 For example, you can create a SimpleCache object in Python with the following code:
 
-```
+```python
 import os
 import momento.simple_cache_client as simple_cache_client
 
@@ -36,7 +36,7 @@ cache_client = simple_cache_client.init(MOMENTO_AUTH_TOKEN, DEFAULT_TTL_SECONDS)
 
 Or, if you're working with Golang, you can create a SimpleCache struct instance with the following code:
 
-```
+```golang
 package main
 
 import (
@@ -155,7 +155,7 @@ You can also choose to override the default TTL on any single operation with you
 
 To set a custom TTL value in a set operation using Momento's Python SDK, use code similar to the following:
 
-```
+```python
 cache_client.set("users-cache", "foo", "123", 100)
 ```
 
@@ -163,7 +163,7 @@ In this operation, we are setting the cache entry identified by the key of "foo"
 
 If you have cache entries that you would not like to expire or that you only plan to expire explicitly, you can indicate so by using a TTL value of "0":
 
-```
+```python
 cache_client.set("users-cache", "bar", "456", 0)
 ```
 
