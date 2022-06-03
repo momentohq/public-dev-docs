@@ -133,6 +133,7 @@ We currently have the following SDK's languages availabile.
 - [Java](https://github.com/momentohq/client-sdk-examples/tree/main/java)
 - [JavaScript](https://github.com/momentohq/client-sdk-examples/tree/main/javascript)
 - [Python](https://github.com/momentohq/client-sdk-examples/tree/main/python)
+- [Rust](https://github.com/momentohq/client-sdk-examples/tree/main/rust)
 - [CLI（MacOS/Linux](https://github.com/momentohq/momento-cli)
 
 Check out our [examples repo](https://github.com/momentohq/client-sdk-examples/) for hands-on examples with the various SDKs.
