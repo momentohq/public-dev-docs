@@ -16,9 +16,7 @@ We'll look at two definitions of serverless plus a group of builders that is int
 
 - [Serverless as independent project platform](#serverless-as-independent-project-platform)
 
-Note that this page is focused on the conceptual reasons why Momento fits so well in serverless applications. If you want more practical advice on integrating Momento into your serverless application, check out our page on using Momento with AWS Lambda. (TODO LINK).
-
-Let's get started.
+Note that this page is focused on the conceptual reasons why Momento fits so well in serverless applications. If you want more practical advice on integrating Momento into your serverless application, check out our page on [using Momento with AWS Lambda](./../guides/caching-with-aws-lambda).
 
 ## Serverless as an operational model
 

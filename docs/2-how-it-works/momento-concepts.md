@@ -55,15 +55,15 @@ func main() {
 
 A SimpleCache instance can interact with both the control plane and data plane APIs in Momento. Let's take a look at each of these.
 
-### Control plane -- simple, efficient cache management
+### Control plane: simple, efficient cache management
 
 The Momento control plane API is the API you will use to manage your caches overall. You can use the control plane API to create a new cache, list existing caches, or delete an unwanted cache.
 
-When you hear 'control plane', you might think 'slow, management operations.' But that's not the case here -- Momento has been designed to quickly and efficiently manage caches within your account. You won't fire a command to create a cache and wait for the cache to be created in the background. With Momento, the cache is created synchronously, within seconds, and your cache will be ready to go by the time your request to create it has returned.
+When you hear 'control plane', you might think 'slow, management operations.' But that's not the case here -- **Momento has been designed to quickly and efficiently manage caches within your account.** You won't fire a command to create a cache and wait for the cache to be created in the background. With Momento, the cache is created synchronously, within a second. Your cache will be ready to go by the time your request to create it has returned.
 
 Each cache in Momento is isolated from other caches, and there's no limit on the number of caches you can create in your account. This means you can have dedicated caches for each environment for your application or even each deployed branch in your CI/CD system.
 
-### Data plane -- performant cache interactions
+### Data plane: performant cache interactions
 
 The Momento control plane is nice, but the data plane is where the action is. The data plane API refers to operations that actually interact with the contents of your cache. It's designed to be blazing fast -- most data plane operations take less than 1-2 milliseconds from the client's perspective.
 
@@ -77,11 +77,11 @@ The SimpleCache object will be your main way of interacting with the Momento API
 
 Your SimpleCache object will use an authentication token when communicating with the Momento service. This token is a [JSON Web Token](https://en.wikipedia.org/wiki/JSON_Web_Token) (or "JWT") that contains signed account information to authenticate you when making cache requests. It also includes information like the hostname of your cache instance, which helps the SimpleCache object to make more efficient requests to the Momento service.
 
-You will receive the Momento authentication token when signing up for the Momento service. To get your Momento authentication token and begin using the Momento service, please sign up here. (TODO: LINK).
+You will receive the Momento authentication token when signing up for the Momento service. To get your Momento authentication token and begin using the Momento service, [follow the quickstart here](./../getting-started).
 
 ### gRPC
 
-Momento is a remote cache (TODO: LINK TO CACHING STRATEGIES NOTE) using a client-server model. Because of this, your SimpleCache client will need to communicate with your remote Momento cache. To facilitate this communication, Momento could use any number of communication methods, from a JSON API over HTTP to a custom-built RPC protocol.
+Momento is a [remote cache](./../caching-concepts/caching-strategies-and-patterns#where-to-cache----local-vs-remote-caching) using a client-server model. Because of this, your SimpleCache client will need to communicate with your remote Momento cache. To facilitate this communication, Momento could use any number of communication methods, from a JSON API over HTTP to a custom-built RPC protocol.
 
 The SimpleCache client object uses [gRPC](https://grpc.io/) to communicate with the Momento service. gRPC is a popular open source remote procedure call (RPC) framework developed at Google for fast, efficient communication. When using gRPC, you define the RPCs you want to expose and the data structures you will use in a .proto file. This .proto file is then used to build the client and server implementations of your service.
 
@@ -91,7 +91,7 @@ First, gRPC is _fast_. You may be familiar with using JSON-based REST APIs for i
 
 Second, gRPC has cross-language support. You can use the .proto files to quickly generate clients in a large number of supported languages. While this doesn't directly help you as a Momento user, you indirectly benefit by quickly receiving new features in your language of choice. The Momento team can generate base clients across languages, lowering the burden of maintaining SDKs for each language. We will craft a consistent, language-specific interface on top of the generated code for each language, but the baseline work of interacting with the Momento service is much lower.
 
-gRPC is supported by all languages for which there is a Momento SDK. For most of these languages, you do not need to know that Momento is using gRPC -- all the dependencies and gRPC communication are handled for you by the Momento SDK. For special concerns about using the Momento Python SDK in AWS Lambda, check out our guide on using Momento in AWS Lambda. (TODO LINK).
+gRPC is supported by all languages for which there is a Momento SDK. For most of these languages, you do not need to know that Momento is using gRPC -- all the dependencies and gRPC communication are handled for you by the Momento SDK. For special concerns about using the Momento Python SDK in AWS Lambda, check out our guide on [using Momento in AWS Lambda](./../guides/caching-with-AWS-lambda#python).
 
 ### Networking
 
@@ -105,7 +105,7 @@ By default, your SimpleCache client will connect to a publicly accessible endpoi
 
 There are two benefits to the default networking setup.
 
-First, it is simple. You can get started with Momento and start interacting with your cache in as little as five minutes. (TODO: Link to quickstart). You don't have to mess with complicated network configuration to benefit from a cache in your application.
+First, it is simple. You can [get started with Momento](./../getting-started) and start interacting with your cache in as little as five minutes. You don't have to mess with complicated network configuration to benefit from a cache in your application.
 
 Second, it works well with serverless applications. Many serverless applications prioritize using services that are available over the public internet using HTTPS. Part of this is due to the initial complexity and latency around using Lambda functions within a VPC, but part of it is due to the reduced complexity of avoiding complex network configurations.
 
@@ -171,8 +171,8 @@ By setting the TTL value to "0", you have told Momento that the "bar" cache entr
 
 ## Conclusion
 
-On this page, we learned the basic concepts of working with the Momento SDK and API. If you want to get started using Momento, check out our five minute quickstart guide. (TODO LINK).
+On this page, we learned the basic concepts of working with the Momento SDK and API. If you want to get started using Momento, check out our [getting started guide](./../2-getting-started).
 
-If you want to learn more about caching strategies and how to think about caching, check out our resource on caching strategies and patterns. (TODO LINK).
+If you want to learn more about caching strategies and how to think about caching, check out our resource on [caching strategies and patterns](./../caching-concepts/caching-strategies-and-patterns).
 
-If you're looking for a deep, walkthrough tutorial, take a look at our tutorial on adding caching to a serverless application.
+If you're looking for a deep, walkthrough tutorial, take a look at our [tutorial on adding caching to a serverless application](./../serverless-cache-walkthrough/adding-a-cache-to-serverless).
