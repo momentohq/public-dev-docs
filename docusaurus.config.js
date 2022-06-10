@@ -55,9 +55,12 @@ const config = {
         },
         items: [
           { to: "https://www.gomomento.com/", label: "Home", position: "left" },
-          { to: "https://www.gomomento.com/blog", label: "Blog", position: "right" },
           {
-            // TODO -- Update!
+            to: "https://www.gomomento.com/blog",
+            label: "Blog",
+            position: "right",
+          },
+          {
             href: "https://github.com/momentohq/",
             label: "GitHub",
             position: "right",
@@ -77,20 +80,15 @@ const config = {
             ],
           },
           {
-            // TODO -- Update!
             title: "Community",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
-              },
-              {
                 label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
+                href: "https://discord.gg/3HkAKjUZGq",
               },
               {
                 label: "Twitter",
-                href: "https://twitter.com/docusaurus",
+                href: "https://twitter.com/momentohq",
               },
             ],
           },
@@ -99,7 +97,7 @@ const config = {
             items: [
               {
                 label: "Blog",
-                to: "/blog",
+                to: "https://www.gomomento.com/blog",
               },
               {
                 label: "GitHub",
@@ -111,7 +109,7 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Momento, Inc.`,
       },
       prism: {
-        additionalLanguages: ['java', 'rust', 'csharp'],
+        additionalLanguages: ["java", "rust", "csharp"],
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },

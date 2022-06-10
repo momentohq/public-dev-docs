@@ -2,6 +2,16 @@
 sidebar_position: 1
 ---
 
-# Overview
+# Momento
 
-Momento is the world's first serverless caching service. Momento unlocks innovation at scale by giving developers an easy to use cache that works without any of the operational overhead required by traditional caching solutions. It is quick to provision, easy to use, and gives customers consistent performance. Momento allows developers to focus on their business logic, while giving them rapid access to an easy-to-use cache that has decades of mission critical scale experience and hard learned lessons already baked in.
+Momento is the world's first serverless caching service. It has been built with the capabilities of the modern cloud in mind. Momento provides instant provisioning, auto-scaling up and down, and blazing-fast performance.
+
+In the following pages, you can learn how to use Momento and about caching more broadly.
+
+_If you want to get started using Momento_, check out the [Getting Started](./getting-started) reference.
+
+_If you want to know more about Momento and how it works_, refer to the [How it works](./how-it-works) section, including the reference on [Momento Concepts](./how-it-works/momento-concepts).
+
+_For specific guides on integrating with AWS Lambda or other systems_, look to the [Guides](./guides) section.
+
+_If you want an in-depth tutorial of Momento in action_, look to our walkthrough on [adding a cache to a serverless application](./serverless-cache-walkthrough).
