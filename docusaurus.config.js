@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Momento Docs",
   tagline: "The World's Fastest Cache",
-  url: "https://momento-docs-sandy.vercel.app/",
+  url: "https://gomomento.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
@@ -33,11 +33,11 @@ const config = {
           // TODO -- Update!
           editUrl: "https://github.com/alexdebrie/momento-docs/tree/main/",
         },
-        blog: {
-          showReadingTime: true,
-          // TODO -- Update!
-          editUrl: "https://github.com/alexdebrie/momento-docs/tree/main/",
-        },
+        // blog: {
+        //   showReadingTime: true,
+        //   // TODO -- Update!
+        //   editUrl: "https://github.com/alexdebrie/momento-docs/tree/main/",
+        // },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -54,16 +54,11 @@ const config = {
           src: "img/logo_light.svg",
         },
         items: [
-          {
-            type: "doc",
-            docId: "overview",
-            position: "left",
-            label: "Docs",
-          },
-          { to: "/blog", label: "Blog", position: "left" },
+          { to: "https://www.gomomento.com/", label: "Home", position: "left" },
+          { to: "https://www.gomomento.com/blog", label: "Blog", position: "right" },
           {
             // TODO -- Update!
-            href: "https://github.com/alexdebrie/momento-docs",
+            href: "https://github.com/momentohq/",
             label: "GitHub",
             position: "right",
           },
