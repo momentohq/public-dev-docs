@@ -28,7 +28,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarCollapsible: false,
+          sidebarCollapsible: true,
           sidebarPath: require.resolve("./sidebars.js"),
           // TODO -- Update!
           editUrl: "https://github.com/alexdebrie/momento-docs/tree/main/",
