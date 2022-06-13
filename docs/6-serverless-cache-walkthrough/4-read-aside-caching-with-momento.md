@@ -50,7 +50,7 @@ Navigate back to the service code in `src/accounts/service.js`. Update the getUs
       const user = new User({ username });
       const userCacheKey = `USER#${user.username}`;
 
-      let getResp = await this.cacheClient.get(
+      let getResp = await this._cacheClient.get(
         CACHE_NAME,
         userCacheKey
       );
@@ -69,7 +69,7 @@ Navigate back to the service code in `src/accounts/service.js`. Update the getUs
       await this._cacheClient.set(
         CACHE_NAME,
         userCacheKey,
-        JSON.stringify(response.Item),
+        JSON.stringify(response.Item || ""),
         60
       );
 
@@ -108,7 +108,7 @@ In the `src/accounts/service.js` file, update the `getOrganization` method to lo
       const organization = new Organization({ organizationName });
       const organizationCacheKey = `ORG#${organization.organizationName}`;
 
-      let getResp = await this.cacheClient.get(
+      let getResp = await this._cacheClient.get(
         CACHE_NAME,
         organizationCacheKey
       );
@@ -127,7 +127,7 @@ In the `src/accounts/service.js` file, update the `getOrganization` method to lo
       await this._cacheClient.set(
         CACHE_NAME,
         organizationCacheKey,
-        JSON.stringify(response.Item),
+        JSON.stringify(response.Item || ""),
         60
       );
 
@@ -138,35 +138,41 @@ Notice that it follows a similar pattern as the User caching implementation. We 
 
 Finally, in the `src/accounts/service.js` file, update the `getMembership` method to look as follows:
 
-    async getOrganization({ organizationName }) {
-      const organization = new Organization({ organizationName });
-      const organizationCacheKey = `ORG#${organization.organizationName}`;
+```
+async getMembership({ organizationName, username }) {
+  const membership = new Membership({
+    organizationName,
+    memberUsername: username,
+  });
+  const membershipCacheKey = `MEMBER#${membership.organizationName}#${membership.memberUsername}`;
 
-      let getResp = await this.cacheClient.get(
-        CACHE_NAME,
-        organizationCacheKey
-      );
-      if (getResp.status === CacheGetStatus.Hit) {
-        const cacheContent = JSON.parse(getResp.text());
-        return cacheContent ? itemToOrganization(cacheContent) : null;
-      }
+  let getResp = await this._cacheClient.get(
+    process.env.CACHE_NAME,
+    membershipCacheKey
+  );
+  if (getResp.status === CacheGetStatus.Hit) {
+    const cacheContent = JSON.parse(getResp.text());
+    return cacheContent ? itemToMembership(cacheContent) : null;
+  }
 
-      const response = await this._dynamoDBClient
-        .getItem({
-          TableName: TABLE_NAME,
-          Key: organization.keys(),
-        })
-        .promise();
+  const response = await this._dynamoDBClient
+    .getItem({
+      TableName: TABLE_NAME,
+      Key: membership.keys(),
+    })
+    .promise();
 
-      await this._cacheClient.set(
-        CACHE_NAME,
-        organizationCacheKey,
-        JSON.stringify(response.Item),
-        60
-      );
+  await this._cacheClient.set(
+    process.env.CACHE_NAME,
+    membershipCacheKey,
+    JSON.stringify(response.Item || ""),
+    60
+  );
 
-      return response.Item ? itemToOrganization(response.Item) : null;
-    }
+  return response.Item ? itemToMembership(response.Item) : null;
+
+}
+```
 
 Notice that it follows a similar pattern as the User and Organization caching implementations.
 

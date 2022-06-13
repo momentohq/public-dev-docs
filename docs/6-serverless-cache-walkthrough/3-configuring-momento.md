@@ -102,7 +102,33 @@ Let's get started.
 
 The first step is to sign up for the Momento service and get our authentication token. The authentication token must be included on requests to the Momento service to authenticate and authorize our requests.
 
-TODO: INSERT SIGNUP + TOKEN PROCESS AFTER TALKING W/ TEAM
+To get a Momento token, you first need to install the Momento CLI. You can do so with Homebrew using the following commands:
+
+```
+brew tap momentohq/tap
+brew install momento-cli
+```
+
+Then, provision a token with the `account signup` command:
+
+```
+momento account signup --region us-west-2 --email your-email@example.com
+```
+
+Be sure to use the region and email address you want to use for your Momento account. You will receive an email with your Momento access token.
+
+Once you have your token, configure it in your CLI with the `momento configure` command.
+
+```
+$ momento configure
+Token: // < Enter token from email here.
+Default Cache [default-cache]: accounts-cache
+Default Ttl Seconds [600]: 30
+```
+
+Enter the token into the command, and use a cache named `accounts-cache` as your default cache.
+
+For more on getting started with Momento, you can follow the [getting started guide](./../getting-started). You can also learn more about the Momento authentication token in the [Momento Concepts](./../how-it-works/momento-concepts#authentication-token) material.
 
 ### Storing our authentication token in AWS Secrets Manager
 
@@ -167,13 +193,11 @@ In the `src/clients` directory, create a directory called `momento.js` with the 
       const token = await getMomentoAuthToken();
       client = new SimpleCacheClient(token, MOMENTO_DEFAULT_TTL);
 
-      TODO -- initialize cache to be safe?
-
       return client;
     };
 
     const getMomentoAuthToken = async () => {
-      const secretsmanager = new AWS.SecretsManager({
+      const sm = new AWS.SecretsManager({
         httpOptions: {
           connectTimeout: 1000,
           timeout: 1000,
@@ -207,11 +231,9 @@ Navigate to the `src/accounts/service.js` file. Update the `constructor` method 
         this._cacheClient = cacheClient;
       }
 
-The **bolded** content indicates the code you need to add.
-
 Additionally, we want to update our helper function to create and reuse the AccountService instance. Navigate to the bottom of the `src/accounts/service.js` file. Update the `getAccountService` function so it looks as follows:
 
-    module.exports.getAccountService = (props) => {
+    module.exports.getAccountService = async (props) => {
       if (service) return service;
 
       let dynamoDBClient = (props || {}).dynamoDBClient;
@@ -221,7 +243,7 @@ Additionally, we want to update our helper function to create and reuse the Acco
 
       let cacheClient = (props || {}).cacheClient;
       if (!cacheClient) {
-        cacheClient = getMomentoClient();
+        cacheClient = await getMomentoClient();
       }
 
       service = new AccountService(dynamoDBClient, cacheClient);
@@ -229,13 +251,31 @@ Additionally, we want to update our helper function to create and reuse the Acco
       return service;
     };
 
-The **bolded** content indicates the code you need to add.
-
 Notice that the function is injecting a cache client instance into our AccountService instance to satisfy the constructor. The caller of the getAccountService function can provide their own cache client, which can help with testing, but the default behavior is to fetch our reused cache instance with the `getMomentoClient` function we just implemented.
 
 You'll need to import this function into our service module, so add the following import to the top of the `src/accounts/service.js` file:
 
     const { getMomentoClient } = require("../clients/momento");
+
+Further, `getAccountService()` is now an async function, as the call to `getMomentoClient` is async given that we may need to make a call to AWS Secrets Manager. In each of your handler functions, make sure you update them to `await` the call to `getAccountService()`.
+
+Below is an example from the `createUser` handler:
+
+```javascript
+const handler = async (event, context) => {
+  const { username, firstName, lastName } = JSON.parse(event.body);
+
+  const accountService = await getAccountService();
+
+  const user = await accountService.createUser({
+    username,
+    firstName,
+    lastName,
+  });
+
+  ...
+}
+```
 
 Finally, we need to make some small updates to our `serverless.yml` file. Our Lambda functions will be calling a new AWS service as part of our changes and thus will need updated IAM permissions that grant our functions the ability to do so.
 
@@ -259,7 +299,7 @@ In your `serverless.yml` file, there is an `iam` section within the `provider` b
                 - "secretsmanager:GetSecretValue"
               Resource: "<yourSecretArn>"
 
-You will need to add the bolded portion at the bottom. Be sure to replace "&ltyourSecretArn>" with the Secret ARN that you copied from the AWS console.
+Be sure to replace "&ltyourSecretArn>" with the Secret ARN that you copied from the AWS console.
 
 We also want to tell our application the name of the cache we created in Momento. Because this is not a sensitive value, we can inject it as an environment variable.
 
@@ -269,8 +309,6 @@ In the environment section within the provider block, update your application se
         TABLE_NAME: !Ref DynamoDBTable
         CACHE_NAME: 'accounts-cache'
         AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
-
-The code in **bolded** text has been added.
 
 Our Momento client can use this environment variable to interact with the correct cache in our Momento account.
 
