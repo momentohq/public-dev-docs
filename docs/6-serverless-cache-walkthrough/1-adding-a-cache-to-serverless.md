@@ -27,11 +27,13 @@ This tutorial has five steps:
 
 5.  Use a write-aside cache pattern for improved performance and cache freshness.
 
-Let's get started!
-
 ## What we're building
 
-We will be building an account management service for a larger SaaS application. Our application has support for both Users and Organizations, and Users may take actions on behalf of Organizations. In order to support this, many parts of our application will need to ensure a particular User belongs to a particular Organization.
+We will be building an account management service for a larger SaaS application.
+
+Our application has support for both Users and Organizations, and Users may take actions on behalf of Organizations. In order to support this, many parts of our application will need to ensure a particular User belongs to a particular Organization.
+
+![System architecture](images/architecture.png)
 
 To handle this, we will be modeling three entities in our service:
 

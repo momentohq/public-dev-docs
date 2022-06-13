@@ -15,7 +15,7 @@ brew tap momentohq/tap
 brew install momento-cli
 ```
 
-To verify the CLI was installed correctly you can run our help command
+To verify the CLI was installed correctly, you can run our help command:
 
 ```
 $ momento --help
@@ -91,9 +91,9 @@ $ momento cache get --key test
 [2022-03-31T15:46:03Z INFO  momento::commands::cache::cache_cli] cache miss
 ```
 
-These are the standard `get` and `set` [data plane operations](./how-it-works/momento-concepts#data-plane----performant-cache-interactions) with the Momento CLI.
+These are the standard `get` and `set` [data plane operations](./how-it-works/momento-concepts##data-plane-performant-cache-interactions) with the Momento CLI.
 
-You can also manage [control plane operations](./how-it-works/momento-concepts#control-plane----simple-efficient-cache-management) with the Momento CLI, such as creating a cache, deleting a cache, or listing available caches.
+You can also manage [control plane operations](./how-it-works/momento-concepts#control-plane-simple-efficient-cache-management) with the Momento CLI, such as creating a cache, deleting a cache, or listing available caches.
 
 You can see all of the available subcommands in the `cache` command by using the `momento cache --help` flag in your terminal:
 

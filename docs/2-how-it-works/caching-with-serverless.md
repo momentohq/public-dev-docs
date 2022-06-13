@@ -62,11 +62,11 @@ Finally, _serverless developers prefer services that can be provisioned quickly 
 
 Momento is a great addition to serverless applications that use AWS Lambda and other popular serverless services.
 
-First, Momento is available via HTTPS over the public internet (TODO: Link to Concepts Networking section). This simplifies the configuration required to add Momento to your serverless application. You simply add the authentication token to your application and start using your cache. With this HTTPS-based connection pattern, you can still reuse an existing connection within your Lambda function to avoid the overhead of establishing a new connection on each request. Additionally, Memento has a VPC peering option available if you prefer using a VPC for your application.
+First, Momento is [available via HTTPS over the public internet](./momento-concepts#networking). This simplifies the configuration required to add Momento to your serverless application. You simply add the authentication token to your application and start using your cache. With this HTTPS-based connection pattern, you can still reuse an existing connection within your Lambda function to avoid the overhead of establishing a new connection on each request. Additionally, Memento has a VPC peering option available if you prefer using a VPC for your application.
 
 Second, Momento can scale your cache quickly and achieve a high number of requests per second without pre-provisioning. There are no connection limits to your Momento cache, so a burst of traffic won't lead to availability issues in your application.
 
-Finally, Momento is a dynamic service that can add and remove caches instantly. When you call the Momento control plane (TODO: Link to Concepts -- control plane) to create a new cache, the cache is provisioned instantly and is available by the time your client receives a response. This makes it easy to integrate Momento in branch-specific environments in your CI/CD system or allow each developer to have a unique copy of their application.
+Finally, Momento is a dynamic service that can add and remove caches instantly. When you call the [Momento control plane](./momento-concepts#control-plane-simple-efficient-cache-management) to create a new cache, the cache is provisioned instantly and is available by the time your client receives a response. This makes it easy to integrate Momento in branch-specific environments in your CI/CD system or allow each developer to have a unique copy of their application.
 
 No other caches fit this well with serverless applications. While AWS provides Amazon ElastiCache as a caching option, it must be in a VPC. This can greatly increase the cost and complexity of your serverless application. Further, you must declare your instance size and cluster configuration upfront, regardless of your usage. Finally, provisioning new caches takes minutes, not seconds, as new instances must be launched and configured before you can use them.
 
@@ -88,7 +88,7 @@ Second, _these developers are looking for a generous free tier as they start usi
 
 If you're an indie hacker or an early-stage startup that's looking to save money, Momento is a great fit for you as well.
 
-First, Momento has a painless self-service sign up. You can get a Momento authentication token and start writing to your cache in less than five minutes. (TODO LINK). You don't need to talk to a salesperson or sign an upfront contract. In fact, you don't even need to enter a credit card to enjoy the free tier.
+First, Momento has a painless self-service sign up. You can get a Momento authentication token and [start writing to your cache in less than five minutes](./../getting-started). You don't need to talk to a salesperson or sign an upfront contract. In fact, you don't even need to enter a credit card to enjoy the free tier.
 
 Second, Momento has a generous free tier. You get (TODO: Enter free tier details). Our goal is to allow a wide variety of applications to run on Momento without ever paying us a cent. We want to provide a top-tier, robust service for applications that need it while also supporting a broad community of applications to use Momento as they grow.
 
@@ -98,8 +98,8 @@ In this page, you learned how Momento fits with every conception of serverless. 
 
 If you're ready to get started with Momento, be sure to check out the following materials:
 
-- Quickstart guide to start caching with Momento in less than 5 minutes;
+- Quickstart guide to [start caching with Momento](./../getting-started) in less than 5 minutes;
 
-- A practical guide for integrating Momento in your serverless application;
+- A practical guide for [integrating Momento with your AWS Lambda functions](./../guides/caching-with-aws-lambda);
 
-- An in-depth tutorial about adding caching to your serverless application.
+- An in-depth tutorial about [adding caching to your serverless application](./../serverless-cache-walkthrough/adding-a-cache-to-serverless).

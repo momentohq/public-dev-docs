@@ -115,8 +115,6 @@ If these benefits appeal to you, the default networking setup is perfect for you
 
 In addition to the default networking setup, Momento provides an advanced networking configuration that allows for VPC peering between your VPC and the Momento VPC. Under this configuration, requests to the Momento service will travel through private infrastructure rather than passing over the public internet.
 
-TODO Image.
-
 This is a good option for you if you do not want your data going on the public internet or if you have extreme bandwidth or latency requirements. By using VPC peering, your data stays in private infrastructure the entire time, without traveling over the public internet. Additionally, you can save on bandwidth charges by avoiding egress to the public internet. Finally, requests through a cloud provider's private infrastructure generally have lower latency than those on the public internet.
 
 If you're interested in using VPC peering with your Momento cache, please contact us to learn more.

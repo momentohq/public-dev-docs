@@ -20,9 +20,7 @@ In the interest of brevity, this tutorial won't walk through every line of code 
 
 For a deeper understanding of the code in this example, please review the documentation in the tutorial repository -- TODO. The code referenced in this step will be from the `step-1` branch of the repository. You can also find out more about the AWS services used or the Serverless Framework by reading their respective documentation pages linked above.
 
-This step will proceed by first walking through key points in the application code to teach concepts about serverless applications. Then, it will show how to deploy and use your application. If you would like to jump straight to the action, please navigate to the [deployment and usage section](#deploying-and-usage).
-
-Let's get started.
+This step will proceed by first walking through key points in the application code to teach concepts about serverless applications. Then, it will show how to deploy and use your application. If you would like to jump straight to the action, please navigate to the [deployment and usage section](#deployment-and-usage).
 
 ## Key concepts in our serverless application
 

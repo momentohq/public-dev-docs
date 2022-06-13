@@ -24,8 +24,6 @@ If you want to know more about why Momento works well with serverless applicatio
 
 If you want a deeper tutorial of how Lambda works and how to use Momento in your Lambda-based application, check out our in-depth tutorial on adding a cache to your serverless application.
 
-Let's get started!
-
 ## Connection reuse
 
 The first step to using Momento well in your serverless application is to make sure you're reusing your connection to the Momento service in your Lambda function. We'll describe some background first, then give you the practical steps to take in your application.
@@ -94,15 +92,11 @@ As discussed above, Lambda is a stateless compute environment. This means all da
 
 There are two main options for handling more dynamic data in your code. For non-sensitive information, you can inject data into your function code via environment variables. This works well for data that changes across stages in your application, such as the names of DynamoDB tables or S3 buckets. It can also work well for slight configuration differences across environments, such as the log level or feature-flagging behavior of your application.
 
-TODO IMAGE -- environment variables vs. secrets tools
-
 However, environment variables do not work as well for sensitive information. All environment variables can be accessed by your application code, and this means compromised third-party libraries could easily read and capture your sensitive credentials.
 
 To manage credentials, AWS Lambda users generally turn to one of two services: [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html), or [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html).
 
 These two systems are quite similar. Both provide a simple API for storing and receiving credentials and integrate with IAM to manage permissions. Secrets Manager is a more advanced solution that provides higher request limits, automated credential rotation, and more fine-grained access control.
-
-TODO IMAGE -- Secrets Manager vs. Parameter Store
 
 For these advanced features, you pay both for each secret you store and for API calls to the Secrets Manager service. Conversely, Parameter Store is free to use but has lower per-second request limits and no automated credential rotation.
 
@@ -161,10 +155,10 @@ AWS Identify and Access Management (IAM) is the authorization system across all 
 In general, the IAM statement you will need to configure will look as follows:
 
 ```
-        - Effect: "Allow"
-          Action:
-            - "secretsmanager:GetSecretValue"
-          Resource: "<yourSecretArn>"
+- Effect: "Allow"
+  Action:
+    - "secretsmanager:GetSecretValue"
+  Resource: "<yourSecretArn>"
 ```
 
 Be sure to replace **"&lt;yourSecretArn>"** with the Secret ARN you copied from the Secrets Manager console.
@@ -174,14 +168,14 @@ The mechanism you use to configure your IAM statements will depend on the deploy
 If you are using the [Serverless Framework](https://www.serverless.com/framework), you can configure this permission by adding the following to the **provider:** block of your **serverless.yml** file:
 
 ```
-    provider:
-      iam:
-        role:
-          statements:
-            - Effect: "Allow"
-              Action:
-                - "secretsmanager:GetSecretValue"
-              Resource: "<yourSecretArn>"
+provider:
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "secretsmanager:GetSecretValue"
+          Resource: "<yourSecretArn>"
 ```
 
 Be sure to replace **"&lt;yourSecretArn>"** with the Secret ARN you copied from the Secrets Manager console.
@@ -189,12 +183,12 @@ Be sure to replace **"&lt;yourSecretArn>"** with the Secret ARN you copied from 
 If you are using [AWS SAM](https://aws.amazon.com/serverless/sam/), add the following in the **Policies:** section for each function that needs access to your Momento auth token:
 
 ```
-    Policies:
-      - Statement:
-         - Effect: "Allow"
-           Action:
-             - "secretsmanager:GetSecretValue"
-           Resource: "<yourSecretArn>"
+Policies:
+  - Statement:
+      - Effect: "Allow"
+        Action:
+          - "secretsmanager:GetSecretValue"
+        Resource: "<yourSecretArn>"
 ```
 
 Be sure to replace **"&lt;yourSecretArn>"** with the Secret ARN you copied from the Secrets Manager console.
@@ -208,24 +202,24 @@ After you have configured permissions for your Lambda function to access the sec
 To retrieve the secret from Secrets Manager, add code like the following to your application:
 
 ```
-    const AWS = require("aws-sdk");
+const AWS = require("aws-sdk");
 
-    const getMomentoAuthToken = async () => {
-      const secretsmanager = new AWS.SecretsManager({
-        httpOptions: {
-          connectTimeout: 1000,
-          timeout: 1000,
-        },
-      });
+const getMomentoAuthToken = async () => {
+  const secretsmanager = new AWS.SecretsManager({
+    httpOptions: {
+      connectTimeout: 1000,
+      timeout: 1000,
+    },
+  });
 
-      const response = await secretsmanager
-        .getSecretValue({
-          SecretId: <yourSecretName>,
-        })
-        .promise();
+  const response = await secretsmanager
+    .getSecretValue({
+      SecretId: <yourSecretName>,
+    })
+    .promise();
 
-      return JSON.parse(response.SecretString).MOMENTO_AUTH_TOKEN;
-    };
+  return JSON.parse(response.SecretString).MOMENTO_AUTH_TOKEN;
+};
 ```
 
 Be sure to replace **"&lt;yourSecretName>"** with the name of the secret you used in the Secrets Manager console.
@@ -248,7 +242,7 @@ First, you need to ensure that the dependency is included within your function Z
 
 Second, you must ensure that your dependencies will work in the AWS Lambda environment. If you are using a ZIP file rather than a container image for your Lambda function, the code itself will be running on top of the Amazon Linux 2 operating system. Most of your function code and dependencies will work the same on your local machine as in the Lambda execution environment. However, certain dependencies must be compiled for specific architectures.
 
-The Momento SimpleCache clients use gRPC to connect to the Momento service (TODO LINK TO CONCEPTS). The gRPC library for Python uses architecture-specific bindings and thus must be compiled for the Amazon Linux 2 execution environment. If you build the dependency directly on your Mac or Windows machine, it won't be compatible with the Lambda execution environment.
+The [Momento SimpleCache clients use gRPC](./momento-concepts#grpc) to connect to the Momento service. The gRPC library for Python uses architecture-specific bindings and thus must be compiled for the Amazon Linux 2 execution environment. If you build the dependency directly on your Mac or Windows machine, it won't be compatible with the Lambda execution environment.
 
 Below, we will see how to handle both of these problems using popular deployment frameworks.
 
@@ -263,7 +257,7 @@ If you are using Node.js for your Lambda functions, you don't need to worry abou
 To add Momento to your Lambda function, you need to install it and save it to your `package.json` file:
 
 ```
-    npm install --save @gomomento/sdk
+npm install --save @gomomento/sdk
 ```
 
 Most of the popular deployment tools will automatically include the installed package in your Lambda function ZIP file.
@@ -277,12 +271,12 @@ If you are using the Serverless Framework, you can use the [serverless-python-re
 To configure serverless-python-requirements, be sure to add the following configuration to your `serverless.yml` file:
 
 ```
-    plugins:
-      - serverless-python-requirements
+plugins:
+  - serverless-python-requirements
 
-    custom:
-      pythonRequirements:
-        dockerizePip: true
+custom:
+  pythonRequirements:
+    dockerizePip: true
 ```
 
 Be sure to read the rest of the [documentation on serverless-python-requirements](https://github.com/serverless/serverless-python-requirements) to customize for your specific environment.
@@ -290,7 +284,7 @@ Be sure to read the rest of the [documentation on serverless-python-requirements
 If you are using AWS SAM, you can use the following command to build your ZIP file properly for the Lambda execution environment:
 
 ```
-    sam build --use-container
+sam build --use-container
 ```
 
 This will [indicate to SAM that you want to use a Docker image](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-using-build.html#build-zip-archive) that is similar to the Lambda execution environment to build your dependencies.
@@ -299,7 +293,7 @@ If you are using the AWS CDK, it will [install all dependencies in a Lambda-comp
 
 #### Other languages
 
-For other languages, you should install the Momento SDK according to the installation instructions (TODO LINK). Then, refer to the AWS Lambda documentation for building ZIP files for those languages:
+For other languages, you should install the Momento SDK according to the installation instructions. Then, refer to the AWS Lambda documentation for building ZIP files for those languages:
 
 - [Lambda Java deployment package](https://docs.aws.amazon.com/lambda/latest/dg/java-package.html)
 

@@ -10,9 +10,7 @@ In the next few steps, we're going to add caching to our serverless application 
 
 In this step, we will sign up for the Momento service and configure it for usage in our serverless application. As we do so, we will learn more key concepts about using Lambda correctly, including some subtle details about the runtime model that make a big difference in performance. For this step, we'll be using the `step-2` branch in the tutorial repository (TODO LINK).
 
-If you want to skip the concepts and go directly to the implementation, navigate ahead to the section on installing and configuring Momento in your serverless application.
-
-Let's get started!
+If you want to skip the concepts and go directly to the implementation, navigate ahead to the section on [installing and configuring Momento in your serverless application](#installing-and-configuring-momento-in-your-serverless-application).
 
 ## Key concepts about the Lambda runtime model
 
@@ -95,8 +93,6 @@ With our concepts out of the way, let's get down to the details of configuring M
 - Storing our authentication token in AWS Secrets Manager;
 
 - Installing and configuring our Momento client.
-
-Let's get started.
 
 ### Signing up for Momento and getting an authentication token
 

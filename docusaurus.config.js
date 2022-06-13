@@ -33,11 +33,6 @@ const config = {
           // TODO -- Update!
           editUrl: "https://github.com/alexdebrie/momento-docs/tree/main/",
         },
-        // blog: {
-        //   showReadingTime: true,
-        //   // TODO -- Update!
-        //   editUrl: "https://github.com/alexdebrie/momento-docs/tree/main/",
-        // },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },

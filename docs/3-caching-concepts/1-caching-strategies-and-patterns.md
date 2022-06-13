@@ -20,8 +20,6 @@ There are many different ways to implement a cache, and the caching strategy for
 
 In this post, you will learn how to design a caching strategy that works for your application. First, we'll look at the different choices you need to make when designing a caching strategy. Then, we'll review some common caching strategies and when you should use or avoid specific strategies.
 
-Let's get started.
-
 ## Caching choices
 
 Before we discuss specific caching patterns you may use in your application, let's discuss some of the key choices you'll need to make when adding caching to your application.
