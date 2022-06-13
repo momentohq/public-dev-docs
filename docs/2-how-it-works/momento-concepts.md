@@ -171,7 +171,7 @@ By setting the TTL value to "0", you have told Momento that the "bar" cache entr
 
 ## Conclusion
 
-On this page, we learned the basic concepts of working with the Momento SDK and API. If you want to get started using Momento, check out our [getting started guide](./../2-getting-started).
+On this page, we learned the basic concepts of working with the Momento SDK and API. If you want to get started using Momento, check out our [getting started guide](./../getting-started).
 
 If you want to learn more about caching strategies and how to think about caching, check out our resource on [caching strategies and patterns](./../caching-concepts/caching-strategies-and-patterns).
 

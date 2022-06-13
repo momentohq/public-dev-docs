@@ -3,6 +3,7 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Learn the concepts, architecture, and other basics of working with Momento."
+    "description": "Learn the concepts, architecture, and other basics of working with Momento.",
+    "slug": "/how-it-works"
   }
 }
