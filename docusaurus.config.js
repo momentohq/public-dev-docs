@@ -9,7 +9,7 @@ const config = {
   title: "Momento Docs",
   tagline: "The World's Fastest Cache",
   url: "https://momentohq.github.io",
-  baseUrl: "/public-dev-docs",
+  baseUrl: "/public-dev-docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.ico",
