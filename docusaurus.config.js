@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Momento Docs",
   tagline: "The World's Fastest Cache",
-  url: "https://gomomento.com",
+  url: "https://docs.gomomento.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
@@ -43,13 +43,12 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "Momento",
+        title: "",
         logo: {
           alt: "Momento Logo",
-          src: "img/logo_light.svg",
+          src: "img/logo.svg",
         },
         items: [
-          { to: "https://www.gomomento.com/", label: "Home", position: "left" },
           {
             to: "https://www.gomomento.com/blog",
             label: "Blog",
