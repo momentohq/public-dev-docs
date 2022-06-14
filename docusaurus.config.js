@@ -9,7 +9,7 @@ const config = {
   title: "Momento Docs",
   tagline: "The World's Fastest Cache",
   url: "https://momentohq.github.io",
-  baseUrl: '/',
+  baseUrl: "/",
   projectName: 'momentohq.github.io',
   organizationName: 'momentohq',
   trailingSlash: false,
