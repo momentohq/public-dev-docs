@@ -72,7 +72,7 @@ const config = {
             items: [
               {
                 label: "Documentation Home",
-                to: "/public-dev-docs/docs/overview",
+                to: "/docs/overview",
               },
             ],
           },
