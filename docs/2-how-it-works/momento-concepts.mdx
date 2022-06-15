@@ -51,10 +51,6 @@ client, err := momento.NewSimpleCacheClient(authToken, itemDefaultTtlSeconds)
     if err != nil {
     panic(err)
 }
-_, err = client.Delete(&CacheSetRequest{
-    CacheName: "test-cache",
-    Key:       "test-key",
-})
 `}
     csharp={`
 uint DEFAULT_TTL_SECONDS = 300;
