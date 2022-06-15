@@ -119,27 +119,21 @@ gRPC is supported by all languages for which there is a Momento SDK. For most of
 
 As noted above, Momento cache is a remote service from your application, and thus we need to think about the networking infrastructure to connect your application to the Momento service. In keeping with our core principles, Momento offers two networking mechanisms for interacting with your cache: the default configuration, and an advanced configuration.
 
-#### Default networking (public internet + HTTPS)
+#### Default networking
 
-By default, your SimpleCache client will connect to a publicly accessible endpoint for the Momento cache service. All requests to the Momento service will travel over the public internet to a Momento-managed load balancer, which will route your request to the proper server.
+By default, your SimpleCache client will connect to a publicly accessible endpoint for the Momento cache service. There are two main benefits to the default networking setup.
 
-![Architecture diagram of application interacting with Momento via public internet](images/momento-concepts/momento-public.png "Momento public access")
+First, it is simple. You can [get started with Momento](./../getting-started) and start interacting with your cache in as little as five minutes right from your laptop. You don't have to mess with complicated network configuration to benefit from a cache in your application.
 
-There are two benefits to the default networking setup.
-
-First, it is simple. You can [get started with Momento](./../getting-started) and start interacting with your cache in as little as five minutes. You don't have to mess with complicated network configuration to benefit from a cache in your application.
-
-Second, it works well with serverless applications. Many serverless applications prioritize using services that are available over the public internet using HTTPS. Part of this is due to the initial complexity and latency around using Lambda functions within a VPC, but part of it is due to the reduced complexity of avoiding complex network configurations.
+Second, it works well with serverless applications. Many serverless applications prioritize using services that are available using HTTPS rather than connection models that require a private VPC to control access. Part of this is due to the initial complexity and latency around using Lambda functions within a VPC, but part of it is due to the reduced complexity of avoiding complex network configurations.
 
 If these benefits appeal to you, the default networking setup is perfect for you.
 
-#### Advanced networking (VPC peering)
+#### Advanced networking
 
-In addition to the default networking setup, Momento provides an advanced networking configuration that allows for VPC peering between your VPC and the Momento VPC. Under this configuration, requests to the Momento service will travel through private infrastructure rather than passing over the public internet.
+In addition to the default networking setup, Momento provides an advanced networking configurations that allows for an optimal path between your VPC and the Momento VPC depending on what is best for your application. We can currently support both VPC Endpoints and VPC peering in AWS.
 
-This is a good option for you if you do not want your data going on the public internet or if you have extreme bandwidth or latency requirements. By using VPC peering, your data stays in private infrastructure the entire time, without traveling over the public internet. Additionally, you can save on bandwidth charges by avoiding egress to the public internet. Finally, requests through a cloud provider's private infrastructure generally have lower latency than those on the public internet.
-
-If you're interested in using VPC peering with your Momento cache, please contact us to learn more.
+These are good options for your workloads if you need to keep the traffic over private addresses for compliance or if you have extreme bandwidth or latency requirements. If you're interested in using a VPC Endpoint or VPC peering with your Momento cache, please [contact us](https://calendly.com/momento-meeting) to learn more and get your account approved to try out.
 
 ## Time-to-live (TTL)
 
