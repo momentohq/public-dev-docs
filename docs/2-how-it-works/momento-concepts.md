@@ -159,7 +159,7 @@ cache_client.set("users-cache", "foo", "123", 100)
 
 In this operation, we are setting the cache entry identified by the key of "foo" to the value of "123" within the "users-cache" in our Momento account. For this important value, we've decided it should be cached for 100 seconds rather than the default of 60 seconds we specified when initializing our client.
 
-Momento cache is not a database. We currently enforce a max TTL of 24 hours for items.
+A TTL in Momento is always required. Currently we support TTL values in the range of 1 second to 1 day.
 
 ## Conclusion
 
