@@ -62,7 +62,7 @@ Finally, _serverless developers prefer services that can be provisioned quickly 
 
 Momento is a great addition to serverless applications that use AWS Lambda and other popular serverless services.
 
-First, Momento is [available via HTTPS over the public internet](./momento-concepts#networking). This simplifies the configuration required to add Momento to your serverless application. You simply add the authentication token to your application and start using your cache. With this HTTPS-based connection pattern, you can still reuse an existing connection within your Lambda function to avoid the overhead of establishing a new connection on each request. Additionally, Memento has a VPC peering option available if you prefer using a VPC for your application.
+First, Momento is [available via HTTPS](./momento-concepts#networking). This simplifies the configuration required to add Momento to your serverless application. You simply add the authentication token to your application and start using your cache. With this HTTPS-based connection pattern, you can still reuse an existing connection within your Lambda function to avoid the overhead of establishing a new connection on each request. Additionally, Memento has a VPC peering option available if you prefer using a VPC for your application.
 
 Second, Momento can scale your cache quickly and achieve a high number of requests per second without pre-provisioning. There are no connection limits to your Momento cache, so a burst of traffic won't lead to availability issues in your application.
 
