@@ -33,8 +33,7 @@ const config = {
         docs: {
           sidebarCollapsible: true,
           sidebarPath: require.resolve("./sidebars.js"),
-          // TODO -- Update!
-          editUrl: "https://github.com/alexdebrie/momento-docs/tree/main/",
+          editUrl: "https://github.com/momentohq/public-dev-docs/tree/main/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
