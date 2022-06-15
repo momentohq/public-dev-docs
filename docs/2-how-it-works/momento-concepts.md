@@ -157,15 +157,9 @@ To set a custom TTL value in a set operation using Momento's Python SDK, use cod
 cache_client.set("users-cache", "foo", "123", 100)
 ```
 
-In this operation, we are setting the cache entry identified by the key of "foo" to the value of "123" within the "users-cache" in our Momento account. For this important value, we've decided it should be cached for 100 seconds rather than the default of 60 seconds.
+In this operation, we are setting the cache entry identified by the key of "foo" to the value of "123" within the "users-cache" in our Momento account. For this important value, we've decided it should be cached for 100 seconds rather than the default of 60 seconds we specified when initializing our client.
 
-If you have cache entries that you would not like to expire or that you only plan to expire explicitly, you can indicate so by using a TTL value of "0":
-
-```python
-cache_client.set("users-cache", "bar", "456", 0)
-```
-
-By setting the TTL value to "0", you have told Momento that the "bar" cache entry should not be removed from the cache.
+A TTL in Momento is always required. Currently we support TTL values in the range of 1 second to 1 day.
 
 ## Conclusion
 
