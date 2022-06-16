@@ -18,6 +18,67 @@ Attributes:
 |-----------|--------|----------------------------------|
 | cacheName | String | Name of the cache to be created. |
 
+<SdkExamples
+    js={`
+const authToken="eyJhbGc.MyTestToken";
+const defaultTTL = 300;
+const momento = new SimpleCacheClient(authToken, defaultTtl);
+momento.createCache('test-cache');
+`}
+    python={`
+import momento.simple_cache_client as scc\n
+_MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
+_ITEM_DEFAULT_TTL_SECONDS = 300\n
+with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
+    cache_client.create_cache('test-cache')
+`}
+    java={`
+String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
+int DEFAULT_ITEM_TTL_SECONDS = 300;\n
+SimpleCacheClient simpleCacheClient = SimpleCacheClient
+    .builder(MOMENTO_AUTH_TOKEN, DEFAULT_ITEM_TTL_SECONDS)
+    .build()\n
+simpleCacheClient.createCache("test-cache");
+    `}
+    go={`
+const (
+    authToken             = "eyJhbGc.MyTestToken"
+    itemDefaultTtlSeconds = 300
+)
+client, err := momento.NewSimpleCacheClient(authToken, itemDefaultTtlSeconds)
+if err != nil {
+    panic(err)
+}
+err = client.CreateCache(&momento.CreateCacheRequest{
+    CacheName: "test-cache",
+})
+    `}
+    csharp={`
+uint DEFAULT_TTL_SECONDS = 300;
+String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
+using SimpleCacheClient client = new SimpleCacheClient(MOMENTO_AUTH_TOKEN, DEFAULT_TTL_SECONDS);
+client.CreateCache("test-cache");
+    `}
+    rust={`
+let auth_token = "eyJhbGc.MyTestToken";
+let item_default_ttl_seconds = 300;
+let mut cache_client = SimpleCacheClientBuilder::new(
+    auth_token,
+    NonZeroU64::new(item_default_ttl_seconds).unwrap(),
+)
+.unwrap()
+.build();\n
+let cache_name = String::from("test-cache");
+match cache_client.create_cache(&cache_name).await {
+    Ok(_) => {}
+    Err(err) => {
+        eprintln!("{}", err);
+    }
+}
+`}
+    cli={`momento cache create --name test-cache`}
+/>
+
 ### Delete Cache
 
 Deletes a cache
@@ -27,6 +88,67 @@ Attributes:
 | Name      | Type   | Description                      |
 |-----------|--------|----------------------------------|
 | cacheName | String | Name of the cache to be deleted. |
+
+<SdkExamples
+    js={`
+const authToken="eyJhbGc.MyTestToken";
+const defaultTTL = 300;
+const momento = new SimpleCacheClient(authToken, defaultTtl);
+momento.deleteCache('test-cache');
+`}
+    python={`
+import momento.simple_cache_client as scc\n
+_MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
+_ITEM_DEFAULT_TTL_SECONDS = 300\n
+with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
+    cache_client.delete_cache('test-cache')
+`}
+    java={`
+String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
+int DEFAULT_ITEM_TTL_SECONDS = 300;\n
+SimpleCacheClient simpleCacheClient = SimpleCacheClient
+    .builder(MOMENTO_AUTH_TOKEN, DEFAULT_ITEM_TTL_SECONDS)
+    .build()\n
+simpleCacheClient.deleteCache("test-cache");
+    `}
+    go={`
+const (
+    authToken             = "eyJhbGc.MyTestToken"
+    itemDefaultTtlSeconds = 300
+)
+client, err := momento.NewSimpleCacheClient(authToken, itemDefaultTtlSeconds)
+if err != nil {
+    panic(err)
+}
+err = client.DeleteCache(&momento.CreateCacheRequest{
+    CacheName: "test-cache",
+})
+    `}
+    csharp={`
+uint DEFAULT_TTL_SECONDS = 300;
+String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
+using SimpleCacheClient client = new SimpleCacheClient(MOMENTO_AUTH_TOKEN, DEFAULT_TTL_SECONDS);
+client.DeleteCache("test-cache");
+    `}
+    rust={`
+let auth_token = "eyJhbGc.MyTestToken";
+let item_default_ttl_seconds = 300;
+let mut cache_client = SimpleCacheClientBuilder::new(
+    auth_token,
+    NonZeroU64::new(item_default_ttl_seconds).unwrap(),
+)
+.unwrap()
+.build();\n
+let cache_name = String::from("test-cache");
+match cache_client.delete_cache(&cache_name).await {
+    Ok(_) => {}
+    Err(err) => {
+        eprintln!("{}", err);
+    }
+}
+`}
+    cli={`momento cache delete-cache --name test-cache`}
+/>
 
 ### List Caches
 
