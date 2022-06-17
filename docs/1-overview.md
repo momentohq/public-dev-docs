@@ -8,10 +8,10 @@ Momento is the world's first serverless caching service. It has been built with 
 
 In the following pages, you can learn how to use Momento and about caching more broadly.
 
-- _If you want to get started using Momento_, check out the [Getting Started](https://docs.momentohq.com/docs/getting-started) reference.
+- _If you want to get started using Momento_, check out the [Getting Started](./getting-started) reference.
 
-- _If you want to know more about Momento and how it works_, refer to the [How it works](https://docs.momentohq.com/docs/how-it-works) section, including the reference on [Momento Concepts](https://docs.momentohq.com/docs/how-it-works/momento-concepts).
+- _If you want to know more about Momento and how it works_, refer to the [How it works](./how-it-works) section, including the reference on [Momento Concepts](./how-it-works/momento-concepts).
 
-- _For specific guides on integrating with AWS Lambda or other systems_, look to the [Guides](https://docs.momentohq.com/docs/guides) section.
+- _For specific guides on integrating with AWS Lambda or other systems_, look to the [Guides](./guides) section.
 
-- _If you want an in-depth tutorial of Momento in action_, look to our walkthrough on [adding a cache to a serverless application](https://docs.momentohq.com/docs/serverless-cache-walkthrough).
+- _If you want an in-depth tutorial of Momento in action_, look to our walkthrough on [adding a cache to a serverless application](./serverless-cache-walkthrough).
