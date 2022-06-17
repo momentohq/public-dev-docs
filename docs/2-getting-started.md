@@ -41,13 +41,25 @@ SUBCOMMANDS:
 
 [Authentication in Momento is done via an authentication token](./how-it-works/momento-concepts#authentication-token), and you can sign up for a Momento auth token directly from the command line.
 
-Authentication tokens are associated with a specific Momento region. You can provision an auth token for a region using the `account` command with your desired region:
+Authentication tokens are associated with a specific Momento region. You can provision an auth token for a region using the `account` command with your desired cloud provider and region:
 
+
+##### AWS [available regions are us-west-2, us-east-1, ap-northeast-1]
 ```console
-$ momento account signup --region us-west-2 --email your-email@example.com
+momento account signup aws --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-Be sure to replace `your-email@example.com` with your actual email address.
+##### GCP [available regions are us-east1, ap-northeast1]
+```console
+momento account signup gcp --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
+```
+
+##### Azure (Coming Soon) [reach out](https://calendly.com/momento-meeting) if interested
+```console
+momento account signup azure --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
+```
+
+Be sure to replace `<TYPE_YOUR_EMAIL_HERE>` with your actual email address. If the region you want to use is not available yet for your selected cloud provider please [reach out](https://calendly.com/momento-meeting), and we can quickly add support for you. 
 
 Momento will email your auth token to you. You can configure your local CLI to use this token by running the momento `configure` command:
 
