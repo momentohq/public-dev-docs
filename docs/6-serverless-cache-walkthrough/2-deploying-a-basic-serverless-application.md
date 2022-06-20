@@ -18,7 +18,7 @@ Additionally, we will use the [Serverless Framework](https://www.serverless.com/
 
 In the interest of brevity, this tutorial won't walk through every line of code that is written in our serverless application. Rather, we will point out a few key aspects of the code that guide how serverless applications work.
 
-For a deeper understanding of the code in this example, please review the documentation in the tutorial repository -- TODO. The code referenced in this step will be from the `step-1` branch of the repository. You can also find out more about the AWS services used or the Serverless Framework by reading their respective documentation pages linked above.
+For a deeper understanding of the code in this example, please review the documentation in the [tutorial repository](https://github.com/momentohq/serverless-tutorial/tree/step-1). The code referenced in this step will be from the `step-1` branch of the repository. You can also find out more about the AWS services used or the Serverless Framework by reading their respective documentation pages linked above.
 
 This step will proceed by first walking through key points in the application code to teach concepts about serverless applications. Then, it will show how to deploy and use your application. If you would like to jump straight to the action, please navigate to the [deployment and usage section](#deployment-and-usage).
 
@@ -48,7 +48,7 @@ To handle all these services, it is imperative that you use infrastructure-as-co
 
 If you're building serverless applications, the foundational infrastructure-as-code tool is [AWS CloudFormation](https://aws.amazon.com/cloudformation/). CloudFormation itself can be verbose and confusing, particularly when wiring together serverless applications, so there are various abstractions built on top of CloudFormation for serverless-specific applications. One of the more popular ones is the Serverless Framework, which we will use in this tutorial.
 
-When using the Serverless Framework in your application, you will describe your infrastructure in a serverless.yml file. You can look at the full file in the application repository (TODO LINK). I want to discuss a few points of the file.
+When using the Serverless Framework in your application, you will describe your infrastructure in a serverless.yml file. You can look at the full file in the [application repository](https://github.com/momentohq/serverless-tutorial/blob/step-1/serverless.yml). I want to discuss a few points of the file.
 
 First, look at the `functions` block.
 
@@ -143,7 +143,7 @@ Be sure to replace "`<yourEndpoint>`" with your copied endpoint from the termina
 
 ### Interacting with our service
 
-Now, let's interact with our application and use our deployed endpoints. The examples below use curl in your terminal, but you can also use the exported collection (TODO LINK to repo) in a tool like [Postman](https://www.postman.com/) or [Insomnia](https://insomnia.rest/).
+Now, let's interact with our application and use our deployed endpoints. The examples below use curl in your terminal, but you can also use the [exported collection](https://github.com/momentohq/serverless-tutorial/tree/step-1/collections) in a tool like [Postman](https://www.postman.com/) or [Insomnia](https://insomnia.rest/).
 
 First, let's create some users. We will create two users, _oliviaowner_ and _membermichael_, so that we can see how to interact with organizations and memberships in our application.
 

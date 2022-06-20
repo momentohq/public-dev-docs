@@ -8,7 +8,7 @@ In the previous step, we deployed a basic serverless application using AWS Lambd
 
 In the next few steps, we're going to add caching to our serverless application using Momento. The account management service will be heavily relied upon by other services, so we want to make sure it is fast and reliable. Using a cache will reduce latency and the load on our primary database.
 
-In this step, we will sign up for the Momento service and configure it for usage in our serverless application. As we do so, we will learn more key concepts about using Lambda correctly, including some subtle details about the runtime model that make a big difference in performance. For this step, we'll be using the `step-2` branch in the tutorial repository (TODO LINK).
+In this step, we will sign up for the Momento service and configure it for usage in our serverless application. As we do so, we will learn more key concepts about using Lambda correctly, including some subtle details about the runtime model that make a big difference in performance. For this step, we'll be using the `step-2` branch in the [tutorial repository](https://github.com/momentohq/serverless-tutorial/tree/step-2).
 
 If you want to skip the concepts and go directly to the implementation, navigate ahead to the section on [installing and configuring Momento in your serverless application](#installing-and-configuring-momento-in-your-serverless-application).
 
@@ -162,7 +162,7 @@ Now that we have stored our secret in AWS Secrets Manager, let's configure a Mom
 
 ### Installing and configuring our Momento client
 
-The final part of this step is to install the Momento SDK and create a client to use in our application. You can make the edits to the application yourself, or you can see the final version for this step using the `step-2` branch of the tutorial repository (TODO LINK).
+The final part of this step is to install the Momento SDK and create a client to use in our application. You can make the edits to the application yourself, or you can see the final version for this step using the `step-2` branch of the [tutorial repository](https://github.com/momentohq/serverless-tutorial/tree/step-2).
 
 Let's start by installing the Momento SDK. We're using Node.js for our application, so we can install the Momento SDK using npm:
 
