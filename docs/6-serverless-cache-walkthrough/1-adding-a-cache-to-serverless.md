@@ -69,6 +69,6 @@ Third, we will be deploying an application to Amazon Web Services (AWS). To do s
 
 Finally, all the code for this tutorial is available in a GitHub repository. You can clone the code to your machine using the following command:
 
-    git clone TODO
+    git clone git@github.com:momentohq/serverless-tutorial.git
 
 Now that we've set up our environment, let's move on to the next step where we will deploy our serverless application.
