@@ -38,12 +38,16 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-        gtag: {
-          trackingID: 'G-NGXMP4576S',
-          anonymizeIP: false,
-        },
       }),
     ],
+  ],
+  plugins: [
+    [
+      require.resolve('docusaurus-gtm-plugin'),
+      {
+        id: 'GTM-THBDHDQ', // GTM Container ID
+      }
+    ]
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
