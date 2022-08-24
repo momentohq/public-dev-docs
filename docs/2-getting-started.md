@@ -8,12 +8,26 @@ sidebar_position: 1.5
 
 ### Install CLI
 
-The quickest way to get started is with our CLI. You can install the Momento CLI using our Homebrew tap:
+The quickest way to get started is with our CLI. 
 
+**OSx**
 ```
 brew tap momentohq/tap
 brew install momento-cli
 ```
+
+**Linux**
+
+1. Download the latest linux tar.gz file from [https://github.com/momentohq/momento-cli/releases/latest](https://github.com/momentohq/momento-cli/releases/latest)
+2. Unzip the file: `tar -xvf momento-cli-X.X.X.linux_x86_64.tar.gz`
+3. Move `./momento` to your execution path.
+
+**Windows**
+
+1. Download the latest windows zip file from [https://github.com/momentohq/momento-cli/releases/latest](https://github.com/momentohq/momento-cli/releases/latest)
+2. Unzip the `momento-cli-X.X.X.windows_x86_64.zip` file
+3. Run the unzipped .exe file
+
 
 To verify the CLI was installed correctly, you can run our help command:
 
