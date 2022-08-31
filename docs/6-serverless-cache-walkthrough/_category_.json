@@ -6,5 +6,6 @@
     "title": "Adding a cache to a serverless application",
     "description": "If you want to add a cache to a serverless application using AWS Lambda, check out the following five-step walkthrough.",
     "slug": "/serverless-cache-walkthrough"
-  }
+  },
+  "className": "sidebar-item-walkthrough"
 }

@@ -10,8 +10,8 @@ const config = {
   tagline: "The World's Fastest Cache",
   url: "https://momentohq.github.io",
   baseUrl: "/",
-  projectName: 'momentohq.github.io',
-  organizationName: 'momentohq',
+  projectName: "momentohq.github.io",
+  organizationName: "momentohq",
   trailingSlash: false,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
@@ -36,22 +36,26 @@ const config = {
           editUrl: "https://github.com/momentohq/public-dev-docs/tree/main/",
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: require.resolve("./src/css/custom.scss"),
         },
       }),
     ],
   ],
   plugins: [
+    "docusaurus-plugin-sass",
     [
-      require.resolve('docusaurus-gtm-plugin'),
+      require.resolve("docusaurus-gtm-plugin"),
       {
-        id: 'GTM-THBDHDQ', // GTM Container ID
-      }
-    ]
+        id: "GTM-THBDHDQ", // GTM Container ID
+      },
+    ],
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        disableSwitch: true,
+      },
       navbar: {
         title: "",
         logo: {
@@ -65,14 +69,19 @@ const config = {
             position: "right",
           },
           {
-            href: "https://github.com/momentohq/",
-            label: "GitHub",
+            to: "https://github.com/momentohq/",
+            label: "Github",
             position: "right",
           },
         ],
       },
       footer: {
         style: "dark",
+        logo: {
+          alt: "Momento Logo",
+          src: "img/footer_logo.svg",
+        },
+        copyright: `Copyright © ${new Date().getFullYear()} Momento, Inc.`,
         links: [
           {
             title: "Docs",
@@ -88,11 +97,11 @@ const config = {
             items: [
               {
                 label: "Discord",
-                href: "https://discord.gg/3HkAKjUZGq",
+                to: "https://discord.gg/3HkAKjUZGq",
               },
               {
                 label: "Twitter",
-                href: "https://twitter.com/momentohq",
+                to: "https://twitter.com/momentohq",
               },
             ],
           },
@@ -104,13 +113,12 @@ const config = {
                 to: "https://www.gomomento.com/blog",
               },
               {
-                label: "GitHub",
-                href: "https://github.com/momentohq",
+                label: "Github",
+                to: "https://github.com/momentohq",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Momento, Inc.`,
       },
       prism: {
         additionalLanguages: ["java", "rust", "csharp"],

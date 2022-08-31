@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1.5
+sidebar_class_name: sidebar-item-getting-started
 ---
 
 # Getting Started
@@ -8,9 +9,10 @@ sidebar_position: 1.5
 
 ### Install CLI
 
-The quickest way to get started is with our CLI. 
+The quickest way to get started is with our CLI.
 
 **OSx**
+
 ```
 brew tap momentohq/tap
 brew install momento-cli
@@ -27,7 +29,6 @@ brew install momento-cli
 1. Download the latest windows zip file from [https://github.com/momentohq/momento-cli/releases/latest](https://github.com/momentohq/momento-cli/releases/latest)
 2. Unzip the `momento-cli-X.X.X.windows_x86_64.zip` file
 3. Run the unzipped .exe file
-
 
 To verify the CLI was installed correctly, you can run our help command:
 
@@ -57,23 +58,25 @@ SUBCOMMANDS:
 
 Authentication tokens are associated with a specific Momento region. You can provision an auth token for a region using the `account` command with your desired cloud provider and region:
 
-
 ##### AWS [available regions are us-west-2, us-east-1, ap-northeast-1]
+
 ```console
 momento account signup aws --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
 ##### GCP [available regions are us-east1, ap-northeast1]
+
 ```console
 momento account signup gcp --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
 ##### Azure (Coming Soon) [reach out](https://calendly.com/momento-meeting) if interested
+
 ```console
 momento account signup azure --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-Be sure to replace `<TYPE_YOUR_EMAIL_HERE>` with your actual email address. If the region you want to use is not available yet for your selected cloud provider please [reach out](https://calendly.com/momento-meeting), and we can quickly add support for you. 
+Be sure to replace `<TYPE_YOUR_EMAIL_HERE>` with your actual email address. If the region you want to use is not available yet for your selected cloud provider please [reach out](https://calendly.com/momento-meeting), and we can quickly add support for you.
 
 Momento will email your auth token to you. You can configure your local CLI to use this token by running the momento `configure` command:
 
