@@ -1,0 +1,418 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+@font-face {
+  font-family: "Manrope";
+  src: url("/static/fonts/Manrope-Regular.woff2") format("woff2"),
+    url("/static/fonts/Manrope-Regular.ttf") format("ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/static/fonts/Manrope-Medium.woff2") format("woff2"),
+    url("/static/fonts/Manrope-Medium.ttf") format("ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/static/fonts/Manrope-SemiBold.woff2") format("woff2"),
+    url("/static/fonts/Manrope-SemiBold.ttf") format("ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/static/fonts/Manrope-Bold.woff2") format("woff2"),
+    url("/static/fonts/Manrope-Bold.ttf") format("ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/static/fonts/Manrope-ExtraBold.woff2") format("woff2"),
+    url("/static/fonts/Manrope-ExtraBold.ttf") format("ttf");
+  font-weight: 800;
+}
+
+:root {
+  --ifm-color-primary: #25392b;
+  --ifm-color-primary-dark: #213327;
+  --ifm-color-primary-darker: #1f3025;
+  --ifm-color-primary-darkest: #1a281e;
+  --ifm-color-primary-light: #293f2f;
+  --ifm-color-primary-lighter: #2b4231;
+  --ifm-color-primary-lightest: #304a38;
+  --ifm-link-color: #00a070;
+  --ifm-font-family-monospace: "Manrope";
+  --ifm-font-family-base: "Manrope";
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme="dark"] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 997px) {
+  :root {
+    --ifm-spacing-horizontal: 2.25rem;
+    --ifm-spacing-vertical: 2.25rem;
+    --ifm-navbar-padding-horizontal: 2rem;
+  }
+
+  main {
+    padding-top: 1rem;
+  }
+}
+
+@media (max-width: 997px) {
+  .footer .container {
+    flex-direction: column !important;
+
+    .footer__bottom {
+      order: 3;
+    }
+  }
+}
+
+.markdown p {
+  font-size: 16px;
+}
+
+.navbar {
+  height: 80px;
+  padding: 20px 40px;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(37, 57, 43, 0.15);
+}
+
+.navbar__items .navbar__link {
+  padding: 0 0 0 20px;
+  font-weight: 500;
+  color: var(--ifm-color-primary);
+}
+
+.theme-doc-sidebar-container {
+  border: none !important;
+}
+
+.theme-doc-sidebar-container > div {
+  padding: 80px 16px 0 16px;
+  width: 323px;
+}
+
+.sidebar-title {
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  color: #a2aba5;
+  margin: 0 0 20px 0;
+}
+
+.menu__list-item-collapsible,
+.menu__link,
+.breadcrumbs__link {
+  &:hover {
+    background: rgba(37, 57, 43, 0.05) !important;
+  }
+}
+
+.menu__link {
+  padding: 9px;
+
+  &::before {
+    padding: 0 12px 0 0;
+    opacity: 0.5;
+    align-self: flex-start;
+  }
+}
+
+.menu__list-item-collapsible button:hover {
+  background: transparent !important;
+}
+
+.menu__link--active:before {
+  opacity: 1;
+}
+
+.menu__list-item {
+  margin: 4px 0;
+  width: 100%;
+
+  ul {
+    padding: 0 !important;
+
+    a {
+      padding: 8px 8px 8px 50px;
+    }
+  }
+}
+
+.sidebar-item-overview a::before {
+  content: url("/img/icons/logo.svg");
+}
+
+.sidebar-item-getting-started a::before {
+  content: url("/img/icons/rocket.svg");
+}
+
+.sidebar-item-how-it-works div a::before {
+  content: url("/img/icons/how_it_works.svg");
+}
+
+.sidebar-item-caching-concepts div a::before {
+  content: url("/img/icons/category.svg");
+}
+
+.sidebar-item-api-reference a::before {
+  content: url("/img/icons/api.svg");
+}
+
+.sidebar-item-guides div a::before {
+  content: url("/img/icons/book.svg");
+}
+
+.sidebar-item-walkthrough div a::before {
+  content: url("/img/icons/fact_check.svg");
+}
+
+.menu__list-item .menu__caret::before {
+  content: url("/img/icons/dropdown_arrow_down.svg");
+  transform: rotateZ(0deg);
+  background: none;
+}
+
+.menu__list-item--collapsed .menu__caret::before {
+  content: url("/img/icons/dropdown_arrow_down.svg");
+  transform: rotateZ(180deg) !important;
+  background: none;
+}
+
+.footer {
+  background: var(--ifm-color-primary);
+
+  .container {
+    display: flex;
+    flex-direction: row;
+
+    .row {
+      order: 2;
+    }
+  }
+
+  .footer__bottom {
+    order: 1;
+    margin-right: auto;
+
+    img {
+      width: 218px;
+      max-width: none;
+      margin-top: 0;
+    }
+  }
+
+  .footer__copyright {
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+    margin-top: 16px;
+  }
+
+  .footer__col {
+    min-width: 260px;
+  }
+
+  .footer__items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer__title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #929c95;
+  }
+
+  .footer__link-item {
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+
+  > *:first-child {
+    a::before {
+      content: url("/img/icons/home.svg") !important;
+    }
+  }
+
+  .breadcrumbs__link {
+    color: var(--ifm-color-primary) !important;
+    font-weight: 500;
+
+    &:hover {
+      color: var(--ifm-color-primary) !important;
+    }
+
+    svg {
+      display: none;
+    }
+  }
+
+  .breadcrumbs__item {
+    display: flex;
+    align-items: center;
+
+    a {
+      border-radius: 8px;
+    }
+
+    &::after {
+      content: url("/img/icons/arrow_right.svg") !important;
+      background: transparent !important;
+      opacity: 1 !important;
+      height: 25px;
+    }
+
+    &--active {
+      span {
+        background: transparent !important;
+      }
+
+      &::after {
+        content: "" !important;
+      }
+    }
+  }
+}
+
+.pagination-nav {
+  .pagination-nav__link {
+    border: 1px solid #c9cdca;
+    border-radius: 10px;
+  }
+
+  .pagination-nav__sublabel {
+    font-size: 14px;
+    color: #929c95;
+    font-weight: 600;
+  }
+
+  .pagination-nav__link--prev {
+    .pagination-nav__sublabel {
+      padding-left: 50px !important;
+    }
+
+    .pagination-nav__label::before {
+      height: 23px !important;
+      content: url("/img/icons/double_arrow_left.svg") !important;
+    }
+  }
+
+  .pagination-nav__link--next {
+    .pagination-nav__sublabel {
+      padding-right: 50px !important;
+    }
+
+    .pagination-nav__label {
+      justify-content: flex-end;
+
+      &::after {
+        height: 23px !important;
+        content: url("/img/icons/double_arrow_right.svg") !important;
+      }
+    }
+  }
+
+  .pagination-nav__label {
+    display: flex;
+    align-items: center;
+    color: var(--ifm-color-primary);
+    font-weight: 800;
+
+    &::before {
+      height: 23px !important;
+    }
+  }
+}
+
+.table-of-contents {
+  border: none !important;
+
+  li a {
+    color: var(--ifm-color-primary);
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: 500;
+
+    &:hover {
+      background: rgba(37, 57, 43, 0.05);
+    }
+  }
+}
+
+.theme-edit-this-page {
+  font-weight: 500;
+}
+
+.card {
+  border: 1px solid rgba(37, 57, 43, 0.15) !important;
+  border-radius: 10px;
+  box-shadow: none !important;
+
+  &:hover {
+    box-shadow: 0px 20px 30px rgba(37, 57, 43, 0.05) !important;
+  }
+
+  h2 {
+    color: var(--ifm-color-primary);
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  h2,
+  p {
+    text-align: center;
+  }
+
+  &::before {
+    margin: 0 auto 14px auto;
+    content: url("/img/icons/nut.svg") !important;
+  }
+}
+
+.clean-btn {
+  svg {
+    color: var(--ifm-link-color);
+  }
+  span {
+    svg {
+      color: var(--ifm-link-color);
+    }
+  }
+}
