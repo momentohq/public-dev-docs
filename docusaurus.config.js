@@ -61,6 +61,8 @@ const config = {
         logo: {
           alt: "Momento Logo",
           src: "img/logo.svg",
+          href: "https://www.gomomento.com/",
+          target: "_blank",
         },
         items: [
           {
