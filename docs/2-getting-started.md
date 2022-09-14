@@ -155,14 +155,12 @@ For more information about any of the parameters for a subcommand, you can use `
 
 The CLI is great for testing and for understanding the core Momento API, but most of your caching work will be done in your application. For those, you can use the Momento SDKs.
 
-We currently have the following SDK's languages availabile.
+We currently have the following SDK's languages availabile. Check out each repo for detailed instructions and usage examples.
 
-- [.NET](https://github.com/momentohq/client-sdk-examples/tree/main/dotnet)
-- [Go](https://github.com/momentohq/client-sdk-examples/tree/main/golang)
-- [Java](https://github.com/momentohq/client-sdk-examples/tree/main/java)
-- [JavaScript](https://github.com/momentohq/client-sdk-examples/tree/main/javascript)
-- [Python](https://github.com/momentohq/client-sdk-examples/tree/main/python)
-- [Rust](https://github.com/momentohq/client-sdk-examples/tree/main/rust)
-- [CLI（MacOS/Linux)](https://github.com/momentohq/momento-cli)
-
-Check out our [examples repo](https://github.com/momentohq/client-sdk-examples/) for hands-on examples with the various SDKs.
+- [Go](https://github.com/momentohq/client-sdk-go)
+- [Java](https://github.com/momentohq/client-sdk-java)
+- [JavaScript](https://github.com/momentohq/client-sdk-javascript)
+- [Python](https://github.com/momentohq/client-sdk-python)
+- [.NET](https://github.com/momentohq/client-sdk-dotnet)
+- [Rust](https://github.com/momentohq/client-sdk-rust)
+- [Php](https://github.com/momentohq/client-sdk-php)
