@@ -9,7 +9,16 @@ Momento is the world's first serverless caching service. It has been built with 
 
 In the following pages, you can learn how to use Momento and about caching more broadly.
 
-- _If you want to get started using Momento_, check out the [Getting Started](./getting-started) reference.
+- _If you want to quickly get up and running with Momento CLI_, check out the [Getting Started](./getting-started) reference.
+
+- _If you're looking for our open source SDK's_ head on over to [Github](https://github.com/momentohq) we have:
+  - [Go](https://github.com/momentohq/client-sdk-go)
+  - [Java](https://github.com/momentohq/client-sdk-java)
+  - [JavaScript](https://github.com/momentohq/client-sdk-javascript)
+  - [Python](https://github.com/momentohq/client-sdk-python)
+  - [.NET](https://github.com/momentohq/client-sdk-csharp)
+  - [Rust](https://github.com/momentohq/client-sdk-rust)
+  - [Php](https://github.com/momentohq/client-sdk-php)
 
 - _If you want to know more about Momento and how it works_, refer to the [How it works](./how-it-works) section, including the reference on [Momento Concepts](./how-it-works/momento-concepts).
 
