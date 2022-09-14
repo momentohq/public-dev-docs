@@ -16,7 +16,7 @@ In the following pages, you can learn how to use Momento and about caching more 
   - [Java](https://github.com/momentohq/client-sdk-java)
   - [JavaScript](https://github.com/momentohq/client-sdk-javascript)
   - [Python](https://github.com/momentohq/client-sdk-python)
-  - [.NET](https://github.com/momentohq/client-sdk-csharp)
+  - [.NET](https://github.com/momentohq/client-sdk-dotnet)
   - [Rust](https://github.com/momentohq/client-sdk-rust)
   - [Php](https://github.com/momentohq/client-sdk-php)
 
