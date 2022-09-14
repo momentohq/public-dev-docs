@@ -166,7 +166,7 @@ The final part of this step is to install the Momento SDK and create a client to
 
 Let's start by installing the Momento SDK. We're using Node.js for our application, so we can install the Momento SDK using npm:
 
-    npm install @momento/sdk
+    npm install @gomomento/sdk
 
 Because we installed the package and added it to our `package.json` file, the Serverless Framework will include it with our Node dependencies in the ZIP files for our Lambda functions.
 
@@ -177,7 +177,7 @@ With our SDK installed, we can now create and configure our client.
 In the `src/clients` directory, create a directory called `momento.js` with the following contents:
 
     const AWS = require("aws-sdk");
-    const { SimpleCacheClient } = require("@momento/sdk");
+    const { SimpleCacheClient } = require("@gomomento/sdk");
 
     MOMENTO_SECRET_ID = "accounts/MomentoAuthToken";
     MOMENTO_DEFAULT_TTL = 60;
