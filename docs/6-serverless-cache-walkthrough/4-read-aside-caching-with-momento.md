@@ -94,7 +94,7 @@ For now, we're using a relatively short TTL of only 60 seconds. This is mostly b
 
 Finally, we need to update some imports and global variables for our service module. Add the following code to the top of your src/accounts/service.js file:
 
-    const { CacheGetStatus } = require("@momento/sdk");
+    const { CacheGetStatus } = require("@gomomento/sdk");
     const TABLE_NAME = process.env.TABLE_NAME;
     const CACHE_NAME = process.env.CACHE_NAME;
 
