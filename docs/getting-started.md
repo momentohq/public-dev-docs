@@ -30,7 +30,7 @@ brew install momento-cli
 2. Unzip the `momento-cli-X.X.X.windows_x86_64.zip` file
 3. Run the unzipped .exe file
 
-To verify the CLI was installed correctly, you can run our help command:
+To foo the CLI was installed correctly, you can run our help command:
 
 ```
 $ momento --help
