@@ -320,7 +320,7 @@ Delete the cache value stored for the given key.
 const authToken="eyJhbGc.MyTestToken";
 const defaultTTL = 300;
 const momento = new SimpleCacheClient(authToken, defaultTtl);
-momento.get('test-cache', 'test-key');
+momento.delete('test-cache', 'test-key');
 `}
   python={`
 import momento.simple_cache_client as scc\n
