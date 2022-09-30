@@ -11,5 +11,5 @@ This page outlines our default service limits at Momento. Note that limits can b
 |-------------------|---------------|
 | Item Size         | 1MB           |
 | Max Cache Count   | 10            |
-| Data Plane TPS    | 100 TPS/Cache |
+| Data Plane TPS    | 100 TPS/Cache (up to 1MB/s) |
 | Control Plane TPS | 20 TPS        |
