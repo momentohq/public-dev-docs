@@ -5,7 +5,7 @@ sidebar_class_name: sidebar-item-limits
 
 # Limits 
 
-We have several default limits in place at Momento to help protect you as you get up and running. This page will outline our default service limits that you should be aware of as you look at using Momento as a caching provider. Note that all the limits can be adjusted up as needed. Please reach out to hello@momentohq.com to increase limits if the defaults are too low. (Self service coming soon!)
+This page outlines our default service limits at Momento. Note that limits can be adjusted as needed, please reach out to hello@momentohq.com with your requests. Self service coming soon!
 
 | Limit             | Value         |
 |-------------------|---------------|
