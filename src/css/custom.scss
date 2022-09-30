@@ -165,7 +165,11 @@
 }
 
 .sidebar-item-pricing a::before {
-  content: url("/img/icons/pen.svg");
+  content: url("/img/icons/cloud-with-dollar-sign.svg");
+}
+
+.sidebar-item-limits a::before {
+  content: url("/img/icons/ruler.svg");
 }
 
 .sidebar-item-getting-started a::before {
