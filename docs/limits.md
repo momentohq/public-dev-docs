@@ -13,5 +13,6 @@ This page outlines our default service limits at Momento. Note that limits can b
 | Max Cache Count    | 10                          |
 | Data Plane RPS*    | 100 RPS/Cache (up to 1MB/s) |
 | Control Plane RPS* | 20 RPS                      |
+| TTL                | 1 day                       |
 
 _*RPS = Requests/Second_
