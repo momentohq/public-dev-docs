@@ -7,11 +7,12 @@ sidebar_class_name: sidebar-item-limits
 
 This page outlines our default service limits at Momento. Note that limits can be adjusted as needed, please reach out to hello@momentohq.com with your requests. Self service coming soon!
 
-| Limit              | Value                       |
-|--------------------|-----------------------------|
-| Item Size          | 1MB                         |
-| Max Cache Count    | 10                          |
-| Data Plane RPS*    | 100 RPS/Cache (up to 1MB/s) |
-| Control Plane RPS* | 20 RPS                      |
+| Limit                | Value              |
+|----------------------|--------------------|
+| Item Size            | 1MB                |
+| Max Cache Count      | 10                 |
+| Data Plane RPS*      | 100 RPS* Per Cache |
+| Data Plane Bandwidth | 1MB/s Per Cache    |
+| Control Plane RPS*   | 20 RPS             |
 
 _*RPS = Requests/Second_
