@@ -2,7 +2,7 @@
 
 https://docs.momentohq.com/
 
-We ❤️ contributions please open a pr if something seems incorect or could be explained better.
+We ❤️ contributions! Please open a pr if something seems incorrect or could be explained better.
 
 ---
 
