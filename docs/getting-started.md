@@ -11,7 +11,7 @@ sidebar_class_name: sidebar-item-getting-started
 
 You can try out our CLI tool today, right in your browser.  No software installation required!
 
-Head over to our [Try Momento page](https://gomomento2.webflow.io/try-momento-for-free), and
+Head over to our [Try Momento page](https://www.gomomento.com/try-momento-for-free), and
 you can experiment with `momento` CLI commands in a shell session directly inside your browser.
 You can create a free auth token, create a cache, and start running `set` and `get` commands
 on your cache.  It only takes a few minutes!
