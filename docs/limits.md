@@ -7,7 +7,6 @@ sidebar_class_name: sidebar-item-limits
 
 This page outlines our default service limits at Momento. Note that limits can be adjusted as needed, please reach out to hello@momentohq.com with your requests. Self service coming soon!
 
-
 | Limit                                 | Value    |
 |---------------------------------------|----------|
 | API Rate per cache (Data Plane)       | 100 RPS* |
