@@ -12,7 +12,7 @@ This page outlines our default service limits at Momento. Note that limits can b
 | API Rate per cache (Data Plane)       | 100 RPS* |
 | Throughput per cache                  | 1MB/s    |
 | Item Size                             | 1MB      |
-| API Rate per customer (Control Plane) | 5 RPS    |
+| API Rate per customer (Control Plane) | 5 RPS*   |
 | Max Cache Count                       | 10       |
 
 _*RPS = Requests/Second_
