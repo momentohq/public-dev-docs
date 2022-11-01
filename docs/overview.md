@@ -25,3 +25,6 @@ In the following pages, you can learn how to use Momento and about caching more 
 - _For specific guides on integrating with AWS Lambda or other systems_, look to the [Guides](./guides) section.
 
 - _If you want an in-depth tutorial of Momento in action_, look to our walkthrough on [adding a cache to a serverless application](./serverless-cache-walkthrough).
+
+Have any questions or comments?  We'd love to hear from you!  You can chat with a Momento developer directly by
+[joining our Discord](https://discord.com/invite/3HkAKjUZGq), or e-mail us at [support@momentohq.com](mailto:support@momentohq.com).
