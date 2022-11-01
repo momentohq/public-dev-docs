@@ -14,5 +14,6 @@ This page outlines our default service limits at Momento. Note that limits can b
 | Item Size                             | 1MB      |
 | API Rate per customer (Control Plane) | 5 RPS*   |
 | Max Cache Count                       | 10       |
+| TTL                                   | 1 day    |
 
 _*RPS = Requests/Second_
