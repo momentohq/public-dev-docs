@@ -3,9 +3,9 @@ sidebar_position: 4
 sidebar_class_name: sidebar-item-limits
 ---
 
-# Limits 
+# Service Limits for Momento Serverless Cache
 
-This page outlines our default service limits at Momento. Note that limits can be adjusted as needed, please reach out to hello@momentohq.com with your requests. Self service coming soon!
+This page outlines the default service limits for Momento Serverless Cache. If you need limits adjusted, please reach out to [Support](mailto:hello@momentohq.com) with your request.
 
 | Limit                                 | Value    |
 |---------------------------------------|----------|
@@ -13,7 +13,7 @@ This page outlines our default service limits at Momento. Note that limits can b
 | Throughput per cache                  | 1MB/s    |
 | Item Size                             | 1MB      |
 | API Rate per customer (Control Plane) | 5 RPS*   |
-| Max Cache Count                       | 10       |
-| TTL                                   | 1 day    |
+| Max Cache Count (per account)         | 10       |
+| Time to Live (TTL)                    | 1 day    |
 
 _*RPS = Requests/Second_
