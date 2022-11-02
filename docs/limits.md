@@ -3,7 +3,7 @@ sidebar_position: 4
 sidebar_class_name: sidebar-item-limits
 ---
 
-# Service Limits for Momento Serverless Cache
+# Service Limits
 
 This page outlines the default service limits for Momento Serverless Cache. If you need limits adjusted, please reach out to [Support](mailto:hello@momentohq.com) with your request.
 
