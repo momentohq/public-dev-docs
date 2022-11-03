@@ -1,6 +1,8 @@
 ---
 sidebar_position: 4
 sidebar_class_name: sidebar-item-limits
+title: Service Limits
+description: Explore Momento Serverless Cache's service limits, the default values, and how to get them changed if you need.
 ---
 
 # Service Limits
