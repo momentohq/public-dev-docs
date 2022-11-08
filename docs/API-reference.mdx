@@ -22,20 +22,20 @@ Attributes:
 <SdkExamples
   js={`
 const authToken="eyJhbGc.MyTestToken";
-const defaultTTL = 300;
+const defaultTTL = 15;
 const momento = new SimpleCacheClient(authToken, defaultTtl);
 momento.createCache('test-cache');
 `}
   python={`
 import momento.simple_cache_client as scc\n
 _MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
-_ITEM_DEFAULT_TTL_SECONDS = 300\n
+_ITEM_DEFAULT_TTL_SECONDS = 15\n
 with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
     cache_client.create_cache('test-cache')
 `}
   java={`
 String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
-int DEFAULT_ITEM_TTL_SECONDS = 300;\n
+int DEFAULT_ITEM_TTL_SECONDS = 15;\n
 SimpleCacheClient simpleCacheClient = SimpleCacheClient
     .builder(MOMENTO_AUTH_TOKEN, DEFAULT_ITEM_TTL_SECONDS)
     .build()\n
@@ -44,7 +44,7 @@ simpleCacheClient.createCache("test-cache");
   go={`
 const (
     authToken             = "eyJhbGc.MyTestToken"
-    itemDefaultTtlSeconds = 300
+    itemDefaultTtlSeconds = 15
 )
 client, err := momento.NewSimpleCacheClient(authToken, itemDefaultTtlSeconds)
 if err != nil {
@@ -55,14 +55,14 @@ err = client.CreateCache(&momento.CreateCacheRequest{
 })
     `}
   csharp={`
-uint DEFAULT_TTL_SECONDS = 300;
-String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
-using SimpleCacheClient client = new SimpleCacheClient(MOMENTO_AUTH_TOKEN, DEFAULT_TTL_SECONDS);
-client.CreateCache("test-cache");
+TimeSpan DEFAULT_TTL = TimeSpan.FromSeconds(15);
+ICredentialProvider authProvider = new StringMomentoTokenProvider("eyJhbGc.MyTestToken");
+using SimpleCacheClient client = new SimpleCacheClient(Configurations.Laptop.Latest(), authProvider, DEFAULT_TTL);
+await client.CreateCacheAsync("test-cache");
     `}
   rust={`
 let auth_token = "eyJhbGc.MyTestToken";
-let item_default_ttl_seconds = 300;
+let item_default_ttl_seconds = 15;
 let mut cache_client = SimpleCacheClientBuilder::new(
     auth_token,
     NonZeroU64::new(item_default_ttl_seconds).unwrap(),
@@ -93,20 +93,20 @@ Attributes:
 <SdkExamples
   js={`
 const authToken="eyJhbGc.MyTestToken";
-const defaultTTL = 300;
+const defaultTTL = 15;
 const momento = new SimpleCacheClient(authToken, defaultTtl);
 momento.deleteCache('test-cache');
 `}
   python={`
 import momento.simple_cache_client as scc\n
 _MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
-_ITEM_DEFAULT_TTL_SECONDS = 300\n
+_ITEM_DEFAULT_TTL_SECONDS = 15\n
 with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
     cache_client.delete_cache('test-cache')
 `}
   java={`
 String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
-int DEFAULT_ITEM_TTL_SECONDS = 300;\n
+int DEFAULT_ITEM_TTL_SECONDS = 15;\n
 SimpleCacheClient simpleCacheClient = SimpleCacheClient
     .builder(MOMENTO_AUTH_TOKEN, DEFAULT_ITEM_TTL_SECONDS)
     .build()\n
@@ -115,7 +115,7 @@ simpleCacheClient.deleteCache("test-cache");
   go={`
 const (
     authToken             = "eyJhbGc.MyTestToken"
-    itemDefaultTtlSeconds = 300
+    itemDefaultTtlSeconds = 15
 )
 client, err := momento.NewSimpleCacheClient(authToken, itemDefaultTtlSeconds)
 if err != nil {
@@ -126,14 +126,14 @@ err = client.DeleteCache(&momento.CreateCacheRequest{
 })
     `}
   csharp={`
-uint DEFAULT_TTL_SECONDS = 300;
-String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
-using SimpleCacheClient client = new SimpleCacheClient(MOMENTO_AUTH_TOKEN, DEFAULT_TTL_SECONDS);
-client.DeleteCache("test-cache");
+TimeSpan DEFAULT_TTL = TimeSpan.FromSeconds(15);
+ICredentialProvider authProvider = new StringMomentoTokenProvider("eyJhbGc.MyTestToken");
+using SimpleCacheClient client = new SimpleCacheClient(Configurations.Laptop.Latest(), authProvider, DEFAULT_TTL);
+await client.DeleteCacheAsync("test-cache");
     `}
   rust={`
 let auth_token = "eyJhbGc.MyTestToken";
-let item_default_ttl_seconds = 300;
+let item_default_ttl_seconds = 15;
 let mut cache_client = SimpleCacheClientBuilder::new(
     auth_token,
     NonZeroU64::new(item_default_ttl_seconds).unwrap(),
@@ -175,20 +175,20 @@ Sets the value in cache with a given Time To Live (TTL) seconds. If a value for 
 <SdkExamples
   js={`
 const authToken="eyJhbGc.MyTestToken";
-const defaultTTL = 300;
+const defaultTTL = 15;
 const momento = new SimpleCacheClient(authToken, defaultTtl);
 momento.set('test-cache', 'test-key', 'test-value');
 `}
   python={`
 import momento.simple_cache_client as scc\n
 _MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
-_ITEM_DEFAULT_TTL_SECONDS = 300\n
+_ITEM_DEFAULT_TTL_SECONDS = 15\n
 with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
     cache_client.set('test-cache', 'test-key', 'test-value')
 `}
   java={`
 String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
-int DEFAULT_ITEM_TTL_SECONDS = 300;\n
+int DEFAULT_ITEM_TTL_SECONDS = 15;\n
 SimpleCacheClient simpleCacheClient = SimpleCacheClient
     .builder(MOMENTO_AUTH_TOKEN, DEFAULT_ITEM_TTL_SECONDS)
     .build()\n
@@ -197,7 +197,7 @@ simpleCacheClient.set('test-cache', 'test-key', 'test-value');
   go={`
 const (
     authToken             = "eyJhbGc.MyTestToken"
-    itemDefaultTtlSeconds = 300
+    itemDefaultTtlSeconds = 15
 )
 client, err := momento.NewSimpleCacheClient(authToken, itemDefaultTtlSeconds)
 if err != nil {
@@ -210,14 +210,14 @@ _, err = client.Set(&CacheSetRequest{
 })
     `}
   csharp={`
-uint DEFAULT_TTL_SECONDS = 300;
-String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
-using SimpleCacheClient client = new SimpleCacheClient(MOMENTO_AUTH_TOKEN, DEFAULT_TTL_SECONDS);
-client.Set("test-cache", "test-key", "test-value");
+TimeSpan DEFAULT_TTL = TimeSpan.FromSeconds(15);
+ICredentialProvider authProvider = new StringMomentoTokenProvider("eyJhbGc.MyTestToken");
+using SimpleCacheClient client = new SimpleCacheClient(Configurations.Laptop.Latest(), authProvider, DEFAULT_TTL);
+await client.SetAsync("test-cache", "test-key", "test-value");
     `}
   rust={`
 let auth_token = "eyJhbGc.MyTestToken";
-let item_default_ttl_seconds = 300;
+let item_default_ttl_seconds = 15;
 let mut cache_client = SimpleCacheClientBuilder::new(
     auth_token,
     NonZeroU64::new(item_default_ttl_seconds).unwrap(),
@@ -247,20 +247,20 @@ Get the cache value stored for the given key.
 <SdkExamples
   js={`
 const authToken="eyJhbGc.MyTestToken";
-const defaultTTL = 300;
+const defaultTTL = 15;
 const momento = new SimpleCacheClient(authToken, defaultTtl);
 momento.get('test-cache', 'test-key');
 `}
   python={`
 import momento.simple_cache_client as scc\n
 _MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
-_ITEM_DEFAULT_TTL_SECONDS = 300\n
+_ITEM_DEFAULT_TTL_SECONDS = 15\n
 with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
     cache_client.get('test-cache', 'test-key')
 `}
   java={`
 String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
-int DEFAULT_ITEM_TTL_SECONDS = 300;\n
+int DEFAULT_ITEM_TTL_SECONDS = 15;\n
 SimpleCacheClient simpleCacheClient = SimpleCacheClient
     .builder(MOMENTO_AUTH_TOKEN, DEFAULT_ITEM_TTL_SECONDS)
     .build()\n
@@ -269,7 +269,7 @@ simpleCacheClient.get('test-cache', 'test-key');
   go={`
 const (
     authToken             = "eyJhbGc.MyTestToken"
-    itemDefaultTtlSeconds = 300
+    itemDefaultTtlSeconds = 15
 )
 client, err := momento.NewSimpleCacheClient(authToken, itemDefaultTtlSeconds)
 if err != nil {
@@ -281,14 +281,14 @@ _, err = client.Get(&CacheSetRequest{
 })
     `}
   csharp={`
-uint DEFAULT_TTL_SECONDS = 300;
-String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
-using SimpleCacheClient client = new SimpleCacheClient(MOMENTO_AUTH_TOKEN, DEFAULT_TTL_SECONDS);
-client.Get("test-cache", "test-key");
+TimeSpan DEFAULT_TTL = TimeSpan.FromSeconds(15);
+ICredentialProvider authProvider = new StringMomentoTokenProvider("eyJhbGc.MyTestToken");
+using SimpleCacheClient client = new SimpleCacheClient(Configurations.Laptop.Latest(), authProvider, DEFAULT_TTL);
+await client.GetAsync("test-cache", "test-key");
     `}
   rust={`
 let auth_token = "eyJhbGc.MyTestToken";
-let item_default_ttl_seconds = 300;
+let item_default_ttl_seconds = 15;
 let mut cache_client = SimpleCacheClientBuilder::new(
     auth_token,
     NonZeroU64::new(item_default_ttl_seconds).unwrap(),
@@ -318,20 +318,20 @@ Delete the cache value stored for the given key.
 <SdkExamples
   js={`
 const authToken="eyJhbGc.MyTestToken";
-const defaultTTL = 300;
+const defaultTTL = 15;
 const momento = new SimpleCacheClient(authToken, defaultTtl);
 momento.delete('test-cache', 'test-key');
 `}
   python={`
 import momento.simple_cache_client as scc\n
 _MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
-_ITEM_DEFAULT_TTL_SECONDS = 300\n
+_ITEM_DEFAULT_TTL_SECONDS = 15\n
 with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
     cache_client.delete('test-cache', 'test-key')
 `}
   java={`
 String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
-int DEFAULT_ITEM_TTL_SECONDS = 300;\n
+int DEFAULT_ITEM_TTL_SECONDS = 15;\n
 SimpleCacheClient simpleCacheClient = SimpleCacheClient
     .builder(MOMENTO_AUTH_TOKEN, DEFAULT_ITEM_TTL_SECONDS)
     .build()\n
@@ -340,7 +340,7 @@ simpleCacheClient.delete('test-cache', 'test-key');
   go={`
 const (
     authToken             = "eyJhbGc.MyTestToken"
-    itemDefaultTtlSeconds = 300
+    itemDefaultTtlSeconds = 15
 )
 client, err := momento.NewSimpleCacheClient(authToken, itemDefaultTtlSeconds)
 if err != nil {
@@ -352,14 +352,14 @@ _, err = client.Delete(&CacheSetRequest{
 })
     `}
   csharp={`
-uint DEFAULT_TTL_SECONDS = 300;
-String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
-using SimpleCacheClient client = new SimpleCacheClient(MOMENTO_AUTH_TOKEN, DEFAULT_TTL_SECONDS);
-client.Delete("test-cache", "test-key");
+TimeSpan DEFAULT_TTL = TimeSpan.FromSeconds(15);
+ICredentialProvider authProvider = new StringMomentoTokenProvider("eyJhbGc.MyTestToken");
+using SimpleCacheClient client = new SimpleCacheClient(Configurations.Laptop.Latest(), authProvider, DEFAULT_TTL);
+await client.DeleteAsync("test-cache", "test-key");
     `}
   rust={`
 let auth_token = "eyJhbGc.MyTestToken";
-let item_default_ttl_seconds = 300;
+let item_default_ttl_seconds = 15;
 let mut cache_client = SimpleCacheClientBuilder::new(
     auth_token,
     NonZeroU64::new(item_default_ttl_seconds).unwrap(),
