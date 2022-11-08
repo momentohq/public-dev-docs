@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 sidebar_class_name: sidebar-item-getting-started
+title: Getting Started with Momento Serverless Cache
 description: Download and get started quickly with your SDK of choice or CLI with Momento Serverless Cache.
 ---
 
@@ -89,7 +90,7 @@ momento account signup azure --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIR
 
 Be sure to replace `<TYPE_YOUR_EMAIL_HERE>` with your actual email address.
 
-*Note: If a region you wish to use is not available yet for your selected cloud provider, please [reach out](https://calendly.com/momento-meeting) to us to inquire about adding it.*
+*Note: If a region you wish to use is not available for your selected cloud provider, please [reach out](https://calendly.com/momento-meeting) to us to inquire about adding it.*
 
 ### Configure the Momento CLI
 
