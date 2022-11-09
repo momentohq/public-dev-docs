@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-sidebar_label: Introduction and setup'
+sidebar_label: Introduction and setup
 title: Introduction and setup
 ---
 
