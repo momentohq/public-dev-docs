@@ -1,15 +1,15 @@
 ---
 sidebar_position: 2
 sidebar_class_name: sidebar-item-getting-started
+sidebar_label: Getting Started
 title: Getting Started with Momento Serverless Cache
-description: Download and get started quickly with your SDK of choice or CLI with Momento Serverless Cache.
+description: Jump in and get started on Momento Serverless Cache with your SDK of choice or CLI.
 ---
 
 # Getting Started with Momento Serverless Cache
+If you're looking to jump in and get started with Momento Serverless Cache with an SDK or CLI, you've come to the right place. There are multiple ways to access the service below. 
 
-## Quick start
-
-### Try our CLI in your browser!
+## Try our CLI in your browser
 
 You can try out our CLI tool today, right in your browser.  No software installation required!
 
@@ -18,7 +18,7 @@ you can experiment with `momento` CLI commands in a shell session directly insid
 You can create a free auth token, create a cache, and start running `set` and `get` commands
 on your cache. It only takes a few minutes!
 
-### Install the Momento command line interface (CLI)
+## Install the Momento command line interface (CLI)
 
 If you want to run the CLI on your own machine instead of [running it in your browser](#try-our-cli-in-your-browser),
 here's how to get started on different operating systems:
@@ -70,19 +70,19 @@ SUBCOMMANDS:
 
 Authentication tokens are associated with a specific Momento Serverless Cache region. You can provision an auth token for a region using the `account` command with your desired cloud provider and region:
 
-##### AWS [available regions are us-west-2, us-east-1, ap-northeast-1]
+#### AWS [available regions are us-west-2, us-east-1, ap-northeast-1]
 
 ```console
 momento account signup aws --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-##### GCP [available regions are us-east1, ap-northeast1]
+#### GCP [available regions are us-east1, ap-northeast1]
 
 ```console
 momento account signup gcp --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-##### Azure (Coming Soon) [reach out](https://calendly.com/momento-meeting) if interested
+#### Azure (Coming Soon) [reach out](https://calendly.com/momento-meeting) if interested
 
 ```console
 momento account signup azure --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
@@ -92,7 +92,7 @@ Be sure to replace `<TYPE_YOUR_EMAIL_HERE>` with your actual email address.
 
 *Note: If a region you wish to use is not available for your selected cloud provider, please [reach out](https://calendly.com/momento-meeting) to us to inquire about adding it.*
 
-### Configure the Momento CLI
+## Configure the Momento CLI
 
 Momento will email your auth token to you. You can configure your local CLI to use this token by running the momento `configure` command:
 
@@ -107,7 +107,7 @@ Default TTL Seconds [600]: 30 // Sets the default TTL for cache entries. For dem
 
 You are now up and running with Momento Serverless Cache! Let's see how to use the Momento CLI to cache data in Momento Serverless Cache.
 
-### Cache some data
+## Cache some data
 
 The `cache` command in the Momento CLI is used to interact with your Momento Serverless Cache. Let's see a few of these commands in action.
 
