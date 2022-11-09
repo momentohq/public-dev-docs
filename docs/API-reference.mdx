@@ -30,7 +30,7 @@ momento.createCache('test-cache');
 import momento.simple_cache_client as scc\n
 _MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
 _ITEM_DEFAULT_TTL_SECONDS = 15\n
-with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
+with scc.SimpleCacheClient(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
     cache_client.create_cache('test-cache')
 `}
   java={`
@@ -101,7 +101,7 @@ momento.deleteCache('test-cache');
 import momento.simple_cache_client as scc\n
 _MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
 _ITEM_DEFAULT_TTL_SECONDS = 15\n
-with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
+with scc.SimpleCacheClient(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
     cache_client.delete_cache('test-cache')
 `}
   java={`
@@ -183,7 +183,7 @@ momento.set('test-cache', 'test-key', 'test-value');
 import momento.simple_cache_client as scc\n
 _MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
 _ITEM_DEFAULT_TTL_SECONDS = 15\n
-with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
+with scc.SimpleCacheClient(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
     cache_client.set('test-cache', 'test-key', 'test-value')
 `}
   java={`
@@ -255,7 +255,7 @@ momento.get('test-cache', 'test-key');
 import momento.simple_cache_client as scc\n
 _MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
 _ITEM_DEFAULT_TTL_SECONDS = 15\n
-with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
+with scc.SimpleCacheClient(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
     cache_client.get('test-cache', 'test-key')
 `}
   java={`
@@ -326,7 +326,7 @@ momento.delete('test-cache', 'test-key');
 import momento.simple_cache_client as scc\n
 _MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
 _ITEM_DEFAULT_TTL_SECONDS = 15\n
-with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
+with scc.SimpleCacheClient(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
     cache_client.delete('test-cache', 'test-key')
 `}
   java={`
