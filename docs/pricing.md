@@ -1,16 +1,18 @@
 ---
 sidebar_position: 3
 sidebar_class_name: sidebar-item-pricing
+title: Pricing
+description: Explore the simplicity of the pricing model for Momento Serverless Cache
 ---
 
-# Pricing
-Serverless is about simplicity in every dimension, including pricing! Momento costs $0.15/GB transferred. That's it!
+# Momento Serverless Cache Pricing
+Serverless is about simplicity in every dimension, including pricing! Momento Serverless Cache costs $0.15/GB transferred. That's it!
 
 Your first 50 GB are free each month—and you don't even need a credit card to get started.
 
-Momento has no hidden charges. You don’t have to pay for storage, replication, or instances. We literally only charge you for data transferred in/out of Momento. Everything else is included.
+Momento Serverless Cache has no hidden charges. You don’t have to pay for storage, replication, or instances. We literally only charge you for data transferred in/out of Momento Serverless Cache. Everything else is included. Sign up with confidence and create something wonderful.
 
-We’ve included some sample pricing exercises below to help you estimate. If you need further assistance (or just can’t believe it), drop a message in our [Discord](https://discord.gg/Z7FSXB89), and we’ll get it sorted out. Take the Momento challenge: see how much you can save!
+We’ve included some sample pricing exercises below to help you estimate. If you need further assistance (or just can’t believe it), drop a message in our [Discord](https://discord.gg/Z7FSXB89), and we’ll get it sorted out. Take the Momento Serverless Cache challenge: see how much you can save!
 
 ### Examples:
 

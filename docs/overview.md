@@ -4,7 +4,6 @@ sidebar_class_name: sidebar-item-overview
 title: Momento Serverless Cache Service
 description: Learn what you need to know to speed up your cloud application with the world's first serverless cache.
 ---
-<meta name="google-site-verification" content="jXAJxglm5PRXRtL0R8kfGf80Xs1WM3IVAwAUPJC23lI" />
 
 # Momento Serverless Cache
 Momento is the world's first serverless caching service. It's built with the capabilities of the modern cloud in mind. Momento provides instant provisioning, auto-scaling up and down, scale-to-zero capability, and blazing-fast performance.

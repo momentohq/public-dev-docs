@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Momento Docs",
   tagline: "The World's Fastest Cache",
-  url: "https://momentohq.github.io",
+  url: "https://docs.momentohq.com",
   baseUrl: "/",
   projectName: "momentohq.github.io",
   organizationName: "momentohq",
