@@ -22,7 +22,7 @@ In the following pages, you can learn how to use Momento and about caching more 
   - [Rust](https://github.com/momentohq/client-sdk-rust)
   - [Php](https://github.com/momentohq/client-sdk-php)
 
-- If you want to know more about Momento Serverlss Cache and how it works_, refer to the [How it works](./how-it-works) section, including the reference on [Momento Servless Cache concepts](./how-it-works/momento-concepts).
+- If you want to know more about Momento Serverless Cache and how it works_, refer to the [How it works](./how-it-works) section, including the reference on [Momento Serverless Cache concepts](./how-it-works/momento-concepts).
 
 - For specific guides on integrating with AWS Lambda or other systems_, look to the [Guides](./guides) section.
 
