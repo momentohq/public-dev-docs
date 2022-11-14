@@ -170,7 +170,7 @@ Let's start by installing the Momento SDK. We're using Node.js for our applicati
 
 Because we installed the package and added it to our `package.json` file, the Serverless Framework will include it with our Node dependencies in the ZIP files for our Lambda functions.
 
-Note: If you are using a language other than Node for your serverless application, the same basic approach applies. However, if you are using Python, be sure to compile the Python SDK for the Lambda environment as it includes a gRPC library with C extensions. You can find instructions on this in our guide for [using Momento with AWS Lambda](./../guides/caching-with-AWS-lambda#python).
+Note: If you are using a language other than Node for your serverless application, the same basic approach applies. However, if you are using Python, be sure to compile the Python SDK for the Lambda environment as it includes a gRPC library with C extensions. You can find instructions on this in our guide for [using Momento with AWS Lambda](/guides/caching-with-aws-lambda#python).
 
 With our SDK installed, we can now create and configure our client.
 

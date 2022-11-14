@@ -14,7 +14,7 @@ This tutorial includes conceptual material about implementing caching and buildi
 
 One of the key concepts we will discuss is the different approaches to caching, including the tradeoffs of using different caching strategies. To learn more about this, check out our page on [caching strategies and patterns](./../caching-concepts/caching-strategies-and-patterns).
 
-Additionally, this tutorial will show practical aspects of integrating Momento with AWS Lambda. If you want a more succinct reference, check out our guide on [caching with AWS Lambda](./../guides/caching-with-AWS-lambda).
+Additionally, this tutorial will show practical aspects of integrating Momento with AWS Lambda. If you want a more succinct reference, check out our guide on [caching with AWS Lambda](/guides/caching-with-aws-lambda).
 
 This tutorial has five steps:
 
