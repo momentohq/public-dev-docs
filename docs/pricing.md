@@ -74,4 +74,4 @@ Hell yes! Momento is the best way to future-proof your caching story. You can ad
 We do not recommend putting Momento in a blender as it may void the warranty of your blender, but Momento is robust with enterprise grade security and availability. Momento does blend seamlessly with your current cloud setup, whether you're on AWS, GCP, Azure, or multi-cloud!
 </details>
 
-[Give Momento a Try!](https://docs.momentohq.com/docs/getting-started)
+[Give Momento a Try!](./getting-started)
