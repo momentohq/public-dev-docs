@@ -55,6 +55,11 @@ const config = {
       require.resolve("@docusaurus/plugin-client-redirects"),
       {
         redirects: [
+          // Redirect overview
+          {
+            to: '/',
+            from: '/docs/overview',
+          },
           // Redirect limits
           {
             to: '/limits',
