@@ -51,6 +51,108 @@ const config = {
         id: "GTM-THBDHDQ", // GTM Container ID
       },
     ],
+    [
+      require.resolve("@docusaurus/plugin-client-redirects"),
+      {
+        redirects: [
+          // Redirect limits
+          {
+            to: '/limits',
+            from: '/docs/limits',
+          },
+          // Redirect getting started
+          {
+            to: '/getting-started',
+            from: '/docs/getting-started',
+          },
+          // Redirect pricing
+          {
+            to: '/pricing',
+            from: '/docs/pricing',
+          },
+          // Redirect API-reference
+          {
+            to: '/API-reference',
+            from: '/docs/API-reference',
+          },
+          // Redirect how-it-works
+          {
+            to: '/how-it-works',
+            from: '/docs/how-it-works',
+          },
+          // Redirect momento-concepts
+          {
+            to: '/how-it-works/momento-concepts',
+            from: '/docs/how-it-works/momento-concepts',
+          },
+          // Redirect how-it-works/caching-with-serverless
+          {
+            to: '/how-it-works/caching-with-serverless',
+            from: '/docs/how-it-works/caching-with-serverless',
+          },
+          // Redirect category/caching-concepts
+          {
+            to: '/category/caching-concepts',
+            from: '/docs/category/caching-concepts',
+          },
+          // Redirect caching-concepts/caching-strategies-and-patterns
+          {
+            to: '/caching-concepts/caching-strategies-and-patterns',
+            from: '/docs/caching-concepts/caching-strategies-and-patterns',
+          },
+          // Redirect guides
+          {
+            to: '/guides',
+            from: '/docs/guides',
+          },
+          // Redirect guides/caching-with-aws-lambda
+          {
+            to: '/guides/caching-with-aws-lambda',
+            from: '/docs/guides/caching-with-aws-lambda',
+          },
+          // Redirect serverless-cache-walkthrough
+          {
+            to: '/serverless-cache-walkthrough',
+            from: '/docs/serverless-cache-walkthrough',
+          },
+          // Redirect serverless-cache-walkthrough/adding-a-cache-to-serverless
+          {
+            to: '/serverless-cache-walkthrough/adding-a-cache-to-serverless',
+            from: '/docs/serverless-cache-walkthrough/adding-a-cache-to-serverless',
+          },
+          // Redirect serverless-cache-walkthrough/deploying-a-basic-serverless-application
+          {
+            to: '/serverless-cache-walkthrough/deploying-a-basic-serverless-application',
+            from: '/docs/serverless-cache-walkthrough/deploying-a-basic-serverless-application',
+          },
+          // Redirect serverless-cache-walkthrough/configuring-momento
+          {
+            to: '/serverless-cache-walkthrough/configuring-momento',
+            from: '/docs/serverless-cache-walkthrough/configuring-momento',
+          },
+          // Redirect serverless-cache-walkthrough/read-aside-caching-with-momento
+          {
+            to: '/serverless-cache-walkthrough/read-aside-caching-with-momento',
+            from: '/docs/serverless-cache-walkthrough/read-aside-caching-with-momento',
+          },
+          // Redirect serverless-cache-walkthrough/write-aside-caching-with-momento
+          {
+            to: '/serverless-cache-walkthrough/write-aside-caching-with-momento',
+            from: '/docs/serverless-cache-walkthrough/write-aside-caching-with-momento',
+          },
+        ],
+        /**createRedirects(existingPath) {
+          if (existingPath.includes('/docs')) {
+            // Redirect from /docs/X to /X
+            console.log("this is a test");
+            return [
+              existingPath.replace('/docs', '/'),
+            ];
+          }
+          return undefined; // Return a falsy value: no redirect created
+        },**/
+      }
+    ],
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
