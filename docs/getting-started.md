@@ -23,7 +23,7 @@ on your cache. It only takes a few minutes!
 If you want to run the CLI on your own machine instead of [running it in your browser](#try-our-cli-in-your-browser),
 here's how to get started on different operating systems:
 
-**macOS using [Homebrew](https://brew.sh/)**
+**macOS using [Homebrew package manager](https://brew.sh/)**
 
 ```
 brew tap momentohq/tap
@@ -46,7 +46,7 @@ To verify the CLI was installed correctly, you can run our help command:
 
 ```
 $ momento --help
-momento 0.12.8
+momento 0.22.6
 CLI for Momento APIs
 
 USAGE:
@@ -63,12 +63,13 @@ SUBCOMMANDS:
     configure    Configure Momento Credentials
     help         Print this message or the help of the given subcommand(s)
 ```
+_Note: the version number listed in the output will vary._
 
 ### Obtain an auth token
 
 [Authentication in Momento is done via an authentication token](./how-it-works/momento-concepts#authentication-token), and you can sign up for a Momento Serverless Cache auth token directly from the command line.
 
-Authentication tokens are associated with a specific Momento Serverless Cache region. You can provision an auth token for a region using the `account` command with your desired cloud provider and region:
+Authentication tokens are associated with a specific Momento Serverless Cache region. You can provision an auth token for a Region using the `account` command with your desired cloud provider and Region:
 
 #### AWS [available regions are us-west-2, us-east-1, ap-northeast-1]
 
@@ -88,9 +89,9 @@ momento account signup gcp --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED
 momento account signup azure --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-Be sure to replace `<TYPE_YOUR_EMAIL_HERE>` with your actual email address.
+Be sure to replace `<TYPE_YOUR_EMAIL_HERE>` and `<TYPE_DESIRED_REGION>` with actual values.
 
-*Note: If a region you wish to use is not available for your selected cloud provider, please [reach out](https://calendly.com/momento-meeting) to us to inquire about adding it.*
+*Note: If a region you wish to use is not available for your selected cloud provider, please [reach out](mailto:support@momentohq.com) to us to inquire about adding it.*
 
 ## Configure the Momento CLI
 
@@ -98,8 +99,8 @@ Momento will email your auth token to you. You can configure your local CLI to u
 
 ```
 $ momento configure
-Token: // < Enter token from email here.
-Default Cache [default-cache]: my-first-cache // Name of cache to use on CLI by default.
+Token: < Enter token from email here >
+Default Cache [default-cache]: < Name of cache to use on CLI by default >
 Default TTL Seconds [600]: 30 // Sets the default TTL for cache entries. For demostration purposes we are setting this lower right now.
 [2022-03-31T15:31:25Z INFO  momento::commands::cache::cache_cli] creating cache...
 [2022-03-31T15:31:33Z INFO  momento::commands::configure::configure_cli] default cache successfully created
@@ -169,7 +170,7 @@ For more information about any of the parameters for a subcommand, you can use `
 
 ## Next steps
 
-The CLI is great for testing and for understanding the core Momento API, but most of your caching work will be done in your application. For those, you can use the Momento SDKs.
+The CLI is great for testing and for understanding the core Momento Serverless Cache API, but most of your caching work will be done in your application. For those, you can use the Momento SDKs.
 
 We currently have the following SDK's languages availabile. Check out each repo for detailed instructions and usage examples.
 
