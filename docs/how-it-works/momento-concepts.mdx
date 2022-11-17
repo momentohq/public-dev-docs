@@ -76,25 +76,25 @@ A SimpleCache instance can interact with both the control plane and data plane A
 
 ### Control plane: simple, efficient cache management
 
-The Momento control plane API is the API you will use to manage your caches overall. You can use the control plane API to create a new cache, list existing caches, or delete an unwanted cache.
+The Momento Serverless Cache control plane API is the API you will use to manage your caches overall. You can use the control plane API to create a new cache, list existing caches, or delete an unwanted cache.
 
 When you hear 'control plane', you might think 'slow, management operations.' But that's not the case here -- **Momento has been designed to quickly and efficiently manage caches within your account.** You won't fire a command to create a cache and wait for the cache to be created in the background. With Momento, the cache is created synchronously, within a second. Your cache will be ready to go by the time your request to create it has returned.
 
-Each cache in Momento is isolated from other caches, and there's no limit on the number of caches you can create in your account. This means you can have dedicated caches for each environment for your application or even each deployed branch in your CI/CD system.
+Each cache in Momento Serverless Cache is isolated from other caches, and there's no technicel limit on the number of caches you can have in your account, but there are guardrails in place in the form of [service limits](/limits). This means you can have dedicated caches for each environment for your application or even each deployed branch in your Continuous Integration/Continuous Delivery (CI/CD) system.
 
 ### Data plane: performant cache interactions
 
-The Momento control plane is nice, but the data plane is where the action is. The data plane API refers to operations that actually interact with the contents of your cache. It's designed to be blazing fast -- most data plane operations take less than 1-2 milliseconds from the client's perspective.
+The Momento control plane is very useful, but data plane operations are where the action is. The data plane API refers to operations that actually interact with the data in your cache(s). It's designed to be blazing fast -- most data plane operations take less than 1-2 milliseconds from the client's perspective.
 
 The data plane includes the standard "set" and "get" cache functionality allowing you to write and retrieve a cache entry. You can also use the multi-get and multi-set commands to process multiple cached entries in a single request.
 
-## Interacting with the Momento API
+## Interacting with the Momento Serverless Cache API
 
-The SimpleCache object will be your main way of interacting with the Momento API. Let's talk a little bit about what is happening under the hood. We'll discuss the authentication mechanism, the communication format, and the networking configuration for the Momento API.
+The SimpleCache object will be your main way of interacting with the Momento Serverless Cache API. Let's talk a little bit about what is happening under the hood. We'll discuss the authentication mechanism, the communication format, and the networking configuration for the Momento API.
 
 ### Authentication token
 
-Your SimpleCache object will use an authentication token when communicating with the Momento service. This token is a [JSON Web Token](https://en.wikipedia.org/wiki/JSON_Web_Token) (or "JWT") that contains signed account information to authenticate you when making cache requests. It also includes information like the hostname of your cache instance, which helps the SimpleCache object to make more efficient requests to the Momento service.
+Your SimpleCache object will use an authentication token when communicating with the Momento Serverless Cache service. This token is a [JSON Web Token](https://en.wikipedia.org/wiki/JSON_Web_Token) (or "JWT") that contains signed account information to authenticate you when making cache requests. It also includes information like the hostname of your cache instance, which helps the SimpleCache object to make more efficient requests to the Momento service.
 
 You will receive the Momento authentication token when signing up for the Momento service. To get your Momento authentication token and begin using the Momento service, [follow the quickstart here](./../getting-started).
 
@@ -136,11 +136,11 @@ These are good options for your workloads if you need to keep the traffic over p
 
 Time-to-live ("TTL") is an important concept in caching. We will first discuss what it is and why it's important in caching. Then, we will show how Momento uses TTL.
 
-### What is TTL?
+### What is Time to Live (TTL)?
 
 Just like the name suggests, the TTL attribute tells the cache how long an entry should live in the cache. When inserting an item into a cache, you include a TTL attribute with a number of seconds indicating when the item should be evicted. When the TTL has passed, the cache will remove the item from your cache.
 
-### Why do caches need TTL?
+### Why do caches need Time to Live (TTL)?
 
 Usually, a cache entry is not the definitive source of a piece of data. Rather, a cache entry is a faster, cheaper, and less durable way to store a piece of data, whether it's an individual record from a different database, some aggregated or computed information from multiple records or sources, or even a resource from an external, third-party application. Using a cache helps to improve latency or reduce load on a dependency in our application. In using a cache, we're anticipating that our cache entry will be requested by another client soon.
 
@@ -154,7 +154,7 @@ In contrast, Momento is designed for the elasticity of the modern cloud. You don
 
 That being said, you should still use TTL on items in your Momento cache to avoid cache staleness and to reduce costs. Let's see how to use TTL with Momento's SimpleCache.
 
-### Using TTL with SimpleCache
+### Using Time to Live (TTL) with SimpleCache
 
 Now that we know what a TTL is and why you use it with caching, let's see how to use it with Momento.
 
@@ -164,7 +164,7 @@ Notice that in both of the SimpleCache examples above, we're passing in a defaul
 
 You can also choose to override the default TTL on any single operation with your SimpleCache object. This can allow for different TTL policies for different objects in your application or even fine-grained TTL configuration for individual items.
 
-To set a custom TTL value in a set operation using Momento's Python SDK, use code similar to the following:
+To set a custom TTL value in a set operation using Momento Serverless Cache's Python SDK, use code similar to the following:
 
 ```python
 cache_client.set("users-cache", "foo", "123", 100)
