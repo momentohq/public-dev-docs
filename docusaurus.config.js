@@ -233,6 +233,19 @@ const config = {
               },
             ],
           },
+          {
+            title: "Language",
+            items: [
+              {
+                label: "English",
+                to: "https://docs.momentohq.com/",
+              },
+              {
+                label: "日本語",
+                to: "https://docs.momentohq.com/ja/",
+              },
+            ],
+          },
         ],
       },
       prism: {
