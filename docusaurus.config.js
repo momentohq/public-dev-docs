@@ -22,7 +22,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
-    locales: ["en"],
+    locales: ["en", "ja"],
   },
 
   presets: [
@@ -183,6 +183,10 @@ const config = {
             to: "https://github.com/momentohq/",
             label: "Github",
             position: "right",
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right',
           },
         ],
       },

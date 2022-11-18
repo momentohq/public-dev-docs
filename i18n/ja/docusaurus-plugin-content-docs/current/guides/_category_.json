@@ -1,0 +1,10 @@
+{
+  "label": "ガイド",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Guides to help you out.",
+    "slug": "/guides"
+  },
+  "className": "sidebar-item-guides"
+}
