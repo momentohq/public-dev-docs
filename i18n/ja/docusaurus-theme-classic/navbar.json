@@ -1,0 +1,10 @@
+{
+  "item.label.Blog": {
+    "message": "公式ブログ",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Github": {
+    "message": "GitHub",
+    "description": "Navbar item with label Github"
+  }
+}

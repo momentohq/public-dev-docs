@@ -1,0 +1,42 @@
+{
+  "version.label": {
+    "message": "次へ",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.How it works": {
+    "message": "どのように動作するか",
+    "description": "The label for category How it works in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.How it works.link.generated-index.description": {
+    "message": "Learn the concepts, architecture, and other basics of working with Momento.",
+    "description": "The generated-index page description for category How it works in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Caching Concepts": {
+    "message": "キャッシュの概念",
+    "description": "The label for category Caching Concepts in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Caching Concepts.link.generated-index.description": {
+    "message": "Key concepts in the world of caching.",
+    "description": "The generated-index page description for category Caching Concepts in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Guides": {
+    "message": "ガイド",
+    "description": "The label for category Guides in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Guides.link.generated-index.description": {
+    "message": "Guides to help you out.",
+    "description": "The generated-index page description for category Guides in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Adding a cache to a serverless application": {
+    "message": "チュートリアル - サーバーレスアプリケーションにキャッシュを追加",
+    "description": "The label for category Tutorial - Adding a cache to a serverless application in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Adding a cache to a serverless application.link.generated-index.title": {
+    "message": "Tutorial - Add Momento Serverless Cache to a serverless application",
+    "description": "The generated-index page title for category Tutorial - Adding a cache to a serverless application in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Adding a cache to a serverless application.link.generated-index.description": {
+    "message": "Want to add a cache to a serverless application using AWS Lambda? Check out the following five-step tutorial.",
+    "description": "The generated-index page description for category Tutorial - Adding a cache to a serverless application in sidebar tutorialSidebar"
+  }
+}
