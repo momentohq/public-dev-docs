@@ -9,28 +9,28 @@ slug: /
   <meta name="google-site-verification" content="jXAJxglm5PRXRtL0R8kfGf80Xs1WM3IVAwAUPJC23lI" />
 </head>
 
-# Momento Serverless Cache
-Momento is the world's first serverless caching service. It's built with the capabilities of the modern cloud in mind. Momento provides instant provisioning, auto-scaling up and down, scale-to-zero capability, and blazing-fast performance.
+# Momento サーバーレスキャッシュサービス
+Momento サーバーレスキャッシュは世界で初めての本物のサーバーレスキャッシュサービスです。<br />即時の弾力性、スケールをゼロにもでき、そして恐ろしく高速なパフォーマンスを発揮します。<br />もはや、キャパシティを選択、管理してプロビジョンする必要はなくなりました。<br />Momento サーバーレスキャッシュなら、SDK を入れて、エンドポイントを取得し、<br />数行のコードを追加すれば、もう動き始めます。
 
-## Learn about caching and Momento Serverless Cache
-In the following pages, you can learn how to use Momento and about caching more broadly.
+## キャッシュとMomento サーバーレスキャッシュ<br />について学ぶ
+この後のページでは、一般的にキャッシュとは何なのか、そして特にMomento サーバーレスキャッシュをどうやって使うのか、を学ぶことができます。
 
-- _If you want to quickly get up and running with the Momento CLI_, check out the [Getting Started](./getting-started) reference.
+- Momento CLI を使ってすぐに試して動かしてみたい方は、[まずはじめに](./getting-started)をご覧下さい。
 
-- _If you're looking for our open source SDK's_, head to [Github](https://github.com/momentohq):
+- オープンソースの SDK をお探しの方は、[GitHub](https://github.com/momentohq)をご覧下さい:
   - [Go](https://github.com/momentohq/client-sdk-go)
   - [Java](https://github.com/momentohq/client-sdk-java)
   - [JavaScript/Node.js](https://github.com/momentohq/client-sdk-javascript)
   - [Python](https://github.com/momentohq/client-sdk-python)
   - [.NET](https://github.com/momentohq/client-sdk-dotnet)
   - [Rust](https://github.com/momentohq/client-sdk-rust)
-  - [Php](https://github.com/momentohq/client-sdk-php)
+  - [PHP](https://github.com/momentohq/client-sdk-php)
 
-- _If you want to know more about Momento Serverless Cache and how it works_, refer to the [How it works](how-it-works) section, including the reference on [Momento Servless Cache concepts](./how-it-works/momento-concepts).
+- Momento サーバーレスキャッシュについてもっと詳しく、どの様に動作するのかを知りたい方は、<br />[どのように動作するか](how-it-works)のセクション、特に[Momento サーバーレスキャッシュの概念](./how-it-works/momento-concepts)に関する部分を<br />ご覧下さい。
 
-- _For specific guides on integrating with AWS Lambda or other systems_, look to the [Guides](guides) section.
+-  AWS Lambda や他のシステムとの具体的な連携[ガイド](guides)については、ガイドのセクションをご覧下さい。
 
-- _If you want an in-depth tutorial of Momento Serverless Cache in action_, look to our walkthrough on [adding a cache to a serverless application](serverless-cache-walkthrough).
+- Momento サーバーレスキャッシュを実際に細かく試してみるチュートリアルが欲しい方は、<br />[サーバーレスアプリケーションにキャッシュを追加する](serverless-cache-walkthrough)でその手順をご覧下さい。
 
-Have any questions or comments? We'd love to hear from you! You can chat with a Momento specialist by
-[joining our Discord](https://discord.com/invite/3HkAKjUZGq), or e-mail us at [support@momentohq.com](mailto:support@momentohq.com).
+ご質問やコメントをお持ちでしょうか？ぜひお聞かせ下さい！<br />[Discord に入って](https://discord.com/invite/3HkAKjUZGq)Momento のスペシャリストとチャットすることもできますし、[support@momentohq.com](mailto:support@momentohq.com)へメールをすることもできます。
+
