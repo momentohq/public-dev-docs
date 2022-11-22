@@ -14,7 +14,7 @@ If you're looking to jump in and get started with Momento Serverless Cache with 
 You can try out our CLI tool today, right in your browser.  No software installation required!
 
 Head over to our [Try Momento Serverless Cache page](https://www.gomomento.com/try-momento-for-free), and
-you can experiment with `momento` CLI commands in a shell session directly inside your browser.
+you can experiment with Momento CLI commands in a shell session directly inside your browser.
 You can create a free auth token, create a cache, and start running `set` and `get` commands
 on your cache. It only takes a few minutes!
 
@@ -33,14 +33,14 @@ brew install momento-cli
 **Linux**
 
 1. Download the latest linux tar.gz file from [https://github.com/momentohq/momento-cli/releases/latest](https://github.com/momentohq/momento-cli/releases/latest)
-2. Unzip the file: `tar -xvf momento-cli-X.X.X.linux_x86_64.tar.gz`
+2. Extract the `momento-cli-X.X.X.linux_x86_64.tar.gz` file
 3. Move `./momento` to your execution path.
 
 **Windows**
 
 1. Download the latest windows zip file from [https://github.com/momentohq/momento-cli/releases/latest](https://github.com/momentohq/momento-cli/releases/latest)
 2. Unzip the `momento-cli-X.X.X.windows_x86_64.zip` file
-3. Run the unzipped .exe file
+3. Run the unzipped `.exe` file
 
 To verify the CLI was installed correctly, you can run our help command:
 
@@ -95,13 +95,13 @@ Be sure to replace `<TYPE_YOUR_EMAIL_HERE>` and `<TYPE_DESIRED_REGION>` with act
 
 ## Configure the Momento CLI
 
-Momento will email your auth token to you. You can configure your local CLI to use this token by running the momento `configure` command:
+Momento will email your auth token to you. You can configure your local CLI to use this token by running the `momento configure` command:
 
 ```
 $ momento configure
 Token: < Enter token from email here >
 Default Cache [default-cache]: < Name of cache to use on CLI by default >
-Default TTL Seconds [600]: 30 // Sets the default TTL for cache entries. For demostration purposes we are setting this lower right now.
+Default TTL Seconds [600]: 30 // Sets the default TTL for cache entries. For demonstration purposes we are setting this lower right now.
 [2022-03-31T15:31:25Z INFO  momento::commands::cache::cache_cli] creating cache...
 [2022-03-31T15:31:33Z INFO  momento::commands::configure::configure_cli] default cache successfully created
 ```
@@ -172,7 +172,7 @@ For more information about any of the parameters for a subcommand, you can use `
 
 The CLI is great for testing and for understanding the core Momento Serverless Cache API, but most of your caching work will be done in your application. For those, you can use the Momento SDKs.
 
-We currently have the following SDK's languages availabile. Check out each repo for detailed instructions and usage examples.
+We currently have the following SDK's languages available. Check out each repo for detailed instructions and usage examples.
 
 - [Go](https://github.com/momentohq/client-sdk-go)
 - [Java](https://github.com/momentohq/client-sdk-java)
@@ -180,4 +180,4 @@ We currently have the following SDK's languages availabile. Check out each repo 
 - [Python](https://github.com/momentohq/client-sdk-python)
 - [.NET](https://github.com/momentohq/client-sdk-dotnet)
 - [Rust](https://github.com/momentohq/client-sdk-rust)
-- [Php](https://github.com/momentohq/client-sdk-php)
+- [PHP](https://github.com/momentohq/client-sdk-php)

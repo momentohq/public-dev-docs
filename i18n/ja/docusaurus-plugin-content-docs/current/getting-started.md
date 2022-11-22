@@ -2,28 +2,29 @@
 sidebar_position: 2
 sidebar_class_name: sidebar-item-getting-started
 sidebar_label: まずはじめに
-title: Getting Started with Momento Serverless Cache Service
-description: Jump in and get started on Momento Serverless Cache with your SDK of choice or CLI.
+title: Momento サーバーレスキャッシュサービスをはじめてみる
+description: SDK またはCLI を使って、Momento サーバーレスキャッシュをすぐに使い始めてみましょう。
 ---
 
-# Getting Started with Momento Serverless Cache
-If you're looking to jump in and get started with Momento Serverless Cache with an SDK or CLI, you've come to the right place. There are multiple ways to access the service below. 
+# Momento サーバーレスキャッシュをはじめてみる
 
-## Try our CLI in your browser
+SDK または CLI を使って Momento サーバーレスキャッシュをすぐに使い始める方法をお探しでしたら、ここから始めましょう。サービスにアクセスする方法は以下の様に複数あります。
 
-You can try out our CLI tool today, right in your browser.  No software installation required!
+## CLI をブラウザ上で試してみる
 
-Head over to our [Try Momento Serverless Cache page](https://www.gomomento.com/try-momento-for-free), and
-you can experiment with `momento` CLI commands in a shell session directly inside your browser.
-You can create a free auth token, create a cache, and start running `set` and `get` commands
-on your cache. It only takes a few minutes!
+私たちの CLI ツールをブラウザ上で今試してみることができます。何のソフトウェアもインストールする必要はありません！
 
-## Install the Momento command line interface (CLI)
+[Momento サーバーレスキャッシュを試してみる](https://www.gomomento.com/try-momento-for-free)に行って、
+ブラウザ内の shell セッションで直接 Momento CLI のコマンドを実験してみることができます。
+無料の認証トークンを作成し、キャッシュを作成し、そのキャッシュ上で`set` や`get` コマンドを実行してみることができます。
+試してみるのに数分もかかりません！
 
-If you want to run the CLI on your own machine instead of [running it in your browser](#try-our-cli-in-your-browser),
-here's how to get started on different operating systems:
+## Momento command line interface (CLI) をインストールする
 
-**macOS using [Homebrew](https://brew.sh/)**
+[ブラウザ上で実行する](#cli-をブラウザ上で試してみる)のではなく自身のマシン上で CLI を実行してみたい場合には、こちらに沿って各オペレーティングシステムごとの
+方法でインストールしてください:
+
+**macOS - [Homebrew](https://brew.sh/)を利用**
 
 ```
 brew tap momentohq/tap
@@ -32,17 +33,17 @@ brew install momento-cli
 
 **Linux**
 
-1. Download the latest linux tar.gz file from [https://github.com/momentohq/momento-cli/releases/latest](https://github.com/momentohq/momento-cli/releases/latest)
-2. Unzip the file: `tar -xvf momento-cli-X.X.X.linux_x86_64.tar.gz`
-3. Move `./momento` to your execution path.
+1. 最新の Linux 用 tar.gz ファイルをこちらからダウンロード: [https://github.com/momentohq/momento-cli/releases/latest](https://github.com/momentohq/momento-cli/releases/latest)
+2. `momento-cli-X.X.X.linux_x86_64.tar.gz` を解凍
+3. `./momento` を実行パスに移動する
 
 **Windows**
 
-1. Download the latest windows zip file from [https://github.com/momentohq/momento-cli/releases/latest](https://github.com/momentohq/momento-cli/releases/latest)
-2. Unzip the `momento-cli-X.X.X.windows_x86_64.zip` file
-3. Run the unzipped .exe file
+1. 最新の Windows 用 zip ファイルをこちらからダウンロード: [https://github.com/momentohq/momento-cli/releases/latest](https://github.com/momentohq/momento-cli/releases/latest)
+1. `momento-cli-X.X.X.windows_x86_64.zip` を解凍
+1. 解凍された `.exe` ファイルを実行する
 
-To verify the CLI was installed correctly, you can run our help command:
+CLI が正しくインストールされたかを確認するには、ヘルプコマンドを実行してみます:
 
 ```
 $ momento --help
@@ -64,37 +65,37 @@ SUBCOMMANDS:
     help         Print this message or the help of the given subcommand(s)
 ```
 
-### Obtain an auth token
+### 認証トークンを取得する
 
-[Authentication in Momento is done via an authentication token](how-it-works/momento-concepts#authentication-token), and you can sign up for a Momento Serverless Cache auth token directly from the command line.
+[Momento における認証は認証トークンによって行われますが](how-it-works/momento-concepts#authentication-token)、コマンドラインを使って直接Momento サーバーレスキャッシュにサインアップすることができます。
 
-Authentication tokens are associated with a specific Momento Serverless Cache region. You can provision an auth token for a region using the `account` command with your desired cloud provider and region:
+認証トークンはMomento サーバーレスキャッシュの特定のリージョンに紐づいています。`account` コマンドをご希望のクラウドプロバイダーとリージョンを指定しながら使うと、各リージョン用の認証トークンを生成することができます:
 
-#### AWS [available regions are us-west-2, us-east-1, ap-northeast-1]
+#### AWS [利用可能リージョンは us-west-2, us-east-1, ap-northeast-1]
 
 ```console
 momento account signup aws --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-#### GCP [available regions are us-east1, ap-northeast1]
+#### GCP [利用可能リージョンは us-east1, ap-northeast1]
 
 ```console
 momento account signup gcp --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-#### Azure (Coming Soon) [reach out](https://calendly.com/momento-meeting) if interested
+#### Azure (まもなく対応) もしご興味があれば[お問い合わせ下さい](https://calendly.com/momento-meeting)
 
 ```console
 momento account signup azure --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-Be sure to replace `<TYPE_YOUR_EMAIL_HERE>` with your actual email address.
+`<TYPE_YOUR_EMAIL_HERE>` をご自身の実際のEメールアドレスで置き換えるのを忘れないようにしてください。
 
-*Note: If a region you wish to use is not available for your selected cloud provider, please [reach out](https://calendly.com/momento-meeting) to us to inquire about adding it.*
+_注: もしお使いのクラウドプロバイダーで使いたいリージョンが利用可能でない場合は、それを追加することに関してぜひ私たちに[お問い合わせください](https://calendly.com/momento-meeting)。_
 
-## Configure the Momento CLI
+## Momento CLI を設定する
 
-Momento will email your auth token to you. You can configure your local CLI to use this token by running the momento `configure` command:
+Momento から認証トークンがEメールで送られてきます。そうしたら、`momento configure` コマンドを使って、ローカルのCLI がそのトークンを使うように設定することができます:
 
 ```
 $ momento configure
@@ -105,13 +106,13 @@ Default TTL Seconds [600]: 30 // Sets the default TTL for cache entries. For dem
 [2022-03-31T15:31:33Z INFO  momento::commands::configure::configure_cli] default cache successfully created
 ```
 
-You are now up and running with Momento Serverless Cache! Let's see how to use the Momento CLI to cache data in Momento Serverless Cache.
+これでもうあなたのMomento サーバーレスキャッシュは稼働しています！続いて、Momento サーバーレスキャッシュにデータをキャッシュするためにどうやってMomento CLI を使うかを見ていきましょう。
 
-## Cache some data
+## データをいくつかキャッシュしてみる
 
-The `cache` command in the Momento CLI is used to interact with your Momento Serverless Cache. Let's see a few of these commands in action.
+Momento CLI の`cache` コマンドはMomento サーバーレスキャッシュと対話するのに使われます。実際にいくつかのコマンドを見てみましょう。
 
-First, you can use the `set` subcommand to store an item in your default Momento Serverless Cache:
+まず、`set` サブコマンドを使ってデフォルトのMomento サーバーレスキャッシュにアイテムを1つ保存することができます:
 
 ```
 $ momento cache set --key test --value value
@@ -119,7 +120,7 @@ $ momento cache set --key test --value value
 [2022-03-31T15:45:18Z INFO  momento::commands::cache::cache_cli] set success
 ```
 
-Then, you can retrieve the key using the `get` subcommand:
+そうしたら、そのキーを`get` サブコマンドを使って取り出すことができます:
 
 ```
 $ momento cache get --key test
@@ -127,7 +128,7 @@ $ momento cache get --key test
 value
 ```
 
-In configuring the cache, we set a default Time to Live (TTL) of 30 seconds. If you wait 30 seconds and try to retrieve the cache again, you will see the item has disappeared:
+キャッシュを設定する際に、デフォルトのTime to Live (TTL) を30秒に設定しています。もし30秒待ってからキャッシュを取り出してみると、アイテムが消えているでしょう:
 
 ```
 $ sleep 30 // wait for item to expire
@@ -136,11 +137,11 @@ $ momento cache get --key test
 [2022-03-31T15:46:03Z INFO  momento::commands::cache::cache_cli] cache miss
 ```
 
-These are the standard `get` and `set` [data plane operations](how-it-works/momento-concepts##data-plane-performant-cache-interactions) with the Momento CLI.
+これらがMomento CLI を使った標準的な`get` と`set` の[データプレーン操作](how-it-works/momento-concepts##data-plane-performant-cache-interactions)になります。
 
-You can also manage [control plane operations](how-it-works/momento-concepts#control-plane-simple-efficient-cache-management) with the Momento CLI, such as creating a cache, deleting a cache, or listing available caches.
+また、Momento CLI を使って[コントロールプレーン操作](how-it-works/momento-concepts#control-plane-simple-efficient-cache-management)、例えばキャッシュを作成したり、削除したり、利用可能なキャッシュ一覧を見たりすることもできます。
 
-You can see all of the available subcommands in the `cache` command by using the `momento cache --help` flag in your terminal:
+`cache` コマンドの利用可能な全てのサブコマンドは `momento cache --help` をターミナルで実行すると見ることができます:
 
 ```
 $ momento cache --help
@@ -163,15 +164,15 @@ SUBCOMMANDS:
     set       Stores a given item in cache
 ```
 
-Further, you can specify non-default configuration options for your commands, such as a different region, cache name, or TTL.
+さらに、デフォルトの設定値以外のコマンドオプション、例えば異なるリージョン、キャッシュ名、TTL などを指定することもできます。
 
-For more information about any of the parameters for a subcommand, you can use `momento cache $SUBCOMMAND --help` to learn more.
+サブコマンドの全てのパラメータについての詳しい情報は `momento cache $SUBCOMMAND --help` を実行して学ぶことができます。
 
-## Next steps
+## 次のステップ
 
-The CLI is great for testing and for understanding the core Momento API, but most of your caching work will be done in your application. For those, you can use the Momento SDKs.
+CLI は基本のMomento API を試して理解するのには良いですが、ほとんどのキャッシュの仕事はアプリケーション上で行われます。それらには、Momento SDK を使うことができます。
 
-We currently have the following SDK's languages availabile. Check out each repo for detailed instructions and usage examples.
+現在、以下の言語でSDK が利用可能です。各レポジトリを確認して、詳細な手順と利用例をご確認ください。
 
 - [Go](https://github.com/momentohq/client-sdk-go)
 - [Java](https://github.com/momentohq/client-sdk-java)
@@ -179,4 +180,4 @@ We currently have the following SDK's languages availabile. Check out each repo 
 - [Python](https://github.com/momentohq/client-sdk-python)
 - [.NET](https://github.com/momentohq/client-sdk-dotnet)
 - [Rust](https://github.com/momentohq/client-sdk-rust)
-- [Php](https://github.com/momentohq/client-sdk-php)
+- [PHP](https://github.com/momentohq/client-sdk-php)
