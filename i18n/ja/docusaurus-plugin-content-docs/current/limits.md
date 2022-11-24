@@ -2,21 +2,21 @@
 sidebar_position: 4
 sidebar_class_name: sidebar-item-limits
 sidebar_label: サービス上限
-title: Service Limits for Momento Serverless Cache
-description: Explore Momento Serverless Cache's service limits, the default values, and how to get them changed if you need.
+title: Momento サーバーレスキャッシュのサービス上限
+description: Momento サーバーレスキャッシュのサービス上限、デフォルト値、そして変更が必要な時にどのように問い合わせるかを見てみましょう。
 ---
 
-# Service Limits for Momento Serverless Cache
+# Momento サーバーレスキャッシュのサービス上限
 
-This page outlines the default service limits for Momento Serverless Cache. If you need limits adjusted, please reach out to [Momento Support](mailto:support@momentohq.com) with your request.
+Momento サーバーレスキャッシュは、サービスのリソースに関してお客様とシステム自身を保護しようとしています。サービスがあるべき姿で、可能な限り何の問題もなく動きつづける様に、各アカウントとキャッシュはサービス上限、または(山道にある様な)ガードレールと私たちが呼ぶものを持っています。このページにはサービス上限のデフォルト値の概略を掲示しています:
 
-| Limit                                 | Value    |
+| 上限                                 | 値    |
 |---------------------------------------|----------|
-| API Rate per cache (Data Plane)       | 100 RPS* |
-| Throughput per cache                  | 1MB/s    |
-| Item Size                             | 1MB      |
-| API Rate per customer (Control Plane) | 5 RPS*   |
-| Max Cache Count (per account)         | 10       |
-| Time to Live (TTL)                    | 1 day    |
+| キャッシュ毎のAPI レート (データプレーン)       | 100リクエスト/秒 |
+| お客様毎のAPI レート (コントロールプレーン) | 5リクエスト/秒   |
+| キャッシュ毎のスループット                  | 1MB/秒    |
+| アイテムの最大サイズ                     | 1MB      |
+| キャッシュの最大数 (アカウント毎)         | 10       |
+| Time to Live (TTL)                    | 1日    |
 
-_*RPS = Requests/Second_
+これらはソフトリミットで変更可能です。調整が必要な時には、[Momento サポート](mailto:support@momentohq.com)までお問い合わせ下さい。
