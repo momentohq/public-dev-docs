@@ -2,76 +2,70 @@
 sidebar_position: 3
 sidebar_class_name: sidebar-item-pricing
 title: 料金
-description: Explore the simplicity of the pricing model for Momento Serverless Cache
+description: Momento サーバーレスキャッシュの料金モデルの単純さを見てみてください
 ---
 
-# Momento Serverless Cache Pricing
-Serverless is about simplicity in every dimension, including pricing! Momento Serverless Cache costs $0.15/GB transferred. That's it!
+# Momento サーバーレスキャッシュの料金
+サーバーレスとはあらゆる意味において単純であることであり、それには料金も含まれます！Momento サーバーレスキャッシュは $0.15/GB の転送コストがかかります。たったそれだけです！
 
-Your first 50 GB are free each month—and you don't even need a credit card to get started.
+毎月最初の 50 GB は無料で、使い始めるのにクレジットカードさえ必要ありません。
 
-Momento Serverless Cache has no hidden charges. You don’t have to pay for storage, replication, or instances. We literally only charge you for data transferred in/out of Momento Serverless Cache. Everything else is included. Sign up with confidence and create something wonderful.
+Momento サーバーレスキャッシュには隠れた料金はありません。ストレージ、レプリカ、またはインスタンスのためにお金を払う必要はありません。文字通り、Momento サーバーレスキャッシュに入るまたは出ていくデータ転送のみが課金されます。それ以外は全てその中に含まれています。心配することなくサインアップして、素晴らしい何かを作ってください。
 
-We’ve included some sample pricing exercises below to help you estimate. If you need further assistance (or just can’t believe it), drop a message in our [Discord](https://discord.gg/Z7FSXB89), and we’ll get it sorted out. Take the Momento Serverless Cache challenge: see how much you can save!
+見積りの手助けになるように、以下にいくつかの料金計算のサンプルを載せました。さらなるお手伝いが必要であれば（もしくはちょっと信じられない様であれば）、私たちの[Discord](https://discord.gg/Z7FSXB89)にメッセージを頂けたら、対応いたします。Momento サーバーレスキャッシュに挑戦して、そしてどれくらい料金を削減できるかを見てみてください！
 
-### Examples:
+### 料金例:
 
-##### You process a total of 1 million read/write requests per day with average object sizes of 4KB. Momento would cost you:
+##### 平均オブジェクトサイズ 4KB で毎日100万 read/write リクエストを処理するとします。Momento の課金は以下の様になります:
 
-`1 million requests / day * 30.5 days/month * 4KB/request * $.15/GB` = **$18.3 /month**
+`100万リクエスト/日 * 30.5日/月 * 4KB/リクエスト * $.15/GB` = **$18.3/月**
 
-_See the calculation in [Wolfram Alpha](https://www.wolframalpha.com/input?i=1+million%2F+day+*+4KB+*+%24.15%2FGB+to+%24%2Fmonth) for more detail._
+_詳細は[Wolfram Alpha](https://www.wolframalpha.com/input?i=1+million%2F+day+*+4KB+*+%24.15%2FGB+to+%24%2Fmonth) の計算をご覧ください。_
 
-##### You process an average load of 5K RPS with 1KB objects. Momento would cost you:
+##### 平均 5000 リクエスト毎秒を1KB のオブジェクトに実行するとします。Momento の課金は以下の様になります:
 
-`5K requests/second * 86400 seconds/day * 30.5 days/month * 1KB/request` = **$1976/month**
+`5Kリクエスト/秒 * 86400秒/日 * 30.5日/月 * 1KB/リクエスト` = **$1976/月**
 
-_See the calculation in [Wolfram Alpha](https://www.wolframalpha.com/input?i=5000%2Fsecond+*+1KB++*+%24.15%2FGB+to+%24%2Fmonth) for more detail._
+_詳細は[Wolfram Alpha](https://www.wolframalpha.com/input?i=5000%2Fsecond+*+1KB++*+%24.15%2FGB+to+%24%2Fmonth) の計算をご覧ください。_
 
-##### You have a 20 RPS Lambda that caches 1KB objects. Momento would cost you:
+##### 20 リクエスト毎秒のLambda があって、1KB のオブジェクトをキャッシュするとします。Momento の課金は以下の様になります:
 
-`20 requests/second * 86400 seconds/day * 30.5 days/month * 1KB` = **$.38/month**
+`20リクエスト毎秒 * 86400秒/日 * 30.5日/月 * 1KB` = **$.38/月**
 
-_Note: Without the free tier, this workflow would cost $7.88/month_
+_注: 無料枠なしだと、このワークフローは$7.88/月になります。_
 
-_See the calculation in [Wolfram Alpha](https://www.wolframalpha.com/input?i=%28%2820+requests%2Fsecond+*+1KB%2Frequest%29+-+50GB+%2Fmonth%29+*+%24.15%2FGB+to+%24%2Fmonth) for more detail._
+_詳細は[Wolfram Alpha](https://www.wolframalpha.com/input?i=%28%2820+requests%2Fsecond+*+1KB%2Frequest%29+-+50GB+%2Fmonth%29+*+%24.15%2FGB+to+%24%2Fmonth) の計算をご覧ください。_
 
-### FAQ's 
+### よくある質問
 <details open>
-  <summary>Is it really just $.15/GB transferred in and out of Momento? What else do you charge for …</summary>
+  <summary>Momento は本当に$.15/GB のデータ転送の出入りだけなのですか？それ以外にお金がかかるものはありますか？</summary>
 
-| Dimension                            | Momento Charges         |
+| 対象                           | Momento 料金         |
 |--------------------------------------|-------------------------|
-| Memory / Storage                     | $0/GB                   |
-| Multi-AZ Replication Charges         | $0/GB                   |
-| Single Sign-On & Teams (coming soon) | $0/user                 |
-| Connections                          | $0/thousand connections |
+| メモリ / ストレージ                     | $0/GB                   |
+| 複数AZ レプリケーション料金         | $0/GB                   |
+| シングルサインオン & チーム (まもなく) | $0/ユーザー                 |
+| 接続数                          | $0/数千接続 |
   
  </details>
 
 <details>
-<summary>Can I run a production app for free on Momento?</summary>
-Absolutely! Our free tier and low usage tiers are as fast, as available, and as secure as our at scale service. You get all our availability features like multi-AZ replication, hot key protection, and automatic scaling to handle bursts. You even get all our security features for free (end-to-end encryption, per request authentication, TLS).
+<summary>Momento を無料で本番環境のアプリケーションに使うことはできますか？</summary>
+もちろんです！無料枠や低い利用率でも、大規模利用のものと同様に、高速で可用性がありセキュアです。複数AZ レプリケーション、ホットキー保護、そして突発的なリクエストへの自動スケーリングといった高可用性のための機能が全て利用可能です。セキュリティのための全ての機能(エンドツーエンド暗号化、リクエスト毎の認証、TLS)も無料で使えます。
 
-We frequently find customers provisioning an entire cluster to handle low-RPS workflows. If you want them to be HA, you need multiple nodes. If you believe in CICD, you likely have a similarly sized cluster in staging—and maybe even in dev. That adds up! Turn off those machines—and save the environment. Go Momento!
+お客様の中でよく、低いRPS のワークフローのためにフル装備のクラスターをプロビジョンしているケースを見かけます。HA (高可用性)が欲しい場合、複数ノードが必要です。CICD を利用したければ、同程度のサイズのクラスターを、ステージングや開発環境にさえ設置したくなるでしょう。全てコストとして積み上がります！こうしたマシンは停止してしまって、コストを削減しましょう。Momento で行きましょう！
 </details>
 
 <details>
-  <summary>Can I run a production app for $1.50/month on Momento?</summary>
-Absolutely! If you are transferring 60 GB of data in/out of Momento each month, you get the first 50GB free each month and pay $0.15/GB for the remaining 10GB each month. Access enterprise-grade availability, security, and performance at any scale with Momento.
+  <summary>Momento を毎月$1.50 で本番環境のアプリケーションに使うことはできますか？</summary>
+もちろんです！もし毎月60 GB のデータ転送の出入りがMomento にあったとすると、毎月最初の50GB 分は無料で、残りの毎月10GB に対して$0.15/GB を支払うことになります。どんなスケールでも、Momento のエンタープライズレベルの可用性、セキュリティ、そしてパフォーマンスがご利用できます。
 
-
-As crazy as it sounds, we are not the first to do this. You can experience this with other serverless services like DynamoDB, S3, and more—we are just bringing serverless to caching!
+これは狂気じみたように聞こえるかもしれませんが、私たちが最初に始めたわけではありません。ほかのサーバーレスサービス、例えばDynamoDB、S3、そして他にもたくさんのサービスで同じものを経験できるでしょう。私たちは単にサーバーレスのアイデアをキャッシュにもってきただけなのです。
 </details>
 
 <details>
-  <summary>Will it scale?</summary>
-Hell yes! Momento is the best way to future-proof your caching story. You can add Momento *extremely* quickly—and it just fades into the background whether you are doing 1 RPS or 1 million RPS. You just pay for what you use—so you get a scalable cache without spending a lot of cash.
-</details>
-  
-<details>
-  <summary>Will it blend?</summary>
-We do not recommend putting Momento in a blender as it may void the warranty of your blender, but Momento is robust with enterprise grade security and availability. Momento does blend seamlessly with your current cloud setup, whether you're on AWS, GCP, Azure, or multi-cloud!
+  <summary>スケールするのですか？</summary>
+はい、もちろんです！Momento は将来も使い続けられるキャッシュとして最高の選択肢です。Momento を追加するのは *ものすごく* 素早くできて、そのあとは1RPS だろうが100万RPS だろうが、あとのことは全てバックグラウンドに行われるので皆さんが考える必要がありません。使った分だけ料金を払うだけでよいので、スケール可能なキャッシュを高額な料金を支払うことなく得られます。
 </details>
 
-[Give Momento a Try!](getting-started.md)
+[Momento をはじめてみましょう！](./getting-started)
