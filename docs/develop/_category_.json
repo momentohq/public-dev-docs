@@ -1,0 +1,11 @@
+{
+    "label": "Develop",
+    "position": 5,
+    "link": {
+      "type": "generated-index",
+      "description": "Learn to develop with Momento Serverless Cache.",
+      "slug": "/develop"
+    },
+    "className": "sidebar-item-guides"
+  }
+  
