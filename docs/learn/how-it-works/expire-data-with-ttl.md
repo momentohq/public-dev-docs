@@ -1,10 +1,10 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 sidebar_class_name: sidebar-item-develop-ttl
 sidebar_label: Expiring data with TTL
 title: Expiring data with Time to Live (TTL) in Momento Serverless Cache
 description: Learn about expiring data from a cache using Time to Live (TTL) in Momento Serverless Cache
-slug: /develop/expire-data-with-ttl
+slug: /learn/how-it-works/expire-data-with-ttl
 ---
 
 # Expire data with Time-to-Live (TTL) in Momento Serverless Cache
