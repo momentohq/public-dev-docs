@@ -1,0 +1,11 @@
+{
+    "label": "Learn",
+    "position": 3,
+    "collapsible": true,
+    "collapsed": true,
+    "link": {
+      "description": "Learn more in depth about Momento Serverless Cache.",
+      "slug": "/learn"
+    },
+    "className": "sidebar-item-guides"
+  }

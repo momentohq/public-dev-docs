@@ -1,0 +1,11 @@
+{
+    "label": "How it works",
+    "position": 2,
+    "collapsible": true,
+    "collapsed": true,
+    "link": {
+      "description": "Learn more in depth about how Momento Serverless Cache works.",
+      "slug": "/learn/how-it-works"
+    },
+    "className": "sidebar-item-how-it-works"
+  }
