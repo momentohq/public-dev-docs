@@ -1,5 +1,7 @@
 ---
 sidebar_position: 3
+sidebar_label: サーバーレス環境にMomento を設定する
+title: サーバーレス環境にMomento を設定する
 ---
 
 # Configuring Momento in Serverless
