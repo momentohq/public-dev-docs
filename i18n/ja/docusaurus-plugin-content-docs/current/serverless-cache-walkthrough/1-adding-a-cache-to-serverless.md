@@ -4,72 +4,72 @@ sidebar_label: 導入とセットアップ
 title: 導入とセットアップ
 ---
 
-# Introduction and setup
+# 導入とセットアップ
 
-In this tutorial, you will learn how to add a cache to your serverless application with AWS Lambda. To do so, you will use Momento Serverless Cache, a cache service built for​​ deep integration with serverless applications. Momento Serverless Cache combines instant, elastic, cache storage with a pay-for-value pricing model, and blazing-fast performance.
+本チュートリアルでは、AWS Lambda を使ったサーバーレスアプリケーションにどのようにしてキャッシュを追加していくかを学ぶことができます。ここでは、サーバーレスアプリケーションと深く連携するために作られたキャッシュサービスの1つであるMomento サーバーレスキャッシュを利用していきます。Momento サーバーレスキャッシュは、すぐに使えて弾力性のあるキャッシュストレージを従量課金モデルで使うことができ、とても高いパフォーマンスを発揮してくれます。
 
-As you work through this tutorial, you will build a simple account management service for your application. You'll have endpoints for creating users and organizations and for adding users to an organization via memberships. Finally, you'll be able to check whether a user belongs to an organization, a frequently used authorization pattern.
+このチュートリアルを進める中で、皆さんにはシンプルなアカウント管理サービスを作って頂きます。そのサービスにはユーザーの作成、組織の作成、そしてメンバーシップを利用してユーザーを組織に追加する、というエンドポイント群を作ります。そうすると、あるユーザーがある組織に所属しているかをチェックするという、頻繁に使われている認可のパターンを実行することができるようになります。
 
-This tutorial includes conceptual material about implementing caching and building serverless applications as well as practical, step-by-step tips for deploying and interacting with your account management service.
+このチュートリアルには、キャッシュとサーバーレスアプリケーションを実装するための概念的な情報だけでなく、前述のアカウント管理サービスを実際にデプロイして使ってみるまでの順を追った手順も含まれています。
 
-One of the key concepts we will discuss is the different approaches to caching, including the tradeoffs of using different caching strategies. To learn more about this, check out our page on [caching strategies and patterns](./../caching-concepts/caching-strategies-and-patterns).
+これから学んでいく中に出てくる一つの大事な概念として、異なるキャッシュ戦略を使う際のトレードオフを含めた、キャッシュへの複数のアプローチがあげられます。これについてもっと学びたい時は、[キャッシュの戦略とパターン](./../caching-concepts/caching-strategies-and-patterns) も併せてご覧ください。
 
-Additionally, this tutorial will show practical aspects of integrating Momento with AWS Lambda. If you want a more succinct reference, check out our guide on [caching with AWS Lambda](/guides/caching-with-aws-lambda).
+加えて、このチュートリアルではMomento とAWS Lambda を連携させる際の実践的な面も見ることができます。もっと簡潔な情報をお探しでしたら、[AWS Lambda でキャッシュ](/guides/caching-with-aws-lambda)もご覧ください。
 
-This tutorial has five steps:
+このチュートリアルには5つのステップがあります:
 
-1.  Introduction to the tutorial and environment setup.
+1.  チュートリアルの紹介と環境のセットアップ。
 
-2.  Deploy a serverless application with API Gateway, Lambda, and DynamoDB.
+2.  API Gateway、Lambda、DynamoDB を使ったサーバーレスアプリケーションをデプロイする。
 
-3.  Install and configure Momento for your application.
+3.  Momento をそのアプリケーションに組み込んで設定する。
 
-4.  Implement a read-aside cache pattern in your application.
+4.  Read-aside キャッシュパターンをアプリケーションに実装する。
 
-5.  Use a write-aside cache pattern for improved performance and cache freshness.
+5.  Write-aside キャッシュパターンを使って、パフォーマンスとキャッシュの鮮度を改善する。
 
-## What we're building
+## これから作っていくもの
 
-We will be building an account management service for a larger SaaS application.
+これから、巨大なSaaS アプリケーションのためのアカウント管理サービスを構築していこうと思います。
 
-Our application has support for both Users and Organizations, and Users may take actions on behalf of Organizations. In order to support this, many parts of our application will need to ensure a particular User belongs to a particular Organization.
+私たちのアプリケーションは、ユーザーと組織の両方を持っていて、ユーザーは組織の代わりにアクションをすることができます。これを達成するために、アプリケーションの多くの場面で特定のユーザーが特定の組織に属していることを保障する必要があります。
 
 ![System architecture](images/architecture.png)
 
-To handle this, we will be modeling three entities in our service:
+この要件を扱うために、サービス上に3つのエンティティをモデリングしていきます:
 
-- A _User_ entity, which represents a single human user of our application;
+- ユーザーエンティティ: アプリケーション上の1人の人間を表現しています
 
-- An _Organization_ entity, which represents a group of Users that manage resources within our application;
+- 組織エンティティ: アプリケーション内のリソースを管理できる、ユーザーのまとまりを表現しています
 
-- A _Membership_ entity, which represents a relationship between a User and an Organization such that the User is allowed to take certain actions within the Organization.
+- メンバーシップエンティティ: ユーザーと組織の間の関連を表現していて、そのユーザはその組織内の特定のアクションを行うことを許可されています。
 
-To interact with these entites, we will set up the following HTTP endpoints:
+これらのエンティティとやり取りするために、以下のHTTP エンドポイントをセットアップします:
 
-- _CreateUser_ (`POST /users`), which is used for User signup;
+- _CreateUser_ (`POST /users`): ユーザーのサインアップに使われます。
 
-- _CreateOrganization_ (`POST /organization`), which is called by a User to create a new Organization;
+- _CreateOrganization_ (`POST /organization`): ユーザーが新しい組織を作るときに呼び出されます。
 
-- _AddUserToOrganization_ (`POST /organization/{organizationName}/members`), which is called by an existing member of an Organization to add a new User to an Organization;
+- _AddUserToOrganization_ (`POST /organization/{organizationName}/members`): ある組織に新しいユーザーを追加するために、組織内の既存のユーザーから呼び出されます。
 
-- _UserInOrganization_ (`GET /organization/{organizationName}/members/{username}`), which is called to see if a User belongs to an Organization and fetch details about the User's role in the Organization.
+- _UserInOrganization_ (`GET /organization/{organizationName}/members/{username}`): あるユーザがある組織に属しているかチェックして、その組織内でのユーザーの役割の詳細を取得する時に使われます。
 
-Our application is necessarily simplified in order to focus on the key points we want to teach. There are no endpoints to update Users or Organizations, to list all Members of an Organization, or to remove a User from an Organization. Further, we won't have a true authentication system and will rely on crude measures like passing in a username via an HTTP header.
+このアプリケーションは、鍵となるポイントをお伝えすることに集中するために、必要最低限に簡素化されています。ユーザーや組織を更新するエンドポイント、全てのユーザと組織を一覧するエンドポイント、およびユーザーを組織から削除するエンドポイントは存在しません。さらに、本物の認証システムもなくて、HTTP ヘッダーでユーザー名を渡すような大雑把な方法に依存しています。
 
-## Setup
+## セットアップ
 
-Before we start, let's get your environment set up so that you can follow along with the steps in this tutorial.
+はじめる前に、このチュートリアルでこの後のステップに従って進められる様に、環境のセットアップをしておきましょう。
 
-First, the tutorial uses Node.js and related dependencies, so you will need to install that on your machine. Please follow the installation instructions on the [Node.js downloads page](https://nodejs.org/en/download/).
+まず一つ目に、チュートリアルはNode.js と関連する依存パッケージを利用しているので、それを皆さんのマシンにインストールする必要があります。[Node.js のダウンロードページ](https://nodejs.org/en/download/) にあるインストール手順に従ってください。
 
-Second, we will use the [Serverless Framework](https://www.serverless.com/framework/docs) to build and deploy our serverless application. The Serverless Framework is a CLI tool written in Node.js and can be installed by running the following command in your terminal:
+二つ目に、サーバーレスアプリケーションをビルドしてデプロイするために、[Serverless Framework](https://www.serverless.com/framework/docs) を利用していきます。Serverless Framework はNode.js で書かれたCLI ツールでなので、ターミナル上で以下のコマンドを実行することでインストールできます:
 
     npm install -g serverless
 
-Third, we will be deploying an application to Amazon Web Services (AWS). To do so, you will need an AWS account and credentials in your environment. If you don't have AWS credentials configured in your local environment, follow the guide from the Serverless Framework documentation on [configuring your environment](https://www.serverless.com/framework/docs/providers/aws/guide/credentials/).
+三つ目に、アプリケーションをこれからAmazon Web Services (AWS) にデプロイしていきます。そのために、AWS アカウントと認証情報が必要になります。もしローカル環境にAWS 認証情報をまだ設定していなければ、Serverless Framework のドキュメントにある[環境を設定する](https://www.serverless.com/framework/docs/providers/aws/guide/credentials/)ドキュメントのガイドに従ってください。
 
-Finally, all the code for this tutorial is available in a GitHub repository. You can clone the code to your machine using the following command:
+最後に、このチュートリアル用の全てのコードはGitHub レポジトリから利用可能です。以下のコマンドを使って、マシンにコードをクローンしてください:
 
     git clone git@github.com:momentohq/serverless-tutorial.git
 
-Now that we've set up our environment, let's move on to the next step where we will deploy our serverless application.
+これで環境のセットアップができました。次のステップに進んで、サーバーレスアプリケーションをデプロイしてみましょう。

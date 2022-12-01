@@ -44,7 +44,7 @@ To handle this, we will be modeling three entities in our service:
 
 - A _Membership_ entity, which represents a relationship between a User and an Organization such that the User is allowed to take certain actions within the Organization.
 
-To interact with these entites, we will set up the following HTTP endpoints:
+To interact with these entities, we will set up the following HTTP endpoints:
 
 - _CreateUser_ (`POST /users`), which is used for User signup;
 
