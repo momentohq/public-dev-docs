@@ -181,3 +181,4 @@ We currently have the following SDK's languages available. Check out each repo f
 - [.NET](https://github.com/momentohq/client-sdk-dotnet)
 - [Rust](https://github.com/momentohq/client-sdk-rust)
 - [PHP](https://github.com/momentohq/client-sdk-php)
+- [Ruby](https://github.com/momentohq/client-sdk-ruby)
