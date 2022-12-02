@@ -160,6 +160,18 @@ match cache_client.delete_cache(&cache_name).await {
     }
 }
 `}
+  ruby={`
+require 'momento'
+
+MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
+DEFAULT_TTL_SECONDS = 15
+
+client = Momento::SimpleCacheClient.new(
+  auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
+)
+response = client.delete_cache('test-cache')
+raise repsonse.error if response.error?
+  `}
   cli={`momento cache delete-cache --name test-cache`}
 />
 
