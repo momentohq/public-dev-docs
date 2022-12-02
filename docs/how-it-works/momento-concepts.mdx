@@ -71,7 +71,7 @@ let mut cache_client = SimpleCacheClientBuilder::new(
     ruby={`
 require 'momento'
 
-MOMENTO_AUTH_TOKEN = ENV['TEST_AUTH_TOKEN'] || "eyJhbGc.MyTestToken"
+MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
 DEFAULT_TTL_SECONDS = 15
 
 client = Momento::SimpleCacheClient.new(
