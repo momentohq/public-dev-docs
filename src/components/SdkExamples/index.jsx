@@ -3,7 +3,7 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import React from 'react';
 
-export const SdkExamples = ({js, python, java, go, csharp, rust, cli}) => (
+export const SdkExamples = ({js, python, java, go, csharp, rust, ruby, cli}) => (
     <Tabs>
         <TabItem value="js" label="JavaScript">
             <CodeBlock language={'js'}>{js}</CodeBlock>
@@ -22,6 +22,9 @@ export const SdkExamples = ({js, python, java, go, csharp, rust, cli}) => (
         </TabItem>
         <TabItem value="rust" label="Rust">
             <CodeBlock language={'rust'}>{rust}</CodeBlock>
+        </TabItem
+        <TabItem value="ruby" label="Ruby">
+            <CodeBlock language={'ruby'}>{ruby}</CodeBlock>
         </TabItem>
         <TabItem value="cli" label="CLI">
             <CodeBlock language={'cli'}>{cli}</CodeBlock>
