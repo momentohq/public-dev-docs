@@ -22,7 +22,7 @@ export const SdkExamples = ({js, python, java, go, csharp, rust, ruby, cli}) => 
         </TabItem>
         <TabItem value="rust" label="Rust">
             <CodeBlock language={'rust'}>{rust}</CodeBlock>
-        </TabItem
+        </TabItem>
         <TabItem value="ruby" label="Ruby">
             <CodeBlock language={'ruby'}>{ruby}</CodeBlock>
         </TabItem>
