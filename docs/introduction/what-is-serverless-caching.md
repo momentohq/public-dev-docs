@@ -9,7 +9,7 @@ description: Learn what serverless is in terms of caching and what Momento Serve
 
 Serverless is one of the hottest trends in software development, and we're seeing an explosion in "serverless-friendly" services.
 
-We believe Momento Serverless Cache is the most serverless-friendly cache available. But what does serverless mean, and why is Momento a serverless-friendly cache?
+We believe Momento Serverless Cache is the most serverless-friendly cache available. But what does serverless mean, and why is Momento Serverless Cache a serverless-friendly cache?
 
 We'll look at two definitions of serverless plus a group of builders that is interested in serverless-like technologies:
 
@@ -19,7 +19,7 @@ We'll look at two definitions of serverless plus a group of builders that is int
 
 - [Serverless as independent project platform](#serverless-as-independent-project-platform)
 
-Note that this page is focused on the conceptual reasons why Momento fits so well in serverless applications. If you want more practical advice on integrating Momento into your serverless application, check out our page on [using Momento with AWS Lambda](/guides/caching-with-aws-lambda).
+Note that this page is focused on the conceptual reasons why Momento fits so well in serverless applications. If you want more practical advice on integrating Momento Serverless Cache into your serverless application, check out our page on [using Momento Serverless Cache with AWS Lambda](/guides/caching-with-aws-lambda).
 
 ## Serverless as an operational model
 
@@ -37,15 +37,15 @@ As Ben Kehoe notes in the article linked above, "serverlessness" is a spectrum, 
 
 ### How Momento fits the traditional definition of serverless
 
-Momento fits perfectly under this traditional definition of serverless.
+Momento Serverless Cache fits perfectly under this traditional definition of serverless.
 
-First, Momento is a managed service. You won't be installing software, managing failovers, or upgrading versions. This is handled for you behind the scenes so you can focus on building and maintaining the core parts of your application.
+First, Momento Serverless Cache is a managed service. You won't be installing software, managing failovers, or upgrading versions. This is handled for you behind the scenes so you can focus on building and maintaining the core parts of your application.
 
-Second, Momento abstracts the decisions around cache management from you. You don't have to specify the type and number of instances in your cache, nor do you have to think about the maximum memory size for your cache. Momento is purpose-built for the cloud and takes advantage of the elasticity and scalability of modern cloud infrastructure. You can store as much data as you need in your cache, and Momento will handle it seamlessly.
+Second, Momento Serverless Cache abstracts the decisions around cache management from you. You don't have to specify the type and number of instances in your cache, nor do you have to think about the maximum memory size for your cache. Momento is purpose-built for the cloud and takes advantage of the elasticity and scalability of modern cloud infrastructure. You can store as much data as you need in your cache, and Momento will handle it seamlessly.
 
-Finally, Momento has a pay-for-value pricing model. As mentioned above, you aren't selecting a specific cache and cluster size in advance, regardless of whether you use it. Momento charges based on the amount of data stored and the requests made against your cache. With this, you are in control of your pricing, and changes you make to your application have a direct impact on your bill.
+Finally, Momento Serverless Cache has a pay-for-value pricing model. As mentioned above, you aren't selecting a specific cache and cluster size in advance, regardless of whether you use it. Momento charges based on the amount of data stored and the requests made against your cache. With this, you are in control of your pricing, and changes you make to your application have a direct impact on your bill.
 
-Under this first definition of serverless, Memento is the cache that fits best in the serverless ecosystem.
+Under this first definition of serverless, Memento Serverless Cache is the cache that fits best in the serverless ecosystem.
 
 ## Serverless as compatibility with related architectures
 
