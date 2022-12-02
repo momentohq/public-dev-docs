@@ -15,7 +15,7 @@ In general caching terms, eviction is when a cache write causes the aggregate da
 ## Momento Serverless Cache and eviction
 Momento Serverless Cache associates cache misses closely with errors. Therefore, the service is designed to avoid evicting data from a cache. Instead of evicting data, when one of the service's cache nodes nears capacity, the service scales to add more capacity on your behalf, and keys are transparently re-distributed to keep the cache miss ratio low.
 
-Since the service has no maintenance windows, the impact on customers is transparent. More importantly, there is minimal to no effect on cache hit rates. 
+Momento Serverless Cache has no maintenance windows. Operational changes such as scaling and node replacement are automatically handled in the background by the service. A prewarming process is used to avoid impacting cache hit rates. 
 
 ## Cache expiration
 In general caching terms, expiration is when a time-to-live (TTL) value is part of each piece of data. When that time lapses, the service deletes the data from the cache.
