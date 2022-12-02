@@ -77,6 +77,16 @@ match cache_client.create_cache(&cache_name).await {
     }
 }
 `}
+  ruby={`
+require 'momento'
+MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
+DEFAULT_TTL_SECONDS = 15
+client = Momento::SimpleCacheClient.new(
+  auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
+)
+response = client.create_cache('test-cache')
+raise repsonse.error if response.error?
+  `}
   cli={`momento cache create --name test-cache`}
 />
 
@@ -148,6 +158,16 @@ match cache_client.delete_cache(&cache_name).await {
     }
 }
 `}
+  ruby={`
+require 'momento'
+MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
+DEFAULT_TTL_SECONDS = 15
+client = Momento::SimpleCacheClient.new(
+  auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
+)
+response = client.delete_cache('test-cache')
+raise repsonse.error if response.error?
+  `}
   cli={`momento cache delete-cache --name test-cache`}
 />
 
@@ -158,6 +178,19 @@ Lists all caches for the provided auth token.
 | Name      | Type   | Description                     |
 | --------- | ------ | ------------------------------- |
 | nextToken | String | Token for pagination of caches. |
+
+<SdkExamples
+  ruby={`
+require 'momento'
+MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
+DEFAULT_TTL_SECONDS = 15
+client = Momento::SimpleCacheClient.new(
+  auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
+)
+puts client.caches.to_a.join(", ")
+  `}
+  cli={`momento cache list`}
+/>
 
 ## Data APIs
 
@@ -232,6 +265,16 @@ cache_client
     .await
     .unwrap();
     `}
+  ruby={`
+require 'momento'
+MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
+DEFAULT_TTL_SECONDS = 15
+client = Momento::SimpleCacheClient.new(
+  auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
+)
+response = client.set('test-cache', 'test-key', 'test-value')
+raise response.error if response.error?
+  `}
   cli={`momento cache set --key test-key --value test-value`}
 />
 
@@ -303,6 +346,22 @@ cache_client
     .await
     .unwrap();
     `}
+  ruby={`
+require 'momento'
+MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
+DEFAULT_TTL_SECONDS = 15
+client = Momento::SimpleCacheClient.new(
+  auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
+)
+response = client.get('test-cache', 'test-key')
+if response.hit?
+  puts response.value_string
+elsif response.miss?
+  puts "The item was not in the cache."
+elsif response.error?
+  raise response.error
+end
+  `}
   cli={`momento cache get --key test-key --value test-value`}
 />
 
@@ -374,5 +433,15 @@ cache_client
     .await
     .unwrap();
     `}
+  ruby={`
+require 'momento'
+MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
+DEFAULT_TTL_SECONDS = 15
+client = Momento::SimpleCacheClient.new(
+  auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
+)
+response = client.delete('test-cache', 'test-key')
+raise response.error if response.error?
+  `}
   cli={`momento cache delete --key test-key --value test-value`}
 />
