@@ -20,7 +20,7 @@ In this guide, we will look at practical aspects of using Momento in AWS Lambda.
 
 This is designed to be a dense, practical guide on getting Momento configured in your serverless application.
 
-If you want to know more about why Momento works well with serverless applications, please refer to our [guide on Caching with Serverless](./../learn/how-it-works/caching-with-serverless).
+If you want to know more about why Momento works well with serverless applications, please refer to our [guide on Caching with Serverless](./../introduction/what-is-serverless-caching).
 
 If you want a deeper tutorial of how Lambda works and how to use Momento in your Lambda-based application, check out our in-depth tutorial on adding a cache to your serverless application.
 

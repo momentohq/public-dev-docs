@@ -100,11 +100,11 @@ const config = {
           },
           // Redirect how-it-works/caching-with-serverless
           {
-            to: '/learn/how-it-works/caching-with-serverless',
+            to: '/introduction/what-is-serverless-caching',
             from: '/how-it-works/caching-with-serverless',
           },
           {
-            to: '/learn/how-it-works/caching-with-serverless',
+            to: '/introduction/what-is-serverless-caching',
             from: '/docs/how-it-works/caching-with-serverless',
           },
           // Redirect category/caching-concepts

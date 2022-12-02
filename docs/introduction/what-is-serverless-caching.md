@@ -1,10 +1,11 @@
 ---
 sidebar_position: 2
-sidebar_label: Caching with Serverless
-title: Caching with Serverless
+sidebar_label: What is Serverless Caching?
+title: What is Serverless Caching?
+description: Learn what serverless is in terms of caching and what Momento Serverless Cache can be your simple, fast cache for your apps.
 ---
 
-# Caching with Serverless
+# What is Serverless Caching?
 
 Serverless is one of the hottest trends in software development, and we're seeing an explosion in "serverless-friendly" services.
 
