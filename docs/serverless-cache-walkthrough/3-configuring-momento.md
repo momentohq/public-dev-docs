@@ -124,7 +124,7 @@ Default Ttl Seconds [600]: 30
 
 Enter the token into the command, and use a cache named `accounts-cache` as your default cache.
 
-For more on getting started with Momento, you can follow the [getting started guide](./../getting-started). You can also learn more about the Momento authentication token in the [Momento Concepts](./../how-it-works/momento-concepts#authentication-token) material.
+For more on getting started with Momento, you can follow the [getting started guide](./../getting-started). You can also learn more about the Momento authentication token in the [Momento Concepts](./../learn/how-it-works/#authentication-token) material.
 
 ### Storing our authentication token in AWS Secrets Manager
 
