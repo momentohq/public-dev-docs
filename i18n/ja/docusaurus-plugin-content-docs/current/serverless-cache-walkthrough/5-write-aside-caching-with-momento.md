@@ -1,5 +1,7 @@
 ---
 sidebar_position: 5
+sidebar_label: Momento でWrite-aside キャッシュ
+title: Momento でWrite-aside キャッシュ
 ---
 
 # Write-aside caching with Momento

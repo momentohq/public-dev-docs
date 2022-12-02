@@ -1,5 +1,7 @@
 ---
 sidebar_position: 2
+sidebar_label: 基本的なサーバーレスアプリケーションをデプロイ
+title: 基本的なサーバーレスアプリケーションをデプロイ
 ---
 
 # Deploying a basic serverless application
