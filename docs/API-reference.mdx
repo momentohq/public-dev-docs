@@ -79,10 +79,8 @@ match cache_client.create_cache(&cache_name).await {
 `}
   ruby={`
 require 'momento'
-
 MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
 DEFAULT_TTL_SECONDS = 15
-
 client = Momento::SimpleCacheClient.new(
   auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
 )
@@ -162,10 +160,8 @@ match cache_client.delete_cache(&cache_name).await {
 `}
   ruby={`
 require 'momento'
-
 MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
 DEFAULT_TTL_SECONDS = 15
-
 client = Momento::SimpleCacheClient.new(
   auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
 )
@@ -186,10 +182,8 @@ Lists all caches for the provided auth token.
 <SdkExamples
   ruby={`
 require 'momento'
-
 MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
 DEFAULT_TTL_SECONDS = 15
-
 client = Momento::SimpleCacheClient.new(
   auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
 )
@@ -273,10 +267,8 @@ cache_client
     `}
   ruby={`
 require 'momento'
-
 MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
 DEFAULT_TTL_SECONDS = 15
-
 client = Momento::SimpleCacheClient.new(
   auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
 )
@@ -356,10 +348,8 @@ cache_client
     `}
   ruby={`
 require 'momento'
-
 MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
 DEFAULT_TTL_SECONDS = 15
-
 client = Momento::SimpleCacheClient.new(
   auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
 )
@@ -445,10 +435,8 @@ cache_client
     `}
   ruby={`
 require 'momento'
-
 MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
 DEFAULT_TTL_SECONDS = 15
-
 client = Momento::SimpleCacheClient.new(
   auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
 )
