@@ -20,4 +20,4 @@ Momento Serverless Cache has no maintenance windows. Operational changes such as
 ## Cache expiration
 In general caching terms, expiration is when a time-to-live (TTL) value is part of each piece of data. When that time lapses, the service deletes the data from the cache.
 
-See [Expire data from caches by setting Time-to-Live (TTL)](./expire-data-with-ttl) for specific information on this topic.
+See [Expire data from caches by setting Time-to-Live (TTL)](./expire-data-with-ttl) for specific information on how Momento Serverless Cache treats this topic.
