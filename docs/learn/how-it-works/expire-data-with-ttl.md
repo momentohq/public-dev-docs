@@ -37,7 +37,10 @@ There are three locations to set a TTL value:
 
     Note: Unless you copy the configuration file with your application, that file and its contents are unique to the location where you ran the `momento configure` command.
 
-## Why do caches need Time to Live (TTL)?
+## Frequently asked questions about TTL
+
+<details>
+  <summary>Why do caches need Time to Live (TTL)?</summary>
 
 Usually, a cache entry is not the definitive source of a piece of data. Rather, a cache entry is a faster, cheaper, and less durable way to store a piece of data, whether it's an individual record from a different database, some aggregated or computed information from multiple records or sources, or even a resource from an external, third-party application. Using a cache helps to improve latency or reduce load on a dependency in our application. In using a cache, we're anticipating that our cache entry will be requested by another client soon.
 
@@ -50,3 +53,9 @@ Most caches were built for a pre-cloud world and thus require you to pre-provisi
 In contrast, Momento is designed for the elasticity of the modern cloud. You don't need to pre-provision your cache size -- your Momento cache automatically expands and contracts based on the operations you perform against it. In the normal course of operations, Momento will not evict items based on a lack of available memory.
 
 That being said, you should still use TTL on items in your Momento cache to avoid cache staleness and to reduce costs. Let's see how to use TTL with Momento's SimpleCache.
+</details>
+
+<details>
+  <summary>What's the maximum TTL I can set?</summary>
+By default, you can set the TTL for an item to 24 hours. If you need to have data in the cache beyond that, please <a href="mailto:support@momenthq.com">contact Momento Support</a>.
+</details>
