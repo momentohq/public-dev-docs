@@ -66,7 +66,7 @@ As crazy as it sounds, we are not the first to do this. You can experience this 
 
 <details>
   <summary>Can I really store as much data in my cache(s) as I want?</summary>
-Heck yeah! You are billed for the inbound and outbound transfer of data, not for the volume of data in your cache. Just remember that the default max <a href="/learn/how-it-works/expire-data-with-ttl">time-to-live (TTL)</a> for the data in the cache is 24 hours. If you need to store data longer than that, <a href="mailto:support@momentohq.com">let us know</a> and there is a different cost schedule for that.
+Heck yeah! You are billed for the inbound and outbound transfer of data, not for the volume of data in your cache.
 </details>
 
 <details>
