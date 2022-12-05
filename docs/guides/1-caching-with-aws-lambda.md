@@ -20,7 +20,7 @@ In this guide, we will look at practical aspects of using Momento in AWS Lambda.
 
 This is designed to be a dense, practical guide on getting Momento configured in your serverless application.
 
-If you want to know more about why Momento works well with serverless applications, please refer to our [guide on Caching with Serverless](./../how-it-works/caching-with-serverless).
+If you want to know more about why Momento works well with serverless applications, please refer to our [guide on Caching with Serverless](./../introduction/what-is-serverless-caching).
 
 If you want a deeper tutorial of how Lambda works and how to use Momento in your Lambda-based application, check out our in-depth tutorial on adding a cache to your serverless application.
 
@@ -242,7 +242,7 @@ First, you need to ensure that the dependency is included within your function Z
 
 Second, you must ensure that your dependencies will work in the AWS Lambda environment. If you are using a ZIP file rather than a container image for your Lambda function, the code itself will be running on top of the Amazon Linux 2 operating system. Most of your function code and dependencies will work the same on your local machine as in the Lambda execution environment. However, certain dependencies must be compiled for specific architectures.
 
-The [Momento SimpleCache clients use gRPC](./../how-it-works/momento-concepts#grpc) to connect to the Momento service. The gRPC library for Python uses architecture-specific bindings and thus must be compiled for the Amazon Linux 2 execution environment. If you build the dependency directly on your Mac or Windows machine, it won't be compatible with the Lambda execution environment.
+The [Momento SimpleCache clients use gRPC](./../learn/how-it-works/#grpc) to connect to the Momento service. The gRPC library for Python uses architecture-specific bindings and thus must be compiled for the Amazon Linux 2 execution environment. If you build the dependency directly on your Mac or Windows machine, it won't be compatible with the Lambda execution environment.
 
 Below, we will see how to handle both of these problems using popular deployment frameworks.
 

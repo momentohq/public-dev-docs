@@ -6,7 +6,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Momento Docs",
+  title: "Momento Serverless Cache",
   tagline: "The World's Fastest Cache",
   url: "https://docs.momentohq.com",
   baseUrl: "/",
@@ -82,17 +82,29 @@ const config = {
           },
           // Redirect how-it-works
           {
-            to: '/how-it-works',
+            to: '/learn/how-it-works/',
+            from: '/how-it-works',
+          },
+          {
+            to: '/learn/how-it-works/',
             from: '/docs/how-it-works',
           },
           // Redirect momento-concepts
           {
-            to: '/how-it-works/momento-concepts',
+            to: '/learn/how-it-works/',
+            from: '/how-it-works/momento-concepts',
+          },
+          {
+            to: '/learn/how-it-works/',
             from: '/docs/how-it-works/momento-concepts',
           },
           // Redirect how-it-works/caching-with-serverless
           {
-            to: '/how-it-works/caching-with-serverless',
+            to: '/introduction/what-is-serverless-caching',
+            from: '/how-it-works/caching-with-serverless',
+          },
+          {
+            to: '/introduction/what-is-serverless-caching',
             from: '/docs/how-it-works/caching-with-serverless',
           },
           // Redirect category/caching-concepts
