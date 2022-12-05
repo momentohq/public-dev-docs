@@ -32,11 +32,11 @@
     "description": "The label for category Tutorial - Adding a cache to a serverless application in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Tutorial - Adding a cache to a serverless application.link.generated-index.title": {
-    "message": "Tutorial - Add Momento Serverless Cache to a serverless application",
+    "message": "チュートリアル - サーバーレスアプリケーションにキャッシュを追加",
     "description": "The generated-index page title for category Tutorial - Adding a cache to a serverless application in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Tutorial - Adding a cache to a serverless application.link.generated-index.description": {
-    "message": "Want to add a cache to a serverless application using AWS Lambda? Check out the following five-step tutorial.",
+    "message": "AWS Lambda を使ったサーバーレスアプリケーションにキャッシュを追加したいですか？それでは以下にある5ステップのチュートリアルを試してみてください。",
     "description": "The generated-index page description for category Tutorial - Adding a cache to a serverless application in sidebar tutorialSidebar"
   }
 }

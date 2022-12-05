@@ -1,5 +1,7 @@
 ---
 sidebar_position: 4
+sidebar_label: Momento でRead-aside キャッシュ
+title: Momento でRead-aside キャッシュ
 ---
 
 # Read-aside caching with Momento

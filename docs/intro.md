@@ -25,6 +25,7 @@ In the following pages, you can learn about caching in general and how to use Mo
   - [.NET](https://github.com/momentohq/client-sdk-dotnet)
   - [Rust](https://github.com/momentohq/client-sdk-rust)
   - [Php](https://github.com/momentohq/client-sdk-php)
+  - [Ruby](https://github.com/momentohq/client-sdk-ruby)
 
 - _If you want to know more about Momento Serverless Cache and how it works_, refer to the [How it works](./how-it-works) section, including the reference on [Momento Servless Cache concepts](./how-it-works/momento-concepts).
 
