@@ -57,5 +57,5 @@ That being said, you should still use TTL on items in your Momento cache to avoi
 
 <details>
   <summary>What's the maximum TTL I can set?</summary>
-By default, you can set the TTL for an item to 24 hours. If you need to have data in the cache beyond that, please <a href="mailto:support@momenthq.com">contact Momento Support</a>.
+By default, the limit you can set the TTL for an item is 24 hours. If you need to have data in the cache beyond that time, please <a href="mailto:support@momenthq.com">contact Momento Support</a>.
 </details>
