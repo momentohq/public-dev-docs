@@ -65,8 +65,13 @@ As crazy as it sounds, we are not the first to do this. You can experience this 
 </details>
 
 <details>
+  <summary>Can I really store as much data in my cache(s) as I want?</summary>
+Heck yeah! You are billed for the inbound and outbound transfer of data, not for the volume of data in your cache.
+</details>
+
+<details>
   <summary>Will it scale?</summary>
-Hell yes! Momento is the best way to future-proof your caching story. You can add Momento *extremely* quickly—and it just fades into the background whether you are doing 1 RPS or 1 million RPS. You just pay for what you use—so you get a scalable cache without spending a lot of cash.
+Hell yes! Momento Serverless Cache is the best way to future-proof your caching story. You can add Momento Serverless Cache *extremely* quickly—and it just fades into the background whether you are doing 1 RPS or 1 million RPS. You just pay for what you use—so you get a scalable cache without spending a lot of cash.
 </details>
   
 <details>

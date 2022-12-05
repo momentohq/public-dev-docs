@@ -1,8 +1,8 @@
 ---
 sidebar_position: 4
-sidebar_label: Cache eviction vs ejection
-title: Cache eviction vs ejection
-slug: /learn/how-it-works/cache-eviction-vs-ejection
+sidebar_label: Cache eviction vs expiration
+title: Cache eviction vs expiration
+slug: /learn/how-it-works/cache-eviction-vs-expiration
 description: Learn about differences between expiring and evicting data from a cache and how these terms relate to Momento Serverless cache
 ---
 
@@ -20,4 +20,4 @@ Momento Serverless Cache has no maintenance windows. Operational changes such as
 ## Cache expiration
 In general caching terms, expiration is when a time-to-live (TTL) value is part of each piece of data. When that time lapses, the service deletes the data from the cache.
 
-See [Expire data from caches by setting Time-to-Live (TTL)](./expire-data-with-ttl) for specific information on this topic.
+See [Expire data from caches by setting Time-to-Live (TTL)](./expire-data-with-ttl) for specific information on how Momento Serverless Cache treats this topic.
