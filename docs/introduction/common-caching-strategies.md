@@ -1,3 +1,10 @@
+---
+sidebar_position: 3
+sidebar_label: Common Caching Strategies
+title: Common Caching Strategies
+description: Learn what serverless is in terms of caching and what Momento Serverless Cache can be your simple, fast cache for your apps.
+---
+
 # Common caching strategies
 
 Now that we know the key choices you need to make when implementing a caching strategy, let's review some popular caching patterns. For each pattern, we will describe the pattern, the choices the pattern makes on the three questions above, and when you may want to use that pattern.

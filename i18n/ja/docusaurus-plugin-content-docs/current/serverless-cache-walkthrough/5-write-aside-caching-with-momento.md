@@ -137,4 +137,4 @@ If you are looking for practical tips on using Momento with AWS Lambda, be sure 
 
 If you want a broader overview of concepts discussed in this tutorial, check out our pages on [Momento concepts](./../learn/how-it-works/) and [caching strategies](./../introduction/common-caching-strategies).
 
-If you're looking to get started with Momento, check out our [quickstart tutorial](./../getting-started.md) to get your credentials and cache your first item in less than 5 minutes.
+If you're looking to get started with Momento, check out our [quickstart tutorial](./../getting-started) to get your credentials and cache your first item in less than 5 minutes.

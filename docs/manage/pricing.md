@@ -1,6 +1,5 @@
 ---
 sidebar_position: 3
-sidebar_class_name: sidebar-item-pricing
 title: Pricing
 description: Explore the simplicity of the pricing model for Momento Serverless Cache
 ---
