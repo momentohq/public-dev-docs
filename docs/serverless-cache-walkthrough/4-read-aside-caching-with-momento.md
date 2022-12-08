@@ -20,7 +20,7 @@ There are a number of different reasons for adding caching to your application, 
 
 - **How to cache:** Is my cache a generic store for any type of application data I choose, or is the cache specifically designed for integration with my underlying data source?
 
-Making the proper choice on each of these factors is important to implementing a caching strategy that works for your application. For more on each of these factors and various combinations, check out our [guide to caching strategies](./../caching-concepts/caching-strategies-and-patterns).
+Making the proper choice on each of these factors is important to implementing a caching strategy that works for your application. For more on each of these factors and various combinations, check out our [guide to caching strategies](./../introduction/common-caching-strategies).
 
 In this example, we will use a read-aside caching strategy (also called a "lazy-loading" strategy). In a read-aside caching strategy, you first try to read your cached entry from a remote cache whenever your object is requested. If the object does not exist in the cache, then you fallback to reading the object from the primary data source. After retrieving from the primary data source, you store the object in your cache before returning so it's available the next time it is requested.
 
@@ -36,7 +36,7 @@ We will insert items into the cache only after a previous attempt to read from t
 
 Finally, it uses a _cache-aside_ mechanism rather than an _inline_ approach.
 
-We'll use Momento, a generic key-value cache, to store any data we want, rather than an inline cache that has a tight integration with DynamoDB. DynamoDB does have Amazon DynamoDB Accelerator (DAX) as an inline cache for DynamoDB. However, it requires the use of a VPC and complicated network configuration that is not a good fit for our serverless application. The cache-aside strategy with Momento is a better approach here.
+We'll use Momento Serverless Cache, a serverless key-value cache, to store any data we want, rather than an inline cache that has a tight integration with Amazon DynamoDB. DynamoDB does have Amazon DynamoDB Accelerator (DAX) as an inline cache for DynamoDB. However, it is not serverless, requires the use of a VPC and complicated network configuration that are not a good fit for a serverless application. The cache-aside strategy with Momento Serverless Cache is a better approach here.
 
 Now that we know the three factors to consider in choosing our caching strategy and the reasons we chose a read-aside strategy, let's get to work implementing this in our application.
 
