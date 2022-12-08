@@ -109,12 +109,12 @@ const config = {
           },
           // Redirect category/caching-concepts
           {
-            to: '/category/caching-concepts',
+            to: '/introduction/common-caching-patterns',
             from: '/docs/category/caching-concepts',
           },
           // Redirect caching-concepts/caching-strategies-and-patterns
           {
-            to: '/caching-concepts/caching-strategies-and-patterns',
+            to: '/introduction/common-caching-patterns',
             from: '/docs/caching-concepts/caching-strategies-and-patterns',
           },
           // Redirect guides
