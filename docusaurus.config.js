@@ -62,7 +62,11 @@ const config = {
           },
           // Redirect limits
           {
-            to: '/limits',
+            to: '/manage/limits',
+            from: '/limits',
+          },
+          {
+            to: '/manage/limits',
             from: '/docs/limits',
           },
           // Redirect getting started
@@ -72,13 +76,12 @@ const config = {
           },
           // Redirect pricing
           {
-            to: '/pricing',
-            from: '/docs/pricing',
+            to: '/manage/pricing',
+            from: '/pricing',
           },
-          // Redirect API-reference
           {
-            to: '/API-reference',
-            from: '/docs/API-reference',
+            to: '/manage/pricing',
+            from: '/docs/pricing',
           },
           // Redirect how-it-works
           {
@@ -119,12 +122,20 @@ const config = {
           },
           // Redirect guides
           {
-            to: '/guides',
+            to: '/develop/guides',
+            from: '/guides',
+          },
+          {
+            to: '/develop/guides',
             from: '/docs/guides',
           },
           // Redirect guides/caching-with-aws-lambda
           {
-            to: '/guides/caching-with-aws-lambda',
+            to: '/develop/guides/caching-with-aws-lambda',
+            from: '/guides/caching-with-aws-lambda',
+          },
+          {
+            to: '/develop/guides/caching-with-aws-lambda',
             from: '/docs/guides/caching-with-aws-lambda',
           },
           // Redirect serverless-cache-walkthrough
@@ -156,6 +167,15 @@ const config = {
           {
             to: '/serverless-cache-walkthrough/write-aside-caching-with-momento',
             from: '/docs/serverless-cache-walkthrough/write-aside-caching-with-momento',
+          },
+          // Redirect API-reference
+          {
+            to: '/develop/api-reference',
+            from: '/docs/API-reference',
+          },
+          {
+            to: '/develop/api-reference',
+            from: '/API-reference',
           },
         ],
         /**createRedirects(existingPath) {

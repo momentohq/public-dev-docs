@@ -1,5 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
+sidebar_label: Common Caching Patterns
+title: Common Caching Patterns
+description: Learn what serverless is in terms of caching and what Momento Serverless Cache can be your simple, fast cache for your apps.
 ---
 
 # Common caching patterns

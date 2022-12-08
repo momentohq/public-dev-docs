@@ -1,7 +1,7 @@
 ---
-sidebar_position: 2
-sidebar_class_name: sidebar-item-getting-started
+sidebar_position: 3
 sidebar_label: Getting Started
+sidebar_class_name: sidebar-item-getting-started
 title: Getting Started with Momento Serverless Cache Service
 description: Jump in and get started on Momento Serverless Cache with your SDK of choice or CLI.
 ---
@@ -67,7 +67,7 @@ _Note: the version number listed in the output will vary._
 
 ### Obtain an auth token
 
-[Authentication in Momento is done via an authentication token](./how-it-works/momento-concepts#authentication-token), and you can sign up for a Momento Serverless Cache auth token directly from the command line.
+[Authentication in Momento is done via an authentication token](./learn/how-it-works#authentication-token), and you can sign up for a Momento Serverless Cache auth token directly from the command line.
 
 Authentication tokens are associated with a specific Momento Serverless Cache region. You can provision an auth token for a Region using the `account` command with your desired cloud provider and Region:
 
@@ -83,7 +83,7 @@ momento account signup aws --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED
 momento account signup gcp --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-#### Azure (Coming Soon) [reach out](https://calendly.com/momento-meeting) if interested
+#### Azure (Coming Soon) [reach out](mailto:support@momentohq.com) if interested
 
 ```console
 momento account signup azure --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
