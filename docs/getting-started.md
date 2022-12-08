@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 sidebar_label: Getting Started
 sidebar_class_name: sidebar-item-getting-started
 title: Getting Started with Momento Serverless Cache Service
