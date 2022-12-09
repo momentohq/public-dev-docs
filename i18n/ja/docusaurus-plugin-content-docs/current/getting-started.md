@@ -67,7 +67,7 @@ SUBCOMMANDS:
 
 ### 認証トークンを取得する
 
-[Momento における認証は認証トークンによって行われますが](how-it-works/momento-concepts#authentication-token)、コマンドラインを使って直接Momento サーバーレスキャッシュにサインアップすることができます。
+[Momento における認証は認証トークンによって行われますが](./learn/how-it-works#authentication-token)、コマンドラインを使って直接Momento サーバーレスキャッシュにサインアップすることができます。
 
 認証トークンはMomento サーバーレスキャッシュの特定のリージョンに紐づいています。`account` コマンドをご希望のクラウドプロバイダーとリージョンを指定しながら使うと、各リージョン用の認証トークンを生成することができます:
 
@@ -91,7 +91,7 @@ momento account signup azure --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIR
 
 `<TYPE_YOUR_EMAIL_HERE>` をご自身の実際のEメールアドレスで置き換えるのを忘れないようにしてください。
 
-_注: もしお使いのクラウドプロバイダーで使いたいリージョンが利用可能でない場合は、それを追加することに関してぜひ私たちに[お問い合わせください](https://calendly.com/momento-meeting)。_
+_注: もしお使いのクラウドプロバイダーで使いたいリージョンが利用可能でない場合は、それを追加することに関してぜひ私たちに[お問い合わせください](mailto:support@momentohq.com)。_
 
 ## Momento CLI を設定する
 
@@ -137,9 +137,9 @@ $ momento cache get --key test
 [2022-03-31T15:46:03Z INFO  momento::commands::cache::cache_cli] cache miss
 ```
 
-これらがMomento CLI を使った標準的な`get` と`set` の[データプレーン操作](how-it-works/momento-concepts##data-plane-performant-cache-interactions)になります。
+これらがMomento CLI を使った標準的な`get` と`set` の[データプレーン操作](./learn/how-it-works#data-plane-performant-cache-interactions)になります。
 
-また、Momento CLI を使って[コントロールプレーン操作](how-it-works/momento-concepts#control-plane-simple-efficient-cache-management)、例えばキャッシュを作成したり、削除したり、利用可能なキャッシュ一覧を見たりすることもできます。
+また、Momento CLI を使って[コントロールプレーン操作](./learn/how-it-works#control-plane-simple-efficient-cache-management)、例えばキャッシュを作成したり、削除したり、利用可能なキャッシュ一覧を見たりすることもできます。
 
 `cache` コマンドの利用可能な全てのサブコマンドは `momento cache --help` をターミナルで実行すると見ることができます:
 
