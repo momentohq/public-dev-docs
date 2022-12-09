@@ -124,7 +124,7 @@ Default Ttl Seconds [600]: 30
 
 Enter the token into the command, and use a cache named `accounts-cache` as your default cache.
 
-For more on getting started with Momento, you can follow the [getting started guide](./../getting-started). You can also learn more about the Momento authentication token in the [Momento Concepts](./../learn/how-it-works/#authentication-token) material.
+For more on getting started with Momento, you can follow the [getting started guide](./../../getting-started). You can also learn more about the Momento authentication token in the [Momento Concepts](./../../learn/how-it-works/#authentication-token) material.
 
 ### Storing our authentication token in AWS Secrets Manager
 
@@ -170,7 +170,7 @@ Let's start by installing the Momento SDK. We're using Node.js for our applicati
 
 Because we installed the package and added it to our `package.json` file, the Serverless Framework will include it with our Node dependencies in the ZIP files for our Lambda functions.
 
-Note: If you are using a language other than Node for your serverless application, the same basic approach applies. However, if you are using Python, be sure to compile the Python SDK for the Lambda environment as it includes a gRPC library with C extensions. You can find instructions on this in our guide for [using Momento with AWS Lambda](/guides/caching-with-aws-lambda#python).
+Note: If you are using a language other than Node for your serverless application, the same basic approach applies. However, if you are using Python, be sure to compile the Python SDK for the Lambda environment as it includes a gRPC library with C extensions. You can find instructions on this in our guide for [using Momento with AWS Lambda](./../guides/caching-with-aws-lambda#python).
 
 With our SDK installed, we can now create and configure our client.
 

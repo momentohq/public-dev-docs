@@ -140,32 +140,56 @@ const config = {
           },
           // Redirect serverless-cache-walkthrough
           {
-            to: '/serverless-cache-walkthrough',
+            to: '/develop/tutorials/serverless-cache-walkthrough',
+            from: '/serverless-cache-walkthrough',
+          },
+          {
+            to: '/develop/tutorials/serverless-cache-walkthrough',
             from: '/docs/serverless-cache-walkthrough',
           },
           // Redirect serverless-cache-walkthrough/adding-a-cache-to-serverless
           {
-            to: '/serverless-cache-walkthrough/adding-a-cache-to-serverless',
+            to: '/develop/tutorials/serverless-cache-walkthrough/adding-a-cache-to-serverless',
+            from: '/serverless-cache-walkthrough/adding-a-cache-to-serverless',
+          },
+          {
+            to: '/develop/tutorials/serverless-cache-walkthrough/adding-a-cache-to-serverless',
             from: '/docs/serverless-cache-walkthrough/adding-a-cache-to-serverless',
           },
           // Redirect serverless-cache-walkthrough/deploying-a-basic-serverless-application
           {
-            to: '/serverless-cache-walkthrough/deploying-a-basic-serverless-application',
+            to: '/develop/tutorials/serverless-cache-walkthrough/deploying-a-basic-serverless-application',
+            from: '/serverless-cache-walkthrough/deploying-a-basic-serverless-application',
+          },
+          {
+            to: '/develop/tutorials/serverless-cache-walkthrough/deploying-a-basic-serverless-application',
             from: '/docs/serverless-cache-walkthrough/deploying-a-basic-serverless-application',
           },
           // Redirect serverless-cache-walkthrough/configuring-momento
           {
-            to: '/serverless-cache-walkthrough/configuring-momento',
+            to: '/develop/tutorials/serverless-cache-walkthrough/configuring-momento',
+            from: '/serverless-cache-walkthrough/configuring-momento',
+          },
+          {
+            to: '/develop/tutorials/serverless-cache-walkthrough/configuring-momento',
             from: '/docs/serverless-cache-walkthrough/configuring-momento',
           },
           // Redirect serverless-cache-walkthrough/read-aside-caching-with-momento
           {
-            to: '/serverless-cache-walkthrough/read-aside-caching-with-momento',
+            to: '/develop/tutorials/serverless-cache-walkthrough/read-aside-caching-with-momento',
+            from: '/serverless-cache-walkthrough/read-aside-caching-with-momento',
+          },
+          {
+            to: '/develop/tutorials/serverless-cache-walkthrough/read-aside-caching-with-momento',
             from: '/docs/serverless-cache-walkthrough/read-aside-caching-with-momento',
           },
           // Redirect serverless-cache-walkthrough/write-aside-caching-with-momento
           {
-            to: '/serverless-cache-walkthrough/write-aside-caching-with-momento',
+            to: '/develop/tutorials/serverless-cache-walkthrough/write-aside-caching-with-momento',
+            from: '/serverless-cache-walkthrough/write-aside-caching-with-momento',
+          },
+          {
+            to: '/develop/tutorials/serverless-cache-walkthrough/write-aside-caching-with-momento',
             from: '/docs/serverless-cache-walkthrough/write-aside-caching-with-momento',
           },
           // Redirect API-reference
