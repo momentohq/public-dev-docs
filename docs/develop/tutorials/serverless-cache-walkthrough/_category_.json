@@ -1,11 +1,11 @@
 {
-  "label": "Tutorial - Adding a cache to a serverless application",
+  "label": "Adding a cache to a serverless application",
   "position": 2,
   "link": {
     "type": "generated-index",
     "title": "Tutorial - Add Momento Serverless Cache to a serverless application",
     "description": "Want to add a cache to a serverless application using AWS Lambda? Check out the following five-step tutorial.",
-    "slug": "/serverless-cache-walkthrough"
+    "slug": "/develop/tutorials/serverless-cache-walkthrough"
   },
   "className": "sidebar-item-walkthrough"
 }
