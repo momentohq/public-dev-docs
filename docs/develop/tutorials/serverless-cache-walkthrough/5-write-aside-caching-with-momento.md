@@ -1,8 +1,9 @@
 ---
 sidebar_position: 5
+Title: Tutorial - Write-aside caching
 ---
 
-# Write-aside caching with Momento
+# Write-aside caching with Momento Serverless Cache
 
 In the previous step, we added our initial caching implementation by adding read-aside caching to our application. As part of that, we learned about different caching strategies and the factors to consider in choosing a cache strategy.
 
@@ -131,8 +132,8 @@ That concludes this tutorial on adding a cache to your serverless application. Y
 
 In this tutorial, we learned some practical steps for integrating Momento into your application as well as some conceptual material about caching strategies, the Lambda execution model, and implementation considerations.
 
-If you are looking for practical tips on using Momento with AWS Lambda, be sure to look at our reference guide for [adding caching to AWS Lambda functions](./../develop/guides/caching-with-aws-lambda).
+If you are looking for practical tips on using Momento with AWS Lambda, be sure to look at our reference guide for [adding caching to AWS Lambda functions](./../../guides/caching-with-aws-lambda).
 
-If you want a broader overview of concepts discussed in this tutorial, check out our pages on [Momento concepts](./../learn/how-it-works/) and [caching strategies](./../introduction/common-caching-strategies).
+If you want a broader overview of concepts discussed in this tutorial, check out our pages on [Momento concepts](./../../../learn/how-it-works/) and [caching strategies](./../../../introduction/common-caching-strategies).
 
-If you're looking to get started with Momento, check out our [quickstart tutorial](./../getting-started) to get your credentials and cache your first item in less than 5 minutes.
+If you're looking to get started with Momento, check out our [quickstart tutorial](./../../../getting-started) to get your credentials and cache your first item in less than 5 minutes.

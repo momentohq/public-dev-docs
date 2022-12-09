@@ -29,7 +29,7 @@ In the following pages, you can learn about caching in general and how to use Mo
 
 - _If you want to know more about Momento Serverless Cache and how it works_, refer to the reference on [Momento Servless Cache concepts](./learn/how-it-works).
 
-- _For specific guides on integrating with AWS Lambda or other systems_, look to the [Guides](./guides) section.
+- _For specific guides on integrating with AWS Lambda or other systems_, look to the [guides](./develop/guides) section.
 
 - _If you want an in-depth tutorial of Momento Serverless Cache in action_, look to our walkthrough on [adding a cache to a serverless application](./serverless-cache-walkthrough).
 

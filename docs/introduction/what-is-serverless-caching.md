@@ -19,7 +19,7 @@ We'll look at two definitions of serverless plus a group of builders that is int
 
 - [Serverless as independent project platform](#serverless-as-independent-project-platform)
 
-Note that this page is focused on the conceptual reasons why Momento fits so well in serverless applications. If you want more practical advice on integrating Momento Serverless Cache into your serverless application, check out our page on [using Momento Serverless Cache with AWS Lambda](/guides/caching-with-aws-lambda).
+Note that this page is focused on the conceptual reasons why Momento fits so well in serverless applications. If you want more practical advice on integrating Momento Serverless Cache into your serverless application, check out our page on [using Momento Serverless Cache with AWS Lambda](./../develop/guides/caching-with-aws-lambda).
 
 ## Serverless as an operational model
 
@@ -91,18 +91,18 @@ Second, _these developers are looking for a generous free tier as they start usi
 
 If you're an indie hacker or an early-stage startup that's looking to save money, Momento is a great fit for you as well.
 
-First, Momento has a painless self-service sign up. You can get a Momento authentication token and [start writing to your cache in less than five minutes](/getting-started). You don't need to talk to a salesperson or sign an upfront contract. In fact, you don't even need to enter a credit card to enjoy the free tier.
+First, Momento has a painless self-service sign up. You can get a Momento authentication token and [start writing to your cache in less than five minutes](./../getting-started). You don't need to talk to a salesperson or sign an upfront contract. In fact, you don't even need to enter a credit card to enjoy the free tier.
 
-Second, Momento has a generous free tier. You get 50 GB free each month (see [pricing](/pricing) for details). Our goal is to allow a wide variety of applications to run on Momento without ever paying us a cent. We want to provide a top-tier, robust service for applications that need it while also supporting a broad community of applications to use Momento as they grow.
+Second, Momento has a generous free tier. You get 50 GB free each month (see [pricing](./../manage/pricing) for details). Our goal is to allow a wide variety of applications to run on Momento without ever paying us a cent. We want to provide a top-tier, robust service for applications that need it while also supporting a broad community of applications to use Momento as they grow.
 
 ## Conclusion
 
-In this page, you learned how Momento fits with every conception of serverless. Momento has been designed specifically for modern architectures, with a serverless operational model, an integration model that works well with Lambda-powered applications, and a sign up and billing model that works for all types of developers and teams.
+In this page, you learned how Momento Serverless Cache fits with every conception of serverless. Momento Serverless Cache has been designed specifically for modern architectures, with a serverless operational model, an integration model that works well with Lambda-powered applications, and a sign up and billing model that works for all types of developers and teams.
 
-If you're ready to get started with Momento, be sure to check out the following materials:
+If you're ready to get started with Momento Serverless Cache, be sure to check out the following materials:
 
-- Quickstart guide to [start caching with Momento](/getting-started) in less than 5 minutes;
+- Quickstart guide to [start caching with Momento](./../getting-started) in less than 5 minutes;
 
-- A practical guide for [integrating Momento with your AWS Lambda functions](/guides/caching-with-aws-lambda);
+- A practical guide for [integrating Momento with your AWS Lambda functions](./../develop/guides/caching-with-aws-lambda);
 
-- An in-depth tutorial about [adding caching to your serverless application](/serverless-cache-walkthrough/adding-a-cache-to-serverless).
+- An in-depth tutorial about [adding caching to your serverless application](./../develop/tutorials/serverless-cache-walkthrough/adding-a-cache-to-serverless).

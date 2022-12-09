@@ -1,8 +1,9 @@
 ---
 sidebar_position: 4
+Title: Tutorial - Read-aside caching
 ---
 
-# Read-aside caching with Momento
+# Read-aside caching with Momento Serverless Cache
 
 In the previous step, we installed and configured Momento within our serverless application. As part of that, we learned some important details about the Lambda lifecycle that will help with performance, particularly when making external network calls from our application.
 
@@ -20,7 +21,7 @@ There are a number of different reasons for adding caching to your application, 
 
 - **How to cache:** Is my cache a generic store for any type of application data I choose, or is the cache specifically designed for integration with my underlying data source?
 
-Making the proper choice on each of these factors is important to implementing a caching strategy that works for your application. For more on each of these factors and various combinations, check out our [guide to caching strategies](./../introduction/common-caching-strategies).
+Making the proper choice on each of these factors is important to implementing a caching strategy that works for your application. For more on each of these factors and various combinations, check out our [guide to caching strategies](./../../../introduction/common-caching-strategies).
 
 In this example, we will use a read-aside caching strategy (also called a "lazy-loading" strategy). In a read-aside caching strategy, you first try to read your cached entry from a remote cache whenever your object is requested. If the object does not exist in the cache, then you fallback to reading the object from the primary data source. After retrieving from the primary data source, you store the object in your cache before returning so it's available the next time it is requested.
 

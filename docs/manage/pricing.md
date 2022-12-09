@@ -78,4 +78,4 @@ Hell yes! Momento Serverless Cache is the best way to future-proof your caching 
 We do not recommend putting Momento Serverless Cache in a blender as it may void the warranty of your blender, but Momento Serverless Cache  is robust with enterprise grade security and availability. Momento Serverless Cache does blend seamlessly with your current cloud setup, whether you're on AWS, GCP, Azure, or multi-cloud!
 </details>
 
-[Give Momento a Try!](./getting-started)
+[Give Momento Serverless Cache a Try!](./../getting-started)

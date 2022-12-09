@@ -12,9 +12,9 @@ As you work through this tutorial, you will build a simple account management se
 
 This tutorial includes conceptual material about implementing caching and building serverless applications as well as practical, step-by-step tips for deploying and interacting with your account management service.
 
-One of the key concepts we will discuss is the different approaches to caching, including the tradeoffs of using different caching strategies. To learn more about this, check out our page on [caching patterns](./../introduction/common-caching-patterns).
+One of the key concepts we will discuss is the different approaches to caching, including the tradeoffs of using different caching strategies. To learn more about this, check out our page on [caching patterns](./../../../introduction/common-caching-patterns).
 
-Additionally, this tutorial will show practical aspects of integrating Momento with AWS Lambda. If you want a more succinct reference, check out our guide on [caching with AWS Lambda](/guides/caching-with-aws-lambda).
+Additionally, this tutorial will show practical aspects of integrating Momento with AWS Lambda. If you want a more succinct reference, check out our guide on [caching with AWS Lambda](./../../guides/caching-with-aws-lambda).
 
 This tutorial has five steps:
 
