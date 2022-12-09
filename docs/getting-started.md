@@ -32,7 +32,7 @@ brew install momento-cli
 
 **Linux**
 
-1. Download the latest linux tar.gz file from [https://github.com/momentohq/momento-cli/releases/latest](https://github.com/momentohq/momento-cli/releases/latest)
+1. Download the latest linux tar.gz file from [https://github.com/momentohq/momento-cli/releases/download/v0.22.8/momento-cli-0.22.8.linux_x86_64.tar.gz](https://github.com/momentohq/momento-cli/releases/download/v0.22.8/momento-cli-0.22.8.linux_x86_64.tar.gz)
 2. Extract the `momento-cli-X.X.X.linux_x86_64.tar.gz` file
 3. Move `./momento` to your execution path.
 
