@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 sidebar_class_name: sidebar-item-getting-started
 sidebar_label: まずはじめに
 title: Momento サーバーレスキャッシュサービスをはじめてみる
@@ -67,9 +67,9 @@ SUBCOMMANDS:
 
 ### 認証トークンを取得する
 
-[Momento における認証は認証トークンによって行われますが](./learn/how-it-works#authentication-token)、コマンドラインを使って直接Momento サーバーレスキャッシュにサインアップすることができます。
+[Momento における認証は認証トークンによって行われますが](./learn/how-it-works#authentication-token)、コマンドラインを使って直接 Momento サーバーレスキャッシュにサインアップすることができます。
 
-認証トークンはMomento サーバーレスキャッシュの特定のリージョンに紐づいています。`account` コマンドをご希望のクラウドプロバイダーとリージョンを指定しながら使うと、各リージョン用の認証トークンを生成することができます:
+認証トークンは Momento サーバーレスキャッシュの特定のリージョンに紐づいています。`account` コマンドをご希望のクラウドプロバイダーとリージョンを指定しながら使うと、各リージョン用の認証トークンを生成することができます:
 
 #### AWS [利用可能リージョンは us-west-2, us-east-1, ap-northeast-1]
 
@@ -83,19 +83,19 @@ momento account signup aws --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED
 momento account signup gcp --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-#### Azure (まもなく対応) もしご興味があれば[お問い合わせ下さい](https://calendly.com/momento-meeting)
+#### Azure (まもなく対応) もしご興味があれば[お問い合わせ下さい](mailto:support@momentohq.com)
 
 ```console
 momento account signup azure --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-`<TYPE_YOUR_EMAIL_HERE>` をご自身の実際のEメールアドレスで置き換えるのを忘れないようにしてください。
+`<TYPE_YOUR_EMAIL_HERE>` をご自身の実際の E メールアドレスで置き換えるのを忘れないようにしてください。
 
 _注: もしお使いのクラウドプロバイダーで使いたいリージョンが利用可能でない場合は、それを追加することに関してぜひ私たちに[お問い合わせください](mailto:support@momentohq.com)。_
 
 ## Momento CLI を設定する
 
-Momento から認証トークンがEメールで送られてきます。そうしたら、`momento configure` コマンドを使って、ローカルのCLI がそのトークンを使うように設定することができます:
+Momento から認証トークンが E メールで送られてきます。そうしたら、`momento configure` コマンドを使って、ローカルの CLI がそのトークンを使うように設定することができます:
 
 ```
 $ momento configure
@@ -106,13 +106,13 @@ Default TTL Seconds [600]: 30 // Sets the default TTL for cache entries. For dem
 [2022-03-31T15:31:33Z INFO  momento::commands::configure::configure_cli] default cache successfully created
 ```
 
-これでもうあなたのMomento サーバーレスキャッシュは稼働しています！続いて、Momento サーバーレスキャッシュにデータをキャッシュするためにどうやってMomento CLI を使うかを見ていきましょう。
+これでもうあなたの Momento サーバーレスキャッシュは稼働しています！続いて、Momento サーバーレスキャッシュにデータをキャッシュするためにどうやって Momento CLI を使うかを見ていきましょう。
 
 ## データをいくつかキャッシュしてみる
 
-Momento CLI の`cache` コマンドはMomento サーバーレスキャッシュと対話するのに使われます。実際にいくつかのコマンドを見てみましょう。
+Momento CLI の`cache` コマンドは Momento サーバーレスキャッシュと対話するのに使われます。実際にいくつかのコマンドを見てみましょう。
 
-まず、`set` サブコマンドを使ってデフォルトのMomento サーバーレスキャッシュにアイテムを1つ保存することができます:
+まず、`set` サブコマンドを使ってデフォルトの Momento サーバーレスキャッシュにアイテムを 1 つ保存することができます:
 
 ```
 $ momento cache set --key test --value value
@@ -128,7 +128,7 @@ $ momento cache get --key test
 value
 ```
 
-キャッシュを設定する際に、デフォルトのTime to Live (TTL) を30秒に設定しています。もし30秒待ってからキャッシュを取り出してみると、アイテムが消えているでしょう:
+キャッシュを設定する際に、デフォルトの Time to Live (TTL) を 30 秒に設定しています。もし 30 秒待ってからキャッシュを取り出してみると、アイテムが消えているでしょう:
 
 ```
 $ sleep 30 // wait for item to expire
@@ -137,7 +137,7 @@ $ momento cache get --key test
 [2022-03-31T15:46:03Z INFO  momento::commands::cache::cache_cli] cache miss
 ```
 
-これらがMomento CLI を使った標準的な`get` と`set` の[データプレーン操作](./learn/how-it-works#data-plane-performant-cache-interactions)になります。
+これらが Momento CLI を使った標準的な`get` と`set` の[データプレーン操作](./learn/how-it-works#data-plane-performant-cache-interactions)になります。
 
 また、Momento CLI を使って[コントロールプレーン操作](./learn/how-it-works#control-plane-simple-efficient-cache-management)、例えばキャッシュを作成したり、削除したり、利用可能なキャッシュ一覧を見たりすることもできます。
 
@@ -170,9 +170,9 @@ SUBCOMMANDS:
 
 ## 次のステップ
 
-CLI は基本のMomento API を試して理解するのには良いですが、ほとんどのキャッシュの仕事はアプリケーション上で行われます。それらには、Momento SDK を使うことができます。
+CLI は基本の Momento API を試して理解するのには良いですが、ほとんどのキャッシュの仕事はアプリケーション上で行われます。それらには、Momento SDK を使うことができます。
 
-現在、以下の言語でSDK が利用可能です。各レポジトリを確認して、詳細な手順と利用例をご確認ください。
+現在、以下の言語で SDK が利用可能です。各レポジトリを確認して、詳細な手順と利用例をご確認ください。
 
 - [Go](https://github.com/momentohq/client-sdk-go)
 - [Java](https://github.com/momentohq/client-sdk-java)

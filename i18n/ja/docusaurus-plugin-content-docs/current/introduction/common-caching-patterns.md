@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Common caching patterns
+# Common Caching Patterns
 
 **_Caching is fast_**.
 
