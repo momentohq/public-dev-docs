@@ -68,4 +68,4 @@ _詳細は[Wolfram Alpha](https://www.wolframalpha.com/input?i=%28%2820+requests
 はい、もちろんです！Momento は将来も使い続けられるキャッシュとして最高の選択肢です。Momento を追加するのは *ものすごく* 素早くできて、そのあとは1RPS だろうが100万RPS だろうが、あとのことは全てバックグラウンドに行われるので皆さんが考える必要がありません。使った分だけ料金を払うだけでよいので、スケール可能なキャッシュを高額な料金を支払うことなく得られます。
 </details>
 
-[Momento をはじめてみましょう！](./getting-started)
+[Momento をはじめてみましょう！](./../getting-started)
