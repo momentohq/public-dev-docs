@@ -88,7 +88,7 @@ The Momento Serverless Cache control plane API is the API you will use to manage
 
 When you hear 'control plane', you might think 'slow, management operations.' But that's not the case here -- **Momento has been designed to quickly and efficiently manage caches within your account.** You won't fire a command to create a cache and wait for the cache to be created in the background. With Momento, the cache is created synchronously, within a second. Your cache will be ready to go by the time your request to create it has returned.
 
-Each cache in Momento Serverless Cache is isolated from other caches, and there's no technicel limit on the number of caches you can have in your account, but there are guardrails in place in the form of [service limits](/limits). This means you can have dedicated caches for each environment for your application or even each deployed branch in your Continuous Integration/Continuous Delivery (CI/CD) system.
+Each cache in Momento Serverless Cache is isolated from other caches, and there's no technicel limit on the number of caches you can have in your account, but there are guardrails in place in the form of [service limits](./../manage/limits). This means you can have dedicated caches for each environment for your application or even each deployed branch in your Continuous Integration/Continuous Delivery (CI/CD) system.
 
 ### Data plane: performant cache interactions
 
@@ -118,7 +118,7 @@ First, gRPC is _fast_. You may be familiar with using JSON-based REST APIs for i
 
 Second, gRPC has cross-language support. You can use the .proto files to quickly generate clients in a large number of supported languages. While this doesn't directly help you as a Momento user, you indirectly benefit by quickly receiving new features in your language of choice. The Momento team can generate base clients across languages, lowering the burden of maintaining SDKs for each language. We will craft a consistent, language-specific interface on top of the generated code for each language, but the baseline work of interacting with the Momento service is much lower.
 
-gRPC is supported by all languages for which there is a Momento SDK. For most of these languages, you do not need to know that Momento is using gRPC -- all the dependencies and gRPC communication are handled for you by the Momento SDK. For special concerns about using the Momento Python SDK in AWS Lambda, check out our guide on [using Momento in AWS Lambda](/guides/caching-with-aws-lambda#python).
+gRPC is supported by all languages for which there is a Momento SDK. For most of these languages, you do not need to know that Momento is using gRPC -- all the dependencies and gRPC communication are handled for you by the Momento SDK. For special concerns about using the Momento Python SDK in AWS Lambda, check out our guide on [using Momento in AWS Lambda](./../develop/guides/caching-with-aws-lambda#python).
 
 ### Networking
 
@@ -146,4 +146,4 @@ On this page, we learned the basic concepts of working with the Momento SDK and 
 
 If you want to learn more about caching strategies and how to think about caching, check out our resource on [caching strategies and patterns](./../introduction/common-caching-patterns).
 
-If you're looking for a deep, walkthrough tutorial, take a look at our [tutorial on adding caching to a serverless application](./../serverless-cache-walkthrough/adding-a-cache-to-serverless).
+If you're looking for a deep, walkthrough tutorial, take a look at our [tutorial on adding caching to a serverless application](./../develop/tutorials/serverless-cache-walkthrough/adding-a-cache-to-serverless).

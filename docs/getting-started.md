@@ -2,8 +2,8 @@
 sidebar_position: 3
 sidebar_label: Getting Started
 sidebar_class_name: sidebar-item-getting-started
-title: Getting Started with Momento Serverless Cache Service
-description: Jump in and get started on Momento Serverless Cache with your SDK of choice or CLI.
+title: Getting Started
+description: Jump in and get started quickly using Momento Serverless Cache with your SDK of choice or CLI.
 ---
 
 # Getting Started with Momento Serverless Cache

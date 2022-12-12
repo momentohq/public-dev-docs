@@ -30,7 +30,7 @@ Momento サーバーレスキャッシュは世界で初めての本物のサー
   - [Rust](https://github.com/momentohq/client-sdk-rust)
   - [PHP](https://github.com/momentohq/client-sdk-php)
 
-- Momento サーバーレスキャッシュについてもっと詳しく、どの様に動作するのかを知りたい方は、[どのように動作するか](how-it-works)のセクション、特に[Momento サーバーレスキャッシュの概念](./learn/how-it-works)に関する部分をご覧下さい。
+- Momento サーバーレスキャッシュについてもっと詳しく、どの様に動作するのかを知りたい方は、のセクション、特に[Momento サーバーレスキャッシュの概念](./learn/how-it-works)に関する部分をご覧下さい。
 
 - AWS Lambda や他のシステムとの具体的な連携ガイドについては、[ガイド](./develop/guides)のセクションをご覧下さい。
 

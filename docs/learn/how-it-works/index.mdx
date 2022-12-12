@@ -80,7 +80,7 @@ client = Momento::SimpleCacheClient.new(
 />
 
 
-A SimpleCache instance can interact with both the control plane and data plane APIs in Momento. Let's take a look at each of these.
+A SimpleCache instance can interact with both the control plane and data plane APIs in Momento Serverless Cache. Let's take a look at each of these.
 
 ### Control plane: simple, efficient cache management
 
@@ -88,11 +88,11 @@ The Momento Serverless Cache control plane API is the API you will use to manage
 
 When you hear 'control plane', you might think 'slow, management operations.' But that's not the case here -- **Momento has been designed to quickly and efficiently manage caches within your account.** You won't fire a command to create a cache and wait for the cache to be created in the background. With Momento, the cache is created synchronously, within a second. Your cache will be ready to go by the time your request to create it has returned.
 
-Each cache in Momento Serverless Cache is isolated from other caches, and there's no technicel limit on the number of caches you can have in your account, but there are guardrails in place in the form of [service limits](/limits). This means you can have dedicated caches for each environment for your application or even each deployed branch in your Continuous Integration/Continuous Delivery (CI/CD) system.
+Each cache in Momento Serverless Cache is isolated from other caches, and there's no technicel limit on the number of caches you can have in your account, but there are guardrails in place in the form of [service limits](./../../../manage/limits). This means you can have dedicated caches for each environment for your application or even each deployed branch in your Continuous Integration/Continuous Delivery (CI/CD) system.
 
 ### Data plane: performant cache interactions
 
-The Momento control plane is very useful, but data plane operations are where the action is. The data plane API refers to operations that actually interact with the data in your cache(s). It's designed to be blazing fast -- most data plane operations take less than 1-2 milliseconds from the client's perspective.
+The Momento Serverless Cache control plane is very useful, but data plane operations are where the action is. The data plane API refers to operations that actually interact with the data in your cache(s). It's designed to be blazing fast -- most data plane operations take less than 1-2 milliseconds from the client's perspective.
 
 The data plane includes the standard "set" and "get" cache functionality allowing you to write and retrieve a cache entry. You can also use the multi-get and multi-set commands to process multiple cached entries in a single request.
 
@@ -118,15 +118,15 @@ First, gRPC is _fast_. You may be familiar with using JSON-based REST APIs for i
 
 Second, gRPC has cross-language support. You can use the .proto files to quickly generate clients in a large number of supported languages. While this doesn't directly help you as a Momento user, you indirectly benefit by quickly receiving new features in your language of choice. The Momento team can generate base clients across languages, lowering the burden of maintaining SDKs for each language. We will craft a consistent, language-specific interface on top of the generated code for each language, but the baseline work of interacting with the Momento service is much lower.
 
-gRPC is supported by all languages for which there is a Momento SDK. For most of these languages, you do not need to know that Momento is using gRPC -- all the dependencies and gRPC communication are handled for you by the Momento SDK. For special concerns about using the Momento Python SDK in AWS Lambda, check out our guide on [using Momento in AWS Lambda](/guides/caching-with-aws-lambda#python).
+gRPC is supported by all languages for which there is a Momento SDK. For most of these languages, you do not need to know that Momento is using gRPC -- all the dependencies and gRPC communication are handled for you by the Momento SDK. For special concerns about using the Momento Python SDK in AWS Lambda, check out our guide on [using Momento Serverless Cache with AWS Lambda](./../../../develop/guides/caching-with-aws-lambda#python).
 
 ### Networking
 
-As noted above, Momento cache is a remote service from your application, and thus we need to think about the networking infrastructure to connect your application to the Momento service. In keeping with our core principles, Momento offers two networking mechanisms for interacting with your cache: the default configuration, and an advanced configuration.
+As noted above, Momento cache is a remote service from your application, and thus we need to think about the networking infrastructure to connect your application to the Momento Serverless Cache service. In keeping with our core principles, Momento offers two networking mechanisms for interacting with your cache: the default configuration, and an advanced configuration.
 
 #### Default networking
 
-By default, your SimpleCache client will connect to a publicly accessible endpoint for the Momento cache service. There are two main benefits to the default networking setup.
+By default, your SimpleCache client will connect to a publicly accessible endpoint for the Momento Serverless Cache service. There are two main benefits to the default networking setup.
 
 First, it is simple. You can [get started with Momento](./../getting-started) and start interacting with your cache in as little as five minutes right from your laptop. You don't have to mess with complicated network configuration to benefit from a cache in your application.
 
@@ -142,7 +142,7 @@ These are good options for your workloads if you need to keep the traffic over p
 
 ## Conclusion
 
-On this page, we learned the basic concepts of working with the Momento SDK and API. If you want to get started using Momento, check out our [getting started guide](/getting-started).
+On this page, we learned the basic concepts of working with the Momento SDK and API. If you want to get started using Momento Serverless Cache, check out our [getting started guide](/getting-started).
 
 If you want to learn more about caching strategies and how to think about caching, check out our resource on [caching strategies and patterns](./../../introduction/common-caching-patterns).
 

@@ -1,6 +1,7 @@
 ---
 sidebar_position: 4
 Title: Tutorial - Read-aside caching
+Description: In this tutorial, you add an easy to use read-aside cache to your application
 ---
 
 # Read-aside caching with Momento Serverless Cache

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+Description: In this tutorial, learn to deploy a basic serverless application into AWS for use with Momento Serverless Cache.
 ---
 
 # Deploying a basic serverless application

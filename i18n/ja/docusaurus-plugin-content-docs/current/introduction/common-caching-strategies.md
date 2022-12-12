@@ -22,7 +22,7 @@ Like local browser caching, this is a **local**, **aside** caching strategy that
 
 The benefits of this strategy are in its ease of use and simplicity. If you have data that is frequently accessed and relatively long-lived, you can quickly cache it on individual server instances without standing up and operating additional infrastructure. This can work well for configuration data or other slow-moving data.
 
-In a way, this is similar to the way we [reuse (or "cache") our Momento SimpleClient within AWS Lambda to enable connection reuse](./../guides/caching-with-aws-lambda#connection-reuse)!.
+In a way, this is similar to the way we [reuse (or "cache") our Momento SimpleClient within AWS Lambda to enable connection reuse](./../develop/guides/caching-with-aws-lambda#connection-reuse)!.
 
 The downside of this caching strategy is that it is less effective than remote caching methods. Each backend instance will have its own independent cache. If you have a broad set of data to cache, and you only cache it once it has been requested once on that instance, your cache hit rate can be quite low. Further, the cache hit rate gets even lower as your cluster size (and, likely, your overall load) increases! This is particularly troublesome when caching with hyper-ephemeral compute like AWS Lambda where your instances can be created and destroyed regularly. Finally, like with local browser caching, it can be difficult to invalidate expired data on the backend instances if the underlying data changes.
 

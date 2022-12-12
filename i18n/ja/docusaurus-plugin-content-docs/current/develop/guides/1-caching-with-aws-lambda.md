@@ -242,7 +242,7 @@ First, you need to ensure that the dependency is included within your function Z
 
 Second, you must ensure that your dependencies will work in the AWS Lambda environment. If you are using a ZIP file rather than a container image for your Lambda function, the code itself will be running on top of the Amazon Linux 2 operating system. Most of your function code and dependencies will work the same on your local machine as in the Lambda execution environment. However, certain dependencies must be compiled for specific architectures.
 
-The [Momento SimpleCache clients use gRPC](../how-it-works/momento-concepts#grpc) to connect to the Momento service. The gRPC library for Python uses architecture-specific bindings and thus must be compiled for the Amazon Linux 2 execution environment. If you build the dependency directly on your Mac or Windows machine, it won't be compatible with the Lambda execution environment.
+The [Momento SimpleCache clients use gRPC](./../../learn/how-it-works#grpc) to connect to the Momento service. The gRPC library for Python uses architecture-specific bindings and thus must be compiled for the Amazon Linux 2 execution environment. If you build the dependency directly on your Mac or Windows machine, it won't be compatible with the Lambda execution environment.
 
 Below, we will see how to handle both of these problems using popular deployment frameworks.
 
