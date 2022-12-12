@@ -31,7 +31,7 @@ In the following pages, you can learn about caching in general and how to use Mo
 
 - _For specific guides on integrating with AWS Lambda or other systems_, look to the [guides](./develop/guides) section.
 
-- _If you want an in-depth tutorial of Momento Serverless Cache in action_, look to our walkthrough on [adding a cache to a serverless application](./serverless-cache-walkthrough).
+- _If you want an in-depth tutorial of Momento Serverless Cache in action_, look to our walkthrough on [adding a cache to a serverless application](./develop/tutorials/serverless-cache-walkthrough).
 
 Have any questions or comments? We'd love to hear from you! You can chat with a Momento specialist by
 [joining our Discord](https://discord.com/invite/3HkAKjUZGq), or e-mail us at [support@momentohq.com](mailto:support@momentohq.com).
