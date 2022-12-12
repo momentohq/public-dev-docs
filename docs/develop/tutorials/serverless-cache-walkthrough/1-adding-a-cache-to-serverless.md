@@ -2,6 +2,7 @@
 sidebar_position: 1
 sidebar_label: Introduction and setup
 title: Introduction and setup
+Description: In this tutorial, learn to add a serverless cache to your serverless application using Momento Serverless Cache.
 ---
 
 # Introduction and setup

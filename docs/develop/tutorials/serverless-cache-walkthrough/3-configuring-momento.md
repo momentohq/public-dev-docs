@@ -1,10 +1,11 @@
 ---
 sidebar_position: 3
+Description: In this tutorial, learn to configure Momento Serverless Cache for use in your application
 ---
 
-# Configuring Momento in Serverless
+# Configuring Momento Serverless Cache
 
-In the previous step, we deployed a basic serverless application using AWS Lambda, API Gateway, and DynamoDB. With this, we implemented the basics of account management within our application.
+In the previous step, we deployed a basic serverless application using AWS Lambda, API Gateway, and Amazon DynamoDB. With this, we implemented the basics of account management within our application.
 
 In the next few steps, we're going to add caching to our serverless application using Momento. The account management service will be heavily relied upon by other services, so we want to make sure it is fast and reliable. Using a cache will reduce latency and the load on our primary database.
 
@@ -12,7 +13,7 @@ In this step, we will sign up for the Momento service and configure it for usage
 
 If you want to skip the concepts and go directly to the implementation, navigate ahead to the section on [installing and configuring Momento in your serverless application](#installing-and-configuring-momento-in-your-serverless-application).
 
-## Key concepts about the Lambda runtime model
+## Key concepts about the AWS Lambda runtime model
 
 Before we get to the implementation, we're going to examine two concepts that will help us understand how we're configuring Momento in our serverless applications. First, we'll take a look at the Lambda function lifecycle and the concept of cold starts. Then, we'll learn about how to reuse resources within Lambda despite its general statelessness.
 
