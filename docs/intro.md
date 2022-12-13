@@ -9,7 +9,6 @@ slug: /
   <meta name="google-site-verification" content="jXAJxglm5PRXRtL0R8kfGf80Xs1WM3IVAwAUPJC23lI" />
 </head>
 
-# Momento Serverless Cache
 Momento Serverless Cache is the world's first truly serverless caching service. It provides instant elasticity, scale-to-zero capability, and blazing-fast performance. Gone are the days where you need to choose, manage, and provision capacity. With Momento Serverless Cache, you grab the SDK, you get an end point, input a few lines into your code, and you're off and running.
 
 ## Learn about caching and Momento Serverless Cache

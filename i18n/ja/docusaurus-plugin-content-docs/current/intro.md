@@ -10,8 +10,6 @@ slug: /
   <meta name="google-site-verification" content="jXAJxglm5PRXRtL0R8kfGf80Xs1WM3IVAwAUPJC23lI" />
 </head>
 
-# Momento サーバーレスキャッシュサービス
-
 Momento サーバーレスキャッシュは世界で初めての本物のサーバーレスキャッシュサービスです。即時の弾力性、スケールをゼロにもでき、そして恐ろしく高速なパフォーマンスを発揮します。もはや、キャパシティを選択、管理してプロビジョンする必要はなくなりました。Momento サーバーレスキャッシュなら、SDK を入れて、エンドポイントを取得し、数行のコードを追加すれば、もう動き始めます。
 
 ## キャッシュと Momento サーバーレスキャッシュについて学ぶ
