@@ -1,8 +1,10 @@
 ---
 sidebar_position: 2
+sidebar_label: 一般的なキャッシュパターン
+title: 一般的なキャッシュパターン
 ---
 
-# Common Caching Patterns
+# 一般的なキャッシュパターン
 
 **_Caching is fast_**.
 
