@@ -1,8 +1,9 @@
 ---
 sidebar_position: 1
+sidebar_label: AWS Lambda でキャッシュ
 ---
 
-# Caching with AWS Lambda
+# AWS Lambda でキャッシュ
 
 The release of AWS Lambda in November 2014 kicked off the serverless revolution in software architecture. Lambda's event-driven, function-based compute solution changed the nature of how we build applications in the cloud.
 
