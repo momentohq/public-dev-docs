@@ -18,4 +18,5 @@ Momento Serverless Cache seeks to provide protection for its customers and itsel
 | Max Cache Count (per account)         | 10       |
 | Time to Live (TTL)                    | 1 day    |
 
-These are soft limits that can be altered. If you need limits adjusted, please reach out to [Momento Support](mailto:support@momentohq.com) with your request.
+## Soft limits and support
+The limits on this page are soft limits that can be altered. If you need these limits adjusted, please reach out to [Momento Support](mailto:support@momentohq.com). Please include your customerID, the name of the cache(s) to be altered, the cloud+region the cache is located in (e.g. AWS eu-west-1), and which limits from the list you’d like increased.
