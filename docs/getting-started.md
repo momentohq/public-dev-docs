@@ -184,3 +184,9 @@ We currently have the following SDK's languages available. Check out each repo f
 - [Rust](https://github.com/momentohq/client-sdk-rust)
 - [PHP](https://github.com/momentohq/client-sdk-php)
 - [Ruby](https://github.com/momentohq/client-sdk-ruby)
+
+## FAQ
+<details>
+  <summary>Does Momento deploy any resources into my cloud account?</summary>
+No it does not. Momento Serverless Cache is an API-based serverless service that you call from within your application code.
+</details>
