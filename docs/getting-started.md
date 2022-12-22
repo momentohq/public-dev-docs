@@ -18,6 +18,8 @@ you can experiment with Momento CLI commands in a shell session directly inside 
 You can create a free auth token, create a cache, and start running `set` and `get` commands
 on your cache. It only takes a few minutes!
 
+**Note: Momento Serverless Cache is an API based serverless service. It does not deploy anything into your (AWS, GCP, Azure, etc.) account.**
+
 ## Install the Momento command line interface (CLI)
 
 If you want to run the CLI on your own machine instead of [running it in your browser](#try-our-cli-in-your-browser),
@@ -67,9 +69,9 @@ _Note: the version number listed in the output will vary._
 
 ### Obtain an auth token
 
-[Authentication in Momento is done via an authentication token](./learn/how-it-works#authentication-token), and you can sign up for a Momento Serverless Cache auth token directly from the command line.
+[Authentication in Momento is done via an authentication token](./learn/how-it-works#authentication-token), and you can sign up for a Momento Serverless Cache auth token directly from the command line interface installed in the previous section.
 
-Authentication tokens are associated with a specific Momento Serverless Cache region. You can provision an auth token for a Region using the `account` command with your desired cloud provider and Region:
+Authentication tokens are associated with a specific Momento Serverless Cache cloud provider and specific region. You can provision an auth token **for each region** using the `account` command with your desired cloud provider and Region:
 
 #### AWS [available regions are us-west-2, us-east-1, ap-northeast-1]
 
@@ -93,7 +95,7 @@ Be sure to replace `<TYPE_YOUR_EMAIL_HERE>` and `<TYPE_DESIRED_REGION>` with act
 
 *Note: If a region you wish to use is not available for your selected cloud provider, please [reach out](mailto:support@momentohq.com) to us to inquire about adding it.*
 
-## Configure the Momento CLI
+## Configure the Momento CLI for read and write operations
 
 Momento will email your auth token to you. You can configure your local CLI to use this token by running the `momento configure` command:
 
@@ -182,3 +184,9 @@ We currently have the following SDK's languages available. Check out each repo f
 - [Rust](https://github.com/momentohq/client-sdk-rust)
 - [PHP](https://github.com/momentohq/client-sdk-php)
 - [Ruby](https://github.com/momentohq/client-sdk-ruby)
+
+## FAQ
+<details>
+  <summary>Does Momento deploy any resources into my cloud account?</summary>
+No it does not. Momento Serverless Cache is an API-based serverless service that you call from within your application code.
+</details>
