@@ -34,15 +34,25 @@ brew install momento-cli
 
 **Linux**
 
-1. Download the latest linux tar.gz file from [https://github.com/momentohq/momento-cli/releases/download/v0.22.8/momento-cli-0.22.8.linux_x86_64.tar.gz](https://github.com/momentohq/momento-cli/releases/download/v0.22.8/momento-cli-0.22.8.linux_x86_64.tar.gz)
-2. Extract the `momento-cli-X.X.X.linux_x86_64.tar.gz` file
-3. Move `./momento` to your execution path.
+Visit the web page for the latest [github release](https://github.com/momentohq/momento-cli/releases).
+There, you will find `.deb` and `.rpm` files for both x86_64 and aarch64.
+
+`.deb` files have been tested on modern versions of Ubuntu and Debian.
+`.rpm` files have been tested on modern versions of RHEL, Amazon Linux 2, Rocky Linux, and CentOS.
+
+If you have problems with any of these packages on your favorite platform, please [file an issue](https://github.com/momentohq/momento-cli/issues) and let us know!
+
+We also provide tarballs for both x86_64 and aarch64; these contain the `momento` binary,
+which you may add anywhere you like in your execution path.
 
 **Windows**
+Visit the web page for the latest [github release](https://github.com/momentohq/mom
+ento-cli/releases).
+There you will find an `.msi` installer for Windows platforms, as well as a windows `.zip` file if
+you prefer to manually copy the `momento` executable to your preferred location.
 
-1. Download the latest windows zip file from [https://github.com/momentohq/momento-cli/releases/latest](https://github.com/momentohq/momento-cli/releases/latest)
-2. Unzip the `momento-cli-X.X.X.windows_x86_64.zip` file
-3. Run the unzipped `.exe` file
+If you have problems with the Windows packages please [file an issue](https://github.com/momentohq/momento-cli/issues) and let us know!
+
 
 To verify the CLI was installed correctly, you can run our help command:
 
