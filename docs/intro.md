@@ -26,7 +26,7 @@ In the following pages, you can learn about caching in general and how to use Mo
   - [Php](https://github.com/momentohq/client-sdk-php)
   - [Ruby](https://github.com/momentohq/client-sdk-ruby)
 
-- _If you want to know more about Momento Serverless Cache and how it works_, refer to the reference on [Momento Servless Cache concepts](./learn/how-it-works).
+- _If you want to know more about Momento Serverless Cache and how it works_, refer to the reference on [Momento Serverless Cache concepts](./learn/how-it-works).
 
 - _For specific guides on integrating with AWS Lambda or other systems_, look to the [guides](./develop/guides) section.
 
