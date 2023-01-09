@@ -13,7 +13,7 @@ The data lifecycle is one of the most important aspects of a cache management sy
 In general caching terms, eviction is when a cache write causes the aggregate data in a cache to exceed the available memory storage, and the cache must remove some data ("evict") to make room. For example, this evicted data could be data that is used less frequently, or another algorithm, depending on how the cache is configured. Some cache implementations evict data to perform maintenance windows.
 
 ## Momento Serverless Cache and eviction
-Momento Serverless Cache associates cache misses closely with errors. Therefore, the service is designed to avoid evicting data from a cache. Instead of evicting data, when one of the service's cache nodes nears capacity, the service scales to add more capacity on your behalf, and keys are transparently re-distributed to keep the cache miss ratio low.
+Momento considers cache evictions to be a key indicator of service quality degradation. The service continually monitors this and will add capacity to maintain a buffer for all customers. The service level objective of Momento Serverless Cache is to respect the TTL for expiry of all cached items and not evict data.
 
 Momento Serverless Cache has no maintenance windows. Operational changes such as scaling and node replacement are automatically handled in the background by the service. A prewarming process is used to avoid impacting cache hit rates. 
 
