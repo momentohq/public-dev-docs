@@ -18,7 +18,7 @@ The TTL value is the number of seconds from when Momento Serverless Cache writes
 
 ## How to set TTL in Momento Serverless Cache
 There are three locations to set a TTL value:
-1. You must set a default TTL value when creating a cache client object in a Momento SDK. However, any SET operation using that object can omit the TTL value and will use that default value.
+1. You must set a default TTL value when creating a SimpleCacheClient object in a Momento SDK. Any future SET operation using that client object can omit the TTL value and will use that default TTL value.
 
     ```javascript
     const MY_DEFAULT_TTL = 60; // This value is in seconds
@@ -26,7 +26,7 @@ There are three locations to set a TTL value:
     ```
 
 
-2. Optionally, in a SET operation, you can override the default value created with the SimpleCacheClient object. If you do not include a value for TTL in this SET operation, the value used to create the cache client object is used.
+2. Optionally, in a SET operation, you can override the default TTL value used when you instantiated the SimpleCacheClient object. Again, if you do not include a value for TTL in this SET operation, the value used to create the cache client object is used.
 
     ```javascript
     await momento.set(CACHE_NAME, 'key', 'my value', 40)
