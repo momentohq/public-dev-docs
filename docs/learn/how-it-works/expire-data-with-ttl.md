@@ -18,7 +18,7 @@ The TTL value is the number of seconds from when Momento Serverless Cache writes
 
 ## How to set TTL in Momento Serverless Cache
 There are three locations to set a TTL value:
-1. You must set a default TTL value when creating a cache client object in a Momento SDK. However, any SET operation using that object can omit the TTL value and will use that default value.
+1. When creating a SimpleCacheClient object in a Momento SDK, you must set a TTL value for the connection. Any future SET operation using that client object will use that TTL value, unless you override the value.
 
     ```javascript
     const MY_DEFAULT_TTL = 60; // This value is in seconds
@@ -26,11 +26,18 @@ There are three locations to set a TTL value:
     ```
 
 
-2. Optionally, in a SET operation, you can override the default value created with the SimpleCacheClient object. If you do not include a value for TTL in this SET operation, the value used to create the cache client object is used.
+2. In a SET operation, you can set a TTL value just for this operation and it will override the TTL value set in the SimpleCacheClient object.
 
     ```javascript
     await momento.set(CACHE_NAME, 'key', 'my value', 40)
-    // The number 40 is the TTL value in seconds for this item to expire.
+    // The number 40 is the TTL value in seconds for this item to expire and overrides the connection object's value.
+    ```
+
+    Optionally, you can omit the TTL value from the SET operation entirely and the item is inserted into the cache using the TTL value from the cache client object.
+
+    ```javascript
+    await momento.set(CACHE_NAME, 'key', 'my value')
+    // If you omit the TTL value, this will use the connection object's value.
     ```
 
 3. If you’re using the CLI when you run the command `momento configure`, it writes a configuration file (~/.momento/config) and stores a value you specify for a default TTL in that file. If you write an item with the CLI from that same user and don’t specify a TTL in the SET operation, the CLI will use the value from that configuration file.
