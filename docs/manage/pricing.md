@@ -1,10 +1,10 @@
 ---
 sidebar_position: 3
-title: Pricing and free-tier
-description: Explore the simplicity of the pricing model and free-tier information for Momento Serverless Cache
+title: Pricing and free tier
+description: Explore the simplicity of the pricing model and free tier information for Momento Serverless Cache
 ---
 
-# Momento Serverless Cache pricing and free-tier
+# Momento Serverless Cache pricing and free tier
 Serverless is about simplicity in every dimension, including pricing! Momento Serverless Cache costs $0.15/GB transferred. That's it!
 
 Your first 50 GBs transferred each month are free and you don't need a credit card to get started.
