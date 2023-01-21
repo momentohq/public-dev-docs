@@ -81,7 +81,7 @@ code span {
   // Need this to force no ligatures in code examples. It was throwing some users off.
   // Find better font for source code. Im fan of FiraCode but would want to use w/
   // out ligatures enabled somehow https://github.com/tonsky/FiraCode
-  font-family: "monospace" !important;
+  font-family: monospace !important;
 }
 
 @media (max-width: 997px) {
