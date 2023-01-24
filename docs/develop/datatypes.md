@@ -20,7 +20,7 @@ Collection data types are a grouping of related data into a single item. They ar
 #### List collections
 A list is a collection of ordered values sorted in the sequence the app inserts each element.
 
-```
+```Javascript
 "Hoover’s Sour Cream Cookies" = [
   "1 cup butter (2 sticks), room temperature", 
   "1 cup granulated sugar",
@@ -39,7 +39,7 @@ A list is a collection of ordered values sorted in the sequence the app inserts 
 Dictionary data types are used to store unordered key:value pairs.
 
 An example of using a dictionary is when you need to store data together and retrieve key:value pairs by name.
-```
+```Javascript
 "truck546" = {
     "brand" : "Ford", 
     "model": "F-350",
@@ -49,7 +49,7 @@ An example of using a dictionary is when you need to store data together and ret
 ```
 #### Set collections
 The set collection data type is an unordered collection of unique strings. For example, no matter how many times you add 'sugar' to a set, there will only be one entry for 'sugar'.
-```
+```Javascript
 myIngredients = {
     "water",
     "sugar",
