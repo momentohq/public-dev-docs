@@ -4,7 +4,7 @@ title: Pricing and free tier
 description: Explore the simplicity of the pricing model and free tier information for Momento Serverless Cache
 ---
 
-# Momento Serverless Cache pricing and free tier
+# Pricing and free tier with Momento Serverless Cache
 Serverless is about simplicity in every dimension, including pricing! Momento Serverless Cache costs $0.15/GB transferred. That's it!
 
 Your first 50 GBs transferred each month are free and you don't need a credit card to get started.
@@ -13,8 +13,22 @@ Momento Serverless Cache has no hidden charges. You don’t have to pay for stor
 
  If you need further assistance (or just can’t believe it), drop a message in our [Discord](https://discord.gg/Z7FSXB89), and we’ll help get it sorted out. Take the Momento Serverless Cache challenge: see how much you can save!
 
-### Examples:
-We’ve included some sample pricing exercises below to help you estimate.
+### FAQ's
+<details open>
+  <summary>Is it really just $.15/GB transferred in and out of Momento Serverless Cache? What else do you charge for?</summary>
+
+| Dimension                            | Momento charges         |
+|--------------------------------------|-------------------------|
+| Memory / Storage                     | $0/GB                   |
+| Multi-AZ replication charges         | $0/GB                   |
+| Single sign-on & teams (coming soon) | $0/user                 |
+| Connections                          | $0/thousand connections |
+  
+ </details>
+ 
+<details>
+<summary>Can I see a few pricing examples of using Momento Serverless Cache to help estimate my costs?</summary>
+Here are a few sample pricing exercises to help you estimate.
 
 ##### You process a total of 1 million read/write requests per day with average object sizes of 4KB. Momento Serverless Cache would cost you:
 
@@ -35,19 +49,7 @@ _See the calculation in [Wolfram Alpha](https://www.wolframalpha.com/input?i=500
 _Note: Without the free tier, this workflow would cost $7.88/month_
 
 _See the calculation in [Wolfram Alpha](https://www.wolframalpha.com/input?i=%28%2820+requests%2Fsecond+*+1KB%2Frequest%29+-+50GB+%2Fmonth%29+*+%24.15%2FGB+to+%24%2Fmonth) for more detail._
-
-### FAQ's 
-<details open>
-  <summary>Is it really just $.15/GB transferred in and out of Momento Serverless Cache? What else do you charge for?</summary>
-
-| Dimension                            | Momento Charges         |
-|--------------------------------------|-------------------------|
-| Memory / Storage                     | $0/GB                   |
-| Multi-AZ replication charges         | $0/GB                   |
-| Single sign-on & teams (coming soon) | $0/user                 |
-| Connections                          | $0/thousand connections |
-  
- </details>
+</details>
 
 <details>
 <summary>Can I run a production app for free on Momento Serverless Cache?</summary>
