@@ -18,7 +18,7 @@ All data stored in Momento Serverless Cache is represented as byte arrays. The M
 Collection data types are a grouping of related data into a single item. They are stored as byte array values and each has their own set of API calls in Momento SDKs. For example, DictionaryFetch, ListFetch, and SetFetch.
 
 #### List collections
-A list is a collection of ordered values sorted in the sequence the app inserts each element.
+A list is a collection of ordered values sorted in the sequence the each element was inserted.
 
 ```javascript
 "Hoover’s Sour Cream Cookies" = [
@@ -34,7 +34,6 @@ A list is a collection of ordered values sorted in the sequence the app inserts 
   "1 tsp salt"
 ]
 ```
-
 #### Dictionary collections
 Dictionary data types are used to store unordered key:value pairs.
 
@@ -62,21 +61,20 @@ The set collection data type is an unordered collection of unique strings. For e
 ## FAQs
 <details>
   <summary>If I perform an API call to get a subset of data from a Dictionary item, will the size of the entire item count toward the per GB transfer costs?</summary>
-
 No, it will not. For example, if you perform the API call DictionaryGetField to get one 5-kilobyte field in a dictionary where the entire dictionary item is 50 kilobytes, only 5 kilobytes count towards my per GB transfer costs.
 </details>
 
 <details>
-  <summary>How do I store a JSON in Momento Serverless Cache?</summary>
-Answer: Use your favorite JSON library to serialize the JSON document into a byte array and insert that byte array into Momento Serverless Cache.
+  <summary>How do I store a JSON document in Momento Serverless Cache?</summary>
+Use your favorite JSON library to serialize the JSON document into a byte array and insert that byte array into Momento Serverless Cache.
 </details>
 
 <details>
   <summary>Does Momento Serverless Cache store nested data in collection data types?</summary>
-Answer: Not directly. Your best option is to store this data as a JSON object and then use your favorite JSON library to serialize the JSON document into a byte array and insert that byte array into Momento Serverless Cache.
+Not directly. Your best option is to store this data as a JSON object and then use your favorite JSON library to serialize the JSON document into a byte array and insert that byte array into Momento Serverless Cache.
 </details>
 
 <details>
-  <summary>What about formatting of any values?</summary>
-Answer: Values used with increment API calls must be stored as a UTF-8 string representing a base 10 integer. If they are not in that format, those API calls will throw a formatting error.
+  <summary>How do I format values when using the increment APIs?</summary>
+Values used with increment API calls must be stored as a UTF-8 string representing a base 10 integer. If they are not in that format, those API calls will throw a formatting error.
 </details>
