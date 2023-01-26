@@ -105,7 +105,7 @@ Examples:
 | ttl          | [CollectionTTL object](./collection-ttl.md) | This will come back as a TTL construct. |
 
 <details>
-  <summary>Response object</summary>
+  <summary>Method response object</summary>
 
 See [response objects](../response-objects) for specific information
 
@@ -127,7 +127,7 @@ Revmoves a field from a dictionary item.
 | field          | String|bytes | Name of the field in the dictionary to be retreived. |
 
 <details>
-  <summary>Response object</summary>
+  <summary>Method response object</summary>
 
 See [response objects](../response-objects) for specific information
 
@@ -146,7 +146,7 @@ Removes multiple fields from a dictionary item.
 | fields          | String[]/bytes[] | Name of the field in the dictionary to be retreived. |
 
 <details>
-  <summary>Response object</summary>
+  <summary>Method response object</summary>
 
 See [response objects](../response-objects) for specific information
 
@@ -167,7 +167,7 @@ Sets a field of an existing dictionary item to a value. If the item does not exi
 | ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the dictionary in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
 
 <details>
-  <summary>Response object</summary>
+  <summary>Method response object</summary>
 
 See [response objects](../response-objects) for specific information
 
@@ -187,7 +187,7 @@ Sets several dictionary field-value pairs in the cache. If the item does not exi
 | ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the dictionary in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
 
 <details>
-  <summary>Response object</summary>
+  <summary>Method response object</summary>
 
 See [response objects](../response-objects) for specific information
 
