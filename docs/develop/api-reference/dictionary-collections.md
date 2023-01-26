@@ -65,7 +65,7 @@ See [response objects](../response-objects) for specific information
 </details>
 
 ### DictionaryGetFields
-Get n+1 fields from a dictionary item in the cache.
+Get one or more fields from a dictionary item in the cache.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
