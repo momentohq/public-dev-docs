@@ -19,7 +19,7 @@ Gets a dictionary item from a cache.
 | dictionaryName  | String | The name of the dictionary to be retreived. |
 
 <details>
-  <summary>Response object</summary>
+  <summary>Method response object</summary>
 
 The response object for DictionaryFetch returns three possible options, a cache hit, miss, or an error. See [response objects](../response-objects) for specific information
 
@@ -44,7 +44,7 @@ Get one field from a dictionary item in the cache.
 | field           | String/bytes | Name of the field in the dictionary to be retreived. |
 
 <details>
-  <summary>Response object</summary>
+  <summary>Method response object</summary>
 
 See [response objects](../response-objects) for specific information
 
@@ -74,7 +74,7 @@ Get n+1 fields from a dictionary item in the cache.
 | fields          | String[]/bytes[] | Name of the field in the dictionary to be retreived. |
 
 <details>
-  <summary>Response object</summary>
+  <summary>Method response object</summary>
 
 See [response objects](../response-objects) for specific information
 
