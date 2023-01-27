@@ -56,7 +56,7 @@ Get one field from a dictionary in the cache.
     - `valueString()`: string
     - `valueBytes()`: bytes
 
-        These return the field and it's value from the dictionary.
+        These return the field and its value from the dictionary.
 
 * Cache miss
     - `fieldString()`: string
