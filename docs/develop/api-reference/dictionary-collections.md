@@ -9,6 +9,8 @@ slug: /develop/api-reference/collections/dictionary
 # Dictionary collection API reference
 
 ## Dictionary methods
+This page details the Momento API methods for [dictionary collections](./../datatypes.md#dictionary-collections).
+
 ### DictionaryFetch
 
 Gets a dictionary item from a cache.
@@ -21,16 +23,18 @@ Gets a dictionary item from a cache.
 <details>
   <summary>Method response object</summary>
 
-The response object for DictionaryFetch returns three possible options, a cache hit, miss, or an error. See [response objects](../response-objects) for specific information
+The response object for DictionaryFetch returns three possible options, a cache hit, miss, or an error.
 
 * Cache hit
-    - valueDictionaryBytesBytes(): Map<Bytes, Bytes>
-    - valueDictionaryStringString(): Map<String, String>
-    - valueDictionaryStringBytes(): Map<String, Bytes>
-    - valueDictionaryBytesString(): Map<Bytes, String>
-    - toString(): string - displays the key/value pairs, truncated.
+    - `valueDictionaryBytesBytes()`: Map<Bytes, Bytes>
+    - `valueDictionaryStringString()`: Map<String, String>
+    - `valueDictionaryStringBytes()`: Map<String, Bytes>
+    - `valueDictionaryBytesString()`: Map<Bytes, String>
+    - `toString()`: string - displays the key/value pairs, truncated.
 * Cache miss
 * Cache error
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
@@ -46,21 +50,21 @@ Get one field from a dictionary item in the cache.
 <details>
   <summary>Method response object</summary>
 
-See [response objects](../response-objects) for specific information
-
 * Cache hit
-    - fieldString(): string
-    - fieldBytes(): bytes
-    - valueString(): string
-    - valueBytes(): bytes
+    - `fieldString()`: string
+    - `fieldBytes()`: bytes
+    - `valueString()`: string
+    - `valueBytes()`: bytes
 
 * Cache miss
-    - fieldString(): string
-    - fieldBytes(): bytes
+    - `fieldString()`: string
+    - `fieldBytes()`: bytes
 
 * Cache error
-    - fieldString(): string
-    - fieldBytes(): bytes
+    - `fieldString()`: string
+    - `fieldBytes()`: bytes
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
@@ -76,12 +80,12 @@ Get one or more fields from a dictionary item in the cache.
 <details>
   <summary>Method response object</summary>
 
-See [response objects](../response-objects) for specific information
-
 * Success
-    - value(): integer - the new value after incrementing
-    - toString(): string - displays the value()
+    - `value()`: integer - the new value after incrementing
+    - `toString()`: string - displays the value()
 * Error
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
@@ -107,12 +111,12 @@ Examples:
 <details>
   <summary>Method response object</summary>
 
-See [response objects](../response-objects) for specific information
-
 * Success
-    - value(): integer - the new value after incrementing
-    - toString(): string - displays the value()
+    - `value()`: integer - the new value after incrementing
+    - `toString()`: string - displays the value()
 * Error
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
@@ -129,10 +133,10 @@ Revmoves a field from a dictionary item.
 <details>
   <summary>Method response object</summary>
 
-See [response objects](../response-objects) for specific information
-
 * Success
 * Error
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
@@ -148,10 +152,10 @@ Removes multiple fields from a dictionary item.
 <details>
   <summary>Method response object</summary>
 
-See [response objects](../response-objects) for specific information
-
 * Success
 * Error
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
@@ -169,10 +173,10 @@ Sets a field of an existing dictionary item to a value. If the item does not exi
 <details>
   <summary>Method response object</summary>
 
-See [response objects](../response-objects) for specific information
-
 * Success
 * Error
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
@@ -189,9 +193,9 @@ Sets several dictionary field-value pairs in the cache. If the item does not exi
 <details>
   <summary>Method response object</summary>
 
-See [response objects](../response-objects) for specific information
-
 * Success
 * Error
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
