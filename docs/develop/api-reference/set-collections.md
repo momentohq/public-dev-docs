@@ -58,7 +58,7 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetFetch
 
-Gets a set item from a cache.
+Gets a set from a cache.
 
 | Name            | Type   | Description                                   |
 | --------------- | ------ | --------------------------------------------- |
