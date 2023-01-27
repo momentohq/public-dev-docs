@@ -13,7 +13,7 @@ This page details the Momento API methods for [dictionary collections](./../data
 
 ### DictionaryFetch
 
-Gets a dictionary item from a cache.
+Gets the dictionary from a cache.
 
 | Name            | Type   | Description                                   |
 | --------------- | ------ | --------------------------------------------- |
@@ -39,7 +39,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### DictionaryGetField
-Get one field from a dictionary item in the cache.
+Get one field from a dictionary in the cache.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
@@ -56,6 +56,8 @@ Get one field from a dictionary item in the cache.
     - `valueString()`: string
     - `valueBytes()`: bytes
 
+        These return the field and it's value from the dictionary.
+
 * Cache miss
     - `fieldString()`: string
     - `fieldBytes()`: bytes
@@ -69,7 +71,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### DictionaryGetFields
-Get one or more fields from a dictionary item in the cache.
+Get one or more fields from a dictionary in the cache.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
@@ -80,9 +82,13 @@ Get one or more fields from a dictionary item in the cache.
 <details>
   <summary>Method response object</summary>
 
-* Success
-    - `value()`: integer - the new value after incrementing
-    - `toString()`: string - displays the value()
+* Cache hit
+    - valueDictionaryBytesBytes(): Map<Bytes, Bytes>
+    - valueDictionaryStringString(): Map<String, String>
+    - valueDictionaryStringBytes(): Map<String, Bytes>
+    - valueDictionaryBytesString(): Map<Bytes, String>
+    - toString(): string - displays truncated valueDictionaryStringString()
+* Cache miss
 * Error
 
 See [response objects](./response-objects.md) for specific information.
@@ -122,7 +128,7 @@ See [response objects](./response-objects.md) for specific information.
 
 ### DictionaryRemoveField
 
-Revmoves a field from a dictionary item.
+Revmoves a field from a dictionary.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
@@ -141,7 +147,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### DictionaryRemoveFields
-Removes multiple fields from a dictionary item.
+Removes multiple fields from a dictionary.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
@@ -160,7 +166,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### DictionarySetField
-Sets a field of an existing dictionary item to a value. If the item does not exist, the item is created with the field.
+Sets a field in an existing dictionary to a value. If the dictionary does not exist, it is created with the new field.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
@@ -181,7 +187,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### DictionarySetFields
-Sets several dictionary field-value pairs in the cache. If the item does not exist, the item is created with the fields.
+Sets several dictionary field-value pairs in the cache. If the dictionary does not exist, it is created with the new fields.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |

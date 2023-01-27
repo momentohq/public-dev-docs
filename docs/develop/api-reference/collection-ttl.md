@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 sidebar_label: CollectionTTL object
-title: CollectionTTL object API reference
+title: CollectionTTL API reference
 description: Learn how to interact with the API for dictionary collection data types in Momento Serverless Cache.
 slug: /develop/api-reference/collections/collectionttl
 ---
@@ -10,7 +10,7 @@ slug: /develop/api-reference/collections/collectionttl
 
 This object is passed in to API methods to say whether a TTL should be updated and if so, what the new TTL value should be.
 
-This tries to make the process a little less bewildering by providing named constructors and copiers for various situations.
+This tries to make the process more intuitive by providing named constructors and copiers for various situations.
 
 See [Expire Data with TTL](../../../learn/how-it-works/expire-data-with-ttl), For more information on how TTL works with Momento Serverless Cache, 
 
@@ -20,8 +20,11 @@ See [Expire Data with TTL](../../../learn/how-it-works/expire-data-with-ttl), Fo
 
 ## Constructor parameters
 
-- ttl: duration - (optional) if no TTL is given, the TTL set in the client connection object is used
-- refreshTtl: boolean = true - if true, the collection’s TTL will be reset to the ttl
+- ttl: duration - (optional)
+    * If no TTL is given, the TTL set in the current client connection object is used.
+- refreshTtl: boolean = true
+    * If set to true, the collection’s TTL will be reset to the ttl.
+    * If set to false, the exisitng TTL set on the item is retained.
 
 ## Additional constructors
 

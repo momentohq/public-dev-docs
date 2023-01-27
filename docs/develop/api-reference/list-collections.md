@@ -13,7 +13,7 @@ This page details the Momento API methods for [list collections](./../datatypes.
 
 ### ListFetch
 
-Gets a list item from a cache.
+Gets a list from a cache.
 
 | Name            | Type   | Description                                   |
 | --------------- | ------ | --------------------------------------------- |
@@ -112,7 +112,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### ListPopBack
-Remove and return the last item from a list.
+Remove and return the last entity from a list.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
@@ -134,7 +134,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### ListPopFront
-Remove and return the first item from a list.
+Remove and return the first entity from a list.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |

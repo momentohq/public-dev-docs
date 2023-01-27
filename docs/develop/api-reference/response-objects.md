@@ -12,20 +12,7 @@ These are the baseline responses for all commands. Some commands will add more d
 
 Commands fall *generally* into two categories. Those which respond with Success or Error and those which respond with Hit, Miss, or Error.
 
-### Response
-
-A base class for all responses.
-
-#### Constructor
-
-- By default, no parameters.
-- If any values are needed from the GRPC response, pass in the whole object. This makes it easier to use more values later, and it moves code out of the often quite bloated client class.
-
-#### Methods
-
-- toString(): string - a brief description of the response for debugging purposes. Each response should override toString() as needed. The default is to display the type of response (Hit, Miss, Success, etc.)
-
-### Error extends Response
+### Error
 
 Returned in lieu of an exception.
 
@@ -40,14 +27,14 @@ Returned in lieu of an exception.
 - errorCode(): MomentoErrorCode - Momento’s own category of errors such as InvalidArgument or BadRequest. See [Standards And Practices - Error Handling](https://github.com/momentohq/standards-and-practices/blob/main/docs/client-specifications/error-handling.md)
 - toString(): string - alias for message()
 
-### Success extends Response
+### Success
 
 The command was successful.
 
-### Hit extends Response
+### Hit
 
-For fetch commands, the key or field exists. Usually extended to return a value.
+For fetch commands, the key or field exists in the cache and there is a "cache hit". Usually extended to return a value.
 
-### Miss extends Response
+### Miss
 
-For fetch commands, the key or field does not exist.
+For fetch commands, the key or field does not exist and it a "cache miss."
