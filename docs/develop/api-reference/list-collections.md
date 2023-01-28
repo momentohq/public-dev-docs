@@ -1,15 +1,15 @@
 ---
 sidebar_position: 2
-sidebar_label: List collections
-title: List collection API reference
-description: Learn how to interact with the API for list collection data types in Momento Serverless Cache.
+sidebar_label: Lists
+title: List API reference
+description: Learn how to interact with the API for list data types in Momento Serverless Cache.
 slug: /develop/api-reference/collections/list
 ---
 
-# List collection API reference
+# List API reference for Momento Serverless Cache
+This page details the Momento API methods for the [list data types](./../datatypes.md#list-collections).
 
 ## List methods
-This page details the Momento API methods for [list collections](./../datatypes.md#list-collections).
 
 ### ListFetch
 
@@ -18,7 +18,7 @@ Gets a list from a cache.
 | Name            | Type   | Description                                   |
 | --------------- | ------ | --------------------------------------------- |
 | cacheName       | String | Name of the cache.                            |
-| listName  | String | The name of the list to be retreived. |
+| listName        | String | The name of the list to be retreived.         |
 
 <details>
   <summary>Method response object</summary>
@@ -28,7 +28,7 @@ The response object for ListFetch returns three possible options, a cache hit, m
 * Hit
     * valueListBytes(): bytes[]
     * valueListString(): string[]
-    * toString(): string - Display a truncated valueListString(). See Truncation.
+    * toString(): string - Display a truncated valueListString(). See [truncation](#truncate-to-size).
 * Miss
 * Error
 
@@ -46,9 +46,9 @@ If you have [1, 2, 3] and listConcatenateBack [4, 5, 6] you will have [1, 2, 3, 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| listName  | String       | Name of the list to be set. |
+| listName        | String       | Name of the list to be set. |
 | values          | String[] \| bytes[] | Key:value fields to be added to the list by the set operation. |
-| ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the list in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the list in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
 | truncateFrontToSize | Number | See [truncate to size](#truncate-to-size). |
 
 <details>
