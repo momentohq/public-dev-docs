@@ -18,7 +18,7 @@ All data stored in Momento Serverless Cache is represented as byte arrays. The M
 Collection data types are a grouping of related data into a single item. They are stored as byte array values and each has their own set of API calls in Momento SDKs. For example, DictionaryFetch, ListFetch, and SetFetch.
 
 #### List collections
-A list is a collection of ordered values sorted in the sequence the each element was inserted.
+A list is a collection of ordered values, sorted in the sequence each element was inserted.
 
 ```javascript
 "Hoover’s Sour Cream Cookies" = [
