@@ -34,6 +34,9 @@ A list is a collection of ordered values, sorted in the sequence each element wa
   "1 tsp salt"
 ]
 ```
+
+To learn the API methods, check the [api reference for list collection data types](./api-reference/dictionary-collections.md).
+
 #### Dictionary collections
 Dictionary data types are used to store unordered key:value pairs.
 
@@ -46,6 +49,9 @@ An example of using a dictionary is when you need to store data together and ret
     "engine" : "diesel"
 }
 ```
+
+To learn the API methods, check the [api reference for dictionary collection data types](./api-reference/dictionary-collections.md).
+
 #### Set collections
 The set collection data type is an unordered collection of unique strings. For example, no matter how many times you add 'sugar' to a set, there will only be one entry for 'sugar'.
 ```javascript
@@ -58,6 +64,9 @@ The set collection data type is an unordered collection of unique strings. For e
     "raisins"
 }
 ```
+
+To learn the API methods, check the [api reference for set collection data types](./api-reference/dictionary-collections.md).
+
 ## FAQs
 <details>
   <summary>If I perform an API call to get a subset of data from a Dictionary item, will the size of the entire item count toward the per GB transfer costs?</summary>
