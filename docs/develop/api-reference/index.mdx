@@ -1,17 +1,20 @@
 ---
 sidebar_position: 5
 Title: API reference information
+sidebar_label: API reference
+description: Learn the API calls you need to know for Momento Serverless Cache.
 ---
 
 import { SdkExamples } from "@site/src/components/SdkExamples";
 
-# API Reference
+# API reference for Momento Serverless Cache
 
 ## Control APIs
+These API methods are used to manage and control caches.
 
 ### Create Cache
 
-Creates a cache with provided name
+Creates a cache with the provided name
 
 Attributes:
 
@@ -193,6 +196,8 @@ puts client.caches.to_a.join(", ")
 />
 
 ## Data APIs
+
+These API methods are used to interact with data (DML) in caches.
 
 ### Set
 
@@ -445,3 +450,7 @@ raise response.error if response.error?
   `}
   cli={`momento cache delete --key test-key --value test-value`}
 />
+
+### Collection data types
+
+Collection data types include [dictionaries](./dictionary-collections.md), [lists](./list-collections.md), and [sets](./set-collections.md).
