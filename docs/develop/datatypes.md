@@ -35,7 +35,7 @@ A list is a collection of ordered values, sorted in the sequence each element wa
 ]
 ```
 
-To learn the API methods, check the [api reference for list collection data types](./api-reference/dictionary-collections.md).
+To learn the API methods, check the [api reference for list collection data types](./api-reference/list-collections.md).
 
 #### Dictionary collections
 Dictionary data types are used to store unordered key:value pairs.
@@ -65,7 +65,7 @@ The set collection data type is an unordered collection of unique strings. For e
 }
 ```
 
-To learn the API methods, check the [api reference for set collection data types](./api-reference/dictionary-collections.md).
+To learn the API methods, check the [api reference for set collection data types](./api-reference/set-collections.md).
 
 ## FAQs
 <details>
