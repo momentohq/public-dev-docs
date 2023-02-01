@@ -18,7 +18,7 @@ All data stored in Momento Serverless Cache is represented as byte arrays. The M
 Collection data types are a grouping of related data into a single item. They are stored as byte array values and each has their own set of API calls in Momento SDKs. For example, DictionaryFetch, ListFetch, and SetFetch.
 
 #### List collections
-A list is a collection of ordered values sorted in the sequence the each element was inserted.
+A list is a collection of ordered values, sorted in the sequence each element was inserted.
 
 ```javascript
 "Hoover’s Sour Cream Cookies" = [
@@ -34,6 +34,9 @@ A list is a collection of ordered values sorted in the sequence the each element
   "1 tsp salt"
 ]
 ```
+
+To learn the API methods, check the [api reference for list collection data types](./api-reference/dictionary-collections.md).
+
 #### Dictionary collections
 Dictionary data types are used to store unordered key:value pairs.
 
@@ -46,6 +49,9 @@ An example of using a dictionary is when you need to store data together and ret
     "engine" : "diesel"
 }
 ```
+
+To learn the API methods, check the [api reference for dictionary collection data types](./api-reference/dictionary-collections.md).
+
 #### Set collections
 The set collection data type is an unordered collection of unique strings. For example, no matter how many times you add 'sugar' to a set, there will only be one entry for 'sugar'.
 ```javascript
@@ -58,6 +64,9 @@ The set collection data type is an unordered collection of unique strings. For e
     "raisins"
 }
 ```
+
+To learn the API methods, check the [api reference for set collection data types](./api-reference/dictionary-collections.md).
+
 ## FAQs
 <details>
   <summary>If I perform an API call to get a subset of data from a Dictionary item, will the size of the entire item count toward the per GB transfer costs?</summary>
