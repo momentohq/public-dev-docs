@@ -71,7 +71,7 @@ SUBCOMMANDS:
 
 認証トークンは Momento サーバーレスキャッシュの特定のリージョンに紐づいています。`account` コマンドをご希望のクラウドプロバイダーとリージョンを指定しながら使うと、各リージョン用の認証トークンを生成することができます:
 
-#### AWS [利用可能リージョンは us-west-2, us-east-1, ap-northeast-1]
+#### AWS [利用可能リージョンは us-west-2, us-east-1, ap-northeast-1, ap-south-1]
 
 ```console
 momento account signup aws --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
