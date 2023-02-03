@@ -215,8 +215,7 @@ While you could use [Delete Cache](#delete-cache), then [Create Cache](#create-c
 <SdkExamples
   js={`
 const { SimpleCacheClient, EnvMomentoTokenProvider, LogLevel, LogFormat, Configurations } = require('@gomomento/sdk');
-const credentials = new StringMomentoTokenProvider ({ authToken: process.env.MOMENTO_AUTH_TOKEN});
-
+const credentials = new StringMomentoTokenProvider ({ authToken: process.env.MOMENTO_AUTH_TOKEN});\n
 const momento = new SimpleCacheClient({
   configuration: Configurations.Laptop.latest(),
   credentialProvider: credentials,
