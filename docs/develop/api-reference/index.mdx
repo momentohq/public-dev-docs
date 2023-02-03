@@ -214,10 +214,14 @@ While you could use [Delete Cache](#delete-cache), then [Create Cache](#create-c
 
 <SdkExamples
   js={`
-const authToken="eyJhbGc.MyTestToken";
-const defaultTTL = 15;
-const momento = new SimpleCacheClient(authToken, defaultTtl);
-momento.flushCache('test-cache');
+const { SimpleCacheClient, EnvMomentoTokenProvider, LogLevel, LogFormat, Configurations } = require('@gomomento/sdk');
+const credentials = new StringMomentoTokenProvider ({ authToken: process.env.MOMENTO_AUTH_TOKEN});
+
+const momento = new SimpleCacheClient({
+  configuration: Configurations.Laptop.latest(),
+  credentialProvider: credentials,
+  defaultTtlSeconds: 60
+});
 `}
   python={`
 import momento.simple_cache_client as scc\n
