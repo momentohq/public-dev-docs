@@ -212,6 +212,77 @@ While you could use [Delete Cache](#delete-cache), then [Create Cache](#create-c
 
 :::
 
+<SdkExamples
+  js={`
+const authToken="eyJhbGc.MyTestToken";
+const defaultTTL = 15;
+const momento = new SimpleCacheClient(authToken, defaultTtl);
+momento.flushCache('test-cache');
+`}
+  python={`
+import momento.simple_cache_client as scc\n
+_MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
+_ITEM_DEFAULT_TTL_SECONDS = 15\n
+with scc.SimpleCacheClient(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
+    cache_client.flush_cache('test-cache')
+`}
+  java={`
+String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
+int DEFAULT_ITEM_TTL_SECONDS = 15;\n
+SimpleCacheClient simpleCacheClient = SimpleCacheClient
+    .builder(MOMENTO_AUTH_TOKEN, DEFAULT_ITEM_TTL_SECONDS)
+    .build()\n
+simpleCacheClient.flushCache("test-cache");
+    `}
+  go={`
+const (
+    authToken             = "eyJhbGc.MyTestToken"
+    itemDefaultTtlSeconds = 15
+)
+client, err := momento.NewSimpleCacheClient(authToken, itemDefaultTtlSeconds)
+if err != nil {
+    panic(err)
+}
+err = client.FlushCache(&momento.FlushCacheRequest{
+    CacheName: "test-cache",
+})
+    `}
+  csharp={`
+TimeSpan DEFAULT_TTL = TimeSpan.FromSeconds(15);
+ICredentialProvider authProvider = new StringMomentoTokenProvider("eyJhbGc.MyTestToken");
+using SimpleCacheClient client = new SimpleCacheClient(Configurations.Laptop.Latest(), authProvider, DEFAULT_TTL);
+await client.FlushCacheAsync("test-cache");
+    `}
+  rust={`
+let auth_token = "eyJhbGc.MyTestToken";
+let item_default_ttl_seconds = 15;
+let mut cache_client = SimpleCacheClientBuilder::new(
+    auth_token,
+    NonZeroU64::new(item_default_ttl_seconds).unwrap(),
+)
+.unwrap()
+.build();\n
+let cache_name = String::from("test-cache");
+match cache_client.flush_cache(&cache_name).await {
+    Ok(_) => {}
+    Err(err) => {
+        eprintln!("{}", err);
+    }
+}
+`}
+  ruby={`
+require 'momento'
+MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
+DEFAULT_TTL_SECONDS = 15
+client = Momento::SimpleCacheClient.new(
+  auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
+)
+response = client.flush_cache('test-cache')
+raise repsonse.error if response.error?
+  `}
+  cli={`momento cache flush-cache --name test-cache`}
+/>
+
 ## Data APIs
 
 These API methods are used to directly interact with data in a cache.
