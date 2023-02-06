@@ -1,8 +1,8 @@
 ---
 sidebar_position: 5
-Title: API reference information
+title: API reference information
 sidebar_label: API reference
-description: Learn the API calls you need to know for Momento Serverless Cache.
+description: Learn the API calls you need to know and how to use them with Momento Serverless Cache.
 ---
 
 import { SdkExamples } from "@site/src/components/SdkExamples";
@@ -195,6 +195,22 @@ puts client.caches.to_a.join(", ")
   `}
   cli={`momento cache list`}
 />
+
+### Flush cache
+
+Flushes all data from a cache
+
+Attributes:
+
+| Name      | Type   | Description                      |
+| --------- | ------ | -------------------------------- |
+| cacheName | String | Name of the cache to be flushed. |
+
+:::tip
+
+While you could use [Delete Cache](#delete-cache), then [Create Cache](#create-cache) to mimic this, the FlushCache API keeps the settings and only deletes the data in the cache.
+
+:::
 
 ## Data APIs
 
