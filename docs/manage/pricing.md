@@ -5,7 +5,7 @@ description: Explore the simplicity of the pricing model and free tier informati
 ---
 
 # Pricing and free tier with Momento Serverless Cache
-Serverless is about simplicity in every dimension, including pricing! Momento Serverless Cache costs $0.15/GB transferred where objects are metered in 1 KB increments each time. That's it!
+Serverless is about simplicity in every dimension, including pricing! Momento Serverless Cache costs $0.15/GB transferred, metered in 1 KB increments each time. That's it!
 
 Your first 50 GBs transferred each month are free and you don't need a credit card to get started.
 
@@ -38,11 +38,11 @@ _See the calculation in [Wolfram Alpha](https://www.wolframalpha.com/input?i=1+m
 
 ##### You process an average load of 5K RPS with 1KB objects. Momento Serverless Cache would cost you:
 
-`5K requests/second * 86400 seconds/day * 30.5 days/month * 1KB/request` = **$1976/month**
+`5K requests/second * 86400 seconds/day * 30.5 days/month * 1KB/request * $.15/GB` = **$1976/month**
 
-##### You process an average load of 5K RPS with 800 bytes objects. Momento Serverless Cache would cost you:
+##### You process an average load of 3K RPS with 800 bytes objects. Momento Serverless Cache would cost you:
 
-`5K requests/second * 86400 seconds/day * 30.5 days/month * 1KB/request` = **$1976/month**
+`3K requests/second * 86400 seconds/day * 30.5 days/month * 1KB/request * $.15/GB` = **1185.84/month**
 
 _Note: Objects are metered in 1 KB increments. So a 800 byte object will be metered as 1 KB item_
 
