@@ -42,7 +42,7 @@ _See the calculation in [Wolfram Alpha](https://www.wolframalpha.com/input?i=1+m
 
 ##### You process an average load of 3K RPS with 800 bytes objects. Momento Serverless Cache would cost you:
 
-`3K requests/second * 86400 seconds/day * 30.5 days/month * 1KB/request * $.15/GB` = **1185.84/month**
+`3K requests/second * 86400 seconds/day * 30.5 days/month * 1KB/request * $.15/GB` = **$1185.84/month**
 
 _Note: Objects are metered in 1 KB increments. So a 800 byte object will be metered as 1 KB item_
 
