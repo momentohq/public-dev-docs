@@ -14,13 +14,13 @@ Momento Serverless Cache provides a group of core data types to match up with co
 ### Byte arrays
 All data stored in Momento Serverless Cache is represented as byte arrays. The Momento SDKs provide easy methods you can use to store your data as raw bytes or as portable UTF-8 strings. Those can be in the form of scalar data, such as strings, characters, numbers, and binary data, such as images and Protocol Buffers serialized arrays.
 
-### Collection data types (CDTs)
-Collection data types are a grouping of related data into a single item. They are stored as byte array values and each has their own set of API calls in Momento SDKs. For example, DictionaryFetch, ListFetch, and SetFetch.
+### Collection Data Types (CDTs)
+Collection Data Types are a grouping of related data into a single item. They are stored as byte array values and each has their own set of API calls in Momento SDKs. For example, DictionaryFetch, ListFetch, and SetFetch.
 
-![Collection data types diagram](/img/collection_data_types.svg "Collection data types")
+![Collection Data Types diagram](/img/collection_data_types.svg "Collection Data Types")
 
-#### List collections
-A list is a collection of ordered elements, sorted in the sequence each element was inserted.
+#### Lists
+A List is a collection of ordered elements, sorted in the sequence each element was inserted.
 
 ```javascript
 "Hoover’s Sour Cream Cookies" = [
@@ -37,12 +37,12 @@ A list is a collection of ordered elements, sorted in the sequence each element 
 ]
 ```
 
-To learn the API methods, check the [api reference for list collection data types](./api-reference/list-collections.md).
+To learn the API methods, check the [API reference for List Collection Data Types](./api-reference/list-collections.md).
 
-#### Dictionary collections
-Dictionary data types are a collection of unordered elements where each element is a field:value pair.
+#### Dictionaries
+A Dictionary is a collection of unordered elements where each element is a field:value pair.
 
-An example of using a dictionary is when you need to store data together and retrieve field:value pairs by name.
+An example of using a Dictionary is when you need to store data together and retrieve field:value pairs by name.
 ```javascript
 "truck546" = {
     "brand" : "Ford", 
@@ -52,10 +52,10 @@ An example of using a dictionary is when you need to store data together and ret
 }
 ```
 
-To learn the API methods, check the [api reference for dictionary collection data types](./api-reference/dictionary-collections.md).
+To learn the API methods, check the [API reference for Dictionary Collection Data Types](./api-reference/dictionary-collections.md).
 
-#### Set collections
-The set collection data type is an unordered collection of unique elements, each in string format. For example, no matter how many times you add 'sugar' to a set, there will only be one entry for 'sugar'.
+#### Sets
+A Set is an unordered collection of unique elements, each in string format. For example, no matter how many times you add 'sugar' to a set, there will only be one entry for 'sugar'.
 
 ```javascript
 "myIngredients" = {
@@ -68,7 +68,7 @@ The set collection data type is an unordered collection of unique elements, each
 }
 ```
 
-To learn the API methods, check the [api reference for set collection data types](./api-reference/set-collections.md).
+To learn the API methods, check the [API reference for Set Collection Data Types](./api-reference/set-collections.md).
 
 ## FAQs
 <details>
