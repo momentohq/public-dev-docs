@@ -11,7 +11,12 @@ If you're looking to jump in and get started with Momento Serverless Cache with 
 
 ## Try our CLI and an SDK in your browser
 
-You can try out Momento Serverless Cache today, right in your browser. No software installation required! **Note: Momento Serverless Cache is an API based serverless service. It does not deploy anything into your (AWS, GCP, Azure, etc.) account.**
+You can try out Momento Serverless Cache today, right in your browser. No software installation required!
+:::note
+Momento Serverless Cache is an API based serverless service. It does not deploy anything into your (AWS, GCP, Azure, etc.) account.
+:::
+
+<br />
 
 First, request your free auth token, create a cache, configure your CLI, and start running `set` and `get` commands on your cache. Launch below.
 
