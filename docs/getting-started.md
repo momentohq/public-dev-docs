@@ -7,22 +7,29 @@ description: Jump in and get started quickly using Momento Serverless Cache with
 ---
 
 # Getting Started with Momento Serverless Cache
-If you're looking to jump in and get started with Momento Serverless Cache with an SDK or CLI, you've come to the right place. There are multiple ways to access the service below. 
+If you're looking to jump in and get started with Momento Serverless Cache with an SDK or CLI, you've come to the right place. Want to quickly get a feel for the Momento experience without installing any software? You can do so right here [in your browser](#try-our-cli-and-an-sdk-in-your-browser). Or, if you're ready to setup your development environment and get to building your own applications with Momento you can follow the [simple instructions below](#install-the-momento-command-line-interface-cli).
 
-## Try our CLI in your browser
+## Try our CLI and an SDK in your browser
 
-You can try out our CLI tool today, right in your browser.  No software installation required!
+You can try out Momento Serverless Cache today, right in your browser. No software installation required! **Note: Momento Serverless Cache is an API based serverless service. It does not deploy anything into your (AWS, GCP, Azure, etc.) account.**
 
-Head over to our [Try Momento Serverless Cache page](https://www.gomomento.com/try-momento-for-free), and
-you can experiment with Momento CLI commands in a shell session directly inside your browser.
-You can create a free auth token, create a cache, and start running `set` and `get` commands
-on your cache. It only takes a few minutes!
+First, request your free auth token, create a cache, configure your CLI, and start running `set` and `get` commands on your cache. Launch below.
 
-**Note: Momento Serverless Cache is an API based serverless service. It does not deploy anything into your (AWS, GCP, Azure, etc.) account.**
+<a href="https://play.instruqt.com/embed/momento/tracks/sandbox-container-1challenge?token=em_14J4EucaTHzL0rXw&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/cli_lab.png" alt="CLI lab" /></a>
+
+<br />
+<br />
+
+Then, use the auth token and cache you just created to run a JavaScript application using our Node.js SDK. Launch below.
+
+<a href="https://play.instruqt.com/embed/momento/tracks/momento-nodejs-demo?token=em_f8PM8Aob-mHIfOTT&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/sdk_lab.png" alt="SDK lab" /></a>
+
+<br />
+<br />
 
 ## Install the Momento command line interface (CLI)
 
-If you want to run the CLI on your own machine instead of [running it in your browser](#try-our-cli-in-your-browser),
+If you want to run the CLI on your own machine instead of [running it in your browser](#try-our-cli-and-an-sdk-in-your-browser),
 here's how to get started on different operating systems:
 
 **macOS using [Homebrew package manager](https://brew.sh/)**
@@ -63,25 +70,24 @@ If you have problems with the Windows packages please [file an issue](https://gi
 To verify the CLI was installed correctly, you can run our help command:
 
 ```
-$ momento --help
-momento 0.22.6
+$ momento -h  
 CLI for Momento APIs
 
-USAGE:
-    momento [OPTIONS] <SUBCOMMAND>
+Usage: momento [OPTIONS] <COMMAND>
 
-OPTIONS:
-    -h, --help       Print help information
-    -V, --version    Print version information
-        --verbose
+Commands:
+  cache        Interact with caches
+  configure    Configure credentials
+  account      Manage accounts
+  signing-key  Manage signing keys
+  help         Print this message or the help of the given subcommand(s)
 
-SUBCOMMANDS:
-    account      Manage Accounts
-    cache        Cache Operations
-    configure    Configure Momento Credentials
-    help         Print this message or the help of the given subcommand(s)
+Options:
+      --verbose            Log more information
+  -p, --profile <PROFILE>  User profile [default: default]
+  -h, --help               Print help
+  -V, --version            Print version
 ```
-_Note: the version number listed in the output will vary._
 
 ### Obtain an auth token
 
@@ -159,27 +165,27 @@ These are the standard `get` and `set` [data plane operations](./learn/how-it-wo
 
 You can also manage [control plane operations](./learn/how-it-works#control-plane-simple-efficient-cache-management) with the Momento CLI, such as creating a cache, deleting a cache, or listing available caches.
 
-You can see all of the available subcommands in the `cache` command by using the `momento cache --help` flag in your terminal:
+You can see all of the available subcommands in the `cache` command by using the `momento cache -h` flag in your terminal:
 
 ```
-$ momento cache --help
-momento-cache
-Cache Operations
+$ momento cache -h
+Interact with caches
 
-USAGE:
-    momento cache [OPTIONS] <SUBCOMMAND>
+Usage: momento cache [OPTIONS] <COMMAND>
 
-OPTIONS:
-    -h, --help       Print help information
-        --verbose
+Commands:
+  create  Create a cache
+  delete  Delete a cache
+  list    List all caches
+  set     Store an item in a cache
+  get     Get an item from the cache
+  help    Print this message or the help of the given subcommand(s)
 
-SUBCOMMANDS:
-    create    Creates a Momento Cache
-    delete    Deletes the cache
-    get       Gets item from the cache
-    help      Print this message or the help of the given subcommand(s)
-    list      Lists all momento caches
-    set       Stores a given item in cache
+Options:
+  -e, --endpoint <ENDPOINT>  An explicit hostname to use; for example, cell-us-east-1-1.prod.a.momentohq.com
+      --verbose              Log more information
+  -p, --profile <PROFILE>    User profile [default: default]
+  -h, --help                 Print help
 ```
 
 Further, you can specify non-default configuration options for your commands, such as a different region, cache name, or TTL.
