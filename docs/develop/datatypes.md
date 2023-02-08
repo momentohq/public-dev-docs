@@ -17,8 +17,10 @@ All data stored in Momento Serverless Cache is represented as byte arrays. The M
 ### Collection data types (CDTs)
 Collection data types are a grouping of related data into a single item. They are stored as byte array values and each has their own set of API calls in Momento SDKs. For example, DictionaryFetch, ListFetch, and SetFetch.
 
+![Collection data types diagram](/img/collection_data_types.svg "Collection data types")
+
 #### List collections
-A list is a collection of ordered values, sorted in the sequence each element was inserted.
+A list is a collection of ordered elements, sorted in the sequence each element was inserted.
 
 ```javascript
 "Hoover’s Sour Cream Cookies" = [
@@ -38,9 +40,9 @@ A list is a collection of ordered values, sorted in the sequence each element wa
 To learn the API methods, check the [api reference for list collection data types](./api-reference/list-collections.md).
 
 #### Dictionary collections
-Dictionary data types are used to store unordered key:value pairs.
+Dictionary data types are a collection of unordered elements where each element is a field:value pair.
 
-An example of using a dictionary is when you need to store data together and retrieve key:value pairs by name.
+An example of using a dictionary is when you need to store data together and retrieve field:value pairs by name.
 ```javascript
 "truck546" = {
     "brand" : "Ford", 
@@ -53,7 +55,8 @@ An example of using a dictionary is when you need to store data together and ret
 To learn the API methods, check the [api reference for dictionary collection data types](./api-reference/dictionary-collections.md).
 
 #### Set collections
-The set collection data type is an unordered collection of unique strings. For example, no matter how many times you add 'sugar' to a set, there will only be one entry for 'sugar'.
+The set collection data type is an unordered collection of unique elements, each in string format. For example, no matter how many times you add 'sugar' to a set, there will only be one entry for 'sugar'.
+
 ```javascript
 "myIngredients" = {
     "water",
@@ -70,7 +73,7 @@ To learn the API methods, check the [api reference for set collection data types
 ## FAQs
 <details>
   <summary>If I perform an API call to get a subset of data from a Dictionary item, will the size of the entire item count toward the per GB transfer costs?</summary>
-No, it will not. For example, if you perform the API call DictionaryGetField to get one 5-kilobyte field in a dictionary where the entire dictionary item is 50 kilobytes, only 5 kilobytes count towards my per GB transfer costs.
+No, it will not. For example, if you perform the API call DictionaryGetField to get one 5-kilobyte field:value pair from a dictionary where the entire dictionary item is 50 kilobytes, only 5 kilobytes count towards your per GB transfer costs.
 </details>
 
 <details>
@@ -84,6 +87,6 @@ Not directly. Your best option is to store this data as a JSON object and then u
 </details>
 
 <details>
-  <summary>How do I format values when using the increment APIs?</summary>
-Values used with increment API calls must be stored as a UTF-8 string representing a base 10 integer. If they are not in that format, those API calls will throw a formatting error.
+  <summary>How do I format elements when using the increment APIs?</summary>
+Elements used with increment API calls must be stored as a UTF-8 string representing a base 10 integer. If the elements are not in that format, the API calls will throw a formatting error.
 </details>

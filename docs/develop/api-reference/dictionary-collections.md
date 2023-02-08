@@ -13,12 +13,12 @@ This page details the Momento API methods for the [dictionary data type](./../da
 
 ### DictionaryFetch
 
-Gets the dictionary from a cache.
+Gets a dictionary item from a cache.
 
 | Name            | Type   | Description                                   |
 | --------------- | ------ | --------------------------------------------- |
 | cacheName       | String | Name of the cache.                            |
-| dictionaryName  | String | The name of the dictionary to be retreived. |
+| dictionaryName  | String | The name of the dictionary item to be retreived. |
 
 <details>
   <summary>Method response object</summary>
@@ -30,7 +30,7 @@ The response object for DictionaryFetch returns three possible options, a cache 
     - `valueDictionaryStringString()`: Map<String, String>
     - `valueDictionaryStringBytes()`: Map<String, Bytes>
     - `valueDictionaryBytesString()`: Map<Bytes, String>
-    - `toString()`: string - displays the key/value pairs, truncated.
+    - `toString()`: string - displays the field/value pairs, truncated.
 * Cache miss
 * Cache error
 
@@ -39,13 +39,13 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### DictionaryGetField
-Get one field from a dictionary in the cache.
+Get one field from a dictionary item in the cache.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary to be retreived. |
-| field           | String/bytes | Name of the field in the dictionary to be retreived. |
+| dictionaryName  | String       | Name of the dictionary item to be retreived. |
+| field           | String/bytes | Name of the field in the dictionary item to be retreived. |
 
 <details>
   <summary>Method response object</summary>
@@ -76,8 +76,8 @@ Get one or more fields from a dictionary in the cache.
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary to be retreived. |
-| fields          | String[]/bytes[] | Name of the field in the dictionary to be retreived. |
+| dictionaryName  | String       | Name of the dictionary item to be retreived.  |
+| fields          | String[]/bytes[] | Name of the field in the dictionary item to be retreived. |
 
 <details>
   <summary>Method response object</summary>
@@ -96,23 +96,27 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### DictionaryIncrement
-Adds to the value of a field, if and only if that field is a UTF-8 string representing a base 10 integer. If the field is missing from the dictionary, this method sets the field to the amount to increment by.
+Adds to the value of a field, if and only if the existing value is a UTF-8 string representing a base 10 integer. If the field is missing from the dictionary, this method sets the field's value to the amount to increment by.
+
+:::note
 
 The resulting incremented value must be between -9223372036854775808 and 9223372036854775807, ie. a signed 64 bit integer. If not there will be an error response.
 
+:::
+
 Examples:
 
-- When the field does not exist, `dictionaryIncrement(cache, dict, field, 10)` will set the field to 10.
-- When the field = 5, `dictionaryIncrement(cache, dict, field, 10)` will set the field to 15.
+- When the field does not exist, `dictionaryIncrement(cache, dict, field, 10)` will set the field's value to 10.
+- When the field = 5, `dictionaryIncrement(cache, dict, field, 10)` will set the field's value to 15.
 - When the field = ‘five’, it will respond with a FailedPreconditionException error.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary to be retreived. |
-| field           | String|bytes | Name of the field in the dictionary to be retreived. |
-| amount          | Integer | The quantity to add to the value. May be positive, negative, or zero. Defaults to 1. |
-| ttl          | [CollectionTTL object](./collection-ttl.md) | This will come back as a TTL construct. |
+| dictionaryName  | String       | Name of the dictionary item to be retreived.  |
+| field           | String|bytes | Name of the field in the dictionary item to be retreived. |
+| amount          | Integer      | The quantity to add to the value. May be positive, negative, or zero. Defaults to 1. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | This will come back as a TTL construct. |
 
 <details>
   <summary>Method response object</summary>
@@ -128,13 +132,13 @@ See [response objects](./response-objects.md) for specific information.
 
 ### DictionaryRemoveField
 
-Revmoves a field from a dictionary.
+Revmoves a field from a dictionary item.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary to be retreived. |
-| field          | String|bytes | Name of the field in the dictionary to be retreived. |
+| dictionaryName  | String       | Name of the dictionary item to be retreived. |
+| field           | String|bytes | Name of the field in the dictionary item to be retreived. |
 
 <details>
   <summary>Method response object</summary>
@@ -147,13 +151,13 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### DictionaryRemoveFields
-Removes multiple fields from a dictionary.
+Removes multiple fields from a dictionary item.
 
-| Name            | Type         | Description                                   |
-| --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary to be retreived. |
-| fields          | String[]/bytes[] | Name of the field in the dictionary to be retreived. |
+| Name            | Type             | Description                                   |
+| --------------- | ------------     | --------------------------------------------- |
+| cacheName       | String           | Name of the cache.                            |
+| dictionaryName  | String           | Name of the dictionary item to be retreived. |
+| fields          | String[]/bytes[] | Name of the field in the dictionary item to be retreived. |
 
 <details>
   <summary>Method response object</summary>
@@ -166,15 +170,15 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### DictionarySetField
-Sets a field in an existing dictionary to a value. If the dictionary does not exist, it is created with the new field.
+Sets a field:value pair in an existing dictionary item. If the dictionary item does not exist, it is created with the new field:value pair.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary to be set. |
-| field          | String/bytes | Name of the field in the dictionary to be set. |
-| value          | String/bytes | Value for the field to be set. |
-| ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the dictionary in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
+| dictionaryName  | String       | Name of the dictionary item to be set. |
+| field           | String/bytes | Name of the field in the dictionary item to be set. |
+| value           | String/bytes | Value for the field to be set. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the dictionary item in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
 
 <details>
   <summary>Method response object</summary>
@@ -187,14 +191,14 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### DictionarySetFields
-Sets several dictionary field-value pairs in the cache. If the dictionary does not exist, it is created with the new fields.
+Sets several field:value pairs in a dictionary item. If the dictionary item does not exist, it is created with the new fields.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary to be set. |
-| fields          | String[]/bytes[] | Key:value fields to be added to the dictionary by the set operation. |
-| ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the dictionary in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
+| dictionaryName  | String       | Name of the dictionary item to be set. |
+| fields          | String[]/bytes[] | Field:value pair to be added to the dictionary item by the set operation. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the dictionary item in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
 
 <details>
   <summary>Method response object</summary>
