@@ -17,12 +17,12 @@ See [sets](./../datatypes.md#set-collections) for more information on their usag
 ## Set methods
 
 ### SetAddElement
-Adds an element to a set. If the set does not already exist, this method will create one.
+Adds an element to a set. If the set item does not already exist, this method will create one.
 
-| Name            | Type         | Description                                   |
-| --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| setName         | String       | Name of the set to be set. |
+| Name            | Type            | Description                                   |
+| --------------- | --------------- | --------------------------------------------- |
+| cacheName       | String          | Name of the cache.                            |
+| setName         | String          | Name of the set to be set. |
 | element         | String \| bytes | Element to be added by this operation. |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the set in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
@@ -37,13 +37,13 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### SetAddElements
-Adds multiple elements to a set.
+Adds multiple elements to a set item.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| setName  | String       | Name of the set to be set. |
-| elements          | String[] \| bytes[] | Elements to be added by this operation. |
+| setName         | String       | Name of the set item to be altered. |
+| elements        | String[] \| bytes[] | Elements to be added by this operation. |
 | ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the set in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
@@ -58,12 +58,12 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetFetch
 
-Gets a set from a cache.
+Gets a set item from a cache.
 
 | Name            | Type   | Description                                   |
 | --------------- | ------ | --------------------------------------------- |
 | cacheName       | String | Name of the cache.                            |
-| setName  | String | The name of the set to be retreived. |
+| setName         | String | The name of the set item to be retreived.     |
 
 <details>
   <summary>Method response object</summary>
@@ -82,12 +82,12 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### SetRemoveElement
-Removes a single element from an existing set.
+Removes a single element from an existing set item.
 
-| Name            | Type         | Description                                   |
-| --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| setName         | String       | Name of the set to be set. |
+| Name            | Type            | Description                                   |
+| --------------- | --------------- | --------------------------------------------- |
+| cacheName       | String          | Name of the cache.                            |
+| setName         | String          | Name of the set item to be altered.           |
 | element         | String \| bytes | Element to be removed by this operation.   |
 
 <details>
@@ -101,12 +101,12 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### SetRemoveElements
-Removes multiple elements from an existing set.
+Removes multiple elements from an existing set item.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| setName         | String       | Name of the set to be set. |
+| setName         | String       | Name of the set item to be set. |
 | element         | String \| bytes | Element to be removed by this operation.   |
 
 <details>
