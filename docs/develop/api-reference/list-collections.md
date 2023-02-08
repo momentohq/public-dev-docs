@@ -2,23 +2,23 @@
 sidebar_position: 2
 sidebar_label: Lists
 title: List API reference
-description: Learn how to interact with the API for List Collection Data Types in Momento Serverless Cache.
+description: Learn how to interact with the API for list collection data types in Momento Serverless Cache.
 slug: /develop/api-reference/collections/list
 ---
 
 # List API reference for Momento Serverless Cache
-This page details the Momento API methods for the [List Collection Data Types](./../datatypes.md#list-collections).
+This page details the Momento API methods for the [list collection data types](./../datatypes.md#list-collections).
 
 ## List methods
 
 ### ListFetch
 
-Gets a List item from a cache.
+Gets a list item from a cache.
 
 | Name            | Type   | Description                                   |
 | --------------- | ------ | --------------------------------------------- |
 | cacheName       | String | Name of the cache.                            |
-| listName        | String | The name of the List item to be retreived.         |
+| listName        | String | The name of the list item to be retreived.         |
 
 <details>
   <summary>Method response object</summary>
@@ -37,7 +37,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### ListConcatenateBack
-Appends the supplied list to the end of an existing List item.
+Appends the supplied list to the end of an existing list item.
 
 Example:
 
@@ -46,16 +46,16 @@ If you have [1, 2, 3] and listConcatenateBack [4, 5, 6] you will have [1, 2, 3, 
 | Name            | Type                | Description                                   |
 | --------------- | ------------------- | --------------------------------------------- |
 | cacheName       | String              | Name of the cache.                            |
-| listName        | String              | Name of the List item to be set. |
-| values          | String[] \| bytes[] | Values to be added as elements to the List item. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the List item in cache. This TTL takes precedence over the TTL used when initializing a cache client connection object. |
+| listName        | String              | Name of the list item to be set. |
+| values          | String[] \| bytes[] | Values to be added as elements to the list item. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache client connection object. |
 | truncateFrontToSize | Number | See [truncate to size](#truncate-to-size). |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-    * `listLength()`: number - the new length of the List
+    * `listLength()`: number - the new length of the list
     * `toString()`: string - add the listLength
 * Error
 
@@ -64,7 +64,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### ListConcatenateFront
-Appends the supplied list to the front of an existing List item.
+Appends the supplied list to the front of an existing list item.
 
 Example:
 
@@ -73,16 +73,16 @@ If you have [1, 2, 3] and listConcatenateFront [4, 5, 6] you will have [4, 5, 6,
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the List item to be set.              |
-| values          | String[] \| bytes[] | Values to be added as elements to the List item. |
-| ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the List item in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
+| listName        | String       | Name of the list item to be set.              |
+| values          | String[] \| bytes[] | Values to be added as elements to the list item. |
+| ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
 | truncateBackToSize | Number | See [truncate to size](#truncate-to-size). |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-    * `listLength()`: number - the new length of the List item
+    * `listLength()`: number - the new length of the list item
     * `toString()`: string - add the listLength
 * Error
 
@@ -91,12 +91,12 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### ListLength
-Get the length of an existing List item
+Get the length of an existing list item
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the List item to be checked.          |
+| listName        | String       | Name of the list item to be checked.          |
 
 <details>
   <summary>Method response object</summary>
@@ -112,12 +112,12 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### ListPopBack
-Remove and return the last element from a List item.
+Remove and return the last element from a list item.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the List item to be retreived.        |
+| listName        | String       | Name of the list item to be retreived.        |
 
 <details>
   <summary>Method response object</summary>
@@ -134,12 +134,12 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### ListPopFront
-Remove and return the first element from a List item.
+Remove and return the first element from a list item.
 
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the List item to be retreived.        |
+| listName        | String       | Name of the list item to be retreived.        |
 
 <details>
   <summary>Method response object</summary>
@@ -156,21 +156,21 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### ListPushBack
-Push a value to the end of a List item. This is exactly like passing just one value to [ListConcatenateBack](#listconcatenateback).
+Push a value to the end of a list item. This is exactly like passing just one value to [ListConcatenateBack](#listconcatenateback).
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
-| listName        | String          | Name of the List to be set.                   |
+| listName        | String          | Name of the list to be set.                   |
 | value           | String \| bytes | Value to be added.              |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the List item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 | truncateBackToSize | Number | See [truncate to size](#truncate-to-size). |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-    * `listLength()`: number - the new length of the List item
+    * `listLength()`: number - the new length of the list item
     * `toString()`: string - add the listLength
 * Error
 
@@ -179,21 +179,21 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### ListPushFront
-Push a value to the beginning of a List item. Just like [ListPushBack](#listpushback), but to the front.
+Push a value to the beginning of a list item. Just like [ListPushBack](#listpushback), but to the front.
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
-| listName        | String          | Name of the List to be set. |
-| value           | String \| bytes | Value to be added to the List item by the operation. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the List item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| listName        | String          | Name of the list to be set. |
+| value           | String \| bytes | Value to be added to the list item by the operation. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 | truncateBackToSize | Number | See [truncate to size](#truncate-to-size). |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-    * `listLength()`: number - the new length of the List
+    * `listLength()`: number - the new length of the list
     * `toString()`: string - add the listLength
 * Error
 
@@ -202,7 +202,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### ListRemoveValue
-Remove all elements in a List item equal to a particular value.
+Remove all elements in a list item equal to a particular value.
 
 Examples
 
@@ -211,8 +211,8 @@ Examples
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
-| listName        | String          | Name of the List item to be set.              |
-| value           | String \| bytes | Value to be added to the List item by the operation. |
+| listName        | String          | Name of the list item to be set.              |
+| value           | String \| bytes | Value to be added to the list item by the operation. |
 
 <details>
   <summary>Method response object</summary>
@@ -228,8 +228,8 @@ See [response objects](./response-objects.md) for specific information.
 
 ## Truncate to size
 
-[ListConcatenate](#listconcatenateback) and [ListPush](#listpushback) type API calls all have truncation options. If after adding their elements the List exceeds this size, this List will be truncated.
+[ListConcatenate](#listconcatenateback) and [ListPush](#listpushback) type API calls all have truncation options. If after adding their elements the list exceeds this size, this list will be truncated.
 
-* Example: If the List is `[1, 2, 3]` and you ListConcatenateBack `[4, 5, 6]` with `truncateFrontToSize: 5` the List will be truncated to `[2, 3, 4, 5, 6]` and the response ListLength will be 5.
+* Example: If the list is `[1, 2, 3]` and you ListConcatenateBack `[4, 5, 6]` with `truncateFrontToSize: 5` the list will be truncated to `[2, 3, 4, 5, 6]` and the response ListLength will be 5.
 
-* Example: If the List is `[1, 2, 3]` and you ListConcatenateBack `[4, 5, 6]` with `truncateFrontToSize: 10` the List will not be truncated. It will be `[1, 2, 3, 4, 5, 6]`
+* Example: If the list is `[1, 2, 3]` and you ListConcatenateBack `[4, 5, 6]` with `truncateFrontToSize: 10` the list will not be truncated. It will be `[1, 2, 3, 4, 5, 6]`

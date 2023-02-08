@@ -14,13 +14,13 @@ Momento Serverless Cache provides a group of core data types to match up with co
 ### Byte arrays
 All data stored in Momento Serverless Cache is represented as byte arrays. The Momento SDKs provide easy methods you can use to store your data as raw bytes or as portable UTF-8 strings. Those can be in the form of scalar data, such as strings, characters, numbers, and binary data, such as images and Protocol Buffers serialized arrays.
 
-### Collection Data Types (CDTs)
+### Collection data types (CDTs)
 Collection Data Types are a grouping of related data into a single item. They are stored as byte array values and each has their own set of API calls in Momento SDKs. For example, DictionaryFetch, ListFetch, and SetFetch.
 
-![Collection Data Types diagram](/img/collection_data_types.svg "Collection Data Types")
+![Collection data types diagram](/img/collection_data_types.svg "Collection data types")
 
 #### Lists
-A List is a collection of ordered elements, sorted in the sequence each element was inserted.
+A list is a collection of ordered elements, sorted in the sequence each element was inserted.
 
 ```javascript
 "Hoover’s Sour Cream Cookies" = [
@@ -37,12 +37,12 @@ A List is a collection of ordered elements, sorted in the sequence each element 
 ]
 ```
 
-To learn the API methods, check the [API reference for List Collection Data Types](./api-reference/list-collections.md).
+To learn the API methods, check the [API reference for list collection data types](./api-reference/list-collections.md).
 
 #### Dictionaries
-A Dictionary is a collection of unordered elements where each element is a field:value pair.
+A dictionary is a collection of unordered elements where each element is a field:value pair.
 
-An example of using a Dictionary is when you need to store data together and retrieve field:value pairs by name.
+An example of using a dictionary is when you need to store data together and retrieve field:value pairs by name.
 ```javascript
 "truck546" = {
     "brand" : "Ford", 
@@ -52,10 +52,10 @@ An example of using a Dictionary is when you need to store data together and ret
 }
 ```
 
-To learn the API methods, check the [API reference for Dictionary Collection Data Types](./api-reference/dictionary-collections.md).
+To learn the API methods, check the [API reference for dictionary collection data types](./api-reference/dictionary-collections.md).
 
 #### Sets
-A Set is an unordered collection of unique elements, each in string format. For example, no matter how many times you add 'sugar' to a set, there will only be one entry for 'sugar'.
+A set is an unordered collection of unique elements, each in string format. For example, no matter how many times you add 'sugar' to a set, there will only be one entry for 'sugar'.
 
 ```javascript
 "myIngredients" = {
@@ -68,17 +68,17 @@ A Set is an unordered collection of unique elements, each in string format. For 
 }
 ```
 
-To learn the API methods, check the [API reference for Set Collection Data Types](./api-reference/set-collections.md).
+To learn the API methods, check the [API reference for set collection data types](./api-reference/set-collections.md).
 
 ## FAQs
 <details>
-  <summary>If I perform an API call to get a subset of data from a Dictionary item, will the size of the entire item count toward the per GB transfer costs?</summary>
+  <summary>If I perform an API call to get a subset of data from a dictionary item, will the size of the entire item count toward the per GB transfer costs?</summary>
 No, it will not. For example, if you perform the API call DictionaryGetField to get one 5-kilobyte field:value pair from a dictionary where the entire dictionary item is 50 kilobytes, only 5 kilobytes count towards your per GB transfer costs.
 </details>
 
 <details>
   <summary>How do I store a JSON document in Momento Serverless Cache?</summary>
-Use your favorite JSON library to serialize the JSON document into a byte array and insert that byte array into Momento Serverless Cache.
+Use your favorite JSON library to serialize the JSON document into a byte array and insert that byte array into Momento Serverless Cache. You could also store each field value in your JSON document in a dictionary.
 </details>
 
 <details>
