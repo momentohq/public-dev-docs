@@ -17,7 +17,7 @@ All data stored in Momento Serverless Cache is represented as byte arrays. The M
 ### Collection data types (CDTs)
 Collection Data Types are a grouping of related data into a single item. They are stored as byte array values and each has their own set of API calls in Momento SDKs. For example, DictionaryFetch, ListFetch, and SetFetch.
 
-![Collection data types diagram](/img/collection_data_types.svg "Collection data types")
+<img src="/img/collection_data_types.png" alt="Collection data types drawing | Momento Serverless Cache" width="80%"/>
 
 #### Lists
 A list is a collection of ordered elements, sorted in the sequence each element was inserted.
