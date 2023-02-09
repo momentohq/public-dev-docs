@@ -2,7 +2,7 @@
 sidebar_position: 3
 sidebar_label: Sets
 title: Set API reference
-description: Learn how to interact with the API for set data types in Momento Serverless Cache.
+description: Learn how to interact with the API for set collection data types in Momento Serverless Cache.
 slug: /develop/api-reference/collections/sets
 ---
 
@@ -12,7 +12,7 @@ A set is a collection of elements, but each element can appear only once and ord
 
 Example: if your set contains `[1, 2, 3]` and you add 2, the set remains `[1, 2, 3].`
 
-See [sets](./../datatypes.md#set-collections) for more information on their usage.
+See [Sets](./../datatypes.md#set-collections) for more information on their usage.
 
 ## Set methods
 
@@ -22,9 +22,9 @@ Adds an element to a set. If the set item does not already exist, this method wi
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
-| setName         | String          | Name of the set to be set. |
+| setName         | String          | Name of the set item to be altered. |
 | element         | String \| bytes | Element to be added by this operation. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the set in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the set item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
   <summary>Method response object</summary>
@@ -44,7 +44,7 @@ Adds multiple elements to a set item.
 | cacheName       | String       | Name of the cache.                            |
 | setName         | String       | Name of the set item to be altered. |
 | elements        | String[] \| bytes[] | Elements to be added by this operation. |
-| ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the set in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the set item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
   <summary>Method response object</summary>
@@ -106,7 +106,7 @@ Removes multiple elements from an existing set item.
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| setName         | String       | Name of the set item to be set. |
+| setName         | String       | Name of the set item to be altered. |
 | element         | String \| bytes | Element to be removed by this operation.   |
 
 <details>
