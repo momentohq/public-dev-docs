@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 11
 sidebar_label: Response objects
 title: Response object API reference
 description: Learn how to interact with the response object in the Momento API.

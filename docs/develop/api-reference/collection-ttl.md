@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 10
 sidebar_label: CollectionTTL object
 title: CollectionTTL API reference
 description: Learn how to interact with the CollectionTTL object in Momento Serverless Cache.
