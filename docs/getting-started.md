@@ -46,7 +46,7 @@ brew install momento-cli
 
 **Linux**
 
-Visit the web page for the latest [github release](https://github.com/momentohq/momento-cli/releases).
+Visit the web page for the latest [GitHub release](https://github.com/momentohq/momento-cli/releases).
 There, you will find `.deb` and `.rpm` files for both x86_64 and aarch64.
 
 `.deb` files have been tested on modern versions of Ubuntu and Debian.
