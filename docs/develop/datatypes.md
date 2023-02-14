@@ -72,7 +72,7 @@ To learn the API methods, check the [API reference for set collection data types
 
 #### Sorted sets
 
-A sorted set is a collection of unique elements with a string and score field:value pair. The elements are ordered by the score value.
+A sorted set is a collection of unique elements with a string and score as a field:value pair. The elements are ordered by the score value. For example,
 
 ```javascript
 "players" = {
@@ -93,7 +93,7 @@ If elements have the same score, they are sorted [lexicographically](https://www
 
 :::
 
-To learn the API methods, check the [API reference for set collection data types](./api-reference/sorted-set-collections.md).
+To learn the API methods, check the [API reference for sorted set collection data types](./api-reference/sorted-set-collections.md).
 
 ## FAQs
 <details>
