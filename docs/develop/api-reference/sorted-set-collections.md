@@ -12,7 +12,7 @@ slug: /develop/api-reference/collections/sortedsets
 
 ### SortedSetPut
 
-Adds an element to a set. If the set item does not already exist, this method will create one.
+Adds an element and associated score to a sorted set. If the sorted set does not already exist, this method will create one.
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
@@ -33,18 +33,23 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SortedSetFetch
 
-Adds an element to a sorted set. If the set item does not already exist, this method will create one.
+Fetch all elements in a sorted set and return them in ascending or descending order.
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
 | setName         | String          | Name of the sorted set item. |
-| element         | String \| bytes | Element of the sorted set to be retrieved by this operation. |
+| numberOfResults | String \| bytes | The number of results |
+| order           | enum            | The order you want the sorted set returned, ascending or descending |
 
 <details>
   <summary>Method response object</summary>
 
-* Success
+* Hit
+    * valueSetBytes(): bytes[]
+    * valueSetString(): string[]
+    * toString(): string
+* Miss
 * Error
 
 See [response objects](./response-objects.md) for specific information.
@@ -53,18 +58,22 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SortedSetGetScore
 
-Gets the score of the specified element in a sorted set.
+Gets an existing element and its associated score from the sorted set.
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
 | setName         | String          | Name of the sorted set item. |
-| element         | String \| bytes | Element in the sorted set to be get the score from. |
+| element         | String \| bytes | Element in the sorted set to be get the score of. |
 
 <details>
   <summary>Method response object</summary>
 
-* Success
+* Hit
+    * valueSetBytes(): bytes[]
+    * valueSetScore(): string[]
+    * toString(): string
+* Miss
 * Error
 
 See [response objects](./response-objects.md) for specific information.
