@@ -12,13 +12,13 @@ slug: /develop/api-reference/collections/sortedsets
 
 ### SortedSetPut
 
-Adds elements (which is a value and a score to sort that value) to a sorted set. If the sorted set does not already exist, this method will create one.
+Adds elements (one or more [SortedSetElements](#sortedsetelement)) to a sorted set. If the sorted set does not already exist, this method will create one.
 
-| Name            | Type            | Description                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| setName         | String          | Name of the set item to be altered. |
-| elements        | SortedSetElement[] | Element to be added to the sorted set by this operation. |
+| Name            | Type               | Description                                   |
+| --------------- | ------------------ | --------------------------------------------- |
+| cacheName       | String             | Name of the cache.                            |
+| setName         | String             | Name of the sorted set item to be altered. |
+| elements        | [SortedSetElement](#sortedsetelement)[] | Elements to be added to the sorted set by this operation. |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the set item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
@@ -58,21 +58,21 @@ See [response objects](./response-objects.md) for specific information.
 
 Gets an existing element and its associated score from the sorted set.
 
-| Name            | Type            | Description                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| setName         | String          | Name of the sorted set item. |
+| Name             | Type                | Description                                   |
+| ---------------- | ------------------- | --------------------------------------------- |
+| cacheName        | String              | Name of the cache.                            |
+| setName          | String              | Name of the sorted set item. |
 | elements         | String[] \| bytes[] | Element in the sorted set to be get the score of. |
 
 <details>
   <summary>Method response object</summary>
 
-* Hit
-    * elements() (returns hit/miss per element)
+* Cache hit
+    * Elements() (returns hit/miss per element)
       * Hit:
-        * score: number
+        * Score: number
       * Miss
-* Miss (if the set does not exist)
+* Cache miss (if the sorted set does not exist)
 * Error
 
 See [response objects](./response-objects.md) for specific information.
@@ -83,10 +83,10 @@ See [response objects](./response-objects.md) for specific information.
 
 Removes an element from a sorted set.
 
-| Name            | Type            | Description                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| setName         | String          | Name of the set item to be altered. |
+| Name            | Type             | Description                                   |
+| --------------- | ---------------- | --------------------------------------------- |
+| cacheName       | String           | Name of the cache.                            |
+| setName         | String           | Name of the set item to be altered. |
 | elements        | All \| string[] \| bytes[] | Element to be removed by this operation. |
 
 You can remove either elements all elements or a set of elements.
@@ -103,7 +103,7 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SortedSetGetRank
 
-What position in the set is this element?
+What position is this element in the specificed sorted set?
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
@@ -123,28 +123,27 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
-### SortedSetIncrement
+### SortedSetIncrementScore
 
-Adds to the value of a field, if and only if the existing value is a UTF-8 string representing a base 10 integer. If the field is missing from the sorted set, this method sets the field's value to the amount to increment by.
+Adds to the score of an element. If the value is *missing* from the sorted set, this method sets the value to the amount to increment by.
 
 :::note
 
-The resulting incremented value must be between -9223372036854775808 and 9223372036854775807, ie. a signed 64 bit integer. If not there will be an error response.
+The resulting incremented score must be between -9223372036854775808 and 9223372036854775807, ie. a signed double 64-bit float. If not, there will be an error response.
 
 :::
 
 Examples:
 
-- When the field does not exist, `dictionaryIncrement(cache, dict, field, 10)` will set the field's value to 10.
-- When the field = 5, `dictionaryIncrement(cache, dict, field, 10)` will set the field's value to 15.
-- When the field = ‘five’, it will respond with a FailedPreconditionException error.
+- When the element does not exist in the sorted set, `SortedSetIncrementScore(cache, cacheName, setName, value, 10)` will set the element's score to 10.
+- When the existing element is a value:score of "{ 'HotGamer2077' : 5 }" , `SortedSetIncrementScore(cacheName, setName, value, 10)` will set the element's score to 15.
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
 | setName         | String          | Name of the sorted set item to be altered. |
-| element         | String \| bytes | Element to be incremented by this operation. |
-| amount          | Number          | The quantity to add to the value. May be positive, negative, or zero. Defaults to 1. |          
+| value           | String \| bytes | Value for the element to be incremented by this operation. |
+| amount          | Number          | The quantity to add to the score. May be positive, negative, or zero. Defaults to 1. |          
 | ttl             | [CollectionTTL object](./collection-ttl.md) | This will come back as a TTL construct. |
 
 <details>
@@ -160,8 +159,9 @@ See [response objects](./response-objects.md) for specific information.
 
 ## SortedSetElement
 
-Value is actually the value being put into the set.
-Score is what is sorted by.
+A value is an array of bytes that along with a score makes up each element in a sorted set.
 
 * Value - Bytes
-* Score - number
+* Score - Number
+
+A SortedSetElement can exist by itself or as part of an array of SortedSetElements
