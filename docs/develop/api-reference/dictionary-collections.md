@@ -100,7 +100,7 @@ Adds to the value of a field, if and only if the existing value is a UTF-8 strin
 
 :::note
 
-The resulting incremented value must be between -9223372036854775808 and 9223372036854775807, ie. a signed 64 bit integer. If not there will be an error response.
+The resulting incremented value must be between -9223372036854775808 and 9223372036854775807, ie. a signed 64-bit integer. If not, there will be an error response.
 
 :::
 

@@ -70,6 +70,31 @@ A set is an unordered collection of unique elements, each in string format. For 
 
 To learn the API methods, check the [API reference for set collection data types](./api-reference/set-collections.md).
 
+#### Sorted sets
+
+A sorted set is a collection of unique elements with a value (string) and score (signed double 64-bit float) pair. The elements in the item are ordered by score value. For example,
+
+```javascript
+"players" = {
+    "SorataABard" : 32.7,
+    "Juliversal" : 30.45,
+    "DragonNosy" : 26.8,
+    "redbyrd" : 26.8,
+    "SaltyAdjeley" : 23.25,
+    "ZachAttack" : 17.3,
+    "ElyahouBeets" : 5.0,
+    "Smashley" : 3.2"
+}
+```
+
+:::note
+
+If elements have the same score, they are sorted [lexicographically](https://www.dictionary.com/browse/lexicographically).
+
+:::
+
+To learn the API methods, check the [API reference for sorted set collection data types](./api-reference/sorted-set-collections.md).
+
 ## FAQs
 <details>
   <summary>If I perform an API call to get a subset of data from a dictionary item, will the size of the entire item count toward the per GB transfer costs?</summary>
