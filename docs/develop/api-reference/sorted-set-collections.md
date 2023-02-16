@@ -13,7 +13,7 @@ A sorted set in Momento Serverless Cache is a collection of unique elements with
 
 ### SortedSetPut
 
-Adds new or updates existing [sorted set elements](#sortedsetelement)) in a sorted set item.
+Adds new or updates existing [sorted set elements](#sortedsetelement) in a sorted set item.
 
 - If the set does not exist, this method creates a new sorted set item with the element(s) passed in.
 
