@@ -1,13 +1,13 @@
 ---
 sidebar_position: 4
 sidebar_label: Sorted sets
-title: Sorted set API reference
+title: Sorted set collections API reference
 description: Learn how to interact with the API for sorted set collection data types in Momento Serverless Cache.
 slug: /develop/api-reference/collections/sortedsets
 ---
 
-# Sorted sets collection data types
-A sorted set in Momento Serverless Cache is a collection of unique elements with a value (string) and score (signed double 64-bit float) pair. The elements in the item are ordered by score value.
+# Sorted set collections
+A sorted set in Momento Serverless Cache is a collection of unique elements with a value (string) and score (signed double 64-bit float) pair. The elements in the item are ordered by the score's value.
 
 ## Sorted set methods
 
@@ -24,7 +24,7 @@ Adds new or updates existing [sorted set elements](#sortedsetelement) in a sorte
 | cacheName       | String             | Name of the cache.                            |
 | setName         | String             | Name of the sorted set item to be altered. |
 | elements        | [SortedSetElement](#sortedsetelement)[] | Elements to be added to the sorted set by this operation. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the set item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set item. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
   <summary>Method response object</summary>
@@ -67,7 +67,7 @@ Gets an existing element and its associated score from the sorted set.
 | ---------------- | ------------------- | --------------------------------------------- |
 | cacheName        | String              | Name of the cache.                            |
 | setName          | String              | Name of the sorted set item. |
-| elements         | String[] \| bytes[] | Element in the sorted set to be get the score of. |
+| values           | String[] \| bytes[] | An array of values to get the score of. |
 
 <details>
   <summary>Method response object</summary>
@@ -92,9 +92,9 @@ Removes an element from a sorted set.
 | --------------- | ---------------- | --------------------------------------------- |
 | cacheName       | String           | Name of the cache.                            |
 | setName         | String           | Name of the set item to be altered. |
-| elements        | All \| string[] \| bytes[] | Element to be removed by this operation. |
+| values          | All \| string[] \| bytes[] | Values of the elements to be removed by this operation. |
 
-You can remove either elements all elements or a set of elements.
+You can remove either one, all, or specific group of elements.
 
 <details>
   <summary>Method response object</summary>
@@ -108,13 +108,13 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SortedSetGetRank
 
-What position is this element in the specificed sorted set?
+What position is the element, in the specificed sorted set?
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
-| setName         | String          | Name of the set item to be altered. |
-| element         | String \| bytes | Element to be removed by this operation. |
+| setName         | String          | Name of the sorted set item to be altered.    |
+| value           | String \| bytes | Value of the element to retrieve the score of. |
 
 <details>
   <summary>Method response object</summary>
@@ -140,7 +140,7 @@ The resulting incremented score must be between -9223372036854775808 and 9223372
 
 Examples:
 
-- When the element does not exist in the sorted set, `SortedSetIncrementScore(cache, cacheName, setName, value, 10)` will set the element's score to 10.
+- When the element does not exist in the sorted set, `SortedSetIncrementScore(cacheName, setName, value, 10)` will set the element's score to 10.
 - When the existing element is a value:score of "{ 'KesselRun' : 12 }" , `SortedSetIncrementScore(cacheName, setName, value, 10)` will set the element's score to 22.
 
 | Name            | Type            | Description                                   |
@@ -149,7 +149,7 @@ Examples:
 | setName         | String          | Name of the sorted set item to be altered. |
 | value           | String \| bytes | Value for the element to be incremented by this operation. |
 | amount          | Number          | The quantity to add to the score. May be positive, negative, or zero. Defaults to 1. |          
-| ttl             | [CollectionTTL object](./collection-ttl.md) | This will come back as a TTL construct. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set item. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
   <summary>Method response object</summary>
