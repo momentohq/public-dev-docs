@@ -13,11 +13,11 @@ A sorted set in Momento Serverless Cache is a collection of unique elements with
 
 ### SortedSetPut
 
-Adds elements (one or more [SortedSetElement](#sortedsetelement)) to a sorted set.
+Adds new or updates existing [sorted set elements](#sortedsetelement)) in a sorted set item.
 
-* If the setName does not already exist, this method will create a new item with the element(s) passed in.
+- If the set does not exist, this method creates a new sorted set item with the element(s) passed in.
 
-* If the setName exists, for each [SortedSetElement](#sortedsetelement) in the array, each element is added to the sorted set if that *value* doesn't already exist. If the value of that element does exist, that element is overwritten.
+- If the set exists, for each [SortedSetElement](#sortedsetelement) in the array, each element is added to the sorted set if that **value** doesn't exist. If the value of that element does exist, that element is overwritten.
 
 | Name            | Type               | Description                                   |
 | --------------- | ------------------ | --------------------------------------------- |
