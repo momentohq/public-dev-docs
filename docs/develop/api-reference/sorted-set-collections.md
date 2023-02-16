@@ -7,12 +7,17 @@ slug: /develop/api-reference/collections/sortedsets
 ---
 
 # Sorted sets collection data types
+A sorted set in Momento Serverless Cache is a collection of unique elements with a value (string) and score (signed double 64-bit float) pair. The elements in the item are ordered by score value.
 
 ## Sorted set methods
 
 ### SortedSetPut
 
-Adds elements (one or more [SortedSetElements](#sortedsetelement)) to a sorted set. If the sorted set does not already exist, this method will create one.
+Adds elements (one or more [SortedSetElement](#sortedsetelement)) to a sorted set.
+
+* If the setName does not already exist, this method will create a new item with the element(s) passed in.
+
+* If the setName exists, for each [SortedSetElement](#sortedsetelement) in the array, each element is added to the sorted set if that *value* doesn't already exist. If the value of that element does exist, that element is overwritten.
 
 | Name            | Type               | Description                                   |
 | --------------- | ------------------ | --------------------------------------------- |
@@ -136,7 +141,7 @@ The resulting incremented score must be between -9223372036854775808 and 9223372
 Examples:
 
 - When the element does not exist in the sorted set, `SortedSetIncrementScore(cache, cacheName, setName, value, 10)` will set the element's score to 10.
-- When the existing element is a value:score of "{ 'HotGamer2077' : 5 }" , `SortedSetIncrementScore(cacheName, setName, value, 10)` will set the element's score to 15.
+- When the existing element is a value:score of "{ 'KesselRun' : 12 }" , `SortedSetIncrementScore(cacheName, setName, value, 10)` will set the element's score to 22.
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
@@ -159,9 +164,14 @@ See [response objects](./response-objects.md) for specific information.
 
 ## SortedSetElement
 
-A value is an array of bytes that along with a score makes up each element in a sorted set.
+A value and score makes up each element in a sorted set.
 
-* Value - Bytes
-* Score - Number
+Example:
+`{ "TomHocusXaster" : 1138 }`
+
+| Name            | Type                         | Description                                   |
+| --------------- | ---------------------------- | --------------------------------------------- |
+| Value           | String \| bytes              | Value for the sorted set element.                            |
+| Score           | Signed double 64-bit float   | Score the element. |
 
 A SortedSetElement can exist by itself or as part of an array of SortedSetElements
