@@ -7,7 +7,7 @@ slug: /develop/api-reference/collections/sortedsets
 ---
 
 # Sorted set collections
-A sorted set in Momento Serverless Cache is a collection of unique elements with a value (string, byte[], etc.) and score (signed double 64-bit float) pair. The elements in the item are ordered by the score's value.
+A sorted set in Momento Serverless Cache is a collection of unique elements with a value (string, byte[], etc.) and score (signed double 64-bit float) pair. The elements in the item are ordered by the score.
 
 ## Sorted set methods
 
