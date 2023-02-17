@@ -468,6 +468,22 @@ raise response.error if response.error?
   cli={`momento cache delete --key test-key --value test-value`}
 />
 
+### Increment
+
+Adds to the value of a field, if and only if the existing value is a UTF-8 string representing a base 10 integer. If the field does not exist, this method sets the field's value to the amount to increment by.
+
+| Name      | Type   | Description                                     |
+| --------- | ------ | ----------------------------------------------- |
+| cacheName | String | Name of the cache.                              |
+| field       | String | The key under which the value is to be deleted. |
+| amount       | Integer | The quantity to add to the value. May be positive, negative, or zero. Defaults to 1. |
+
+:::note
+
+The resulting incremented value must be between -9223372036854775808 and 9223372036854775807, ie. a signed 64-bit integer. If not, there will be an error response.
+
+:::
+
 ### Collection data types (CDTs)
 
 Collections may contain different types of structures depending on your use case. Supported data types are:
@@ -484,6 +500,7 @@ For more in-depth information on usage, see [collection data types](./../datatyp
 |-------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
 | Control APIs      | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Get/Set           | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| List CDTs         | :x:                | :x:                | :x:                | :white_check_mark:                | :x: | :x:                | :x:                | :x:                |
 | Dictionary CDTs   | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                |
 | Set CDTs          | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                |
 | List CDTs         | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                |
