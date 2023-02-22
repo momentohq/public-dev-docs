@@ -122,11 +122,11 @@ const config = {
           },
           // Redirect guides
           {
-            to: '/develop/guides',
+            to: '/develop/guides/caching-with-aws-lambda',
             from: '/guides',
           },
           {
-            to: '/develop/guides',
+            to: '/develop/guides/caching-with-aws-lambda',
             from: '/docs/guides',
           },
           // Redirect guides/caching-with-aws-lambda
@@ -140,11 +140,11 @@ const config = {
           },
           // Redirect serverless-cache-walkthrough
           {
-            to: '/develop/tutorials/serverless-cache-walkthrough',
+            to: '/develop/tutorials/serverless-cache-walkthrough/adding-a-cache-to-serverless',
             from: '/serverless-cache-walkthrough',
           },
           {
-            to: '/develop/tutorials/serverless-cache-walkthrough',
+            to: '/develop/tutorials/serverless-cache-walkthrough/adding-a-cache-to-serverless',
             from: '/docs/serverless-cache-walkthrough',
           },
           // Redirect serverless-cache-walkthrough/adding-a-cache-to-serverless
