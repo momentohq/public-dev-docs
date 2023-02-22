@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
 title: Pricing and free tier
+pagination_prev: null
 description: Explore the simplicity of the pricing model and free tier information for Momento Serverless Cache
 ---
 

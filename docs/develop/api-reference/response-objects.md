@@ -2,6 +2,7 @@
 sidebar_position: 11
 sidebar_label: Response objects
 title: Response object API reference
+pagination_next: null
 description: Learn how to interact with the response object in the Momento API.
 slug: /develop/api-reference/response-objects
 ---

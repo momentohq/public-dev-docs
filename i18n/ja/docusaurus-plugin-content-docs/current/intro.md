@@ -30,8 +30,8 @@ Momento サーバーレスキャッシュは世界で初めての本物のサー
 
 - Momento サーバーレスキャッシュについてもっと詳しく、どの様に動作するのかを知りたい方は、のセクション、特に[Momento サーバーレスキャッシュの概念](./learn/how-it-works)に関する部分をご覧下さい。
 
-- AWS Lambda や他のシステムとの具体的な連携ガイドについては、[ガイド](./develop/guides)のセクションをご覧下さい。
+- AWS Lambda や他のシステムとの具体的な連携ガイドについては、[ガイド](./develop/guides/1-caching-with-aws-lambda.md)のセクションをご覧下さい。
 
-- Momento サーバーレスキャッシュを実際に細かく試してみるチュートリアルが欲しい方は、[サーバーレスアプリケーションにキャッシュを追加する](./develop/tutorials/serverless-cache-walkthrough)でその手順をご覧下さい。
+- Momento サーバーレスキャッシュを実際に細かく試してみるチュートリアルが欲しい方は、[サーバーレスアプリケーションにキャッシュを追加する](./develop/tutorials/serverless-cache-walkthrough/1-adding-a-cache-to-serverless.md)でその手順をご覧下さい。
 
 ご質問やコメントをお持ちでしょうか？ぜひお聞かせ下さい！[Discord に入って](https://discord.com/invite/3HkAKjUZGq)Momento のスペシャリストとチャットすることもできますし、[support@momentohq.com](mailto:support@momentohq.com) へメールをすることもできます。

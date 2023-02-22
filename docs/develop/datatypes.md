@@ -3,6 +3,8 @@ sidebar_position: 3
 sidebar_label: Data Types
 sidebar_class_name: sidebar-item-data-types
 title: Data types
+pagination_prev: null
+pagination_next: null
 description: Learn the core data types in Momento Serverless Cache to match up with common types in various modern programming languages and information about each of them.
 ---
 
