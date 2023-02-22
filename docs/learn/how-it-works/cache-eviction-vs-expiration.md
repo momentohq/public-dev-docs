@@ -2,6 +2,7 @@
 sidebar_position: 4
 sidebar_label: Cache eviction vs expiration
 title: Cache eviction vs expiration
+pagination_next: null
 slug: /learn/how-it-works/cache-eviction-vs-expiration
 description: Learn about differences between expiring and evicting data from a cache and how these terms relate to Momento Serverless cache
 ---
