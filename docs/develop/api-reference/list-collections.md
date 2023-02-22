@@ -226,6 +226,33 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+### ListRetain
+Removes all elements in the list besides the start point through the end point.
+
+Example:
+For the specified list, start at position 4 (the startIndex) and keep the next five elements (sount). Discard all other elements in the list. In this example, elements at position 0-3 and 9 or higher are dropped.
+
+| Name            | Type            | Description                                   |
+| --------------- | --------------- | --------------------------------------------- |
+| cacheName       | String          | Name of the cache.                            |
+| listName        | String          | Name of the list item to be set.              |
+| startIndex      | Number          | The starting element of the list to retain. |
+| count           | Number          | Value to determine how many consecutive elements to retain. Default value is 0. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+
+<details>
+  <summary>Method response object</summary>
+
+Responses
+
+* Success - even if the value does not exist
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+
 ## Truncate to size
 
 [ListConcatenate](#listconcatenateback) and [ListPush](#listpushback) type API calls all have truncation options. If after adding their elements the list exceeds this size, this list will be truncated.
