@@ -105,7 +105,7 @@ Options:
 momento account signup aws --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-#### GCP [利用可能リージョンは us-east1, ap-northeast1]
+#### GCP [利用可能リージョンは us-east1, asia-northeast1]
 
 ```console
 momento account signup gcp --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>

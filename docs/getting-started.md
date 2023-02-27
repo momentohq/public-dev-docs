@@ -108,7 +108,7 @@ Authentication tokens are associated with a specific Momento Serverless Cache cl
 momento account signup aws --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-#### GCP [available regions are us-east1, ap-northeast1]
+#### GCP [available regions are us-east1, asia-northeast1]
 
 ```console
 momento account signup gcp --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
