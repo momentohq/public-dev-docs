@@ -13,12 +13,14 @@ This page details the Momento API methods for the [list collection data types](.
 
 ### ListFetch
 
-Gets a list item from a cache.
+Gets a list item from a cache, with optional slices.
 
-| Name            | Type   | Description                                   |
-| --------------- | ------ | --------------------------------------------- |
-| cacheName       | String | Name of the cache.                            |
-| listName        | String | The name of the list item to be retreived.         |
+| Name       | Type   | Description                                                                 |
+|------------|--------|-----------------------------------------------------------------------------|
+| cacheName  | String | Name of the cache.                                                          |
+| listName   | String | The name of the list item to be retrieved.                                  |
+| startIndex | Number | The starting inclusive element of the list to fetch. Default is 0.          |
+| endIndex   | Number | The ending exclusive element of the list to fetch. Default is end of list.  |
 
 <details>
   <summary>Method response object</summary>
@@ -227,18 +229,18 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### ListRetain
-Removes all elements in the list besides the start point through the end point.
+Retains only slice of the list where the start is inclusive and the end is exclusive, what isn't retained, will be dropped from the list.
 
 Example:
-For the specified list, start at position 4 (the startIndex) and keep the next five elements (sount). Discard all other elements in the list. In this example, elements at position 0-3 and 9 or higher are dropped.
+For the specified list, start at index 4 (the startIndex) and keep the next five elements, end at index 10 (the endIndex). Discard all other elements in the list. In this example, elements at position 0-3 and 9 or higher are dropped.
 
-| Name            | Type            | Description                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| listName        | String          | Name of the list item to be set.              |
-| startIndex      | Number          | The starting element of the list to retain. |
-| count           | Number          | Value to determine how many consecutive elements to retain. Default value is 0. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| Name       | Type                                        | Description                                                                                                              |
+|------------|---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| cacheName  | String                                      | Name of the cache.                                                                                                       |
+| listName   | String                                      | Name of the list item to be set.                                                                                         |
+| startIndex | Number                                      | The starting inclusive element of the list to retain. Default is 0.                                                      |
+| endIndex   | Number                                      | The ending exclusive element of the list to retain. Default is end of list.                                              |
+| ttl        | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
   <summary>Method response object</summary>
