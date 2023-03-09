@@ -7,11 +7,12 @@ slug: /develop/api-reference/collections/sortedsets
 ---
 
 # Sorted set collections
+
 A sorted set in Momento Serverless Cache is a collection of unique elements with a value (string, byte[], etc.) and score (signed double 64-bit float) pair. The elements in the item are ordered by the score.
 
 ## Sorted set methods
 
-### SortedSetPut
+### SortedSetPutElements
 
 Adds new or updates existing [sorted set elements](#sortedsetelement) in a sorted set item.
 
@@ -36,16 +37,17 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
-### SortedSetFetch
+### SortedSetFetchByRank
 
-Fetch all elements in a sorted set and return them in ascending or descending order.
+Fetch elements of sorted set, optionally filtered by rank, and return them in ascending or descending order.
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
 | setName         | String          | Name of the sorted set item. |
-| numberOfResults | Optional[integer]   | How many results to return, default is all results. |
-| order           | Ascending \| Descending | The order you want the sorted set returned |
+| startRank | Optional[integer]   | The inclusive start rank of the results. Default is zero. |
+| endRank | Optional[integer]   | The exclusive end rank of the results. Default is `null`, ie up to and including the element ranked last. |
+| order           | Ascending \| Descending | The order you want the sorted set returned. |
 
 <details>
   <summary>Method response object</summary>
@@ -59,7 +61,33 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
-### SortedSetGetScore
+### SortedSetFetchByScore
+
+Fetch elements of sorted set, optionally filtered by score, and return them in ascending or descending order.
+
+| Name            | Type            | Description                                   |
+| --------------- | --------------- | --------------------------------------------- |
+| cacheName       | String          | Name of the cache.                            |
+| setName         | String          | Name of the sorted set item. |
+| minScore | Optional[double]   | The inclusive low score of the results. Default is `-inf`, ie include through the lowest score. |
+| maxScore | Optional[double]   | The inclusive high score of the results. Default is `+inf`, ie include through the highest score. |
+| order           | Ascending \| Descending | The order you want the sorted set returned. |
+| offset           | Optional[int] | The offset, inclusive, into the filtered list from which to start returning results. Default is 0, ie do not filter. If specified, must be non-negative. |
+| count           | Optional[int] | The maximum number of results from the filtered list to return. Default is `null`, ie no limit. If specified, must be strictly positive. |
+
+<details>
+  <summary>Method response object</summary>
+
+* Hit
+    * elements(): SortedSetElement[]
+* Miss
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+### SortedSetGetScores
 
 Gets an existing element and its associated score from the sorted set.
 
@@ -84,7 +112,7 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
-### SortedSetRemove
+### SortedSetRemoveElements
 
 Removes an element from a sorted set.
 
