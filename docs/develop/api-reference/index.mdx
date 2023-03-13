@@ -506,3 +506,37 @@ For more in-depth information on usage, see [collection data types](./../datatyp
 | Set CDTs          | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                |
 | List CDTs         | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                |
 | Flush Cache       | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :white_check_mark: |
+
+## Universal Methods
+
+These APIs apply across all cache types.
+
+### UpdateTtl
+
+Sets a given Time To Live (TTL) seconds for a key to the provided value.
+
+| Name      | Type   | Description                                     |
+| --------- | ------ | ----------------------------------------------- |
+| cacheName | String | Name of the cache.                              |
+| key       | String \| bytes | The key under which the value's TTL is to be updated. |
+| ttl       | Duration | Time to live that you want to update in cache in seconds. |
+
+### IncreaseTtl
+
+Sets a given Time To Live (TTL) seconds for a key to the provided value only if it would increase the TTL.
+
+| Name      | Type   | Description                                     |
+| --------- | ------ | ----------------------------------------------- |
+| cacheName | String | Name of the cache.                              |
+| key       | String \| bytes | The key under which the value's TTL is to be increased. |
+| ttl       | Duration | Time to live that you want to increase to. |
+
+### DecreaseTtl
+
+Sets a given Time To Live (TTL) seconds for a key to the provided value only if it would decrease the TTL.
+
+| Name      | Type   | Description                                     |
+| --------- | ------ | ----------------------------------------------- |
+| cacheName | String | Name of the cache.                              |
+| key       | String \| bytes | The key under which the value's TTL is to be decreased. |
+| ttl       | Duration | Time to live that you want to decrease to. |
