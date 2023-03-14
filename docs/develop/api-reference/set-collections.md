@@ -118,3 +118,49 @@ Removes multiple elements from an existing set item.
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+### SetContainsElement
+Checks if a provided element is in the given set.
+
+| Name      | Type            | Description           |
+|-----------| --------------- |-----------------------|
+| cacheName | String          | Name of the cache.    |
+| setName   | String          | Name of the set item. |
+| element   | String \| bytes                 | Name of the element to check existence of.   |
+
+<details>
+  <summary>Method response object</summary>
+
+The response object for SetContainsElement returns three possible options, a cache hit, miss, or an error.
+
+* Hit
+  * containsElement(): bool
+* Miss
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+### SetContainsElements
+Checks if provided elements are in the given set.
+
+| Name      | Type       | Description                         |
+|-----------|------------|-------------------------------------|
+| cacheName | String     | Name of the cache.                  |
+| setName   | String     | Name of the set item. |
+| elements  | String[] \ | bytes[]                             | Array of element names to check existence of.   |
+
+<details>
+  <summary>Method response object</summary>
+
+The response object for SetContainsElements returns three possible options, a cache hit, miss, or an error.
+
+* Hit
+  * containsElements(): bool[]
+* Miss
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
