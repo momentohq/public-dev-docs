@@ -485,6 +485,28 @@ The resulting incremented value must be between -9223372036854775808 and 9223372
 
 :::
 
+### SetIfNotExists
+
+Associates the given key with the given value. If a value for the key is already present it is not replaced with the new value.
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | Name of the cache.                            |
+| key        | String /| bytes | The key to be set. |
+| value      | String /| bytes | The value to be stored.                       |
+| ttlSeconds | Duration    | Time to Live for the item in Cache.           |
+
+<details>
+    <summary>Method response object</summary>
+
+* Stored
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
 ### Collection data types (CDTs)
 
 Collections may contain different types of structures depending on your use case. Supported data types are:

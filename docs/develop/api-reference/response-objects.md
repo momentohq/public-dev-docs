@@ -39,3 +39,11 @@ For fetch commands, the key or field exists in the cache and there is a "cache h
 ### Miss
 
 For fetch commands, the key or field does not exist and it a "cache miss."
+
+### Stored
+
+For setIfNotExists commands, the key did not exist and the value was set.
+
+### NotStored
+
+For setIfNotExists commands, the key existed and no value was set.
