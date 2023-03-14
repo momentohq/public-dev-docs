@@ -8,7 +8,10 @@ description: Learn about differences between expiring and evicting data from a c
 ---
 
 # Cache eviction vs. cache expiration
+
 The data lifecycle is one of the most important aspects of a cache management system. This page discusses the two means a cache does this, cache eviction and cache expiration, and then provides detail about how Momento Serverless Cache employs these concepts.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/76qpwvn262g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## What is cache eviction?
 In general caching terms, eviction is when a cache write causes the aggregate data in a cache to exceed the available memory storage, and the cache must remove some data ("evict") to make room. For example, this evicted data could be data that is used less frequently, or another algorithm, depending on how the cache is configured. Some cache implementations evict data to perform maintenance windows.
