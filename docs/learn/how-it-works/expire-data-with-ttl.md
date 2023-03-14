@@ -15,7 +15,7 @@ This document provides an overview of Momento Serverless Cache’s time-to-live 
 
 :::note
 
-Momento Serverles Cache handles TTL expiry and does not consume any bandwidth for metering in your monthly transfer cost.
+Momento Serverless Cache handles TTL expiry and does not consume any bandwidth for metering in your monthly transfer cost.
 
 :::
 
