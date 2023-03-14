@@ -47,3 +47,5 @@ For TTL commands, the update was applied successfully.
 ### NotSet
 
 For TTL commands, the update was not applied and no change was made to the existing TTL.
+
+For fetch commands, the key or field does not exist and it a "cache miss."
