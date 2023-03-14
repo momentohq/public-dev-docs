@@ -11,31 +11,34 @@ This page details the Momento API methods for Momento Topics, a high speed low d
 
 ## Topics methods
 
-### PollForMessages
-Polls for messages from a Topic. If the set item does not already exist, this method will create one.
+### Subscribe
+This method subscribes to a topic to receive new values with a stateful connection.
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| topicName         | String          | Name of the topic to publish to. |
+| cacheName       | String          | Name of the cache where the topic exists.     |
+| topicName       | String          | Name of the topic to subscribe to.            |
 
 <details>
   <summary>Method response object</summary>
 
-* Success
+* Success - Returns a subscription object.
 * Error
 
 See [response objects](./response-objects.md) for specific information.
 
+With the returned subscription object, once put in a for loop, your code will receive an event when a new value is published to the Topic.
+
 </details>
 
-### PublishMessages
-Publishes a message to the Topic. If the set item does not already exist, this method will create one.
+### Publish
+Publishes a message to a topic.
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| topicClient       | String          | Name of the cache.                            |
-| topicName         | String          | Name of the topic to publish to. |
+| cacheName       | String          | Name of the cache where the topic exists.     |
+| topicName       | String          | Name of the topic to publish the value to.    |
+| value           | String / bytes  | Value to publish to the topic.                |
 
 <details>
   <summary>Method response object</summary>
@@ -49,4 +52,4 @@ See [response objects](./response-objects.md) for specific information.
 
 ## TopicClient
 
-Instead of the CacheClient used in most Momento Serverless Cache API calls, 
+Instead of the CacheClient used in most Momento Serverless Cache API calls, for Topics you use a TopicClient.
