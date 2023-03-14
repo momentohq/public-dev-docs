@@ -498,6 +498,46 @@ Sends a ping to the server. There are no parameters to the request.
 
 </details>
 
+### KeyExists
+
+Checks if a provided key exists in the cache.
+
+| Name            | Type            | Description                                   |
+| --------------- | --------------- | --------------------------------------------- |
+| cacheName       | String          | Name of the cache.                            |
+| key        | String \| byte          | Key which is to be checked for its existence in the cache.              |
+
+<details>
+    <summary>Method response object</summary>
+
+    * Success
+    - `exists()`: bool
+    * Error
+
+    See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+### KeysExist
+
+Checks if provided keys exist in the cache.
+
+| Name            | Type            | Description                                   |
+| --------------- | --------------- | --------------------------------------------- |
+| cacheName       | String          | Name of the cache.                            |
+| keys        | String[] \| byte[]          | Keys which are to be checked for their existence in the cache.              |
+
+<details>
+    <summary>Method response object</summary>
+
+    * Success
+    - `exists()`: bool[]
+    * Error
+
+    See [response objects](./response-objects.md) for specific information.
+
+</details>
+
 ## Time to Live APIs
 
 These APIs apply across all cache types.
