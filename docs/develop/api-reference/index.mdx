@@ -538,6 +538,28 @@ Checks if provided keys exist in the cache.
 
 </details>
 
+### SetIfNotExists
+
+Associates the given key with the given value. If a value for the key is already present it is not replaced with the new value.
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | Name of the cache.                            |
+| key        | String /| bytes | The key to be set. |
+| value      | String /| bytes | The value to be stored.                       |
+| ttlSeconds | Duration    | Time to Live for the item in Cache.           |
+
+<details>
+    <summary>Method response object</summary>
+
+    * Stored
+    * NotStored
+    * Error
+
+    See [response objects](./response-objects.md) for specific information.
+
+</details>
+
 ## Time to Live APIs
 
 These APIs apply across all cache types.
