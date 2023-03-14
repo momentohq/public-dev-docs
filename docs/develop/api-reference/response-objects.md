@@ -39,3 +39,12 @@ For fetch commands, the key or field exists in the cache and there is a "cache h
 ### Miss
 
 For fetch commands, the key or field does not exist and it a "cache miss."
+For update/increase/decreaseTtl commands, the update was not applied due to key not being present.
+
+### Set
+
+For update/increase/decreaseTtl commands, the update was applied.
+
+### NotSet
+
+For update/increase/decreaseTtl commands, the update was not applied and no change was made to the existing TTL.
