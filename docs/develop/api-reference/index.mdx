@@ -485,6 +485,48 @@ The resulting incremented value must be between -9223372036854775808 and 9223372
 
 :::
 
+## Time to Live APIs
+
+These APIs apply across all cache types.
+
+### UpdateTtl
+
+Overwrites the TTL of a cache item with the provided value in seconds.
+
+| Name      | Type   | Description                                     |
+| --------- | ------ | ----------------------------------------------- |
+| cacheName | String | Name of the cache.                              |
+| key       | String \| bytes | The key under which the value's TTL is to be updated. |
+| ttl       | Duration | Time to live that you want to update in cache in seconds. |
+
+### IncreaseTtl
+
+Increase the TTL seconds for a key to the provided value only if it would increase the TTL.
+
+Examples
+- If the TTL is 5 seconds and is increased to 6 seconds, the new TTL will be 6 seconds.
+- If the TTL is 5 seconds and is increased to 3 seconds, the TTL will not be increased.
+
+| Name      | Type   | Description                                     |
+| --------- | ------ | ----------------------------------------------- |
+| cacheName | String | Name of the cache.                              |
+| key       | String \| bytes | The key under which the value's TTL is to be increased. |
+| ttl       | Duration | Time to live that you want to increase to. |
+
+### DecreaseTtl
+
+Decrease the TTL seconds for a key to the provided value only if it would decrease the TTL.
+
+Examples
+- If the TTL is 5 seconds and is decreased to 3 seconds, the new TTL will be 3 seconds.
+- If the TTL is 5 seconds and is decreased to 6 seconds, the TTL will not be decreased.
+
+| Name      | Type   | Description                                     |
+| --------- | ------ | ----------------------------------------------- |
+| cacheName | String | Name of the cache.                              |
+| key       | String \| bytes | The key under which the value's TTL is to be decreased. |
+| ttl       | Duration | Time to live that you want to decrease to. |
+
 ### Collection data types (CDTs)
 
 Collections may contain different types of structures depending on your use case. Supported data types are:
@@ -506,37 +548,3 @@ For more in-depth information on usage, see [collection data types](./../datatyp
 | Set CDTs          | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                |
 | List CDTs         | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                |
 | Flush Cache       | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :x:                | :x:                | :white_check_mark: |
-
-## Universal Methods
-
-These APIs apply across all cache types.
-
-### UpdateTtl
-
-Sets a given Time To Live (TTL) seconds for a key to the provided value.
-
-| Name      | Type   | Description                                     |
-| --------- | ------ | ----------------------------------------------- |
-| cacheName | String | Name of the cache.                              |
-| key       | String \| bytes | The key under which the value's TTL is to be updated. |
-| ttl       | Duration | Time to live that you want to update in cache in seconds. |
-
-### IncreaseTtl
-
-Sets a given Time To Live (TTL) seconds for a key to the provided value only if it would increase the TTL.
-
-| Name      | Type   | Description                                     |
-| --------- | ------ | ----------------------------------------------- |
-| cacheName | String | Name of the cache.                              |
-| key       | String \| bytes | The key under which the value's TTL is to be increased. |
-| ttl       | Duration | Time to live that you want to increase to. |
-
-### DecreaseTtl
-
-Sets a given Time To Live (TTL) seconds for a key to the provided value only if it would decrease the TTL.
-
-| Name      | Type   | Description                                     |
-| --------- | ------ | ----------------------------------------------- |
-| cacheName | String | Name of the cache.                              |
-| key       | String \| bytes | The key under which the value's TTL is to be decreased. |
-| ttl       | Duration | Time to live that you want to decrease to. |

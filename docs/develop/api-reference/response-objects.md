@@ -34,17 +34,16 @@ The command was successful.
 
 ### Hit
 
-For fetch commands, the key or field exists in the cache and there is a "cache hit". Usually extended to return a value.
+The key or field exists in the cache. Usually extended to return a value.
 
 ### Miss
 
-For fetch commands, the key or field does not exist and it a "cache miss."
-For update/increase/decreaseTtl commands, the update was not applied due to key not being present.
+The key or field does not exist in the cache.
 
 ### Set
 
-For update/increase/decreaseTtl commands, the update was applied.
+For TTL commands, the update was applied successfully.
 
 ### NotSet
 
-For update/increase/decreaseTtl commands, the update was not applied and no change was made to the existing TTL.
+For TTL commands, the update was not applied and no change was made to the existing TTL.
