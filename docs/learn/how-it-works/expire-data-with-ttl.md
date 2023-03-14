@@ -11,7 +11,13 @@ slug: /learn/how-it-works/expire-data-with-ttl
 
 This document provides an overview of Momento Serverless Cache’s time-to-live (TTL) functionality. TTL allows items to expire automatically from the cache after a specified number of seconds.
 
-Note: The service handles TTL expiry and does not consume any bandwidth for metering in your monthly transfer cost.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FDmk6RP8-b0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+:::note
+
+Momento Serverles Cache handles TTL expiry and does not consume any bandwidth for metering in your monthly transfer cost.
+
+:::
 
 ## Expire items after a specified number of seconds
 The TTL value is the number of seconds from when Momento Serverless Cache writes the item to storage until the item expires from the cache. For example, if you set an item’s TTL value to 900 seconds (15 minutes), the item will expire 15 minutes after insertion into the cache.
