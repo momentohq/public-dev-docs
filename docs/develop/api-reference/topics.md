@@ -1,8 +1,8 @@
 ---
 sidebar_position: 4
 sidebar_label: Topics (Pub/Sub)
-title: Topics (Pub/sub) API reference
-description: Learn how to interact with the API for pub/sub in Momento Serverless Cache.
+title: Topics (pub/sub) API reference
+description: Learn how to interact programitcally with Momento Topics pub/sub API.
 slug: /develop/api-reference/topics
 ---
 
@@ -10,7 +10,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Using the Momento Topics (pub/sub) API with Momento Serverless Cache
-This page details the Momento API methods for Momento Topics, a high speed low drag serverless pub/sub feature.
+Momento Topics is a messaging pattern that allows for real-time communication between parts of a distributed application. It enables you to publish (produce) values to a topic, as well as subscribe (consume) from a topic. This page details the Momento API methods for interacting with Momento Topics.
 
 ## Topics methods
 
