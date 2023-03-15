@@ -6,6 +6,9 @@ description: Learn how to interact with the API for pub/sub in Momento Serverles
 slug: /develop/api-reference/topics
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Using the Momento Topics (pub/sub) API with Momento Serverless Cache
 This page details the Momento API methods for Momento Topics, a high speed low drag serverless pub/sub feature.
 
@@ -18,6 +21,15 @@ This method subscribes to a topic to receive new values with a stateful connecti
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache where the topic exists.     |
 | topicName       | String          | Name of the topic to subscribe to.            |
+
+<Tabs>
+  <TabItem value="golang" label="Go" default>
+    This is <a href="https://github.com/momentohq/client-sdk-go/blob/main/examples/pubsub-example/main.go#L26">example code</a>.
+  </TabItem>
+  <TabItem value="nodejs" label="Node.js" default>
+    Coming soon.
+  </TabItem>
+</Tabs>
 
 <details>
   <summary>Method response object</summary>
@@ -40,6 +52,15 @@ Publishes a message to a topic.
 | topicName       | String          | Name of the topic to publish the value to.    |
 | value           | String / bytes  | Value to publish to the topic.                |
 
+<Tabs>
+  <TabItem value="golang" label="Go" default>
+    This is <a href="https://github.com/momentohq/client-sdk-go/blob/main/examples/pubsub-example/main.go#L95">example code</a>.
+  </TabItem>
+  <TabItem value="nodejs" label="Node.js" default>
+    Coming soon.
+  </TabItem>
+</Tabs>
+
 <details>
   <summary>Method response object</summary>
 
@@ -52,4 +73,4 @@ See [response objects](./response-objects.md) for specific information.
 
 ## TopicClient
 
-Instead of the CacheClient used in most Momento Serverless Cache API calls, for Topics you use a TopicClient.
+Instead of the CacheClient, as used in most Momento Serverless Cache API calls, for Topics you use a TopicClient object.
