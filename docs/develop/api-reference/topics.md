@@ -2,7 +2,7 @@
 sidebar_position: 4
 sidebar_label: Topics (Pub/Sub)
 title: Topics (pub/sub) API reference
-description: Learn how to interact programitcally with Momento Topics pub/sub API.
+description: Learn how to interact programmatically with Momento Topics pub/sub API.
 slug: /develop/api-reference/topics
 ---
 
