@@ -22,7 +22,7 @@ Momento Serverless Cache はAPI ベースのサーバーレスサービスです
 
 まずはじめに、無料の認証トークンを作成し、キャッシュを作成し、そのキャッシュ上で`set` や`get` コマンドを実行してみましょう。以下を起動します。
 
-[![CLI lab](images/cli_lab_jp.png)](https://play.instruqt.com/embed/momento/tracks/hands-on-with-momento-cli-japanese?token=em_bsKxhS3nsrbYBv8H)
+[![CLI lab](images/cli_lab_jp.png)](https://play.instruqt.com/embed/momento/tracks/hands-on-with-momento-cli-japanese?token=em_bsKxhS3nsrbYBv8H&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2ja%2Fgetting-started#cli-とsdk-をブラウザ上で試してみる)
 
 <br />
 <br />
