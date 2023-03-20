@@ -485,6 +485,123 @@ The resulting incremented value must be between -9223372036854775808 and 9223372
 
 :::
 
+### Ping
+Sends a ping to the server. This API can be used for checking connectivity to confirm that the client can connect to the server successfully.
+
+<details>
+    <summary>Method response object</summary>
+
+    * Success
+    * Error
+
+    See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+### KeyExists
+
+Checks if a provided key exists in the cache.
+
+| Name            | Type            | Description                                   |
+| --------------- | --------------- | --------------------------------------------- |
+| cacheName       | String          | Name of the cache.                            |
+| key        | String \| byte          | Key which is to be checked for its existence in the cache.              |
+
+<details>
+    <summary>Method response object</summary>
+
+    * Success
+    - `exists()`: bool
+    * Error
+
+    See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+### KeysExist
+
+Checks if provided keys exist in the cache.
+
+| Name            | Type            | Description                                   |
+| --------------- | --------------- | --------------------------------------------- |
+| cacheName       | String          | Name of the cache.                            |
+| keys        | String[] \| byte[]          | Keys which are to be checked for their existence in the cache.              |
+
+<details>
+    <summary>Method response object</summary>
+
+    * Success
+    - `exists()`: bool[]
+    * Error
+
+    See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+### SetIfNotExists
+
+Associates the provided value to a cache item with a given key.
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | Name of the cache.                            |
+| key        | String /| bytes | The key to be set. |
+| value      | String /| bytes | The value to be stored.                       |
+| ttlSeconds | Duration    | Time to Live for the item in Cache.           |
+
+<details>
+    <summary>Method response object</summary>
+
+    * Stored
+    * NotStored
+    * Error
+
+    See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+## Time to Live APIs
+
+These APIs apply across all cache types.
+
+### UpdateTtl
+
+Overwrites the TTL of a cache item with the provided value in seconds.
+
+| Name      | Type   | Description                                     |
+| --------- | ------ | ----------------------------------------------- |
+| cacheName | String | Name of the cache.                              |
+| key       | String \| bytes | The key under which the value's TTL is to be updated. |
+| ttl       | Duration | Time to live that you want to update in cache in seconds. |
+
+### IncreaseTtl
+
+Increase the TTL seconds for a key to the provided value only if it would increase the TTL.
+
+Examples
+- If the TTL is 5 seconds and is increased to 6 seconds, the new TTL will be 6 seconds.
+- If the TTL is 5 seconds and is increased to 3 seconds, the TTL will not be increased.
+
+| Name      | Type   | Description                                     |
+| --------- | ------ | ----------------------------------------------- |
+| cacheName | String | Name of the cache.                              |
+| key       | String \| bytes | The key under which the value's TTL is to be increased. |
+| ttl       | Duration | Time to live that you want to increase to. |
+
+### DecreaseTtl
+
+Decrease the TTL seconds for a key to the provided value only if it would decrease the TTL.
+
+Examples
+- If the TTL is 5 seconds and is decreased to 3 seconds, the new TTL will be 3 seconds.
+- If the TTL is 5 seconds and is decreased to 6 seconds, the TTL will not be decreased.
+
+| Name      | Type   | Description                                     |
+| --------- | ------ | ----------------------------------------------- |
+| cacheName | String | Name of the cache.                              |
+| key       | String \| bytes | The key under which the value's TTL is to be decreased. |
+| ttl       | Duration | Time to live that you want to decrease to. |
+
 ### Collection data types (CDTs)
 
 Collections may contain different types of structures depending on your use case. Supported data types are:
