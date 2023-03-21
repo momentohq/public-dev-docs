@@ -33,7 +33,7 @@ import os
 ## Create a new cache in Momento Serverless Cache
 Use this function to create a new cache in your account
 ```python
-  def create_cache(cache_name):
+  def create_cache(cache_name) -> None:
     with MomentoCounter.client() as client:
       resp = client.create_cache(cache_name)
       match resp:
