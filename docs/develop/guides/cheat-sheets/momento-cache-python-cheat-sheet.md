@@ -65,9 +65,9 @@ In this example, we use the client function above to get a client object and the
 ## Write an item to a cache
 A simple example of doing a set operation. In the client.set call, you could pass a fourth value, the TTL and this would override the default TTL value set with the client connection object.
 ```python
-  def set(cache_name, key, value):
+  def set(cache_name, key, value, ttl=None):
     with MomentoCounter.client() as client:
-      resp = client.set(cache_name,key,value)
+      resp = client.set(cache_name, key, value, ttl)
       match resp:
         case CacheSet.Success():
             pass
@@ -81,7 +81,6 @@ A simple example of doing a set operation. In the client.set call, you could pas
 This is an example of a simple read operation to get an item from a cache.
 ```python
   def get(cache_name, key):
-    cache_name = os.getenv('MOMENTO_CACHE_NAME')
     with MomentoCounter.client() as client:
       resp = client.get(cache_name, key)
       if isinstance(resp, CacheGet.Hit):
@@ -96,7 +95,7 @@ An example of incrementing a value in a key. You can pass in any number
 ```python
   def incr(cache_name, key, value:int = 1):
     with MomentoCounter.client() as client:
-      resp = client.increment(cache_name,key,value)
+      resp = client.increment(cache_name, key, value)
       match resp:
         case CacheIncrement.Success():
             pass
