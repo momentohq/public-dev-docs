@@ -22,7 +22,7 @@ class MomentoBasics:
         case CreateCache.Success():
             print("Cache created.")
         case CreateCache.Error() as error:
-            print(f"Error incrementing value: {error.message}")
+            print(f"Error creating cache: {error.message}")
         case _ as error:
             print(f"Unreachable with {error.message}")
 
@@ -35,7 +35,7 @@ class MomentoBasics:
                 for cache_info in success.caches:
                     print(f"- {cache_info.name!r}")
             case ListCaches.Error() as error:
-                print(f"Error creating cache: {error.message}")
+                print(f"Error listing caches: {error.message}")
             case _:
                 print("Unreachable")
         print("")
@@ -47,7 +47,7 @@ class MomentoBasics:
         case CacheSet.Success():
             pass
         case CacheSet.Error() as error:
-            print(f"Error incrementing value: {error.message}")
+            print(f"Error setting value: {error.message}")
         case _:
             print("Unreachable")
 
