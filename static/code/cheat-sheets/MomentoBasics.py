@@ -52,14 +52,15 @@ class MomentoBasics:
             print("Unreachable")
 
   def get(cache_name, key):
-    with MomentoBasics.client() as client:
+    with MomentoCounter.client() as client:
       resp = client.get(cache_name, key)
-      if isinstance(resp, CacheGet.Hit):
-        return resp.value_string
-      elif isinstance(resp, CacheGet.Miss):
-        raise ValueError("There is a cache miss. That key does not exist in this cache.", cache_name, "key_name : " + key)
-      elif isinstance(resp, CacheGet.Error):
-        raise resp.inner_exception
+      match resp:
+        case CacheGet.Hit():
+            print("value is " + resp.value_string)
+        case CacheGet.Miss() as error:
+            print(f"Error getting key: {error.message}")
+        case _:
+            print("Unreachable")
       
   def incr(cache_name, key, value:int = 1):
     with MomentoBasics.client() as client:
