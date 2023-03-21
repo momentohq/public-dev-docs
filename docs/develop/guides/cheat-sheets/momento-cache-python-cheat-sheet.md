@@ -9,7 +9,7 @@ description: Everything to get you going with coding using Python and Momento Se
 # Cheat Sheet for Python with Momento Serverless Cache
 If you need to get going quickly with Python and Momento Serverless Cache, this page contains the basic API calls you'll need.
 
-:::note
+:::tip
 
 If you combine all of the functions on this page into one python file, you'd have a central collection of functions you can import and call from other python code. In addition, if you are putting this into production, you might look to replace the print() calls with ones using the logging library (`import logging`) in python. Click [here](../../../../static/code/cheat-sheets/MomentoBasics.py) to see the class file with all definitions in it.
 
@@ -108,7 +108,9 @@ An example of incrementing a value in a key. You can pass in any number
             print("Unreachable")
 ```
 
+:::info
 Beyond these basic API calls check out the [API reference page](../../api-reference/index.mdx) for more information on the full assortment of Momento API calls.
+:::
 
 ## Notes of further usage
 It could be adventageous to reuse the CacheClient connection object across multiple API calls depending on how your app works. If this is something you want to do, then you should modify the client() function definition to return a CacheClient object like so:
