@@ -21,7 +21,7 @@ import os
 
   def client():
     momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_AUTH_TOKEN')
-    ttl  = timedelta(int(os.getenv('MOMENTO_TTL_SECONDS')))
+    ttl  = timedelta(seconds=int(os.getenv('MOMENTO_TTL_SECONDS', '60')))
     config = {
       'configuration': Configurations.Laptop.v1(),
       'credential_provider': momento_auth_token,
