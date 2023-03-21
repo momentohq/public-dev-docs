@@ -21,7 +21,7 @@ import os
 
   def client():
     momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_AUTH_TOKEN')
-    ttl  = timedelta(int(os.getenv('MOMENTO_TTL_SECONDS')))
+    ttl  = timedelta(seconds=int(os.getenv('MOMENTO_TTL_SECONDS', '60')))
     config = {
       'configuration': Configurations.Laptop.v1(),
       'credential_provider': momento_auth_token,
@@ -75,7 +75,6 @@ A simple example of doing a set operation. In the client.set call, you could pas
             print(f"Error incrementing value: {error.message}")
         case _:
             print("Unreachable")
-```
 
 ## Read an item from a cache
 This is an example of a simple read operation to get an item from a cache.
