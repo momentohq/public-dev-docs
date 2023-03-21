@@ -70,7 +70,7 @@ In this example, we use the client function above to get a client object and the
         print("")
 ```
 ## Write an item to a cache
-A simple example of doing a set operation. In the client.set call, you could pass a fourth value, the TTL and this would override the default TTL value set with the client connection object.
+A simple example of doing a set operation. In the client.set call, the TTL it optional. If you did pass it in, this would override the default TTL value set with the client connection object.
 ```python
   def set(cache_name, key, value, ttl=None):
     with MomentoBasics.client() as client:
