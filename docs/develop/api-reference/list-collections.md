@@ -13,12 +13,14 @@ This page details the Momento API methods for the [list collection data types](.
 
 ### ListFetch
 
-Gets a list item from a cache.
+Gets a list item from a cache, with optional slices.
 
-| Name            | Type   | Description                                   |
-| --------------- | ------ | --------------------------------------------- |
-| cacheName       | String | Name of the cache.                            |
-| listName        | String | The name of the list item to be retreived.         |
+| Name       | Type   | Description                                                                 |
+|------------|--------|-----------------------------------------------------------------------------|
+| cacheName  | String | Name of the cache.                                                          |
+| listName   | String | The name of the list item to be retrieved.                                  |
+| startIndex | Number | The starting inclusive element of the list to fetch. Default is 0. **This argument is optional.** |
+| endIndex   | Number | The ending exclusive element of the list to fetch. Default is end of list. **This argument is optional.** |
 
 <details>
   <summary>Method response object</summary>
@@ -225,6 +227,34 @@ Responses
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+### ListRetain
+
+Retains only slice of the list where the start is inclusive and the end is exclusive.  The items outside of this range will be dropped from the list.
+
+Example:
+For the specified list, start at index 4 (the startIndex) and keep the next five elements, end at index 10 (the endIndex). Discard all other elements in the list. In this example, elements at position 0-3 and 9 or higher are dropped.
+
+| Name       | Type                                        | Description                                                                                                              |
+|------------|---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| cacheName  | String                                      | Name of the cache.                                                                                                       |
+| listName   | String                                      | Name of the list item to be set.                                                                                         |
+| startIndex | Number                                      | The starting inclusive element of the list to retain. Default is 0.                                                      |
+| endIndex   | Number                                      | The ending exclusive element of the list to retain. Default is end of list.                                              |
+| ttl        | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+
+<details>
+  <summary>Method response object</summary>
+
+Responses
+
+* Success - even if the value does not exist
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
 
 ## Truncate to size
 
