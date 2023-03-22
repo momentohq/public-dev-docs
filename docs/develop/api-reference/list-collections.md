@@ -19,8 +19,8 @@ Gets a list item from a cache, with optional slices.
 |------------|--------|-----------------------------------------------------------------------------|
 | cacheName  | String | Name of the cache.                                                          |
 | listName   | String | The name of the list item to be retrieved.                                  |
-| startIndex | Number | The starting inclusive element of the list to fetch. Default is 0.          |
-| endIndex   | Number | The ending exclusive element of the list to fetch. Default is end of list.  |
+| startIndex | Number | The starting inclusive element of the list to fetch. Default is 0. **This argument is optional.** |
+| endIndex   | Number | The ending exclusive element of the list to fetch. Default is end of list. **This argument is optional.** |
 
 <details>
   <summary>Method response object</summary>
