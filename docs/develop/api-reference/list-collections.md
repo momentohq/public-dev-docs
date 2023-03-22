@@ -229,7 +229,8 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### ListRetain
-Retains only slice of the list where the start is inclusive and the end is exclusive, what isn't retained, will be dropped from the list.
+
+Retains only slice of the list where the start is inclusive and the end is exclusive.  The items outside of this range will be dropped from the list.
 
 Example:
 For the specified list, start at index 4 (the startIndex) and keep the next five elements, end at index 10 (the endIndex). Discard all other elements in the list. In this example, elements at position 0-3 and 9 or higher are dropped.
