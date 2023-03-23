@@ -3,12 +3,12 @@ sidebar_position: 4
 sidebar_label: Service Limits
 title: Service limits
 pagination_next: null
-description: Explore Momento Serverless Cache's service limits, the default values, and how to get them changed if you need.
+description: Explore Momento Cache's service limits, the default values, and how to get them changed if you need.
 ---
 
-# Service Limits for Momento Serverless Cache
+# Service Limits for Momento Cache
 
-Momento Serverless Cache seeks to provide protection for its customers and itself when it comes to service resources. To do this, every account and cache has service limits, or what we call guardrails (like a curvy mountain road), to help keep operations running how they should and as smoothly as possible. This page outlines the default service limits:
+Momento Cache seeks to provide protection for its customers and itself when it comes to service resources. To do this, every account and cache has service limits, or what we call guardrails (like a curvy mountain road), to help keep operations running how they should and as smoothly as possible. This page outlines the default service limits:
 
 | Limit                                 | Value    |
 |---------------------------------------|----------|

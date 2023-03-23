@@ -4,7 +4,7 @@ Title: Tutorial - Read-aside caching
 Description: In this tutorial, you add an easy to use read-aside cache to your application
 ---
 
-# Read-aside caching with Momento Serverless Cache
+# Read-aside caching with Momento Cache
 
 In the previous step, we installed and configured Momento within our serverless application. As part of that, we learned some important details about the Lambda lifecycle that will help with performance, particularly when making external network calls from our application.
 
@@ -38,7 +38,7 @@ We will insert items into the cache only after a previous attempt to read from t
 
 Finally, it uses a _cache-aside_ mechanism rather than an _inline_ approach.
 
-We'll use Momento Serverless Cache, a serverless key-value cache, to store any data we want, rather than an inline cache that has a tight integration with Amazon DynamoDB. DynamoDB does have Amazon DynamoDB Accelerator (DAX) as an inline cache for DynamoDB. However, it is not serverless, requires the use of a VPC and complicated network configuration that are not a good fit for a serverless application. The cache-aside strategy with Momento Serverless Cache is a better approach here.
+We'll use Momento Cache, a serverless key-value cache, to store any data we want, rather than an inline cache that has a tight integration with Amazon DynamoDB. DynamoDB does have Amazon DynamoDB Accelerator (DAX) as an inline cache for DynamoDB. However, it is not serverless, requires the use of a VPC and complicated network configuration that are not a good fit for a serverless application. The cache-aside strategy with Momento Cache is a better approach here.
 
 Now that we know the three factors to consider in choosing our caching strategy and the reasons we chose a read-aside strategy, let's get to work implementing this in our application.
 

@@ -9,7 +9,7 @@ slug: /develop/api-reference/topics
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Using the Momento Topics (pub/sub) API with Momento Serverless Cache
+# Using the Momento Topics (pub/sub) API with Momento Cache
 Momento Topics is a messaging pattern that allows for real-time communication between parts of a distributed application. It enables you to publish (produce) values to a topic, as well as subscribe (consume) from a topic. This page details the Momento API methods for interacting with Momento Topics.
 
 ## Topics methods
@@ -73,4 +73,4 @@ See [response objects](./response-objects.md) for specific information.
 
 ## TopicClient
 
-Instead of the CacheClient, as used in most Momento Serverless Cache API calls, for Topics you use a TopicClient object.
+Instead of the CacheClient, as used in most Momento Cache API calls, for Topics you use a TopicClient object.

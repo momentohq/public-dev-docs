@@ -2,13 +2,13 @@
 sidebar_position: 4
 sidebar_label: Sorted sets
 title: Sorted set collections API reference
-description: Learn how to interact with the API for sorted set collection data types in Momento Serverless Cache.
+description: Learn how to interact with the API for sorted set collection data types in Momento Cache.
 slug: /develop/api-reference/collections/sortedsets
 ---
 
 # Sorted set collections
 
-A sorted set in Momento Serverless Cache is a collection of unique elements with a value (string, byte[], etc.) and score (signed double 64-bit float) pair. The elements in the item are ordered by the score.
+A sorted set in Momento Cache is a collection of unique elements with a value (string, byte[], etc.) and score (signed double 64-bit float) pair. The elements in the item are ordered by the score.
 
 ## Sorted set methods
 

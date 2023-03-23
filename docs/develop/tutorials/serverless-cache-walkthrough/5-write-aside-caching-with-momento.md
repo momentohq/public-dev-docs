@@ -5,7 +5,7 @@ pagination_next: null
 Description: In this tutorial, you add an easy to use write-aside cache to your application
 ---
 
-# Write-aside caching with Momento Serverless Cache
+# Write-aside caching with Momento Cache
 
 In the previous step, we added our initial caching implementation by adding read-aside caching to our application. As part of that, we learned about different caching strategies and the factors to consider in choosing a cache strategy.
 

@@ -2,11 +2,11 @@
 sidebar_position: 2
 sidebar_label: Lists
 title: List API reference
-description: Learn how to interact with the API for list collection data types in Momento Serverless Cache.
+description: Learn how to interact with the API for list collection data types in Momento Cache.
 slug: /develop/api-reference/collections/list
 ---
 
-# List API reference for Momento Serverless Cache
+# List API reference for Momento Cache
 This page details the Momento API methods for the [list collection data types](./../datatypes.md#list-collections).
 
 ## List methods

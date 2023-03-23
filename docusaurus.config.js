@@ -6,7 +6,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Momento Serverless Cache",
+  title: "Momento Cache",
   tagline: "The World's Fastest Cache",
   url: "https://docs.momentohq.com",
   baseUrl: "/",
