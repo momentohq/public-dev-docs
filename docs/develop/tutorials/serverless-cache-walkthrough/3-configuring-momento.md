@@ -1,9 +1,9 @@
 ---
 sidebar_position: 3
-Description: In this tutorial, learn to configure Momento Serverless Cache for use in your application
+Description: In this tutorial, learn to configure Momento Cache for use in your application
 ---
 
-# Configuring Momento Serverless Cache
+# Configuring Momento Cache
 
 In the previous step, we deployed a basic serverless application using AWS Lambda, API Gateway, and Amazon DynamoDB. With this, we implemented the basics of account management within our application.
 

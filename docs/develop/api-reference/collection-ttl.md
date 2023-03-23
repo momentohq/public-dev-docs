@@ -2,7 +2,7 @@
 sidebar_position: 10
 sidebar_label: CollectionTTL object
 title: CollectionTTL API reference
-description: Learn how to interact with the CollectionTTL object in Momento Serverless Cache.
+description: Learn how to interact with the CollectionTTL object in Momento Cache.
 slug: /develop/api-reference/collections/collectionttl
 ---
 
@@ -12,7 +12,7 @@ This object is passed into API methods to say whether a TTL should be updated an
 
 This tries to make the process more intuitive by providing named constructors and copiers for various situations.
 
-See [Expire Data with TTL](../../../learn/how-it-works/expire-data-with-ttl) for more information on how TTL works with Momento Serverless Cache.
+See [Expire Data with TTL](../../../learn/how-it-works/expire-data-with-ttl) for more information on how TTL works with Momento Cache.
 
 ## Common method behaviors
 

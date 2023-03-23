@@ -2,11 +2,11 @@
 sidebar_position: 3
 sidebar_label: Sets
 title: Set API reference
-description: Learn how to interact with the API for set collection data types in Momento Serverless Cache.
+description: Learn how to interact with the API for set collection data types in Momento Cache.
 slug: /develop/api-reference/collections/sets
 ---
 
-# Set API reference for Momento Serverless Cache
+# Set API reference for Momento Cache
 
 A set is a collection of elements, but each element can appear only once and order is not guaranteed.
 

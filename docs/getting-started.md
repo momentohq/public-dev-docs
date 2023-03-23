@@ -5,17 +5,17 @@ sidebar_class_name: sidebar-item-getting-started
 title: Getting Started
 pagination_prev: null
 pagination_next: null
-description: Jump in and get started quickly using Momento Serverless Cache with your SDK of choice or CLI.
+description: Jump in and get started quickly using Momento Cache with your SDK of choice or CLI.
 ---
 
-# Getting Started with Momento Serverless Cache
-If you're looking to jump in and get started with Momento Serverless Cache with an SDK or CLI, you've come to the right place. Want to quickly get a feel for the Momento experience without installing any software? You can do so right here [in your browser](#try-our-cli-and-an-sdk-in-your-browser). Or, if you're ready to setup your development environment and get to building your own applications with Momento you can follow the [simple instructions below](#install-the-momento-command-line-interface-cli).
+# Getting Started with Momento Cache
+If you're looking to jump in and get started with Momento Cache with an SDK or CLI, you've come to the right place. Want to quickly get a feel for the Momento experience without installing any software? You can do so right here [in your browser](#try-our-cli-and-an-sdk-in-your-browser). Or, if you're ready to setup your development environment and get to building your own applications with Momento you can follow the [simple instructions below](#install-the-momento-command-line-interface-cli).
 
 ## Try our CLI and an SDK in your browser
 
-You can try out Momento Serverless Cache today, right in your browser. No software installation required!
+You can try out Momento Cache today, right in your browser. No software installation required!
 :::note
-Momento Serverless Cache is an API based serverless service. It does not deploy anything into your (AWS, GCP, Azure, etc.) account.
+Momento Cache is an API based serverless service. It does not deploy anything into your (AWS, GCP, Azure, etc.) account.
 :::
 
 <br />
@@ -98,9 +98,9 @@ Options:
 
 ### Obtain an auth token
 
-[Authentication in Momento is done via an authentication token](./learn/how-it-works#authentication-token), and you can sign up for a Momento Serverless Cache auth token directly from the command line interface installed in the previous section.
+[Authentication in Momento is done via an authentication token](./learn/how-it-works#authentication-token), and you can sign up for a Momento Cache auth token directly from the command line interface installed in the previous section.
 
-Authentication tokens are associated with a specific Momento Serverless Cache cloud provider and specific region. You can provision an auth token **for each region** using the `account` command with your desired cloud provider and Region:
+Authentication tokens are associated with a specific Momento Cache cloud provider and specific region. You can provision an auth token **for each region** using the `account` command with your desired cloud provider and Region:
 
 #### AWS [available regions are us-west-2, us-east-1, ap-northeast-1, ap-south-1]
 
@@ -137,13 +137,13 @@ Default TTL Seconds [600]: 30 // Sets the default TTL for cache entries. For dem
 [2022-03-31T15:31:33Z INFO  momento::commands::configure::configure_cli] default cache successfully created
 ```
 
-You are now up and running with Momento Serverless Cache! Let's see how to use the Momento CLI to cache data in Momento Serverless Cache.
+You are now up and running with Momento Cache! Let's see how to use the Momento CLI to cache data in Momento Cache.
 
 ## Cache some data
 
-The `cache` command in the Momento CLI is used to interact with your Momento Serverless Cache. Let's see a few of these commands in action.
+The `cache` command in the Momento CLI is used to interact with your Momento cache. Let's see a few of these commands in action.
 
-First, you can use the `set` subcommand to store an item in your default Momento Serverless Cache:
+First, you can use the `set` subcommand to store an item in your default Momento Cache:
 
 ```
 $ momento cache set --key test --value value
@@ -201,7 +201,7 @@ For more information about any of the parameters for a subcommand, you can use `
 
 ## Next steps
 
-The CLI is great for testing and for understanding the core Momento Serverless Cache API, but most of your caching work will be done in your application. For those, you can use the Momento SDKs.
+The CLI is great for testing and for understanding the core Momento Cache API, but most of your caching work will be done in your application. For those, you can use the Momento SDKs.
 
 We currently have the following SDK's languages available. Check out each repo for detailed instructions and usage examples.
 
@@ -217,5 +217,5 @@ We currently have the following SDK's languages available. Check out each repo f
 ## FAQ
 <details>
   <summary>Does Momento deploy any resources into my cloud account?</summary>
-No it does not. Momento Serverless Cache is an API-based serverless service that you call from within your application code.
+No it does not. Momento Cache is an API-based serverless service that you call from within your application code.
 </details>

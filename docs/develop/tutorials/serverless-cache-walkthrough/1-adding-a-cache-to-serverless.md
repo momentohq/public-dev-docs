@@ -3,12 +3,12 @@ sidebar_position: 1
 sidebar_label: Introduction and setup
 title: Introduction and setup
 pagination_prev: null
-Description: In this tutorial, learn to add a serverless cache to your serverless application using Momento Serverless Cache.
+Description: In this tutorial, learn to add a serverless cache to your serverless application using Momento Cache.
 ---
 
 # Introduction and setup
 
-In this tutorial, you will learn how to add a cache to your serverless application with AWS Lambda. To do so, you will use Momento Serverless Cache, a cache service built for​​ deep integration with serverless applications. Momento Serverless Cache combines instant, elastic, cache storage with a pay-for-value pricing model, and blazing-fast performance.
+In this tutorial, you will learn how to add a cache to your serverless application with AWS Lambda. To do so, you will use Momento Cache, a cache service built for​​ deep integration with serverless applications. Momento Cache combines instant, elastic, cache storage with a pay-for-value pricing model, and blazing-fast performance.
 
 As you work through this tutorial, you will build a simple account management service for your application. You'll have endpoints for creating users and organizations and for adding users to an organization via memberships. Finally, you'll be able to check whether a user belongs to an organization, a frequently used authorization pattern.
 

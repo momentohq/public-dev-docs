@@ -2,11 +2,11 @@
 sidebar_position: 1
 sidebar_label: Dictionary
 title: Dictionary API reference
-description: Learn how to interact with the API for dictionary collection data types in Momento Serverless Cache.
+description: Learn how to interact with the API for dictionary collection data types in Momento Cache.
 slug: /develop/api-reference/collections/dictionary
 ---
 
-# Dictionary API reference for Momento Serverless Cache
+# Dictionary API reference for Momento Cache
 This page details the Momento API methods for the [dictionary collection data type](./../datatypes.md#dictionary-collections).
 
 ## Dictionary methods

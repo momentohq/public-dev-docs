@@ -2,12 +2,12 @@
 sidebar_position: 1
 sidebar_label: Python
 sidebar_class_name: sidebar-item-python-cheat-sheet
-title: Cheat Sheet for Python + Momento Serverless Cache
-description: Everything to get you going with coding using Python and Momento Serverless Cache
+title: Cheat Sheet for Python + Momento Cache
+description: Everything to get you going with coding using Python and Momento Cache
 ---
 
-# Cheat Sheet for Python with Momento Serverless Cache
-If you need to get going quickly with Python and Momento Serverless Cache, this page contains the basic API calls you'll need.
+# Cheat Sheet for Python with Momento Cache
+If you need to get going quickly with Python and Momento Cache, this page contains the basic API calls you'll need.
 
 :::tip
 
@@ -37,7 +37,7 @@ class MomentoBasics:
     return CacheClient(**config)
 ```
 
-## Create a new cache in Momento Serverless Cache
+## Create a new cache in Momento Cache
 Use this function to create a new cache in your account.
 ```python
   def create_cache(cache_name) -> None:

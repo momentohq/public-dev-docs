@@ -3,26 +3,26 @@ sidebar_position: 3
 sidebar_class_name: sidebar-item-develop-ttl
 sidebar_label: Expiring data with TTL
 title: Expiring data with Time to Live (TTL)
-description: Learn about expiring data from a cache using Time to Live (TTL) in Momento Serverless Cache
+description: Learn about expiring data from a cache using Time to Live (TTL) in Momento Cache
 slug: /learn/how-it-works/expire-data-with-ttl
 ---
 
-# Expire data with Time-to-Live (TTL) in Momento Serverless Cache
+# Expire data with Time-to-Live (TTL) in Momento Cache
 
-This document provides an overview of Momento Serverless Cache’s time-to-live (TTL) functionality. TTL allows items to expire automatically from the cache after a specified number of seconds.
+This document provides an overview of Momento Cache’s time-to-live (TTL) functionality. TTL allows items to expire automatically from the cache after a specified number of seconds.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/FDmk6RP8-b0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 :::note
 
-Momento Serverless Cache handles TTL expiry and does not consume any bandwidth for metering in your monthly transfer cost.
+Momento Cache handles TTL expiry and does not consume any bandwidth for metering in your monthly transfer cost.
 
 :::
 
 ## Expire items after a specified number of seconds
-The TTL value is the number of seconds from when Momento Serverless Cache writes the item to storage until the item expires from the cache. For example, if you set an item’s TTL value to 900 seconds (15 minutes), the item will expire 15 minutes after insertion into the cache.
+The TTL value is the number of seconds from when Momento Cache writes the item to storage until the item expires from the cache. For example, if you set an item’s TTL value to 900 seconds (15 minutes), the item will expire 15 minutes after insertion into the cache.
 
-## How to set TTL in Momento Serverless Cache
+## How to set TTL in Momento Cache
 There are three locations to set a TTL value:
 1. When creating a SimpleCacheClient object in a Momento SDK, you must set a TTL value for the connection. Any future SET operation using that client object will use that TTL value, unless you override the value.
 
