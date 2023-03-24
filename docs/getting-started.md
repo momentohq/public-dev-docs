@@ -102,7 +102,7 @@ Options:
 
 Authentication tokens are associated with a specific Momento Cache cloud provider and specific region. You can provision an auth token **for each region** using the `account` command with your desired cloud provider and Region:
 
-#### AWS [available regions are us-west-2, us-east-1, ap-northeast-1, ap-south-1]
+#### AWS [available regions are us-west-2, us-east-1, ap-northeast-1, ap-south-1, eu-west-1]
 
 ```console
 momento account signup aws --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
