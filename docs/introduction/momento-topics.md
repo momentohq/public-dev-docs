@@ -21,12 +21,14 @@ This topic-based communication allows for effective routing and filtering, as su
 
 Momento Topics operates on a fire-and-forget messaging model, which means that once an item is published, it is immediately sent to all current subscribers of the topic and then discarded. There is no built-in item persistence or delivery guarantees. Consequently, Momento Topics is most suitable for applications where low latency is crucial, and occasional item loss can be tolerated.
 
-
 :::note
 
 As Momento Topics uses Momento Cache as its backend, you either use an existing cache or create a new cache in Momento Cache, then call the Momento Topics publish and subscribe API.
 
 :::
+
+## API calls for Momento Topics
+See [API reference page for Topics](./../develop/api-reference/topics.md).
 
 ## Frequently asked questions about Momento Topics (pub/sub)
 
