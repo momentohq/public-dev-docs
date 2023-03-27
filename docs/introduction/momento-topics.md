@@ -9,7 +9,9 @@ description: Learn about Momento Topics, a high-speed, low-drag serverless pub/s
 
 # What is Momento Topics?
 
-Momento Topics is a high-speed, low-drag serverless pub/sub (publish/subscribe) messaging pattern that allows for real-time communication between parts of a distributed system. Memento Topics allows your apps to subscribe to topics to receive items published to the topic by your app’s publishers. As the Momento Topics service is serverless, there is no infrastructure to create or manage and no pub/sub topic to instantiate. When you publish an item to a topic, if it does not exist yet, the topic is created. As Topics utilizes Momento Cache, there is no scaling either. You’re charged just for [the data transferred in and out](./../manage/pricing.md).
+Momento Topics is a high-speed, low-drag serverless pub/sub (publish/subscribe) messaging pattern that allows for real-time communication between parts of a distributed system. Memento Topics allows your apps to subscribe to topics to receive items published to the topic by your app’s publishers. As the Momento Topics service is serverless, there is no infrastructure to create or manage and no pub/sub topic to instantiate. When you publish an item to a topic, if it does not exist yet, the topic is created. As Topics utilizes Momento Cache, there is no scaling either. You’re charged just for [the data transferred in and out](./../manage/pricing).
+
+![image](./../../static/img/pub-sub-smaller.png)
 
 ## How does Momento Topics work?
 
