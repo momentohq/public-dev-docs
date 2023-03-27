@@ -1,13 +1,13 @@
-name: Test deployment
+name: Deploy PR previews
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
+
+concurrency: preview-${{ github.ref }}
 
 jobs:
-  test-deploy:
-    name: Test deployment
+  deploy-preview:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,5 +18,11 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      - name: Test build website
+
+      - name: Build website
         run: yarn build
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./build
