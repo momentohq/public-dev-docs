@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 sidebar_label: Momento Topics
+sidebar_class_name: sidebar-item-overview
 title: What is Topics?
 pagination_prev: null
 description: Learn about Momento Topics, a high-speed, low-drag serverless pub/sub (publish/subscribe) messaging pattern for real-time app communication.
@@ -24,8 +25,7 @@ As Momento Topics uses Momento Cache as its storage, you either use an existing 
 
 :::
 
-
-## Frequently asked questions about TTL
+## Frequently asked questions about Momento Topics (pub/sub)
 
 <details>
   <summary>If an app subscribes to a topic after an item has been published, will it still get that item?</summary>
