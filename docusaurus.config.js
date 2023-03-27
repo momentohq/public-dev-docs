@@ -34,7 +34,7 @@ const config = {
           sidebarCollapsible: true,
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/momentohq/public-dev-docs/tree/main/",
-	       routeBasePath: '/', // Serve the docs at the site's root
+          routeBasePath: '/', // Serve the docs at the site's root
         },
 	     blog: false, // Turn off blog functionality
         theme: {

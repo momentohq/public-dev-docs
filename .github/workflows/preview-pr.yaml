@@ -1,5 +1,9 @@
 name: Deploy PR previews
 
+env:
+  PR_NUMBER: ${{ github.event.number }}
+
+
 on:
   pull_request:
     branches: [ "main" ]
@@ -18,6 +22,10 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+
+      - name: replace base url
+        run: |
+          sed -i "s|routeBasePath:.*|routeBasePath: '/pr-preview/pr-$PR_NUMBER/',|g" docusaurus.config.js
 
       - name: Build website
         run: yarn build
