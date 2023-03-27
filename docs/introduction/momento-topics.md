@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_label: Momento Topics
 title: What is Topics?
 pagination_prev: null
-description: 
+description: Learn about Momento Topics, a high-speed, low-drag serverless pub/sub (publish/subscribe) messaging pattern for real-time app communication.
 ---
 
 # What is Momento Topics?
