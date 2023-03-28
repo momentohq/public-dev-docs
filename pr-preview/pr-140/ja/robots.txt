@@ -1,4 +1,0 @@
-User-agent: *
-Sitemap: https://docs.momentohq.com/sitemap.xml
-Sitemap: https://docs.momentohq.com/ja/sitemap.xml
-Disallow: /*.png$
