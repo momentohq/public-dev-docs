@@ -33,6 +33,7 @@ jobs:
           # warn on broken links for preview for now not ideal just testing this out for now
           sed -i "s|onBrokenLinks:.*|onBrokenLinks: 'log',|g" docusaurus.config.js
           sed -i "s|onBrokenMarkdownLinks:.*|onBrokenMarkdownLinks: 'log',|g" docusaurus.config.js
+          cat docusaurus.config.js
 
 
       - name: Build website
