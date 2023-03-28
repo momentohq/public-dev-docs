@@ -2,9 +2,9 @@
 sidebar_position: 1
 sidebar_label: Momento Topics
 sidebar_class_name: sidebar-item-overview
-title: What is Topics?
+title: What is Momento Topics?
 pagination_prev: null
-description: Learn about Momento Topics, a high-speed, low-drag serverless pub/sub (publish/subscribe) messaging pattern for real-time app communication.
+description: Learn about Momento Topics, a high-speed, low-drag serverless pub/sub (publish/subscribe) messaging pattern for real-time application communication.
 ---
 
 # What is Momento Topics?
@@ -23,7 +23,7 @@ Momento Topics operates on a fire-and-forget messaging model, which means that o
 
 :::note
 
-As Momento Topics uses Momento Cache as its backend, you either use an existing cache or create a new cache in Momento Cache, then call the Momento Topics publish and subscribe API.
+As Momento Topics uses Momento Cache as its backend, you either use an existing cache or create a new cache in Momento Cache, then call the [Momento Topics publish and subscribe API](./../develop/api-reference/topics.md).
 
 :::
 
