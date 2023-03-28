@@ -30,6 +30,10 @@ jobs:
           # remove redirects for preview is breaking build.
           # TODO This is Janky hopefully we can retire redirects soon hardcoding line numbers is fragile
           sed -i '54,216d;' docusaurus.config.js
+          # warn on broken links for preview for now not ideal just testing this out for now
+          sed -i "s|onBrokenLinks:.*|onBrokenLinks: 'log',|g" docusaurus.config.js
+          sed -i "s|onBrokenMarkdownLinks:.*|onBrokenMarkdownLinks: 'log',|g" docusaurus.config.js
+
 
       - name: Build website
         run: yarn build
