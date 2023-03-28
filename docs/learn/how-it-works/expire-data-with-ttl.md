@@ -48,7 +48,11 @@ There are three locations to set a TTL value:
 
 3. If you’re using the CLI when you run the command `momento configure`, it writes a configuration file (~/.momento/config) and stores a value you specify for a default TTL in that file. If you write an item with the CLI from that same user and don’t specify a TTL in the SET operation, the CLI will use the value from that configuration file.
 
-    Note: Unless you copy the configuration file with your application, that file and its contents are unique to the location where you ran the `momento configure` command.
+:::note
+
+Unless you copy the configuration file with your application, that file and its contents are unique to the location where you ran the `momento configure` command.
+
+:::
 
 ## Frequently asked questions about TTL
 
