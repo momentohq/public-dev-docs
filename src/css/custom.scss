@@ -183,6 +183,10 @@ code span {
   content: url("/img/icons/rocket.svg");
 }
 
+.sidebar-item-laravel div a::before {
+  content: url("/img/icons/laravel-bw.svg");
+}
+
 .sidebar-item-how-it-works div a::before {
   content: url("/img/icons/how_it_works.svg");
 }
