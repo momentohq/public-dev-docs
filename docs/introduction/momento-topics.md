@@ -34,7 +34,7 @@ See [API reference page for Topics](./../develop/api-reference/topics.md).
 <br />
 
 If you'd like to try out Momento Topics, click for a free sandbox demo.
-<a href="https://play.instruqt.com/embed/momento/tracks/topics-on-the-momento-cli?token=em_Q_m[…]A%2F%2Fdocs.momentohq.com%2Fdevelop%2Fapi-reference%2Ftopics"><img src="/img/topics-instruct.png" alt="Momento Topics lab" /></a>
+<a href="https://play.instruqt.com/embed/momento/tracks/topics-on-the-momento-cli?token=em_Q_mgzhVtWtP5B_jj&finish_btn_target=_top&finish_btn_text=Go+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fdevelop%2Fapi-reference%2Ftopics"><img src="/img/topics-instruct.png" alt="Momento Topics lab" /></a>
 
 ## Frequently asked questions about Momento Topics (pub/sub)
 
