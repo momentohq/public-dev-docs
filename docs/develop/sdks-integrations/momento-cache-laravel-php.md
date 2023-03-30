@@ -15,6 +15,8 @@ Momento Cache’s flexible structure and serverless nature makes it a great choi
 
 In this guide, we install and configure Laravel and Momento cache to build web apps and APIs.
 
+See the [Momento Laravel cache repository](https://github.com/momentohq/laravel-cache) for more info.
+
 ## Setting up your Laravel project
 
 ### Prerequisites
@@ -32,7 +34,7 @@ Add our repository to your `composer.json` file and our SDK as a dependency:
 ```json
 {
   "require": {
-    "momentohq/laravel-cache": "1.0.0"
+    "momentohq/laravel-cache": "1.0.1"
   }
 }
 ```
