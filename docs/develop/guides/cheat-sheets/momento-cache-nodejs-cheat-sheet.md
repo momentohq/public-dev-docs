@@ -94,7 +94,32 @@ Use this function to create a new cache in your account.
   </TabItem>
 </Tabs>
 
+## List the names of existing caches in your account
+A simple list of the names of caches for the account.
 
+<Tabs>
+  <TabItem value="ts" label="TypeScript" default>
+
+  ```javascript
+  console.log('Listing caches:');
+  const listResponse = await momento.listCaches();
+  if (listResponse instanceof ListCaches.Error) {
+    console.log(`Error listing caches: ${listResponse.message()}`);
+  } else if (listResponse instanceof ListCaches.Success) {
+    console.log('Found caches:');
+    listResponse.getCaches().forEach(cacheInfo => {
+      console.log(`${cacheInfo.getName()}`);
+    });
+  } else {
+    throw new Error(`Unrecognized response: ${listResponse.toString()}`);
+  }
+  ```
+
+  </TabItem>
+  <TabItem value="nodejs" label="Node.js" default>
+    Coming soon.
+  </TabItem>
+</Tabs>
 
 ## Write an item to a cache
 A simple example of doing a set operation. In the client.set call, the TTL it optional. If you did pass it in, this would override the default TTL value set with the client connection object.
