@@ -18,7 +18,7 @@ Gets a dictionary item from a cache.
 | Name            | Type   | Description                                   |
 | --------------- | ------ | --------------------------------------------- |
 | cacheName       | String | Name of the cache.                            |
-| dictionaryName  | String | The name of the dictionary item to be retreived. |
+| dictionaryName  | String | The name of the dictionary item to be retrieved. |
 
 <details>
   <summary>Method response object</summary>
@@ -44,8 +44,8 @@ Get one field from a dictionary item in the cache.
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary item to be retreived. |
-| field           | String/bytes | Name of the field in the dictionary item to be retreived. |
+| dictionaryName  | String       | Name of the dictionary item to be retrieved. |
+| field           | String/bytes | Name of the field in the dictionary item to be retrieved. |
 
 <details>
   <summary>Method response object</summary>
@@ -76,8 +76,8 @@ Get one or more fields from a dictionary in the cache.
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary item to be retreived.  |
-| fields          | String[]/bytes[] | Name of the field in the dictionary item to be retreived. |
+| dictionaryName  | String       | Name of the dictionary item to be retrieved.  |
+| fields          | String[]/bytes[] | Name of the field in the dictionary item to be retrieved. |
 
 <details>
   <summary>Method response object</summary>
@@ -113,8 +113,8 @@ Examples:
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary item to be retreived.  |
-| field           | String|bytes | Name of the field in the dictionary item to be retreived. |
+| dictionaryName  | String       | Name of the dictionary item to be retrieved.  |
+| field           | String|bytes | Name of the field in the dictionary item to be retrieved. |
 | amount          | Integer      | The quantity to add to the value. May be positive, negative, or zero. Defaults to 1. |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | This will come back as a TTL construct. |
 
@@ -137,8 +137,8 @@ Removes a field from a dictionary item.
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary item to be retreived. |
-| field           | String|bytes | Name of the field in the dictionary item to be retreived. |
+| dictionaryName  | String       | Name of the dictionary item to be retrieved. |
+| field           | String|bytes | Name of the field in the dictionary item to be retrieved. |
 
 <details>
   <summary>Method response object</summary>
@@ -156,8 +156,8 @@ Removes multiple fields from a dictionary item.
 | Name            | Type             | Description                                   |
 | --------------- | ------------     | --------------------------------------------- |
 | cacheName       | String           | Name of the cache.                            |
-| dictionaryName  | String           | Name of the dictionary item to be retreived. |
-| fields          | String[]/bytes[] | Name of the field in the dictionary item to be retreived. |
+| dictionaryName  | String           | Name of the dictionary item to be retrieved. |
+| fields          | String[]/bytes[] | Name of the field in the dictionary item to be retrieved. |
 
 <details>
   <summary>Method response object</summary>
