@@ -308,7 +308,7 @@ Get the cache value stored for the given key.
 | Name      | Type   | Description                                   |
 | --------- | ------ | --------------------------------------------- |
 | cacheName | String | Name of the cache.                            |
-| key       | []Byte | The key under which the value is to be added. |
+| key       | []Byte | The key under which the value is to be retrieved. |
 
 <SdkExamples
   js={`
@@ -476,7 +476,7 @@ Adds to the value of a field, if and only if the existing value is a UTF-8 strin
 | Name      | Type   | Description                                     |
 | --------- | ------ | ----------------------------------------------- |
 | cacheName | String | Name of the cache.                              |
-| field       | String | The key under which the value is to be deleted. |
+| field       | String | The key under which the value is to be incremented. |
 | amount       | Integer | The quantity to add to the value. May be positive, negative, or zero. Defaults to 1. |
 
 :::note
