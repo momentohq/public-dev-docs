@@ -10,7 +10,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Cheat Sheet for Node.js with Momento Cache
-If you need to get going quickly with Node.js + TypeScript and Momento Cache, this page contains the basic API calls you'll need. [Check the node.js SDK page](https://github.com/momentohq/client-sdk-nodejs) for this code in a full file format.
+If you need to get going quickly with Node.js + TypeScript and Momento Cache, this page contains the basic API calls you'll need. [Check the node.js SDK page](https://github.com/momentohq/client-sdk-nodejs/blob/main/examples/basic.ts) for this code in a full file format.
 
 ## Install the Momento client library
 
