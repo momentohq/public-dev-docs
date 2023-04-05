@@ -8,7 +8,7 @@ pagination_next: null
 ---
 
 # Cheat Sheet for Go with Momento Cache
-If you need to get going quickly with Go and Momento Cache, this page contains the basic API calls you'll need. [Check the node.js SDK page](https://github.com/momentohq/client-sdk-go) for this code in a full file format.
+If you need to get going quickly with Go and Momento Cache, this page contains the basic API calls you'll need. [Check the Go SDK page](https://github.com/momentohq/client-sdk-go) for this code in a full file format.
 
 ## Requirements
 
