@@ -11,7 +11,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Redis compatibility client for Momento Cache and Momento Topics
-Do you have existing apps that use a Redis cache, but now you're trading up to Momento’s services? With Redis compatibility clients, there's no need to refactor your code. Instead, compatibility clients are a drop-in replacement for existing redis clients. Change your client library to the compatibility client, change the connection information, and the core of your code stays the same.
+Do you have existing apps that use a Redis cache, but now you're trading up to Momento’s services? With Redis compatibility clients, there's no need to refactor your code. Instead, compatibility clients are a drop-in replacement for existing Redis clients. Change your client library to the compatibility client, change the connection information, and the core of your code stays the same.
 
 ## Comparison of Redis client and Redis compatibility client
 <Tabs>
@@ -58,7 +58,7 @@ const redisClient = createClient(
     }),
     defaultTtlSeconds: 60,
   }),
-  'cache'
+  'cache_name'
 );
 
 ```
@@ -68,6 +68,4 @@ const redisClient = createClient(
 </table>
 
   </TabItem>
-
 </Tabs>
-
