@@ -20,6 +20,8 @@ Momento Cache and Momomento Topics do not support all of Redis' operations and d
 :::
 
 ## Comparison of Redis client and Redis compatibility client
+
+Below is a side by side comparison of the redis client code on the left and Momento's Redis compatibility client on the right.
 <Tabs>
   <TabItem value="nodejs" label="Node.js" default>
 
@@ -76,3 +78,4 @@ const redisClient = createClient(
   </TabItem>
 </Tabs>
 
+If there is a Redis operation the Redis compatibility client do not currently support, but you need. Please message [Momento Support](mailto:support@momentohq.com).
