@@ -56,7 +56,7 @@ const redisClient = redis.createClient({
 
 ```javascript
 // Import the Momento redis compatibility client.
-import {createClient, Momento} from 'momento-redis-client';
+import {createClient, momento} from '@gomomento-poc/node-redis-client';
 
 // Initialize Momento's client.
 const redisClient = createClient(
