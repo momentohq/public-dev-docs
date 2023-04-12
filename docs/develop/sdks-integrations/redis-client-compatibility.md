@@ -56,13 +56,13 @@ const redisClient = redis.createClient({
 
 ```javascript
 // Import the Momento redis compatibility client.
-import {createClient, Momento} from 'momento-redis-client';
+import {createClient, momento} from '@gomomento-poc/node-redis-client';
 
 // Initialize Momento's client.
 const redisClient = createClient(
-  new Momento.CacheClient({
-    configuration: Momento.Configurations.Laptop.v1(),
-    credentialProvider: Momento.CredentialProvider.fromEnvironmentVariable({
+  new momento.CacheClient({
+    configuration: momento.Configurations.Laptop.v1(),
+    credentialProvider: momento.CredentialProvider.fromEnvironmentVariable({
       environmentVariableName: 'MOMENTO_AUTH_TOKEN',
     }),
     defaultTtlSeconds: 60,
