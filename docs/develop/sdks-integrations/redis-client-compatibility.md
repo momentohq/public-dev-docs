@@ -13,6 +13,8 @@ import TabItem from '@theme/TabItem';
 # Redis compatibility client for Momento Cache and Momento Topics
 Do you have existing apps that use a Redis cache, but now you're trading up to Momento’s services? With Redis compatibility clients, there's no need to refactor your code. Instead, compatibility clients are a drop-in replacement for existing Redis clients. Change your client library to the compatibility client, change the connection information, and the core of your code stays the same.
 
+This client facilitates you using Momento Cache as your cache engine for any node.js frameworks that support a redis-backed cache, such as [Express.js](https://github.com/expressjs/express). See the [examples section](https://github.com/momentohq/momento-node-redis-client#examples) for more info.
+
 :::info
 
 Momento Cache and Momomento Topics do not support all of Redis' operations and datatypes. If a Redis operation is not supported by the Redis compatibility client, it will throw an error.
@@ -21,7 +23,7 @@ Momento Cache and Momomento Topics do not support all of Redis' operations and d
 
 ## Comparison of Redis client and Redis compatibility client
 
-Below is a side by side comparison of the redis client code on the left and Momento's Redis compatibility client on the right.
+Below is a side by side comparison of the redis client code on the left and Momento's Redis compatibility client on the right. To switch your existing `@redis/client` application to use Momento Cache, you only need to change the code where you construct your client object:
 <Tabs>
   <TabItem value="nodejs" label="Node.js" default>
 
@@ -75,7 +77,7 @@ const redisClient = createClient(
 </tr>
 </table>
 
-For more in-depth information on the Redis compatibility client, with example code, please see the [Momento Node.js Redis compatibility client](https://github.com/momentohq/momento-node-redis-client#momento-nodejs-redis-client).
+For more in-depth information, with example code, please see the [Momento Node.js Redis compatibility client on GitHub](https://github.com/momentohq/momento-node-redis-client#momento-nodejs-redis-client).
   </TabItem>
 </Tabs>
 
