@@ -75,6 +75,7 @@ const redisClient = createClient(
 </tr>
 </table>
 
+For more in-depth information on the Redis compatibility client, with example code, please see the [Momento Node.js Redis compatibility client](https://github.com/momentohq/momento-node-redis-client#momento-nodejs-redis-client).
   </TabItem>
 </Tabs>
 
