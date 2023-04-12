@@ -2,7 +2,7 @@
 sidebar_position: 2
 sidebar_class_name: sidebar-item-laravel
 sidebar_label: Laravel
-pagination_prev: null
+pagination_next: null
 title: Setting up Laravel + Momento Cache
 description: Get up and running quickly with Laravel and Momento Cache with this simple-to-follow developer cheat sheet.
 ---
