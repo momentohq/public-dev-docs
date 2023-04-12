@@ -16,7 +16,7 @@ Do you have existing apps that use a Redis cache, but now you're trading up to M
 This client facilitates you using Momento Cache as your cache engine for any node.js frameworks that support a redis-backed cache, such as [Express.js](https://github.com/expressjs/express). See the [examples section](https://github.com/momentohq/momento-node-redis-client#examples) for more info.
 
 ## Current Redis API Support
-This library supports the most popular Redis APIs, but does not yet support all Redis APIs. We currently support the most common APIs related to string values (GET, SET, etc.) and hash values (HGETALL, HSET, etc.). We will be adding support for additional APIs in the future. If there is a particular API that you need support for, please drop by our [Discord](https://discord.com/invite/3HkAKjUZGq) or e-mail [Momento Support](mailto:support@momentohq.com) and let us know!
+This library does not yet support all Redis APIs. We currently support the most common APIs related to string values (GET, SET, etc.) and hash values (HGETALL, HSET, etc.). We will be adding support for additional APIs in the future. If there is a particular API that you need support for, please drop by our [Discord](https://discord.com/invite/3HkAKjUZGq) or e-mail [Momento Support](mailto:support@momentohq.com) and let us know!
 
 In the meantime, if you call a method from the `@redis/client` API that we do not yet support, you will get a `TypeError` letting you know that the method is not implemented yet.
 
