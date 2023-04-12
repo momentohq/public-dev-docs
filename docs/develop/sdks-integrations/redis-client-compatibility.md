@@ -62,7 +62,7 @@ import {createClient, momento} from '@gomomento-poc/node-redis-client';
 const redisClient = createClient(
   new momento.CacheClient({
     configuration: momento.Configurations.Laptop.v1(),
-    credentialProvider: Momento.CredentialProvider.fromEnvironmentVariable({
+    credentialProvider: momento.CredentialProvider.fromEnvironmentVariable({
       environmentVariableName: 'MOMENTO_AUTH_TOKEN',
     }),
     defaultTtlSeconds: 60,
