@@ -78,4 +78,7 @@ const redisClient = createClient(
   </TabItem>
 </Tabs>
 
-If there is a Redis operation the Redis compatibility client do not currently support, but you need. Please message [Momento Support](mailto:support@momentohq.com).
+## Current Redis API Support
+This library supports the most popular Redis APIs, but does not yet support all Redis APIs. We currently support the most common APIs related to string values (GET, SET, etc.) and hash values (HGETALL, HSET, etc.). We will be adding support for additional APIs in the future. If there is a particular API that you need support for, please drop by our [Discord](https://discord.com/invite/3HkAKjUZGq) or e-mail [Momento Support](mailto:support@momentohq.com) and let us know!
+
+In the meantime, if you call a method from the `@redis/client` API that we do not yet support, you will get a `TypeError` letting you know that the method is not implemented yet.
