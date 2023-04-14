@@ -96,6 +96,7 @@ def client():
     return CacheClient(**config)
 
 def run():
+    # Get the file contents
     with open(file_path, 'rb') as file:
         byte_array = file.read()
         print(f'The value of the file is: {byte_array}')
@@ -126,7 +127,6 @@ def run():
 
 if __name__ == '__main__':
     run()
-
 
 ```
 
