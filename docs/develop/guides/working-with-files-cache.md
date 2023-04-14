@@ -37,7 +37,7 @@ async function run(){
     const cacheClient = new CacheClient({
         configuration: Configurations.Laptop.v1(),
         credentialProvider: CredentialProvider.fromEnvironmentVariable({
-        environmentVariableName: 'MOMENTO_AUTH_TOKEN',
+          environmentVariableName: 'MOMENTO_AUTH_TOKEN',
         }),
         defaultTtlSeconds: 600,
     });
