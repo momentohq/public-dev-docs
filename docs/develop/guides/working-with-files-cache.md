@@ -84,9 +84,7 @@ file_name = 'myfile'
 CACHE_NAME = 'test-cache'
 
 def client():
-    #print("Create Momento client")
     momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_AUTH_TOKEN')
-    #momento_ttl_seconds = CredentialProvider.from_environment_variable('MOMENTO_TTL_SECONDS')
     momento_ttl_seconds = os.getenv('MOMENTO_TTL_SECONDS')
     ttl  = timedelta(seconds=int(momento_ttl_seconds))
 
@@ -95,10 +93,10 @@ def client():
       'credential_provider': momento_auth_token,
       'default_ttl':  ttl
     }
-    # print(config)
     return CacheClient(**config)
 
 def run():
+    # Get the file contents
     with open(file_path, 'rb') as file:
         byte_array = file.read()
         print(f'The value of the file is: {byte_array}')
@@ -129,7 +127,6 @@ def run():
 
 if __name__ == '__main__':
     run()
-
 
 ```
 
