@@ -9,7 +9,7 @@ pagination_next: null
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Add and retrieve a file to Momento Cache
+# Add and retrieve a file with Momento Cache
 An item in Momento Cache is a byte array, so a cache can easily store most any file you want to write, as long as it is under the [per item limit of 1MB](/manage/limits).
 
 Here is an example of reading a file from the filsystem, saving the file to an item in a cache, reading it from the cache, and then writing it to the filesystem.
@@ -69,9 +69,71 @@ async function run(){
 run();
 ```
 
-Check our [Node.js cheat sheet](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md) for more on using our Node.js SDK
+Check our [Node.js cheat sheet](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md) for more on using our Node.js SDK.
    </TabItem>
    <TabItem value="py" label="Python">
-   Coming soon.
+
+```python
+import os
+from datetime import timedelta
+from momento import CacheClient, Configurations, CredentialProvider
+from momento.responses import CacheGet, CacheSet
+
+file_path = './myfile.json'
+file_name = 'myfile'
+CACHE_NAME = 'test-cache'
+
+def client():
+    #print("Create Momento client")
+    momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_AUTH_TOKEN')
+    #momento_ttl_seconds = CredentialProvider.from_environment_variable('MOMENTO_TTL_SECONDS')
+    momento_ttl_seconds = os.getenv('MOMENTO_TTL_SECONDS')
+    ttl  = timedelta(seconds=int(momento_ttl_seconds))
+
+    config = {
+      'configuration': Configurations.Laptop.v1(),
+      'credential_provider': momento_auth_token,
+      'default_ttl':  ttl
+    }
+    # print(config)
+    return CacheClient(**config)
+
+def run():
+    with open(file_path, 'rb') as file:
+        byte_array = file.read()
+        print(f'The value of the file is: {byte_array}')
+
+    # Get the client connection object.
+    with client() as cache_client:
+        # write the file to the cache
+        set_response = cache_client.set(CACHE_NAME, file_name, byte_array)
+        if isinstance(set_response, CacheSet.Success):
+            print('Key stored successfully!')
+        elif isinstance(set_response, CacheSet.Error):
+            print(f'Error setting key: {set_response}')
+        else:
+            print(f'Some other error: {set_response}')
+
+        # read the file from the cache
+        file_response = cache_client.get(CACHE_NAME, file_name)
+        if isinstance(file_response, CacheGet.Hit):
+            print(f'Cache hit! The value is: {file_response.value_string}')
+            buffer = bytes(file_response.value_string, 'utf-8')
+            print('Writing file to filesystem.')
+            with open("./myfile2.json", "wb") as out_file:
+                out_file.write(buffer)
+        elif isinstance(file_response, CacheGet.Miss):
+            print('cache miss')
+        elif isinstance(file_response, CacheGet.Error):
+            print(f'Error: {file_response.message()}')
+
+if __name__ == '__main__':
+    run()
+
+
+```
+
+Check our [Python cheat sheet](/develop/guides/cheat-sheets/momento-cache-python-cheat-sheet.md) for more on using our Python SDK.
+
    </TabItem>
 </Tabs>
