@@ -18,52 +18,72 @@ Here is an example of reading a file from the filsystem, saving the file to an i
 
 ```javascript
 const fs = require('fs');
-const { CacheClient, CacheGet, CacheSet, 
-    Configurations, CredentialProvider } = require('@gomomento/sdk');
+const { CacheClient, CacheGet, CacheSet, Configurations, CredentialProvider } = require('@gomomento/sdk');
 const dotenv = require('dotenv');
 
 dotenv.config();
 
 const filePath = './myfile.json';
 const fileName = 'myfile';
+const CACHE_NAME = 'test-cache';
 
-async function run(){
-
+// Read a file from the filesystem
+async function readFile(filePath) {
+  try {
     const data = fs.readFileSync(filePath);
-    // add your code to catch fs errors here.
-    const byteArray = new Uint8Array(data);
-    const CACHE_NAME = 'test-cache'
+    return new Uint8Array(data);
+  } catch (error) {
+    console.error(`Error reading file: ${error}`);
+    return null;
+  }
+}
 
-    const cacheClient = new CacheClient({
-        configuration: Configurations.Laptop.v1(),
-        credentialProvider: CredentialProvider.fromEnvironmentVariable({
-          environmentVariableName: 'MOMENTO_AUTH_TOKEN',
-        }),
-        defaultTtlSeconds: 600,
-    });
+// Creates the Momento cache client object
+async function createCacheClient() {
+  return new CacheClient({
+    configuration: Configurations.Laptop.v1(),
+    credentialProvider: CredentialProvider.fromEnvironmentVariable({
+      environmentVariableName: 'MOMENTO_AUTH_TOKEN',
+    }),
+    defaultTtlSeconds: 600,
+  });
+}
 
-    // write the file to the cache
-    const setResponse = await cacheClient.set(CACHE_NAME, fileName, byteArray);
-    if (setResponse instanceof CacheSet.Success) {
-        console.log('Key stored successfully!');
-    } else if (setResponse instanceof CacheSet.Error){
-        console.log(`Error setting key: ${setResponse.toString()}`);
-    } else {
-        console.log(`Some other error: ${setResponse.toString()}`);
-    }
+async function writeToCache(client, cacheName, key, data) {
+  const setResponse = await client.set(cacheName, key, data);
+  if (setResponse instanceof CacheSet.Success) {
+    console.log('Key stored successfully!');
+  } else if (setResponse instanceof CacheSet.Error) {
+    console.log(`Error setting key: ${setResponse.toString()}`);
+  } else {
+    console.log(`Some other error: ${setResponse.toString()}`);
+  }
+}
 
-    // read the file from the cache
-    const fileResponse = await cacheClient.get(CACHE_NAME, fileName);
-    if (fileResponse instanceof CacheGet.Hit) {
-        console.log(`cache hit: ${fileResponse.valueString()}`);
-        const contents = fileResponse.valueUint8Array();
-        const buffer = Buffer.from(contents);
-        fs.writeFileSync("./myfile2.json", buffer)
-      } else if (fileResponse instanceof CacheGet.Miss) {
-        console.log('cache miss');
-      } else if (fileResponse instanceof CacheGet.Error) {
-        console.log(`Error: ${fileResponse.message()}`);
-      }
+async function readFromCache(client, cacheName, key) {
+  const fileResponse = await client.get(cacheName, key);
+  if (fileResponse instanceof CacheGet.Hit) {
+    console.log(`cache hit: ${fileResponse.valueString()}`);
+    const contents = fileResponse.valueUint8Array();
+    const buffer = Buffer.from(contents);
+    fs.writeFileSync("./myfile2.json", buffer);
+  } else if (fileResponse instanceof CacheGet.Miss) {
+    console.log('cache miss');
+  } else if (fileResponse instanceof CacheGet.Error) {
+    console.log(`Error: ${fileResponse.message()}`);
+  }
+}
+
+async function run() {
+  const byteArray = await readFile(filePath);
+  if (byteArray === null) {
+    return;
+  }
+
+  const cacheClient = await createCacheClient();
+
+  await writeToCache(cacheClient, CACHE_NAME, fileName, byteArray);
+  await readFromCache(cacheClient, CACHE_NAME, fileName);
 }
 
 run();
@@ -83,6 +103,18 @@ file_path = './myfile.json'
 file_name = 'myfile'
 CACHE_NAME = 'test-cache'
 
+# Read a file from the filesystem
+def read_file(file_path):
+    with open(file_path, 'rb') as file:
+        byte_array = file.read()
+    return byte_array
+
+# Write a file to the filesystem
+def write_file(file_path, data):
+    with open(file_path, "wb") as out_file:
+        out_file.write(data)
+
+# Get a connection to and existing cache with your auth token.
 def client():
     momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_AUTH_TOKEN')
     momento_ttl_seconds = os.getenv('MOMENTO_TTL_SECONDS')
@@ -93,13 +125,12 @@ def client():
       'credential_provider': momento_auth_token,
       'default_ttl':  ttl
     }
+    # print(config)
     return CacheClient(**config)
 
 def run():
-    # Get the file contents
-    with open(file_path, 'rb') as file:
-        byte_array = file.read()
-        print(f'The value of the file is: {byte_array}')
+    # read the file contents in. They already come in byte format, so no casting necessary
+    byte_array = read_file(file_path)
 
     # Get the client connection object.
     with client() as cache_client:
@@ -118,8 +149,7 @@ def run():
             print(f'Cache hit! The value is: {file_response.value_string}')
             buffer = bytes(file_response.value_string, 'utf-8')
             print('Writing file to filesystem.')
-            with open("./myfile2.json", "wb") as out_file:
-                out_file.write(buffer)
+            write_file("./myfile2.json", buffer)
         elif isinstance(file_response, CacheGet.Miss):
             print('cache miss')
         elif isinstance(file_response, CacheGet.Error):
