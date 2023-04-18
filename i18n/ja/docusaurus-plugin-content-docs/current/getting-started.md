@@ -99,13 +99,13 @@ Options:
 
 認証トークンは Momento Serverless Cache の各クラウドプロバイダーとリージョンに紐づいています。`account` コマンドをご希望のクラウドプロバイダーとリージョンを指定しながら使うと、**各リージョン用の**認証トークンを生成することができます:
 
-#### AWS [利用可能リージョンは us-west-2, us-east-1, ap-northeast-1, ap-south-1]
+#### AWS [利用可能リージョンは us-west-2, us-east-1, ap-northeast-1, ap-south-1, eu-west-1]
 
 ```console
 momento account signup aws --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
 ```
 
-#### GCP [利用可能リージョンは us-east1, asia-northeast1]
+#### GCP [利用可能リージョンは us-east4, us-central1, asia-northeast1]
 
 ```console
 momento account signup gcp --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
