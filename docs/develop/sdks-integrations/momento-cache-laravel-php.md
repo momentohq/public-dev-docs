@@ -22,7 +22,7 @@ See the [Momento Laravel cache repository](https://github.com/momentohq/laravel-
 
 ## Example Laravel + Momento Application
 
-If you would like to see a working example of a Laravel app that uses Momento caching, check out our [Momento Laravel Example App](https://github.com/momentohq/laravel-example)!  This git repo provides a full working example application. The application is a web service that retrieves weather data from [OpenWeather](https://openweathermap.org/); it caches the weather data in Momento so that subsequent requests can be served much moe quickly.
+If you would like to see a working example of a Laravel app that uses Momento caching, check out our [Momento Laravel Example App](https://github.com/momentohq/laravel-example)!  This git repo provides a full working example application. The application is a web service that retrieves weather data from [OpenWeather](https://openweathermap.org/); it caches the weather data in Momento so that subsequent requests can be served much more quickly.
 
 ## Setting up your own Laravel project
 
