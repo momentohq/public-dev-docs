@@ -11,13 +11,20 @@ description: Get up and running quickly with Laravel and Momento Cache with this
 
 Laravel is a very popular development framework for PHP. Laravel is known for its elegant syntax, extensive features, and robust ecosystem to get work done quickly and efficiently.
 
-Momento Cache’s flexible structure and serverless nature makes it a great choice for using with Laravel for simple caching or pub/sub workflows.
+One of Laravel's many features is a [unified API for cache backends](https://laravel.com/docs/10.x/cache). This allows your Laravel app to cache any frequently used data without worrying about the details of which cache backend you are using. It also allows you to switch between different cache backends without making any changes to your code!
 
-In this guide, we install and configure Laravel and Momento cache to build web apps and APIs.
+Laravel ships with support for cache backends such as Memcached and Redis. Now, Momento provides an implementation of the Laravel Cache API that you can drop in and get all of the advantages of caching without having to worry about managing a cache cluster! Momento Cache’s flexible structure and serverless nature makes it a great choice for using with Laravel for caching workflows.
+
+In this guide, we install and configure Laravel and the Laravel Momento Cache plugin to build web apps and APIs.
 
 See the [Momento Laravel cache repository](https://github.com/momentohq/laravel-cache) for more info.
 
-## Setting up your Laravel project
+
+## Example Laravel + Momento Application
+
+If you would like to see a working example of a Laravel app that uses Momento caching, check out our [Momento Laravel Example App](https://github.com/momentohq/laravel-example)!  This git repo provides a full working example application. The application is a web service that retrieves weather data from [OpenWeather](https://openweathermap.org/); it caches the weather data in Momento so that subsequent requests can be served much more quickly.
+
+## Setting up your own Laravel project
 
 ### Prerequisites
 * A Momento auth token is required. You can generate one using [the Momento CLI](https://github.com/momentohq/momento-cli).
@@ -72,7 +79,7 @@ Cache tags work the same way as explained in the [Laravel documentation](https:/
 
 :::info
 
-If a tag may contain more than 4MB worth of keys, tagging may not work as intended.
+If your tag may contain more than 4MB worth of keys, tagging may not work as intended. Please reach out to us for more info!
 
 :::
 
