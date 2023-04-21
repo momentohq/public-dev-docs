@@ -2,19 +2,19 @@
 sidebar_position: 3
 sidebar_label: Data Types
 sidebar_class_name: sidebar-item-data-types
-title: Data types
+title: Supported data types
 pagination_prev: null
 pagination_next: null
-description: Learn the core data types in Momento Cache to match up with common types in various modern programming languages and information about each of them.
+description: Learn the core data types in Momento Cache to match up with common types in modern programming languages and information about each.
 ---
 
-# Data types in Momento Cache
+# Supported data types in Momento Cache and Momento Topics
 Momento Cache provides a group of core data types to match up with common types in various modern programming languages. This page has a list of the core data structures and information about each of them.
 
-## Core data types of MSC
+## Core data types of Momento Cache and Topics
 
 ### Byte arrays
-All data stored in Momento Cache is represented as byte arrays. The Momento SDKs provide easy methods you can use to store your data as raw bytes or as portable UTF-8 strings. Those can be in the form of scalar data, such as strings, characters, numbers, and binary data, such as images and Protocol Buffers serialized arrays.
+All data stored is represented as byte arrays. The Momento SDKs provide easy methods you can use to store your data as raw bytes or as portable UTF-8 strings. Those can be in the form of scalar data, such as strings, characters, numbers, and binary data, such as images and Protocol Buffers serialized arrays.
 
 ### Collection data types (CDTs)
 Collection Data Types are a grouping of related data into a single item. They are stored as byte array values and each has their own set of API calls in Momento SDKs. For example, DictionaryFetch, ListFetch, and SetFetch.
