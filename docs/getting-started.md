@@ -200,6 +200,17 @@ Then, use the auth token and cache you just created to run a JavaScript applicat
 <br />
 <br />
 
+Want to experiment with Momento Topics? This demo lets you subscribe to Topic messages in one pane, while publishing
+messages to the topic in a second pane! Launch below.
+
+<a href="https://play.instruqt.com/embed/momento/tracks/topics-on-the-momento-cli?token=em_Q_mgzhVtWtP5B_jj&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/topics_lab.png" alt="Topics lab" /></a>
+
+<br />
+<br />
+
+
+
+
 ## All Momento SDKs
 
 We currently have the following SDK's languages available. Check out each repo for detailed instructions and usage examples.
