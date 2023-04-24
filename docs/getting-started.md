@@ -182,7 +182,7 @@ Cache hit:  12345
 You can try out Momento Cache today, right in your browser. No software installation required!
 
 :::note
-Momento Cache is an API-based serverless service. It does not deploy any resources in your (AWS, GCP, Azure, etm.) accounts.
+Momento Cache is a fully-managed, API-based, serverless service. It does not deploy any resources in your (AWS, GCP, Azure, etm.) accounts.
 :::
 
 <br />
@@ -217,5 +217,5 @@ We currently have the following SDK's languages available. Check out each repo f
 ## FAQ
 <details>
   <summary>Does Momento deploy any resources into my cloud account?</summary>
-No it does not. Momento Cache is an API-based serverless service that you call from within your application code.
+No it does not. Momento Cache is a fully-managed, API-based, serverless service that you call from within your application code.
 </details>
