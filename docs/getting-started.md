@@ -5,18 +5,17 @@ sidebar_class_name: sidebar-item-getting-started
 title: Getting Started
 pagination_prev: null
 pagination_next: null
-description: Jump in and get started quickly using Momento Cache with your SDK of choice.
+description: Jump in and get started quickly using Momento Cache and Momento Topics with your SDK of choice.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Getting Started with Momento Cache
+# Getting Started with Momento Cache and Momento Topics
 
 If you're looking to jump in and get started with Momento Cache with an SDK, you've come to the right place.
 
-If you want to quickly get a feel for the Momento experience without installing any software? You can do so right here [in your browser](#try-our-cli-and-an-sdk-in-your-browser).
-
+If you want to quickly get a feel for the Momento Cache experience without installing any software? You can do so right here [in your browser](#try-our-cli-and-an-sdk-in-your-browser).
 
 ## Step 1: Sign up and log into the Momento console
 
@@ -201,7 +200,7 @@ Then, use the auth token and cache you just created to run a JavaScript applicat
 <br />
 <br />
 
-## All SDKs
+## All Momento SDKs
 
 We currently have the following SDK's languages available. Check out each repo for detailed instructions and usage examples.
 
