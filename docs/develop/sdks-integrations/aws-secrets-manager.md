@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 # Retreiving a Momento auth token from AWS Secrets Manager
 
-It is best practice to securely store your Momento authentication token. If you are using AWS, you can securely store your auth token in [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html). With that, only code running with the correct IAM credentials will be able to get the auth token and access Momento Cache or Momento Topics.
+It's best practice to securely store your Momento authentication token. If you are using AWS, you can securely store the auth token in [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html). With that, only code running with the correct IAM credentials will be able to fetch the auth token and use it to access Momento Cache or Momento Topics.
 
 :::info
 
@@ -48,7 +48,7 @@ async function getToken(secretName) {
     return await client.send(
       new GetSecretValueCommand({
         SecretId: secretName,
-        VersionStage: "AWSCURRENT", // VersionStage defaults to AWSCURRENT if unspecified
+        VersionStage: "AWSCURRENT",
       })
     );
   } catch (error) {
