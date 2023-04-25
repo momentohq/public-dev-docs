@@ -27,6 +27,8 @@ When inserting the Momento auth token into AWS Secrets Manager, it should be as 
 
 ## Example Code for AWS Secrets Manager
 
+In the code examples below, you can see where the getToken function is called just before creating the Momento cache connection client as that is where the auth token is needed and the only time it is needed.
+
 <Tabs>
   <TabItem value="nodejs" label="Node.js" default>
 
@@ -35,20 +37,23 @@ const {
     SecretsManagerClient,
     GetSecretValueCommand,
   } = require('@aws-sdk/client-secrets-manager');
+const { CacheGet, CacheSet, Configurations, ListCaches, CreateCache,
+    CacheClient, CredentialProvider } = require('@gomomento/sdk');
 
-// Set up the AWS Secrets Manager client
-const client = new SecretsManagerClient({
-region: "us-west-2",
-});
+// Defines name of cache to use.
+const CACHE_NAME = 'demo-cache2';
   
 // A function that gets the Momento_Auth_Token you stored in AWS Secrets Manager.
 // The secret was stored as a plaintext string to avoid parsing JSON.
 async function getToken(secretName) {
   try {
+    // Set up the AWS Secrets Manager client
+    const client = new SecretsManagerClient({ region: "us-west-2"});
+
     return await client.send(
       new GetSecretValueCommand({
         SecretId: secretName,
-        VersionStage: "AWSCURRENT",
+        VersionStage: "AWSCURRENT", // VersionStage defaults to AWSCURRENT if unspecified
       })
     );
   } catch (error) {
@@ -59,10 +64,48 @@ async function getToken(secretName) {
   }
 }
 
-// Call the getToken function
+// Create a Momento cache client connection object
+async function createCacheClient() {
+    // Get the token from AWS Secrets Manager
+    const token = await getToken("Momento_Auth_Token");
+
+    return new CacheClient({
+      configuration: Configurations.Laptop.v1(),
+      credentialProvider: CredentialProvider.fromString({"authToken" : token.SecretString}),
+      defaultTtlSeconds: 600,
+    });
+}
+
+// A function to write to the cache
+async function writeToCache(client, cacheName, key, data) {
+    const setResponse = await client.set(cacheName, key, data);
+    if (setResponse instanceof CacheSet.Success) {
+      console.log('Key stored successfully!');
+    } else if (setResponse instanceof CacheSet.Error) {
+      console.log('Error setting key: ', setResponse.toString());
+    } else {
+      console.log('Some other error: ', setResponse.toString());
+    }
+  }
+  
+// A function to read scalar items from the cache
+async function readFromCache(client, cacheName, key) {
+    const fileResponse = await client.get(cacheName, key);
+    if (fileResponse instanceof CacheGet.Hit) {
+        console.log('Cache hit: ', fileResponse.valueString());
+    } else if (fileResponse instanceof CacheGet.Miss) {
+        console.log('Cache miss');
+    } else if (fileResponse instanceof CacheGet.Error) {
+        console.log('Error: ', fileResponse.message());
+    }
+}
+
+// Call the various functions
 async function run() {
- const token = await getToken("Momento_Auth_Token");
- console.log(token.SecretString);
+    const cacheClient = await createCacheClient();
+  
+    await writeToCache(cacheClient, CACHE_NAME, "code", "12345");
+    await readFromCache(cacheClient, CACHE_NAME, "code");
 }
 
 run();
