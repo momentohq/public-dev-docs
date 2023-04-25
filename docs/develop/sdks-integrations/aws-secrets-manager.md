@@ -9,7 +9,7 @@ description: Learn how to retreive your Momento Auth Token in AWS Secrets Manage
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Retreiving a Momento auth token from AWS Secrets Manager
+# Retrieving a Momento auth token from AWS Secrets Manager
 
 It's best practice to securely store your Momento authentication token. If you are using AWS, you can securely store the auth token in [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html). With that, only code running with the correct IAM credentials will be able to fetch the auth token and use it to access Momento Cache or Momento Topics.
 
