@@ -13,6 +13,15 @@ import TabItem from '@theme/TabItem';
 
 # Getting Started with Momento Cache and Momento Topics
 
+TESTING SOME DYNAMICALLY INJECTED EXAMPLE CODE:
+
+```javascript
+%%%example:typescript:code:ListCaches%%%
+```
+
+%%%example:go:description:Logging%%% %%%example:go:code:Logging%%%
+
+
 If you're looking to jump in and get started with Momento Cache with an SDK, you've come to the right place.
 
 If you want to quickly get a feel for the Momento Cache experience without installing any software? You can do so right here [in your browser](#try-our-cli-and-an-sdk-in-your-browser).
@@ -207,8 +216,6 @@ messages to the topic in a second pane! Launch below.
 
 <br />
 <br />
-
-
 
 
 ## All Momento SDKs
