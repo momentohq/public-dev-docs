@@ -114,7 +114,7 @@ run();
   </TabItem>
   <TabItem value="typescript" label="TypeScript" default>
 
-This code can be copied into a library file name GetClientFunctions.ts which you import into your own code.
+This code can be copied into a library file named GetClientFunctions.ts which you import into your own code.
 
 ```javascript
 import {
