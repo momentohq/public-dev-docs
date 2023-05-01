@@ -101,7 +101,7 @@ async function createCache(client) {
   }
 }
 
-// List all cache in Momento for this account.
+// List all caches in Momento for this account.
 async function listCaches(client) {
   const listResponse = await client.listCaches(client);
   if (listResponse instanceof ListCaches.Error) {
@@ -130,13 +130,13 @@ async function writeToCache(client, cacheName, key, data) {
 
 // A function to read scalar items from the cache
 async function readFromCache(client, cacheName, key) {
-  const fileResponse = await client.get(cacheName, key);
-  if (fileResponse instanceof CacheGet.Hit) {
-    console.log('Cache hit: ', fileResponse.valueString());
-  } else if (fileResponse instanceof CacheGet.Miss) {
+  const readResponse = await client.get(cacheName, key);
+  if (readResponse instanceof CacheGet.Hit) {
+    console.log('Cache hit: ', readResponse.valueString());
+  } else if (readResponse instanceof CacheGet.Miss) {
     console.log('Cache miss');
-  } else if (fileResponse instanceof CacheGet.Error) {
-    console.log('Error: ', fileResponse.message());
+  } else if (readResponse instanceof CacheGet.Error) {
+    console.log('Error: ', readResponse.message());
   }
 }
 
