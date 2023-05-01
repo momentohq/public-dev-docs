@@ -50,7 +50,7 @@ Install the Momento SDK and dotenv in your project directory
 
 ```cli
 npm install @gomomento/sdk
-nom install dotenv
+npm install dotenv
 ```
 
 **Create a .env file**
