@@ -112,6 +112,68 @@ run();
 ```
 
   </TabItem>
+  <TabItem value="typescript" label="TypeScript" default>
+
+This code can be copied into a library file named GetClientFunctions.ts which you import into your own code.
+
+```javascript
+import {
+  CacheClient,
+  Configurations,
+  CredentialProvider
+} from '@gomomento/sdk';
+
+import {
+  SecretsManagerClient,
+  GetSecretValueCommand,
+  GetSecretValueCommandOutput,
+} from '@aws-sdk/client-secrets-manager';
+
+/* A function that gets the Momento_Auth_Token stored in AWS Secrets Manager.
+The secret was stored as a plaintext format in Secrets Manager to avoid parsing JSON.
+
+You don't have to store the Momento auth token in something like AWS Secrets Manager,
+but it is best practice. You could pass the Momento auth token in from an environment variable.
+
+*/
+async function GetToken(
+  secretName: string,
+  regionName: string = "us-west-2"
+  ): Promise<string> {
+    try {
+      const client = new SecretsManagerClient({ region: regionName});
+      const response: GetSecretValueCommandOutput = await client.send(
+        new GetSecretValueCommand({
+          SecretId: secretName,
+          VersionStage: "AWSCURRENT",
+        })
+      );
+      return response.SecretString || '';
+    } catch (error) {
+      console.error(`Error fetching secret value for "${secretName}":`, error.message);
+      // For a list of exceptions thrown, see
+      // https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+      throw error;
+    }
+  }
+  
+// Function that calls to the GetToken function and then gets a client connection
+// object from Momento Cache and returns that for later use.
+export default async function CreateCacheClient(
+  ttl:number = 600,
+  tokenName:string = "Momento_Auth_Token", 
+  ): Promise<CacheClient> {
+  const token: string = await GetToken(tokenName);
+    return new CacheClient({
+        configuration: Configurations.Laptop.v1(),
+        credentialProvider: CredentialProvider.fromString({ "authToken" : token }),
+        defaultTtlSeconds: ttl,
+    });
+}
+```
+
+  </TabItem>
+
 </Tabs>
 
 ## FAQ
