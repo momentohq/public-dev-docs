@@ -23,7 +23,6 @@ Momento Cache has no hidden charges. You don’t have to pay for storage, replic
 | Memory / Storage                     | $0/GB                     |
 | Multi-AZ replication charges         | $0/GB                     |
 | Single sign-on & teams (coming soon) | $0/user                   |
-| Connections                          | $0.50/million connections |
   
  </details>
  
