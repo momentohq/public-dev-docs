@@ -15,7 +15,7 @@ async function prepareSdkSourceDir(sdk: Sdk): Promise<string> {
   if (!fs.existsSync(sdkRepoDir)) {
     console.log(`Cloning repo into ${sdkRepoDir}`);
     await gitCloner.clone(
-      `git@github.com:momentohq/${repoName}.git`,
+      `https://github.com/momentohq/${repoName}.git`,
       sdkRepoDir
     );
   } else {
