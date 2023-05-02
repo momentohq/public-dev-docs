@@ -47,7 +47,6 @@ _詳細は[Wolfram Alpha](https://www.wolframalpha.com/input?i=%28%2820+requests
 | メモリ / ストレージ                    | $0/GB        |
 | 複数 AZ レプリケーション料金           | $0/GB        |
 | シングルサインオン & チーム (まもなく) | $0/ユーザー  |
-| 接続数                                 | $0/数千接続  |
 
  </details>
 
