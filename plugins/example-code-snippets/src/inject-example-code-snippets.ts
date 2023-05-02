@@ -1,17 +1,22 @@
 import visit from 'unist-util-visit';
 // eslint-disable-next-line import/no-unresolved,node/no-missing-import
 import * as unist from 'unist';
-import {SNIPPET_RESOLVER} from './examples/snippet-resolver';
-import {exampleLanguage, exampleSnippetType} from './examples/examples';
+import {
+  ExampleLanguage,
+  exampleLanguage,
+  exampleSnippetId,
+  exampleSnippetType,
+} from './examples/examples';
+import {SNIPPET_RESOLVER} from './examples/resolvers/default-snippet-resolver';
 
 function markdownNodeContainsExampleSnippets<T extends unist.Node>(
   node: unknown
 ): node is T {
   const unistNode = node as unist.Node;
-  if (unistNode.type === 'text' || unistNode.type === 'code') {
+  if (unistNode.type === 'jsx') {
     const literal = unistNode as unist.Literal;
     const value = literal.value as string;
-    if (value.includes('%%%example:')) {
+    if (value.startsWith('<SdkExampleSnippets')) {
       return true;
     }
   }
@@ -37,18 +42,37 @@ function plugin(options: unknown): unknown {
       const literal = node as unist.Literal;
       const value = literal.value as string;
 
-      literal.value = value.replace(
-        /%%%([^%]*)%%%/g,
-        (match: string, exampleId: string) => {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const [_, language, snippetType, snippetId] = exampleId.split(':');
-          return SNIPPET_RESOLVER.resolveSnippet(
+      const snippetIdAttr = value.match(/snippetId={'([^']+)'}/m)?.[1];
+      if (snippetIdAttr === undefined) {
+        console.log(
+          `Unable to find "snippetId={'xxx'}" attribute on jsx tag:\n${value}`
+        );
+        return;
+      }
+      const snippetId = exampleSnippetId(snippetIdAttr);
+      const snippetForLanguage = (language: ExampleLanguage) =>
+        (
+          SNIPPET_RESOLVER.resolveSnippet(
             exampleLanguage(language),
-            exampleSnippetType(snippetType),
+            exampleSnippetType('code'),
             snippetId
-          );
-        }
-      );
+          ) ?? ''
+        ).replace(/[\\`$]/g, '\\$&');
+
+      const sdkExamplesValue = `<SdkExampleSnippetTabs
+  js={\`${snippetForLanguage(ExampleLanguage.JAVASCRIPT)}\`}
+  python={\`${snippetForLanguage(ExampleLanguage.PYTHON)}\`}
+  java={\`${snippetForLanguage(ExampleLanguage.JAVA)}\`}
+  go={\`${snippetForLanguage(ExampleLanguage.GO)}\`}
+  csharp={\`${snippetForLanguage(ExampleLanguage.CSHARP)}\`}
+  rust={\`${snippetForLanguage(ExampleLanguage.RUST)}\`}
+  ruby={\`${snippetForLanguage(ExampleLanguage.RUBY)}\`}
+  cli={\`${snippetForLanguage(ExampleLanguage.CLI)}\`}
+/>
+`;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      node.value = sdkExamplesValue;
     });
   }
   return transformer;

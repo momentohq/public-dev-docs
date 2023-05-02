@@ -1,3 +1,5 @@
+import {enumFromValue} from '../utils/enum';
+
 /**
  * This is the registry of all of the languages that we may inject example snippets for.
  */
@@ -82,6 +84,23 @@ export function exampleSnippetType(snippetType: string): ExampleSnippetType {
   ) as unknown as ExampleSnippetType;
 }
 
+export enum ExampleSnippetId {
+  API_SET = 'API_Set',
+}
+
+/**
+ * Convenience function for converting the simple lower-case string name of a snippet id
+ * to the enum value.
+ * @param {string} snippetId
+ * @returns {ExampleSnippetId}
+ */
+export function exampleSnippetId(snippetId: string): ExampleSnippetId {
+  return enumFromValue(
+    ExampleSnippetId,
+    snippetId
+  ) as unknown as ExampleSnippetId;
+}
+
 /**
  * Used to uniquely identify an example snippet; this is used to keep track of which languages
  * are missing some examples.
@@ -89,31 +108,5 @@ export function exampleSnippetType(snippetType: string): ExampleSnippetType {
 export interface ExampleSnippetCoordinates {
   language: ExampleLanguage;
   snippetType: ExampleSnippetType;
-  snippetId: string;
-}
-
-/**
- * Private helper function for getting enum instances from their string value.
- * @param {T} enumType
- * @param {string} value
- * @returns {T}
- */
-function enumFromValue<T extends Record<string, string>>(
-  enumType: T,
-  value: string
-): T {
-  const enumName = (Object.keys(enumType) as Array<keyof T>).find(
-    k => enumType[k] === value
-  );
-  if (!enumName) {
-    throw new Error(
-      `No enum value '${value}' found in enum; values: ${JSON.stringify(
-        Object.keys(enumType)
-      )}`
-    );
-  }
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return enumType[enumName];
+  snippetId: ExampleSnippetId;
 }

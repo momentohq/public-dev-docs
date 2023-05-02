@@ -3,6 +3,10 @@ import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import React from 'react';
 
+/**
+ * @deprecated - This will be replaced by SdkExampleSnippets/SdkExampleSnippetTabs, just
+ * leaving it in place until we have migrated the existing uses over.
+ */
 export const SdkExamples = ({js, python, java, go, csharp, rust, ruby, cli}) => (
     <Tabs>
         <TabItem value="js" label="JavaScript">

@@ -14,7 +14,8 @@
     "lint": "eslint . --ext .ts",
     "format": "eslint . --ext .ts --fix",
     "watch": "tsc -w",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare-git-repos": "tsc && node ./dist/examples/bin/prepare-git-repos.js"
   },
   "author": "",
   "license": "Apache-2.0",
@@ -39,7 +40,9 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
+    "path-browserify": "^1.0.1",
     "remark": "^14.0.2",
+    "simple-git": "3.18.0",
     "unist-util-is": "4.1.0",
     "unist-util-visit": "2.0.3"
   },
