@@ -8,7 +8,7 @@ import * as path from 'path';
 export class JavascriptSnippetSourceParser extends RegexSnippetSourceParser {
   constructor(repoSourceDir: string) {
     const codeSnippetFiles: Array<string> = [
-      'examples/doc-examples-ts-apis.ts',
+      'examples/doc-examples-js-apis.ts',
     ];
     super({
       snippetTypeParseOptions: new Map<
