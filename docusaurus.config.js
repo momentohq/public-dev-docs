@@ -5,6 +5,7 @@ const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 const exampleSnippetsPlugin = require('./plugins/example-code-snippets/dist/inject-example-code-snippets');
+const languageApiSupportMatrixPlugin = require('./plugins/example-code-snippets/dist/language-api-support-matrix');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -37,7 +38,7 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/momentohq/public-dev-docs/tree/main/",
 	        routeBasePath: '/', // Serve the docs at the site's root
-          remarkPlugins: [exampleSnippetsPlugin]
+          remarkPlugins: [exampleSnippetsPlugin, languageApiSupportMatrixPlugin]
         },
 	     blog: false, // Turn off blog functionality
         theme: {

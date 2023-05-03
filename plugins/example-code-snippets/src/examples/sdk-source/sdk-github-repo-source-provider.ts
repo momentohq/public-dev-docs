@@ -15,6 +15,8 @@ export function githubRepoNameForSdk(sdk: Sdk): string {
   switch (sdk) {
     case Sdk.NODEJS:
       return 'client-sdk-nodejs';
+    case Sdk.WEB:
+      return 'client-sdk-nodejs';
     case Sdk.DOTNET:
       return 'client-sdk-dotnet';
     case Sdk.PYTHON:
