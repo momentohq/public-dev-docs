@@ -29,13 +29,13 @@ In the console, open the menu and select Token.
 
 ![image of console menu](/img/getting-started/auth-token.gif)
 
-On the token page, select your 1/ cloud provider, 2/ an available Region from the drop down list, and 3/ hit the "Generate Token" button.
+On the token page, select your 1/ cloud provider, 2/ an available Region from the drop down list, 3/ when the token should expire, and then 4/ hit the "Generate Token" button.
 
 ![image](/img/getting-started/select-provider-region.png)
 
 Scroll down and you will see your token in a grey box. The token in the screenshot has been blurred out, but yours won't be. Click on the copy icon to copy the token to your clipboard.
 
-![image](/img/getting-started/generated-token.png)
+![image](/img/getting-started/generated-token.jpg)
 
 ## Step 3: Store auth token
 
