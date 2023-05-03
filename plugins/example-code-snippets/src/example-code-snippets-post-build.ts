@@ -6,6 +6,7 @@ import {MISSING_SNIPPETS_REGISTRY} from './examples/missing-snippets-registry';
 module.exports = function (context, options) {
   return {
     name: 'example-code-snippets-post-build',
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/ban-ts-comment
     // @ts-ignore
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -16,6 +17,22 @@ module.exports = function (context, options) {
           .map(s => JSON.stringify(s, null, 2))
           .join('\n')}`
       );
+    },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    configureWebpack(config: unknown, isServer: unknown, utils: unknown) {
+      return {
+        node: {
+          __dirname: true,
+        },
+        resolve: {
+          alias: {
+            path: require.resolve('path-browserify'),
+          },
+          fallback: {
+            fs: false,
+          },
+        },
+      };
     },
   };
 };
