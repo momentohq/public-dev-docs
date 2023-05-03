@@ -85,7 +85,13 @@ export function exampleSnippetType(snippetType: string): ExampleSnippetType {
 }
 
 export enum ExampleSnippetId {
+  API_CREATE_CACHE = 'API_CreateCache',
+  API_DELETE_CACHE = 'API_DeleteCache',
+  API_LIST_CACHES = 'API_ListCaches',
+  API_FLUSH_CACHE = 'API_FlushCache',
   API_SET = 'API_Set',
+  API_GET = 'API_Get',
+  API_DELETE = 'API_Delete',
 }
 
 /**
