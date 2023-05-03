@@ -4,6 +4,8 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
+const exampleSnippetsPlugin = require('./plugins/example-code-snippets/dist/inject-example-code-snippets');
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Momento Cache",
@@ -34,7 +36,8 @@ const config = {
           sidebarCollapsible: true,
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/momentohq/public-dev-docs/tree/main/",
-	       routeBasePath: '/', // Serve the docs at the site's root
+	        routeBasePath: '/', // Serve the docs at the site's root
+          remarkPlugins: [exampleSnippetsPlugin]
         },
 	     blog: false, // Turn off blog functionality
         theme: {
@@ -214,6 +217,9 @@ const config = {
         },**/
       }
     ],
+    // This plugin will print out information / statistics about which SDK repos
+    // are missing docs code snippets.
+    './plugins/example-code-snippets/dist/example-code-snippets-post-build'
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
