@@ -1,7 +1,8 @@
 ---
 sidebar_position: 1
 sidebar_class_name: sidebar-item-overview
-title: Momento Cache
+sidebar_label: Momento Cache and Topics
+title: Momento Cache and Momento Topics Documentation
 description: Learn what you need to know to speed up your cloud application with the world's first serverless cache.
 pagination_next: null
 slug: /
@@ -11,6 +12,14 @@ slug: /
 </head>
 
 Momento Cache is the world's first truly serverless caching service. It provides instant elasticity, scale-to-zero capability, and blazing-fast performance. Gone are the days where you need to choose, manage, and provision capacity. With Momento Cache, you grab the SDK, you get an end point, input a few lines into your code, and you're off and running.
+
+Momento Cache and [Momento Topics](./introduction/momento-topics.md) are available in the following cloud providers and Regions:
+
+**AWS Regions**: us-west-2, us-east-1, eu-west-1, ap-south-1, ap-northeast-1
+
+**GCP Regions**: us-central1, us-east4, asia-northeast1
+
+If your prefered provider or Region are not listed, [contact us](mailto:support@momentohq.com) and let's talk.
 
 ## Learn about caching and Momento Cache and Momento Topics
 In the following pages, you can learn about caching in general and how to use Momento Cache specifically.
