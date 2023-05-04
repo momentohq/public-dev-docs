@@ -1,219 +1,231 @@
 ---
 sidebar_position: 3
+sidebar_label: Getting Started
 sidebar_class_name: sidebar-item-getting-started
-sidebar_label: まずはじめに
-title: Momento Serverless Cache をはじめてみる
-description: SDK またはCLI を使って、Momento Serverless Cache をすぐに使い始めてみましょう。
+title: Getting Started
+pagination_prev: null
+pagination_next: null
+description: Jump in and get started quickly using Momento Cache and Momento Topics with your SDK of choice.
 ---
 
-# Momento Serverless Cache をはじめてみる
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-SDK または CLI を使って Momento Serverless Cache をすぐに使い始める方法をお探しでしたら、ここから始めましょう。ソフトウェアのインストールを全くせずにMomento をすぐに体験してみたいですか？でしたら、[ブラウザを使って](#cli-とsdk-をブラウザ上で試してみる)ここからすぐに始められます。もしくは、既に開発環境を整えてMomento を使ったアプリケーションを使い始める準備ができている場合は、[以下のシンプルな手順](#momento-command-line-interface-cli-をインストールする)に従って下さい。
+# Getting Started with Momento Cache and Momento Topics
 
-## CLI とSDK をブラウザ上で試してみる
+If you're looking to jump in and get started with Momento Cache with an SDK, you've come to the right place.
 
-ブラウザ上で、今すぐにMomento Serverless Cache を試してみることができます。何もソフトウェアをインストールする必要がありません！
+If you want to quickly get a feel for the Momento Cache experience without installing any software? You can do so right here [in your browser](#try-our-cli-and-an-sdk-in-your-browser).
+
+## Step 1: Sign up and log into the Momento console
+
+[Go to the Momento Console](https://console.gomomento.com/) and follow the instructions to login with your email address, Google account, or GitHub account.
+
+![image](/img/getting-started/console.png)
+
+## Step 2: Create an authentication token in the Momento console
+
+In the console, open the menu and select Token.
+
+![image of console menu](/img/getting-started/auth-token.gif)
+
+On the token page, select your 1/ cloud provider, 2/ an available Region from the drop down list, 3/ when the token should expire, and then 4/ hit the "Generate Token" button.
+
+![image](/img/getting-started/select-provider-region.png)
+
+Scroll down and you will see your token in a grey box. The token in the screenshot has been blurred out, but yours won't be. Click on the copy icon to copy the token to your clipboard.
+
+![image](/img/getting-started/generated-token.jpg)
+
+## Step 3: Store auth token
+
+There are multiple places you can store the auth token used to authenticate with Momento. For this simple example, we'll store the auth token in an environment variable, but best practice is to store the auth token in something like AWS Secrets Manager or GCP Secret Manager.
+
+## Step 4: Grab the SDK, create a cache, and read/write data
+
+<Tabs>
+   <TabItem value="node" label="Node.js" default>
+
+Install the Momento SDK and dotenv in your project directory
+
+```cli
+npm install @gomomento/sdk
+npm install dotenv
+```
+
+**Create a .env file**
+
+Create a .env file in the directory to hold your Momento auth token and the TTL (in seconds) you want to use by default.
+
+```cli
+export MOMENTO_AUTH_TOKEN=<your Momento token here>
+export MOMENTO_TTL_SECONDS=300
+```
+
+Copy this code to a file test.js
+
+```javascript
+// Declare the Momento SDK library
+const { CacheGet, CacheSet, Configurations, ListCaches, CreateCache,
+    CacheClient, CredentialProvider } = require('@gomomento/sdk');
+
+// Declate the dotenv library
+const dotenv = require('dotenv');
+
+// Defines name of cache to use.
+const CACHE_NAME = 'demo-cache';
+
+// Run the config function to bring in the .env file
+dotenv.config();
+
+// Creates the Momento cache client object
+async function createCacheClient() {
+    return new CacheClient({
+        configuration: Configurations.Laptop.v1(),
+        credentialProvider: CredentialProvider.fromEnvironmentVariable({
+            environmentVariableName: 'MOMENTO_AUTH_TOKEN',
+        }),
+        defaultTtlSeconds: 600,
+    });
+}
+
+// Create a new cache
+async function createCache(client) {
+    const createCacheResponse = await client.createCache(CACHE_NAME);
+    if (createCacheResponse instanceof CreateCache.Success) {
+        console.log('Cache created.');
+    } else if (createCacheResponse instanceof CreateCache.AlreadyExists) {
+        console.log('Cache already exists');
+    } else if (createCacheResponse instanceof CreateCache.Error) {
+        throw createCacheResponse.innerException();
+    }
+}
+
+// List all caches in Momento for this account.
+async function listCaches(client) {
+    const listResponse = await client.listCaches(client);
+    if (listResponse instanceof ListCaches.Error) {
+        console.log('Error listing caches: ', listResponse.message());
+    } else if (listResponse instanceof ListCaches.Success) {
+        console.log('Found caches:');
+        listResponse.getCaches().forEach(cacheInfo => {
+            console.log(' -',cacheInfo.getName());
+        });
+    } else {
+        throw new Error('Unrecognized response: ', listResponse.toString());
+    }
+}
+
+// A function to write to the cache
+async function writeToCache(client, cacheName, key, data) {
+    const setResponse = await client.set(cacheName, key, data);
+    if (setResponse instanceof CacheSet.Success) {
+        console.log('Key stored successfully!');
+    } else if (setResponse instanceof CacheSet.Error) {
+        console.log('Error setting key: ', setResponse.toString());
+    } else {
+        console.log('Some other error: ', setResponse.toString());
+    }
+}
+
+// A function to read scalar items from the cache
+async function readFromCache(client, cacheName, key) {
+    const readResponse = await client.get(cacheName, key);
+    if (readResponse instanceof CacheGet.Hit) {
+        console.log('Cache hit: ', readResponse.valueString());
+    } else if (readResponse instanceof CacheGet.Miss) {
+        console.log('Cache miss');
+    } else if (readResponse instanceof CacheGet.Error) {
+        console.log('Error: ', readResponse.message());
+    }
+}
+
+// A simple function that calls all functions in order. You probably want more error handling.
+async function run() {
+    const cacheClient = await createCacheClient();
+
+    await createCache(cacheClient);
+
+    await listCaches(cacheClient);
+
+    await writeToCache(cacheClient, CACHE_NAME, "code", "12345");
+    await readFromCache(cacheClient, CACHE_NAME, "code");
+}
+
+run();
+```
+
+Run code
+
+```cli
+node test.js
+```
+
+The output should look something like this:
+
+```cli
+[2023-05-21T00:56:37.819Z] INFO (Momento: CacheClient): Creating Momento CacheClient
+[2023-05-21T00:56:37.831Z] INFO (Momento: ControlClient): Creating cache: demo-cache
+Cache created.
+Found caches:
+ - demo-cache
+Key stored successfully!
+Cache hit:  12345
+```
+
+   </TabItem>
+</Tabs>
+
+## Try our CLI and an SDK in your browser
+
+You can try out Momento Cache today, right in your browser. No software installation required!
 
 :::note
-Momento Serverless Cache はAPI ベースのサーバーレスサービスです。皆さんの(AWS、GCP、Azure、等)のアカウントには何もデプロイしません。
+Momento Cache is a fully-managed, API-based, serverless service. It does not deploy any resources in your (AWS, GCP, Azure, etm.) accounts.
 :::
 
 <br />
 
-まずはじめに、無料の認証トークンを作成し、キャッシュを作成し、そのキャッシュ上で`set` や`get` コマンドを実行してみましょう。以下を起動します。
+First, request your free auth token, create a cache, configure your CLI, and start running `set` and `get` commands on your cache. Launch below.
 
-[![CLI lab](images/cli_lab_jp.png)](https://play.instruqt.com/embed/momento/tracks/hands-on-with-momento-cli-japanese?token=em_bsKxhS3nsrbYBv8H&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2ja%2Fgetting-started#cli-とsdk-をブラウザ上で試してみる)
-
-<br />
-<br />
-
-続いて、Node.js SDK を使ったJavaScript のアプリケーションを動かして、認証トークンと今作成したキャッシュを使ってみましょう。以下を起動します。
-
-[![SDK lab](images/sdk_lab.png)](https://play.instruqt.com/embed/momento/tracks/momento-nodejs-demo?token=em_f8PM8Aob-mHIfOTT&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser)
+<a href="https://play.instruqt.com/embed/momento/tracks/sandbox-container-1challenge?token=em_54kTDywfWaG95-rC&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/cli_lab.png" alt="CLI lab" /></a>
 
 <br />
 <br />
 
-## Momento command line interface (CLI) をインストールする
+Then, use the auth token and cache you just created to run a JavaScript application using our Node.js SDK. Launch below.
 
-[ブラウザ上で実行する](#cli-とsdk-をブラウザ上で試してみる)のではなく自身のマシン上で CLI を実行してみたい場合には、こちらに沿って各オペレーティングシステムごとの
-方法でインストールしてください:
+<a href="https://play.instruqt.com/embed/momento/tracks/momento-nodejs-demo?token=em_f8PM8Aob-mHIfOTT&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/sdk_lab.png" alt="SDK lab" /></a>
 
-**macOS では [Homebrew](https://brew.sh/)を利用**
+<br />
+<br />
 
-```
-brew tap momentohq/tap
-brew install momento-cli
-```
+Want to experiment with Momento Topics? This demo lets you subscribe to Topic messages in one pane, while publishing
+messages to the topic in a second pane! Launch below.
 
-**Linux**
+<a href="https://play.instruqt.com/embed/momento/tracks/topics-on-the-momento-cli?token=em_Q_mgzhVtWtP5B_jj&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/topics_lab.png" alt="Topics lab" /></a>
 
-最新の [GitHub release](https://github.com/momentohq/momento-cli/releases) のウェブページに行って下さい。
-そこに、x86_64 とaarch64 向けの`.deb` と`.rpm` があります。
+<br />
+<br />
 
-`.deb` ファイルは新し目のUbuntu とDebian のバージョンでテストされています。
-`.rpm` ファイルは新し目のRHEL、Amazon Linux 2、Rocky Linux、そしてCentOS でテストされています。
 
-もしこれらのパッケージに何か問題があれば、[issue を作成して](https://github.com/momentohq/momento-cli/issues)私たちにお知らせ下さい。
 
-また、x86_64 とaarch64 それぞれにtarball も提供しています。これは `momento` コマンドのバイナリを含んでいて、それを実行パス上の好きなところに追加してお使いになれます。
 
-**Windows**
+## All Momento SDKs
 
-私たちのCLI はWindows Package Manager (`winget`) から利用可能です。インストールするには、以下のコマンドをPowerShell かコマンドプロンプトから実行します:
-
-```powershell
-winget install momento.cli
-```
-
-または、最新の[GitHub release](https://github.com/momentohq/momento-cli/releases) のウェブページに行って下さい。
-そこに、Windows 用の`.msi` インストーラーと、手動で`momento` 実行可能ファイルを好きな場所に配置したい方向けのWindows 用の`.zip` ファイルがあります。
-
-もしWindows のパッケージに何か問題があれば、[issue を作成して](https://github.com/momentohq/momento-cli/issues)私たちにお知らせ下さい。
-
-CLI が正しくインストールされたかを確認するには、ヘルプコマンドを実行してみます:
-
-```
-$ momento -h  
-CLI for Momento APIs
-
-Usage: momento [OPTIONS] <COMMAND>
-
-Commands:
-  cache        Interact with caches
-  configure    Configure credentials
-  account      Manage accounts
-  signing-key  Manage signing keys
-  help         Print this message or the help of the given subcommand(s)
-
-Options:
-      --verbose            Log more information
-  -p, --profile <PROFILE>  User profile [default: default]
-  -h, --help               Print help
-  -V, --version            Print version
-```
-
-### 認証トークンを取得する
-
-[Momento における認証は認証トークンによって行われ](./learn/how-it-works#authentication-token)、コマンドラインを使って直接 Momento Serverless Cache にサインアップすることもできます。
-
-認証トークンは Momento Serverless Cache の各クラウドプロバイダーとリージョンに紐づいています。`account` コマンドをご希望のクラウドプロバイダーとリージョンを指定しながら使うと、**各リージョン用の**認証トークンを生成することができます:
-
-#### AWS [利用可能リージョンは us-west-2, us-east-1, ap-northeast-1, ap-south-1, eu-west-1]
-
-```console
-momento account signup aws --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
-```
-
-#### GCP [利用可能リージョンは us-east4, us-central1, asia-northeast1]
-
-```console
-momento account signup gcp --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
-```
-
-#### Azure (まもなく対応) もしご興味があれば[お問い合わせ下さい](mailto:support@momentohq.com)
-
-```console
-momento account signup azure --email <TYPE_YOUR_EMAIL_HERE> --region <TYPE_DESIRED_REGION>
-```
-
-`<TYPE_YOUR_EMAIL_HERE>` と`<TYPE_DESIRED_REGION>` を実際の値に置き換えるのを忘れない様にしてください。
-
-_注: もしお使いのクラウドプロバイダーで使いたいリージョンが利用可能でない場合は、それを追加することに関してぜひ私たちに[お問い合わせください](mailto:support@momentohq.com)。_
-
-## 読み書き操作のために、Momento CLI を設定する
-
-Momento から認証トークンが E メールで送られてきます。そうしたら、`momento configure` コマンドを使って、ローカルの CLI がそのトークンを使うように設定することができます:
-
-```
-$ momento configure
-Token: // < Enter token from email here.
-Default Cache [default-cache]: my-first-cache // Name of cache to use on CLI by default.
-Default TTL Seconds [600]: 30 // Sets the default TTL for cache entries. For demostration purposes we are setting this lower right now.
-[2022-03-31T15:31:25Z INFO  momento::commands::cache::cache_cli] creating cache...
-[2022-03-31T15:31:33Z INFO  momento::commands::configure::configure_cli] default cache successfully created
-```
-
-これでもうあなたの Momento Serverless Cache は稼働しています！続いて、Momento Serverless Cache にデータをキャッシュするためにどうやって Momento CLI を使うかを見ていきましょう。
-
-## データをいくつかキャッシュしてみる
-
-Momento CLI の`cache` コマンドは Momento Serverless Cache と対話するのに使われます。実際にいくつかのコマンドを見てみましょう。
-
-まず、`set` サブコマンドを使ってデフォルトの Momento Serverless Cache にアイテムを 1 つ保存することができます:
-
-```
-$ momento cache set --key test --value value
-[2022-03-31T15:45:17Z INFO  momento::commands::cache::cache_cli] setting key: test into cache: my-first-cache
-[2022-03-31T15:45:18Z INFO  momento::commands::cache::cache_cli] set success
-```
-
-そうしたら、そのキーを`get` サブコマンドを使って取り出すことができます:
-
-```
-$ momento cache get --key test
-[2022-03-31T15:45:25Z INFO  momento::commands::cache::cache_cli] getting key: test from cache: my-first-cache
-value
-```
-
-キャッシュを設定する際に、デフォルトの Time to Live (TTL) を 30 秒に設定しています。もし 30 秒待ってからキャッシュを取り出してみると、アイテムが消えているでしょう:
-
-```
-$ sleep 30 // wait for item to expire
-$ momento cache get --key test
-[2022-03-31T15:46:02Z INFO  momento::commands::cache::cache_cli] getting key: test from cache: my-first-cache
-[2022-03-31T15:46:03Z INFO  momento::commands::cache::cache_cli] cache miss
-```
-
-これらが Momento CLI を使った標準的な`get` と`set` の[データプレーン操作](./learn/how-it-works#data-plane-performant-cache-interactions)になります。
-
-また、Momento CLI を使って[コントロールプレーン操作](./learn/how-it-works#control-plane-simple-efficient-cache-management)、例えばキャッシュを作成したり、削除したり、利用可能なキャッシュ一覧を見たりすることもできます。
-
-`cache` コマンドの利用可能な全てのサブコマンドは `momento cache -h` をターミナルで実行すると見ることができます:
-
-```
-$ momento cache -h
-Interact with caches
-
-Usage: momento cache [OPTIONS] <COMMAND>
-
-Commands:
-  create  Create a cache
-  delete  Delete a cache
-  list    List all caches
-  set     Store an item in a cache
-  get     Get an item from the cache
-  help    Print this message or the help of the given subcommand(s)
-
-Options:
-  -e, --endpoint <ENDPOINT>  An explicit hostname to use; for example, cell-us-east-1-1.prod.a.momentohq.com
-      --verbose              Log more information
-  -p, --profile <PROFILE>    User profile [default: default]
-  -h, --help                 Print help
-```
-
-さらに、デフォルトの設定値以外のコマンドオプション、例えば異なるリージョン、キャッシュ名、TTL などを指定することもできます。
-
-サブコマンドの全てのパラメータについての詳しい情報は `momento cache $SUBCOMMAND --help` を実行して学ぶことができます。
-
-## 次のステップ
-
-CLI はMomento Serverless Cache API の基本を試して理解するには良いですが、ほとんどのキャッシュの仕事はアプリケーション上で行われます。それらには、Momento SDK を使うことができます。
-
-現在、以下の言語で SDK が利用可能です。各レポジトリを確認して、詳細な手順と利用例をご確認ください。
+We currently have the following SDK's languages available. Check out each repo for detailed instructions and usage examples.
 
 - [Go](https://github.com/momentohq/client-sdk-go)
 - [Java](https://github.com/momentohq/client-sdk-java)
-- [JavaScript](https://github.com/momentohq/client-sdk-javascript)
+- [Node.js](https://github.com/momentohq/client-sdk-nodejs)
 - [Python](https://github.com/momentohq/client-sdk-python)
 - [.NET](https://github.com/momentohq/client-sdk-dotnet)
 - [Rust](https://github.com/momentohq/client-sdk-rust)
 - [PHP](https://github.com/momentohq/client-sdk-php)
 - [Ruby](https://github.com/momentohq/client-sdk-ruby)
 
-## よくある質問
-
+## FAQ
 <details>
-  <summary>Momento は何かのリソースを私のクラウドアカウント上にデプロイしますか？</summary>
-いいえ、しません。Momento Serverless Cache はAPI ベースのサーバーレスサービスで、皆さんのアプリケーションのコードから呼び出します。
+  <summary>Does Momento deploy any resources into my cloud account?</summary>
+No it does not. Momento Cache is a fully-managed, API-based, serverless service that you call from within your application code.
 </details>
