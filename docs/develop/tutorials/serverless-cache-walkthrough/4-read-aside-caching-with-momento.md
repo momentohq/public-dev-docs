@@ -47,36 +47,37 @@ Now that we know the three factors to consider in choosing our caching strategy 
 Head back to the code for your serverless application. To implement our read-aside cache strategy, we will update our code to use the cache whenever fetching individual records with our service.
 
 Navigate back to the service code in `src/accounts/service.js`. Update the getUser method on our AccountService class to the following:
-
-    async getUser({ username }) {
-      const user = new User({ username });
-      const userCacheKey = `USER#${user.username}`;
-
-      let getResp = await this._cacheClient.get(
+```typescript
+async function getUser({username}) {
+    const user = new User({username});
+    const userCacheKey = `USER#${user.username}`;
+    const getResponse = await this._cacheClient.get(
         CACHE_NAME,
         userCacheKey
-      );
-      if (getResp.status === CacheGetStatus.Hit) {
+    );
+    if (getResponse instanceof CacheGet.Hit) {
         const cacheContent = JSON.parse(getResp.text());
         return cacheContent ? itemToUser(cacheContent) : null;
-      }
+    }
 
-      const response = await this._dynamoDBClient
+    const response = await this._dynamoDBClient
         .getItem({
-          TableName: TABLE_NAME,
-          Key: user.keys(),
+            TableName: TABLE_NAME,
+            Key: user.keys(),
         })
         .promise();
 
-      await this._cacheClient.set(
+    await this._cacheClient.set(
         CACHE_NAME,
         userCacheKey,
         JSON.stringify(response.Item || ""),
         60
-      );
+    );
 
-      return response.Item ? itemToUser(response.Item) : null;
-    }
+    return response.Item ? itemToUser(response.Item) : null;
+}
+```
+
 
 There are three changes to our code.
 
@@ -95,83 +96,87 @@ Choosing the proper TTL value depends on your application needs, including how f
 For now, we're using a relatively short TTL of only 60 seconds. This is mostly because we're caching only on the read side. Because this underlying data can change, we want to expire it quickly to prevent a confusing experience for our users. In the next step, we'll see how to integrate caching on the write side to allow for a longer TTL.
 
 Finally, we need to update some imports and global variables for our service module. Add the following code to the top of your src/accounts/service.js file:
+```typescript
+const {CacheGet} = require("@gomomento/sdk");
+const TABLE_NAME = process.env.TABLE_NAME;
+const CACHE_NAME = process.env.CACHE_NAME;
+```
 
-    const { CacheGetStatus } = require("@gomomento/sdk");
-    const TABLE_NAME = process.env.TABLE_NAME;
-    const CACHE_NAME = process.env.CACHE_NAME;
 
 The import is used when checking the result of the cache retrieval request, and the CACHE_NAME variable is used for all caching operations.
 
 Let's implement similar logic for our Organization and Membership objects as well.
 
 In the `src/accounts/service.js` file, update the `getOrganization` method to look as follows:
+```typescript
+async function getOrganization({organizationName}) {
+    const organization = new Organization({organizationName});
+    const organizationCacheKey = `ORG#${organization.organizationName}`;
 
-    async getOrganization({ organizationName }) {
-      const organization = new Organization({ organizationName });
-      const organizationCacheKey = `ORG#${organization.organizationName}`;
-
-      let getResp = await this._cacheClient.get(
+    let getResp = await this._cacheClient.get(
         CACHE_NAME,
         organizationCacheKey
-      );
-      if (getResp.status === CacheGetStatus.Hit) {
+    );
+    if (getResp instanceof CacheGet.Hit) {
         const cacheContent = JSON.parse(getResp.text());
         return cacheContent ? itemToOrganization(cacheContent) : null;
-      }
+    }
 
-      const response = await this._dynamoDBClient
+    const response = await this._dynamoDBClient
         .getItem({
-          TableName: TABLE_NAME,
-          Key: organization.keys(),
+            TableName: TABLE_NAME,
+            Key: organization.keys(),
         })
         .promise();
 
-      await this._cacheClient.set(
+    await this._cacheClient.set(
         CACHE_NAME,
         organizationCacheKey,
         JSON.stringify(response.Item || ""),
         60
-      );
+    );
 
-      return response.Item ? itemToOrganization(response.Item) : null;
-    }
+    return response.Item ? itemToOrganization(response.Item) : null;
+}
+
+```
 
 Notice that it follows a similar pattern as the User caching implementation. We define the cache key pattern for the Organization item. Then we try to retrieve a cached Organization entry and return it if it exists. If not, we fetch it from DynamoDB, store it in our cache, and return it to the caller.
 
 Finally, in the `src/accounts/service.js` file, update the `getMembership` method to look as follows:
 
-```
-async getMembership({ organizationName, username }) {
-  const membership = new Membership({
-    organizationName,
-    memberUsername: username,
-  });
-  const membershipCacheKey = `MEMBER#${membership.organizationName}#${membership.memberUsername}`;
+```typescript
+async function getMembership({organizationName, username}) {
+    const membership = new Membership({
+        organizationName,
+        memberUsername: username,
+    });
+    const membershipCacheKey = `MEMBER#${membership.organizationName}#${membership.memberUsername}`;
 
-  let getResp = await this._cacheClient.get(
-    process.env.CACHE_NAME,
-    membershipCacheKey
-  );
-  if (getResp.status === CacheGetStatus.Hit) {
-    const cacheContent = JSON.parse(getResp.text());
-    return cacheContent ? itemToMembership(cacheContent) : null;
-  }
+    let getResp = await this._cacheClient.get(
+        process.env.CACHE_NAME,
+        membershipCacheKey
+    );
+    if (getResp instanceof CacheGet.Hit) {
+        const cacheContent = JSON.parse(getResp.text());
+        return cacheContent ? itemToMembership(cacheContent) : null;
+    }
 
-  const response = await this._dynamoDBClient
-    .getItem({
-      TableName: TABLE_NAME,
-      Key: membership.keys(),
-    })
-    .promise();
+    const response = await this._dynamoDBClient
+        .getItem({
+            TableName: TABLE_NAME,
+            Key: membership.keys(),
+        })
+        .promise();
 
-  await this._cacheClient.set(
-    process.env.CACHE_NAME,
-    membershipCacheKey,
-    JSON.stringify(response.Item || ""),
-    60
-  );
+    await this._cacheClient.set(
+        process.env.CACHE_NAME,
+        membershipCacheKey,
+        JSON.stringify(response.Item || ""),
+        60
+    );
 
-  return response.Item ? itemToMembership(response.Item) : null;
+    return response.Item ? itemToMembership(response.Item) : null;
 
 }
 ```
@@ -181,32 +186,36 @@ Notice that it follows a similar pattern as the User and Organization caching im
 Before we deploy, let's make one final note. We've implemented very simple caching of individual objects in our application. Those will certainly help readers that use our REST endpoints to retrieve a User, Organization, or Membership by reducing latency for cached items.
 
 However, the caching will help for other endpoints as well. Take a look at the createOrganization method for our AccountService:
+```typescript
+async function createOrganization({ organizationName, foundingUser }) {
+  const user = await this.getUser({ username: foundingUser });
+  if (!user) {
+    throw new UserDoesNotExistError(foundingUser);
+  }
+  ...
+}
+```
 
-    async createOrganization({ organizationName, foundingUser }) {
-      const user = await this.getUser({ username: foundingUser });
-      if (!user) {
-        throw new UserDoesNotExistError(foundingUser);
-      }
-      ...
-    }
 
 Before creating a new Organization, our code first checks to ensure the creating User exists. It is calling into the same getUser method that would be used by our endpoint to retrieve a User, so both methods are improved by our simple caching.
 
 To see an even better example, look at the addUserToOrganization method:
+```typescript
+async function addUserToOrganization({
+  organizationName,
+  memberUsername,
+  role,
+  addingUser,
+}) {
+  const [organization, newMemberUser, addingMembership] = await Promise.all([
+    this.getOrganization({ organizationName }),
+    this.getUser({ username: memberUsername }),
+    this.getMembership({ organizationName, username: addingUser }),
+  ]);
+  ...
+}
+```
 
-    async addUserToOrganization({
-      organizationName,
-      memberUsername,
-      role,
-      addingUser,
-    }) {
-      const [organization, newMemberUser, addingMembership] = await Promise.all([
-        this.getOrganization({ organizationName }),
-        this.getUser({ username: memberUsername }),
-        this.getMembership({ organizationName, username: addingUser }),
-      ]);
-      …
-    }
 
 At the beginning of this method, we have to make three other reads -- one for the Organization, one for the User being added to the Organization, and one for the Membership record of the user creating the new Membership. Because we've added caching to each of those methods, we should see lower latency on this endpoint.
 

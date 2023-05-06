@@ -46,33 +46,35 @@ The caching requirements are pretty straightforward in our application. We are o
 Let's start by adding write-aside caching for our User object.
 
 Open the `src/accounts/service.js` file and find the `createUser` method on your AccountService class definition. Update it so it looks as follows:
-
-    async createUser({ username, firstName, lastName }) {
-      const user = new User({ username, firstName, lastName });
-      try {
+```typescript
+    async function createUser({username, firstName, lastName}) {
+    const user = new User({username, firstName, lastName});
+    try {
         await this._dynamoDBClient
-          .putItem({
-            TableName: TABLE_NAME,
-            Item: user.toItem(),
-            ConditionExpression: "attribute_not_exists(PK)",
-          })
-          .promise();
+            .putItem({
+                TableName: TABLE_NAME,
+                Item: user.toItem(),
+                ConditionExpression: "attribute_not_exists(PK)",
+            })
+            .promise();
 
         await this._cacheClient.set(
-          CACHE_NAME,
-          getUserCacheKey(user),
-          JSON.stringify(user.toItem()),
-          1800
+            CACHE_NAME,
+            getUserCacheKey(user),
+            JSON.stringify(user.toItem()),
+            1800
         );
 
         return user;
-      } catch (error) {
+    } catch (error) {
         if (error.code === "ConditionalCheckFailedException") {
-          throw new UserAlreadyExistsError(username);
+            throw new UserAlreadyExistsError(username);
         }
         throw error;
-      }
     }
+}
+```
+
 
 Notice that the only change we're making to our existing function is caching our User item after it was successfully stored in DynamoDB. Other than that, the code runs exactly as before.
 
@@ -82,9 +84,12 @@ First, notice that we're using a `getUserCacheKey` function to generate the cach
 
 Add the following `getUserCacheKey` function to the bottom of your `src/accounts/service.js` file so it can be used by both methods:
 
+```typescript
     const getUserCacheKey = (user) => {
       return `USER#${user.username}`;
     };
+```
+
 
 The second thing to notice about our update is that we're using a much longer TTL value when storing our User item. Rather than storing our item for 60 seconds, we're storing it for 1800 seconds (30 minutes).
 
@@ -93,32 +98,34 @@ Because we are now using write-aside caching as well, we can be more aggressive 
 And because Momento is a dynamic, elastic cache that does not require pre-provisioning a set amount of memory, we don't need to think about managing our cache size to prevent eviction by algorithm. The only thing we need to focus on is how long we should keep our data around. This makes it easier to balance fewer concerns -- our cache hit rate vs. our bill -- rather than a larger variety of considerations.
 
 Let's make corresponding changes to our getUser method above. Update the getUser method so it looks as follows:
+```typescript
+async function getUser({username}) {
+    const user = new User({username});
 
-    async getUser({ username }) {
-      const user = new User({ username });
-
-      let getResp = await this.cacheClient.get(CACHE_NAME, getUserCacheKey(user));
-      if (getResp.status === CacheGetStatus.Hit) {
+    let getResp = await this.cacheClient.get(CACHE_NAME, getUserCacheKey(user));
+    if (getResp instanceof CacheGet.Hit) {
         const cacheContent = JSON.parse(getResp.text());
         return cacheContent ? itemToUser(cacheContent) : null;
-      }
+    }
 
-      const response = await this._dynamoDBClient
+    const response = await this._dynamoDBClient
         .getItem({
-          TableName: TABLE_NAME,
-          Key: user.keys(),
+            TableName: TABLE_NAME,
+            Key: user.keys(),
         })
         .promise();
 
-      await this._cacheClient.set(
+    await this._cacheClient.set(
         process.env.CACHE_NAME,
         userCacheKey,
         JSON.stringify(response.Item),
         1800
-      );
+    );
 
-      return response.Item ? itemToUser(response.Item) : null;
-    }
+    return response.Item ? itemToUser(response.Item) : null;
+}
+```
+
 
 The changes here are pretty minimal. First, we removed the template literal to generate the user cache key and instead used the `getUserCacheKey` function that is used by the `createUser` method. Then, we changed the TTL from 60 to 1800 when storing a User item in the cache.
 
