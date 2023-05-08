@@ -1,9 +1,9 @@
 ---
 sidebar_position: 5
-title: API reference information
+title: API リファレンス情報
 pagination_prev: null
-sidebar_label: API reference
-description: Learn the API calls you need to know and how to use them with Momento Cache.
+sidebar_label: API リファレンス
+description: Momento Cache の知っておくべき API 呼出しと、それらをどの様に使うかを学びましょう。
 ---
 
 import { SdkExamples } from "@site/src/components/SdkExamples";
@@ -12,257 +12,252 @@ import { SdkExampleSnippets } from "@site/src/components/SdkExampleSnippets";
 // plugin will transform instances of SdkExampleSnippets to SdkExampleSnippetTabs
 import { SdkExampleSnippetTabs } from "@site/src/components/SdkExampleSnippetTabs";
 
-# API reference for Momento Cache
+# Momento Cache の API リファレンス
 
-## Control APIs
+## コントロールAPIs
 
-These API methods are used to manage and control caches.
+これらの API はキャッシュの管理と制御に使います。
 
 ### Create cache
 
-Creates a cache with the provided name
+与えられた名前のキャッシュを作成します。
 
-Attributes:
-
-| Name      | Type   | Description                      |
+| 名前      | 型   | 説明                      |
 | --------- | ------ | -------------------------------- |
-| cacheName | String | Name of the cache to be created. |
+| cacheName | String | 作成するキャッシュの名前 |
 
 <SdkExampleSnippets snippetId={'API_CreateCache'} />
 
 ### Delete cache
 
-Deletes a cache
+キャッシュを削除します。
 
-Attributes:
-
-| Name      | Type   | Description                      |
+| 名前      | 型   | 説明                      |
 | --------- | ------ | -------------------------------- |
-| cacheName | String | Name of the cache to be deleted. |
+| cacheName | String | 削除するキャッシュの名前 |
 
 <SdkExampleSnippets snippetId={'API_DeleteCache'} />
 
 ### List caches
 
-Lists all caches for the provided auth token.
+認証トークンが持つ全てのキャッシュを一覧します。
 
-| Name      | Type   | Description                     |
+| 名前      | 型   | 説明                     |
 | --------- | ------ | ------------------------------- |
-| nextToken | String | Token for pagination of caches. |
+| nextToken | String | キャッシュ一覧のページネーショントークン |
 
 <SdkExampleSnippets snippetId={'API_ListCaches'} />
 
 ### Flush cache
 
-Flushes all data from a cache
+キャッシュ内の全てのデータをフラッシュします。
 
-Attributes:
-
-| Name      | Type   | Description                      |
+| 名前      | 型   | 説明                      |
 | --------- | ------ | -------------------------------- |
-| cacheName | String | Name of the cache to be flushed. |
+| cacheName | String | フラッシュするキャッシュの名前 |
 
 <SdkExampleSnippets snippetId={'API_FlushCache'} />
 
 :::tip
 
-While you could use [Delete Cache](#delete-cache), then [Create Cache](#create-cache) to mimic this, the FlushCache API keeps the settings and only deletes the data in the cache.
+これは、[Delete Cache](#delete-cache) してから [Create Cache](#create-cache) することで似た様なことができますが、 FlushCache API は設定を保持したままキャッシュ内のデータだけを削除してくれます。
 
 :::
 
-## Data APIs
+## データAPIs
 
-These API methods are used to directly interact with data in a cache.
+これらの API はキャッシュ内のデータを直接やり取りするために使います。
 
 ### Set
 
-Sets the value in cache with a given Time To Live (TTL) seconds. If a value for this key is already present it will be replaced by the new value.
+キャッシュ内に、与えられた生存期間 (TTL) を持つ値を書き込みます。もしこのキーに既に値が存在する場合、新しい値に置き換えられます。
 
-| Name       | Type   | Description                                   |
+| 名前       | 型   | 説明                                   |
 | ---------- | ------ | --------------------------------------------- |
-| cacheName  | String | Name of the cache.                            |
-| key        | []Byte | The key under which the value is to be added. |
-| value      | []Byte | The value to be stored.                       |
-| ttlSeconds | int    | Time to Live for the item in Cache.           |
+| cacheName  | String | キャッシュの名前                            |
+| key        | []Byte | 値が追加されるキー |
+| value      | []Byte | 保存される値                       |
+| ttlSeconds | int    | キャッシュ内での生存期間           |
 
 <SdkExampleSnippets snippetId={'API_Set'} />
 
 ### Get
 
-Get the cache value stored for the given key.
+与えられたキーのキャッシュされた値を読み出します。
 
-| Name      | Type   | Description                                   |
+| 名前      | 型   | 説明                                   |
 | --------- | ------ | --------------------------------------------- |
-| cacheName | String | Name of the cache.                            |
-| key       | []Byte | The key under which the value is to be retrieved. |
+| cacheName | String | キャッシュの名前                            |
+| key       | []Byte | 値が取得されるキー |
 
 <SdkExampleSnippets snippetId={'API_Get'} />
 
 ### Delete
 
-Delete the cache value stored for the given key.
+与えられたキーにキャッシュされた値を削除します。
 
-| Name      | Type   | Description                                     |
+| 名前      | 型   | 説明                                     |
 | --------- | ------ | ----------------------------------------------- |
-| cacheName | String | Name of the cache.                              |
-| key       | []Byte | The key under which the value is to be deleted. |
+| cacheName | String | キャッシュの名前                              |
+| key       | []Byte | 値が削除されるキー |
 
 <SdkExampleSnippets snippetId={'API_Delete'} />
 
 ### Increment
 
-Adds to the value of a field, if and only if the existing value is a UTF-8 string representing a base 10 integer. If the field does not exist, this method sets the field's value to the amount to increment by.
+フィールドの値に加減算します。既存の値は基数 10 の整数を表現する UTF-8 の文字列になっている必要があります。もしフィールドが存在しなければ、このメソッドは加減算する量をフィールドの値に書き込みます。
 
-| Name      | Type   | Description                                     |
+| 名前      | 型   | 説明                                     |
 | --------- | ------ | ----------------------------------------------- |
-| cacheName | String | Name of the cache.                              |
-| field       | String | The key under which the value is to be incremented. |
-| amount       | Integer | The quantity to add to the value. May be positive, negative, or zero. Defaults to 1. |
+| cacheName | String | キャッシュの名前                              |
+| field       | String | 値が加減算されるキー |
+| amount       | Integer | 値に加減算される量。正の値か、負の値か、もしくはゼロ。デフォルトは 1 |
 
 :::note
 
-The resulting incremented value must be between -9223372036854775808 and 9223372036854775807, ie. a signed 64-bit integer. If not, there will be an error response.
+加減算された結果の値は -9223372036854775808 と 9223372036854775807 の間、つまり符号付64ビット整数である必要があります。もしそうでない場合、エラーレスポンスが返ってきます。
 
 :::
 
 ### Ping
-Sends a ping to the server. This API can be used for checking connectivity to confirm that the client can connect to the server successfully.
+サーバーに ping を送ります。この API は疎通確認に使うことができて、クライアントが正しくサーバーに接続できることを確認できます。
 
 <details>
-    <summary>Method response object</summary>
+    <summary>レスポンスオブジェクト</summary>
 
     * Success
     * Error
 
-    See [response objects](./response-objects.md) for specific information.
+詳細な情報は、[レスポンスオブジェクト](./response-objects.md) をご覧下さい。
 
 </details>
 
 ### KeyExists
 
-Checks if a provided key exists in the cache.
+与えられたキーがキャッシュに存在するかを確認します。
 
-| Name            | Type            | Description                                   |
+| 名前            | 型            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| key        | String \| byte          | Key which is to be checked for its existence in the cache.              |
+| cacheName       | String          | キャッシュの名前                            |
+| key        | String \| byte          | キャッシュ内の存在確認をするキー              |
 
 <details>
-    <summary>Method response object</summary>
+    <summary>レスポンスオブジェクト</summary>
 
     * Success
     - `exists()`: bool
     * Error
 
-    See [response objects](./response-objects.md) for specific information.
+詳細な情報は、[レスポンスオブジェクト](./response-objects.md) をご覧下さい。
 
 </details>
 
 ### KeysExist
 
-Checks if provided keys exist in the cache.
+与えられた複数のキーがキャッシュに存在するかを確認します。
 
-| Name            | Type            | Description                                   |
+| 名前            | 型            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| keys        | String[] \| byte[]          | Keys which are to be checked for their existence in the cache.              |
+| cacheName       | String          | キャッシュの名前                            |
+| keys        | String[] \| byte[]          | キャッシュ内の存在確認をする複数のキー              |
 
 <details>
-    <summary>Method response object</summary>
+    <summary>レスポンスオブジェクト</summary>
 
     * Success
     - `exists()`: bool[]
     * Error
 
-    See [response objects](./response-objects.md) for specific information.
+詳細な情報は、[レスポンスオブジェクト](./response-objects.md) をご覧下さい。
 
 </details>
 
 ### SetIfNotExists
 
-Associates the provided value to a cache item with a given key.
+与えられた値を与えられたキーでキャッシュに作成します。
 
-| Name       | Type   | Description                                   |
+| 名前       | 型   | 説明                                   |
 | ---------- | ------ | --------------------------------------------- |
-| cacheName  | String | Name of the cache.                            |
-| key        | String /| bytes | The key to be set. |
-| value      | String /| bytes | The value to be stored.                       |
-| ttlSeconds | Duration    | Time to Live for the item in Cache.           |
+| cacheName  | String | キャッシュの名前                            |
+| key        | String \| bytes | 書き込むキー |
+| value      | String \| bytes | 保存する値                       |
+| ttlSeconds | Duration    | キャッシュ内での生存期間           |
 
 <details>
-    <summary>Method response object</summary>
+    <summary>レスポンスオブジェクト</summary>
 
     * Stored
     * NotStored
     * Error
 
-    See [response objects](./response-objects.md) for specific information.
+詳細な情報は、[レスポンスオブジェクト](./response-objects.md) をご覧下さい。
 
 </details>
 
-## Time to Live APIs
+## 生存期間(Time to Live)APIs
 
-These APIs apply across all cache types.
+これらの API は全てのキャッシュの型に適応します。
 
 ### UpdateTtl
 
-Overwrites the TTL of a cache item with the provided value in seconds.
+与えられた秒数で、キャッシュされている項目の TTL を上書きします。
 
-| Name      | Type   | Description                                     |
+| 名前      | 型   | 説明                                     |
 | --------- | ------ | ----------------------------------------------- |
-| cacheName | String | Name of the cache.                              |
-| key       | String \| bytes | The key under which the value's TTL is to be updated. |
-| ttl       | Duration | Time to live that you want to update in cache in seconds. |
+| cacheName | String | キャッシュの名前                              |
+| key       | String \| bytes | 値のTTL が更新されるキー |
+| ttl       | Duration | キャッシュ内の生存期間に設定したい秒数 |
 
 ### IncreaseTtl
 
-Increase the TTL seconds for a key to the provided value only if it would increase the TTL.
+キーの TTL 秒数を、TTL が増加する場合にのみ、与えられた値で更新します。
 
-Examples
-- If the TTL is 5 seconds and is increased to 6 seconds, the new TTL will be 6 seconds.
-- If the TTL is 5 seconds and is increased to 3 seconds, the TTL will not be increased.
+例
+- もし TTL が 5 秒で、6 秒に増加しようとしたら、新しい TTL は 6 秒になります。
+- もし TTL が 5 秒で、3 秒に増加しようとしたら、TTL は増加されません。
 
-| Name      | Type   | Description                                     |
+| 名前      | 型   | 説明                                     |
 | --------- | ------ | ----------------------------------------------- |
-| cacheName | String | Name of the cache.                              |
-| key       | String \| bytes | The key under which the value's TTL is to be increased. |
-| ttl       | Duration | Time to live that you want to increase to. |
+| cacheName | String | キャッシュの名前                              |
+| key       | String \| bytes | 値のTTL が増加されるキー |
+| ttl       | Duration | キャッシュ内の生存期間に設定したい秒数 |
 
 ### DecreaseTtl
 
-Decrease the TTL seconds for a key to the provided value only if it would decrease the TTL.
+キーの TTL 秒数を、TTL が減少する場合にのみ、与えられた値で更新します。
 
-Examples
-- If the TTL is 5 seconds and is decreased to 3 seconds, the new TTL will be 3 seconds.
-- If the TTL is 5 seconds and is decreased to 6 seconds, the TTL will not be decreased.
+例
+- もし TTL が 5 秒で、3 秒に減少しようとしたら、新しい TTL は 3 秒になります。
+- もし TTL が 5 秒で、6 秒に減少しようとしたら、TTL は減少されません。
 
-| Name      | Type   | Description                                     |
+| 名前      | 型   | 説明                                     |
 | --------- | ------ | ----------------------------------------------- |
-| cacheName | String | Name of the cache.                              |
-| key       | String \| bytes | The key under which the value's TTL is to be decreased. |
-| ttl       | Duration | Time to live that you want to decrease to. |
+| cacheName | String | キャッシュの名前                              |
+| key       | String \| bytes | 値のTTL が減少されるキー |
+| ttl       | Duration | キャッシュ内の生存期間に設定したい秒数 |
 
-### Collection data types (CDTs)
+### コレクションデータ型(CDTs)
 
-Collections may contain different types of structures depending on your use case. Supported data types are:
+コレクション型は、ユースケースに依っては異なる構造の型を含む場合もあります。サポートしているデータ型は以下の通りです:
 
-* [Dictionaries](./dictionary-collections.md) are used to store unordered field:value pairs.
-* [Lists](./list-collections.md) are a collection of ordered elements, sorted in the sequence each element was inserted.
-* [Sets](./set-collections.md) are an unordered collection of unique elements in string format.
-* [Sorted Sets](./sorted-set-collections.md) are an ordered collection of unique elements.  Each element contains a value:score pair.
+* [辞書型](./dictionary-collections.md)は、順序のない field:value のペアを保存するのに使用されます。
+* [リスト型](./list-collections.md)は、順序のある要素の集合で、各要素が挿入された順番にソートされています。
+* [セット型](./set-collections.md)は、順序のない、ユニークな文字列形式の要素の集合です。
+* [ソート済セット型](./sorted-set-collections.md)は、ユニークな要素の順序がある集合です。各要素は value:score のペアで表現されます。
 
-For more in-depth information on usage, see [collection data types](./../datatypes.md).
+より詳しい利用方法の情報は、[コレクションデータ型](./../datatypes.md)をご覧下さい。
 
-## Current status of API support in SDKs
 
-| Feature           | .NET               | Java               | Node.js            | Python             | Go                 | PHP                | Ruby               | Rust               |
+## 現時点での SDK による API のサポート状況
+
+| 機能           | .NET               | Java               | Node.js            | Python             | Go                 | PHP                | Ruby               | Rust               |
 |-------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
 | Control APIs      | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Get/Set           | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Increment         | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
-| Dictionary CDTs   | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :x:                |
-| Set CDTs          | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :x:                |
-| List CDTs         | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :x:                |
-| Sorted Set CDTs   | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                |
+| 辞書型 CDTs   | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :x:                |
+| セット型 CDTs          | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :x:                |
+| リスト型 CDTs         | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :x:                |
+| ソート済セット型 CDTs   | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                |
 | Flush Cache       | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :x:                | :x:                | :white_check_mark: |
 | Topics (pub/sub)  | :x:                | :x:                | :white_check_mark: | :x:                | :white_check_mark: | :x:                | :x:                | :x:                |
