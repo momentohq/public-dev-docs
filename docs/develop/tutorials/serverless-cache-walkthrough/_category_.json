@@ -1,9 +1,0 @@
-{
-  "label": "Adding a cache to a serverless application",
-  "position": 2,
-  "link": {
-    "title": "Tutorial - Add a cache to a serverless application",
-    "description": "Want to add a cache to a serverless application using AWS Lambda? Check out the following five-step tutorial.",
-  },
-  "className": "sidebar-item-walkthrough"
-}
