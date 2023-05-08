@@ -32,6 +32,4 @@ Momento キャッシュは世界で初めての本物のサーバーレスキャ
 
 - AWS Lambda や他のシステムとの具体的な連携ガイドについては、[ガイド](./develop/guides/1-caching-with-aws-lambda.md)のセクションをご覧下さい。
 
-- Momento キャッシュを実際に細かく試してみるチュートリアルが欲しい方は、[サーバーレスアプリケーションにキャッシュを追加する](./develop/tutorials/serverless-cache-walkthrough/1-adding-a-cache-to-serverless.md)でその手順をご覧下さい。
-
 ご質問やコメントをお持ちでしょうか？ぜひお聞かせ下さい！[Discord に入って](https://discord.com/invite/3HkAKjUZGq)Momento のスペシャリストとチャットすることもできますし、[support@momentohq.com](mailto:support@momentohq.com) へメールをすることもできます。

@@ -104,5 +104,3 @@ If you're ready to get started with Momento Serverless Cache, be sure to check o
 - Quickstart guide to [start caching with Momento Serverless Cache](./../getting-started) in less than 5 minutes;
 
 - A practical guide for [integrating Momento Serverless Cache with your AWS Lambda functions](./../develop/guides/caching-with-aws-lambda);
-
-- An in-depth tutorial about [adding caching to your serverless application](./../develop/tutorials/serverless-cache-walkthrough/adding-a-cache-to-serverless).

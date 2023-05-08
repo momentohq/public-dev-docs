@@ -23,8 +23,6 @@ This is designed to be a dense, practical guide on getting Momento configured in
 
 If you want to know more about why Momento works well with serverless applications, please refer to our [guide on Caching with Serverless](./../../learn/how-it-works).
 
-If you want a deeper tutorial of how Lambda works and how to use Momento in your Lambda-based application, check out our in-depth tutorial on adding a cache to your serverless application.
-
 ## Connection reuse
 
 The first step to using Momento well in your serverless application is to make sure you're reusing your connection to the Momento service in your Lambda function. We'll describe some background first, then give you the practical steps to take in your application.
