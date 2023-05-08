@@ -1,28 +1,31 @@
 ---
 sidebar_position: 3
-sidebar_label: Data Types
+sidebar_label: データ型
 sidebar_class_name: sidebar-item-data-types
-title: Supported data types
+title: サポートしているデータ型
 pagination_prev: null
 pagination_next: null
-description: Learn the core data types in Momento Cache to match up with common types in modern programming languages and information about each.
+description: Momento Cache のコアとなるデータ型を学び、現代的なプログラミング言語のに共通する型との対応をみてみましょう。
 ---
 
-# Supported data types in Momento Cache and Momento Topics
-Momento Cache provides a group of core data types to match up with common types in various modern programming languages. This page has a list of the core data structures and information about each of them.
+# Momento Cache と Momento Topics でサポートしているデータ型
+Momento Cache は、現代的な様々なプログラミング言語に共通する型と対応するコアとなるデータ型を提供しています。このページでは、コアのデータ構造の一覧と、それぞれの情報を紹介しています。
 
-## Core data types of Momento Cache and Topics
+## Momento Cache と Topics のコアデータ型
 
-### Byte arrays
-All data stored is represented as byte arrays. The Momento SDKs provide easy methods you can use to store your data as raw bytes or as portable UTF-8 strings. Those can be in the form of scalar data, such as strings, characters, numbers, and binary data, such as images and Protocol Buffers serialized arrays.
+### バイト配列
 
-### Collection data types (CDTs)
-Collection Data Types are a grouping of related data into a single item. They are stored as byte array values and each has their own set of API calls in Momento SDKs. For example, DictionaryFetch, ListFetch, and SetFetch.
+保存される全てのデータはバイト配列で表現されます。Momento SDK は、生のバイトやUTF-8 の文字列として皆さんのデータを保存するために簡単に使えるメソッドを提供してます。これらは、スカラーデータ (文字列、キャラクタ、数字、等) か、バイナリデータ (画像、Protocol Buffer のシリアライズされた配列) の形になります。
 
-<img src="/img/collection_data_types.png" alt="Collection data types drawing | Momento Cache" width="80%"/>
+### コレクションデータ型 (CDT)
 
-#### Lists
-A list is a collection of ordered elements, sorted in the sequence each element was inserted.
+コレクションデータ型は、関連するデータを一つの項目にグループ化したものです。それらはバイト配列の値として保存され、Momento SDK ではそれぞれに API が提供されています。例えば、DictionaryFetch、ListFetch、SetFetch 等です。
+
+![コレクションデータ型 | Momento Cache](/img/collection_data_types.png)
+
+#### リスト
+
+リストは順序のある要素の集合で、挿入された順にソートされています。
 
 ```javascript
 "Hoover’s Sour Cream Cookies" = [
@@ -39,12 +42,13 @@ A list is a collection of ordered elements, sorted in the sequence each element 
 ]
 ```
 
-To learn the API methods, check the [API reference for list collection data types](./api-reference/list-collections.md).
+API メソッドは、[リストコレクションデータ型の API リファレンス](./api-reference/list-collections.md)をご覧下さい。
 
-#### Dictionaries
-A dictionary is a collection of unordered elements where each element is a field:value pair.
+#### 辞書
 
-An example of using a dictionary is when you need to store data together and retrieve field:value pairs by name.
+辞書は順序のない要素の集合で、各要素は field:value の組で表されます。
+
+辞書の使用例としては、 field:value の組を一緒に保存して、名前でそれを取り出したい時です。
 ```javascript
 "truck546" = {
     "brand" : "Ford",
@@ -54,10 +58,11 @@ An example of using a dictionary is when you need to store data together and ret
 }
 ```
 
-To learn the API methods, check the [API reference for dictionary collection data types](./api-reference/dictionary-collections.md).
+API メソッドは、[辞書コレクションデータ型の API リファレンス](./api-reference/dictionary-collections.md)をご覧下さい。
 
-#### Sets
-A set is an unordered collection of unique elements, each in string format. For example, no matter how many times you add 'sugar' to a set, there will only be one entry for 'sugar'.
+#### セット
+
+セットは順序のないユニークな要素の集合で、各要素は文字列の形になります。例えば、あるセットに何度 'sugar' を追加しても、 'sugar' は一つしか現れません。
 
 ```javascript
 "myIngredients" = {
@@ -70,11 +75,11 @@ A set is an unordered collection of unique elements, each in string format. For 
 }
 ```
 
-To learn the API methods, check the [API reference for set collection data types](./api-reference/set-collections.md).
+API メソッドは、[セットコレクションデータ型の API リファレンス](./api-reference/set-collections.md)をご覧下さい。
 
-#### Sorted sets
+#### ソート済セット
 
-A sorted set is a collection of unique elements with a value (string) and score (signed double 64-bit float) pair. The elements in the item are ordered by score value. For example,
+ソート済セットは値(文字列)とスコア(64ビット符号付き浮動小数点数)の組で表されるユニークな要素の集合です。項目内の要素はスコアの値でソートされています。例:
 
 ```javascript
 "players" = {
@@ -91,29 +96,29 @@ A sorted set is a collection of unique elements with a value (string) and score 
 
 :::note
 
-If elements have the same score, they are sorted [lexicographically](https://www.dictionary.com/browse/lexicographically).
+もし要素が同じスコアの場合、[辞書的に](https://www.dictionary.com/browse/lexicographically)ソートされます。
 
 :::
 
-To learn the API methods, check the [API reference for sorted set collection data types](./api-reference/sorted-set-collections.md).
+API メソッドは [ソート済セットコレクションデータ型の API リファレンス](./api-reference/sorted-set-collections.md)をご覧下さい。
 
 ## FAQs
 <details>
-  <summary>If I perform an API call to get a subset of data from a dictionary item, will the size of the entire item count toward the per GB transfer costs?</summary>
-No, it will not. For example, if you perform the API call DictionaryGetField to get one 5-kilobyte field:value pair from a dictionary where the entire dictionary item is 50 kilobytes, only 5 kilobytes count towards your per GB transfer costs.
+  <summary>辞書型の項目からデータの部分集合を取り出す API 呼出しをした場合、項目全体のサイズが GB 毎の転送コストに計上されますか？</summary>
+いいえ、されません。例えば、もし全体で 50 KB ある辞書型の項目から、DictionaryGetField API 呼出しで 5 KB の field:value 組のデータを1つ取り出した場合、5 KB だけが GB 毎の転送コストに計上されます。
 </details>
 
 <details>
-  <summary>How do I store a JSON document in Momento Cache?</summary>
-Use your favorite JSON library to serialize the JSON document into a byte array and insert that byte array into Momento Cache. You could also store each field value in your JSON document in a dictionary.
+  <summary>どうやれば Momento Cache に JSON ドキュメントを保存できますか？</summary>
+お好みの JSON ライブラリを使って、その JSON ドキュメントをバイト配列にシリアライズし、そのバイト配列を Momento Cache に挿入してください。または、JSON ドキュメントの各フィールドの値を辞書型に保存することもできます。
 </details>
 
 <details>
-  <summary>Does Momento Cache store nested data in collection data types?</summary>
-Not directly. Your best option is to store this data as a JSON object and then use your favorite JSON library to serialize the JSON document into a byte array and insert that byte array into Momento Cache.
+  <summary>Momento Cache はコレクションデータ型でネストされたデータを保存できますか？</summary>
+直接的にはできません。ベストな選択肢としては、そのデータを JSON オブジェクトとして保存することで、お好みの JSON ライブラリを使って JSON ドキュメントをバイト配列にシリアライズしてからそのバイト配列を Momento Cache に挿入できます。
 </details>
 
 <details>
-  <summary>How do I format elements when using the increment APIs?</summary>
-Elements used with increment API calls must be stored as a UTF-8 string representing a base 10 integer. If the elements are not in that format, the API calls will throw a formatting error.
+  <summary>インクリメント API を使う場合、要素はどのような形式にすればよいですか？</summary>
+インクリメント API で使う要素は、基数 10 の整数を表現する UTF-8 の文字列で保存されている必要があります。もし要素がこの形式になっていない場合、API 呼出しは形式エラーを投げます。
 </details>
