@@ -24,13 +24,9 @@ function markdownNodeContainsExampleSnippets<T extends unist.Node>(
 }
 
 /**
- * This is a docusaurus MDX/remark plugin.  It finds markers in the markdown
- * source, in 'text' or 'code' blocks, and injects example snippets into the
- * content in their place.
- *
- * The markers are delimited by 3 percent signs; here is an example:
- *
- * %%%example:typescript:code:API_Set%%%
+ * This is a docusaurus MDX/remark plugin.  It finds <SdkExampleSnippets> in the markdown
+ * source, and replaces them with <SdkExampleSnippetTabs> tags that are populated with the
+ * example code snippets pulled in from the SDK repos.
  *
  * @param options
  * @returns {unknown}
@@ -70,9 +66,7 @@ function plugin(options: unknown): unknown {
   cli={\`${snippetForLanguage(ExampleLanguage.CLI)}\`}
 />
 `;
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      node.value = sdkExamplesValue;
+      literal.value = sdkExamplesValue;
     });
   }
   return transformer;
