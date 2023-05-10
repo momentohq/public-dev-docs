@@ -66,7 +66,7 @@ Finally, _serverless developers prefer services that can be provisioned quickly 
 
 Momento is a great addition to serverless applications that use AWS Lambda and other popular serverless services.
 
-First, Momento Cache is [available via HTTPS](./../learn/how-it-works#networking). This simplifies the configuration required to add Momento to your serverless application. You simply add the Momento API token to your application and start using your cache. With this HTTPS-based connection pattern, you can still reuse an existing connection within your Lambda function to avoid the overhead of establishing a new connection on each request. Additionally, Memento has a VPC peering option available if you prefer using a VPC for your application.
+First, Momento Cache is [available via HTTPS](./../learn/how-it-works#networking). This simplifies the configuration required to add Momento to your serverless application. You simply add the authentication token to your application and start using your cache. With this HTTPS-based connection pattern, you can still reuse an existing connection within your Lambda function to avoid the overhead of establishing a new connection on each request. Additionally, Memento has a VPC peering option available if you prefer using a VPC for your application.
 
 Second, Momento Cache can scale your cache quickly and achieve a high number of requests per second without pre-provisioning. There are no connection limits to your Momento cache, so a burst of traffic won't lead to availability issues in your application.
 
@@ -92,7 +92,7 @@ Second, _these developers are looking for a generous free tier as they start usi
 
 If you're an indie hacker or an early-stage startup that's looking to save money, Momento is a great fit for you as well.
 
-First, Momento Cache has a painless self-service sign up. You can get a Momento API token and [start writing to your cache in less than five minutes](./../getting-started). You don't need to talk to a salesperson or sign an upfront contract. In fact, you don't even need to enter a credit card to enjoy the free tier.
+First, Momento Cache has a painless self-service sign up. You can get a Momento authentication token and [start writing to your cache in less than five minutes](./../getting-started). You don't need to talk to a salesperson or sign an upfront contract. In fact, you don't even need to enter a credit card to enjoy the free tier.
 
 Second, Momento Cache has a generous free tier. You get 50 GB free each month (see [pricing](./../manage/pricing) for details). Our goal is to allow a wide variety of applications to run on Momento without ever paying us a cent. We want to provide a top-tier, robust service for applications that need it while also supporting a broad community of applications to use Momento as they grow.
 
