@@ -37,9 +37,9 @@ Scroll down and you will see your token in a grey box. The token in the screensh
 
 ![image](/img/getting-started/generated-token.jpg)
 
-## Step 3: Store auth token
+## Step 3: Store API token
 
-There are multiple places you can store the auth token used to authenticate with Momento. For this simple example, we'll store the auth token in an environment variable, but best practice is to store the auth token in something like AWS Secrets Manager or GCP Secret Manager.
+There are multiple places you can store the API token used to authenticate with Momento. For this simple example, we'll store the API token in an environment variable, but best practice is to store the API token in something like AWS Secrets Manager or GCP Secret Manager.
 
 ## Step 4: Grab the SDK, create a cache, and read/write data
 
@@ -55,10 +55,10 @@ npm install dotenv
 
 **Create a .env file**
 
-Create a .env file in the directory to hold your Momento auth token and the TTL (in seconds) you want to use by default.
+Create a .env file in the directory to hold your Momento API token and the TTL (in seconds) you want to use by default.
 
 ```cli
-export MOMENTO_AUTH_TOKEN=<your Momento token here>
+export MOMENTO_API_TOKEN=<your Momento token here>
 export MOMENTO_TTL_SECONDS=300
 ```
 
@@ -83,7 +83,7 @@ async function createCacheClient() {
   return new CacheClient({
     configuration: Configurations.Laptop.v1(),
     credentialProvider: CredentialProvider.fromEnvironmentVariable({
-      environmentVariableName: 'MOMENTO_AUTH_TOKEN',
+      environmentVariableName: 'MOMENTO_API_TOKEN',
     }),
     defaultTtlSeconds: 600,
   });
@@ -186,14 +186,14 @@ Momento Cache is a fully-managed, API-based, serverless service. It does not dep
 
 <br />
 
-First, request your free auth token, create a cache, configure your CLI, and start running `set` and `get` commands on your cache. Launch below.
+First, request your free API token, create a cache, configure your CLI, and start running `set` and `get` commands on your cache. Launch below.
 
 <a href="https://play.instruqt.com/embed/momento/tracks/sandbox-container-1challenge?token=em_54kTDywfWaG95-rC&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/cli_lab.png" alt="CLI lab" /></a>
 
 <br />
 <br />
 
-Then, use the auth token and cache you just created to run a JavaScript application using our Node.js SDK. Launch below.
+Then, use the API token and cache you just created to run a JavaScript application using our Node.js SDK. Launch below.
 
 <a href="https://play.instruqt.com/embed/momento/tracks/momento-nodejs-demo?token=em_f8PM8Aob-mHIfOTT&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/sdk_lab.png" alt="SDK lab" /></a>
 

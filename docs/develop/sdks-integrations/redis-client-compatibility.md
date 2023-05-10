@@ -63,7 +63,7 @@ const redisClient = createClient(
   new momento.CacheClient({
     configuration: momento.Configurations.Laptop.v1(),
     credentialProvider: momento.CredentialProvider.fromEnvironmentVariable({
-      environmentVariableName: 'MOMENTO_AUTH_TOKEN',
+      environmentVariableName: 'MOMENTO_API_TOKEN',
     }),
     defaultTtlSeconds: 60,
   }),
