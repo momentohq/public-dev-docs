@@ -101,7 +101,7 @@ The data plane includes the standard "set" and "get" cache functionality allowin
 
 The SimpleCache object will be your main way of interacting with the Momento Cache API. Let's talk a little bit about what is happening under the hood. We'll discuss the authentication mechanism, the communication format, and the networking configuration for the Momento API.
 
-### API authentication token
+### API token
 
 Your SimpleCache object will use an API authentication token when communicating with the Momento Cache service. This token is a [JSON Web Token](https://en.wikipedia.org/wiki/JSON_Web_Token) (or "JWT") that contains signed account information to authenticate you when making cache requests. It also includes information like the hostname of your cache instance, which helps the SimpleCache object to make more efficient requests to the Momento service.
 
