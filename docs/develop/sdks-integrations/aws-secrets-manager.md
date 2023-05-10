@@ -3,31 +3,31 @@ sidebar_position: 3
 sidebar_label: AWS Secrets Manager
 pagination_next: null
 title: Momento + AWS Secrets Manager
-description: Learn how to retreive your Momento API Token in AWS Secrets Manager.
+description: Learn how to retreive your Momento Auth Token in AWS Secrets Manager.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Retrieving a Momento API token from AWS Secrets Manager
+# Retrieving a Momento auth token from AWS Secrets Manager
 
-It's best practice to securely store your Momento authentication token. If you are using AWS, you can securely store the API token in [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html). With that, only code running with the correct IAM credentials will be able to fetch the API token and use it to access Momento Cache or Momento Topics.
+It's best practice to securely store your Momento authentication token. If you are using AWS, you can securely store the auth token in [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html). With that, only code running with the correct IAM credentials will be able to fetch the auth token and use it to access Momento Cache or Momento Topics.
 
 :::info
 
-Just as you should reuse your Momento `CacheClient` and `TopicClient` objects when possible, so should you with the Momento API token from AWS Secrets Manager. Otherwise you risk adding cost, both in time and money, to each Momento API call for the round trip to AWS Secrets Manager.
+Just as you should reuse your Momento `CacheClient` and `TopicClient` objects when possible, so should you with the Momento auth token from AWS Secrets Manager. Otherwise you risk adding cost, both in time and money, to each Momento API call for the round trip to AWS Secrets Manager.
 
 :::
 
 ## Entry in AWS Secrets Manager
 
-When inserting the Momento API token into AWS Secrets Manager, it should be as plaintext with no JSON as in this screenshot. (Token blurred for security.)
+When inserting the Momento auth token into AWS Secrets Manager, it should be as plaintext with no JSON as in this screenshot. (Token blurred for security.)
 
 ![AWS Secrets Manager](/img/aws-secrets-manager.png)
 
 ## Example Code for AWS Secrets Manager
 
-In the code examples below, you can see where the getToken function is called just before creating the Momento cache connection client as that is where the API token is needed and the only time it is needed.
+In the code examples below, you can see where the getToken function is called just before creating the Momento cache connection client as that is where the auth token is needed and the only time it is needed.
 
 <Tabs>
   <TabItem value="nodejs" label="Node.js" default>
@@ -43,7 +43,7 @@ const { CacheGet, CacheSet, Configurations, ListCaches, CreateCache,
 // Defines name of cache to use.
 const CACHE_NAME = 'demo-cache2';
   
-// A function that gets the Momento_API_Token you stored in AWS Secrets Manager.
+// A function that gets the Momento_Auth_Token you stored in AWS Secrets Manager.
 // The secret was stored as a plaintext string to avoid parsing JSON.
 async function getToken(secretName) {
   try {
@@ -67,7 +67,7 @@ async function getToken(secretName) {
 // Create a Momento cache client connection object
 async function createCacheClient() {
     // Get the token from AWS Secrets Manager
-    const token = await getToken("Momento_API_Token");
+    const token = await getToken("Momento_Auth_Token");
 
     return new CacheClient({
       configuration: Configurations.Laptop.v1(),
@@ -129,11 +129,11 @@ import {
   GetSecretValueCommandOutput,
 } from '@aws-sdk/client-secrets-manager';
 
-/* A function that gets the Momento_API_Token stored in AWS Secrets Manager.
+/* A function that gets the Momento_Auth_Token stored in AWS Secrets Manager.
 The secret was stored as a plaintext format in Secrets Manager to avoid parsing JSON.
 
-You don't have to store the Momento API token in something like AWS Secrets Manager,
-but it is best practice. You could pass the Momento API token in from an environment variable.
+You don't have to store the Momento auth token in something like AWS Secrets Manager,
+but it is best practice. You could pass the Momento auth token in from an environment variable.
 
 */
 async function GetToken(
@@ -161,7 +161,7 @@ async function GetToken(
 // object from Momento Cache and returns that for later use.
 export default async function CreateCacheClient(
   ttl:number = 600,
-  tokenName:string = "Momento_API_Token", 
+  tokenName:string = "Momento_Auth_Token", 
   ): Promise<CacheClient> {
   const token: string = await GetToken(tokenName);
     return new CacheClient({
@@ -180,5 +180,5 @@ export default async function CreateCacheClient(
 
 <details>
   <summary>Do I have to do this?</summary>
-No. You can store your Momento API token in an environment variable or a file, but that is not best practice as it is not as secure as storing it in something like AWS Secrets Manager.
+No. You can store your Momento auth token in an environment variable or a file, but that is not best practice as it is not as secure as storing it in something like AWS Secrets Manager.
 </details>
