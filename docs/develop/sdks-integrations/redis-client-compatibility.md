@@ -39,7 +39,7 @@ const redisClient = createClient(
     new momento.CacheClient({
         configuration: momento.Configurations.Laptop.v1(),
         credentialProvider: momento.CredentialProvider.fromEnvironmentVariable({
-            environmentVariableName: 'MOMENTO_AUTH_TOKEN',
+            environmentVariableName: 'MOMENTO_API_TOKEN',
         }),
         defaultTtlSeconds: 60,
     }),
@@ -54,7 +54,7 @@ the [Momento Node.js Redis compatibility client on GitHub](https://github.com/mo
 <TabItem value="ioredis" label="IORedis" default>
 
 ```javascript
-// Import the Momento redis compatibility client.
+// Import the Momento ioredis compatibility client.
 import {MomentoRedisAdapter} from '@gomomento-poc/node-ioredis-client';
 import {
     CacheClient,
@@ -67,7 +67,7 @@ const Redis = new MomentoRedisAdapter(
     new CacheClient({
         configuration: Configurations.Laptop.v1(),
         credentialProvider: CredentialProvider.fromEnvironmentVariable({
-            environmentVariableName: authTokenEnvVarName,
+            environmentVariableName: 'MOMENTO_API_TOKEN',
         }),
         defaultTtlSeconds: config.defaultTTLSeconds,
     }),
@@ -93,7 +93,7 @@ using Momento.StackExchange.Redis;
 var db = MomentoRedisDatabase(
   new CacheClient(
     config: Configurations.Laptop.v1(),
-    authProvider: new EnvMomentoTokenProvider("MOMENTO_AUTH_TOKEN"),
+    authProvider: new EnvMomentoTokenProvider("MOMENTO_API_TOKEN"),
     defaultTtl: TimeSpan.FromSeconds(60),
   }),
   "cache_name"
