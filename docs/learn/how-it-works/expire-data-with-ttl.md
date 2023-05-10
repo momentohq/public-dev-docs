@@ -28,7 +28,7 @@ There are three locations to set a TTL value:
 
     ```javascript
     const MY_DEFAULT_TTL = 60; // This value is in seconds
-    const momento = new SimpleCacheClient(APIToken, MY_DEFAULT_TTL);
+    const momento = new SimpleCacheClient(apiToken, MY_DEFAULT_TTL);
     ```
 
 
