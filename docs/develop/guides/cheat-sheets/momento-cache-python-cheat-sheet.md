@@ -25,104 +25,92 @@ from momento.responses import CacheGet, CacheSet, CreateCache, ListCaches, Cache
 
 import os
 
-class MomentoBasics:
-  def client():
-    momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_AUTH_TOKEN')
-    ttl  = timedelta(seconds=int(os.getenv('MOMENTO_TTL_SECONDS', '60')))
-    config = {
-      'configuration': Configurations.Laptop.v1(),
-      'credential_provider': momento_auth_token,
-      'default_ttl':  ttl
-    }
-    return CacheClient(**config)
+def create_client():
+  momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_AUTH_TOKEN')
+  ttl  = timedelta(seconds=int(os.getenv('MOMENTO_TTL_SECONDS', '600')))
+  config = {
+    'configuration': Configurations.Laptop.v1(),
+    'credential_provider': momento_auth_token,
+    'default_ttl':  ttl
+  }
+  return CacheClient(**config)
 ```
 
 ## Create a new cache in Momento Cache
 Use this function to create a new cache in your account.
 ```python
-  def create_cache(cache_name) -> None:
-    with MomentoBasics.client() as client:
-      resp = client.create_cache(cache_name)
-      match resp:
-        case CreateCache.Success():
-            print("Cache created.")
-        case CreateCache.Error() as error:
-            print(f"Error creating cache: {error.message}")
-        case _ as error:
-            print(f"Unreachable with {error.message}")
+def create_cache(client, cache_name: str) -> None:
+  resp = client.create_cache(cache_name)
+  match resp:
+    case CreateCache.Success():
+        print("Cache created.")
+    case CreateCache.Error() as error:
+        print(f"Error creating cache: {error.message}")
+    case _ as error:
+        print(f"Unreachable with {error.message}")
 ```
 
 ## Get list of existing caches in your account
 In this example, we use the client function above to get a client object and then use it to list all of the caches for this account.
 ```python
-  def list_caches() -> None:
-      print("Listing caches:")
-      with MomentoBasics.client() as client:
-        list_caches_response = client.list_caches()
-        match list_caches_response:
-            case ListCaches.Success() as success:
-                for cache_info in success.caches:
-                    print(f"- {cache_info.name!r}")
-            case ListCaches.Error() as error:
-                print(f"Error creating cache: {error.message}")
-            case _:
-                print("Unreachable")
-        print("")
+def list_caches(client) -> None:
+    print("Listing caches:")
+    list_caches_response = client.list_caches()
+    match list_caches_response:
+        case ListCaches.Success() as success:
+            for cache_info in success.caches:
+                print(f"- {cache_info.name!r}")
+        case ListCaches.Error() as error:
+            print(f"Error listing caches: {error.message}")
+        case _:
+            print("Unreachable")
+    print("")
 ```
 ## Write an item to a cache
 A simple example of doing a set operation. In the client.set call, the TTL it optional. If you did pass it in, this would override the default TTL value set with the client connection object.
 ```python
-  def set(cache_name, key, value, ttl=None):
-    with MomentoBasics.client() as client:
-      resp = client.set(cache_name, key, value, ttl)
-      match resp:
-        case CacheSet.Success():
-            pass
-        case CacheSet.Error() as error:
-            print(f"Error setting value: {error.message}")
-        case _:
-            print("Unreachable")
+def set(client, cache_name, key, value, ttl=None):
+  resp = client.set(cache_name, key, value, ttl)
+  match resp:
+    case CacheSet.Success():
+        pass
+    case CacheSet.Error() as error:
+        print(f"Error setting value: {error.message}")
+    case _:
+        print("Unreachable")
 ```
 
 ## Read an item from a cache
 This is an example of a simple read operation to get an item from a cache.
 ```python
-  def get(cache_name, key):
-    with MomentoCounter.client() as client:
-      resp = client.get(cache_name, key)
-      match resp:
-        case CacheGet.Hit():
-            print("value is " + resp.value_string)
-        case CacheGet.Miss() as error:
-            print(f"Error getting key: {error.message}")
-        case _:
-            print("Unreachable")
+def get(client, cache_name, key):
+  resp = client.get(cache_name, key)
+  match resp:
+    case CacheGet.Hit():
+        print("value is " + resp.value_string)
+    case CacheGet.Miss() as error:
+        print(f"Error getting key: {error.message}")
+    case _:
+        print("Unreachable")
 ```
 
 ## Increment the value of an item in a cache
 An example of incrementing a value in a key. You can pass in a positive or negative integer.
 ```python
-  def incr(cache_name, key, value:int = 1):
-    with MomentoBasics.client() as client:
-      resp = client.increment(cache_name, key, value)
-      match resp:
-        case CacheIncrement.Success():
-            pass
-        case CacheIncrement.Error() as error:
-            print(f"Error incrementing value: {error.message}")
-        case _:
-            print("Unreachable")
+def incr(client, cache_name, key, value:int = 1):
+  resp = client.increment(cache_name, key, value)
+  match resp:
+    case CacheIncrement.Success():
+        pass
+    case CacheIncrement.Error() as error:
+        print(f"Error incrementing value: {error.message}")
+    case _:
+        print("Unreachable")
 ```
 
 :::info
 Beyond these basic API calls check out the [API reference page](../../api-reference/index.mdx) for more information on the full assortment of Momento API calls.
 :::
 
-## Notes of further usage
-It could be adventageous to reuse the CacheClient connection object across multiple API calls depending on how your app works. If this is something you want to do, then you should modify the client() function definition to return a CacheClient object like so:
-
-```python
-def client() -> CacheClient:
-```
-
-Then, modify the other function definitions to accept a CacheClient object as an argument, but also not instantiate its own object.
+## Notes of usage
+For any of these functions, call the `create_client()` function which returns a CacheClient object. Then pass that object into subsequent functions. This way, calls are more efficient as they reuse the CacheClient for multiple calls to Momento. [Click here](../../../../static/code/cheat-sheets/MomentoBasics.py) to see a file with all definitions in it.
