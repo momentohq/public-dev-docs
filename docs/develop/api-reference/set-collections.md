@@ -23,7 +23,7 @@ Adds an element to a set. If the set item does not already exist, this method wi
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
 | setName         | String          | Name of the set item to be altered. |
-| element         | String \| bytes | Element to be added by this operation. |
+| element         | String \| Bytes | Element to be added by this operation. |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the set item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
@@ -43,7 +43,7 @@ Adds multiple elements to a set item.
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
 | setName         | String       | Name of the set item to be altered. |
-| elements        | String[] \| bytes[] | Elements to be added by this operation. |
+| elements        | String[] \| Bytes[] | Elements to be added by this operation. |
 | ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the set item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
@@ -71,9 +71,9 @@ Gets a set item from a cache.
 The response object for SetFetch returns three possible options, a cache hit, miss, or an error.
 
 * Hit
-    * valueSetBytes(): bytes[]
-    * valueSetString(): string[]
-    * toString(): string
+    * valueSetBytes(): Bytes[]
+    * valueSetString(): String[]
+    * toString(): String
 * Miss
 * Error
 
@@ -88,7 +88,7 @@ Removes a single element from an existing set item.
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
 | setName         | String          | Name of the set item to be altered.           |
-| element         | String \| bytes | Element to be removed by this operation.   |
+| element         | String \| Bytes | Element to be removed by this operation.   |
 
 <details>
   <summary>Method response object</summary>
@@ -107,7 +107,7 @@ Removes multiple elements from an existing set item.
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
 | setName         | String       | Name of the set item to be altered. |
-| element         | String \| bytes | Element to be removed by this operation.   |
+| element         | String \| Bytes | Element to be removed by this operation.   |
 
 <details>
   <summary>Method response object</summary>
@@ -126,7 +126,7 @@ Checks if a provided element is in the given set.
 |-----------| --------------- |-----------------------|
 | cacheName | String          | Name of the cache.    |
 | setName   | String          | Name of the set item. |
-| element   | String \| bytes                 | Name of the element to check existence of.   |
+| element   | String \| Bytes                 | Name of the element to check existence of.   |
 
 <details>
   <summary>Method response object</summary>
@@ -149,7 +149,7 @@ Checks if provided elements are in the given set.
 |-----------|------------|-------------------------------------|
 | cacheName | String     | Name of the cache.                  |
 | setName   | String     | Name of the set item. |
-| elements  | String[] \ | bytes                             | Array of element names to check existence of.   |
+| elements  | String[] \ | Bytes                             | Array of element names to check existence of.   |
 
 <details>
   <summary>Method response object</summary>

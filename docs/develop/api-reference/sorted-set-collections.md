@@ -8,7 +8,7 @@ slug: /develop/api-reference/collections/sortedsets
 
 # Sorted set collections
 
-A sorted set in Momento Cache is a collection of unique elements with a value (string, byte[], etc.) and score (signed double 64-bit float) pair. The elements in the item are ordered by the score.
+A sorted set in Momento Cache is a collection of unique elements with a value (String, Byte[], etc.) and score (signed double 64-bit float) pair. The elements in the item are ordered by the score.
 
 ## Sorted set methods
 
@@ -24,7 +24,7 @@ Adds a new or updates an existing [sorted set element](#sortedsetelement) in a s
 | --------------- | ------------------ | --------------------------------------------- |
 | cacheName       | String             | Name of the cache.                            |
 | setName         | String             | Name of the sorted set item to be altered. |
-| value        | String \| byte[] | The value of the element to be added to the sorted set by this operation. |
+| value        | String \| Byte[] | The value of the element to be added to the sorted set by this operation. |
 | score        | number | The score of the element to be added to the sorted set by this operation. |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set item. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
@@ -121,7 +121,7 @@ Gets an element's score from the sorted set, indexed by value.
 | ---------------- | ------------------- | --------------------------------------------- |
 | cacheName        | String              | Name of the cache.                            |
 | setName          | String              | Name of the sorted set item. |
-| value           | String \| bytes | The value to get the score of. |
+| value           | String \| Bytes | The value to get the score of. |
 
 <details>
   <summary>Method response object</summary>
@@ -143,7 +143,7 @@ Gets the scores associated with a list of elements from the sorted set, indexed 
 | ---------------- | ------------------- | --------------------------------------------- |
 | cacheName        | String              | Name of the cache.                            |
 | setName          | String              | Name of the sorted set item. |
-| values           | String[] \| bytes[] | An array of values to get the score of. |
+| values           | String[] \| Bytes[] | An array of values to get the score of. |
 
 <details>
   <summary>Method response object</summary>
@@ -168,7 +168,7 @@ Removes an element from a sorted set, indexed by value.
 | --------------- | ---------------- | --------------------------------------------- |
 | cacheName       | String           | Name of the cache.                            |
 | setName         | String           | Name of the set item to be altered. |
-| value          | String \| bytes | Value of the element to be removed by this operation. |
+| value          | String \| Bytes | Value of the element to be removed by this operation. |
 
 <details>
   <summary>Method response object</summary>
@@ -188,7 +188,7 @@ Removes elements from a sorted set, indexed by values.
 | --------------- | ---------------- | --------------------------------------------- |
 | cacheName       | String           | Name of the cache.                            |
 | setName         | String           | Name of the set item to be altered. |
-| values          | String[] \| bytes[] | Values of the elements to be removed by this operation. |
+| values          | String[] \| Bytes[] | Values of the elements to be removed by this operation. |
 
 You can remove either one or a specific group of elements.
 
@@ -210,7 +210,7 @@ What position is the element, in the specified sorted set?
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
 | setName         | String          | Name of the sorted set item to be altered.    |
-| value           | String \| bytes | Value of the element to retrieve the score of. |
+| value           | String \| Bytes | Value of the element to retrieve the score of. |
 
 <details>
   <summary>Method response object</summary>
@@ -243,7 +243,7 @@ Examples:
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
 | setName         | String          | Name of the sorted set item to be altered. |
-| value           | String \| bytes | Value for the element to be incremented by this operation. |
+| value           | String \| Bytes | Value for the element to be incremented by this operation. |
 | amount          | Number          | The quantity to add to the score. May be positive, negative, or zero. Defaults to 1. |          
 | ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set item. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
@@ -267,7 +267,7 @@ Example:
 
 | Name            | Type                         | Description                                   |
 | --------------- | ---------------------------- | --------------------------------------------- |
-| Value           | String \| bytes              | Value for the sorted set element.                            |
+| Value           | String \| Bytes              | Value for the sorted set element.                            |
 | Score           | Signed double 64-bit float   | Score the element. |
 
 A SortedSetElement can exist by itself or as part of an array of SortedSetElements

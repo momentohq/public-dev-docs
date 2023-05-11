@@ -144,13 +144,13 @@ Checks if a provided key exists in the cache.
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
-| key        | String \| byte          | Key which is to be checked for its existence in the cache.              |
+| key        | String \| Byte          | Key which is to be checked for its existence in the cache.              |
 
 <details>
     <summary>Method response object</summary>
 
     * Success
-    - `exists()`: bool
+    - `exists()`: Bool
     * Error
 
     See [response objects](./response-objects.md) for specific information.
@@ -164,13 +164,13 @@ Checks if provided keys exist in the cache.
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
-| keys        | String[] \| byte[]          | Keys which are to be checked for their existence in the cache.              |
+| keys        | String[] \| Byte[]          | Keys which are to be checked for their existence in the cache.              |
 
 <details>
     <summary>Method response object</summary>
 
     * Success
-    - `exists()`: bool[]
+    - `exists()`: Bool[]
     * Error
 
     See [response objects](./response-objects.md) for specific information.
@@ -184,8 +184,8 @@ Associates the provided value to a cache item with a given key.
 | Name       | Type   | Description                                   |
 | ---------- | ------ | --------------------------------------------- |
 | cacheName  | String | Name of the cache.                            |
-| key        | String /| bytes | The key to be set. |
-| value      | String /| bytes | The value to be stored.                       |
+| key        | String \| Bytes | The key to be set. |
+| value      | String \| Bytes | The value to be stored.                       |
 | ttlSeconds | Duration    | Time to Live for the item in Cache.           |
 
 <details>
@@ -210,7 +210,7 @@ Overwrites the TTL of a cache item with the provided value in seconds.
 | Name      | Type   | Description                                     |
 | --------- | ------ | ----------------------------------------------- |
 | cacheName | String | Name of the cache.                              |
-| key       | String \| bytes | The key under which the value's TTL is to be updated. |
+| key       | String \| Bytes | The key under which the value's TTL is to be updated. |
 | ttl       | Duration | Time to live that you want to update in cache in seconds. |
 
 ### IncreaseTtl
@@ -224,7 +224,7 @@ Examples
 | Name      | Type   | Description                                     |
 | --------- | ------ | ----------------------------------------------- |
 | cacheName | String | Name of the cache.                              |
-| key       | String \| bytes | The key under which the value's TTL is to be increased. |
+| key       | String \| Bytes | The key under which the value's TTL is to be increased. |
 | ttl       | Duration | Time to live that you want to increase to. |
 
 ### DecreaseTtl
@@ -238,7 +238,7 @@ Examples
 | Name      | Type   | Description                                     |
 | --------- | ------ | ----------------------------------------------- |
 | cacheName | String | Name of the cache.                              |
-| key       | String \| bytes | The key under which the value's TTL is to be decreased. |
+| key       | String \| Bytes | The key under which the value's TTL is to be decreased. |
 | ttl       | Duration | Time to live that you want to decrease to. |
 
 ### Collection data types (CDTs)

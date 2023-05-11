@@ -23,10 +23,10 @@ Returned in lieu of an exception.
 
 #### Methods
 
-- message(): string - a human readable error message
+- message(): String - a human readable error message
 - innerException(): Exception - the original exception.
 - errorCode(): MomentoErrorCode - Momento’s own category of errors such as InvalidArgument or BadRequest. See [Standards And Practices - Error Handling](https://github.com/momentohq/standards-and-practices/blob/main/docs/client-specifications/error-handling.md)
-- toString(): string - alias for message()
+- toString(): String - alias for message()
 
 ### Success
 
