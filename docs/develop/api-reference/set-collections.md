@@ -149,7 +149,7 @@ Checks if provided elements are in the given set.
 |-----------|------------|-------------------------------------|
 | cacheName | String     | Name of the cache.                  |
 | setName   | String     | Name of the set item. |
-| elements  | String[] \ | Bytes                             | Array of element names to check existence of.   |
+| elements  | String[] \| Bytes[]                             | Array of element names to check existence of.   |
 
 <details>
   <summary>Method response object</summary>
