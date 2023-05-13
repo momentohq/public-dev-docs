@@ -1,107 +1,106 @@
 ---
 sidebar_position: 1
-sidebar_label: What is Serverless Caching?
-title: What is Serverless Caching?
+sidebar_label: サーバーレスキャッシュとは?
+title: サーバーレスキャッシュとは?
 pagination_prev: null
-description: Learn what serverless is in terms of caching and what Momento Cache can be your simple, fast cache for your apps.
+description: キャッシュの文脈でサーバーレスとはどういうことか、そして Momento Cache がいかに簡潔で高速なキャッシュになるかを学びましょう。
 ---
 
-# What is Serverless Caching?
+# サーバーレスキャッシュとは？
 
-Serverless is one of the hottest trends in software development, and we're seeing an explosion in "serverless-friendly" services.
+サーバーレスは今ソフトウェア開発業界で最も熱いトレンドで、"サーバーレスにやさしい" サービスが爆発的に増えていいます。
 
-We believe Momento Cache is the most serverless-friendly cache available. But what does serverless mean, and why is Momento Cache a serverless-friendly cache?
+私達は Momento Cache がその中で最もサーバーレスにやさしいキャッシュであると信じています。でも、サーバーレスとはどういう意味で、なぜ Momento Cache がサーバーレスにやさしいキャッシュなのでしょうか？
 
-We'll look at two definitions of serverless plus a group of builders that is interested in serverless-like technologies:
+ここでは、サーバーレスの2つの定義と、サーバーレス的な技術に興味のある開発者達について、詳しく見ていきましょう。
 
-- [Serverless as an operational model](#serverless-as-an-operational-model)
+- [運用モデルとしてのサーバーレス](#運用モデルとしてのサーバーレス)
 
-- [Serverless as compatibility with related architectures](#serverless-as-compatibility-with-related-architectures)
+- [関連するアーキテクチャに対する互換性としてのサーバーレス](#関連するアーキテクチャに対する互換性としてのサーバーレス)
 
-- [Serverless as independent project platform](#serverless-as-independent-project-platform)
+- [独立したプロジェクトの基盤としてのサーバーレス](#独立したプロジェクトの基盤としてのサーバーレス)
 
-Note that this page is focused on the conceptual reasons why Momento Cache fits so well in serverless applications. If you want more practical advice on integrating Momento Cache into your serverless application, check out our page on [using Momento Cache with AWS Lambda](./../develop/guides/caching-with-aws-lambda).
+なお、このページでは Momento Cache がどうしてサーバーレスアプリケーションと親和性が高いかの概念的な理由の説明に注力しています。もし実際に Momento Cache を皆さんのサーバーレスアプリケーションに組み込む際のアドバイスをお探しでしたら、[Momento Cache を AWS Lambda から使う](./../develop/guides/caching-with-aws-lambda)のページをご覧下さい。
 
-## Serverless as an operational model
 
-The first way people use the term "serverless" is to describe the operational mechanics of a particular service. This is my preferred definition of serverless and the one closest to its original, unadulterated definition. Let's call this the 'traditional' definition of serverless.
+## 運用モデルとしてのサーバーレス
 
-Within the traditional definition of serverless, serverless services generally have three attributes.
+一つ目の"サーバーレス"という用語が使われる場面は、特定のサービスの運用形態を表す時です。これが私の一番好みのサーバーレスの定義で、本来の純粋な定義に最も近いものです。ここでは"古典的な"サーバーレスの定義と呼んでいきましょう。
 
-First, _a serverless service is managed_. Rather than running a service yourself, some service provider has taken over the core management responsibilities from you. If you're running a database, you won't be installing Postgres on a bare metal machine in a database. If you need a cache, you're not standing up Memcached on an EC2 instance. Rather, you're consuming the service directly -- a database, a cache, a message queue -- from a provider that is installing, configuring, and maintaining the underlying software.
+古典的なサーバーレスの定義では、サーバーレスサービスは一般的に3つの属性を持っています。
 
-Second, _a serverless service is abstracted from you_. In general, you should have fewer knobs to turn or choices to make in provisioning your service. This is a point emphasized by Ben Kehoe in his [post on the Serverless Spectrum](https://ben11kehoe.medium.com/the-serverless-spectrum-147b02cb2292#fbae). Practically, this could mean you provision for specific functional capacity (such as DynamoDB's read and write capacity throughput) rather than the underlying resources (such as a database instance size with various configurations of CPU, RAM, and network I/O). Or it could mean you don't provision for anything at all, such as with an SQS queue or an S3 bucket. In those cases, the provider manages scaling up and down to meet your needs.
+第一に、サーバーレスサービスはマネージドです。サービスをユーザー自身が走らせるのではなく、サービス提供者が中心となる管理責任をユーザーの代わりに担ってくれます。データベースを実行する場合、Postgres をベアメタルマシンにインストールするのではありません。キャッシュが必要であれば、Memcached 用に EC2 インスタンスを立ち上げるのではありません。そうではなくて、基礎となるソフトウェアをインストールし、設定し、管理しているサービス提供者から、データベース、キャッシュ、メッセージキュー、といったサービスを直接利用することを意味します。
 
-Finally, _a serverless service has a pay-for-value pricing scheme_. Because the service is more abstracted from underlying resources and more toward capacity, you can have a closer link between the price you pay and the value you receive. This can mean a pay-per-use billing system, such as with AWS Lambda, Amazon API Gateway, or Amazon SQS. It can also mean a system that allows for flexible scale up and scale down, such as Amazon DynamoDB or Amazon Kinesis. With a serverless service, you don't need to overprovision to account for times of peak load, leading to large periods of your instances sitting at low resource usage.
+第二に、サーバーレスサービスは抽象化されています。一般的に、サービスをどのようにプロビジョンするかを細かく設定する手段はほとんどありません。Ben Kehoe が彼の[サーバーレスのスペクトラムに関する投稿](https://ben11kehoe.medium.com/the-serverless-spectrum-147b02cb2292#fbae)でも強調していることです。現実的な意味では、特定の機能に対するキャパシティ (例えば DynamoDB の読み書きのスループットキャパシティ) を、その下で実際に使われるリソース (例えば、CPU、RAM、ネットワーク I/O 等の多数の設定をされたデータベースのインスタンスサイズ) の代わりにプロビジョンします。または、SQS キューや S3 バケットの様に、何もプロビジョンする必要がありません。これらの場合には、サービス提供者が必要に応じてスケールアップやダウンを管理してくれます。
 
-As Ben Kehoe notes in the article linked above, "serverlessness" is a spectrum, and you want to be using services that tend to have more of the qualities above. Additionally, some services have flexibility in how you use them, but you should try to use them in a more serverless way.
+最後に、サーバーレスは従量課金のスキーマです。サービスが、その下で動くリソースよりも抽象化されていてキャパシティ指向なので、支払うお金と受け取る価値にほぼ直接的な関連性を見いだせるでしょう。これは、例えば AWS Lambda、Amazon API Gateway、または Amazon SQS の様な従量課金のシステムを意味します。他にも、Amazon DynamoDB や Amazon Kinesis の様な柔軟にスケールアップやダウンできるシステムを意味することもあります。サーバーレスサービスでは、ピーク時の負荷に備えてオーバープロビジョニングして、ほとんどの時間はインスタンスが低いリソース利用率にある様な事は必要はありません。
 
-### How Momento fits the traditional definition of serverless
+Ben Kehoe が上述の記事で言っている様に、"サーバーレス"とはスペクトラムであり、上記の属性をより多く持っているサービスを使いたくなるでしょう。加えて、いくつかのサービスは利用方法に柔軟性がありますが、よりサーバーレス的な使い方ができる方法を試してみるべきです。
 
-Momento Cache fits perfectly under this traditional definition of serverless.
+### 古典的なサーバーレスの定義に Momento がどの様に適合するか
 
-First, Momento Cache is a managed service. You won't be installing software, managing failovers, or upgrading versions. This is handled for you behind the scenes so you can focus on building and maintaining the core parts of your application.
+Momento Cache はこの古典的なサーバーレスの定義に完璧に適合しています。
 
-Second, Momento Cache abstracts the decisions around cache management from you. You don't have to specify the type and number of instances in your cache, nor do you have to think about the maximum memory size for your cache. Momento is purpose-built for the cloud and takes advantage of the elasticity and scalability of modern cloud infrastructure. You can store as much data as you need in your cache, and Momento will handle it seamlessly.
+第一に、Momento Cache はマネージドサービスです。ソフトウェアをインストールしたり、フェイルオーバーを管理したり、バージョンを更新したりする必要はありません。これらは裏で適切に処理されているので、皆さんはご自身のアプリケーションの中心となる場所の開発と運用に専念することができます。
 
-Finally, Momento Cache has a pay-for-value pricing model. As mentioned above, you aren't selecting a specific cache and cluster size in advance, regardless of whether you use it. Momento charges based on the amount of data stored and the requests made against your cache. With this, you are in control of your pricing, and changes you make to your application have a direct impact on your bill.
+第二に、Momento Cache はキャッシュ管理に関する設定を抽象化しています。キャッシュに必要なインスタンスの数を指定することも、最大メモリサイズを考えることも必要ありません。Momento はクラウドに特化して作られていて、現代的なクラウド基盤の弾力性やスケーラビリティを最大活用しています。皆さんはキャッシュに必要なデータをどれだけでも保存することができて、Momento がそれをシームレスに取り扱います。
 
-Under this first definition of serverless, Memento Serverless Cache is the cache that fits best in the serverless ecosystem.
+最後に、Momento Cache は従量課金のモデルです。上述の様に、利用の有無に関係なく、事前に特定のキャッシュの種類やクラスターサイズを選択することはありません。Momento は Momento Cache と Momento Topics で行われたデータ転送の出入りに対して[課金します](../manage/pricing)。それ以外は全て含まれています。これによって、料金は皆さんの支配下にあって、アプリケーションの変更が直接的に請求金額に影響を与えます。
 
-## Serverless as compatibility with related architectures
+この最初のサーバーレスの定義において、Momento Cache はサーバーレスエコシステムに最も適したキャッシュであると言えます。
 
-In the first definition of serverless above, serverless is defined as a set of operational mechanics when using a particular service. In this second definition, we'll look at a definition of serverless that I call "serverless-friendly" due to its general compatibility with serverless architectures.
+## 関連するアーキテクチャに対する互換性としてのサーバーレス
 
-AWS Lambda was introduced at AWS re:Invent in 2014 and essentially kicked off the serverless revolution. Here was a brand-new compute paradigm -- event-driven, function-based, hyper-ephemeral, and a pay-per-use billing model.
+AWS Lambda は 2014 年の AWS re:Invent で発表され、サーバーレス革命の皮切りとなりました。イベント駆動、関数ベース、短時間、そして従量課金モデルのコンピュートパラダイムは、当時としては画期的でした。
 
-The ecosystem has evolved greatly since the 2014 announcement, but Lambda remains the fulcrum of most serverless architectures. Because of Lambda's centrality and unique model, many serverless developers look for services that work well with Lambda and other core parts of a serverless application.
+2014 年の発表以来、エコシステムは大きく進歩しましたが、Lambda は依然サーバーレスアーキテクチャの中心的存在です。Lambda が中心でユニークなモデルをしているため、多くのサーバーレス開発者は、Lambda や他のサーバーレスアプリケーションの基礎となるものと親和性の高いサービスを探し求めています。
 
-First, _these serverless developers prefer services that are accessed via HTTPS over the internet_. This is in contrast to services, like traditional databases and caches, that utilize a persistent TCP connection within a private network. Part of this is due to some initial performance downsides of using AWS Lambda within a VPC. Though that performance downside has been fixed, there is still an aversion to the complexity of building and managing a private network for your services. For this reason, HTTPS-based services like DynamoDB and SQS are preferred over services like MySQL and RabbitMQ.
+第一に、サーバーレス開発者はインターネット越しに HTTPS でアクセスできるサービスを好みます。これは、古典的なデータベースやキャッシュといった、プライベートネットワーク内で永続的な TCP 接続を活用するサービスとは対照的です。その理由の一つは AWS Lambda を VPC 内で実行するときのパフォーマンスが当初は良くなかったことです。しかし、この欠点が克服された後も、依然としてプライベートネットワークを構築して管理することは嫌悪されています。そのため、HTTPS ベースのサービス、例えば Dynamo DB や SQS 等は、MySQL や RabbitMQ 等のサービスよりも好まれます。
 
-Second, _these developers want services that can scale quickly for rapid bursts in traffic_. Lambda is designed for rapid scale up without pre-provisioning. Whether it's processing a large batch of new queue messages or handling a flood of traffic to your website, Lambda can respond as needed. Serverless developers look for infrastructure components that fit those scaling capabilities. These are generally cloud-based, multi-tenant offerings where an increase in load can be amortized across a large number of customers, rather than instance-based services with connection limits or less elastic scalability.
+第二に、サーバーレス開発者は瞬間的なバーストトラフィックにも高速にスケールできるサービスを求めています。Lambda は事前のプロビジョニング無しに高速にスケールするように設計されています。大量の新しいキューメッセージや、ウェブサイトへの大量のトラフィックを処理する間、Lambda は需要に応じて反応することが可能です。サーバーレス開発者はこのスケーリングの仕組みに対応可能なインフラを探し求めています。これらは基本的に、クラウドベースでマルチテナントにすることにより、負荷の増大を多数の顧客に跨って吸収することのできるものであって、インスタンスベースで接続数の上限やスケーラビリティの弾力性が低いサービスではありません。
 
-Finally, _serverless developers prefer services that can be provisioned quickly and dynamically without a lengthy spin-up time_. This includes not only the core compute of AWS Lambda but also databases like DynamoDB, streams like Kinesis, or object stores like S3. Because serverless applications prefer managed, elastic, pay-for-value services, serverless developers can often create entire isolated environments on demand, whether for reproducing something in a clean environment or for automated testing in our release pipeline. To make these isolated environments feasible, we want services that can be provisioned in seconds rather than minutes.
+最後に、サーバーレス開発者は起動時間を待つことなく高速かつ動的にプロビジョンできるサービスを好みます。これはコンピュートの基礎としての AWS Lambda だけでなく、DynamoDB の様なデータベースや、Kinesis の様なストリーム、または S3 の様なオブジェクトストアも含まれます。サーバーレスアプリケーションはマネージドで、弾力的で、従量課金のサービスを好むので、サーバーレス開発者はクリーンな環境で何かを再現する目的やリリースパイプライン上で自動テストをするために、隔離された環境をしばしばオンデマンドに作成します。この隔離された環境を実現可能にするには、数分ではなく数秒でプロビジョンできるサービスが求められます。
 
-### How Momento Cache fits with standard serverless applications
+### 標準的なサーバーレスアプリケーションの定義に Momento Cache がどの様に適合するか
 
-Momento is a great addition to serverless applications that use AWS Lambda and other popular serverless services.
+Momento は AWS Lambda や他の人気のあるサーバーレスサービスを使ったサーバーレスアプリケーションにとって、優れた追加機能となります。
 
-First, Momento Cache is [available via HTTPS](./../learn/how-it-works#networking). This simplifies the configuration required to add Momento to your serverless application. You simply add the authentication token to your application and start using your cache. With this HTTPS-based connection pattern, you can still reuse an existing connection within your Lambda function to avoid the overhead of establishing a new connection on each request. Additionally, Memento has a VPC peering option available if you prefer using a VPC for your application.
+第一に、Momento Cache は [HTTPS 越しに利用可能です](./../learn/how-it-works/#networking)。これは皆さんのサーバーレスアプリケーションに Momento を追加する際に必要な設定項目を簡素化してくれます。アプリケーションに認証トークンを追加するだけで、キャッシュを使い始めることができます。この HTTPS ベースの接続パターンなら、Lambda 関数内で既存の接続を再利用して、リクエスト毎に新しい接続を張るオーバーヘッドを回避することが可能です。さらに、VPC を使いたいお客様向けに、Momento は VPC ピアリングのオプションも選択可能です。
 
-Second, Momento Cache can scale your cache quickly and achieve a high number of requests per second without pre-provisioning. There are no connection limits to your Momento cache, so a burst of traffic won't lead to availability issues in your application.
+第二に、Momento Cache は事前のプロビジョニング無しに、高速にキャッシュをスケールし、高い秒間リクエスト数に達することが可能です。Momento Cache への接続数の上限は無いので、バーストトラフィックが来てもアプリケーションの可用性が問題となることはありません。
 
-Finally, Momento Cache is a dynamic service that can add and remove caches instantly. When you call the [Momento control plane](./../learn/how-it-works#control-plane-simple-efficient-cache-management) to create a new cache, the cache is provisioned instantly and is available by the time your client receives a response. This makes it easy to integrate Momento in branch-specific environments in your CI/CD system or allow each developer to have a unique copy of their application.
+最後に、Momento Cache は動的なサービスで、一瞬にしてキャッシュを作ったり消したりすることができます。新しいキャッシュを作るために [Momento コントロールプレーン](./../learn/how-it-works/#control-plane-simple-efficient-cache-management)を呼び出すと、キャッシュは一瞬でプロビジョンされレスポンスが返って来た時には利用可能になっています。これによって、CI/CD システム上でブランチ毎に Momento と統合することが簡単になったり、各開発者がアプリケーションのコピーを持つことを可能にしています。
 
-No other caches fit this well with serverless applications. While AWS provides Amazon ElastiCache as a caching option, it must be in a VPC. This can greatly increase the cost and complexity of your serverless application. Further, you must declare your instance size and cluster configuration upfront, regardless of your usage. Finally, provisioning new caches takes minutes, not seconds, as new instances must be launched and configured before you can use them.
+これほどサーバーレスアプリケーションと適合するキャッシュは他にはありません。AWS は Amazon ElastiCache をキャッシュの選択肢として提供していますが、これは VPC 内にある必要があります。そのため、サーバーレスアプリケーションのコストと複雑性が著しく増加します。さらには、利用するかしないかに関わらず事前にインスタンスサイズとクラスタの設定を指定しなければなりません。最後に、キャッシュが利用可能となるためにはインスタンスが起動して設定されることが必要なので、新しいキャッシュのプロビジョニングは数秒ではなく数分かかってしまいます。
 
-## Serverless as independent project platform
+## 独立したプロジェクトの基盤としてのサーバーレス
 
-The final category of serverlessness is less a specific concept and more a group of people or style of application.
+最後のサーバーレスのカテゴリーは、特定の概念というよりも、ある種の人々やアプリケーションのスタイルを意味しています。
 
-In recent years, we've seen a huge rise in small SaaS applications and helpful tools built by individual developers or small teams. Part of this rise is due to the growth in the Indie Hackers movement, along with the rapid growth in people with programming skills worldwide. Yet another key factor is the ease with which one can build and scale an application without a large upfront investment.
+近年、個人の開発者や小さいチームによって作られた小さな SaaS アプリケーションや便利なツールの台頭を目にします。これは、インディーズなハッカーの気運が高まっていることや、世界中にプログラミングスキルを持った人が急激に増えていることが理由です。もう一つの重要な要素としては、多大な先行投資をすることなくアプリケーションを開発しスケールすることが簡単になったということがあります。
 
-The advent of the cloud, which introduced datacenter resources as an ongoing operational expense rather than a large upfront capital expense, reduced the barrier to building applications. But the rise of serverless tools and self-service infrastructure exploded this pattern and made global, resilient infrastructure available to the masses.
+クラウドの利点、つまりデータセンターリソースを、先払いの費用ではなく、運用費用として利用できるようになったことで、アプリケーションを構築する障害が軽減されました。しかし、サーバーレスツールとセルフサービス基盤の台頭によって、このパターンは爆発的に増加し、グローバルで弾力性のある基盤が大衆向けに利用可能となりました。
 
-For this group, there are two key factors that matter in choosing services for their applications.
+このグループにとっては、アプリケーションのためのサービス選定において2つの重要な要素があります。
 
-First, _self-service sign up with credit card billing is a must_. For developers working on their idea as a side project or in their spare time, they don't have time to go through sales calls and time-consuming procurement processes. They want to sign up and immediately try something to see if it fits their needs.
+第一に、クレジットカードでのセルフサービスなサインアップは必須です。サイドプロジェクトや、隙間時間での開発をしている開発者には、商談や時間のかかる調達処理をしている暇はありません。彼らは今すぐにサインアップしてそれが自分のニーズに合うかどうかを確認したいのです。
 
-Second, _these developers are looking for a generous free tier as they start using a tool_. Because these are side projects or early attempts at a paid product, developers generally don't want to spend a lot for something with low or inconsistent usage. Between the AWS Free Tier and the similar free tiers for many developer services, you can get quite far without paying a cent for your side project.
+第二に、この開発者達はツールを使い始める際の十分な無料枠を探し求めています。サイドプロジェクトや有料製品の初期段階においては、ほとんど利用しないか定常的に利用しないものに対して、開発者は一般的にあまりお金を払いたくありません。AWS の無料枠や多くの開発者向けサービスにおける同様の無料枠では、サイドプロジェクトで1円も払うことなく十分な量を利用することができます。
 
-### How Momento Cache fits with indie projects
+### インディーズなプロジェクトに Momento Cache がどの様に適合するか
 
-If you're an indie hacker or an early-stage startup that's looking to save money, Momento is a great fit for you as well.
+あなたが、インディーズなハッカーだったり初期のスタートアップで、お金を節約したいと考えているならば、Momento はとても使い勝手が良いです。
 
-First, Momento Cache has a painless self-service sign up. You can get a Momento authentication token and [start writing to your cache in less than five minutes](./../getting-started). You don't need to talk to a salesperson or sign an upfront contract. In fact, you don't even need to enter a credit card to enjoy the free tier.
+第一に、Momento Cache はセルフサービスのサインアップを持っています。5分以内に Momento の認証トークンを得て[キャッシュに書き込み始めることができます](./../getting-started)。営業と話す必要もなく、事前に契約書にサインする必要もありません。実際のところ、無料枠を楽しむためにはクレジットカードすら入力する必要はありません。
 
-Second, Momento Cache has a generous free tier. You get 50 GB free each month (see [pricing](./../manage/pricing) for details). Our goal is to allow a wide variety of applications to run on Momento without ever paying us a cent. We want to provide a top-tier, robust service for applications that need it while also supporting a broad community of applications to use Momento as they grow.
+第二に、Momento Cache は十分な量の無料枠を持っています。毎月 50 GB が無料です(詳細は[料金](./../manage/pricing)をご覧下さい)。私達のゴールは、多種多様なアプリケーションが1円も払うことなく Momento 上で実行されていることです。私たちは最高レベルに頑丈なサービスを求めるアプリケーション向けに提供する一方で、Momento を使って成長していくアプリケーションの幅広いコミュニティもサポートしていきます。
 
-## Conclusion
+## まとめ
 
-In this page, you learned how Momento Cache fits with every conception of serverless. Momento Cache has been designed specifically for modern architectures, with a serverless operational model, an integration model that works well with Lambda-powered applications, and a sign up and billing model that works for all types of developers and teams.
+このページでは、あらゆるサーバーレスの概念においても Momento Cache が適合していることを解説しました。Momento Cache は現代的なアーキテクチャに特化して設計されており、サーバーレスな運用モデル、Lambda で作られたアプリケーションと協調できる連携モデル、そしてあらゆるタイプの開発者やチームと親和性のあるサインアップと課金モデルを持っています。
 
-If you're ready to get started with Momento Cache, be sure to check out the following materials:
+Momento Cache を使い始める準備ができているなら、以下のドキュメントをぜひご覧下さい:
 
-- Quickstart guide to [start caching with Momento](./../getting-started) in less than 5 minutes;
+- [Momento でキャッシュを始める](./../getting-started)クイックスタート(5分もかかりません)
 
-- A practical guide for [integrating Momento with your AWS Lambda functions](./../develop/guides/caching-with-aws-lambda);
+- [AWS Lambda 関数と Momento を連携する](./../develop/guides/caching-with-aws-lambda)実践的なガイド

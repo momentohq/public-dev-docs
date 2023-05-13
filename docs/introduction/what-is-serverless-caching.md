@@ -44,9 +44,9 @@ First, Momento Cache is a managed service. You won't be installing software, man
 
 Second, Momento Cache abstracts the decisions around cache management from you. You don't have to specify the type and number of instances in your cache, nor do you have to think about the maximum memory size for your cache. Momento is purpose-built for the cloud and takes advantage of the elasticity and scalability of modern cloud infrastructure. You can store as much data as you need in your cache, and Momento will handle it seamlessly.
 
-Finally, Momento Cache has a pay-for-value pricing model. As mentioned above, you aren't selecting a specific cache and cluster size in advance, regardless of whether you use it. Momento charges based on the amount of data stored and the requests made against your cache. With this, you are in control of your pricing, and changes you make to your application have a direct impact on your bill.
+Finally, Momento Cache has a pay-for-value pricing model. As mentioned above, you aren't selecting a specific cache and cluster size in advance, regardless of whether you use it. Momento [charges](../manage/pricing) for data transferred in/out of Momento Cache and Momento Topics services. Everything else is included. With this, you are in control of your pricing, and changes you make to your application have a direct impact on your bill.
 
-Under this first definition of serverless, Memento Serverless Cache is the cache that fits best in the serverless ecosystem.
+Under this first definition of serverless, Memento Cache is the cache that fits best in the serverless ecosystem.
 
 ## Serverless as compatibility with related architectures
 
