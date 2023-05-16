@@ -33,4 +33,4 @@ As Momento Topics utilizes Momento Cache, all Cache limits apply to Topics as we
 
 
 ## Soft limits and support
-The limits on this page are soft limits that can be altered. If you need these limits adjusted, please reach out to [Momento Support](mailto:support@momentohq.com). Please include your email you used to sign up for Momento, the name of the cache(s) to be altered, the cloud+region the cache is located in (e.g. AWS eu-west-1), and which limits from the list you’d like increased.
+The limits on this page are soft limits that can be altered. If you need these limits adjusted, please reach out to [Momento Support](mailto:support@momentohq.com). Please include login email, the name of the cache(s) to be altered, the cloud+region the cache is located in (e.g. AWS eu-west-1), and which limits from the list you’d like increased.
