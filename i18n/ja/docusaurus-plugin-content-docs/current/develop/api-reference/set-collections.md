@@ -17,6 +17,7 @@ See [Sets](./../datatypes.md#set-collections) for more information on their usag
 ## Set methods
 
 ### SetAddElement
+
 Adds an element to a set. If the set item does not already exist, this method will create one.
 
 | Name            | Type            | Description                                   |
@@ -37,6 +38,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### SetAddElements
+
 Adds multiple elements to a set item.
 
 | Name            | Type         | Description                                   |
@@ -82,6 +84,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### SetRemoveElement
+
 Removes a single element from an existing set item.
 
 | Name            | Type            | Description                                   |
@@ -101,6 +104,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### SetRemoveElements
+
 Removes multiple elements from an existing set item.
 
 | Name            | Type         | Description                                   |
@@ -120,6 +124,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### SetContainsElement
+
 Checks if a provided element is in the given set.
 
 | Name      | Type            | Description           |
@@ -134,7 +139,7 @@ Checks if a provided element is in the given set.
 The response object for SetContainsElement returns three possible options, a cache hit, miss, or an error.
 
 * Hit
-  * containsElement(): bool
+    * containsElement(): bool
 * Miss
 * Error
 
@@ -143,13 +148,14 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### SetContainsElements
+
 Checks if provided elements are in the given set.
 
-| Name      | Type       | Description                         |
-|-----------|------------|-------------------------------------|
-| cacheName | String     | Name of the cache.                  |
+| Name      | Type       | Description           |
+|-----------|------------|-----------------------|
+| cacheName | String     | Name of the cache.    |
 | setName   | String     | Name of the set item. |
-| elements  | String[] \ | bytes                             | Array of element names to check existence of.   |
+| elements  | String[] \ | bytes[]               | Array of element names to check existence of.   |
 
 <details>
   <summary>Method response object</summary>
@@ -157,7 +163,7 @@ Checks if provided elements are in the given set.
 The response object for SetContainsElements returns three possible options, a cache hit, miss, or an error.
 
 * Hit
-  * containsElements(): bool[]
+    * containsElements(): bool[]
 * Miss
 * Error
 

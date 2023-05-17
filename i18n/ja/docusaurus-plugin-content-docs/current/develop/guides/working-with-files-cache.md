@@ -2,7 +2,7 @@
 sidebar_position: 4
 sidebar_label: Working with files
 title: Adding and retrieving files in a cache
-description: Learn to add and retreive files with a Momento cache
+description: Learn to add and retrieve files from Momento Cache with hands on code samples.
 pagination_next: null
 ---
 
@@ -10,15 +10,18 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Add and retrieve a file with Momento Cache
-An item in Momento Cache is a byte array, so a cache can easily store most any file you want to write, as long as it is under the [per item limit of 1MB](/manage/limits).
 
-Here is an example of reading a file from the filsystem, saving the file to an item in a cache, reading it from the cache, and then writing it to the filesystem.
-  <Tabs>
-    <TabItem value="nodejs" label="Node.js" default>
+An item in Momento Cache is a byte array, so a cache can easily store most any file you want to create, as long as it is
+under the [per item limit of 1MB](/manage/limits).
+
+Here is an example of reading a file from the filesystem, saving the file to an item in a cache, reading it from the
+cache, and then writing it to the filesystem.
+<Tabs>
+<TabItem value="nodejs" label="Node.js" default>
 
 ```javascript
 const fs = require('fs');
-const { CacheClient, CacheGet, CacheSet, Configurations, CredentialProvider } = require('@gomomento/sdk');
+const {CacheClient, CacheGet, CacheSet, Configurations, CredentialProvider} = require('@gomomento/sdk');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -29,69 +32,70 @@ const CACHE_NAME = 'test-cache';
 
 // Read a file from the filesystem
 async function readFile(filePath) {
-  try {
-    const data = fs.readFileSync(filePath);
-    return new Uint8Array(data);
-  } catch (error) {
-    console.error(`Error reading file: ${error}`);
-    return null;
-  }
+    try {
+        const data = fs.readFileSync(filePath);
+        return new Uint8Array(data);
+    } catch (error) {
+        console.error(`Error reading file: ${error}`);
+        return null;
+    }
 }
 
 // Creates the Momento cache client object
 async function createCacheClient() {
-  return new CacheClient({
-    configuration: Configurations.Laptop.v1(),
-    credentialProvider: CredentialProvider.fromEnvironmentVariable({
-      environmentVariableName: 'MOMENTO_AUTH_TOKEN',
-    }),
-    defaultTtlSeconds: 600,
-  });
+    return new CacheClient({
+        configuration: Configurations.Laptop.v1(),
+        credentialProvider: CredentialProvider.fromEnvironmentVariable({
+            environmentVariableName: 'MOMENTO_AUTH_TOKEN',
+        }),
+        defaultTtlSeconds: 600,
+    });
 }
 
 async function writeToCache(client, cacheName, key, data) {
-  const setResponse = await client.set(cacheName, key, data);
-  if (setResponse instanceof CacheSet.Success) {
-    console.log('Key stored successfully!');
-  } else if (setResponse instanceof CacheSet.Error) {
-    console.log(`Error setting key: ${setResponse.toString()}`);
-  } else {
-    console.log(`Some other error: ${setResponse.toString()}`);
-  }
+    const setResponse = await client.set(cacheName, key, data);
+    if (setResponse instanceof CacheSet.Success) {
+        console.log('Key stored successfully!');
+    } else if (setResponse instanceof CacheSet.Error) {
+        console.log(`Error setting key: ${setResponse.toString()}`);
+    } else {
+        console.log(`Some other error: ${setResponse.toString()}`);
+    }
 }
 
 async function readFromCache(client, cacheName, key) {
-  const fileResponse = await client.get(cacheName, key);
-  if (fileResponse instanceof CacheGet.Hit) {
-    console.log(`cache hit: ${fileResponse.valueString()}`);
-    const contents = fileResponse.valueUint8Array();
-    const buffer = Buffer.from(contents);
-    fs.writeFileSync("./myfile2.json", buffer);
-  } else if (fileResponse instanceof CacheGet.Miss) {
-    console.log('cache miss');
-  } else if (fileResponse instanceof CacheGet.Error) {
-    console.log(`Error: ${fileResponse.message()}`);
-  }
+    const fileResponse = await client.get(cacheName, key);
+    if (fileResponse instanceof CacheGet.Hit) {
+        console.log(`cache hit: ${fileResponse.valueString()}`);
+        const contents = fileResponse.valueUint8Array();
+        const buffer = Buffer.from(contents);
+        fs.writeFileSync("./myfile2.json", buffer);
+    } else if (fileResponse instanceof CacheGet.Miss) {
+        console.log('cache miss');
+    } else if (fileResponse instanceof CacheGet.Error) {
+        console.log(`Error: ${fileResponse.message()}`);
+    }
 }
 
 async function run() {
-  const byteArray = await readFile(filePath);
-  if (byteArray === null) {
-    return;
-  }
+    const byteArray = await readFile(filePath);
+    if (byteArray === null) {
+        return;
+    }
 
-  const cacheClient = await createCacheClient();
+    const cacheClient = await createCacheClient();
 
-  await writeToCache(cacheClient, CACHE_NAME, fileName, byteArray);
-  await readFromCache(cacheClient, CACHE_NAME, fileName);
+    await writeToCache(cacheClient, CACHE_NAME, fileName, byteArray);
+    await readFromCache(cacheClient, CACHE_NAME, fileName);
 }
 
 run();
 ```
 
-Check our [Node.js cheat sheet](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md) for more on using our Node.js SDK.
-   </TabItem>
-   <TabItem value="py" label="Python">
+Check our [Node.js cheat sheet](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md) for more on using our
+Node.js SDK.
+</TabItem>
+<TabItem value="py" label="Python">
 
 ```python
 import os
@@ -160,7 +164,8 @@ if __name__ == '__main__':
 
 ```
 
-Check our [Python cheat sheet](/develop/guides/cheat-sheets/momento-cache-python-cheat-sheet.md) for more on using our Python SDK.
+Check our [Python cheat sheet](/develop/guides/cheat-sheets/momento-cache-python-cheat-sheet.md) for more on using our
+Python SDK.
 
    </TabItem>
 </Tabs>
