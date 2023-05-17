@@ -9,19 +9,26 @@ pagination_next: null
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Momento Authentication With Expiring Tokens
+# Momento authentication with expiring tokens
 
-To access Momento from your application, you need a Momento Token. If you wish to use a token that never expires, or you are just testing out Momento in a development environment, you may stop reading now. If you wish to enhance the security of your application by using expiring tokens that need to be rotated periodically, we will walk through how to do exactly that in this article.
+To access Momento services from your application, a Momento auth token is required. The auth token is an alphanumeric string Momento generates that is unique to your account and the cloud provider's Region you select. When creating an auth token, you can set up one of two types of expiration:
 
-# Generating Expiring Tokens
+* An auth token that never expires. This is used for dev/test deployments.
+* An auth token which expires and needs periodic rotation. You can set the expiration to 7, 30, 60, 90 days or custom, where you can select a specific calendar date. An expiring auth token is considered best practice for production deployments. We will walk through how to do exactly that in this article.
 
-## Step 1: Sign up or log into the Momento Console
+:::info
+In addition to using an expiring auth token, it is best practice to store an auth token in a service like [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) or [GCP Secret Manager](https://cloud.google.com/secret-manager). Go to [Retrieving a Momento auth token from AWS Secrets Manager](/develop/sdks-integrations/aws-secrets-manager) for an example on using this.
+:::
+
+## Generating expiring tokens
+
+### Step 1: Sign up or log into the Momento console
 Go to the Momento Console and follow the instructions to login with your email address, Google account, or GitHub account.
 
 ![image](/img/getting-started/console.png)
 
-## Step 2: Generate a Momento Token
-In the console, open the menu and select Token.
+### Step 2: Generate a Momento token
+In the console, open the menu and select token.
 
 ![image of console menu](/img/getting-started/auth-token.gif)
 
@@ -36,10 +43,9 @@ Scroll down and you will see your token in a grey box. The tokens in the screens
 
 ![image](/img/getting-started/generated-token.jpg)
 
-## Step 3: Store your Momento Token
-If you wish to quickly test out Momento, click on the copy icon beside the auth token to copy the token to your clipboard and supply it to the Momento SDK. We recommend you also click the "Download JSON" button to store both the auth token and refresh token. Tokens are like passwords, the best practice is to store it in a secure location such as AWS Secrets Manager or GCP Secrets Manager.
+### Step 3: Store your Momento token
+If you wish to quickly test out Momento, click on the copy icon beside the auth token to copy the token to your clipboard and supply it to the Momento SDK. We recommend you also click the "Download JSON" button to store both the auth token and refresh token. Tokens are like passwords, the best practice is to store it in and retrieve it from a secure location such as [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) or [GCP Secret Manager](https://cloud.google.com/secret-manager).
 
-Here is an example of using the auth token in the Momento Javascript SDK, and then refreshing it to obtain a new token before it expires.
 <Tabs>
     <TabItem value="nodejs" label="Node.js" default>
 
@@ -120,12 +126,13 @@ async function run() {
 
 run();
 ```
-## Step 4: Automating Token Refresh
-Once your application is running in production. You will likely need an automated script that periodically refresh your auth token, before it expires. If you are running in AWS, an easy way to do this is by simply scheduling a lambda that does this for you. Check out our [1-click deploy example lambda](link to github) that you can use to automatically refresh your token in AWS Secrets Manager. 
-
-Remember, while the lambda (or your own automated script) refreshes the auth token, your application also needs to check AWS Secrets Manager (or wherever you are storing your tokens) periodically for newly refreshed tokens!
-
-Got more questions or feedback for us? Reach out at support@momentohq.com or join our [Discord community](link)!
 
    </TabItem>
 </Tabs>
+
+### Step 4: Automating token refresh
+Once your application is running in production. You will need an automated script that periodically refreshes the auth token, **before** it expires. If you are running in AWS, an easy way to do this is by scheduling a function in AWS Lambda that does this for you. Check out our [1-click deploy example lambda](https://github.com/momentohq/auth-token-refresh-lambda) that you can use to automatically refresh your token in AWS Secrets Manager.
+
+Remember, while the lambda (or your own automated script) refreshes the auth token, your application also needs to check AWS Secrets Manager (or wherever you are storing your tokens) periodically for newly refreshed tokens!
+
+Got more questions or feedback for us? Reach out to [Momento support](mailto:support@momentohq.com) or join our [Discord community](https://discord.gg/GDStRczm).
