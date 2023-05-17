@@ -1,26 +1,45 @@
 ---
 sidebar_position: 4
-sidebar_label: Working with Expiring Momento Tokens
-title: Using Momento Tokens in your workflow
-description: Learn how to refresh API tokens
+sidebar_label: Momento Authentication
+title: Momento Authentication With Expiring Tokens
+description: Learn how to use expiring tokens to enhance the security of your application
 pagination_next: null
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Momento Tokens
+# Momento Authentication With Expiring Tokens
 
-Momento Tokens consist of three parts: an authentication token, a refresh token, and a valid-until epoch timestamp. The authentication token is a JWT token that contains the API key and an endpoint. This endpoint is the only region for which the token will authorize requests.
+To access Momento from your application, you need a Momento Token. If you wish to use a token that never expires, or you are just testing out Momento in a development environment, you may stop reading now. If you wish to enhance the security of your application by using expiring tokens that need to be rotated periodically, we will walk through how to do exactly that in this article.
 
-Refresh tokens are for one-time use only. Once they've been used to refresh an authentication token, they will no longer be accepted. The refresh token workflow requires both the authentication and refresh tokens. A new refresh token and authentication token will be returned, both of which will be valid for the same duration as the old tokens, starting from the point of refresh
+# Generating Expiring Tokens
 
-Both refresh and authentication tokens expire at the same time. When generating the token, you can specify how long you want it to last (in seconds), generating a Never expiring token is also an option.jku
+## Step 1: Sign up or log into the Momento Console
+Go to the Momento Console and follow the instructions to login with your email address, Google account, or GitHub account.
 
+![image](/img/getting-started/console.png)
 
-# Generating Momento Tokens
+## Step 2: Generate a Momento Token
+In the console, open the menu and select Token.
 
-Here is an example of generating an authentication token, using it, and then refreshing the token. A session token is required for generating authentication tokens.
+![image of console menu](/img/getting-started/auth-token.gif)
+
+On the token page, select your 1/ cloud provider, 2/ an available region from the drop down list, 3/ when the token should expire, and then 4/ hit the "Generate Token" button.
+
+![image](/img/getting-started/select-provider-region.png)
+
+Scroll down and you will see your token in a grey box. The tokens in the screenshot has been blurred out, but yours won't be. The box contains 3 separate fields:
+1. Auth Token: this is the actual authentication token that gives your application access to Momento. This token will expired after the specified time period you selected.
+2. Refresh Token: if you wish to programmatically obtain a new auth token before the current one expires, you need this refresh token.
+3. Valid Until: this is purely informational, and displays the date and time the current auth token expires at.
+
+![image](/img/getting-started/generated-token.jpg)
+
+## Step 3: Store your Momento Token
+If you wish to quickly test out Momento, click on the copy icon beside the auth token to copy the token to your clipboard and supply it to the Momento SDK. We recommend you also click the "Download JSON" button to store both the auth token and refresh token. Tokens are like passwords, the best practice is to store it in a secure location such as AWS Secrets Manager or GCP Secrets Manager.
+
+Here is an example of using the auth token in the Momento Javascript SDK, and then refreshing it to obtain a new token before it expires.
 <Tabs>
     <TabItem value="nodejs" label="Node.js" default>
 
@@ -31,8 +50,8 @@ const dotenv = require('dotenv');
 
 // Value must contain a valid go momento endpoint
 const controlEndpoint = "valid-gomomento-endpoint";
-// Value must contain a valid go momento session token
-const sessionToken = "valid-gomomento-session-token";
+// Value must contain a valid momento auth token
+const authToken = "valid-momento-auth-token";
 
 dotenv.config();
 
@@ -50,32 +69,6 @@ async function createCacheClient(momentoAuthToken: string) {
     }),
     defaultTtlSeconds: 600,
   });
-}
-
-async function generate24hrExpiringAuthToken() {
-  const generateAuthTokenResponse = await authClient.generateAuthToken(
-    controlEndpoint,
-    sessionToken,
-    86400 // expires in 24hrs
-  );
-  if (expiringAuthTokenResponse instanceof GenerateAuthToken.Error) {
-      throw new Error(`Error: ${expiringAuthTokenResponse.message()}`);
-  }
-  console.log('Expiring Authentication token successfully generated!');
-  return generateAuthTokenResponse;
-}
-
-async function generateNeverExpiringAuthToken() {
-  const neverExpiringTokenResponse = await authClient.generateAuthToken(
-    controlEndpoint,
-    sessionToken,
-    ExpiresIn.never()
-  );
-  if (neverExpiringTokenResponse instanceof GenerateAuthToken.Error) {
-      throw new Error(`Error: ${neverExpiringTokenResponse.message()}`);
-  }
-  console.log('Never expiring Authentication token successfully generated!');
-  return neverExpiringTokenResponse;
 }
 
 async function refreshExpiringToken(authToken: string, refreshToken: string) {
@@ -118,19 +111,21 @@ async function run() {
 
   const authClient = await createAuthClient();
 
-  const expiringAuthTokenResponse = await generate24hrExpiringAuthToken();
-  const neverExpiringAuthTokenResponse = await generateNeverExpiringAuthToken();
-  
-  const cacheClient = await createCacheClient(expiringAuthTokenResponse.getAuthToken());
+  const cacheClient = await createCacheClient(authToken);
   
   await usingAuthToken(cacheClient);
   
-  const refreshTokenResponse = await refreshExpiringToken(expiringAuthTokenResponse.getAuthToken(), expiringAuthTokenResponse.refreshToken);
+  const refreshTokenResponse = await refreshExpiringToken(authToken, refreshToken);
 }
 
 run();
 ```
+## Step 4: Automating Token Refresh
+Once your application is running in production. You will likely need an automated script that periodically refresh your auth token, before it expires. If you are running in AWS, an easy way to do this is by simply scheduling a lambda that does this for you. Check out our [1-click deploy example lambda](link to github) that you can use to automatically refresh your token in AWS Secrets Manager. 
 
-Check our [Node.js cheat sheet](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md) for more on using our Node.js SDK.
+Remember, while the lambda (or your own automated script) refreshes the auth token, your application also needs to check AWS Secrets Manager (or wherever you are storing your tokens) periodically for newly refreshed tokens!
+
+Got more questions or feedback for us? Reach out at support@momentohq.com or join our [Discord community](link)!
+
    </TabItem>
 </Tabs>
