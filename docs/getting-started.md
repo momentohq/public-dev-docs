@@ -211,6 +211,10 @@ messages to the topic in a second pane! Launch below.
 
 
 
+## Installing the Momento CLI
+
+You can also install the Momento CLI locally (Linux, Windows, Mac) if desired. The latest version of the CLI and instructions for install and use is available from [this repo](https://github.com/momentohq/momento-cli).
+
 ## All Momento SDKs
 
 We currently have the following SDK's languages available. Check out each repo for detailed instructions and usage examples.
