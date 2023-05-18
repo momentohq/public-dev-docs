@@ -10,7 +10,7 @@ pagination_next: null
 
 If you need to migrate large volumes of data from an existing source into your Momento cache, you’re in the right place. The pipeline proposed here supports Redis data sources, but the design is extensible to other data sources like CSV, JSON, Parquet, and Memcache, among others.
 
-Memento provides a bulk loading toolkit that simplifies extraction, validation, and loading, either individually or via a streamlined pipeline.
+Momento provides a bulk loading toolkit that simplifies extraction, validation, and loading, either individually or via a streamlined pipeline.
 
 ![diagram](/img/bulk-writing-diagram.svg)
 
