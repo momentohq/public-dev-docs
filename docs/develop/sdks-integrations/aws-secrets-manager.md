@@ -15,7 +15,7 @@ It's best practice to securely store your Momento authentication token. If you a
 
 :::info
 
-Just as you should reuse your Momento `CacheClient` and `TopicClient` objects when possible, so should you with the Momento auth token from AWS Secrets Manager. Otherwise you risk adding cost, both in time and money, to each Momento API call for the round trip to AWS Secrets Manager.
+Just as you should reuse your Momento `CacheClient` and `TopicClient` objects when possible, so should you with the Momento auth token from AWS Secrets Manager. Otherwise you risk adding cost, both in time and money, to each Momento API call for the round trip to AWS Secrets Manager. For high throughput use cases, you might also encounter throttling from AWS Secrets Manager - to scale beyond this, it's best to use client side caching of the credentials as detailed in this [AWS blog](https://aws.amazon.com/blogs/security/use-aws-secrets-manager-client-side-caching-libraries-to-improve-the-availability-and-latency-of-using-your-secrets/).
 
 :::
 
