@@ -109,6 +109,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
       'updateTtl',
       'increaseTtl',
       'decreaseTtl',
+      'itemGetType',
     ],
   },
   {
