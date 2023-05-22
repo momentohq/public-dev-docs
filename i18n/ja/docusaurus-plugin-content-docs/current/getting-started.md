@@ -29,7 +29,8 @@ import TabItem from '@theme/TabItem';
 
 ![image of console menu](/img/getting-started/auth-token.gif)
 
-Token ページ上で、1. クラウドプロバイダーを選択し、2. ドロップダウンリストから利用可能なリージョンを選び、3. トークンの有効期限を設定し、そして 4. "トークンを生成する" ボタンをクリックします。
+Token ページ上で、1. クラウドプロバイダーを選択し、2. ドロップダウンリストから利用可能なリージョンを選び、3. トークンの有効期限を設定し、そして 4. "トークンを生成する"
+ボタンをクリックします。
 
 ![image](/img/getting-started/select-provider-region.png)
 
@@ -39,7 +40,8 @@ Token ページ上で、1. クラウドプロバイダーを選択し、2. ド�
 
 ## ステップ 3: 認証トークンを保存する
 
-Momento の認証に使うために、この認証トークンを保存できる場所がいつくかあります。今回の単純な例では、認証トークンを環境変数に保存しますが、AWS Secrets Manager や GCP Secret Manager の様なところに認証トークンを保存するのがベストプラクティスです。
+Momento の認証に使うために、この認証トークンを保存できる場所がいつくかあります。今回の単純な例では、認証トークンを環境変数に保存しますが、AWS Secrets Manager や GCP
+Secret Manager の様なところに認証トークンを保存するのがベストプラクティスです。
 
 ## ステップ 4: SDK を入れて、キャッシュを作成し、データを読み書きする
 
@@ -66,8 +68,10 @@ export MOMENTO_TTL_SECONDS=300
 
 ```javascript
 // Declare the Momento SDK library
-const { CacheGet, CacheSet, Configurations, ListCaches, CreateCache,
-    CacheClient, CredentialProvider } = require('@gomomento/sdk');
+const {
+    CacheGet, CacheSet, Configurations, ListCaches, CreateCache,
+    CacheClient, CredentialProvider
+} = require('@gomomento/sdk');
 
 // Declate the dotenv library
 const dotenv = require('dotenv');
@@ -109,7 +113,7 @@ async function listCaches(client) {
     } else if (listResponse instanceof ListCaches.Success) {
         console.log('Found caches:');
         listResponse.getCaches().forEach(cacheInfo => {
-            console.log(' -',cacheInfo.getName());
+            console.log(' -', cacheInfo.getName());
         });
     } else {
         throw new Error('Unrecognized response: ', listResponse.toString());
@@ -206,6 +210,11 @@ Momento Topics も試してみたいですか？このデモでは、一方の�
 
 <br />
 <br />
+
+## Momento CLIのインストール
+
+CLIをローカル(Linux, Windows, Mac)にインストールすることも可能です。[こちらのリポ](https://github.com/momentohq/momento-cli)
+より最新のCLIやインストール方法また使用方法などを確認できます。
 
 ## Momento SDK 一覧
 
