@@ -4,6 +4,7 @@ import * as unist from 'unist';
 import {
   ExampleLanguage,
   exampleLanguage,
+  ExampleSnippetId,
   exampleSnippetId,
   exampleSnippetType,
 } from './examples/examples';
@@ -17,6 +18,9 @@ function markdownNodeContainsExampleSnippets<T extends unist.Node>(
     const literal = unistNode as unist.Literal;
     const value = literal.value as string;
     if (value.startsWith('<SdkExampleSnippets')) {
+      return true;
+    }
+    if (value.startsWith('<SdkExampleCodeBlock')) {
       return true;
     }
   }
@@ -37,39 +41,75 @@ function plugin(options: unknown): unknown {
     visit(tree, markdownNodeContainsExampleSnippets, node => {
       const literal = node as unist.Literal;
       const value = literal.value as string;
-
-      const snippetIdAttr = value.match(/snippetId={'([^']+)'}/m)?.[1];
-      if (snippetIdAttr === undefined) {
-        console.log(
-          `Unable to find "snippetId={'xxx'}" attribute on jsx tag:\n${value}`
-        );
-        return;
+      if (value.startsWith('<SdkExampleSnippets')) {
+        replaceValueWithExampleTabs(literal);
+      } else if (value.startsWith('<SdkExampleCodeBlock')) {
+        replaceValueWithExampleCodeBlock(literal);
       }
-      const snippetId = exampleSnippetId(snippetIdAttr);
-      const snippetForLanguage = (language: ExampleLanguage) =>
-        (
-          SNIPPET_RESOLVER.resolveSnippet(
-            exampleLanguage(language),
-            exampleSnippetType('code'),
-            snippetId
-          ) ?? ''
-        ).replace(/[\\`$]/g, '\\$&');
-
-      const sdkExamplesValue = `<SdkExampleSnippetTabs
-  js={\`${snippetForLanguage(ExampleLanguage.JAVASCRIPT)}\`}
-  python={\`${snippetForLanguage(ExampleLanguage.PYTHON)}\`}
-  java={\`${snippetForLanguage(ExampleLanguage.JAVA)}\`}
-  go={\`${snippetForLanguage(ExampleLanguage.GO)}\`}
-  csharp={\`${snippetForLanguage(ExampleLanguage.CSHARP)}\`}
-  rust={\`${snippetForLanguage(ExampleLanguage.RUST)}\`}
-  ruby={\`${snippetForLanguage(ExampleLanguage.RUBY)}\`}
-  cli={\`${snippetForLanguage(ExampleLanguage.CLI)}\`}
-/>
-`;
-      literal.value = sdkExamplesValue;
     });
   }
   return transformer;
+}
+
+function replaceValueWithExampleTabs(literal: unist.Literal): void {
+  const value = literal.value as string;
+  const snippetIdAttr = value.match(/snippetId={'([^']+)'}/m)?.[1];
+  if (snippetIdAttr === undefined) {
+    console.log(
+      `Unable to find "snippetId={'xxx'}" attribute on jsx tag:\n${value}`
+    );
+    return;
+  }
+  const snippetId = exampleSnippetId(snippetIdAttr);
+
+  literal.value = `<SdkExampleSnippetTabs
+  js={\`${snippetForLanguage(ExampleLanguage.JAVASCRIPT, snippetId)}\`}
+  python={\`${snippetForLanguage(ExampleLanguage.PYTHON, snippetId)}\`}
+  java={\`${snippetForLanguage(ExampleLanguage.JAVA, snippetId)}\`}
+  go={\`${snippetForLanguage(ExampleLanguage.GO, snippetId)}\`}
+  csharp={\`${snippetForLanguage(ExampleLanguage.CSHARP, snippetId)}\`}
+  rust={\`${snippetForLanguage(ExampleLanguage.RUST, snippetId)}\`}
+  ruby={\`${snippetForLanguage(ExampleLanguage.RUBY, snippetId)}\`}
+  cli={\`${snippetForLanguage(ExampleLanguage.CLI, snippetId)}\`}
+/>
+`;
+}
+
+function replaceValueWithExampleCodeBlock(literal: unist.Literal): void {
+  const value = literal.value as string;
+  const snippetIdAttr = value.match(/snippetId={'([^']+)'}/m)?.[1];
+  if (snippetIdAttr === undefined) {
+    console.log(
+      `Unable to find "snippetId={'xxx'}" attribute on jsx tag:\n${value}`
+    );
+    return;
+  }
+  const snippetId = exampleSnippetId(snippetIdAttr);
+
+  const snippetLanguageAttr = value.match(/language={'([^']+)'}/m)?.[1];
+  if (snippetLanguageAttr === undefined) {
+    console.log(
+      `Unable to find "language={'xxx'}" attribute on jsx tag:\n${value}`
+    );
+    return;
+  }
+  const language = exampleLanguage(snippetLanguageAttr);
+  const snippet = snippetForLanguage(language, snippetId);
+
+  literal.value = `<SdkExampleCodeBlockImpl language={'${language}'} code={\`${snippet}\`}/>`;
+}
+
+function snippetForLanguage(
+  language: ExampleLanguage,
+  snippetId: ExampleSnippetId
+): string {
+  return (
+    SNIPPET_RESOLVER.resolveSnippet(
+      exampleLanguage(language),
+      exampleSnippetType('code'),
+      snippetId
+    ) ?? ''
+  ).replace(/[\\`$]/g, '\\$&');
 }
 
 module.exports = plugin;
