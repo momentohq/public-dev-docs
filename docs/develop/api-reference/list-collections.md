@@ -105,7 +105,6 @@ Get the length of an existing list item
 
 * Hit
     * `length()`: Number
-    * `toString()`: include the length
 * Miss
 * Error
 

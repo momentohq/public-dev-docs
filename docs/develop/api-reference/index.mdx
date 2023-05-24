@@ -137,6 +137,29 @@ Sends a ping to the server. This API can be used for checking connectivity to co
 
 </details>
 
+### ItemGetType
+
+For a given key, returns the type (SCALAR, DICTIONARY, LIST, etc.) of the corresponding item, if it exists.
+
+| Name            | Type            | Description                                   |
+| --------------- | --------------- | --------------------------------------------- |
+| cacheName       | String          | Name of the cache.                            |
+| key        | String \| Byte          | Key whose item type should be returned.              |
+
+<details>
+  <summary>Method response object</summary>
+
+  * Cache hit
+  - `type()`: enum: SCALAR, DICTIONARY, SET, LIST, SORTED_SET
+
+  * Cache miss
+  * Cache error
+
+  See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+
 ### KeyExists
 
 Checks if a provided key exists in the cache.
@@ -241,7 +264,81 @@ Examples
 | key       | String \| Bytes | The key under which the value's TTL is to be decreased. |
 | ttl       | Duration | Time to live that you want to decrease to. |
 
-### Collection data types (CDTs)
+### ItemGetTtl
+
+For a given key, returns the duration of time remaining (Time To Live) before the item expires from the cache.
+
+| Name            | Type            | Description                                   |
+| --------------- | --------------- | --------------------------------------------- |
+| cacheName       | String          | Name of the cache.                            |
+| key        | String \| Byte          | Key whose item type should be returned.              |
+
+<details>
+  <summary>Method response object</summary>
+
+  * Cache hit
+  - `remainingTtl()`: Duration
+
+  * Cache miss
+  * Cache error
+
+  See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+## Auth APIs
+
+These APIs are used to manage Momento auth tokens and access.
+
+### GenerateAuthToken
+
+Generates a new Momento Auth token with the specified permissions and expiry.
+
+| Name            | Type            | Description                                   |
+| --------------- | --------------- | --------------------------------------------- |
+| scope           | TokenScope      | The permissions to grant to the new token.  Pre-built TokenScope objects are provided by the SDKs. |
+| expiresIn       | ExpiresIn       | The number of seconds until the token expires, or `never`.              |
+
+<details>
+  <summary>Method response object</summary>
+
+  * Success
+  - `authToken`: string - the new auth token
+  - `refreshToken`: string - a refresh token that can be used with the `RefreshAuthToken` API to refresh the token before it expires
+  - `expiresAt`: Timestamp - the timestamp at which the token will expire
+  * Error
+
+  See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+### RefreshAuthToken
+
+Refreshes an existing, unexpired Momento auth token.  Produces a new auth token with the same permissions and expiry duration as the original auth token.
+
+| Name            | Type            | Description                                   |
+| --------------- | --------------- | --------------------------------------------- |
+| refreshToken    | String          | The refreshToken for the current auth token, acquired from the original call to `GenerateAuthToken`. |
+
+<details>
+  <summary>Method response object</summary>
+
+  * Success
+  - `authToken`: string - the new auth token
+  - `refreshToken`: string - a refresh token that can be used with the `RefreshAuthToken` API to refresh the token before it expires
+  - `expiresAt`: Timestamp - the timestamp at which the token will expire
+  * Error
+
+  See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+
+
+
+
+
+### Collection data types
 
 Collections may contain different types of structures depending on your use case. Supported data types are:
 
