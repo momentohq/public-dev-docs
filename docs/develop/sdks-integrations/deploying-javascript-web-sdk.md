@@ -2,34 +2,83 @@
 sidebar_position: 5
 sidebar_class_name: sidebar-item-websdk
 sidebar_label: Web SDK
-title: Deploying the web SDK for JavaScript in browsers
+title: Momento Web SDK for JavaScript in browsers
 description: Get up and running quickly with the Javascript web-sdk for use in browsers connecting to a Momento Cache or Topics services.
 ---
 
-# Deploying the web SDK for Javascript in browsers
-Momento provides a fully browser-compatible SDK, which is executed within a user’s browser facilitating direct communication with Momento services. This functionality bypasses the customary requirement for building and operating your own web service to mediate cache or pub/sub calls between the browser and Momento services. Consequently, this not only enhances the efficiency of your web applications but also broadens the scope of feasible technical use cases.
+# Momento Web SDK for Javascript in browsers
 
-## Javascript Web SDK and Momento Topics
-Momento Topics significantly simplifies pub-sub communication in a browser. Traditionally, developers establish server-side infrastructure to manage web socket connections for all active browser clients. A classic example of this is a chat application embedded in a website. This requirement is eliminated by incorporating Momento Topics with the Momento Web SDK. Developers can subscribe to topics directly from the browser. At the same time, Momento takes care of all communication when messages are published to the topic, eliminating the need for server-side infrastructure for web sockets.
+Momento provides two JavaScript SDKs; one for Node.js and one for other web applications.  The two SDKs have
+identical APIs, so your code will look the same except for `import` statements, but under the hood they are
+built for optimal performance and compatibility in different JavaScript runtime environments.
+
+The Node.js SDK is best suited for server-side use cases. The Momento Web SDK, however, allows developers to write
+JavaScript code that runs in a browser and communicates directly with Momento services. This allows you to avoid the
+typical overhead of building and operating your own web service to mediate cache or pub/sub calls between the browser
+and Momento.  It also means one less hop for your web traffic, so you can get even performance out of your browser
+application.  The best of both worlds1
+
+You can also use the Web SDK in other non-Node.js JavaScript environments, such as CloudFlare.
+
+## Momento Web SDK and Momento Topics
+
+Momento Topics significantly simplifies publisher-subscriber communication in a browser. Traditionally, developers
+must build out server-side infrastructure to manage web socket connections for all active browser clients. A classic
+example of this is a chat application embedded in a website; you are not only building the client code for the browser,
+but the server-side code for routing all the communications.
+
+This server-side complexity is eliminated by incorporating Momento Topics with the Momento Web SDK. Developers can
+subscribe to Momento Topics directly from the browser.  Momento then takes care of all communication when messages are
+published to the topic, eliminating the need for custom server-side infrastructure for web sockets!
 
 # Using the Web SDK for browsers
-While the API calls are [identical to the Momento node.js SDK](https://github.com/momentohq/client-sdk-javascript), the import/const statement uses `@gomomento/sdk-web` instead of `@gomomento/sdk` as the Web SDK is its own entity.
+
+While the API calls are [identical to the Momento node.js SDK](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md),
+the import/require statement will consume the `@gomomento/sdk-web` package from npm, instead of `@gomomento/sdk` (which is
+the Node.js SDK).
+
+Here's an example import statement for the Web SDK:
 
 `import {CacheClient} from ‘@gomomento/sdk-web’;`
 
-Link to node.js cheat sheet
-Link to web SDK examples directory in client-sdk-javascript repo
-Link to Allen’s demo app that includes pubsub
-Maybe even a screenshot of Allen’s app?
+# Links
 
-Credentials for Browsers
-In most cases, generate a single-use Momento auth token that has expiring credentials to distribute to the browser. To create a Momento auth token for use in the browser, use the `generateAuthToken` API. Here is a code sample:
+Here are some other useful links for getting started with the Momento Web SDK:
+
+* [Example Chat App](https://github.com/momentohq/example-chat-app) - fully functional chat application built using the Web SDK!
+
+![chat screenshot](./images/web-sdk-chat-app.png)
+
+* [Momento Node.js Cheat Sheet](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md)
+* [Example Web SDK scripts on github](https://github.com/momentohq/client-sdk-javascript/examples/web)
+
+# Credentials for Browsers
+
+In order for your browser application to communicate with Momento, you will need to provide the browser with a Momento
+auth token. The recommended practice is to generate a single-use Momento auth token that has expiring credentials so that
+you can distribute it to the browser without worrying about it being compromised.
+
+To create a Momento auth token for use in the browser, use the `generateAuthToken` API. Here is a code sample:
+
 ```javascript
-const authClient = new AuthClient({credentialProvider: …});
+const authClient = new AuthClient({
+  credentialProvider: CredentialProvider.fromEnvironmentVariable({
+    environmentVariableName: 'MOMENTO_AUTH_TOKEN',
+  })
+});
 const generateResponse = await sessionTokenAuthClient.generateAuthToken(
     	AllDataReadWrite,
     	ExpiresIn.minutes(30)
-  	);
+);
+if (generateResponse instanceof GenerateAuthToken.Success) {
+  // if you get here, the auth token that you can send to the browser is available as:
+  //
+  //  generateResponse.authToken
+  //
+  // The expiration date is also available as:
+  //
+  //  generateResponse.expiresAt.epoch
+}
 ```
 
 ## FAQ
