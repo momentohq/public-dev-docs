@@ -9,7 +9,7 @@ description: Get up and running quickly with the Javascript web-sdk for use in b
 # Deploying the web SDK for Javascript in browsers
 Momento provides a fully browser-compatible SDK, which is executed within a user’s browser facilitating direct communication with Momento services. This functionality bypasses the customary requirement for building and operating your own web service to mediate cache or pub/sub calls between the browser and Momento services. Consequently, this not only enhances the efficiency of your web applications but also broadens the scope of feasible technical use cases.
 
-## Web SDK and Momento Topics
+## Javascript Web SDK and Momento Topics
 Momento Topics significantly simplifies pub-sub communication in a browser. Traditionally, developers establish server-side infrastructure to manage web socket connections for all active browser clients. A classic example of this is a chat application embedded in a website. This requirement is eliminated by incorporating Momento Topics with the Momento Web SDK. Developers can subscribe to topics directly from the browser. At the same time, Momento takes care of all communication when messages are published to the topic, eliminating the need for server-side infrastructure for web sockets.
 
 # Using the Web SDK for browsers
