@@ -43,7 +43,7 @@ Here are some other useful links for getting started with the Momento web SDK:
 
 In order for your browser application to communicate with Momento services, you will need to provide the browser with a Momento auth token. The recommended practice is to generate a Momento auth token that has expiring credentials for each browser session. This enables the app to distribute tokens without worrying about your data being compromised.
 
-To create a Momento auth token for use in the browser, use the `generateAuthToken` API. Here is a code sample:
+To create a Momento auth token for use in the browser, use the [`generateAuthToken` API](/develop/api-reference/#auth-apis). Here is a code sample:
 
 ```javascript
 const authClient = new AuthClient({
