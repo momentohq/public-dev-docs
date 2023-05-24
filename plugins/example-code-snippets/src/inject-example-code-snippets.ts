@@ -77,14 +77,6 @@ function replaceValueWithExampleTabs(literal: unist.Literal): void {
 
 function replaceValueWithExampleCodeBlock(literal: unist.Literal): void {
   const value = literal.value as string;
-  const snippetIdAttr = value.match(/snippetId={'([^']+)'}/m)?.[1];
-  if (snippetIdAttr === undefined) {
-    console.log(
-      `Unable to find "snippetId={'xxx'}" attribute on jsx tag:\n${value}`
-    );
-    return;
-  }
-  const snippetId = exampleSnippetId(snippetIdAttr);
 
   const snippetLanguageAttr = value.match(/language={'([^']+)'}/m)?.[1];
   if (snippetLanguageAttr === undefined) {
@@ -94,9 +86,29 @@ function replaceValueWithExampleCodeBlock(literal: unist.Literal): void {
     return;
   }
   const language = exampleLanguage(snippetLanguageAttr);
-  const snippet = snippetForLanguage(language, snippetId);
 
-  literal.value = `<SdkExampleCodeBlockImpl language={'${language}'} code={\`${snippet}\`}/>`;
+  const snippetIdAttr = value.match(/snippetId={'([^']+)'}/m)?.[1];
+  const filename = value.match(/file={'([^']+)'}/m)?.[1];
+  if (snippetIdAttr === undefined && filename === undefined) {
+    console.log(
+      `Unable to find "snippetId={'xxx'}" or "file={'xxx'}" attribute on jsx tag:\n${value}`
+    );
+    return;
+  }
+  if (snippetIdAttr !== undefined && filename !== undefined) {
+    console.log(
+      `Providing both "snippetId={'xxx'}" and "file={'xxx'}" attribute on jsx tag is not supported:\n${value}`
+    );
+    return;
+  }
+  if (snippetIdAttr !== undefined) {
+    const snippetId = exampleSnippetId(snippetIdAttr);
+    const snippet = snippetForLanguage(language, snippetId);
+    literal.value = `<SdkExampleCodeBlockImpl language={'${language}'} code={\`${snippet}\`}/>`;
+  } else if (filename !== undefined) {
+    const snippet = fileContentsForLanguage(language, filename);
+    literal.value = `<SdkExampleCodeBlockImpl language={'${language}'} code={\`${snippet}\`}/>`;
+  }
 }
 
 function snippetForLanguage(
@@ -110,6 +122,16 @@ function snippetForLanguage(
       snippetId
     ) ?? ''
   ).replace(/[\\`$]/g, '\\$&');
+}
+
+function fileContentsForLanguage(
+  language: ExampleLanguage,
+  file: string
+): string {
+  return (SNIPPET_RESOLVER.getFileContent(language, file) ?? '').replace(
+    /[\\`$]/g,
+    '\\$&'
+  );
 }
 
 module.exports = plugin;
