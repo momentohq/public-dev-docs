@@ -34,14 +34,14 @@ Here are some other useful links for getting started with the Momento web SDK:
 
 * [Example Chat App](https://github.com/momentohq/example-chat-app) - fully functional chat application built using the web SDK!
 
-![chat screenshot](./images/web-sdk-chat-app.png)
+![chat screenshot](/img/web-sdk-chat-app.png)
 
 * [Momento Node.js Cheat Sheet](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md)
 * [Example web SDK scripts on github](https://github.com/momentohq/client-sdk-javascript/examples/web)
 
 ## Credentials for Browsers
 
-In order for your browser application to communicate with Momento services, you will need to provide the browser with a Momento auth token. The recommended practice is to generate a single-use Momento auth token that has expiring credentials so that you can distribute it to the browser without worrying about it being compromised.
+In order for your browser application to communicate with Momento services, you will need to provide the browser with a Momento auth token. The recommended practice is to generate a Momento auth token that has expiring credentials for each browser session. This enables the app to distribute tokens without worrying about your data being compromised.
 
 To create a Momento auth token for use in the browser, use the `generateAuthToken` API. Here is a code sample:
 
