@@ -2,61 +2,46 @@
 sidebar_position: 5
 sidebar_class_name: sidebar-item-websdk
 sidebar_label: Web SDK
-title: Momento Web SDK for JavaScript in browsers
+title: Momento web SDK for JavaScript in browsers
 description: Get up and running quickly with the Javascript web-sdk for use in browsers connecting to a Momento Cache or Topics services.
 ---
 
-# Momento Web SDK for Javascript in browsers
+# Momento web SDK for Javascript in browsers
 
-Momento provides two JavaScript SDKs; one for Node.js and one for other web applications.  The two SDKs have
-identical APIs, so your code will look the same except for `import` statements, but under the hood they are
-built for optimal performance and compatibility in different JavaScript runtime environments.
+Momento provides two JavaScript SDKs; one for Node.js and one for other web applications. The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
 
-The Node.js SDK is best suited for server-side use cases. The Momento Web SDK, however, allows developers to write
-JavaScript code that runs in a browser and communicates directly with Momento services. This allows you to avoid the
-typical overhead of building and operating your own web service to mediate cache or pub/sub calls between the browser
-and Momento.  It also means one less hop for your web traffic, so you can get even performance out of your browser
-application.  The best of both worlds1
+The Node.js SDK is best suited for server-side use cases. The Momento web SDK, however, allows developers to write JavaScript code that runs in a browser and communicates directly with Momento services. This allows you to avoid the typical overhead of building and operating your own web service to mediate cache or pub/sub calls between the browser and Momento. It also means one less hop for your web traffic, so you can get even performance out of your browser application. The best of both worlds.
 
-You can also use the Web SDK in other non-Node.js JavaScript environments, such as CloudFlare.
+You can also use the web SDK in other non-Node.js JavaScript environments, such as CloudFlare.
 
-## Momento Web SDK and Momento Topics
+## Momento web SDK and Momento Topics
 
-Momento Topics significantly simplifies publisher-subscriber communication in a browser. Traditionally, developers
-must build out server-side infrastructure to manage web socket connections for all active browser clients. A classic
-example of this is a chat application embedded in a website; you are not only building the client code for the browser,
-but the server-side code for routing all the communications.
+Momento Topics significantly simplifies publisher-subscriber communication in a browser. Traditionally, developers example of this is a chat application embedded in a website; you are not only building the client code for the browser, but the server-side code for routing all the communications.
 
-This server-side complexity is eliminated by incorporating Momento Topics with the Momento Web SDK. Developers can
-subscribe to Momento Topics directly from the browser.  Momento then takes care of all communication when messages are
-published to the topic, eliminating the need for custom server-side infrastructure for web sockets!
+This server-side complexity is eliminated by incorporating Momento Topics with the Momento web SDK. Developers can subscribe to Momento Topics directly from the browser. Momento then takes care of all communication when messages are published to the topic, eliminating the need for custom server-side infrastructure for WebSockets!
 
-# Using the Web SDK for browsers
+## Using the web SDK for browsers
 
-While the API calls are [identical to the Momento node.js SDK](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md),
-the import/require statement will consume the `@gomomento/sdk-web` package from npm, instead of `@gomomento/sdk` (which is
-the Node.js SDK).
+While the API calls are [identical to the Momento node.js SDK](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md), the import/require statement will consume the `@gomomento/sdk-web` package from npm, instead of `@gomomento/sdk` (which is the Node.js SDK).
 
-Here's an example import statement for the Web SDK:
+Here's an example import statement for the web SDK:
 
 `import {CacheClient} from ‘@gomomento/sdk-web’;`
 
-# Links
+### Links
 
-Here are some other useful links for getting started with the Momento Web SDK:
+Here are some other useful links for getting started with the Momento web SDK:
 
-* [Example Chat App](https://github.com/momentohq/example-chat-app) - fully functional chat application built using the Web SDK!
+* [Example Chat App](https://github.com/momentohq/example-chat-app) - fully functional chat application built using the web SDK!
 
 ![chat screenshot](./images/web-sdk-chat-app.png)
 
 * [Momento Node.js Cheat Sheet](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md)
-* [Example Web SDK scripts on github](https://github.com/momentohq/client-sdk-javascript/examples/web)
+* [Example web SDK scripts on github](https://github.com/momentohq/client-sdk-javascript/examples/web)
 
-# Credentials for Browsers
+## Credentials for Browsers
 
-In order for your browser application to communicate with Momento, you will need to provide the browser with a Momento
-auth token. The recommended practice is to generate a single-use Momento auth token that has expiring credentials so that
-you can distribute it to the browser without worrying about it being compromised.
+In order for your browser application to communicate with Momento services, you will need to provide the browser with a Momento auth token. The recommended practice is to generate a single-use Momento auth token that has expiring credentials so that you can distribute it to the browser without worrying about it being compromised.
 
 To create a Momento auth token for use in the browser, use the `generateAuthToken` API. Here is a code sample:
 
