@@ -209,3 +209,24 @@ Sets several field:value pairs in a dictionary item. If the dictionary item does
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+### DictionaryLength
+Get the length of an existing dictionary item
+
+| Name           | Type         | Description                                |
+|----------------| ------------ |--------------------------------------------|
+| cacheName      | String       | Name of the cache.                         |
+| dictionaryName | String       | Name of the dictionary item to be checked. |
+
+<details>
+  <summary>Method response object</summary>
+
+* Hit
+  * `length()`: Number
+* Miss
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
