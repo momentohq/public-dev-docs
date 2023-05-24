@@ -17,7 +17,6 @@ While the API calls are [identical to the Momento node.js SDK](https://github.co
 
 `import {CacheClient} from ‘@gomomento/sdk-web’;`
 
-
 Link to node.js cheat sheet
 Link to web SDK examples directory in client-sdk-javascript repo
 Link to Allen’s demo app that includes pubsub
@@ -34,5 +33,8 @@ const generateResponse = await sessionTokenAuthClient.generateAuthToken(
 ```
 
 ## FAQ
-Q: Is the traffic encrypted?
-A: As with all traffic with Momento services, the Web SDK is fully encrypted on the wire. In addition, the SDK uses minimum TLS 1.2+ encryption.
+
+<details>
+  <summary>Is the traffic from the browser encrypted?</summary>
+As with all traffic with Momento services, the web SDK is fully encrypted on the wire. In addition, the SDK uses TLS 1.2+ encryption.
+</details>
