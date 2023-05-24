@@ -22,7 +22,7 @@ This server-side complexity is eliminated by incorporating Momento Topics with t
 
 ## Using the web SDK for browsers
 
-While the API calls are [identical to the Momento node.js SDK](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md), the import/require statement will consume the `@gomomento/sdk-web` package from npm, instead of `@gomomento/sdk` (which is the Node.js SDK).
+While the API calls are [identical to the Momento node.js SDK](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.mdx), the import/require statement will consume the `@gomomento/sdk-web` package from npm, instead of `@gomomento/sdk` (which is the Node.js SDK).
 
 Here's an example import statement for the web SDK:
 
@@ -36,7 +36,7 @@ Here are some other useful links for getting started with the Momento web SDK:
 
 ![chat screenshot](/img/web-sdk-chat-app.png)
 
-* [Momento Node.js Cheat Sheet](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.md)
+* [Momento Node.js Cheat Sheet](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.mdx)
 * [Example web SDK scripts on github](https://github.com/momentohq/client-sdk-javascript/examples/web)
 
 ## Credentials for Browsers
