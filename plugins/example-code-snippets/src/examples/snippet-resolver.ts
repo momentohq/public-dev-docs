@@ -6,4 +6,6 @@ export interface SnippetResolver {
     snippetType: ExampleSnippetType,
     snippetId: string
   ): string | undefined;
+
+  getFileContent(language: ExampleLanguage, file: string): string | undefined;
 }

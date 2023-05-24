@@ -50,6 +50,10 @@ export class DefaultSnippetResolver implements SnippetResolver {
     );
     return undefined;
   }
+
+  getFileContent(language: ExampleLanguage, file: string): string | undefined {
+    return this.sdkRepoResolver.getFileContent(language, file);
+  }
 }
 
 export const SNIPPET_RESOLVER: SnippetResolver = new DefaultSnippetResolver();

@@ -1,19 +1,22 @@
 import {SnippetSourceParser} from './snippet-source-parser';
 import {ExampleSnippetId, ExampleSnippetType} from '../../examples';
 import * as fs from 'fs';
+import * as path from 'path';
 
 export interface RegexSnippetTypeOptions {
-  sourceFiles: Array<string>;
+  snippetSourceFiles: Array<string>;
   startRegex: (snippetId: ExampleSnippetId) => RegExp;
   endRegex: (snippetId: ExampleSnippetId) => RegExp;
   numLeadingSpacesToStrip: number;
 }
 
 export interface RegexSnippetSourceParserOptions {
+  wholeFileExamplesDir: string;
   snippetTypeParseOptions: Map<ExampleSnippetType, RegexSnippetTypeOptions>;
 }
 
 export class RegexSnippetSourceParser implements SnippetSourceParser {
+  private readonly wholeFileExamplesDir: string;
   private readonly snippetTypeParseOptions: Map<
     ExampleSnippetType,
     RegexSnippetTypeOptions
@@ -21,6 +24,7 @@ export class RegexSnippetSourceParser implements SnippetSourceParser {
   private readonly snippetTypeContent: Map<ExampleSnippetType, Array<string>>;
 
   constructor(options: RegexSnippetSourceParserOptions) {
+    this.wholeFileExamplesDir = options.wholeFileExamplesDir;
     this.snippetTypeParseOptions = options.snippetTypeParseOptions;
     this.snippetTypeContent = new Map();
     for (const [
@@ -29,7 +33,7 @@ export class RegexSnippetSourceParser implements SnippetSourceParser {
     ] of this.snippetTypeParseOptions.entries()) {
       this.snippetTypeContent.set(
         snippetType,
-        snippetOptions.sourceFiles
+        snippetOptions.snippetSourceFiles
           .map(f => fs.readFileSync(f).toString())
           .join('\n')
           .split('\n')
@@ -70,6 +74,12 @@ export class RegexSnippetSourceParser implements SnippetSourceParser {
     }
 
     return undefined;
+  }
+
+  getFileContent(file: string): string | undefined {
+    return fs
+      .readFileSync(path.join(this.wholeFileExamplesDir, file))
+      .toString();
   }
 
   private captureUntilEndOfSnippet(

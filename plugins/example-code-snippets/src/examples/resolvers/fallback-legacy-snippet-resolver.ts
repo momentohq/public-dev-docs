@@ -567,4 +567,8 @@ raise response.error if response.error?
       ?.get(snippetType)
       ?.get(language);
   }
+
+  getFileContent(language: ExampleLanguage, file: string): string | undefined {
+    return undefined;
+  }
 }

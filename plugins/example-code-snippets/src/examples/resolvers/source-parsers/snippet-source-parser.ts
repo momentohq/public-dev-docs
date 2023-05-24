@@ -5,4 +5,6 @@ export interface SnippetSourceParser {
     snippetType: ExampleSnippetType,
     snippetId: ExampleSnippetId
   ): string | undefined;
+
+  getFileContent(file: string): string | undefined;
 }

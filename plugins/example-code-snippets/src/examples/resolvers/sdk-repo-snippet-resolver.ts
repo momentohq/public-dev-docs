@@ -40,14 +40,20 @@ export class SdkRepoSnippetResolver implements SnippetResolver {
     snippetType: ExampleSnippetType,
     snippetId: ExampleSnippetId
   ): string | undefined {
-    const sdk = sdkForLanguage(language);
-    const dir = this.sourceDir(sdk);
-    console.log(`Source dir for language '${language}' is: '${dir}'`);
     const sourceParser = this.sourceParserForLanguage(language);
     if (sourceParser === undefined) {
       return undefined;
     } else {
       return sourceParser.parseSourceForSnippet(snippetType, snippetId);
+    }
+  }
+
+  getFileContent(language: ExampleLanguage, file: string): string | undefined {
+    const sourceParser = this.sourceParserForLanguage(language);
+    if (sourceParser === undefined) {
+      return undefined;
+    } else {
+      return sourceParser.getFileContent(file);
     }
   }
 
