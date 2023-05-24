@@ -3,14 +3,14 @@ sidebar_position: 5
 sidebar_class_name: sidebar-item-websdk
 sidebar_label: Web SDK
 title: Momento web SDK for JavaScript in browsers
-description: Get up and running quickly with the Javascript web-sdk for use in browsers connecting to a Momento Cache or Topics services.
+description: Get up and running quickly with the JavaScript web SDK for use in browsers connecting to Momento Cache or Topics services.
 ---
 
 # Momento web SDK for Javascript in browsers
 
 Momento provides two JavaScript SDKs; one for Node.js and one for other web applications. The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
 
-The Node.js SDK is best suited for server-side use cases. The Momento web SDK, however, allows developers to write JavaScript code that runs in a browser and communicates directly with Momento services. This allows you to avoid the typical overhead of building and operating your own web service to mediate cache or pub/sub calls between the browser and Momento. It also means one less hop for your web traffic, so you can get even performance out of your browser application. The best of both worlds.
+The Node.js SDK is best suited for server-side use cases. The Momento web SDK, however, allows developers to write JavaScript code that runs in a browser and communicates directly with Momento services. This allows you to avoid the typical overhead of building and operating your own web service to mediate cache or pub/sub calls between the browser and Momento. It also means one less hop for your web traffic, so you can get even better performance out of your browser application. The best of both worlds!
 
 You can also use the web SDK in other non-Node.js JavaScript environments, such as CloudFlare.
 
