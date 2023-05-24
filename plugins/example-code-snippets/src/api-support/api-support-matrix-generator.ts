@@ -8,8 +8,9 @@ import {heading, Heading, table, Table} from '../utils/markdown-nodes';
 interface SdkInfo {
   sdk: Sdk;
   cacheClientFile: string | Array<string>;
-  configObjectFile?: string;
-  topicClientFile?: string;
+  configObjectFile: string | undefined;
+  topicClientFile: string | undefined;
+  authClientFile: string | undefined;
 }
 
 const SDKS: Array<SdkInfo> = [
@@ -17,10 +18,11 @@ const SDKS: Array<SdkInfo> = [
     sdk: Sdk.NODEJS,
     cacheClientFile: [
       'packages/client-sdk-nodejs/src/cache-client.ts',
-      'packages/core/src/internal/clients/cache/AbstractCacheClient.ts',
+      'packages/core/src/clients/ICacheClient.ts',
     ],
     configObjectFile: 'packages/client-sdk-nodejs/src/config/configuration.ts',
-    topicClientFile: 'packages/client-sdk-nodejs/src/topic-client.ts',
+    topicClientFile: 'packages/core/src/clients/ITopicClient.ts',
+    authClientFile: 'packages/core/src/clients/IAuthClient.ts',
   },
   {
     sdk: Sdk.WEB,
@@ -28,26 +30,30 @@ const SDKS: Array<SdkInfo> = [
       'packages/client-sdk-web/src/cache-client.ts',
       'packages/core/src/internal/clients/cache/AbstractCacheClient.ts',
     ],
-    configObjectFile: undefined,
-    topicClientFile: undefined,
+    configObjectFile: 'packages/client-sdk-web/src/config/configuration.ts',
+    topicClientFile: 'packages/core/src/clients/ITopicClient.ts',
+    authClientFile: 'packages/core/src/clients/IAuthClient.ts',
   },
   {
     sdk: Sdk.DOTNET,
     cacheClientFile: 'src/Momento.Sdk/ICacheClient.cs',
     configObjectFile: 'src/Momento.Sdk/Config/Configuration.cs',
     topicClientFile: undefined,
+    authClientFile: undefined,
   },
   {
     sdk: Sdk.PYTHON,
     cacheClientFile: 'src/momento/cache_client_async.py',
     configObjectFile: 'src/momento/config/configuration.py',
     topicClientFile: undefined,
+    authClientFile: undefined,
   },
   {
     sdk: Sdk.GO,
     cacheClientFile: 'momento/cache_client.go',
     configObjectFile: 'config/config.go',
     topicClientFile: 'momento/topic_client.go',
+    authClientFile: undefined,
   },
   {
     sdk: Sdk.JAVA,
@@ -55,24 +61,28 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile:
       'momento-sdk/src/main/java/momento/sdk/config/Configuration.java',
     topicClientFile: undefined,
+    authClientFile: undefined,
   },
   {
     sdk: Sdk.PHP,
     cacheClientFile: 'src/Cache/CacheClient.php',
     configObjectFile: 'src/Config/Configuration.php',
     topicClientFile: undefined,
+    authClientFile: undefined,
   },
   {
     sdk: Sdk.RUST,
     cacheClientFile: 'src/simple_cache_client.rs',
     configObjectFile: undefined,
     topicClientFile: 'src/preview/topics.rs',
+    authClientFile: undefined,
   },
   {
     sdk: Sdk.RUBY,
     cacheClientFile: 'lib/momento/simple_cache_client.rb',
     configObjectFile: undefined,
     topicClientFile: undefined,
+    authClientFile: undefined,
   },
 ];
 
@@ -180,11 +190,14 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
     groupName: 'Signing Keys',
     apis: ['createSigningKey', 'listSigningKeys', 'revokeSigningKey'],
   },
-  {groupName: 'SSO', apis: ['generateAuthToken', 'refreshAuthToken']},
 ];
 
 const TOPIC_API_GROUPS: Array<ApiGroup> = [
   {groupName: 'Topics', apis: ['subscribe', 'publish']},
+];
+
+const AUTH_API_GROUPS: Array<ApiGroup> = [
+  {groupName: 'Auth', apis: ['generateAuthToken', 'refreshAuthToken']},
 ];
 
 export class ApiSupportMatrixGenerator {
@@ -194,6 +207,7 @@ export class ApiSupportMatrixGenerator {
     const allSdksCacheApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksConfigApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksTopicsApiSupport = new Map<string, Map<string, boolean>>();
+    const allSdksAuthApiSupport = new Map<string, Map<string, boolean>>();
 
     for (const sdk of SDKS) {
       const sdkRepoDir = sourceProvider.sdkSourceDir(sdk.sdk);
@@ -218,11 +232,18 @@ export class ApiSupportMatrixGenerator {
         TOPIC_API_GROUPS
       );
       allSdksTopicsApiSupport.set(sdkName, topicApiSupport);
+      const authApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.authClientFile,
+        AUTH_API_GROUPS
+      );
+      allSdksAuthApiSupport.set(sdkName, authApiSupport);
     }
 
     const nodes: Array<Heading | Table> = [];
     nodes.push(...renderApiGroups(CACHE_API_GROUPS, allSdksCacheApiSupport));
     nodes.push(...renderApiGroups(TOPIC_API_GROUPS, allSdksTopicsApiSupport));
+    nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
     nodes.push(...renderApiGroups(CONFIG_API_GROUPS, allSdksConfigApiSupport));
     return nodes;
   }
