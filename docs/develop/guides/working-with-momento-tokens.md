@@ -49,6 +49,8 @@ If you wish to quickly test out Momento, click on the copy icon beside the auth 
 ### Step 4: Automating token refresh
 Once your application is running in production. You will need an automated script that periodically refreshes the auth token, **before** it expires. If you are running in AWS, an easy way to do this is by scheduling a function in AWS Lambda that does this for you. Check out our [1-click deploy example lambda](https://github.com/momentohq/auth-token-refresh-lambda) that you can use to automatically refresh your token in AWS Secrets Manager.
 
-Remember, while the lambda (or your own automated script) refreshes the auth token, your application also needs to check AWS Secrets Manager (or wherever you are storing your tokens) periodically for newly refreshed tokens!
+:::note
+While the Lambda function (or your own automated script) refreshes the auth token, your application also needs to check AWS Secrets Manager (or wherever you are storing your tokens) periodically for newly refreshed tokens!
+:::
 
 Got more questions or feedback for us? Reach out to [Momento support](mailto:support@momentohq.com) or join our [Discord community](https://discord.gg/GDStRczm).
