@@ -293,7 +293,7 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 ### SortedSetLengthByScore
-For an existing sorted set item, finds all of the values between the specified min and max score and 
+For an existing sorted set item, it finds all of the values between the specified min and max score and returns the length.
 
 | Name           | Type         | Description                                |
 |----------------| ------------ |--------------------------------------------|
