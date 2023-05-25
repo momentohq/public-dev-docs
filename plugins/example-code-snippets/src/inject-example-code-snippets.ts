@@ -4,8 +4,6 @@ import * as unist from 'unist';
 import {
   ExampleLanguage,
   exampleLanguage,
-  ExampleSnippetId,
-  exampleSnippetId,
   exampleSnippetType,
 } from './examples/examples';
 import {SNIPPET_RESOLVER} from './examples/resolvers/default-snippet-resolver';
@@ -53,14 +51,13 @@ function plugin(options: unknown): unknown {
 
 function replaceValueWithExampleTabs(literal: unist.Literal): void {
   const value = literal.value as string;
-  const snippetIdAttr = value.match(/snippetId={'([^']+)'}/m)?.[1];
-  if (snippetIdAttr === undefined) {
+  const snippetId = value.match(/snippetId={'([^']+)'}/m)?.[1];
+  if (snippetId === undefined) {
     console.log(
       `Unable to find "snippetId={'xxx'}" attribute on jsx tag:\n${value}`
     );
     return;
   }
-  const snippetId = exampleSnippetId(snippetIdAttr);
 
   literal.value = `<SdkExampleSnippetTabs
   js={\`${snippetForLanguage(ExampleLanguage.JAVASCRIPT, snippetId)}\`}
@@ -87,22 +84,21 @@ function replaceValueWithExampleCodeBlock(literal: unist.Literal): void {
   }
   const language = exampleLanguage(snippetLanguageAttr);
 
-  const snippetIdAttr = value.match(/snippetId={'([^']+)'}/m)?.[1];
+  const snippetId = value.match(/snippetId={'([^']+)'}/m)?.[1];
   const filename = value.match(/file={'([^']+)'}/m)?.[1];
-  if (snippetIdAttr === undefined && filename === undefined) {
+  if (snippetId === undefined && filename === undefined) {
     console.log(
       `Unable to find "snippetId={'xxx'}" or "file={'xxx'}" attribute on jsx tag:\n${value}`
     );
     return;
   }
-  if (snippetIdAttr !== undefined && filename !== undefined) {
+  if (snippetId !== undefined && filename !== undefined) {
     console.log(
       `Providing both "snippetId={'xxx'}" and "file={'xxx'}" attribute on jsx tag is not supported:\n${value}`
     );
     return;
   }
-  if (snippetIdAttr !== undefined) {
-    const snippetId = exampleSnippetId(snippetIdAttr);
+  if (snippetId !== undefined) {
     const snippet = snippetForLanguage(language, snippetId);
     literal.value = `<SdkExampleCodeBlockImpl language={'${language}'} code={\`${snippet}\`}/>`;
   } else if (filename !== undefined) {
@@ -113,7 +109,7 @@ function replaceValueWithExampleCodeBlock(literal: unist.Literal): void {
 
 function snippetForLanguage(
   language: ExampleLanguage,
-  snippetId: ExampleSnippetId
+  snippetId: string
 ): string {
   return (
     SNIPPET_RESOLVER.resolveSnippet(

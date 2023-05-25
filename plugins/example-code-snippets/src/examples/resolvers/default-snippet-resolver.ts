@@ -1,8 +1,4 @@
-import {
-  ExampleLanguage,
-  ExampleSnippetId,
-  ExampleSnippetType,
-} from '../examples';
+import {ExampleLanguage, ExampleSnippetType} from '../examples';
 import {MISSING_SNIPPETS_REGISTRY} from '../missing-snippets-registry';
 import {SnippetResolver} from '../snippet-resolver';
 import {SdkRepoSnippetResolver} from './sdk-repo-snippet-resolver';
@@ -15,7 +11,7 @@ export class DefaultSnippetResolver implements SnippetResolver {
   resolveSnippet(
     language: ExampleLanguage,
     snippetType: ExampleSnippetType,
-    snippetId: ExampleSnippetId
+    snippetId: string
   ): string | undefined {
     const fromSdkRepo = this.sdkRepoResolver.resolveSnippet(
       language,

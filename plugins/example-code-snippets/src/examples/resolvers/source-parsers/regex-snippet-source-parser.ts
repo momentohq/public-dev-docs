@@ -1,12 +1,12 @@
 import {SnippetSourceParser} from './snippet-source-parser';
-import {ExampleSnippetId, ExampleSnippetType} from '../../examples';
+import {ExampleSnippetType} from '../../examples';
 import * as fs from 'fs';
 import * as path from 'path';
 
 export interface RegexSnippetTypeOptions {
   snippetSourceFiles: Array<string>;
-  startRegex: (snippetId: ExampleSnippetId) => RegExp;
-  endRegex: (snippetId: ExampleSnippetId) => RegExp;
+  startRegex: (snippetId: string) => RegExp;
+  endRegex: (snippetId: string) => RegExp;
   numLeadingSpacesToStrip: number;
 }
 
@@ -43,7 +43,7 @@ export class RegexSnippetSourceParser implements SnippetSourceParser {
   }
   parseSourceForSnippet(
     snippetType: ExampleSnippetType,
-    snippetId: ExampleSnippetId
+    snippetId: string
   ): string | undefined {
     const options = this.snippetTypeParseOptions.get(snippetType);
     if (options === undefined) {

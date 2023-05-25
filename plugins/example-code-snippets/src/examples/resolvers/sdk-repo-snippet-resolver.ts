@@ -1,9 +1,5 @@
 import {SnippetResolver} from '../snippet-resolver';
-import {
-  ExampleLanguage,
-  ExampleSnippetId,
-  ExampleSnippetType,
-} from '../examples';
+import {ExampleLanguage, ExampleSnippetType} from '../examples';
 import {SdkSourceProvider} from '../sdk-source/sdk-source-provider';
 import {SdkGithubRepoSourceProvider} from '../sdk-source/sdk-github-repo-source-provider';
 import {Sdk} from '../sdk-source/sdks';
@@ -38,7 +34,7 @@ export class SdkRepoSnippetResolver implements SnippetResolver {
   resolveSnippet(
     language: ExampleLanguage,
     snippetType: ExampleSnippetType,
-    snippetId: ExampleSnippetId
+    snippetId: string
   ): string | undefined {
     const sourceParser = this.sourceParserForLanguage(language);
     if (sourceParser === undefined) {

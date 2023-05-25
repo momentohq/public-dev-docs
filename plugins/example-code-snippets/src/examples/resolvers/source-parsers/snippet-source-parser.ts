@@ -1,9 +1,9 @@
-import {ExampleSnippetId, ExampleSnippetType} from '../../examples';
+import {ExampleSnippetType} from '../../examples';
 
 export interface SnippetSourceParser {
   parseSourceForSnippet(
     snippetType: ExampleSnippetType,
-    snippetId: ExampleSnippetId
+    snippetId: string
   ): string | undefined;
 
   getFileContent(file: string): string | undefined;
