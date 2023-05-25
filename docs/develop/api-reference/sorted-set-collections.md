@@ -270,7 +270,7 @@ Example:
 | Value           | String \| Bytes              | Value for the sorted set element.                            |
 | Score           | Signed double 64-bit float   | Score the element. |
 
-A SortedSetElement can exist by itself or as part of an array of SortedSetElements
+A SortedSetElement can exist by itself or as part of an array of SortedSetElements.
 
 ### SortedSetLength
 Get the number of entries in a sorted set item.
