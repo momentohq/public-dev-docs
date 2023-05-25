@@ -17,7 +17,7 @@ To access Momento services from your application, a Momento auth token is requir
 2. An auth token which expires and requires periodic rotation. You can set the expiration to 7, 30, 60, 90 days or custom, where you can select a specific calendar date. An expiring auth token is considered best practice for production deployments. We will walk through how to do exactly that in this page.
 
 :::info
-In addition to using an expiring auth token, it is best practice to store an auth token in a service like [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) or [GCP Secret Manager](https://cloud.google.com/secret-manager). Go to [Retrieving a Momento auth token from AWS Secrets Manager](/develop/sdks-integrations/aws-secrets-manager) for an example on using this.
+In addition to using an expiring auth token, it is best practice to store an auth token in a service like [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) or [GCP Secret Manager](https://cloud.google.com/secret-manager). Go to [Retrieving a Momento auth token from AWS Secrets Manager](/develop/integrations/aws-secrets-manager) for an example on using this.
 :::
 
 ## Generating expiring tokens

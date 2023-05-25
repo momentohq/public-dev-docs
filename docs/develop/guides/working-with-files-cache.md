@@ -89,7 +89,7 @@ async function run() {
 run();
 ```
 
-Check our [Node.js cheat sheet](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.mdx) for more on using our Node.js SDK.
+Check our [Node.js cheat sheet](/develop/sdks/nodejs/cheat-sheet.mdx) for more on using our Node.js SDK.
    </TabItem>
    <TabItem value="py" label="Python">
 
@@ -160,7 +160,7 @@ if __name__ == '__main__':
 
 ```
 
-Check our [Python cheat sheet](/develop/guides/cheat-sheets/momento-cache-python-cheat-sheet.md) for more on using our Python SDK.
+Check our [Python cheat sheet](/develop/sdks/python/cheat-sheet.md) for more on using our Python SDK.
 
    </TabItem>
 </Tabs>

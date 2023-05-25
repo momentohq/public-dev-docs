@@ -1,0 +1,11 @@
+{
+  "label": "SDKs",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Momento SDKs, available in all of your favorite programming languages!",
+    "slug": "/develop/sdks"
+  },
+  "className": "sidebar-item-api-reference"
+}

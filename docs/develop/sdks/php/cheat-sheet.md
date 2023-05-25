@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
-sidebar_label: PHP
+sidebar_position: 1
+sidebar_label: Cheat Sheet
 sidebar_class_name: sidebar-item-php-cheat-sheet
 title: Cheat Sheet for PHP + Momento Cache
 description: Everything to get you going with coding using PHP and Momento Cache
@@ -146,5 +146,5 @@ if ($response->asError()) {
 ```
 
 :::info
-Beyond these basic API calls check out the [API reference page](../../api-reference/index.mdx) for more information on the full assortment of Momento API calls.
+Beyond these basic API calls check out the [API reference page](/develop/api-reference/index.mdx) for more information on the full assortment of Momento API calls.
 :::

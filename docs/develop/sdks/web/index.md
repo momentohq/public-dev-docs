@@ -1,18 +1,34 @@
 ---
-sidebar_position: 5
-sidebar_class_name: sidebar-item-websdk
-sidebar_label: Web SDK
-title: Momento web SDK for JavaScript in browsers
-description: Get up and running quickly with the JavaScript web SDK for use in browsers connecting to Momento Cache or Topics services.
+sidebar_position: 2
+title: Momento JavaScript web SDK
+pagination_prev: null
+sidebar_label: JS Web SDK
+description: Information about the Momento web SDK
 ---
 
 # Momento web SDK for Javascript in browsers
 
-Momento provides two JavaScript SDKs; one for Node.js and one for other web applications. The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
+Momento provides two JavaScript SDKs; [one for Node.js](/develop/sdks/nodejs) and one for other web applications. The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
 
 The Node.js SDK is best suited for server-side use cases. The Momento web SDK, however, allows developers to write JavaScript code that runs in a browser and communicates directly with Momento services. This allows you to avoid the typical overhead of building and operating your own web service to mediate cache or pub/sub calls between the browser and Momento. It also means one less hop for your web traffic, so you can get even better performance out of your browser application. The best of both worlds!
 
 You can also use the web SDK in other non-Node.js JavaScript environments, such as [Cloudflare workers](https://workers.cloudflare.com/).
+
+The Momento web SDK is available via the npm package [`@gomomento/sdk-web`](https://www.npmjs.com/package/@gomomento/sdk-web).
+
+The source code can be found on github: [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript).
+
+## Requirements
+
+- A Momento Auth Token is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+
+## Resources
+
+- [Momento Node.js Cheat Sheet](/develop/sdks/nodejs/cheat-sheet.mdx): this cheat sheet targets the Node.js SDK, but the web SDK APIs are fully compatible.
+- [Example Chat App](https://github.com/momentohq/example-chat-app): fully functional chat application built using the web SDK!
+  ![chat screenshot](/img/web-sdk-chat-app.png)
+- [Web SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/README.md): working example projects that illustrate how to use the web SDK
+- COMING SOON: Taking your code to prod: Configuration and Error handling in the web SDK
 
 ## Momento web SDK and Momento Topics
 
@@ -22,22 +38,11 @@ This server-side complexity is eliminated by incorporating Momento Topics with t
 
 ## Using the web SDK for browsers
 
-While the API calls are [identical to the Momento node.js SDK](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.mdx), the import/require statement will consume the `@gomomento/sdk-web` package from npm, instead of `@gomomento/sdk` (which is the Node.js SDK).
+While the API calls are [identical to the Momento node.js SDK](/develop/sdks/nodejs/cheat-sheet.mdx), the import/require statement will consume the `@gomomento/sdk-web` package from npm, instead of `@gomomento/sdk` (which is the Node.js SDK).
 
 Here's an example import statement for the web SDK:
 
 `import {CacheClient} from ‘@gomomento/sdk-web’;`
-
-### Links
-
-Here are some other useful links for getting started with the Momento web SDK:
-
-* [Example Chat App](https://github.com/momentohq/example-chat-app) - fully functional chat application built using the web SDK!
-
-![chat screenshot](/img/web-sdk-chat-app.png)
-
-* [Momento Node.js Cheat Sheet](/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet.mdx)
-* [Example web SDK scripts on github](https://github.com/momentohq/client-sdk-javascript/examples/web)
 
 ## Credentials for Browsers
 
