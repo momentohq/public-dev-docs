@@ -105,11 +105,12 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
       'flushCache',
       'keysExist',
       'keyExists',
+      'itemGetType',
       'delete',
       'updateTtl',
       'increaseTtl',
       'decreaseTtl',
-      'itemGetType',
+      'itemGetTtl',
     ],
   },
   {
@@ -135,6 +136,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
     groupName: 'Dictionaries',
     apis: [
       'dictionaryFetch',
+      'dictionaryLength',
       'dictionaryGetField',
       'dictionaryGetFields',
       'dictionaryIncrement',
@@ -150,6 +152,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
       'setAddElement',
       'setAddElements',
       'setFetch',
+      'setLength',
       'setRemoveElement',
       'setRemoveElements',
       'setContainsElement',
@@ -161,6 +164,8 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
     apis: [
       'sortedSetFetchByRank',
       'sortedSetFetchByScore',
+      'sortedSetLength',
+      'sortedSetLengthByScore',
       'sortedSetGetRank',
       'sortedSetGetScore',
       'sortedSetGetScores',
@@ -175,7 +180,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
     groupName: 'Signing Keys',
     apis: ['createSigningKey', 'listSigningKeys', 'revokeSigningKey'],
   },
-  {groupName: 'SSO', apis: ['generateApiToken']},
+  {groupName: 'SSO', apis: ['generateAuthToken', 'refreshAuthToken']},
 ];
 
 const TOPIC_API_GROUPS: Array<ApiGroup> = [

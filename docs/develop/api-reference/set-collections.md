@@ -164,3 +164,23 @@ The response object for SetContainsElements returns three possible options, a ca
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+### SetLength
+Get the length of an existing set item
+
+| Name      | Type         | Description                         |
+|-----------| ------------ |-------------------------------------|
+| cacheName | String       | Name of the cache.                  |
+| setName   | String       | Name of the set item to be checked. |
+
+<details>
+  <summary>Method response object</summary>
+
+* Hit
+  * `length()`: Number
+* Miss
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>

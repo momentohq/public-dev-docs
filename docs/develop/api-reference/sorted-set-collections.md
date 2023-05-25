@@ -270,4 +270,46 @@ Example:
 | Value           | String \| Bytes              | Value for the sorted set element.                            |
 | Score           | Signed double 64-bit float   | Score the element. |
 
-A SortedSetElement can exist by itself or as part of an array of SortedSetElements
+A SortedSetElement can exist by itself or as part of an array of SortedSetElements.
+
+### SortedSetLength
+Get the number of entries in a sorted set item.
+
+| Name           | Type         | Description                                |
+|----------------| ------------ |--------------------------------------------|
+| cacheName      | String       | Name of the cache.                         |
+| sortedSetName | String       | Name of the sorted set item to be checked. |
+
+<details>
+  <summary>Method response object</summary>
+
+* Hit
+    * `length()`: Number
+* Miss
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+### SortedSetLengthByScore
+For an existing sorted set item, it finds all of the values between the specified min and max score and returns the length.
+
+| Name           | Type         | Description                                |
+|----------------| ------------ |--------------------------------------------|
+| cacheName      | String       | Name of the cache.                         |
+| sortedSetName | String       | Name of the sorted set item to be checked. |
+| minScore | Optional[double]   | The inclusive low score of the results. Default is `-inf`, ie include through the lowest score. |
+| maxScore | Optional[double]   | The inclusive high score of the results. Default is `+inf`, ie include through the highest score. |
+
+<details>
+  <summary>Method response object</summary>
+
+* Hit
+    * `length()`: Number
+* Miss
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
