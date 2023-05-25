@@ -2,11 +2,15 @@ import {ExampleLanguage, ExampleSnippetType} from '../examples';
 import {MISSING_SNIPPETS_REGISTRY} from '../missing-snippets-registry';
 import {SnippetResolver} from '../snippet-resolver';
 import {SdkRepoSnippetResolver} from './sdk-repo-snippet-resolver';
-import {FallbackLegacySnippetResolver} from './fallback-legacy-snippet-resolver';
 
+/**
+ * This class exists as a composite wrapper to allow us to support falling back to other resolvers
+ * besides the SdkRepo resolver. At one point in time we did have a fallback resolver that had some
+ * hard-coded snippets in it. That has been removed, but I decided to leave this class here since
+ * it was already here and would allow us to esily add more resolvers in the future.
+ */
 export class DefaultSnippetResolver implements SnippetResolver {
   private readonly sdkRepoResolver = new SdkRepoSnippetResolver();
-  private readonly fallbackLegacyResolver = new FallbackLegacySnippetResolver();
 
   resolveSnippet(
     language: ExampleLanguage,
@@ -22,33 +26,25 @@ export class DefaultSnippetResolver implements SnippetResolver {
       return fromSdkRepo;
     }
 
-    console.log(
-      `Snippet not available from SDK repo; falling back to legacy resolver (${language.valueOf()}, ${snippetType.valueOf()}, ${snippetId.valueOf()})`
-    );
-
     MISSING_SNIPPETS_REGISTRY.registerMissingSnippet({
       language,
       snippetType,
       snippetId,
     });
 
-    const fallbackSnippet = this.fallbackLegacyResolver.resolveSnippet(
-      language,
-      snippetType,
-      snippetId
-    );
-    if (fallbackSnippet !== undefined) {
-      return fallbackSnippet;
-    }
-
-    console.log(
-      `Snippet not available from legacy resolver; omitting (${language.valueOf()}, ${snippetType.valueOf()}, ${snippetId.valueOf()}`
-    );
     return undefined;
   }
 
   getFileContent(language: ExampleLanguage, file: string): string | undefined {
-    return this.sdkRepoResolver.getFileContent(language, file);
+    const fromSdkRepo = this.sdkRepoResolver.getFileContent(language, file);
+
+    if (fromSdkRepo !== undefined) {
+      return fromSdkRepo;
+    }
+
+    MISSING_SNIPPETS_REGISTRY.registerMissingFile(language, file);
+
+    return undefined;
   }
 }
 
