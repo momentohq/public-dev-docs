@@ -273,7 +273,7 @@ Example:
 A SortedSetElement can exist by itself or as part of an array of SortedSetElements
 
 ### SortedSetLength
-Get the length of an existing sorted set item
+Get the number of entries in a sorted set item.
 
 | Name           | Type         | Description                                |
 |----------------| ------------ |--------------------------------------------|
