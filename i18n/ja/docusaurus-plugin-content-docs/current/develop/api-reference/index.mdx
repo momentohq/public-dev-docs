@@ -6,11 +6,10 @@ sidebar_label: API リファレンス
 description: Momento Cache の知っておくべき API 呼出しと、それらをどの様に使うかを学びましょう。
 ---
 
-import { SdkExamples } from "@site/src/components/SdkExamples";
-import { SdkExampleSnippets } from "@site/src/components/SdkExampleSnippets";
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
-// plugin will transform instances of SdkExampleSnippets to SdkExampleSnippetTabs
-import { SdkExampleSnippetTabs } from "@site/src/components/SdkExampleSnippetTabs";
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Momento Cache の API リファレンス
 
@@ -26,7 +25,7 @@ import { SdkExampleSnippetTabs } from "@site/src/components/SdkExampleSnippetTab
 | --------- | ------ | -------------------------------- |
 | cacheName | String | 作成するキャッシュの名前 |
 
-<SdkExampleSnippets snippetId={'API_CreateCache'} />
+<SdkExampleTabs snippetId={'API_CreateCache'} />
 
 ### Delete cache
 
@@ -36,7 +35,7 @@ import { SdkExampleSnippetTabs } from "@site/src/components/SdkExampleSnippetTab
 | --------- | ------ | -------------------------------- |
 | cacheName | String | 削除するキャッシュの名前 |
 
-<SdkExampleSnippets snippetId={'API_DeleteCache'} />
+<SdkExampleTabs snippetId={'API_DeleteCache'} />
 
 ### List caches
 
@@ -46,7 +45,7 @@ import { SdkExampleSnippetTabs } from "@site/src/components/SdkExampleSnippetTab
 | --------- | ------ | ------------------------------- |
 | nextToken | String | キャッシュ一覧のページネーショントークン |
 
-<SdkExampleSnippets snippetId={'API_ListCaches'} />
+<SdkExampleTabs snippetId={'API_ListCaches'} />
 
 ### Flush cache
 
@@ -56,7 +55,7 @@ import { SdkExampleSnippetTabs } from "@site/src/components/SdkExampleSnippetTab
 | --------- | ------ | -------------------------------- |
 | cacheName | String | フラッシュするキャッシュの名前 |
 
-<SdkExampleSnippets snippetId={'API_FlushCache'} />
+<SdkExampleTabs snippetId={'API_FlushCache'} />
 
 :::tip
 
@@ -79,7 +78,7 @@ import { SdkExampleSnippetTabs } from "@site/src/components/SdkExampleSnippetTab
 | value      | []Byte | 保存される値                       |
 | ttlSeconds | int    | キャッシュ内での生存期間           |
 
-<SdkExampleSnippets snippetId={'API_Set'} />
+<SdkExampleTabs snippetId={'API_Set'} />
 
 ### Get
 
@@ -90,7 +89,7 @@ import { SdkExampleSnippetTabs } from "@site/src/components/SdkExampleSnippetTab
 | cacheName | String | キャッシュの名前                            |
 | key       | []Byte | 値が取得されるキー |
 
-<SdkExampleSnippets snippetId={'API_Get'} />
+<SdkExampleTabs snippetId={'API_Get'} />
 
 ### Delete
 
@@ -101,7 +100,7 @@ import { SdkExampleSnippetTabs } from "@site/src/components/SdkExampleSnippetTab
 | cacheName | String | キャッシュの名前                              |
 | key       | []Byte | 値が削除されるキー |
 
-<SdkExampleSnippets snippetId={'API_Delete'} />
+<SdkExampleTabs snippetId={'API_Delete'} />
 
 ### Increment
 

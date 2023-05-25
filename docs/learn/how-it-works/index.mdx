@@ -5,7 +5,6 @@ pagination_prev: null
 description: Explore what makes Momento Cache work and how best to utilize it with your apps.
 sidebar_label: How it works
 ---
-import {SdkExamples} from "/src/components/SdkExamples";
 
 # How it works - Momento Cache
 
@@ -19,69 +18,13 @@ On this page, we'll cover two main aspects of working with Momento Cache:
 
 - [Interacting with the Momento API](#interacting-with-the-momento-api);
 
-## The SimpleCache object and developing with Momento Cache
+## The CacheClient object and developing with Momento Cache
 
-In every Momento SDK, you will be using a SimpleCache client object to interact with the Momento Cache service. The SimpleCache object will provide credential management and efficient interaction with the Momento API.
+In every Momento SDK, you will be using a CacheClient object to interact with the Momento Cache service. The CacheClient object will provide credential management and efficient interaction with the Momento API.
 
-Generally, you will create a SimpleCache object by passing in your authentication token and any desired settings.
+For more info on how to get started with the CacheClient, check out the `Develop` section!
 
-<SdkExamples
-    js={`
-const authToken="eyJhbGc.MyTestToken";
-const defaultTTL = 300;
-const momento = new SimpleCacheClient(authToken, defaultTtl);
-`}
-    python={`
-import momento.simple_cache_client as scc\n
-_MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
-_ITEM_DEFAULT_TTL_SECONDS = 300\n
-with scc.init(_MOMENTO_AUTH_TOKEN, _ITEM_DEFAULT_TTL_SECONDS) as cache_client:
-`}
-    java={`
-String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
-int DEFAULT_ITEM_TTL_SECONDS = 300;\n
-SimpleCacheClient simpleCacheClient = SimpleCacheClient
-    .builder(MOMENTO_AUTH_TOKEN, DEFAULT_ITEM_TTL_SECONDS)
-    .build()\n
-`}
-    go={`
-const (
-    authToken             = "eyJhbGc.MyTestToken"
-    itemDefaultTtlSeconds = 300
-)
-client, err := momento.NewSimpleCacheClient(authToken, itemDefaultTtlSeconds)
-    if err != nil {
-    panic(err)
-}
-`}
-    csharp={`
-uint DEFAULT_TTL_SECONDS = 300;
-String MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken";
-using SimpleCacheClient client = new SimpleCacheClient(MOMENTO_AUTH_TOKEN, DEFAULT_TTL_SECONDS);
-`}
-    rust={`
-let auth_token = "eyJhbGc.MyTestToken";
-let item_default_ttl_seconds = 300;
-let mut cache_client = SimpleCacheClientBuilder::new(
-    auth_token,
-    NonZeroU64::new(item_default_ttl_seconds).unwrap(),
-)
-.unwrap()
-.build();
-`}
-    ruby={`
-require 'momento'
-MOMENTO_AUTH_TOKEN = "eyJhbGc.MyTestToken"
-DEFAULT_TTL_SECONDS = 15
-client = Momento::SimpleCacheClient.new(
-  auth_token: MOMENTO_AUTH_TOKEN, default_ttl: DEFAULT_TTL_SECONDS
-)
-    `}
-    cli={`momento configure`}
-/>
-
-
-A SimpleCache instance can interact with both the control plane and data plane APIs in Momento Cache. Let's take a look at each of these.
+A CacheClient instance can interact with both the control plane and data plane APIs in Momento Cache. Let's take a look at each of these.
 
 ### Control plane: simple, efficient cache management
 

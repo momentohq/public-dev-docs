@@ -15,7 +15,7 @@ function markdownNodeContainsExampleSnippets<T extends unist.Node>(
   if (unistNode.type === 'jsx') {
     const literal = unistNode as unist.Literal;
     const value = literal.value as string;
-    if (value.startsWith('<SdkExampleSnippets')) {
+    if (value.startsWith('<SdkExampleTabs')) {
       return true;
     }
     if (value.startsWith('<SdkExampleCodeBlock')) {
@@ -26,8 +26,8 @@ function markdownNodeContainsExampleSnippets<T extends unist.Node>(
 }
 
 /**
- * This is a docusaurus MDX/remark plugin.  It finds <SdkExampleSnippets> in the markdown
- * source, and replaces them with <SdkExampleSnippetTabs> tags that are populated with the
+ * This is a docusaurus MDX/remark plugin.  It finds <SdkExampleTabs> in the markdown
+ * source, and replaces them with <SdkExampleTabsImpl> tags that are populated with the
  * example code snippets pulled in from the SDK repos.
  *
  * @param options
@@ -39,7 +39,7 @@ function plugin(options: unknown): unknown {
     visit(tree, markdownNodeContainsExampleSnippets, node => {
       const literal = node as unist.Literal;
       const value = literal.value as string;
-      if (value.startsWith('<SdkExampleSnippets')) {
+      if (value.startsWith('<SdkExampleTabs')) {
         replaceValueWithExampleTabs(literal);
       } else if (value.startsWith('<SdkExampleCodeBlock')) {
         replaceValueWithExampleCodeBlock(literal);
