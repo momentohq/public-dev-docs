@@ -151,6 +151,42 @@ const config = {
             to: '/develop/api-reference',
             from: '/API-reference',
           },
+          {
+            from: '/develop/sdks-integrations/aws-secrets-manager',
+            to: '/develop/integrations/aws-secrets-manager',
+          },
+          {
+            from: '/develop/sdks-integrations/bulk-writing-from-redis-json-csv',
+            to: '/develop/integrations/bulk-writing-from-redis-json-csv',
+          },
+          {
+            from: '/develop/sdks-integrations/momento-cache-laravel-php',
+            to: '/develop/integrations/momento-cache-laravel-php',
+          },
+          {
+            from: '/develop/sdks-integrations/redis-client-compatibility',
+            to: '/develop/integrations/redis-client-compatibility',
+          },
+          {
+            from: '/develop/guides/cheat-sheets/momento-cache-go-cheat-sheet',
+            to: '/develop/sdks/go/cheat-sheet',
+          },
+          {
+            from: '/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet',
+            to: '/develop/sdks/nodejs/cheat-sheet',
+          },
+          {
+            from: '/develop/guides/cheat-sheets/momento-cache-php-cheat-sheet',
+            to: '/develop/sdks/php/cheat-sheet',
+          },
+          {
+            from: '/develop/guides/cheat-sheets/momento-cache-python-cheat-sheet',
+            to: '/develop/sdks/python/cheat-sheet',
+          },
+          {
+            from: '/develop/sdks-integrations/deploying-javascript-web-sdk',
+            to: '/develop/sdks/web',
+          },
         ],
         /**createRedirects(existingPath) {
           if (existingPath.includes('/docs')) {

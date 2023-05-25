@@ -1,8 +1,8 @@
 {
-    "label": "SDKS and Integrations",
+    "label": "Integrations",
     "position": 4,
     "link": {
-      "title": "SDKs and Integrations",
+      "title": "Integrations",
       "description": "Cheat sheets to help you out.",
     },
     "className": "sidebar-item-limits"
