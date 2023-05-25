@@ -84,29 +84,6 @@ export function exampleSnippetType(snippetType: string): ExampleSnippetType {
   ) as unknown as ExampleSnippetType;
 }
 
-export enum ExampleSnippetId {
-  API_CREATE_CACHE = 'API_CreateCache',
-  API_DELETE_CACHE = 'API_DeleteCache',
-  API_LIST_CACHES = 'API_ListCaches',
-  API_FLUSH_CACHE = 'API_FlushCache',
-  API_SET = 'API_Set',
-  API_GET = 'API_Get',
-  API_DELETE = 'API_Delete',
-}
-
-/**
- * Convenience function for converting the simple lower-case string name of a snippet id
- * to the enum value.
- * @param {string} snippetId
- * @returns {ExampleSnippetId}
- */
-export function exampleSnippetId(snippetId: string): ExampleSnippetId {
-  return enumFromValue(
-    ExampleSnippetId,
-    snippetId
-  ) as unknown as ExampleSnippetId;
-}
-
 /**
  * Used to uniquely identify an example snippet; this is used to keep track of which languages
  * are missing some examples.
@@ -114,5 +91,5 @@ export function exampleSnippetId(snippetId: string): ExampleSnippetId {
 export interface ExampleSnippetCoordinates {
   language: ExampleLanguage;
   snippetType: ExampleSnippetType;
-  snippetId: ExampleSnippetId;
+  snippetId: string;
 }

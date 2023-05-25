@@ -1,9 +1,5 @@
 import {SnippetResolver} from '../snippet-resolver';
-import {
-  ExampleLanguage,
-  ExampleSnippetId,
-  ExampleSnippetType,
-} from '../examples';
+import {ExampleLanguage, ExampleSnippetType} from '../examples';
 
 export class FallbackLegacySnippetResolver implements SnippetResolver {
   // for this POC, here we define some hard-coded example snippets.  In the real, working version of this plugin,
@@ -560,7 +556,7 @@ raise response.error if response.error?
   resolveSnippet(
     language: ExampleLanguage,
     snippetType: ExampleSnippetType,
-    snippetId: ExampleSnippetId
+    snippetId: string
   ): string | undefined {
     return this.temporaryHardCodedCodeSnippets
       .get(snippetId)
@@ -568,6 +564,7 @@ raise response.error if response.error?
       ?.get(language);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getFileContent(language: ExampleLanguage, file: string): string | undefined {
     return undefined;
   }
