@@ -6,10 +6,10 @@ sidebar_label: API reference
 description: Learn the API calls you need to know and how to use them with Momento Cache.
 ---
 
-import { SdkExampleSnippets } from "@site/src/components/SdkExampleSnippets";
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
-// plugin will transform instances of SdkExampleSnippets to SdkExampleSnippetTabs
-import { SdkExampleSnippetTabs } from "@site/src/components/SdkExampleSnippetTabs";
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # API reference for Momento Cache
 
@@ -27,7 +27,7 @@ Attributes:
 | --------- | ------ | -------------------------------- |
 | cacheName | String | Name of the cache to be created. |
 
-<SdkExampleSnippets snippetId={'API_CreateCache'} />
+<SdkExampleTabs snippetId={'API_CreateCache'} />
 
 ### Delete cache
 
@@ -39,7 +39,7 @@ Attributes:
 | --------- | ------ | -------------------------------- |
 | cacheName | String | Name of the cache to be deleted. |
 
-<SdkExampleSnippets snippetId={'API_DeleteCache'} />
+<SdkExampleTabs snippetId={'API_DeleteCache'} />
 
 ### List caches
 
@@ -49,7 +49,7 @@ Lists all caches
 | --------- | ------ | ------------------------------- |
 | nextToken | String | Token for pagination of caches. |
 
-<SdkExampleSnippets snippetId={'API_ListCaches'} />
+<SdkExampleTabs snippetId={'API_ListCaches'} />
 
 ### Flush cache
 
@@ -61,7 +61,7 @@ Attributes:
 | --------- | ------ | -------------------------------- |
 | cacheName | String | Name of the cache to be flushed. |
 
-<SdkExampleSnippets snippetId={'API_FlushCache'} />
+<SdkExampleTabs snippetId={'API_FlushCache'} />
 
 :::tip
 
@@ -84,7 +84,7 @@ Sets the value in cache with a given Time To Live (TTL) seconds. If a value for 
 | value      | []Byte | The value to be stored.                       |
 | ttlSeconds | int    | Time to Live for the item in Cache.           |
 
-<SdkExampleSnippets snippetId={'API_Set'} />
+<SdkExampleTabs snippetId={'API_Set'} />
 
 ### Get
 
@@ -95,7 +95,7 @@ Get the cache value stored for the given key.
 | cacheName | String | Name of the cache.                            |
 | key       | []Byte | The key under which the value is to be retrieved. |
 
-<SdkExampleSnippets snippetId={'API_Get'} />
+<SdkExampleTabs snippetId={'API_Get'} />
 
 ### Delete
 
@@ -106,7 +106,7 @@ Delete the cache value stored for the given key.
 | cacheName | String | Name of the cache.                              |
 | key       | []Byte | The key under which the value is to be deleted. |
 
-<SdkExampleSnippets snippetId={'API_Delete'} />
+<SdkExampleTabs snippetId={'API_Delete'} />
 
 ### Increment
 

@@ -5,7 +5,7 @@ import React from 'react';
 
 /**
  * This component isn't intended to be used directly (though there is no issue with doing
- * so).  It is primarily intended to be used by including instances of `SdkExampleSnippets`
+ * so).  It is primarily intended to be used by including instances of `SdkExampleTabs`
  * in a mdx file and then allowing the `inject-exacmple-code-snippets` plugin to replace
  * it with an instance of this component, populated with snippets for all available languages
  * by looking the snippet source code up in the SDK repos.
@@ -21,7 +21,7 @@ import React from 'react';
  * @returns {JSX.Element|null}
  * @constructor
  */
-export const SdkExampleSnippetTabs = ({js, python, java, go, csharp, rust, ruby, cli}) => {
+export const SdkExampleTabsImpl = ({js, python, java, go, csharp, rust, ruby, cli}) => {
   if (js || python || java || go || csharp || rust || ruby || cli) {
     return (
   <Tabs>
