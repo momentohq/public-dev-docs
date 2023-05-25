@@ -37,7 +37,6 @@ function plugin(options: unknown): unknown {
 
       const treeChildren: Array<unist.Node> = tree.children;
       const thisNodeIndex = treeChildren.findIndex(n => n === node);
-      console.log(`THIS NODE INDEX: ${thisNodeIndex}`);
       tree.children = [
         ...treeChildren.slice(0, thisNodeIndex),
         ...newNodes,

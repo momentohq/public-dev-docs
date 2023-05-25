@@ -217,16 +217,17 @@ You can also install the Momento CLI locally (Linux, Windows, Mac) if desired. T
 
 ## All Momento SDKs
 
-We currently have the following SDK's languages available. Check out each repo for detailed instructions and usage examples.
+We currently have the following SDK languages available:
 
-- [Go](https://github.com/momentohq/client-sdk-go)
-- [Java](https://github.com/momentohq/client-sdk-java)
-- [Node.js](https://github.com/momentohq/client-sdk-nodejs)
-- [Python](https://github.com/momentohq/client-sdk-python)
-- [.NET](https://github.com/momentohq/client-sdk-dotnet)
-- [Rust](https://github.com/momentohq/client-sdk-rust)
-- [PHP](https://github.com/momentohq/client-sdk-php)
-- [Ruby](https://github.com/momentohq/client-sdk-ruby)
+- [Node.js](/develop/sdks/nodejs)
+- [JavaScript Web SDK](/develop/sdks/web)
+- [Python](/develop/sdks/python)
+- [.NET](/develop/sdks/dotnet)
+- [Go](/develop/sdks/go)
+- [PHP](/develop/sdks/php)
+- [Java](/develop/sdks/java)
+- [Rust](/develop/sdks/rust)
+- [Ruby](/develop/sdks/ruby)
 
 ## FAQ
 <details>

@@ -220,14 +220,15 @@ CLIをローカル(Linux, Windows, Mac)にインストールすることも可�
 
 現在、以下の言語の SDK が利用可能です。各レポジトリで、詳細な手順と利用例をご確認下さい。
 
-- [Go](https://github.com/momentohq/client-sdk-go)
-- [Java](https://github.com/momentohq/client-sdk-java)
-- [Node.js](https://github.com/momentohq/client-sdk-nodejs)
-- [Python](https://github.com/momentohq/client-sdk-python)
-- [.NET](https://github.com/momentohq/client-sdk-dotnet)
-- [Rust](https://github.com/momentohq/client-sdk-rust)
-- [PHP](https://github.com/momentohq/client-sdk-php)
-- [Ruby](https://github.com/momentohq/client-sdk-ruby)
+- [Node.js](/develop/sdks/nodejs)
+- [JavaScript Web SDK](/develop/sdks/web)
+- [Python](/develop/sdks/python)
+- [.NET](/develop/sdks/dotnet)
+- [Go](/develop/sdks/go)
+- [PHP](/develop/sdks/php)
+- [Java](/develop/sdks/java)
+- [Rust](/develop/sdks/rust)
+- [Ruby](/develop/sdks/ruby)
 
 ## FAQ
 

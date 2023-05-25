@@ -14,9 +14,9 @@ export class SdkGithubRepoSourceProvider implements SdkSourceProvider {
 export function githubRepoNameForSdk(sdk: Sdk): string {
   switch (sdk) {
     case Sdk.NODEJS:
-      return 'client-sdk-nodejs';
+      return 'client-sdk-javascript';
     case Sdk.WEB:
-      return 'client-sdk-nodejs';
+      return 'client-sdk-javascript';
     case Sdk.DOTNET:
       return 'client-sdk-dotnet';
     case Sdk.PYTHON:

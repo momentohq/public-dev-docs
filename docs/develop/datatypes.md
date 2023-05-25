@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 sidebar_label: Data Types
 sidebar_class_name: sidebar-item-data-types
 title: Supported data types
