@@ -6,6 +6,11 @@ sidebar_label: JS Web SDK
 description: Information about the Momento web SDK
 ---
 
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
+
 # Momento web SDK for Javascript in browsers
 
 Momento provides two JavaScript SDKs; [one for Node.js](/develop/sdks/nodejs) and one for other web applications. The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
@@ -48,28 +53,15 @@ Here's an example import statement for the web SDK:
 
 In order for your browser application to communicate with Momento services, you will need to provide the browser with a Momento auth token. The recommended practice is to generate a Momento auth token that has expiring credentials for each browser session. This enables the app to distribute tokens without worrying about your data being compromised.
 
-To create a Momento auth token for use in the browser, use the `generateAuthToken` API. Here is a code sample:
+To create a Momento auth token for use in the browser, you will generally have a web application using another Momento SDK such as the node.js SDK. First, you will need to instantiate a Momento `AuthClient`:
 
-```javascript
-const authClient = new AuthClient({
-  credentialProvider: CredentialProvider.fromEnvironmentVariable({
-    environmentVariableName: 'MOMENTO_AUTH_TOKEN',
-  })
-});
-const generateResponse = await sessionTokenAuthClient.generateAuthToken(
-    	AllDataReadWrite,
-    	ExpiresIn.minutes(30)
-);
-if (generateResponse instanceof GenerateAuthToken.Success) {
-  // if you get here, the auth token that you can send to the browser is available as:
-  //
-  //  generateResponse.authToken
-  //
-  // The expiration date is also available as:
-  //
-  //  generateResponse.expiresAt.epoch
-}
-```
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_InstantiateAuthClient'} />
+
+Then you will use the `generateAuthToken` API to create a token that you can vend to the browser:
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateAuthToken'} />
+
+For more information on Momento auth tokens, including `TokenScope` for authorization, and how to refresh expiring tokens, see [Working with Momento auth tokens](/develop/guides/working-with-momento-auth-tokens).
 
 ## FAQ
 
