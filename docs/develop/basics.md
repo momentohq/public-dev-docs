@@ -33,7 +33,7 @@ For an example of how to retrieve credentials from AWS Secrets Manager, see our 
 
 For general information on creating and refreshing Momento auth tokens, see our page on [Momento authentication with expiring tokens](/develop/guides/working-with-momento-auth-tokens).
 
-## Configuration
+## Client configuration objects
 
 You will also need to create a `Configuration` object to configure your Momento Cache client. `Configuration` objects control things such as timeouts, retries, logging, middleware, and more.
 
