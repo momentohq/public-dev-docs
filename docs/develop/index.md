@@ -45,13 +45,11 @@ Each SDK contains pre-built `Configuration` objects to help get you up and runni
 
 Pre-built configurations come with a `latest()` version, which will always give you the latest recommended configuration for a given environment. For example,
 
-`configuration: Configurations.InRegion.Default.latest(),`
+<SdkExampleTabs snippetId={'API_ConfigurationInRegionDefaultLatest'} />
 
-:::info
 The `latest()` pre-built configuration may change between SDK releases as we continue to test, tune, and deliver better settings. If you would like to ensure your configuration does not change with an SDK upgrade, we provide fixed versions such as `v1()`, which are guaranteed to remain static from one release to the next. For example,
 
-`configuration: Configurations.InRegion.Default.v1(),`
-:::
+<SdkExampleTabs snippetId={'API_ConfigurationInRegionDefault'} />
 
 If you need a custom configuration, you can build your own `Configuration` object. See the examples in the `Configurations` namespace in the source code of each SDK to see how they are constructed.
 
