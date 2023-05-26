@@ -66,7 +66,7 @@ You can find the pre-built configurations in our `Configurations` namespace in m
 
 `Configurations.Lambda` is a configuration that is available in some SDKs, and is optimized for the AWS Lambda environment. It has some configuration settings designed to pre-warm the client on Lambda cold starts, and to ensure the connection is re-established proactively if a Lambda remains idle for long enough for the connection to time out.
 
-<SdkExampleTabs snippetId={'API_ConfigurationILambda'} />
+<SdkExampleTabs snippetId={'API_ConfigurationLambda'} />
 
 If you do need to customize your configuration beyond what our pre-builts provide, you can build your own `Configuration`
 object.  See the examples in the `Configurations` namespace in the source code of your SDK to see how they are constructed.
