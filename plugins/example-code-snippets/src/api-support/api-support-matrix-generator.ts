@@ -3,7 +3,14 @@ import * as path from 'path';
 import {SdkSourceProvider} from '../examples/sdk-source/sdk-source-provider';
 import {SdkGithubRepoSourceProvider} from '../examples/sdk-source/sdk-github-repo-source-provider';
 import * as fs from 'fs';
-import {heading, Heading, table, Table} from '../utils/markdown-nodes';
+import {
+  heading,
+  Heading,
+  Paragraph,
+  paragraph,
+  table,
+  Table,
+} from '../utils/markdown-nodes';
 
 interface SdkInfo {
   sdk: Sdk;
@@ -90,12 +97,14 @@ type Api = string | {displayName: string; functionName: string | RegExp};
 
 interface ApiGroup {
   groupName: string;
+  groupDescription: string;
   apis: Array<Api>;
 }
 
 const CONFIG_API_GROUPS: Array<ApiGroup> = [
   {
     groupName: 'Configuration',
+    groupDescription: 'A matrix of SDK support for Momento configuration APIs',
     apis: [
       {
         displayName: 'ClientTimeout',
@@ -110,6 +119,7 @@ const CONFIG_API_GROUPS: Array<ApiGroup> = [
 const CACHE_API_GROUPS: Array<ApiGroup> = [
   {
     groupName: 'Global',
+    groupDescription: 'A matrix of SDK support for Momento global APIs',
     apis: [
       'ping',
       'flushCache',
@@ -125,10 +135,12 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
   },
   {
     groupName: 'Scalars',
+    groupDescription: 'A matrix of SDK support for Momento scalar APIs',
     apis: ['get', 'set', 'setIfNotExists', 'increment'],
   },
   {
     groupName: 'Lists',
+    groupDescription: 'A matrix of SDK support for Momento list APIs.',
     apis: [
       'listConcatenateBack',
       'listConcatenateFront',
@@ -144,6 +156,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
   },
   {
     groupName: 'Dictionaries',
+    groupDescription: 'A matrix of SDK support for Momento dictionary APIs.',
     apis: [
       'dictionaryFetch',
       'dictionaryLength',
@@ -158,6 +171,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
   },
   {
     groupName: 'Sets',
+    groupDescription: 'A matrix of SDK support for Momento set APIs',
     apis: [
       'setAddElement',
       'setAddElements',
@@ -171,6 +185,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
   },
   {
     groupName: 'Sorted Sets',
+    groupDescription: 'A matrix of SDK support for Momento sorted set APIs',
     apis: [
       'sortedSetFetchByRank',
       'sortedSetFetchByScore',
@@ -188,20 +203,29 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
   },
   {
     groupName: 'Signing Keys',
+    groupDescription: 'A matrix of SDK support for Momento signing key APIs',
     apis: ['createSigningKey', 'listSigningKeys', 'revokeSigningKey'],
   },
 ];
 
 const TOPIC_API_GROUPS: Array<ApiGroup> = [
-  {groupName: 'Topics', apis: ['subscribe', 'publish']},
+  {
+    groupName: 'Topics',
+    groupDescription: 'A matrix of SDK support for Momento Topics APIs',
+    apis: ['subscribe', 'publish'],
+  },
 ];
 
 const AUTH_API_GROUPS: Array<ApiGroup> = [
-  {groupName: 'Auth', apis: ['generateAuthToken', 'refreshAuthToken']},
+  {
+    groupName: 'Auth',
+    groupDescription: 'A matrix of SDK support for Momento auth token APIs',
+    apis: ['generateAuthToken', 'refreshAuthToken'],
+  },
 ];
 
 export class ApiSupportMatrixGenerator {
-  generateApiMatrixMarkdownNodes(): Array<Heading | Table> {
+  generateApiMatrixMarkdownNodes(): Array<Heading | Paragraph | Table> {
     const sourceProvider: SdkSourceProvider = new SdkGithubRepoSourceProvider();
 
     const allSdksCacheApiSupport = new Map<string, Map<string, boolean>>();
@@ -240,7 +264,7 @@ export class ApiSupportMatrixGenerator {
       allSdksAuthApiSupport.set(sdkName, authApiSupport);
     }
 
-    const nodes: Array<Heading | Table> = [];
+    const nodes: Array<Heading | Paragraph | Table> = [];
     nodes.push(...renderApiGroups(CACHE_API_GROUPS, allSdksCacheApiSupport));
     nodes.push(...renderApiGroups(TOPIC_API_GROUPS, allSdksTopicsApiSupport));
     nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
@@ -252,10 +276,11 @@ export class ApiSupportMatrixGenerator {
 function renderApiGroups(
   apiGroups: Array<ApiGroup>,
   allSdksApiSupport: Map<string, Map<string, boolean>>
-): Array<Heading | Table> {
-  const nodes: Array<Heading | Table> = [];
+): Array<Heading | Paragraph | Table> {
+  const nodes: Array<Heading | Paragraph | Table> = [];
   for (const apiGroup of apiGroups) {
     nodes.push(heading(apiGroup.groupName, 3));
+    nodes.push(paragraph(apiGroup.groupDescription));
     nodes.push(
       table([
         ['Feature', ...SDKS.map(s => sdkDisplayName(s.sdk))],

@@ -33,6 +33,18 @@ export interface Heading {
   children: [Text];
 }
 
+export function paragraph(value: string): Paragraph {
+  return {
+    type: 'paragraph',
+    children: [
+      {
+        type: 'text',
+        value: value,
+      },
+    ],
+  };
+}
+
 export function heading(value: string, depth: number): Heading {
   return {
     type: 'heading',
