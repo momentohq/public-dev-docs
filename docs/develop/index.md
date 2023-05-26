@@ -16,7 +16,7 @@ Welcome! This page provides some information about common constructs that you wi
 
 ## Credentials
 
-When instantiating a Momento client, you will need to provide a Momento auth token.  If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/).  Once you have your token, you will provide it to the Momento SDKs via a `CredentialProvider`.  There are convenient factory methods provided to construct a `CredentialProvider`, either from an environment variable or from a String.
+When instantiating a Momento client, you need to provide a Momento auth token. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). Once you have your token, you provide it to the Momento SDKs via a `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider`, either from an environment variable or from a String.
 
 Example of how to construct a `CredentialProvider` from an environment variable:
 
