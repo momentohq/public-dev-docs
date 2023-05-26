@@ -63,7 +63,7 @@ you might be interested in.
 
 ### InRegion - Low Latency
 
-`Configurations.InRegion.LowLatency` is a configuration that prioritizes keeping p99.9 latencies as low as possible, potentially sacrificing some throughput to achieve this. It will time out more quickly than the Default configuration. Use this configuration if the most important factor is to ensure that cache unavailability doesn't force unacceptably high latencies for your own application and you want to fall back to application logic more quickly if the cache hasn't responded.
+`Configurations.InRegion.LowLatency` is a configuration that prioritizes keeping p99.9 latencies as low as possible, potentially sacrificing some throughput to achieve this. It will time out quicker than the `InRegion.Default` configuration. Use this configuration if the most critical factor is to ensure that cache unavailability doesn't force unacceptably high latencies for your application, and you want to fall back to application logic or an authoritative data source more quickly if the cache hasn't responded.
 
 <SdkExampleTabs snippetId={'API_ConfigurationInRegionLowLatency'} />
 
