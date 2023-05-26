@@ -37,13 +37,11 @@ For general information on creating and refreshing Momento auth tokens, see our 
 
 You will also need to create a `Configuration` object to configure your Momento Cache client. `Configuration` objects control things such as timeouts, retries, logging, middleware, and more.
 
-Each SDK comes with some pre-built `Configuration` objects to help you get up and running as quickly as possible. We want to do the hard work of
-tuning for different environments for you, so that you can focus on the things that are unique to your business. (We even have a blog series about it! [Shockingly simple: Cache clients that do the hard work for you](https://www.gomomento.com/blog/shockingly-simple-cache-clients-that-do-the-hard-work-for-you))
+Each SDK comes with some pre-built `Configuration` objects to help you get up and running as quickly as possible. We want to do the hard work of tuning for different environments for you, so that you can focus on the things that are unique to your business. (We even have a blog series about it! [Shockingly simple: Cache clients that do the hard work for you](https://www.gomomento.com/blog/shockingly-simple-cache-clients-that-do-the-hard-work-for-you))
 
 Each pre-built configurations come with a `latest()` version, which will always give you the latest recommended configuration for a given environment. This version may change slightly from one release of the SDK to the next as we continue to test, tune, and discover better default settings. If you want to ensure that your configuration does not change with an SDK upgrade, we provide fixed versions such as `v1()` which are guaranteed to remain stable from one release to the next. 
 
-You can find the pre-built configurations in our `Configurations` namespace in most SDKs. Here are some of the pre-built configurations that
-you might be interested in.
+You can find the pre-built configurations in our `Configurations` namespace in most SDKs. Here are some of the pre-built configurations that you might be interested in.
 
 ### Laptop
 
