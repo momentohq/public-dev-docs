@@ -1,10 +1,7 @@
 ---
-sidebar_position: 1
-sidebar_label: Basics
+sidebar_position: 4
+sidebar_label: Develop
 sidebar_class_name: sidebar-item-data-types
-title: Momento SDK Basics
-pagination_prev: null
-pagination_next: null
 description: Learn the core concepts for getting started with the Momento SDKs.
 ---
 
