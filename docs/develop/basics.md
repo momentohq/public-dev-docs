@@ -25,7 +25,7 @@ Example of how to construct a `CredentialProvider` from an environment variable:
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromEnvVar'} />
 
-If you are storing your credentials in a secrets manager such as AWS Secret Manager or a config file, you will first retrieve the credentials from there and then instantiate a `CredentialProvider` from a string:
+If you're storing your Momento auth token in a secret manager such as AWS Secret Manager or a config file, you will first retrieve the credentials from there and then instantiate a `CredentialProvider` from a string:
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromString'} />
 
