@@ -12,23 +12,21 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Developing applications with the Momento SDK
 
-Welcome! This page provides some information about common constructs that you will need in order to construct Momento clients in all of our SDKs. We will cover how to provide your Momento credentials, how to configure your client, and some basic information about error handling and production readiness.
+Welcome! This page provides information about common constructs you will need in order to assemble Momento clients in all of our SDKs. This page covers how to provide your Momento credentials (called auth tokens), how to configure your client, and some basic information about error handling and production readiness.
 
-## Credentials
+## Instantiating credential providers using Momento auth tokens
 
-When instantiating a Momento client, you need to provide a Momento auth token. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). Once you have your token, you provide it to the Momento SDKs via a `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider`, either from an environment variable or from a String.
-
-Example of how to construct a `CredentialProvider` from an environment variable:
+You need to provide a Momento auth token when instantiating a Momento client. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). Once you have a token, provide it to Momento SDKs when you create an instance of `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider` object, either from an environment variable or from a String. Below is an example of how to instantiate `CredentialProvider` from an environment variable:
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromEnvVar'} />
 
-If you're storing your Momento auth token in a secret manager such as AWS Secret Manager or a config file, you will first retrieve the credentials from there and then instantiate a `CredentialProvider` from a string:
+If you're storing your Momento auth token in a secret manager such as [AWS Secret Manager](https://aws.amazon.com/secrets-manager/), [GCP Secret Manager](https://cloud.google.com/secret-manager), or a local config file, you must first retrieve the credentials from there and then instantiate a `CredentialProvider` from a string, like this:
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromString'} />
 
-For an example of how to retrieve credentials from AWS Secrets Manager, see our page on [Retrieving a Momento auth token from AWS Secrets Manager](/develop/integrations/aws-secrets-manager).
+For an example of how to retrieve credentials from AWS Secrets Manager, see [Retrieving a Momento auth token from AWS Secrets Manager](/develop/integrations/aws-secrets-manager).
 
-For general information on creating and refreshing Momento auth tokens, see our page on [Momento authentication with expiring tokens](/develop/guides/working-with-momento-auth-tokens).
+For general information on creating and refreshing Momento auth tokens, see [Momento authentication with expiring tokens](/develop/guides/working-with-momento-auth-tokens).
 
 ## Client configuration objects
 
