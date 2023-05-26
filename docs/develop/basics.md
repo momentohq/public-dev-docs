@@ -57,7 +57,7 @@ you might be interested in.
 
 ### InRegion - Default
 
-`Configurations.InRegion.Default` is the recommended configuration for most server-side use cases, where you are making requests to Momento a service hosted in the same AWS or GCP region. It has more aggressive timeouts and retry behavior than the Laptop config, so it will fail faster and allow your application to fall back to your database or other data source more quickly. This helps ensure that your application doesn't bottleneck on Momento during a network or service outage.
+`Configurations.InRegion.Default` is the recommended configuration for most server-side use cases, where you send requests to Momento services from your apps hosted in the same cloud provider Region. It has more aggressive timeouts and retry behavior than the Laptop config, so it will fail faster and allow your application to fall back to your database or other data source more quickly. This helps ensure your applications don't bottleneck on Momento during a network or service outage.
 
 <SdkExampleTabs snippetId={'API_ConfigurationInRegionDefault'} />
 
