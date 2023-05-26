@@ -1,19 +1,41 @@
 import {ExampleLanguage, ExampleSnippetCoordinates} from './examples';
 
 export class MissingSnippetsRegistry {
-  private readonly _missingSnippets = new Set<string>();
-  private readonly _missingFiles = new Set<string>();
+  private readonly _missingSnippets = new Map<ExampleLanguage, Set<string>>();
+  private readonly _missingFiles = new Map<ExampleLanguage, Set<string>>();
   registerMissingSnippet(coords: ExampleSnippetCoordinates): void {
-    this._missingSnippets.add(JSON.stringify(coords));
+    if (!this._missingSnippets.has(coords.language)) {
+      this._missingSnippets.set(coords.language, new Set());
+    }
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this._missingSnippets.get(coords.language)!.add(JSON.stringify(coords));
   }
 
   registerMissingFile(language: ExampleLanguage, file: string): void {
-    this._missingFiles.add(JSON.stringify({language: language, file: file}));
+    if (!this._missingFiles.has(language)) {
+      this._missingFiles.set(language, new Set());
+    }
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this._missingFiles.get(language)!.add(file);
   }
 
-  missingSnippets(): Array<ExampleSnippetCoordinates> {
-    return Array.from(this._missingSnippets).map(
-      s => JSON.parse(s) as ExampleSnippetCoordinates
+  missingSnippets(): Map<ExampleLanguage, Array<ExampleSnippetCoordinates>> {
+    return new Map(
+      Array.from(this._missingSnippets.entries()).map(([lang, snippets]) => [
+        lang,
+        Array.from(snippets).map(
+          coords => JSON.parse(coords) as ExampleSnippetCoordinates
+        ),
+      ])
+    );
+  }
+
+  missingFiles(): Map<ExampleLanguage, Array<string>> {
+    return new Map(
+      Array.from(this._missingFiles.entries()).map(([lang, files]) => [
+        lang,
+        Array.from(files),
+      ])
     );
   }
 }
