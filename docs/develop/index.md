@@ -14,6 +14,14 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 Welcome! This page provides information about common constructs you will need in order to assemble Momento clients in all of our SDKs. This page covers how to provide your Momento credentials (called auth tokens), how to configure your client, and some basic information about error handling and production readiness.
 
+## Constructing a Cache Client
+
+The `CacheClient` is the main object you will use in your code to interact with Momento services. To instantiate one, you need to pass a `CredentialProvider`, a `Configuration`, and a default time to live (TTL) value. The default TTL determines how long items using that `CacheClient` will be stored in the cache before the cache deletes them. When performing `Set` operations, you can override this TTL value unique to that operation. See [Expire data with Time-to-Live (TTL) in Momento Cache](/learn/how-it-works/expire-data-with-ttl) for more information.
+
+Here is an example of how to construct a `CacheClient`:
+
+<SdkExampleTabs snippetId={'API_InstantiateCacheClient'} />
+
 ## Instantiating credential providers using Momento auth tokens
 
 You need to provide a Momento auth token when instantiating a Momento client. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). Once you have a token, provide it to Momento SDKs when you create an instance of `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider` object, either from an environment variable or from a String. Below is an example of how to instantiate `CredentialProvider` from an environment variable:
@@ -30,27 +38,39 @@ For general information on creating and refreshing Momento auth tokens, see [Mom
 
 ## Client configuration objects
 
-You will also need to create a `Configuration` object to configure your Momento Cache client. `Configuration` objects control things such as timeouts, retries, logging, middleware, and more.
+`Configuration` objects contain the settings necessary for how a Momento client should connect to Momento services. The `Configuration` object controls settings such as timeouts, retries, logging, middleware, and more.
 
-Each SDK comes with some pre-built `Configuration` objects to help you get up and running as quickly as possible. We want to do the hard work of tuning for different environments for you, so that you can focus on the things that are unique to your business. (We even have a blog series about it! [Shockingly simple: Cache clients that do the hard work for you](https://www.gomomento.com/blog/shockingly-simple-cache-clients-that-do-the-hard-work-for-you))
+Each SDK contains pre-built `Configuration` objects to help get you up and running as quickly as possible. We did the hard work of tuning for various deployment environments so you can focus on the things unique to your business. (We even have a blog series about it! [Shockingly simple: Cache clients that do the hard work for you](https://www.gomomento.com/blog/shockingly-simple-cache-clients-that-do-the-hard-work-for-you))
 
-Each pre-built configurations come with a `latest()` version, which will always give you the latest recommended configuration for a given environment. This version may change slightly from one release of the SDK to the next as we continue to test, tune, and discover better default settings. If you want to ensure that your configuration does not change with an SDK upgrade, we provide fixed versions such as `v1()` which are guaranteed to remain stable from one release to the next. 
+Pre-built configurations come with a `latest()` version, which will always give you the latest recommended configuration for a given environment. For example,
 
-You can find the pre-built configurations in our `Configurations` namespace in most SDKs. Here are some of the pre-built configurations that you might be interested in.
+`configuration: Configurations.InRegion.Default.latest(),`
+
+:::info
+The `latest()` pre-built configuration may change between SDK releases as we continue to test, tune, and deliver better settings. If you would like to ensure your configuration does not change with an SDK upgrade, we provide fixed versions such as `v1()`, which are guaranteed to remain static from one release to the next. For example,
+
+`configuration: Configurations.InRegion.Default.v1(),`
+:::
+
+If you need a custom configuration, you can build your own `Configuration` object. See the examples in the `Configurations` namespace in the source code of each SDK to see how they are constructed.
+
+We hope these configurations will meet the needs of most use cases, but if you find them lacking in any way, please open a GitHub issue on that SDK repo, or contact us at `support@momentohq.com`. We would love to hear about your use case so we can fix or extend the pre-built configurations to better support you.
+
+Here are some of the pre-built configurations that you might be interested in.
 
 ### Laptop
 
-`Configurations.Laptop` is a development environment, just for poking around on your... laptop :) It has relaxed timeouts and assumes that your network latencies might be a bit high.
+`Configurations.Laptop` is a development environment, just for poking around on your... laptop :) It has relaxed timeouts and assumes your network latencies might be a bit high.
 
 <SdkExampleTabs snippetId={'API_ConfigurationLaptop'} />
 
 ### Browser
 
-`Configurations.Browser` is a configuration in our [web SDK](/develop/sdks/web). It has relaxed timeout settings since latencies can be highly variable in individual users' browsers, depending on their network.
+`Configurations.Browser` is a configuration unique to our [web SDK](/develop/sdks/web). It has relaxed timeout settings since latencies can be highly variable in individual users' browsers.
 
 ### InRegion - Default
 
-`Configurations.InRegion.Default` is the recommended configuration for most server-side use cases, where you send requests to Momento services from your apps hosted in the same cloud provider Region. It has more aggressive timeouts and retry behavior than the Laptop config, so it will fail faster and allow your application to fall back to your database or other data source more quickly. This helps ensure your applications don't bottleneck on Momento during a network or service outage.
+`Configurations.InRegion.Default` is the recommended configuration for most server-side use cases, where you send requests to Momento services from your apps hosted in the same cloud provider Region. It has more aggressive timeouts and retry behavior than the Laptop config, so it will fail faster and allow your application to fall back to your database or other data source more quickly. This helps ensure your applications don't bottleneck on Momento during a network or service interruption.
 
 <SdkExampleTabs snippetId={'API_ConfigurationInRegionDefault'} />
 
@@ -62,24 +82,9 @@ You can find the pre-built configurations in our `Configurations` namespace in m
 
 ### Lambda
 
-`Configurations.Lambda` is a configuration that is available in some SDKs, and is optimized for the AWS Lambda environment. It has some configuration settings designed to pre-warm the client on Lambda cold starts, and to ensure the connection is re-established proactively if a Lambda remains idle for long enough for the connection to time out.
+`Configurations.Lambda` is a configuration that is available in some SDKs, and is optimized for the AWS Lambda environment. It has configuration settings designed to pre-warm the client on Lambda cold starts, and to ensure the connection is re-established proactively if a Lambda remains idle for long enough for the connection to time out.
 
 <SdkExampleTabs snippetId={'API_ConfigurationILambda'} />
-
-If you do need to customize your configuration beyond what our pre-builts provide, you can build your own `Configuration`
-object.  See the examples in the `Configurations` namespace in the source code of your SDK to see how they are constructed.
-
-We hope that these configurations will meet the needs of most users, but if you find them lacking in any way, please
-open a GitHub issue on that SDK repo, or contact us at `support@momentohq.com`. We would love to hear about your use case so that we
-can fix or extend the pre-built configs to support it.
-
-## Constructing a Cache Client
-
-The `CacheClient` is the main object that you will use to interact with a Momento cache. To instantiate one, you need to pass a `CredentialProvider`, a `Configuration`, and a default time to live (TTL) value. The default TTL determines how long items using that `CacheClient` will be stored in the cache before the cache deletes them. When performing `Set` operations, you can override this TTL value with one unique to that operation. See [Expire data with Time-to-Live (TTL) in Momento Cache](/learn/how-it-works/expire-data-with-ttl) for more information.
-
-Here is an example of how to construct a `CacheClient`:
-
-<SdkExampleTabs snippetId={'API_InstantiateCacheClient'} />
 
 ## Error Handling / Production Readiness
 
