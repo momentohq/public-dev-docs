@@ -17,7 +17,7 @@ Momento provides two JavaScript SDKs; [one for Node.js](/develop/sdks/nodejs) an
 
 The Node.js SDK is best suited for server-side use cases. The Momento web SDK, however, allows developers to write JavaScript code that runs in a browser and communicates directly with Momento services. This allows you to avoid the typical overhead of building and operating your own web service to mediate cache or pub/sub calls between the browser and Momento. It also means one less hop for your web traffic, so you can get even better performance out of your browser application. The best of both worlds!
 
-You can also use the web SDK in other non-Node.js JavaScript environments, such as [Cloudflare workers](https://workers.cloudflare.com/).
+You can also use the web SDK in other non-Node.js JavaScript environments.
 
 The Momento web SDK is available via the npm package [`@gomomento/sdk-web`](https://www.npmjs.com/package/@gomomento/sdk-web).
 
