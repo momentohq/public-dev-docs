@@ -104,7 +104,7 @@ interface ApiGroup {
 const CONFIG_API_GROUPS: Array<ApiGroup> = [
   {
     groupName: 'Configuration',
-    groupDescription: 'DESCRIPTION GOES HERE',
+    groupDescription: 'A matrix of SDK support for Momento configuration APIs',
     apis: [
       {
         displayName: 'ClientTimeout',
@@ -119,7 +119,7 @@ const CONFIG_API_GROUPS: Array<ApiGroup> = [
 const CACHE_API_GROUPS: Array<ApiGroup> = [
   {
     groupName: 'Global',
-    groupDescription: 'DESCRIPTION GOES HERE',
+    groupDescription: 'A matrix of SDK support for Momento global APIs',
     apis: [
       'ping',
       'flushCache',
@@ -135,12 +135,12 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
   },
   {
     groupName: 'Scalars',
-    groupDescription: 'DESCRIPTION GOES HERE',
+    groupDescription: 'A matrix of SDK support for Momento scalar APIs',
     apis: ['get', 'set', 'setIfNotExists', 'increment'],
   },
   {
     groupName: 'Lists',
-    groupDescription: 'DESCRIPTION GOES HERE',
+    groupDescription: 'A matrix of SDK support for Momento list APIs.',
     apis: [
       'listConcatenateBack',
       'listConcatenateFront',
@@ -156,7 +156,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
   },
   {
     groupName: 'Dictionaries',
-    groupDescription: 'DESCRIPTION GOES HERE',
+    groupDescription: 'A matrix of SDK support for Momento dictionary APIs.',
     apis: [
       'dictionaryFetch',
       'dictionaryLength',
@@ -171,7 +171,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
   },
   {
     groupName: 'Sets',
-    groupDescription: 'DESCRIPTION GOES HERE',
+    groupDescription: 'A matrix of SDK support for Momento set APIs',
     apis: [
       'setAddElement',
       'setAddElements',
@@ -185,7 +185,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
   },
   {
     groupName: 'Sorted Sets',
-    groupDescription: 'DESCRIPTION GOES HERE',
+    groupDescription: 'A matrix of SDK support for Momento sorted set APIs',
     apis: [
       'sortedSetFetchByRank',
       'sortedSetFetchByScore',
@@ -203,7 +203,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
   },
   {
     groupName: 'Signing Keys',
-    groupDescription: 'DESCRIPTION GOES HERE',
+    groupDescription: 'A matrix of SDK support for Momento signing key APIs',
     apis: ['createSigningKey', 'listSigningKeys', 'revokeSigningKey'],
   },
 ];
@@ -211,7 +211,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
 const TOPIC_API_GROUPS: Array<ApiGroup> = [
   {
     groupName: 'Topics',
-    groupDescription: 'DESCRIPTION GOES HERE',
+    groupDescription: 'A matrix of SDK support for Momento Topics APIs',
     apis: ['subscribe', 'publish'],
   },
 ];
@@ -219,7 +219,7 @@ const TOPIC_API_GROUPS: Array<ApiGroup> = [
 const AUTH_API_GROUPS: Array<ApiGroup> = [
   {
     groupName: 'Auth',
-    groupDescription: 'DESCRIPTION GOES HERE',
+    groupDescription: 'A matrix of SDK support for Momento auth token APIs',
     apis: ['generateAuthToken', 'refreshAuthToken'],
   },
 ];
