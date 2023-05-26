@@ -2,6 +2,7 @@
 sidebar_position: 4
 sidebar_label: Develop
 sidebar_class_name: sidebar-item-data-types
+title: Developing applications with Momento SDKs
 description: Learn the core concepts for getting started with the Momento SDKs.
 ---
 
@@ -10,7 +11,7 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Developing applications with the Momento SDK
+# Developing applications with Momento SDKs
 
 Welcome! This page provides information about common constructs you will need in order to assemble Momento clients in all of our SDKs. This page covers how to provide your Momento credentials (called auth tokens), how to configure your client, and some basic information about error handling and production readiness.
 
