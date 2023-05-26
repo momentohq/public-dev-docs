@@ -82,7 +82,7 @@ can fix or extend the pre-built configs to support it.
 
 ## Constructing a Cache Client
 
-The `CacheClient` is the main object that you will use to interact with a Momento Cache.  To instantiate one, you need to pass a `CredentialProvider`, a `Configuration`, and a default TTL.  The default TTL determines how long items will be stored in the cache if you don't specify a TTL explicitly when you save them.
+The `CacheClient` is the main object that you will use to interact with a Momento cache. To instantiate one, you need to pass a `CredentialProvider`, a `Configuration`, and a default time to live (TTL) value. The default TTL determines how long items using that `CacheClient` will be stored in the cache before the cache deletes them. When performing `Set` operations, you can override this TTL value with one unique to that operation. See [Expire data with Time-to-Live (TTL) in Momento Cache](/learn/how-it-works/expire-data-with-ttl) for more information.
 
 Here is an example of how to construct a `CacheClient`:
 
