@@ -38,7 +38,6 @@ export class RegexSnippetSourceParser implements SnippetSourceParser {
           .join('\n')
           .split('\n')
       );
-      console.log(snippetOptions);
     }
   }
   parseSourceForSnippet(

@@ -59,7 +59,7 @@ function replaceValueWithExampleTabs(literal: unist.Literal): void {
     return;
   }
 
-  literal.value = `<SdkExampleSnippetTabs
+  literal.value = `<SdkExampleTabsImpl
   js={\`${snippetForLanguage(ExampleLanguage.JAVASCRIPT, snippetId)}\`}
   python={\`${snippetForLanguage(ExampleLanguage.PYTHON, snippetId)}\`}
   java={\`${snippetForLanguage(ExampleLanguage.JAVA, snippetId)}\`}

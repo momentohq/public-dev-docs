@@ -212,7 +212,7 @@ export class ApiSupportMatrixGenerator {
     for (const sdk of SDKS) {
       const sdkRepoDir = sourceProvider.sdkSourceDir(sdk.sdk);
       const sdkName = sdk.sdk.valueOf();
-      console.log(`Checking sdk: ${sdkName}`);
+      // console.log(`Checking sdk: ${sdkName}`);
 
       const cacheApiSupport = determineApiSupport(
         sdkRepoDir,
@@ -332,14 +332,14 @@ function determineApiSupport(
       }
     }
   }
-  console.log(
-    `Done scanning client files '${JSON.stringify(
-      codeFile
-    )}'.  Supported APIs: ${JSON.stringify(
-      Object.fromEntries(apiSupport),
-      null,
-      2
-    )}`
-  );
+  // console.log(
+  //   `Done scanning client files '${JSON.stringify(
+  //     codeFile
+  //   )}'.  Supported APIs: ${JSON.stringify(
+  //     Object.fromEntries(apiSupport),
+  //     null,
+  //     2
+  //   )}`
+  // );
   return apiSupport;
 }

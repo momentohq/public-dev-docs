@@ -10,7 +10,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Cheat Sheet for Node.js with Momento Cache
-If you need to get going quickly with Node.js + TypeScript and Momento Cache, this page contains the basic API calls you'll need. [Check the node.js SDK page](https://github.com/momentohq/client-sdk-nodejs) for this code in a full file format.
+If you need to get going quickly with Node.js + TypeScript and Momento Cache, this page contains the basic API calls you'll need. [Check the node.js SDK examples](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs) for this code in a full file format.
 
 ## Install the Momento client library
 
@@ -169,7 +169,7 @@ This is an example of a simple read operation to get an item from a cache.
 </Tabs>
 
 ## Running the code
-If you download the [entire file](https://github.com/momentohq/client-sdk-nodejs/blob/main/examples/basic.ts), then run this command to execute the code.
+If you download the [entire file](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/basic.ts), then run this command to execute the code.
 
 ```cli
 npx ts-node basic.ts
@@ -178,5 +178,5 @@ npx ts-node basic.ts
 :::info
 Beyond these basic API calls check out the [API reference page](../../api-reference/index.mdx) for more information on the full assortment of Momento API calls.
 
-Follow this link to see this same type of code but for [more advanced calls](https://github.com/momentohq/client-sdk-nodejs/blob/main/examples/advanced.ts). 
+Follow this link to see this same type of code but for [more advanced calls](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/advanced.ts). 
 :::
