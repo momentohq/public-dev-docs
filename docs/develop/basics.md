@@ -53,7 +53,7 @@ you might be interested in.
 
 ### Browser
 
-`Configurations.Browser` is a special configuration available in the [web SDK](/develop/sdks/web). It has relaxed timeout settings since latencies can be extremely variable in individual users' browsers, depending on their network.
+`Configurations.Browser` is a configuration in our [web SDK](/develop/sdks/web). It has relaxed timeout settings since latencies can be highly variable in individual users' browsers, depending on their network.
 
 ### InRegion - Default
 
