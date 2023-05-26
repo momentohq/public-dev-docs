@@ -94,7 +94,7 @@ Each of our SDKs has its own page in this documentation; you can navigate to the
 
 Here are some general notes on error handling in Momento that apply to all SDKs.
 
-Errors that occur in calls to `CacheClient` methods are surfaced to developers as part of the return values of the calls, as opposed to by throwing exceptions. This makes them more visible at the time you are writing your code, and allows your IDE to be more helpful in ensuring that you've handled the ones you care about. (For more on our philosophy about this, see our blog post on why [Exceptions are bugs](https://www.gomomento.com/blog/exceptions-are-bugs). And send us any feedback you have!)
+Errors that occur in calls to `CacheClient` methods are surfaced to developers as part of the return values of the calls, as opposed to by throwing exceptions. This makes errors more visible when you're writing your code, and allows your IDE to be more helpful in ensuring you've handled the errors you care about. For more on our philosophy about this, see our blog post on why [Exceptions are bugs](https://www.gomomento.com/blog/exceptions-are-bugs), and send us any feedback you have!
 
 This also helps to ensure that your application doesn't crash at runtime. Momento is a cache, so applications will usually have a fallback data source that they can retrieve data from if the cache is unavailable. Therefore, Momento SDKs are designed to avoid throwing exceptions so that your app won't crash if you forget to add a try/catch block. 
 
