@@ -77,7 +77,7 @@ If you do need to customize your configuration beyond what our pre-builts provid
 object.  See the examples in the `Configurations` namespace in the source code of your SDK to see how they are constructed.
 
 We hope that these configurations will meet the needs of most users, but if you find them lacking in any way, please
-open a github issue, or contact us at `support@momentohq.com`. We would love to hear about your use case so that we
+open a GitHub issue on that SDK repo, or contact us at `support@momentohq.com`. We would love to hear about your use case so that we
 can fix or extend the pre-built configs to support it.
 
 ## Constructing a Cache Client
