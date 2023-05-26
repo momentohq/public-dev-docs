@@ -74,7 +74,7 @@ you might be interested in.
 <SdkExampleTabs snippetId={'API_ConfigurationILambda'} />
 
 If you do need to customize your configuration beyond what our pre-builts provide, you can build your own `Configuration`
-object.  See the examples in the `Configurations` namespace in the source code of your SDK  to see how they are constructed.
+object.  See the examples in the `Configurations` namespace in the source code of your SDK to see how they are constructed.
 
 We hope that these configurations will meet the needs of most users, but if you find them lacking in any way, please
 open a github issue, or contact us at `support@momentohq.com`. We would love to hear about your use case so that we
