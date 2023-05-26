@@ -13,7 +13,7 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Momento SDK Basics
+# Developing applications with the Momento SDK
 
 Welcome! This page provides some information about common constructs that you will need in order to construct Momento clients in all of our SDKs. We will cover how to provide your Momento credentials, how to configure your client, and some basic information about error handling and production readiness.
 
