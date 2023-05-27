@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 sidebar_label: Develop
-sidebar_class_name: sidebar-item-data-types
+sidebar_class_name: "sidebar-item-api-reference"
 title: Developing applications with Momento SDKs
 description: Learn the core concepts for getting started with the Momento SDKs.
 ---
