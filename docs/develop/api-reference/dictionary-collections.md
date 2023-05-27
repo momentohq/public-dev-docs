@@ -38,6 +38,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_DictionaryFetch'} />
+
 ### DictionaryGetField
 Get one field from a dictionary item in the cache.
 
@@ -70,6 +72,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_DictionaryGetField'} />
+
 ### DictionaryGetFields
 Get one or more fields from a dictionary in the cache.
 
@@ -94,6 +98,8 @@ Get one or more fields from a dictionary in the cache.
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_DictionaryGetFields'} />
 
 ### DictionaryIncrement
 Adds to the value of a field, if and only if the existing value is a UTF-8 string representing a base 10 integer. If the field is missing from the dictionary, this method sets the field's value to the amount to increment by.
@@ -130,6 +136,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_DictionaryIncrement'} />
+
 ### DictionaryRemoveField
 
 Removes a field from a dictionary item.
@@ -150,6 +158,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_DictionaryRemoveField'} />
+
 ### DictionaryRemoveFields
 Removes multiple fields from a dictionary item.
 
@@ -168,6 +178,8 @@ Removes multiple fields from a dictionary item.
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_DictionaryRemoveFields'} />
 
 ### DictionarySetField
 Sets a field:value pair in an existing dictionary item. If the dictionary item does not exist, it is created with the new field:value pair.
@@ -190,6 +202,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_DictionarySetField'} />
+
 ### DictionarySetFields
 Sets several field:value pairs in a dictionary item. If the dictionary item does not exist, it is created with the new fields.
 
@@ -209,6 +223,8 @@ Sets several field:value pairs in a dictionary item. If the dictionary item does
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_DictionarySetFields'} />
 
 ### DictionaryLength
 Get the length of an existing dictionary item
@@ -230,3 +246,4 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_DictionaryLength'} />

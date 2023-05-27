@@ -38,6 +38,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SortedSetPutElement'} />
+
 ### SortedSetPutElements
 
 Adds new or updates existing [sorted set elements](#sortedsetelement) in a sorted set item.
@@ -63,6 +65,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SortedSetPutElements'} />
+
 ### SortedSetFetchByRank
 
 Fetch elements of sorted set, optionally filtered by rank, and return them in ascending or descending order.
@@ -86,6 +90,8 @@ Fetch elements of sorted set, optionally filtered by rank, and return them in as
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_SortedSetFetchByRank'} />
 
 ### SortedSetFetchByScore
 
@@ -113,6 +119,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SortedSetFetchByScore'} />
+
 ### SortedSetGetScore
 
 Gets an element's score from the sorted set, indexed by value.
@@ -134,6 +142,8 @@ Gets an element's score from the sorted set, indexed by value.
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_SortedSetGetScore'} />
 
 ### SortedSetGetScores
 
@@ -160,6 +170,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SortedSetGetScores'} />
+
 ### SortedSetRemoveElement
 
 Removes an element from a sorted set, indexed by value.
@@ -179,6 +191,8 @@ Removes an element from a sorted set, indexed by value.
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_SortedSetRemoveElement'} />
 
 ### SortedSetRemoveElements
 
@@ -202,6 +216,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SortedSetRemoveElements'} />
+
 ### SortedSetGetRank
 
 What position is the element, in the specified sorted set?
@@ -223,6 +239,8 @@ What position is the element, in the specified sorted set?
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_SortedSetGetRank'} />
 
 ### SortedSetIncrementScore
 
@@ -258,6 +276,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SortedSetIncrementScore'} />
+
 ## SortedSetElement
 
 A value and score makes up each element in a sorted set.
@@ -292,6 +312,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SortedSetLength'} />
+
 ### SortedSetLengthByScore
 For an existing sorted set item, it finds all of the values between the specified min and max score and returns the length.
 
@@ -313,3 +335,5 @@ For an existing sorted set item, it finds all of the values between the specifie
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_SortedSetLengthByScore'} />
