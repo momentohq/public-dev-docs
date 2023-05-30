@@ -23,7 +23,7 @@ The source code can be found on github: [momentohq/client-sdk-javascript](https:
 
 - [Node.js SDK Cheat Sheet](./cheat-sheet.mdx)
 - [Node.js SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/README.md): working example projects that illustrate how to use the Node.js SDK
-- COMING SOON: Observability: Logging and Client-side Metrics with the Node.js SDK
+- [Node.js SDK Observability](./observability.mdx): Logging and Client-side Metrics with the Node.js SDK
 - COMING SOON: Taking your code to prod: Configuration and Error handling in the Node.js SDK
 
 ## Integrations

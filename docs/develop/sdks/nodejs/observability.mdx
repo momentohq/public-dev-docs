@@ -1,0 +1,148 @@
+---
+sidebar_position: 1
+sidebar_label: Observability
+sidebar_class_name: sidebar-item-nodejs
+title: Observability for TypeScript and Node.js
+description: Instrument your Momento-enabled Node.js code with Logs, Metrics, and Traces
+---
+
+# Observability with Momento in Node.js
+
+## Logging
+TBD
+
+## Metrics
+Metrics are measurements that provide quantitative information about system performance and behavior. They are numerical
+values captured and recorded over regular intervals, providing statistical data to aid in understanding the trends and
+patterns in a system.
+
+For Momento specifically, you might desire to capture metrics on the number of requests made, their duration, request or
+response size, and failure rates. These can be captured in the Node.js SDK using a middleware, which intercepts the
+Momento gRPC calls and responses. Here is an example that uses OpenTelemetry and Prometheus to capture request count
+faceted by request type:
+
+First, set up metrics in your application:
+```typescript
+const resource = Resource.default().merge(
+    new Resource({
+      [SemanticResourceAttributes.SERVICE_NAME]: 'Your service name',
+    })
+  );
+
+  // Set up metrics via prometheus
+  const metricsExporter = new PrometheusExporter({});
+
+  const myServiceMeterProvider = new MeterProvider({
+    resource: resource,
+  });
+
+  myServiceMeterProvider.addMetricReader(metricsExporter);
+
+  metrics.setGlobalMeterProvider(myServiceMeterProvider);
+```
+
+Then, create a middleware that captures the metric:
+```typescript
+import {Metadata, StatusObject} from '@grpc/grpc-js';
+import {Middleware, MiddlewareRequestHandler} from '@gomomento/sdk';
+import {metrics} from '@opentelemetry/api';
+import {Counter} from '@opentelemetry/api/build/src/metrics/Metric';
+import {Message} from 'google-protobuf';
+
+class ExampleMetricMiddlewareRequestHandler implements MiddlewareRequestHandler {
+  private requestCounter: Counter;
+  constructor(requestCounter: Counter) {
+    this.requestCounter = requestCounter;
+  }
+  onRequestMetadata(metadata: Metadata): Promise<Metadata> {
+    return Promise.resolve(metadata);
+  }
+
+  onRequestBody(request: Message): Promise<Message> {
+    const requestType = request.constructor.name;
+    this.requestCounter.add(1, {'request.type': requestType});
+    return Promise.resolve(request);
+  }
+
+  onResponseMetadata(metadata: Metadata): Promise<Metadata> {
+    return Promise.resolve(metadata);
+  }
+
+  onResponseBody(response: Message | null): Promise<Message | null> {
+    return Promise.resolve(response);
+  }
+
+  onResponseStatus(status: StatusObject): Promise<StatusObject> {
+    return Promise.resolve(status);
+  }
+}
+
+export class ExampleMetricMiddleware implements Middleware {
+  private readonly requestCounter: Counter;
+  constructor() {
+    const meter = metrics.getMeter('metric-middleware-meter');
+
+    this.requestCounter = meter.createCounter('momento_requests_counter', {
+      description: 'Momento GRPC requests',
+    });
+  }
+
+  onNewRequest(): MiddlewareRequestHandler {
+    return new ExampleMetricMiddlewareRequestHandler(this.requestCounter);
+  }
+}
+```
+
+When you crete the Momento client, add the middleware and the metric will be incremented with each request:
+```typescript
+const momento = new CacheClient({
+    configuration: Configurations.Laptop.v1().withMiddlewares([new ExampleMetricMiddleware()]),
+    credentialProvider: CredentialProvider.fromEnvironmentVariable({
+      environmentVariableName: 'MOMENTO_AUTH_TOKEN',
+    }),
+    defaultTtlSeconds: 60,
+  });
+```
+
+## Traces
+Traces provide a detailed timeline of processes within an application, showcasing the relationship between different
+components and services involved in a specific request or operation. They allow developers to analyze the sequence and
+duration of these operations, facilitating a better understanding of how data flows through the system.
+
+The Momento Node.js SDK uses gRPC internally to communicate with the Momento servers. Here is an example that uses
+OpenTelemetry to automatically generate traces for these calls and exports them to Zipkin:
+
+```typescript
+const resource = Resource.default().merge(
+new Resource({
+  [SemanticResourceAttributes.SERVICE_NAME]: 'Your service name',
+})
+);
+
+// Set up tracing via zipkin
+const provider = new NodeTracerProvider({
+resource: resource,
+});
+
+const exporter = new ZipkinExporter();
+
+provider.addSpanProcessor(new SimpleSpanProcessor(exporter));
+provider.register();
+
+registerInstrumentations({
+instrumentations: [new GrpcInstrumentation()],
+});
+
+```
+
+This needs to run before any Momento code.
+
+Be aware that traces can have a large performance penalty. If your application makes a large volume of calls to Momento,
+you should consider sampling them to cut down on the number of traces generated. You can do this with OpenTelemetry by
+setting two environment variables:
+
+```cli
+export OTEL_TRACES_SAMPLER="traceidratio"
+export OTEL_TRACES_SAMPLER_ARG="0.1"
+```
+Setting these will ensure that only 10% of traces are created.
