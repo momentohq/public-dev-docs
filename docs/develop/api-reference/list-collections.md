@@ -38,6 +38,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_ListFetch'} />
+
 ### ListConcatenateBack
 Appends the supplied list to the end of an existing list item.
 
@@ -64,6 +66,8 @@ If you have [1, 2, 3] and listConcatenateBack [4, 5, 6] you will have [1, 2, 3, 
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_ListConcatenateBack'} />
 
 ### ListConcatenateFront
 Appends the supplied list to the front of an existing list item.
@@ -92,6 +96,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_ListConcatenateFront'} />
+
 ### ListLength
 Get the length of an existing list item
 
@@ -111,6 +117,8 @@ Get the length of an existing list item
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_ListLength'} />
 
 ### ListPopBack
 Remove and return the last element from a list item.
@@ -134,6 +142,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_ListPopBack'} />
+
 ### ListPopFront
 Remove and return the first element from a list item.
 
@@ -155,6 +165,8 @@ Remove and return the first element from a list item.
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_ListPopFront'} />
 
 ### ListPushBack
 Push a value to the end of a list item. This is exactly like passing just one value to [ListConcatenateBack](#listconcatenateback).
@@ -179,6 +191,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_ListPushBack'} />
+
 ### ListPushFront
 Push a value to the beginning of a list item. Just like [ListPushBack](#listpushback), but to the front.
 
@@ -201,6 +215,8 @@ Push a value to the beginning of a list item. Just like [ListPushBack](#listpush
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_ListPushFront'} />
 
 ### ListRemoveValue
 Remove all elements in a list item equal to a particular value.
@@ -226,6 +242,8 @@ Responses
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_ListRemoveValue'} />
 
 ### ListRetain
 
@@ -253,6 +271,8 @@ Responses
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_ListRetain'} />
 
 
 ## Truncate to size

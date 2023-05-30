@@ -36,6 +36,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SetAddElement'} />
+
 ### SetAddElements
 Adds multiple elements to a set item.
 
@@ -55,6 +57,8 @@ Adds multiple elements to a set item.
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_SetAddElements'} />
 
 ### SetFetch
 
@@ -81,6 +85,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SetFetch'} />
+
 ### SetRemoveElement
 Removes a single element from an existing set item.
 
@@ -100,6 +106,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SetRemoveElement'} />
+
 ### SetRemoveElements
 Removes multiple elements from an existing set item.
 
@@ -118,6 +126,8 @@ Removes multiple elements from an existing set item.
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_SetRemoveElements'} />
 
 ### SetContainsElement
 Checks if a provided element is in the given set.
@@ -142,6 +152,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SetContainsElement'} />
+
 ### SetContainsElements
 Checks if provided elements are in the given set.
 
@@ -165,6 +177,8 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SetContainsElements'} />
+
 ### SetLength
 Get the length of an existing set item
 
@@ -184,3 +198,5 @@ Get the length of an existing set item
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_SetLength'} />

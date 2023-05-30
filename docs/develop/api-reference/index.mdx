@@ -124,6 +124,8 @@ The resulting incremented value must be between -9223372036854775808 and 9223372
 
 :::
 
+<SdkExampleTabs snippetId={'API_Increment'} />
+
 ### Ping
 Sends a ping to the server. This API can be used for checking connectivity to confirm that the client can connect to the server successfully.
 
@@ -136,6 +138,8 @@ Sends a ping to the server. This API can be used for checking connectivity to co
     See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_Ping'} />
 
 ### ItemGetType
 
@@ -159,6 +163,7 @@ For a given key, returns the type (SCALAR, DICTIONARY, LIST, etc.) of the corres
 
 </details>
 
+<SdkExampleTabs snippetId={'API_ItemGetType'} />
 
 ### KeyExists
 
@@ -180,6 +185,8 @@ Checks if a provided key exists in the cache.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_KeyExists'} />
+
 ### KeysExist
 
 Checks if provided keys exist in the cache.
@@ -199,6 +206,8 @@ Checks if provided keys exist in the cache.
     See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_KeysExist'} />
 
 ### SetIfNotExists
 
@@ -222,6 +231,8 @@ Associates the provided value to a cache item with a given key.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_SetIfNotExists'} />
+
 ## Time to Live APIs
 
 These APIs apply across all cache types.
@@ -235,6 +246,8 @@ Overwrites the TTL of a cache item with the provided value in seconds.
 | cacheName | String | Name of the cache.                              |
 | key       | String \| Bytes | The key under which the value's TTL is to be updated. |
 | ttl       | Duration | Time to live that you want to update in cache in seconds. |
+
+<SdkExampleTabs snippetId={'API_UpdateTtl'} />
 
 ### IncreaseTtl
 
@@ -250,6 +263,8 @@ Examples
 | key       | String \| Bytes | The key under which the value's TTL is to be increased. |
 | ttl       | Duration | Time to live that you want to increase to. |
 
+<SdkExampleTabs snippetId={'API_IncreaseTtl'} />
+
 ### DecreaseTtl
 
 Decrease the TTL seconds for a key to the provided value only if it would decrease the TTL.
@@ -263,6 +278,8 @@ Examples
 | cacheName | String | Name of the cache.                              |
 | key       | String \| Bytes | The key under which the value's TTL is to be decreased. |
 | ttl       | Duration | Time to live that you want to decrease to. |
+
+<SdkExampleTabs snippetId={'API_DecreaseTtl'} />
 
 ### ItemGetTtl
 
@@ -285,6 +302,8 @@ For a given key, returns the duration of time remaining (Time To Live) before th
   See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_ItemGetTtl'} />
 
 ## Auth APIs
 
@@ -336,9 +355,6 @@ Refreshes an existing, unexpired Momento auth token.  Produces a new auth token 
 </details>
 
 <SdkExampleTabs snippetId={'API_RefreshAuthToken'} />
-
-
-
 
 ### Collection data types
 
