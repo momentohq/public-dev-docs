@@ -14,7 +14,7 @@ TBD
 ## Metrics
 Metrics are measurements that provide quantitative information about system performance and behavior. They are numerical values captured and recorded over regular intervals, providing statistical data to aid in understanding the trends and patterns in a system.
 
-For Momento specifically, you might desire to capture metrics on the number of requests made, their duration, request or response size, and failure rates. These can be captured in the Node.js SDK using a middleware, which intercepts the Momento gRPC calls and responses. Here is an example that uses OpenTelemetry and Prometheus to capture request count faceted by request type:
+For Momento specifically, you might desire to capture metrics on the number of requests made, their duration, request or response size, and failure rates. Capture these in the Node.js SDK using a middleware, which intercepts the Momento gRPC calls and responses. Here is an example that uses OpenTelemetry and Prometheus to capture request count faceted by request type:
 
 First, set up metrics in your application:
 ```typescript
@@ -88,7 +88,7 @@ export class ExampleMetricMiddleware implements Middleware {
 }
 ```
 
-When you crete the Momento client, add the middleware and the metric will be incremented with each request:
+When you create the Momento CacheClient, add the middleware and the metric will be incremented with each request:
 ```typescript
 const momento = new CacheClient({
     configuration: Configurations.Laptop.v1().withMiddlewares([new ExampleMetricMiddleware()]),
@@ -100,7 +100,7 @@ const momento = new CacheClient({
 ```
 
 ## Traces
-Traces provide a detailed timeline of processes within an application, showcasing the relationship between different components and services involved in a specific request or operation. They allow developers to analyze the sequence and duration of these operations, facilitating a better understanding of how data flows through the system.
+Traces provide a detailed timeline of processes within an application, showing the relationship between different components and services involved in a specific request or operation. They allow developers to analyze the sequence and duration of these operations, facilitating a better understanding of how data flows through the system.
 
 The Momento Node.js SDK uses gRPC internally to communicate with the Momento servers. Here is an example that uses OpenTelemetry to automatically generate traces for these calls and exports them to Zipkin:
 
@@ -129,7 +129,7 @@ instrumentations: [new GrpcInstrumentation()],
 
 This needs to run before any Momento code.
 
-Be aware that traces can have a large performance penalty. If your application makes a large volume of calls to Momento, you should consider sampling them to cut down on the number of traces generated. You can do this with OpenTelemetry by setting two environment variables:
+If the performance of your application is impacted by trace generation, you should consider sampling them to cut down on the number of traces generated. You can do this with OpenTelemetry by setting two environment variables:
 
 ```cli
 export OTEL_TRACES_SAMPLER="traceidratio"
