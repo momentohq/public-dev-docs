@@ -88,7 +88,7 @@ export class ExampleMetricMiddleware implements Middleware {
 }
 ```
 
-When you create the Momento CacheClient, add the middleware and the metric will be incremented with each request:
+When you create the Momento `CacheClient`, add the middleware and the metric will be incremented with each request:
 ```typescript
 const momento = new CacheClient({
     configuration: Configurations.Laptop.v1().addMiddleware(new ExampleMetricMiddleware()),
@@ -98,6 +98,9 @@ const momento = new CacheClient({
     defaultTtlSeconds: 60,
   });
 ```
+
+Here is an example of the Prometheus UI displaying the `momento_requests_counter` metric for two calls, a get and a set:
+![image](./images/prometheus_screenshot.png)
 
 ## Traces
 Traces provide a detailed timeline of processes within an application, showing the relationship between different components and services involved in a specific request or operation. They allow developers to analyze the sequence and duration of these operations, facilitating a better understanding of how data flows through the system.
@@ -128,6 +131,9 @@ instrumentations: [new GrpcInstrumentation()],
 ```
 
 This needs to run before any Momento code.
+
+Here is an example of the Zipkin UI displaying traces for a cache creation, a get, and a set:
+![image](./images/zipkin_screenshot.png)
 
 If the performance of your application is impacted by trace generation, you should consider sampling them to cut down on the number of traces generated. You can do this with OpenTelemetry by setting two environment variables:
 
