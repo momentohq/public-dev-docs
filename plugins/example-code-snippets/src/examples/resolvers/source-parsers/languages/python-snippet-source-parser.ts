@@ -25,7 +25,7 @@ export class PythonSnippetSourceParser extends RegexSnippetSourceParser {
             ),
             startRegex: snippetId =>
               new RegExp(`^(?:async )?def example_${snippetId.valueOf()}\\(`),
-            endRegex: () => /\n\n/,
+            endRegex: () => /# end example/m,
             numLeadingSpacesToStrip: 4,
           },
         ],
