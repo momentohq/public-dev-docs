@@ -15,14 +15,15 @@ import React from 'react';
  * @param java
  * @param go
  * @param csharp
+ * @param php
  * @param rust
  * @param ruby
  * @param cli
  * @returns {JSX.Element|null}
  * @constructor
  */
-export const SdkExampleTabsImpl = ({js, python, java, go, csharp, rust, ruby, cli}) => {
-  if (js || python || java || go || csharp || rust || ruby || cli) {
+export const SdkExampleTabsImpl = ({js, python, java, go, csharp, php, rust, ruby, cli}) => {
+  if (js || python || java || go || csharp || php || rust || ruby || cli) {
     return (
   <Tabs>
     {js &&
@@ -44,6 +45,10 @@ export const SdkExampleTabsImpl = ({js, python, java, go, csharp, rust, ruby, cl
     {csharp &&
       <TabItem value="csharp" label="C#">
         <CodeBlock language={'csharp'}>{csharp}</CodeBlock>
+      </TabItem>}
+    {php &&
+      <TabItem value="php" label="PHP">
+        <CodeBlock language={'php'}>{php}</CodeBlock>
       </TabItem>}
     {rust &&
       <TabItem value="rust" label="Rust">
