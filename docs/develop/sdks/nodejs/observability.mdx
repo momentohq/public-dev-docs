@@ -8,13 +8,11 @@ description: Instrument your Momento-enabled Node.js code with Logs, Metrics, an
 
 # Observability with Momento in Node.js
 
-## Logging
-TBD
 
 ## Metrics
 Metrics are measurements that provide quantitative information about system performance and behavior. They are numerical values captured and recorded over regular intervals, providing statistical data to aid in understanding the trends and patterns in a system.
 
-For Momento specifically, you might desire to capture metrics on the number of requests made, their duration, request or response size, and failure rates. Capture these in the Node.js SDK using a middleware, which intercepts the Momento gRPC calls and responses. Here is an example that uses OpenTelemetry and Prometheus to capture request count faceted by request type:
+For Momento specifically, you might desire to capture metrics on the number of requests made, their duration, request or response size, or failure rates. Capture these in the Node.js SDK using a middleware, which intercepts the Momento gRPC calls and responses. Here is an example that uses OpenTelemetry and Prometheus to capture request count faceted by request type:
 
 First, set up metrics in your application:
 ```typescript
@@ -125,7 +123,7 @@ provider.addSpanProcessor(new SimpleSpanProcessor(exporter));
 provider.register();
 
 registerInstrumentations({
-instrumentations: [new GrpcInstrumentation()],
+  instrumentations: [new GrpcInstrumentation()],
 });
 
 ```
