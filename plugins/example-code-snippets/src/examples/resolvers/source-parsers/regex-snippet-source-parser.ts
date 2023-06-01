@@ -11,12 +11,12 @@ export interface RegexSnippetTypeOptions {
 }
 
 export interface RegexSnippetSourceParserOptions {
-  wholeFileExamplesDir: string;
+  wholeFileExamplesDir?: string;
   snippetTypeParseOptions: Map<ExampleSnippetType, RegexSnippetTypeOptions>;
 }
 
 export class RegexSnippetSourceParser implements SnippetSourceParser {
-  private readonly wholeFileExamplesDir: string;
+  private readonly wholeFileExamplesDir?: string;
   private readonly snippetTypeParseOptions: Map<
     ExampleSnippetType,
     RegexSnippetTypeOptions
@@ -76,6 +76,9 @@ export class RegexSnippetSourceParser implements SnippetSourceParser {
   }
 
   getFileContent(file: string): string | undefined {
+    if (!this.wholeFileExamplesDir) {
+      return undefined;
+    }
     return fs
       .readFileSync(path.join(this.wholeFileExamplesDir, file))
       .toString();
