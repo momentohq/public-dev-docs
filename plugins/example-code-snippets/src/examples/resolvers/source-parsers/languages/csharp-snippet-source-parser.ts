@@ -25,10 +25,11 @@ export class CsharpSnippetSourceParser extends RegexSnippetSourceParser {
             ),
             startRegex: snippetId =>
               new RegExp(
-                `^public async Task.*? example_${snippetId.valueOf()}\\(`
+                `^ {4}public static async Task Example_${snippetId.valueOf()}\\(`
               ),
-            endRegex: () => /^}/,
-            numLeadingSpacesToStrip: 4,
+            endRegex: () => /^ {4}}/,
+            numLeadingSpacesToStrip: 8,
+            skipFirstLine: true,
           },
         ],
       ]),
