@@ -5,12 +5,11 @@ import {
 import {ExampleSnippetType} from '../../../examples';
 import * as path from 'path';
 
-export class JavascriptSnippetSourceParser extends RegexSnippetSourceParser {
+export class PythonSnippetSourceParser extends RegexSnippetSourceParser {
   constructor(repoSourceDir: string) {
-    const wholeFileExamplesDir = 'examples/nodejs/doc-example-files';
+    const wholeFileExamplesDir = 'examples/py310/doc-example-files';
     const codeSnippetFiles: Array<string> = [
-      'examples/nodejs/doc-examples-js-apis.ts',
-      'examples/nodejs/utils/instrumentation.ts',
+      'examples/py310/doc-examples-python-apis.py',
     ];
     super({
       wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),
@@ -25,11 +24,9 @@ export class JavascriptSnippetSourceParser extends RegexSnippetSourceParser {
               path.join(repoSourceDir, f)
             ),
             startRegex: snippetId =>
-              new RegExp(
-                `^(?:async )?function example_${snippetId.valueOf()}\\(`
-              ),
-            endRegex: () => /^}/,
-            numLeadingSpacesToStrip: 2,
+              new RegExp(`^(?:async )?def example_${snippetId.valueOf()}\\(`),
+            endRegex: () => /# end example/m,
+            numLeadingSpacesToStrip: 4,
           },
         ],
       ]),

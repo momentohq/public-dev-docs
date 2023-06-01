@@ -1,6 +1,6 @@
 ---
-sidebar_position: 4
-sidebar_label: Go
+sidebar_position: 1
+sidebar_label: Cheat Sheet
 sidebar_class_name: sidebar-item-go
 title: Cheat Sheet for Go
 description: Get started really quickly coding using Go with Momento Cache
@@ -132,7 +132,7 @@ go run main.go
 ```
 
 :::info
-Beyond these basic API calls check out the [API reference page](../../api-reference/index.mdx) for more information on the full assortment of Momento API calls.
+Beyond these basic API calls check out the [API reference page](/develop/api-reference/index.mdx) for more information on the full assortment of Momento API calls.
 
 For more code examples, check out the [Momento Go SDK repo](https://github.com/momentohq/client-sdk-go/tree/main/examples).
 :::

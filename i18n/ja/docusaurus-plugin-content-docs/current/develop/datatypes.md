@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 sidebar_label: データ型
 sidebar_class_name: sidebar-item-data-types
 title: サポートしているデータ型

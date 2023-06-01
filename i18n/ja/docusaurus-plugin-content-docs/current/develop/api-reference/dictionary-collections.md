@@ -30,13 +30,15 @@ The response object for DictionaryFetch returns three possible options, a cache 
     - `valueDictionaryStringString()`: Map<String, String>
     - `valueDictionaryStringBytes()`: Map<String, Bytes>
     - `valueDictionaryBytesString()`: Map<Bytes, String>
-    - `toString()`: string - displays the field/value pairs, truncated.
+    - `toString()`: String - displays the field/value pairs, truncated.
 * Cache miss
 * Cache error
 
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_DictionaryFetch'} />
 
 ### DictionaryGetField
 Get one field from a dictionary item in the cache.
@@ -45,30 +47,32 @@ Get one field from a dictionary item in the cache.
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
 | dictionaryName  | String       | Name of the dictionary item to be retrieved. |
-| field           | String/bytes | Name of the field in the dictionary item to be retrieved. |
+| field           | String/Bytes | Name of the field in the dictionary item to be retrieved. |
 
 <details>
   <summary>Method response object</summary>
 
 * Cache hit
-    - `fieldString()`: string
-    - `fieldBytes()`: bytes
-    - `valueString()`: string
-    - `valueBytes()`: bytes
+    - `fieldString()`: String
+    - `fieldBytes()`: Bytes
+    - `valueString()`: String
+    - `valueBytes()`: Bytes
 
         These return the field and its value from the dictionary.
 
 * Cache miss
-    - `fieldString()`: string
-    - `fieldBytes()`: bytes
+    - `fieldString()`: String
+    - `fieldBytes()`: Bytes
 
 * Cache error
-    - `fieldString()`: string
-    - `fieldBytes()`: bytes
+    - `fieldString()`: String
+    - `fieldBytes()`: Bytes
 
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_DictionaryGetField'} />
 
 ### DictionaryGetFields
 Get one or more fields from a dictionary in the cache.
@@ -77,7 +81,7 @@ Get one or more fields from a dictionary in the cache.
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
 | dictionaryName  | String       | Name of the dictionary item to be retrieved.  |
-| fields          | String[]/bytes[] | Name of the field in the dictionary item to be retrieved. |
+| fields          | String[]/Bytes[] | Name of the field in the dictionary item to be retrieved. |
 
 <details>
   <summary>Method response object</summary>
@@ -87,13 +91,15 @@ Get one or more fields from a dictionary in the cache.
     - valueDictionaryStringString(): Map<String, String>
     - valueDictionaryStringBytes(): Map<String, Bytes>
     - valueDictionaryBytesString(): Map<Bytes, String>
-    - toString(): string - displays truncated valueDictionaryStringString()
+    - toString(): String - displays truncated valueDictionaryStringString()
 * Cache miss
 * Error
 
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_DictionaryGetFields'} />
 
 ### DictionaryIncrement
 Adds to the value of a field, if and only if the existing value is a UTF-8 string representing a base 10 integer. If the field is missing from the dictionary, this method sets the field's value to the amount to increment by.
@@ -114,7 +120,7 @@ Examples:
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
 | dictionaryName  | String       | Name of the dictionary item to be retrieved.  |
-| field           | String|bytes | Name of the field in the dictionary item to be retrieved. |
+| field           | String/Bytes | Name of the field in the dictionary item to be retrieved. |
 | amount          | Integer      | The quantity to add to the value. May be positive, negative, or zero. Defaults to 1. |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | This will come back as a TTL construct. |
 
@@ -123,12 +129,14 @@ Examples:
 
 * Success
     - `value()`: integer - the new value after incrementing
-    - `toString()`: string - displays the value()
+    - `toString()`: String - displays the value()
 * Error
 
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_DictionaryIncrement'} />
 
 ### DictionaryRemoveField
 
@@ -138,7 +146,7 @@ Removes a field from a dictionary item.
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
 | dictionaryName  | String       | Name of the dictionary item to be retrieved. |
-| field           | String|bytes | Name of the field in the dictionary item to be retrieved. |
+| field           | String/Bytes | Name of the field in the dictionary item to be retrieved. |
 
 <details>
   <summary>Method response object</summary>
@@ -149,6 +157,8 @@ Removes a field from a dictionary item.
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_DictionaryRemoveField'} />
 
 ### DictionaryRemoveFields
 Removes multiple fields from a dictionary item.
@@ -157,7 +167,7 @@ Removes multiple fields from a dictionary item.
 | --------------- | ------------     | --------------------------------------------- |
 | cacheName       | String           | Name of the cache.                            |
 | dictionaryName  | String           | Name of the dictionary item to be retrieved. |
-| fields          | String[]/bytes[] | Name of the field in the dictionary item to be retrieved. |
+| fields          | String[]/Bytes[] | Name of the field in the dictionary item to be retrieved. |
 
 <details>
   <summary>Method response object</summary>
@@ -168,6 +178,8 @@ Removes multiple fields from a dictionary item.
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_DictionaryRemoveFields'} />
 
 ### DictionarySetField
 Sets a field:value pair in an existing dictionary item. If the dictionary item does not exist, it is created with the new field:value pair.
@@ -176,8 +188,8 @@ Sets a field:value pair in an existing dictionary item. If the dictionary item d
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
 | dictionaryName  | String       | Name of the dictionary item to be set. |
-| field           | String/bytes | Name of the field in the dictionary item to be set. |
-| value           | String/bytes | Value for the field to be set. |
+| field           | String/Bytes | Name of the field in the dictionary item to be set. |
+| value           | String/Bytes | Value for the field to be set. |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the dictionary item in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
 
 <details>
@@ -189,6 +201,8 @@ Sets a field:value pair in an existing dictionary item. If the dictionary item d
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_DictionarySetField'} />
 
 ### DictionarySetFields
 Sets several field:value pairs in a dictionary item. If the dictionary item does not exist, it is created with the new fields.
@@ -197,7 +211,7 @@ Sets several field:value pairs in a dictionary item. If the dictionary item does
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
 | dictionaryName  | String       | Name of the dictionary item to be set. |
-| fields          | String[]/bytes[] | Field:value pair to be added to the dictionary item by the set operation. |
+| fields          | String[]/Bytes[] | Field:value pair to be added to the dictionary item by the set operation. |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the dictionary item in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
 
 <details>
@@ -209,3 +223,27 @@ Sets several field:value pairs in a dictionary item. If the dictionary item does
 See [response objects](./response-objects.md) for specific information.
 
 </details>
+
+<SdkExampleTabs snippetId={'API_DictionarySetFields'} />
+
+### DictionaryLength
+Get the length of an existing dictionary item
+
+| Name           | Type         | Description                                |
+|----------------| ------------ |--------------------------------------------|
+| cacheName      | String       | Name of the cache.                         |
+| dictionaryName | String       | Name of the dictionary item to be checked. |
+
+<details>
+  <summary>Method response object</summary>
+
+* Hit
+  * `length()`: Number
+* Miss
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_DictionaryLength'} />
