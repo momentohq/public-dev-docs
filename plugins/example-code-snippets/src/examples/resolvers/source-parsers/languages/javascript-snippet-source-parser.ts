@@ -26,7 +26,7 @@ export class JavascriptSnippetSourceParser extends RegexSnippetSourceParser {
             ),
             startRegex: snippetId =>
               new RegExp(
-                `^(?:async )?function example_${snippetId.valueOf()}\\(`
+                `^(?:export )?(?:async )?function example_${snippetId.valueOf()}\\(`
               ),
             endRegex: () => /^}/,
             numLeadingSpacesToStrip: 2,
