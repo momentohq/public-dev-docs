@@ -8,6 +8,11 @@ export interface RegexSnippetTypeOptions {
   startRegex: (snippetId: string) => RegExp;
   endRegex: (snippetId: string) => RegExp;
   numLeadingSpacesToStrip: number;
+  /**
+   * Number of lines after the start of the snippet to skip.
+   * In C# the first line is an opening curly, so we skip it.
+   */
+  skipFirstLine?: true;
 }
 
 export interface RegexSnippetSourceParserOptions {
@@ -66,7 +71,8 @@ export class RegexSnippetSourceParser implements SnippetSourceParser {
         return this.captureUntilEndOfSnippet(
           contentLinesIterator,
           endRegex,
-          options.numLeadingSpacesToStrip
+          options.numLeadingSpacesToStrip,
+          options.skipFirstLine
         );
       }
       nextLine = contentLinesIterator.next();
@@ -87,10 +93,14 @@ export class RegexSnippetSourceParser implements SnippetSourceParser {
   private captureUntilEndOfSnippet(
     remainingLines: IterableIterator<string>,
     endRegex: RegExp,
-    numLeadingSpacesToStrip: number
+    numLeadingSpacesToStrip: number,
+    skipFirstLine?: true
   ): string | undefined {
     const result = [];
     let nextLine = remainingLines.next();
+    if (skipFirstLine) {
+      nextLine = remainingLines.next();
+    }
     while (!nextLine.done) {
       const line = nextLine.value;
       if (line.match(endRegex)) {
