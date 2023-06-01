@@ -6,6 +6,7 @@
     "docusaurus": "docusaurus",
     "prestart": "./prepare-ts-plugins.sh && ./prepare-sdk-git-repos.sh",
     "start": "docusaurus start --no-open",
+    "start-ja": "npm run start -- --locale ja",
     "prestartwithoutgitupdate": "./prepare-ts-plugins.sh",
     "startwithoutgitupdate": "docusaurus start --no-open",
     "prebuild": "./prepare-ts-plugins.sh && ./prepare-sdk-git-repos.sh",

@@ -45,6 +45,8 @@ With the returned subscription object, once put in a for loop, your code will re
 
 </details>
 
+<SdkExampleTabs snippetId={'API_TopicSubscribe'} />
+
 ### Publish
 Publishes a message to a topic.
 
@@ -73,6 +75,10 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
+<SdkExampleTabs snippetId={'API_TopicPublish'} />
+
 ## TopicClient
 
 Instead of the CacheClient, as used in most Momento Cache API calls, for Topics you use a TopicClient object.
+
+<SdkExampleTabs snippetId={'API_InstantiateTopicClient'} />
