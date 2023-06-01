@@ -6,6 +6,7 @@ import {Sdk} from '../sdk-source/sdks';
 import {SnippetSourceParser} from './source-parsers/snippet-source-parser';
 import {JavascriptSnippetSourceParser} from './source-parsers/languages/javascript-snippet-source-parser';
 import {TypescriptSnippetSourceParser} from './source-parsers/languages/typescript-snippet-source-parser';
+import {PythonSnippetSourceParser} from './source-parsers/languages/python-snippet-source-parser';
 
 export class SdkRepoSnippetResolver implements SnippetResolver {
   private readonly sourceProvider: SdkSourceProvider =
@@ -74,7 +75,7 @@ export class SdkRepoSnippetResolver implements SnippetResolver {
       case ExampleLanguage.CSHARP:
         return undefined;
       case ExampleLanguage.PYTHON:
-        return undefined;
+        return new PythonSnippetSourceParser(sourceDir);
       case ExampleLanguage.GO:
         return undefined;
       case ExampleLanguage.JAVA:
