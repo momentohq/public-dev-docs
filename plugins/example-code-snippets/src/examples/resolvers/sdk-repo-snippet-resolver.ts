@@ -9,6 +9,7 @@ import {TypescriptSnippetSourceParser} from './source-parsers/languages/typescri
 import {GolangSnippetSourceParser} from './source-parsers/languages/golang-snippet-source-parser';
 import {PythonSnippetSourceParser} from './source-parsers/languages/python-snippet-source-parser';
 import {CsharpSnippetSourceParser} from './source-parsers/languages/csharp-snippet-source-parser';
+import {PhpSnippetSourceParser} from './source-parsers/languages/php-snippet-source-parser';
 
 export class SdkRepoSnippetResolver implements SnippetResolver {
   private readonly sourceProvider: SdkSourceProvider =
@@ -83,7 +84,7 @@ export class SdkRepoSnippetResolver implements SnippetResolver {
       case ExampleLanguage.JAVA:
         return undefined;
       case ExampleLanguage.PHP:
-        return undefined;
+        return new PhpSnippetSourceParser(sourceDir);
       case ExampleLanguage.RUST:
         return undefined;
       case ExampleLanguage.RUBY:
