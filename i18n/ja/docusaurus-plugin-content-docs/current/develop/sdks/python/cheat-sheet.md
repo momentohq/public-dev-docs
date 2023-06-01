@@ -11,7 +11,7 @@ If you need to get going quickly with Python and Momento Cache, this page contai
 
 :::tip
 
-If you combine all of the functions on this page into one python file, you'd have a central collection of functions you can import and call from other python code. In addition, if you are using this code in production you might look to replace the print() calls with ones using the logging library (`import logging`) in python. [Click here](../../../../static/code/cheat-sheets/MomentoBasics.py) to see the class file with all definitions in it.
+If you combine all of the functions on this page into one python file, you'd have a central collection of functions you can import and call from other python code. In addition, if you are using this code in production you might look to replace the print() calls with ones using the logging library (`import logging`) in python. [Click here](../../../../../../../static/code/cheat-sheets/MomentoBasics.py) to see the class file with all definitions in it.
 
 :::
 
