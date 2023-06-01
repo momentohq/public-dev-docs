@@ -113,4 +113,4 @@ Beyond these basic API calls check out the [API reference page](/develop/api-ref
 :::
 
 ## Notes of usage
-For any of these functions, call the `create_client()` function which returns a CacheClient object. Then pass that object into subsequent functions. This way, calls are more efficient as they reuse the CacheClient for multiple calls to Momento. [Click here](../../../../static/code/cheat-sheets/MomentoBasics.py) to see a file with all definitions in it.
+For any of these functions, call the `create_client()` function which returns a CacheClient object. Then pass that object into subsequent functions. This way, calls are more efficient as they reuse the CacheClient for multiple calls to Momento. [Click here](../../../../../../../static/code/cheat-sheets/MomentoBasics.py) to see a file with all definitions in it.
