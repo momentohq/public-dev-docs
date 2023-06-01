@@ -91,7 +91,7 @@ export class ExampleMetricMiddleware implements Middleware {
 When you create the Momento CacheClient, add the middleware and the metric will be incremented with each request:
 ```typescript
 const momento = new CacheClient({
-    configuration: Configurations.Laptop.v1().withMiddlewares([new ExampleMetricMiddleware()]),
+    configuration: Configurations.Laptop.v1().addMiddleware(new ExampleMetricMiddleware()),
     credentialProvider: CredentialProvider.fromEnvironmentVariable({
       environmentVariableName: 'MOMENTO_AUTH_TOKEN',
     }),
@@ -102,7 +102,7 @@ const momento = new CacheClient({
 ## Traces
 Traces provide a detailed timeline of processes within an application, showing the relationship between different components and services involved in a specific request or operation. They allow developers to analyze the sequence and duration of these operations, facilitating a better understanding of how data flows through the system.
 
-The Momento Node.js SDK uses gRPC internally to communicate with the Momento servers. Here is an example that uses OpenTelemetry to automatically generate traces for these calls and exports them to Zipkin:
+The Momento Node.js SDK uses gRPC internally to communicate with the Momento servers. OpenTelemetry provides a capability for auto-instrumenting all gRPC calls with traces. You don't need to add any middleware code to produce these traces, like you do for the metrics. Here is an example that automatically generates traces for these calls and exports them to Zipkin:
 
 ```typescript
 const resource = Resource.default().merge(
