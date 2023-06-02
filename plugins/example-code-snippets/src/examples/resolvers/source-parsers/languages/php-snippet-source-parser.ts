@@ -5,12 +5,11 @@ import {
 import {ExampleSnippetType} from '../../../examples';
 import * as path from 'path';
 
-export class TypescriptSnippetSourceParser extends RegexSnippetSourceParser {
+export class PhpSnippetSourceParser extends RegexSnippetSourceParser {
   constructor(repoSourceDir: string) {
-    const wholeFileExamplesDir = 'examples/nodejs/basic/doc-example-files';
+    const wholeFileExamplesDir = 'examples/doc-example-files';
     const codeSnippetFiles: Array<string> = [
-      // For now we don't have any typescript examples, only javascript ones.  We
-      // can add a list of files containing TS examples in the future if we have some.
+      'examples/doc-examples-php-apis.php',
     ];
     super({
       wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),
@@ -25,9 +24,9 @@ export class TypescriptSnippetSourceParser extends RegexSnippetSourceParser {
               path.join(repoSourceDir, f)
             ),
             startRegex: snippetId =>
-              new RegExp(`^async function example_${snippetId.valueOf()}\\(`),
+              new RegExp(`^function example_${snippetId.valueOf()}\\(`),
             endRegex: () => /^}/,
-            numLeadingSpacesToStrip: 2,
+            numLeadingSpacesToStrip: 4,
           },
         ],
       ]),
