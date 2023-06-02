@@ -28,7 +28,7 @@ To ensure that Momento is compatible with all of these libraries (and more!), we
 
 <SdkExampleCodeBlock language={'javascript'} file={'packages/core/src/config/logging/momento-logger.ts'} />
 
-Your implementation will just be a thin wrapper around your logging library of choice. We provide a complete, working example implementation that uses the [`pino`](https://github.com/pinojs/pino) logger; you can find the source code for that here: [https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/doc-example-files/pino-logger.ts](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/doc-example-files/pino-logger.ts).
+Your implementation will just be a thin wrapper around your logging library of choice. We provide a complete, working example implementation that uses the [`pino`](https://github.com/pinojs/pino) logger; you can find the source code for that here: [https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/doc-example-files/pino-logger.ts](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/basic/doc-example-files/pino-logger.ts).
 
 Once you have defined your `MomentoLoggerFactory` and `MomentoLogger`, the last step is to configure your Momento client to use your preferred logger, like this:
 
@@ -52,14 +52,14 @@ First, set up metrics in your application:
 
 Then, create a middleware that captures the metric:
 
-<SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/doc-example-files/example-metric-middleware.ts'} />
+<SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/basic/doc-example-files/example-metric-middleware.ts'} />
 
 When you create the Momento `CacheClient`, add the middleware and the metric will be incremented with each request:
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_InstantiateCacheClientWithMiddleware'} />
 
-Here is an example of the Prometheus UI displaying the `momento_requests_counter` metric for two calls, a get and a set:
-![image](./images/prometheus_screenshot.png)
+Here is an example of the Grafana UI displaying a graph of get and set requests made against Momento:
+![image](./images/grafana_screenshot.png)
 
 ## Traces
 Traces provide a detailed timeline of processes within an application, showing the relationship between different components and services involved in a specific request or operation. They allow developers to analyze the sequence and duration of these operations, facilitating a better understanding of how data flows through the system.
