@@ -2,35 +2,29 @@
 sidebar_position: 3
 sidebar_label: AWS Secrets Manager
 title: Momento + AWS Secrets Manager
-description: Learn how to retreive your Momento Auth Token in AWS Secrets Manager.
+description: AWS Secrets ManagerからMomento認証トークンを取得する方法を学ぶ。
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Retrieving a Momento auth token from AWS Secrets Manager
+# AWS Secrets ManagerからMomento認証トークンを取得する
+Momento認証トークンを安全に保存することがベストプラクティスです。AWSをご使用の場合は、Momento認証トークンを[AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)に安全に保存することができます。そして、正しいIAMクレデンシャルで実行されているコードのみがMomento認証トークンを取得し、そのトークンを使ってMomento CacheまたはMomento Topicsにアクセスできるようになります。
 
-It's best practice to securely store your Momento authentication token. If you are using AWS, you can securely store the
-auth token in [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html). With that,
-only code running with the correct IAM credentials will be able to fetch the auth token and use it to access Momento
-Cache or Momento Topics.
+:::備考
 
-:::info
-
-Just as you should reuse your Momento `CacheClient` and `TopicClient` objects when possible, so should you with the Momento auth token from AWS Secrets Manager. Otherwise you risk adding cost, both in time and money, to each Momento API call for the round trip to AWS Secrets Manager. To keep cost low and avoid potential throttling by AWS Secrets Manager it's best to use client side caching of the credentials as detailed in this [AWS blog](https://aws.amazon.com/blogs/security/use-aws-secrets-manager-client-side-caching-libraries-to-improve-the-availability-and-latency-of-using-your-secrets/).
+可能であればMomentoの`CacheClient`と`TopicClient`オブジェクトを再利用した方がいいように、AWS Secrets Managerから取得したMomento認証トークンを使ってこれらのオブジェクトを再利用した方がよいです。再利用しなければ、AWS Secrets Managerへのラウンドトリップに対する各MomentoAPI呼び出しに対して、時間面と金銭面の両方から負担が増える危険性が生じます。負担を抑え、AWS Secrets Managerによって管理される可能性を排除するには、この[AWSブログ](https://aws.amazon.com/blogs/security/use-aws-secrets-manager-client-side-caching-libraries-to-improve-the-availability-and-latency-of-using-your-secrets/)で詳細にご説明させていただいた通り、クライアント側のクレデンシャルのキャッシュを使用するのがベストです。
 :::
 
-## Entry in AWS Secrets Manager
+## AWS Secrets Managerへの入力
 
-When inserting the Momento auth token into AWS Secrets Manager, it should be as plaintext with no JSON as in this
-screenshot. (Token blurred for security.)
+Momento認証トークンをAWS Secrets Managerへ入力する際は、下のスクリーンショットの通り、JSONを含まないプレーンテキストとして入力するようにしてください（セキュリティのためトークンにはぼかしを入れております）。
 
 ![AWS Secrets Manager](/img/aws-secrets-manager.png)
 
-## Example Code for AWS Secrets Manager
+## AWS Secrets Managerのコード例
 
-In the code examples below, you can see where the getToken function is called just before creating the Momento cache
-connection client as that is where the auth token is needed and the only time it is needed.
+以下に示したコード例では、Momento Cache接続クライアントを作成する直前にgetToken関数がどこで呼び出されるかが読み取れます。Momento Cache接続クライアントを作成するには認証トークンが必要で、認証トークンが必要になるのはその時のみとなります。
 
 <Tabs>
   <TabItem value="nodejs" label="Node.js" default>
@@ -181,9 +175,9 @@ export default async function CreateCacheClient(
 
 </Tabs>
 
-## FAQ
+## よくある質問（FAQ）
 
 <details>
-  <summary>Do I have to do this?</summary>
-No. You can store your Momento auth token in an environment variable or a file, but that is not best practice as it is not as secure as storing it in something like AWS Secrets Manager.
+  <summary>Momento認証トークンをAWS Secrets Managerに保存する必要がありますか？</summary>
+いいえ、必要ありません。Momento認証トークンを環境変数またはファイルに保存できますが、AWS Secrets Manager等に保存するよりも安全性が低いため、ベストプラクティスではありません。
 </details>
