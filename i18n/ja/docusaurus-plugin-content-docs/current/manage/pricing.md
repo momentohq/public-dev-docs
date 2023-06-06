@@ -30,7 +30,7 @@ Momento キャッシュには隠れた料金はありません。ストレージ
 
  <details>
 <summary>Momento CacheやMomento Topicsの費用の予測をするためにいくつかの価格例を確認できますか？</summary>
-はい、<a href="https://www.gomomento.com/blog/complicated-pricing-is-not-serverless">こちらのMomentoブログ</a>から確認していただけます。。
+はい、<a href="https://www.gomomento.com/blog/complicated-pricing-is-not-serverless">こちらのMomentoブログ</a>から確認していただけます。
 </details>
 
 <details>
@@ -42,8 +42,8 @@ Momento キャッシュには隠れた料金はありません。ストレージ
 </details>
 
 <details>
-  <summary>Momento を毎月$1.50 で本番環境のアプリケーションに使うことはできますか？</summary>
-もちろんです！もし毎月60 GB のデータ転送の出入りがMomento にあったとすると、毎月最初の50GB 分は無料で、残りの毎月10GB に対して$0.15/GB を支払うことになります。どんなスケールでも、Momento のエンタープライズレベルの可用性、セキュリティ、そしてパフォーマンスがご利用できます。
+  <summary>Momento を毎月$5.00 で本番環境のアプリケーションに使うことはできますか？</summary>
+もちろんです！もし毎月60 GB のデータ転送の出入りがMomento にあったとすると、毎月最初の50GB 分は無料で、残りの毎月10GB に対して$0.50/GB を支払うことになります。どんなスケールでも、Momento のエンタープライズレベルの可用性、セキュリティ、そしてパフォーマンスがご利用できます。
 
 これは狂気じみたように聞こえるかもしれませんが、私たちが最初に始めたわけではありません。ほかのサーバーレスサービス、例えば DynamoDB、S3、そして他にもたくさんのサービスで同じものを経験できるでしょう。私たちは単にサーバーレスのアイデアをキャッシュにもってきただけなのです。
 
