@@ -5,9 +5,9 @@ title: 料金
 description: Momentoキャッシュの料金モデルの単純さを見てみてください
 ---
 
-# Momento キャッシュの料金
+# Momento CacheとMomento Topicsの料金と無料枠
 
-サーバーレスとはあらゆる意味において単純であることであり、それには料金も含まれます！Momento キャッシュは $0.15/GB の転送コストがかかります。たったそれだけです！
+サーバーレスとはあらゆる意味において単純であることであり、それには料金も含まれます！Momento キャッシュは $0.50/GB の転送コストがかかります。たったそれだけです！
 
 毎月最初の 50 GB は無料で、使い始めるのにクレジットカードさえ必要ありません。
 
@@ -15,32 +15,10 @@ Momento キャッシュには隠れた料金はありません。ストレージ
 
 見積りの手助けになるように、以下にいくつかの料金計算のサンプルを載せました。さらなるお手伝いが必要であれば（もしくはちょっと信じられない様であれば）、私たちの[Discord](https://discord.gg/Z7FSXB89)にメッセージを頂けたら、対応いたします。Momento キャッシュに挑戦して、そしてどれくらい料金を削減できるかを見てみてください！
 
-### 料金例:
-
-##### 平均オブジェクトサイズ 4KB で毎日 100 万 read/write リクエストを処理するとします。Momento の課金は以下の様になります:
-
-`100万リクエスト/日 * 30.5日/月 * 4KB/リクエスト * $.15/GB` = **$18.3/月**
-
-_詳細は[Wolfram Alpha](https://www.wolframalpha.com/input?i=1+million%2F+day+*+4KB+*+%24.15%2FGB+to+%24%2Fmonth) の計算をご覧ください。_
-
-##### 平均 5000 リクエスト毎秒を 1KB のオブジェクトに実行するとします。Momento の課金は以下の様になります:
-
-`5Kリクエスト/秒 * 86400秒/日 * 30.5日/月 * 1KB/リクエスト` = **$1976/月**
-
-_詳細は[Wolfram Alpha](https://www.wolframalpha.com/input?i=5000%2Fsecond+*+1KB++*+%24.15%2FGB+to+%24%2Fmonth) の計算をご覧ください。_
-
-##### 20 リクエスト毎秒の Lambda があって、1KB のオブジェクトをキャッシュするとします。Momento の課金は以下の様になります:
-
-`20リクエスト毎秒 * 86400秒/日 * 30.5日/月 * 1KB` = **$.38/月**
-
-_注: 無料枠なしだと、このワークフローは$7.88/月になります。_
-
-_詳細は[Wolfram Alpha](https://www.wolframalpha.com/input?i=%28%2820+requests%2Fsecond+*+1KB%2Frequest%29+-+50GB+%2Fmonth%29+*+%24.15%2FGB+to+%24%2Fmonth) の計算をご覧ください。_
-
 ### よくある質問
 
 <details open>
-  <summary>Momento は本当に$.15/GB のデータ転送の出入りだけなのですか？それ以外にお金がかかるものはありますか？</summary>
+  <summary>Momento は本当に$.50/GB のデータ転送の出入りだけなのですか？それ以外にお金がかかるものはありますか？</summary>
 
 | 対象                                   | Momento 料金 |
 | -------------------------------------- | ------------ |
@@ -49,6 +27,11 @@ _詳細は[Wolfram Alpha](https://www.wolframalpha.com/input?i=%28%2820+requests
 | シングルサインオン & チーム (まもなく) | $0/ユーザー  |
 
  </details>
+
+ <details>
+<summary>Momento CacheやMomento Topicsの費用の予測をするためにいくつかの価格例を確認できますか？</summary>
+はい、<a href="https://www.gomomento.com/blog/complicated-pricing-is-not-serverless">こちらのMomentoブログ</a>から確認していただけます。。
+</details>
 
 <details>
 <summary>Momento を無料で本番環境のアプリケーションに使うことはできますか？</summary>
