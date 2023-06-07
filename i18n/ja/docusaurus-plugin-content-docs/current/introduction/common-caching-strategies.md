@@ -6,76 +6,76 @@ title: 一般的なキャッシュ戦略
 
 # 一般的なキャッシュ戦略
 
-Now that we know the key choices you need to make when implementing a caching strategy, let's review some popular caching patterns. For each pattern, we will describe the pattern, the choices the pattern makes on the three questions above, and when you may want to use that pattern.
+これまでキャッシュ戦略を選定する際に必要な鍵となる選択肢について見てきました。次にいくつかの有名なキャッシュパターンを見てみましょう。各パターンにおいて、その詳細、以前に見た3つの質問においてどういった選択をしているのか、そしてどういった時にそのパターンを使いたいかを解説していきます。
 
-## Local browser caching
+## ローカルブラウザキャッシュ
 
-The first, and perhaps simplest, caching strategy is local browser caching. If you are building a web-based application accessed from a browser, you can use [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to store key-value data in the user's browser. For example, once a user authenticates to your service, you may store some information about the user's ID and profile used to access the service to speed display of your application upon subsequent viewings.
+まず一つ目、そして最も単純なキャッシュ戦略は、ローカルブラウザキャッシュです。ブラウザからアクセスするウェブベースのアプリケーションを作る場合には、[ローカルストレージ](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)を使ってユーザーのブラウザにキーバリューデータを保存することができます。例えば、ユーザーがサービスで認証をしたら、サービスにアクセスしてきたユーザー ID やプロファイルといった情報を保存して、アプリケーション上でそれ以降の情報表示速度を向上させることができます。
 
 ![Cached data in local storage](images/caching-strategies-and-patterns/local-storage-caching.png "Caching in local storage")
 
-Local browser caching is **local**, **aside** caching and is likely written at read-time.
+ローカルブラウザキャッシュは**ローカル**で、**アサイド**キャッシュで、読込時に書き込まれることが多いです。
 
-The benefits of local browser caching are its simplicity, as the local storage API is included in modern web browsers. Additionally, you don't need to worry about provisioning a cache in advance or running out of space, as you're effectively renting out space on your user's machine to cache this data.
+ローカルブラウザキャッシュの利点は、ローカルストレージ API が現代的なウェブブラウザには既に含まれているので、簡潔な点です。加えて、実質的にはユーザのマシンのスペースを間借りしてデータをキャッシュしているので、事前にキャッシュをプロビジョンしたり容量が不足したりすることを心配する必要もありません。
 
-The downsides of local browser caching is that it's only useful in specific circumstances. If a user reuses a browser, you can speed up certain operations easily. However, the cached data does not apply to the user when using a different device or even using a different browser instance on the device. Further, there's no mechanism for your backend data source to proactively invalidate items in the local storage cache if the underlying data has changed.
+ローカルストレージキャッシュの欠点は、特定の状況下でしか有効ではない点です。もしユーザーがブラウザを再利用してくれていれば、いくつかのオペレーションを簡単に高速化することはできます。しかし異なるデバイスや、同じデバイスでも異なるブラウザインスタンスを使った場合には、キャッシュしたデータは適応されません。更には、データが変更された時に、バックエンドのデータソースからローカルストレージキャッシュを無効化する手段もありません。
 
-## Local backend caching
+## ローカルバックエンドキャッシュ
 
-A second caching strategy is another local strategy. With local backend caching, your backend server instances may cache network responses or intermediate data from other systems. This data is often cached in-memory within your application process, such as with key-value maps in your programming language. When your backend instance needs to access that data, it will first check the in-memory object, then fall back to the primary data source if the cached value is not present.
+次のキャッシュ戦略はもう一つのローカルキャッシュ戦略です。ローカルバックエンドキャッシュでは、バックエンドサーバーインスタンス上でネットワークレスポンスや他のシステムからの中間データをキャッシュすることができます。このデータはよく、プログラミング言語のキーバリューマップの様な形でアプリケーションプロセス内にインメモリでキャッシュされます。バックエンドインスタンスがそのデータにアクセスする必要があるときには、まずインメモリのオブジェクトを確認し、もしキャッシュした値が存在しない時にはプライマリデータソースにフォールバックします。
 
-Like local browser caching, this is a **local**, **aside** caching strategy that is likely written at read-time.
+ローカルブラウザキャッシュと同様に、これも**ローカル**で、**アサイド**キャッシュ戦略で、読込時に書き込まれることが多いです。
 
-The benefits of this strategy are in its ease of use and simplicity. If you have data that is frequently accessed and relatively long-lived, you can quickly cache it on individual server instances without standing up and operating additional infrastructure. This can work well for configuration data or other slow-moving data.
+この戦略の利点は簡単に利用できて、簡潔であるところです。もし頻繁にアクセスされて比較的長期間使われるデータがあれば、追加のインフラを立ち上げて運用をする必要なく、個別のサーバーインスタンス上に素早くキャッシュすることができます。これは設定データや他の動きの遅いデータにはよく当てはまります。
 
-In a way, this is similar to the way we [reuse (or "cache") our Momento SimpleClient within AWS Lambda to enable connection reuse](./../develop/guides/caching-with-aws-lambda#connection-reuse)!.
+ある意味で、これは[ AWS Lambda で確立した接続を使いまわすために、Momento SimpleClient を再利用(またはキャッシュ)する](./../develop/guides/caching-with-aws-lambda#connection-reuse)方法とよく似ています！
 
-The downside of this caching strategy is that it is less effective than remote caching methods. Each backend instance will have its own independent cache. If you have a broad set of data to cache, and you only cache it once it has been requested once on that instance, your cache hit rate can be quite low. Further, the cache hit rate gets even lower as your cluster size (and, likely, your overall load) increases! This is particularly troublesome when caching with hyper-ephemeral compute like AWS Lambda where your instances can be created and destroyed regularly. Finally, like with local browser caching, it can be difficult to invalidate expired data on the backend instances if the underlying data changes.
+このキャッシュ戦略の欠点は、リモートキャッシュと比べて効率が悪いことです。各バックエンドインスタンスはそれぞれ固有のキャッシュを持っています。もしキャッシュするデータが広範囲で、インスタンス上でそれがリクエストされた時にだけキャッシュした場合、キャッシュヒット率は極めて低いでしょう。更に、クラスターサイズが(そして全体的な負荷も)増加すればするほど、キャッシュヒット率はより悪くなっていきます！これは、定期的にインスタンスが作られては捨てられる AWS Lambda の様な極一時的なコンピュートでは特に問題です。最後に、ローカルブラウザキャッシュ同様に、元になるデータが変更されたときにバックエンドインスタンス上のデータを無効化するのは困難です。
 
-## Read-aside caching
+## リードアサイドキャッシュ
 
-The third, and most common, caching strategy is read-aside caching (commonly called "lazy loading"). With read-aside caching, your application will first try to request your needed data from a cache. If the data is there, it will return to the caller. If not, it will request the data from the primary data source. Then, it will store the data in the cache for the next attempt and return the data to the caller.
+3つ目の、最も一般的なキャッシュ戦略がリードアサイドキャッシュです("遅延読込"とよく呼ばれます)。リードアサイドキャッシュでは、アプリケーションは必要なデータをキャッシュから取り出そうとします。もしデータがそこにあれば、呼出し元にそれを返します。もし無ければ、プライマリデータストアからデータをリクエストします。そして、次のリクエストのためにそのデータをキャッシュしてから、呼出し元にデータを返します。
 
 ![Architecture diagram of read-aside caching](images/caching-strategies-and-patterns/read-aside-caching.png "Read-aside caching")
 
-This is a **remote, read-based, aside **caching strategy.
+これは、**リモートで、読込みベースのアサイド**キャッシュ戦略です。
 
-The benefits of a read-aside caching strategy are in the improved cache hit rate and in the general applicability to most problems. For most access patterns, a piece of data that is accessed once is more likely to be accessed again soon after. By caching a piece of data in a centralized location after it has been read, we can improve the cache hit rate across our fleet of servers. Further, the read-aside cache strategy applies to nearly any situation. You can cache at any point in your application that makes sense -- a network response, after some intermediate calculation, or full, aggregated responses to an HTTP client.
+リードアサイドキャッシュ戦略の利点は、キャッシュヒット率の高さと、広範囲な問題への適応性です。多くのアクセスパターンで、一度アクセスされたデータはすぐに再度アクセスされる可能性が高いです。データが読み込まれた後それを中央管理された場所にキャッシュすることで、全てのサーバーに渡ってキャッシュヒット率を向上させられます。更に、リードアサイドキャッシュ戦略はほぼどんな場面でも適応可能です。ネットワークレスポンス、いくらかの中間計算結果、または HTTP クライアントのレスポンスの集合といった、ありとあらゆる適応可能な箇所でキャッシュすることができます。
 
-Moving from local to remote caching will increase our hit rate, but it will also increase our operations burden and application complexity. We have an additional piece of infrastructure to manage and must consider its effect on overall system availability. You may think availability won't be affected because it falls back to a primary data source, but many outages are due to an initial cache failure leading to unsustainable load on a primary data source.
+ローカルからリモートへキャッシュを移すことでヒット率は上昇しますが、運用の負荷とアプリケーションの複雑性も上がります。管理する追加のインフラが必要ですし、それによるシステム全体の可用性への影響を考慮しなければなりません。プライマリデータソースにフォールバックするので、可用性は影響を受けないと考えるかも知れませんが、多くの障害は初回キャッシュミスによるプライマリデータソースへの高負荷によって引き起こされています。
 
-Additionally, the read-aside cache does pay a latency cost for the initial read of a piece of data. If your application reads are spread across records in your application, you might have a nearly full cache along with a low cache hit rate overall.
+加えて、リードアサイドキャッシュはデータの初回読み出し時のレイテンシコストを支払っています。もしアプリケーションの読み出しが広範囲のレコードに散らばっている場合、全体的にキャッシュヒット率が低くほぼ全てのデータをキャッシュしているようなことになるでしょう。
 
-## Write-aside caching
+## ライトアサイドキャッシュ
 
-The next caching strategy is similar to the previous. With write-aside caching, we are using a centralized, aside cache like with read-aside caching. However, rather than lazily loading items into our cache after accessing it for the first time, we are proactively pushing data to our cache when we write it.
+次のキャッシュ戦略は前のものと似ています。ライトアサイドキャッシュでは、リードアサイドキャッシュの様に中央管理されたアサイドキャッシュを利用します。しかし、初回アクセス後に項目をキャッシュに遅延読込するのではなく、書き込み時にキャッシュに積極的にデータをプッシュします。
 
 ![Architecture diagram of write-aside caching](images/caching-strategies-and-patterns/write-aside-caching.png "Write-aside caching")
 
-This is a **remote, write-based, aside **caching strategy.
+これは**リモートで、書込みベースのアサイド**キャッシュ戦略です。
 
-Many of the benefits of the write-aside caching strategy are similar to the read-aside caching strategy. You should have a higher cache hit rate with a centralized cache. Further, your cache hit rate should be even higher as you won't have the initial miss for each entry. This can reduce latency for data that you know will be accessed soon after it is written. Finally, when implemented correctly, you can reduce the chance of stale data as all data updates are immediately reflected into the cache.
+ライトアサイドキャッシュの利点の多くは、リードアサイドキャッシュと共通しています。中央管理されたキャッシュによって高いキャッシュヒット率を持ちます。もっと言えば、各エントリで初回ミスが無いのでキャッシュヒット率はもっと高くなります。これは、書き込まれた後すぐにアクセスされることが分かっているデータのレイテンシを削減することになります。最後に、正しく実装することができれば、全てのデータの変更が即座にキャッシュにも反映されるので、古いデータの発生確率を減らすこともできます。
 
-The downsides of the write-aside strategy are in its added complexity. Read-aside caching is straight-forward in how it is implemented within a single data access path. With write-aside caching, you need your read and write paths to work together to understand the cache key and value format. Further, you need a deeper understanding of both your read and write access patterns. This can require careful auditing and constant vigilance to prevent stale data across patterns.
+ライトアサイド戦略の欠点は、複雑性が増すことです。リードアサイドキャッシュは単一のデータアクセスパスの中で実装されるので素直です。ライトアサイドキャッシュでは、読込と書込の両方のパスでキャッシュのキーバリューの形式を理解した上で協調動作する必要があります。更には、読込と書込の両方のアクセスパターンへの深い理解も必要です。これには古いデータへのアクセスパターンを防ぐための注意深い観察と継続的な用心が不可欠です。
 
-## Read-through and write-through caching
+## リードスルーとライトスルーキャッシュ
 
-The final two strategies are read-through and write-through caching. These two strategies are unique in that all data access goes through the cache directly. Your application will make a request to the cache to fetch the requested data. If the data is available locally, the cache will return it. Otherwise, the _cache itself_ will do the work to fetch the data from the primary data source, cache the data, and return it to you.
+残る最後の2つの戦略は、リードスルーとライトスルーキャッシュです。これら2つの戦略は、全てのデータアクセスがキャッシュを直接通過する点で独特です。アプリケーションはキャッシュに対してデータを取得するリクエストをします。もしデータが存在すれば、キャッシュはそれを返却します。そうでなければ、**キャッシュ自身**がプライマリデータソースからデータを取得し、キャッシュし、返却する役割を果たします。
 
-For example, the image below shows the flow for a write-through cache. First, a write request comes to our application. The application writes the data directly to the cache, and the cache is responsible for persisting it back to the main database. Once the cache returns to the application indicating that the write is persisted, then the application returns a response.
+例えば、以下の画像はライトスルーキャッシュのフローを示しています。まず、書込みリクエストがアプリケーションにやってきます。アプリケーションがキャッシュに直接書き込み、キャッシュ自身がそれをメインデータベースに永続化する責任を負います。キャッシュがアプリケーションに返答したらそれは書込みが永続化されたことを示しているので、そうしたらアプリケーションはレスポンスを返します。
 
 ![Architecture diagram of write-through caching](images/caching-strategies-and-patterns/write-through-caching.png "Write-through caching")
 
-This is a **remote, inline** caching strategy that can be used on either the read side or the write side.
+これは、**リモートで、インライン**キャッシュ戦略で、リードアサイドでもライトアサイドでも使うことができます。
 
-A [content delivery network](https://en.wikipedia.org/wiki/Content_delivery_network) (CDN) is a type of read-through cache, as you can see in the image below.
+以下の画像から分かる様に、[コンテンツ配信ネットワーク](https://en.wikipedia.org/wiki/Content_delivery_network) (CDN) はリードスルーキャッシュの一種です。
 
 ![Architecture diagram of a content delivery network (CDN)](images/caching-strategies-and-patterns/read-through-cdn.png "Read-through CDN")
 
-A client may make an HTTP request for a piece of content, and the CDN will serve it from an edge location if available or make a trip back to the origin if not. If the CDN retrieves it from the origin, then it will store it on the edge for subsequent requests. There are also a few other HTTP-based read-through caches, such as [Varnish](https://varnish-cache.org/) or even [Nginx](https://www.nginx.com/).
+クライアントがコンテンツを HTTP でリクエストし、CDN はもしあればエッジロケーションから配信し、そうでなければオリジンに向かいます。CDN は、オリジンから取得できたら後続のリクエストのためにそれをエッジに保存します。他にも、HTTP ベースのリードスルーキャッシュとしては、[Varnish](https://varnish-cache.org/) や [Nginx](https://www.nginx.com/) があります。
 
-Database-based inline caches are more rare, but they do exist. [DynamoDB Accelerator](https://aws.amazon.com/dynamodb/dax/) (DAX) is a read- and write-through cache for DynamoDB. You can perform the same DynamoDB operations against DAX as against your DynamoDB table, and your DAX instance will forward reads and writes to the underlying DynamoDB table as needed.
+データベースベースのインラインキャッシュはもっと希少ですが、存在はします。[DynamoDB Accelerator](https://aws.amazon.com/dynamodb/dax/) (DAX) は DynamoDB のためのリードスルーかつライトスルーのキャッシュです。DynamoDB テーブルに対して行うのと同一の DynamoDB 操作を DAX に対して行うことができ、DAX インスタンスは必要に応じてその裏にある DynamoDB テーブルに読み書きのリクエストを転送します。
 
-The benefits of an inline cache are in their simplicity from a client perspective. You don't need to manage cache keys or implement multi-step logic to handle cache misses. The inline cache handles this for you. Additionally, because it is a remote cache, it gets the benefits of a higher cache hit rate that we saw from aside caches.
+インラインキャッシュの利点はクライアント視点での簡潔さです。キャッシュキーの管理やキャッシュミスを扱うための複数ステップのロジックを実装する必要がありません。インラインキャッシュが代わりに対応してくれます。加えて、リモートキャッシュなので、アサイドキャッシュでも見てきた高いキャッシュヒット率の利点も持ち合わせています。
 
-Inline caches have downsides as well. First, inline caches for your data source can be hard to find or non-existent. The creator of an inline cache needs to implement the logic to handle fallback to the underlying data source. Depending on the implementation, there can be discrepancies in how your application works with and without the inline cache. Further, using an inline cache adds a critical piece of infrastructure to your application and can affect availability even more than an aside cache.​​
+インラインキャッシュにも欠点はあります。まず、使っているデータソースに対応するインラインキャッシュを見つけるのが大変だったり、存在しないこともあります。インラインキャッシュの製作者は、裏にあるデータソースに対してフォールバックする実装をする必要があります。実装によっては、インラインキャッシュの有無によってアプリケーションに食い違いが起こる可能性があります。更に、インラインキャッシュはアプリケーションに対して重要なインフラを追加することになり、アサイドキャッシュよりも可用性への影響が大きくなる可能性があります。
