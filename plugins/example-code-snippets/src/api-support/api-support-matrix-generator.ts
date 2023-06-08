@@ -338,7 +338,8 @@ function determineApiSupport(
       if (line.trim().startsWith('//')) continue;
       if (line.trim().startsWith('#')) continue;
       const unSnaked = line.replaceAll('_', '');
-      const unAsynced = unSnaked.replaceAll('Async(', '(');
+      const unGenericked = unSnaked.replaceAll(/<[^>]+>/g, '');
+      const unAsynced = unGenericked.replaceAll('Async(', '(');
       for (const apiGroup of apiGroups) {
         for (const api of apiGroup.apis) {
           const functionName = typeof api === 'string' ? api : api.functionName;
