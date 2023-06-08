@@ -10,17 +10,17 @@ description: この簡単な開発者向けチートシートを使ってLaravel
 
 Laravelは、PHPの開発フレームワークとして非常に人気があります。Laravelは、エレガントな構造、豊富な機能、迅速かつ効率的に仕事を成し遂げるための優れたエコシステムで知られています。
 
-Laravelの多くの特長の1つは、[キャッシュバックエンド用の統一API](https://laravel.com/docs/10.x/cache)です。これにより、Laravelアプリは、どのキャッシュバックエンドを使用しているかの詳細を気にすることなく、あらゆる使用頻度の高いデータをキャッシュすることができます。また、コードに変更を加えることなく、異なるキャッシュバックエンドを切り替えることができます！
+Laravelの多くの特長の1つは、[cacheバックエンド用の統一API](https://laravel.com/docs/10.x/cache)です。これにより、Laravelアプリは、どのcacheバックエンドを使用しているかの詳細を気にすることなく、あらゆる使用頻度の高いデータをcacheすることができます。また、コードに変更を加えることなく、異なるcacheバックエンドを切り替えることができます！
 
-Laravelは、MemcachedやRedisなどのキャッシュバックエンドをサポートしています。そこで、MomentoはLaravel Cache APIの実装を提供することで、キャッシュクラスタの管理を気にすることなく、キャッシュの利点をすべて手に入れることができます！Momento Cacheの柔軟な構造とサーバーレスな 特性は、Laravelのキャッシュワークフローに最適な選択です。
+Laravelは、MemcachedやRedisなどのcacheバックエンドをサポートしています。そこで、MomentoはLaravel Cache APIの実装を提供することで、cacheクラスタの管理を気にすることなく、cacheの利点をすべて手に入れることができます！Momento Cacheの柔軟な構造とサーバーレスな 特性は、Laravelのcacheワークフローに最適な選択です。
 
 このガイドでは、LaravelとLaravel Momento Cacheプラグインをインストールして設定し、WebアプリとAPIを構築します。
 
-詳しくは[Momento Laravelのキャッシュリポジトリ](https://github.com/momentohq/laravel-cache) をご覧ください。
+詳しくは[Momento Laravelのcacheリポジトリ](https://github.com/momentohq/laravel-cache) をご覧ください。
 
 ## Laravel + Momentoアプリケーションの例
 
-Momentoのキャッシュを使用したLaravelアプリの例をご覧になりたい方は [Momento Laravel Example App](https://github.com/momentohq/laravel-example)をご覧ください！このgit repoには、すべての動作サンプルアプリケーションが用意されています。このアプリケーションは、[OpenWeather](https://openweathermap.org/)から天気データを取得するWebサービスです。Momentoに天気データをキャッシュすることで、その後のリクエストをより迅速に処理できるようになります。
+Momentoのcacheを使用したLaravelアプリの例をご覧になりたい方は [Momento Laravel Example App](https://github.com/momentohq/laravel-example)をご覧ください！このgit repoには、すべての動作サンプルアプリケーションが用意されています。このアプリケーションは、[OpenWeather](https://openweathermap.org/)から天気データを取得するWebサービスです。Momentoに天気データをcacheすることで、その後のリクエストをより迅速に処理できるようになります。
 
 ## Laravelプロジェクトのセットアップ
 
@@ -72,7 +72,7 @@ Momentoのキャッシュを使用したLaravelアプリの例をご覧になり
 
 ### タグサポート
 
-キャッシュタグは、[Laravel マニュアル](https://laravel.com/docs/9.x/cache#cache-tags)で説明されているのと同じように動作します。
+cacheタグは、[Laravel マニュアル](https://laravel.com/docs/9.x/cache#cache-tags)で説明されているのと同じように動作します。
 
 :::備考
 
@@ -82,7 +82,7 @@ Momentoのキャッシュを使用したLaravelアプリの例をご覧になり
 
 ### 上限
 
-以下のLaravelのキャッシュ操作は、現在サポートされていません。
+以下のLaravelのcache操作は、現在サポートされていません。
 * many
 * putMany
 * decrement
