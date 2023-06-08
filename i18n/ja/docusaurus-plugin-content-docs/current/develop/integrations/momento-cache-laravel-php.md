@@ -2,40 +2,38 @@
 sidebar_position: 2
 sidebar_class_name: sidebar-item-laravel
 sidebar_label: Laravel
-title: Setting up Laravel + Momento Cache
-description: Get up and running quickly with Laravel and Momento Cache with this simple-to-follow developer cheat sheet.
+title: Laravel + Momento Cacheをセットアップする
+description: この簡単な開発者向けチートシートを使ってLaravelとMomento Cacheを走らせてみよう。
 ---
 
-# Set up Laravel + Momento Cache
+# Laravel + Momento Cacheをセットアップする
 
-Laravel is a very popular development framework for PHP. Laravel is known for its elegant syntax, extensive features, and robust ecosystem to get work done quickly and efficiently.
+Laravelは、PHPの開発フレームワークとして非常に人気があります。Laravelは、エレガントな構造、豊富な機能、迅速かつ効率的に仕事を成し遂げるための優れたエコシステムで知られています。
 
-One of Laravel's many features is a [unified API for cache backends](https://laravel.com/docs/10.x/cache). This allows your Laravel app to cache any frequently used data without worrying about the details of which cache backend you are using. It also allows you to switch between different cache backends without making any changes to your code!
+Laravelの多くの特長の1つは、[キャッシュバックエンド用の統一API](https://laravel.com/docs/10.x/cache)です。これにより、Laravelアプリは、どのキャッシュバックエンドを使用しているかの詳細を気にすることなく、あらゆる使用頻度の高いデータをキャッシュすることができます。また、コードに変更を加えることなく、異なるキャッシュバックエンドを切り替えることができます！
 
-Laravel ships with support for cache backends such as Memcached and Redis. Now, Momento provides an implementation of the Laravel Cache API that you can drop in and get all of the advantages of caching without having to worry about managing a cache cluster! Momento Cache’s flexible structure and serverless nature makes it a great choice for using with Laravel for caching workflows.
+Laravelは、MemcachedやRedisなどのキャッシュバックエンドをサポートしています。そこで、MomentoはLaravel Cache APIの実装を提供することで、キャッシュクラスタの管理を気にすることなく、キャッシュの利点をすべて手に入れることができます！Momento Cacheの柔軟な構造とサーバーレスな 特性は、Laravelのキャッシュワークフローに最適な選択です。
 
-In this guide, we install and configure Laravel and the Laravel Momento Cache plugin to build web apps and APIs.
+このガイドでは、LaravelとLaravel Momento Cacheプラグインをインストールして設定し、WebアプリとAPIを構築します。
 
-See the [Momento Laravel cache repository](https://github.com/momentohq/laravel-cache) for more info.
+詳しくは[Momento Laravelのキャッシュリポジトリ](https://github.com/momentohq/laravel-cache) をご覧ください。
 
+## Laravel + Momentoアプリケーションの例
 
-## Example Laravel + Momento Application
+Momentoのキャッシュを使用したLaravelアプリの例をご覧になりたい方は [Momento Laravel Example App](https://github.com/momentohq/laravel-example)をご覧ください！このgit repoには、すべての動作サンプルアプリケーションが用意されています。このアプリケーションは、[OpenWeather](https://openweathermap.org/)から天気データを取得するWebサービスです。Momentoに天気データをキャッシュすることで、その後のリクエストをより迅速に処理できるようになります。
 
-If you would like to see a working example of a Laravel app that uses Momento caching, check out our [Momento Laravel Example App](https://github.com/momentohq/laravel-example)!  This git repo provides a full working example application. The application is a web service that retrieves weather data from [OpenWeather](https://openweathermap.org/); it caches the weather data in Momento so that subsequent requests can be served much more quickly.
+## Laravelプロジェクトのセットアップ
 
-## Setting up your own Laravel project
+### 条件
+* Momentoのトークン認証が必要です。 [Momento CLI](https://github.com/momentohq/momento-cli)を使用して作成することができます。
+* PHP 8.0以降のインストール
+* Laravel 9.x以降のインストール
+* [gRPC PHPエクステンション](https://github.com/grpc/grpc/blob/v1.46.3/src/php/README.md)のインストール
+* [Composer](https://getcomposer.org/doc/00-intro.md)のインストール - PHPの共通ライブラリおよび依存関係管理ツール
 
-### Prerequisites
-* A Momento auth token is required. You can generate one using [the Momento CLI](https://github.com/momentohq/momento-cli).
-* Installation of PHP 8.0 or higher
-* Installation of Laravel 9.x or higher
-* Installation of the [gRPC PHP extension](https://github.com/grpc/grpc/blob/v1.46.3/src/php/README.md).
-* Installation of [Composer](https://getcomposer.org/doc/00-intro.md)  - A common library and dependency manager for PHP.
+### Laravel + Momentoのパッケージの設定
 
-
-### Configure the Laravel + Momento package
-
-Add our repository to your `composer.json` file and our SDK as a dependency:
+`composer.json` ファイルに弊社リポジトリを追加し、依存関係として弊社SDKを追加します：
 
 ```json
 {
@@ -45,9 +43,9 @@ Add our repository to your `composer.json` file and our SDK as a dependency:
 }
 ```
 
-Run `composer update` to install the necessary prerequisites.
+`composer update`を実行して、必要な前提条件をインストールします。
 
-Then, add `MomentoServiceProvider` to your `config/app.php`:
+次に`MomentoServiceProvider`を`config/app.php`に追加します:
 
 ```php
 'providers' => [
@@ -56,7 +54,7 @@ Then, add `MomentoServiceProvider` to your `config/app.php`:
 ];
 ```
 
-Finally, add the required config to your `config/cache.php`:
+最後に、`config/cache.php`に必要な設定を追加します：
 
 ```php
 'default' => env('CACHE_DRIVER', 'momento'),
@@ -70,25 +68,25 @@ Finally, add the required config to your `config/cache.php`:
 ],
 ```
 
-Run `composer update` again to install the necessary prerequisites.
+必要な条件をインストールするために、もう一度`composer update`を実行します。
 
-### Tag Support
+### タグサポート
 
-Cache tags work the same way as explained in the [Laravel documentation](https://laravel.com/docs/9.x/cache#cache-tags).
+キャッシュタグは、[Laravel マニュアル](https://laravel.com/docs/9.x/cache#cache-tags)で説明されているのと同じように動作します。
 
-:::info
+:::備考
 
-If your tag may contain more than 4MB worth of keys, tagging may not work as intended. Please reach out to us for more info!
+タグに4MB以上のキーが含まれる場合は、意図したとおりにタグ付けができない可能性があります。詳しくは、弊社までお問い合わせください！
 
 :::
 
-## Limits
+### 上限
 
-The following Laravel cache operations are currently not supported.
+以下のLaravelのキャッシュ操作は、現在サポートされていません。
 * many
 * putMany
 * decrement
 * forever
 * flush
 
-If you need these operations, please reach out to us, and we will work to prioritize adding them. You can file a [GitHub issue](https://github.com/momentohq/laravel-cache/issues), e-mail us at support@momentohq.com, or join our [Discord](https://discord.com/invite/3HkAKjUZGq).
+これらの操作が必要な場合は、弊社までご連絡いただければ、優先的に追加するよう努めます。[GitHub issue](https://github.com/momentohq/laravel-cache/issues)を作成いただくか、support@momentohq.com までメールをお送りいただくか、弊社の[Discord](https://discord.com/invite/3HkAKjUZGq)に参加していただくことができます。
