@@ -1,56 +1,56 @@
 ---
 sidebar_position: 1
 sidebar_label: Dictionary
-title: Dictionary API reference
-description: Learn how to interact with the API for dictionary collection data types in Momento Cache.
+title: Dictionary API リファレンス
+説明: Momento Cacheのコレクションdictionaryの使い方を学ぼう。
 slug: /develop/api-reference/collections/dictionary
 ---
 
-# Dictionary API reference for Momento Cache
-This page details the Momento API methods for the [dictionary collection data type](./../datatypes.md#dictionary-collections).
+# Momento CacheのDictionary APIリファレンス
+このページでは、Dictionary[コレクションデータ型](./../datatypes.md#dictionary-collections)のMomento APIメソッドについて詳しく説明します。
 
-## Dictionary methods
+## Dictionaryのメソッド
 
 ### DictionaryFetch
 
-Gets a dictionary item from a cache.
+cacheからDictionaryを取得します。
 
-| Name            | Type   | Description                                   |
+| 名前            | 型   | 説明                                   |
 | --------------- | ------ | --------------------------------------------- |
-| cacheName       | String | Name of the cache.                            |
-| dictionaryName  | String | The name of the dictionary item to be retrieved. |
+| cache名前       | String | 名前 of the cache.                            |
+| dictionaryName  | String | 取得するDictionaryの名前。 |
 
 <details>
-  <summary>Method response object</summary>
+  <summary>メソッドのレスポンスオブジェクト </summary>
 
-The response object for DictionaryFetch returns three possible options, a cache hit, miss, or an error.
+DictionaryFetchで返却されるレスポンスオブジェクトの種類は３つあります。cache hit、miss、errorです。
 
 * Cache hit
     - `valueDictionaryBytesBytes()`: Map<Bytes, Bytes>
     - `valueDictionaryStringString()`: Map<String, String>
     - `valueDictionaryStringBytes()`: Map<String, Bytes>
     - `valueDictionaryBytesString()`: Map<Bytes, String>
-    - `toString()`: String - displays the field/value pairs, truncated.
+    - `toString()`: String - 省略されたfield/valueのペアを表示します。
 * Cache miss
 * Cache error
 
-See [response objects](./response-objects.md) for specific information.
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_DictionaryFetch'} />
 
 ### DictionaryGetField
-Get one field from a dictionary item in the cache.
+cache内のDictionaryアイテムから1つのfieldを取得します。
 
-| Name            | Type         | Description                                   |
+| 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary item to be retrieved. |
-| field           | String/Bytes | Name of the field in the dictionary item to be retrieved. |
+| cacheName       | String       | Cacheの名前。                           |
+| dictionaryName  | String       | 取得するDictionaryの名前。 |
+| field           | String/Bytes | 取得するDictionary内のfieldの名前。 |
 
 <details>
-  <summary>Method response object</summary>
+  <summary>メソッドのレスポンスオブジェクト </summary>
 
 * Cache hit
     - `fieldString()`: String
@@ -58,7 +58,7 @@ Get one field from a dictionary item in the cache.
     - `valueString()`: String
     - `valueBytes()`: Bytes
 
-        These return the field and its value from the dictionary.
+        これらはfieldとそれに対するvalueをdictionaryから返却します。
 
 * Cache miss
     - `fieldString()`: String
@@ -68,71 +68,71 @@ Get one field from a dictionary item in the cache.
     - `fieldString()`: String
     - `fieldBytes()`: Bytes
 
-See [response objects](./response-objects.md) for specific information.
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_DictionaryGetField'} />
 
 ### DictionaryGetFields
-Get one or more fields from a dictionary in the cache.
+cache内のDictionaryから1つ以上のfieldを取得します。
 
-| Name            | Type         | Description                                   |
+| 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary item to be retrieved.  |
-| fields          | String[]/Bytes[] | Name of the field in the dictionary item to be retrieved. |
+| cacheName       | String       | Cacheの名前。                           |
+| dictionaryName  | String       | 取得するDictionaryの名前。  |
+| fields          | String[]/Bytes[] | 取得するDictionary内のfieldの名前。 |
 
 <details>
-  <summary>Method response object</summary>
+  <summary>メソッドのレスポンスオブジェクト </summary>
 
 * Cache hit
     - valueDictionaryBytesBytes(): Map<Bytes, Bytes>
     - valueDictionaryStringString(): Map<String, String>
     - valueDictionaryStringBytes(): Map<String, Bytes>
     - valueDictionaryBytesString(): Map<Bytes, String>
-    - toString(): String - displays truncated valueDictionaryStringString()
+    - toString(): String - valueDictionaryStringString()の省略版を表示します。
 * Cache miss
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_DictionaryGetFields'} />
 
 ### DictionaryIncrement
-Adds to the value of a field, if and only if the existing value is a UTF-8 string representing a base 10 integer. If the field is missing from the dictionary, this method sets the field's value to the amount to increment by.
+既存の値が基数10の整数を表すUTF-8文字列である場合に限り、fieldの値に追加します。 fieldがDictionaryにない場合、このメソッドはfieldの値を増分量に設定します。
 
-:::note
+:::注記
 
-The resulting incremented value must be between -9223372036854775808 and 9223372036854775807, ie. a signed 64-bit integer. If not, there will be an error response.
+結果として得られる増分値は、-9223372036854775808 から 9223372036854775807 の間でなければなりません。 つまり64ビットの符号付き整数です。 そうでない場合は、エラー応答が返されます。
 
 :::
 
-Examples:
+例:
 
-- When the field does not exist, `dictionaryIncrement(cache, dict, field, 10)` will set the field's value to 10.
-- When the field = 5, `dictionaryIncrement(cache, dict, field, 10)` will set the field's value to 15.
-- When the field = ‘five’, it will respond with a FailedPreconditionException error.
+- fieldが存在しない場合、 `dictionaryIncrement(cache, dict, field, 10)` はfieldの値を10に設定します。
+- field = 5,の場合、 `dictionaryIncrement(cache, dict, field, 10)`はfieldの値を15に設定します。
+- field = ‘five’、FailedPreconditionException エラーで応答します。
 
-| Name            | Type         | Description                                   |
+| 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary item to be retrieved.  |
-| field           | String/Bytes | Name of the field in the dictionary item to be retrieved. |
-| amount          | Integer      | The quantity to add to the value. May be positive, negative, or zero. Defaults to 1. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | This will come back as a TTL construct. |
+| cacheName       | String       | Cacheの名前。                           |
+| dictionaryName  | String       | 取得するDictionaryの名前。  |
+| field           | String/Bytes | 取得するDictionary内のfieldの名前。 |
+| amount          | Integer      | 値に追加する数量。 正、負、またはゼロの場合があります。 デフォルトは 1 です。 |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | これはTTLコンストラクトとして返されます。 |
 
 <details>
-  <summary>Method response object</summary>
+  <summary>メソッドのレスポンスオブジェクト </summary>
 
 * Success
-    - `value()`: integer - the new value after incrementing
-    - `toString()`: String - displays the value()
+    - `value()`: integer - 追加が行われた後の新しい値
+    - `toString()`: String - value()を表示します
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
@@ -140,109 +140,109 @@ See [response objects](./response-objects.md) for specific information.
 
 ### DictionaryRemoveField
 
-Removes a field from a dictionary item.
+Dictionaryアイテムからfieldを削除します。
 
-| Name            | Type         | Description                                   |
+| 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary item to be retrieved. |
-| field           | String/Bytes | Name of the field in the dictionary item to be retrieved. |
+| cacheName       | String       | Cacheの名前。                            |
+| dictionaryName  | String       | 取得するDictionaryの名前。 |
+| field           | String/Bytes | 取得するDictionary内のfieldの名前。 |
 
 <details>
-  <summary>Method response object</summary>
+  <summary>メソッドのレスポンスオブジェクト </summary>
 
 * Success
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_DictionaryRemoveField'} />
 
 ### DictionaryRemoveFields
-Removes multiple fields from a dictionary item.
+Dictionaryアイテムから複数のfieldを削除します。
 
-| Name            | Type             | Description                                   |
+| 名前            | 型             | 説明                                   |
 | --------------- | ------------     | --------------------------------------------- |
-| cacheName       | String           | Name of the cache.                            |
-| dictionaryName  | String           | Name of the dictionary item to be retrieved. |
-| fields          | String[]/Bytes[] | Name of the field in the dictionary item to be retrieved. |
+| cacheName       | String           | Cacheの名前。                           |
+| dictionaryName  | String           | 取得するDictionaryの名前。 |
+| fields          | String[]/Bytes[] | 取得するDictionary内のfieldの名前。 |
 
 <details>
-  <summary>Method response object</summary>
+  <summary>メソッドのレスポンスオブジェクト </summary>
 
 * Success
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_DictionaryRemoveFields'} />
 
 ### DictionarySetField
-Sets a field:value pair in an existing dictionary item. If the dictionary item does not exist, it is created with the new field:value pair.
+既存のDictionaryにfield:value ペアを設定します。 Dictionaryが存在しない場合は、新しいfield:valueのペアで作成されます。
 
-| Name            | Type         | Description                                   |
+| 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary item to be set. |
-| field           | String/Bytes | Name of the field in the dictionary item to be set. |
-| value           | String/Bytes | Value for the field to be set. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the dictionary item in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
+| cacheName       | String       | Cacheの名前。                            |
+| dictionaryName  | String       | Dictionaryの名前。 |
+| field           | String/Bytes | 設定するDictionaryのfieldの名前。 |
+| value           | String/Bytes | 設定するfieldの値。 |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | Cache内のDictionaryのTTL。このTTL はCacheクライアントの初期化時に使用されるTTLよりも優先されます。 |
 
 <details>
-  <summary>Method response object</summary>
+  <summary>メソッドのレスポンスオブジェクト </summary>
 
 * Success
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_DictionarySetField'} />
 
 ### DictionarySetFields
-Sets several field:value pairs in a dictionary item. If the dictionary item does not exist, it is created with the new fields.
+Dictionaryに複数のfield:valueのペアを設定します。 Dictionaryアイテムが存在しない場合は、新しいfieldを使用して作成されます。
 
-| Name            | Type         | Description                                   |
+| 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| dictionaryName  | String       | Name of the dictionary item to be set. |
-| fields          | String[]/Bytes[] | Field:value pair to be added to the dictionary item by the set operation. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the dictionary item in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
+| cacheName       | String       | Cacheの名前。                            |
+| dictionaryName  | String       | Dictionaryの名前。 |
+| fields          | String[]/Bytes[] | 設定操作によってディクショナリ項目に追加されるfield:valueのペア。 |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | Cache内のDictionaryのTTL。このTTLはCacheクライアントの初期化時に使用されるTTLよりも優先されます。 |
 
 <details>
-  <summary>Method response object</summary>
+  <summary>メソッドのレスポンスオブジェクト </summary>
 
 * Success
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_DictionarySetFields'} />
 
 ### DictionaryLength
-Get the length of an existing dictionary item
+既存のDictionaryの長さを取得します
 
-| Name           | Type         | Description                                |
+| 名前           | 型         | 説明                                |
 |----------------| ------------ |--------------------------------------------|
-| cacheName      | String       | Name of the cache.                         |
-| dictionaryName | String       | Name of the dictionary item to be checked. |
+| cacheName      | String       | Cacheの名前。                         |
+| dictionaryName | String       | Dictionaryの名前。 |
 
 <details>
-  <summary>Method response object</summary>
+  <summary>メソッドのレスポンスオブジェクト </summary>
 
 * Hit
   * `length()`: Number
 * Miss
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
