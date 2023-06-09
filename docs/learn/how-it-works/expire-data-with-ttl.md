@@ -23,16 +23,18 @@ Momento Cache handles TTL expiry and does not consume any bandwidth for metering
 The TTL value is the number of seconds from when Momento Cache writes the item to storage until the item expires from the cache. For example, if you set an item’s TTL value to 900 seconds (15 minutes), the item will expire 15 minutes after insertion into the cache.
 
 ## How to set TTL in Momento Cache
+
+For more robust examples of the code below in multiple languages, please see "[Developing applications with Momento SDKs](/develop)."
+
 There are three locations to set a TTL value:
-1. When creating a SimpleCacheClient object in a Momento SDK, you must set a TTL value for the connection. Any future SET operation using that client object will use that TTL value, unless you override the value.
+1. When creating a CacheClient object in a Momento SDK, you must set a TTL value for the connection. Any future SET operation using that client object will use that TTL value, unless you override the value.
 
     ```javascript
     const MY_DEFAULT_TTL = 60; // This value is in seconds
-    const momento = new SimpleCacheClient(authToken, MY_DEFAULT_TTL);
+    const momento = new CacheClient(authToken, MY_DEFAULT_TTL);
     ```
 
-
-2. In a SET operation, you can set a TTL value just for this operation and it will override the TTL value set in the SimpleCacheClient object.
+2. In a SET operation, you can set a TTL value just for this operation and it will override the TTL value set in the CacheClient object.
 
     ```javascript
     await momento.set(CACHE_NAME, 'key', 'my value', 40)
