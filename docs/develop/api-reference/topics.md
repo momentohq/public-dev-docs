@@ -6,8 +6,10 @@ description: Learn how to interact programmatically with Momento Topics pub/sub 
 slug: /develop/api-reference/topics
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Using the Momento Topics (pub/sub) API with Momento Cache
 Momento Topics is a messaging pattern that allows for real-time communication between parts of a distributed application. It enables you to publish (produce) values to a topic, as well as subscribe (consume) from a topic. This page details the Momento API methods for interacting with Momento Topics.
@@ -24,14 +26,6 @@ This method subscribes to a topic to receive new values with a stateful connecti
 | cacheName       | String          | Name of the cache where the topic exists.     |
 | topicName       | String          | Name of the topic to subscribe to.            |
 
-<Tabs>
-  <TabItem value="golang" label="Go" default>
-    This is <a href="https://github.com/momentohq/client-sdk-go/blob/main/examples/pubsub-example/main.go#L26">example code</a>.
-  </TabItem>
-  <TabItem value="nodejs" label="Node.js" default>
-    Coming soon.
-  </TabItem>
-</Tabs>
 
 <details>
   <summary>Method response object</summary>
