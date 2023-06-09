@@ -43,7 +43,7 @@ const redisClient = createClient(
 );
 ```
 
-For more in-depth information, with example code, please see the [Momento Node.js Redis compatibility client on GitHub](https://github.com/momentohq/momento-node-redis-client#momento-nodejs-redis-client).
+For more in-depth information, with example code, please see [Momento Node.js Redis compatibility client](https://github.com/momentohq/momento-node-redis-client#momento-nodejs-redis-client) on GitHub.
 
 </TabItem>
 <TabItem value="ioredis" label="IORedis" default>
@@ -70,7 +70,7 @@ const Redis = new MomentoRedisAdapter(
 );
 ```
 
-For more in-depth information, with example code, please see the [Momento IORedis compatibility client on GitHub](https://github.com/momentohq/momento-node-ioredis-client).
+For more in-depth information, with example code, please see [Momento IORedis compatibility client](https://github.com/momentohq/momento-node-ioredis-client) on GitHub.
 
 </TabItem>
 
@@ -94,7 +94,7 @@ var db = MomentoRedisDatabase(
 );
 ```
 
-For more in-depth information, with example code, please see the [Momento StackExchange compatibility client on GitHub](https://github.com/momentohq/momento-dotnet-stackexchange-redis).
+For more in-depth information, with example code, please see [Momento StackExchange compatibility client](https://github.com/momentohq/momento-dotnet-stackexchange-redis) on GitHub.
 
 </TabItem>
 </Tabs>
