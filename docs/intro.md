@@ -17,7 +17,7 @@ Momento Cache and [Momento Topics](./introduction/momento-topics.md) are availab
 
 **AWS Regions**: us-west-2, us-east-1, eu-west-1, ap-south-1, ap-northeast-1
 
-**GCP Regions**: us-central1, us-east4, asia-northeast1
+**GCP Regions**: us-central1, us-east4
 
 If your prefered provider or Region are not listed, [contact us](mailto:support@momentohq.com) and let's talk.
 
