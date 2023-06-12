@@ -7,7 +7,7 @@ import * as path from 'path';
 
 export class TypescriptSnippetSourceParser extends RegexSnippetSourceParser {
   constructor(repoSourceDir: string) {
-    const wholeFileExamplesDir = 'examples/nodejs/basic/doc-example-files';
+    const wholeFileExamplesDir = '.';
     const codeSnippetFiles: Array<string> = [
       // For now we don't have any typescript examples, only javascript ones.  We
       // can add a list of files containing TS examples in the future if we have some.
