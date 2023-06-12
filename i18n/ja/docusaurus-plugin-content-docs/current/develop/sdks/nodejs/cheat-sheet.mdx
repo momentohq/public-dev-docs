@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
-sidebar_label: Cheat Sheet
+sidebar_label: チートシート
 sidebar_class_name: sidebar-item-nodejs
-title: Cheat Sheet for TypeScript and Node.js
-description: Get started really quickly coding using TypeScript and Node.js with Momento Cache
+title: TypeScript と Node.js のためのチートシート
+description: Momento Cache を TypeScript と Node.js を使ってすぐにコードを書き始めましょう
 ---
 
 import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
@@ -11,59 +11,56 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Cheat Sheet for Node.js with Momento Cache
+# Momento Cache を Node.js で使うためのチートシート
+このページでは、Momento Cache を Node.js + TypeScript で素早く使ってみたい方のために必要となる基礎的な API 呼出しを解説しています。ビルド設定ファイルを含めた動作可能な例として、[Node.js SDK の例をご確認下さい](https://github.com/momentohq/client-sdk-javascript/tree/main/examples)。
 
-If you need to get going quickly with Node.js + TypeScript and Momento Cache, this page contains the basic API calls you'll need. [Check the node.js SDK examples](https://github.com/momentohq/client-sdk-javascript/tree/main/examples) for complete, working examples including build configuration files.
+## Momento クライアントライブラリをインストール
 
-## Install the Momento client library
-
-Install the client library in an existing node.js project:
+既存の Node.js プロジェクトにクライアントライブラリをインストールします:
 
 ```cli
 npm install @gomomento/sdk
 ```
 
-## Set up your auth token
-
-You'll need a Momento auth token to authenticate with Momento.  You can get one from the [Momento Web Console](https://console.gomomento.com/caches).
-Once you have your token, store it in an environment variable so that the Momento client can consume it:
+## 認証トークンをセットアップする
+Momento で認証するためには Momento 認証トークンが必要になります。[Momento ウェブコンソール](https://console.gomomento.com/caches)から取得可能です。
+トークンを取得したら、環境変数に格納して Momento クライアントから使えるようにします:
 
 ```
 export MOMENTO_AUTH_TOKEN=<your Momento token here>
 ```
 
-## Import libraries and connect to return a CacheClient object
-This code sets up the main function, the necessary imports,  and the CacheClient instantiation that each of the other functions will need to call.
+## ライブラリをインポートして、CacheClient オブジェクトを返却して接続する
+このコードで、必要なインポート、そしてそれぞれの他の関数が呼び出す必要のある CacheClient を生成して、メイン関数をセットアップします。
 
 <SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/cache/doc-example-files/cheat-sheet-main.ts'} />
 
-## Create a new cache in Momento Cache
-Use this function to create a new cache in your account.
+## Momento Cache に新しいキャッシュを作成する
+この関数を使ってアカウント内に新しいキャッシュを作成します。
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_CreateCache'} />
 
-
-## List the names of existing caches in your account
-A simple list of the names of caches for the account.
+## アカウント内の既存のキャッシュをリストする
+アカウント内のキャッシュの名前をシンプルにリストします。
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_ListCaches'} />
 
-## Write an item to a cache
-A simple example of doing a set operation. In the client.set call, the TTL it optional. If you did pass it in, this would override the default TTL value set with the client connection object.
+## 項目をキャッシュに書き込む
+書込み操作を行うシンプルな例です。client.set 呼出しでは、TTL はオプショナルです。もし TTL を渡すと、クライアント接続オブジェクトに設定されたデフォルトの TTL 値が上書きされます。
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_Set'} />
 
-## Read an item from a cache
-This is an example of a simple read operation to get an item from a cache.
+## キャッシュから項目を読み出す
+これは、キャッシュから項目を取得するためのシンプルな読み出し操作です。
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_Get'} />
 
-## Running the code
+## コードを実行する
 
-You can find complete, working examples in the [JavaScript SDK github repo examples directory](https://github.com/momentohq/client-sdk-javascript/blob/main/examples).
+実行可能な完成された例は [JavaScript SDK GitHub レポジトリの examples ディレクトリ](https://github.com/momentohq/client-sdk-javascript/blob/main/examples)をご覧下さい。
 
 :::info
-Beyond these basic API calls check out the [API reference page](/develop/api-reference/index.mdx) for more information on the full assortment of Momento API calls.
+これらの API 呼出し以上のものは、[API リファレンスページ](/develop/api-reference/index.mdx)で Momento API 呼出しの全種類の詳しい情報をご確認下さい。
 
-Follow this link to see this same type of code but for [more advanced calls](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/advanced.ts).
+同じようなコードで、[より高度な呼出し](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/advanced.ts)を見るには、このリンクに従って下さい。
 :::
