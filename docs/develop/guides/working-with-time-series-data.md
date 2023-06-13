@@ -24,7 +24,7 @@ i.e. JSON.stringify("value":1, "timestamp": 1686583076)
 
 >Code snippet for writing SortedSet into the Cache
 
-```
+```javascript
 const item_value = JSON.stringify({"sensor_value": sensor_value, "timestamp": timestamp})
 
 const response = await cacheClient.sortedSetPutElement("sensor_data", `${sensor_id}-sensor-data`, item_value, timestamp)
