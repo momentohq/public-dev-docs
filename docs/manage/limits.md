@@ -18,7 +18,7 @@ Momento Cache and Momento Topics seek to provide protection for its customers an
 | Maximum item size                                                                                                  | 1MB      |
 | Max cache count (per account)                                                                                      | 10       |
 | Time to live (TTL)                                                                                                 | 1 day    |
-| Per [collection (CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts) element size limit | 128K     |
+| Per [collection (CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts) element size limit | 128KB     |
 
 | Momento Topics limits                 | Value    |
 |---------------------------------------|----------|
