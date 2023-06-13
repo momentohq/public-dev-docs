@@ -22,7 +22,7 @@ Let's consider a workload for storing IoT sensor data in a Momento Cache.
 
 - Each sensor has its own SortedSet.
 - Each sensor_value within sensor's SortedSet is a JSON string containing the value and timestamp
-i.e. JSON.stringify("value":1, "timestamp": 1686583076)
+i.e. `JSON.stringify("value":1, "timestamp": 1686583076)`
 - Each score for the item in the SortedSet is the timestamp of the datapoint. SortedSets use scores to sort the data within the set.
 
 >Code snippet for writing SortedSet into the Cache
