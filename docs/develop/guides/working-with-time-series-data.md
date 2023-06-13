@@ -49,7 +49,7 @@ If you only want to retrieve a subset of the SortedSet, you could set the startR
 
 const sensor_data = await cacheClient.sortedSetFetchByRank("sensor_data", `${sensor_id}-sensor-data`, 0, 10)
 
-If you only want to retrieve data from a specified time period instead of a specific number of values you can use SortedSetFetchByScore. 
+If you only want to retrieve data from a specified time period instead of a specific number of values, you can use `SortedSetFetchByScore`. 
 
 >Code snippet for SortedSetFetchByScore to retrieve a subset of the SortedSet
 
