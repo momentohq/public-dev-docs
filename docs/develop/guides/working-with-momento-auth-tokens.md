@@ -3,7 +3,6 @@ sidebar_position: 4
 sidebar_label: Momento Authentication
 title: Working with Momento auth tokens
 description: Learn how to use expiring tokens to enhance the security of your application
-pagination_next: null
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
