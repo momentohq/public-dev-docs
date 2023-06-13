@@ -52,7 +52,7 @@ If you only want to retrieve data from a specified time period instead of a spec
 
 const sensor_data = await cacheClient.sortedSetFetchByScore("sensor_data", `${sensor_id}-sensor-data`, 1686511076, 1686597476)
 
-### Considerations:
+## Considerations
 
 Sensor Index Set:
 
