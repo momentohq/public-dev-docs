@@ -120,7 +120,7 @@ Removes multiple elements from an existing set item.
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
 | setName         | String       | Name of the set item to be altered. |
-| element         | String \| Bytes | Element to be removed by this operation.   |
+| element         | String[] \| Bytes[] | Elements to be removed by this operation.   |
 
 <details>
   <summary>Method response object</summary>

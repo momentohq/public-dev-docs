@@ -6,6 +6,11 @@ title: Dictionary API リファレンス
 slug: /develop/api-reference/collections/dictionary
 ---
 
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
 # Momento CacheのDictionary APIリファレンス
 このページでは、Dictionary[コレクションデータ型](./../datatypes.md#dictionary-collections)のMomento APIメソッドについて詳しく説明します。
 
