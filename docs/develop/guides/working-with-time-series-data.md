@@ -63,6 +63,6 @@ Your TTL value will depend on how long you need to keep the time series data vis
 
 Sensor Index Set:
 
-If you have multiple Sensors pushing data into your cache, consider adding a Set data type to store all the Sensor ID's. You'll need to pass in a Sensor ID when fetching data from the SortedSets. Your client application can retrieve all the Sensor ID's from this Set prior to fetching the time series data, then fetch data for every sensor from the Sorted Sets.
+If you have multiple sensors pushing data into your cache, consider adding a Set data type to store all the Sensor ID's. You must pass in a Sensor ID when fetching data from the SortedSets. Your client application can retrieve all the Sensor ID's from this Set prior to fetching the time series data, then fetch data for every sensor from the Sorted Sets.
 
 ![Set example](./images/time-series-example.png)
