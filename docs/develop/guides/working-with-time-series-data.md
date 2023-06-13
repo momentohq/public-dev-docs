@@ -8,15 +8,15 @@ pagination_next: null
 
 # Storing time series data
 
-Temporarily storing time series data enables you to visualize that data without having to worry about longterm storage costs. Let's think about a common use case for time series data like IoT sensors. Sure, it's useful to see what the recent data looks like, but do you need to keep each sensor value indefinitely? With numerous sensors sending metrics into your database, your storage costs will skyrocket. Storing that data in Momento instead is a great way to take advantage of what Momento does best - storing large volumes of data without having to worry about scaling up or longterm storage costs.
+Temporarily storing time series data enables you to visualize that data without having to worry about long term storage costs. Let's think about a common use case for time series data like IoT sensors. Sure, it's useful to see what the recent data looks like, but do you need to keep each sensor value indefinitely? With numerous sensors sending metrics into your database, your storage costs will skyrocket. Storing that data in Momento instead is a great way to take advantage of what Momento does best - storing large volumes of data without having to worry about scaling up or long term storage costs.
 
-You can store related data elements in Momento's collection data types such as lists, sets, and dictionaries. You should pick the appropriate data type for your application's access patterns and data schema. For time series data, you should use Momento's SortedSet data type. You can read more about SortedSets [here](https://www.gomomento.com/blog/were-back-with-another-collection-data-type-sorted-sets). Why use SortedSets?
+You can store related data elements in Momento's collection data types such as [lists](/develop/api-reference/collections/list), [sets](/develop/api-reference/collections/sets), and [dictionaries](/develop/api-reference/collections/dictionary). You should pick the appropriate data type for your application's access patterns and data schema. For time series data, you should use Momento's [SortedSet data type](/develop/api-reference/collections/sortedsets). You can read more about `SortedSets` [here](https://www.gomomento.com/blog/were-back-with-another-collection-data-type-sorted-sets). Why use SortedSets?
 
 - Sorting your time series data by timestamp makes it easy for client applications to retrieve and display the data in sorted order.
-- Limit query responses with the Momento SDK's SortedSetFetchByRank and SortedSetFetchByScore to a certain number of values or values within a certain timespan.
+- Limit query responses with the Momento SDK's [SortedSetFetchByRank](/develop/api-reference/collections/sortedsets#sortedsetfetchbyrank) and [SortedSetFetchByScore](/develop/api-reference/collections/sortedsets#sortedsetfetchbyscore) to a certain number of values or values within a certain timespan.
 
 ## Storing time series data in the SortedSet:
-Use the Momento SDK's [SortedSetPutElement](https://docs.momentohq.com/develop/api-reference/collections/sortedsets#sortedsetputelement) method to insert items into your SortedSet.
+Use the Momento SDK's [SortedSetPutElement](/develop/api-reference/collections/sortedsets#sortedsetputelement) method to insert items into your SortedSet.
 
 Let's consider a workload for storing IoT sensor data in a Momento Cache.
 
@@ -47,13 +47,17 @@ If you only want to retrieve a subset of the SortedSet, you could set the startR
 
 >Code snippet for SortedSetFetchByRank to retrieve a subset of the SortedSet
 
+```javascript
 const sensor_data = await cacheClient.sortedSetFetchByRank("sensor_data", `${sensor_id}-sensor-data`, 0, 10)
+```
 
-If you only want to retrieve data from a specified time period instead of a specific number of values, you can use `SortedSetFetchByScore`. 
+If you only want to retrieve data from a specified time period instead of a specific number of values, you can use [SortedSetFetchByScore](/develop/api-reference/collections/sortedsets#sortedsetfetchbyscore). 
 
 >Code snippet for SortedSetFetchByScore to retrieve a subset of the SortedSet
 
+```javascript
 const sensor_data = await cacheClient.sortedSetFetchByScore("sensor_data", `${sensor_id}-sensor-data`, 1686511076, 1686597476)
+```
 
 ## Considerations
 
