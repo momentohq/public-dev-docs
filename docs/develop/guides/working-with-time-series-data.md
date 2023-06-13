@@ -36,7 +36,7 @@ Use SortedSetFetchByRank to retrieve data from the cache. If you want to retriev
 
 >Code snippet for SortedSetFetchByRank to retrieve the entire SortedSet
 
-```
+```javascript
 const sensor_data = await cacheClient.sortedSetFetchByRank("sensor_data", `${sensor_id}-sensor-data`)
 ```
 
