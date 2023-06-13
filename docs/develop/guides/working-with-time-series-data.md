@@ -6,7 +6,7 @@ description: Learn how to store time series data in Momento Cache
 pagination_next: null
 ---
 
-## Storing Time Series Data
+# Storing time series data
 
 Temporarily storing time series data enables you to visualize that data without having to worry about longterm storage costs. Let's think about a common use case for time series data like IoT sensors. Sure, it's useful to see what the recent data looks like, but do you need to keep each sensor value indefinitely? With numerous sensors sending metrics into your database, your storage costs will skyrocket. Storing that data in Momento instead is a great way to take advantage of what Momento does best - storing large volumes of data without having to worry about scaling up or longterm storage costs.
 
