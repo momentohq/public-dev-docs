@@ -10,7 +10,10 @@ pagination_next: null
 
 Temporarily storing time series data enables you to visualize that data without having to worry about longterm storage costs. Let's think about a common use case for time series data like IoT sensors. Sure, it's useful to see what the recent data looks like, but do you need to keep each sensor value indefinitely? With numerous sensors sending metrics into your database, your storage costs will skyrocket. Storing that data in Momento instead is a great way to take advantage of what Momento does best - storing large volumes of data without having to worry about scaling up or longterm storage costs.
 
-You can store time series data with the SortedSet data type. Using SortedSet automatically sorts your data by timestamp, making it easy to visualize that data using charts and graphs. You can take advantage of multiple access patterns using the Momento SDK's SortedSetFetchByRank and SortedSetFetchByScore. Using those methods enables you to retrieve a certain number of datapoints or datapoints for a certain time range.
+You can store related data elements in Momento's collection data types such as lists, sets, and dictionaries. You should pick the appropriate data type for your application's access patterns and data schema. For time series data, you should use Momento's SortedSet data type. You can read more about SortedSets [here](https://www.gomomento.com/blog/were-back-with-another-collection-data-type-sorted-sets). Why use SortedSets?
+
+- Sorting your time series data by timestamp makes it easy for client applications to retrieve and display the data in sorted order.
+- Limit query responses with the Momento SDK's SortedSetFetchByRank and SortedSetFetchByScore to a certain number of values or values within a certain timespan.
 
 ## Storing time series data in the SortedSet:
 Use the Momento SDK's [SortedSetPutElement](https://docs.momentohq.com/develop/api-reference/collections/sortedsets#sortedsetputelement) method to insert items into your SortedSet.
@@ -54,10 +57,12 @@ const sensor_data = await cacheClient.sortedSetFetchByScore("sensor_data", `${se
 
 ## Considerations
 
+Time To Live (TTL) Values:
+
+Your TTL value will depend on how long you need to keep the time series data visible for your users. If you're displaying your time series data in a chart on the client application, ensure your earliest time value in the chart is aligned with the TTL for the time series data.
+
 Sensor Index Set:
 
 If you have multiple Sensors pushing data into your cache, consider adding a Set data type to store all the Sensor ID's. You'll need to pass in a Sensor ID when fetching data from the SortedSets. Your client application can retrieve all the Sensor ID's from this Set prior to fetching the time series data, then fetch data for every sensor from the Sorted Sets.
 
-Time To Live (TTL) Values:
-
-Your TTL value will depend on how long you need to keep the time series data visible for your users. If you're displaying your time series data in a chart on the client application, ensure your earliest time value in the chart is aligned with the TTL for the time series data.
+![Set example](./images/time-series-example.png)
