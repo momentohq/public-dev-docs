@@ -6,6 +6,11 @@ description: Learn how to interact with the API for set collection data types in
 slug: /develop/api-reference/collections/sets
 ---
 
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
 # Set API reference for Momento Cache
 
 A set is a collection of elements, but each element can appear only once and order is not guaranteed.

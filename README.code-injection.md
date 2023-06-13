@@ -91,7 +91,7 @@ https://github.com/momentohq/public-dev-docs/blob/04716fc6f508985881cf2c5efef118
 To inject a whole file from an SDK as a code sample:
 
 ```
-<SdkExampleCodeBlock language={'javascript'} file={'cheat-sheet-main.ts'} />
+<SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/cache/doc-example-files/cheat-sheet-main.ts'} />
 ```
 
 https://github.com/momentohq/public-dev-docs/blob/04716fc6f508985881cf2c5efef1182bef496617/docs/develop/sdks/nodejs/cheat-sheet.mdx?plain=1#L38

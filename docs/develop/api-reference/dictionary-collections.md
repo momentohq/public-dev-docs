@@ -6,6 +6,11 @@ description: Learn how to interact with the API for dictionary collection data t
 slug: /develop/api-reference/collections/dictionary
 ---
 
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
 # Dictionary API reference for Momento Cache
 This page details the Momento API methods for the [dictionary collection data type](./../datatypes.md#dictionary-collections).
 
