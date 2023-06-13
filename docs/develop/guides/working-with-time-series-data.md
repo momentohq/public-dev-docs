@@ -60,4 +60,4 @@ If you have multiple Sensors pushing data into your cache, consider adding a Set
 
 Time To Live (TTL) Values:
 
-Your TTL value will depend on how long you need to keep the time series data visible for your users. If you're displaying your time series data in a chart on the client application, ensure your earliest time value in the chart is aligned with the TTL for the time series data.
+Your TTL value will depend on how long you need to keep the time series data visible for your users. If you're displaying your time series data in a chart on the client application, ensure your earliest time value in the chart is aligned with the TTL for the time series data. For more specific information on TTL, see [Expiring data with TTL](https://docs.momentohq.com/learn/how-it-works/expire-data-with-ttl).
