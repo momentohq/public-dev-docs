@@ -12,7 +12,7 @@ Temporarily storing time series data enables you to visualize that data without 
 
 You can store time series data with the SortedSet data type. Using SortedSet automatically sorts your data by timestamp, making it easy to visualize that data using charts and graphs. You can take advantage of multiple access patterns using the Momento SDK's SortedSetFetchByRank and SortedSetFetchByScore. Using those methods enables you to retrieve a certain number of datapoints or datapoints for a certain time range.
 
-### Storing time series data in the SortedSet:
+## Storing time series data in the SortedSet:
 Use the Momento SDK's [SortedSetPutElement](https://docs.momentohq.com/develop/api-reference/collections/sortedsets#sortedsetputelement) method to insert items into your SortedSet.
 
 Let's consider a workload for storing IoT sensor data in a Momento Cache.
