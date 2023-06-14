@@ -9,7 +9,7 @@ description: Everything to get you going with coding using PHP and Momento Cache
 # Cheat Sheet for PHP with Momento Cache
 If you need to get going quickly with PHP and Momento Cache, this page contains the basic API calls you'll need.
 
-For more info, you can also see [the PHP SDK on github](https://github.com/momentohq/client-sdk-php).
+For more info, you can also see [the PHP SDK on GitHub](https://github.com/momentohq/client-sdk-php).
 
 ### Prerequisites
 * A Momento auth token is required. You can generate one using [the Momento CLI](https://github.com/momentohq/momento-cli).
