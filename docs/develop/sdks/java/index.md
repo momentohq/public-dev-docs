@@ -10,9 +10,9 @@ description: Information about the Momento Java SDK
 
 Welcome to the Momento Java SDK documentation!
 
-The Momento Java SDK is available via maven central: [`software.momento.java:sdk`](https://central.sonatype.com/artifact/software.momento.java/sdk).
+The Momento Java SDK is available via Maven Central: [`software.momento.java:sdk`](https://central.sonatype.com/artifact/software.momento.java/sdk).
 
-The source code can be found on github: [momentohq/client-sdk-java](https://github.com/momentohq/client-sdk-java).
+The source code can be found on GitHub: [momentohq/client-sdk-java](https://github.com/momentohq/client-sdk-java).
 
 ## Requirements
 
