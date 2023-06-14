@@ -10,9 +10,9 @@ description: Information about the Momento Node.js SDK
 
 Welcome to the Momento Node.js SDK documentation!
 
-The Momento node.js SDK is available via the npm package [`@gomomento/sdk`](https://www.npmjs.com/package/@gomomento/sdk).
+The Momento Node.js SDK is available via the npm package [`@gomomento/sdk`](https://www.npmjs.com/package/@gomomento/sdk).
 
-The source code can be found on github: [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript).
+The source code can be found on GitHub: [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript).
 
 ## Requirements
 
