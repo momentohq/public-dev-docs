@@ -1,25 +1,26 @@
 ---
 sidebar_position: 1
-sidebar_label: Cheat Sheet
+sidebar_label: チートシート
 sidebar_class_name: sidebar-item-php-cheat-sheet
-title: Cheat Sheet for PHP + Momento Cache
-description: Everything to get you going with coding using PHP and Momento Cache
+title: PHP + Momento Cache のためのチートシート
+description: PHP と Momento Cache を使ってコーディングするための全て
 ---
 
-# Cheat Sheet for PHP with Momento Cache
-If you need to get going quickly with PHP and Momento Cache, this page contains the basic API calls you'll need.
+# Momento Cache を PHP で使うためのチートシート
+このページでは、Momento Cache を PHP で素早く使ってみたい方のために必要となる基礎的な API 呼出しを解説しています。
 
-For more info, you can also see [the PHP SDK on github](https://github.com/momentohq/client-sdk-php).
+より詳しい情報は、[GitHub 上の PHP SDK](https://github.com/momentohq/client-sdk-php) でご確認下さい。
 
-### Prerequisites
-* A Momento auth token is required. You can generate one using [the Momento CLI](https://github.com/momentohq/momento-cli).
-* Installation of PHP 8.0 or higher
-* Installation of the [gRPC PHP extension](https://github.com/grpc/grpc/blob/v1.46.3/src/php/README.md).
-* Installation of [Composer](https://getcomposer.org/doc/00-intro.md)  - A common library and dependency manager for PHP.
+### 前提条件
+* Momento 認証トークンが必要。[Momento CLI](https://github.com/momentohq/momento-cli) を使って作成可能です。
+* PHP 8.0 以上をインストール。
+* [gRPC PHP 拡張モジュール](https://github.com/grpc/grpc/blob/v1.46.3/src/php/README.md) をインストール。
+* [Composer](https://getcomposer.org/doc/00-intro.md) をインストール - PHP でよく使われている依存管理ライブラリです。
 
-### Configure composer to get the PHP SDK
+### PHP SDK を使うように composer を設定
 
-Add our repository to your `composer.json` file and our SDK as a dependency:
+`composer.json` ファイルに私達のレポジトリを追加して、私達のSDK を依存として設定します:
+
 
 ```json
 {
@@ -29,10 +30,10 @@ Add our repository to your `composer.json` file and our SDK as a dependency:
 }
 ```
 
-Run `composer update` to install the necessary prerequisites.
+`composer update` を実行して必要な前提条件をインストールします。
 
-## Import libraries and connect to return a CacheClient object
-This code sets up the [example file](https://github.com/momentohq/client-sdk-php/blob/main/examples/example.php)  
+## ライブラリをインポートして、CacheClient オブジェクトを返却して接続する
+このコードが[こちらのファイル例](https://github.com/momentohq/client-sdk-php/blob/main/examples/example.php)のセットアップです。
 
 ```php
 <?php
@@ -68,8 +69,8 @@ function printBanner(string $message, LoggerInterface $logger): void
 printBanner("*                      Momento Example Start                     *", $logger);
 ```
 
-## Create a new cache in Momento Cache
-This function creates a new cache in your Momento account.
+## Momento Cache に新しいキャッシュを作成する
+この関数を使ってアカウント内に新しいキャッシュを作成します。
 
 ```php
 $response = $client->createCache($CACHE_NAME);
@@ -83,8 +84,8 @@ if ($response->asSuccess()) {
 }
 ```
 
-## Get list of existing caches in your account
-In this example, we use the CacheClient function above to list all of the caches for the Momento account and trap any errors.
+## アカウント内の既存のキャッシュをリストする
+この例では、上で作った CacheClient の関数を使って、Momento アカウントにある全てのキャッシュをリストして、全てのエラーをトラップしています。
 
 ```php
 // List cache
@@ -102,8 +103,8 @@ if ($response->asSuccess()) {
 }
 ```
 
-## Write an item to a cache
-A simple example of doing a set operation. In the client.set call, the TTL it optional. If you did pass it in, this would override the default TTL value set with the client connection object.
+## 項目をキャッシュに書き込む
+書込み操作を行うシンプルな例です。client.set 呼出しでは、TTL はオプショナルです。もし TTL を渡すと、クライアント接続オブジェクトに設定されたデフォルトの TTL 値が上書きされます。
 
 ```php
 // Set
@@ -117,8 +118,8 @@ if ($response->asSuccess()) {
 }
 ```
 
-## Read an item from a cache
-This is an example of a simple read operation to get an item from a cache.
+## キャッシュから項目を読み出す
+これは、キャッシュから項目を取得するためのシンプルな読み出し操作です。
 ```php
 // Get
 $logger->info("Getting value for key: $KEY\n");
@@ -134,7 +135,8 @@ if ($response->asHit()) {
 ```
 
 ## Delete the test cache
-An example of deleting the test cache we created earlier.
+## テストキャッシュを削除する
+ここで作成してテストキャッシュを削除する例です。
 
 ```php
 // Delete test cache
@@ -146,5 +148,5 @@ if ($response->asError()) {
 ```
 
 :::info
-Beyond these basic API calls check out the [API reference page](/develop/api-reference/index.mdx) for more information on the full assortment of Momento API calls.
+これらの API 呼出し以上のものは、[API リファレンスページ](/develop/api-reference/index.mdx)で Momento API 呼出しの全種類の詳しい情報をご確認下さい。
 :::
