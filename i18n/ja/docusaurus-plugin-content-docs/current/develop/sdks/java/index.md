@@ -3,30 +3,30 @@ sidebar_position: 6
 title: Momento Java SDK
 pagination_prev: null
 sidebar_label: Java
-description: Information about the Momento Java SDK
+description: Momento Java SDK に関する情報です。
 ---
 
 # Momento Java SDK
 
-Welcome to the Momento Java SDK documentation!
+ようこそ、Momento Java SDK のドキュメントへ！
 
-The Momento Java SDK is available via maven central: [`software.momento.java:sdk`](https://central.sonatype.com/artifact/software.momento.java/sdk).
+Momento Java SDK は Maven Central 経由で利用可能です: [`software.momento.java:sdk`](https://central.sonatype.com/artifact/software.momento.java/sdk).
 
-The source code can be found on github: [momentohq/client-sdk-java](https://github.com/momentohq/client-sdk-java).
+ソースコードは GitHub にあります: [momentohq/client-sdk-java](https://github.com/momentohq/client-sdk-java).
 
-## Requirements
+## 必要条件
 
-- A Momento Auth Token is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
-- At least the java 8 run time installed
-- mvn or gradle for downloading the sdk
+- Momento 認証トークンが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
+- 少なくとも java 8 ランタイムがインストールされている。
+- SDK をダウンロードするために、mvn または gradle
 
-## Resources
+## リソース
 
-- COMING SOON: Java SDK Cheat Sheet
-- [Java SDK Examples](https://github.com/momentohq/client-sdk-java/blob/main/examples/README.md): working example projects that illustrate how to use the Java SDK
-- COMING SOON: Observability: Logging and Client-side Metrics with the Java SDK
-- COMING SOON: Taking your code to prod: Configuration and Error handling in the Java SDK
+- まもなく: Java SDK チートシート
+- [Java SDK 例](https://github.com/momentohq/client-sdk-java/blob/main/examples/README.md): Java SDK の使い方をお見せするための動作可能なプロジェクト例です。
+- まもなく: オブザーバビリティ: Java SDK を使ったロギングとクライアントサイドのメトリクス
+- まもなく: コードを本番環境へ: Java SDK での設定とエラーハンドリング
 
-## Integrations
+## 連携
 
-COMING SOON
+まもなくです。
