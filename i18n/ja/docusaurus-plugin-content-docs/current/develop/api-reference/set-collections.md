@@ -6,6 +6,11 @@ description: Learn how to interact with the API for set collection data types in
 slug: /develop/api-reference/collections/sets
 ---
 
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
 # Set API reference for Momento Cache
 
 A set is a collection of elements, but each element can appear only once and order is not guaranteed.
@@ -115,7 +120,7 @@ Removes multiple elements from an existing set item.
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
 | setName         | String       | Name of the set item to be altered. |
-| element         | String \| Bytes | Element to be removed by this operation.   |
+| elements         | String \| Bytes | Element to be removed by this operation.   |
 
 <details>
   <summary>Method response object</summary>
@@ -136,7 +141,7 @@ Checks if a provided element is in the given set.
 |-----------| --------------- |-----------------------|
 | cacheName | String          | Name of the cache.    |
 | setName   | String          | Name of the set item. |
-| element   | String \| Bytes                 | Name of the element to check existence of.   |
+| element   | String[] \| Bytes[]                 | Names of the elements to check existence of.   |
 
 <details>
   <summary>Method response object</summary>

@@ -6,6 +6,11 @@ description: Learn how to interact with the API for sorted set collection data t
 slug: /develop/api-reference/collections/sortedsets
 ---
 
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
 # Sorted set collections
 
 A sorted set in Momento Cache is a collection of unique elements with a value (String, Byte[], etc.) and score (signed double 64-bit float) pair. The elements in the item are ordered by the score.
