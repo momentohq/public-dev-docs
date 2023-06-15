@@ -3,30 +3,30 @@ sidebar_position: 4
 title: Momento .NET SDK
 pagination_prev: null
 sidebar_label: .NET
-description: Information about the Momento .NET SDK
+description: Momento .NET SDK に関する情報です。
 ---
 
 # Momento .NET SDK
 
-Welcome to the Momento .NET SDK documentation!
+ようこそ、Momento .NET SDK のドキュメントへ！
 
-The Momento .NET SDK is available via the nuget package [`Momento.Sdk`](https://www.nuget.org/packages/Momento.Sdk).
+Momento .NET SDK は [`Momento.Sdk`](https://www.nuget.org/packages/Momento.Sdk) の nuget パッケージとして利用可能です。
 
-The source code can be found on github: [momentohq/client-sdk-dotnet](https://github.com/momentohq/client-sdk-dotnet).
+ソースコードは GitHub にあります: [momentohq/client-sdk-dotnet](https://github.com/momentohq/client-sdk-dotnet)
 
-## Requirements
+## 必要条件
 
-- [`dotnet` runtime and command line tools](https://dotnet.microsoft.com/en-us/download); after installing them, you should have the `dotnet` command on your PATH.
-- A Momento Auth Token is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
-- You will most likely want an IDE that supports .NET development, such as [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs), [JetBrains Rider](https://www.jetbrains.com/rider/), or [Microsoft Visual Studio Code](https://code.visualstudio.com/).
+- [`dotnet` ランタイムとコマンドラインツール](https://dotnet.microsoft.com/en-us/download); インストールが完了したら、`dotnet` コマンドが PATH 内にあることになります。
+- Momento 認証トークンが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
+- 多くの場合、.NET 開発をサポートしている IDE、例えば [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs)、[JetBrains Rider](https://www.jetbrains.com/rider/)、または [Microsoft Visual Studio Code](https://code.visualstudio.com/)等を使った方がいいでしょう。
 
-## Resources
+## リソース
 
-- COMING SOON: .NET SDK Cheat Sheet
-- [.NET SDK Examples](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples/README.md): working example projects that illustrate how to use the .NET SDK
-- COMING SOON: Observability: Logging and Client-side Metrics with the .NET SDK
-- COMING SOON: Taking your code to prod: Configuration and Error handling in the .NET SDK
+- まもなく: .NET SDK チートシート
+- [.NET SDK 例](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples/README.md): .NET SDK の使い方をお見せするための動作可能なプロジェクト例です。
+- まもなく: オブザーバビリティ: .NET SDK を使ったロギングとクライアントサイドのメトリクス
+- まもなく: コードを本番環境へ: .NET SDK での設定とエラーハンドリング
 
-## Integrations
+## 連携
 
-- [Microsoft.Extensions.Caching](https://github.com/chrisoverzero/Momento.Extensions.Caching) - a drop-in replacement that allows you to use Momento Cache with your existing `Microsoft.Extensions.Caching` code!
+- [Microsoft.Extensions.Caching](https://github.com/chrisoverzero/Momento.Extensions.Caching) - 既存の `Microsoft.Extensions.Caching` を使ったコードを置き換えるだけで Momento Cache を利用可能に！

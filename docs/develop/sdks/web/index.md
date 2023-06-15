@@ -11,7 +11,7 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Momento web SDK for Javascript in browsers
+# Momento web SDK for JavaScript in browsers
 
 Momento provides two JavaScript SDKs; [one for Node.js](/develop/sdks/nodejs) and one for other web applications. The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
 
@@ -21,7 +21,7 @@ You can also use the web SDK in other non-Node.js JavaScript environments.
 
 The Momento web SDK is available via the npm package [`@gomomento/sdk-web`](https://www.npmjs.com/package/@gomomento/sdk-web).
 
-The source code can be found on github: [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript).
+The source code can be found on GitHub: [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript).
 
 ## Requirements
 
@@ -43,7 +43,7 @@ This server-side complexity is eliminated by incorporating Momento Topics with t
 
 ## Using the web SDK for browsers
 
-While the API calls are [identical to the Momento node.js SDK](/develop/sdks/nodejs/cheat-sheet.mdx), the import/require statement will consume the `@gomomento/sdk-web` package from npm, instead of `@gomomento/sdk` (which is the Node.js SDK).
+While the API calls are [identical to the Momento Node.js SDK](/develop/sdks/nodejs/cheat-sheet.mdx), the import/require statement will consume the `@gomomento/sdk-web` package from npm, instead of `@gomomento/sdk` (which is the Node.js SDK).
 
 Here's an example import statement for the web SDK:
 
@@ -53,7 +53,7 @@ Here's an example import statement for the web SDK:
 
 In order for your browser application to communicate with Momento services, you will need to provide the browser with a Momento auth token. The recommended practice is to generate a Momento auth token that has expiring credentials for each browser session. This enables the app to distribute tokens without worrying about your data being compromised.
 
-To create a Momento auth token for use in the browser, you will generally have a web application using another Momento SDK such as the node.js SDK. First, you will need to instantiate a Momento `AuthClient`:
+To create a Momento auth token for use in the browser, you will generally have a web application using another Momento SDK such as the Node.js SDK. First, you will need to instantiate a Momento `AuthClient`:
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_InstantiateAuthClient'} />
 

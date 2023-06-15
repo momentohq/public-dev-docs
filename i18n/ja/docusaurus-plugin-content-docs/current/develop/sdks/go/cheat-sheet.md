@@ -1,22 +1,22 @@
 ---
 sidebar_position: 1
-sidebar_label: Cheat Sheet
+sidebar_label: チートシート
 sidebar_class_name: sidebar-item-go
-title: Cheat Sheet for Go
-description: Get started really quickly coding using Go with Momento Cache
+title: Go のためのチートシート
+description: Momento Cache を Go を使ってすぐにコードを書き始めましょう
 pagination_next: null
 ---
 
-# Cheat Sheet for Go with Momento Cache
-If you need to get going quickly with Go and Momento Cache, this page contains the basic API calls you'll need. [Check the Go SDK page](https://github.com/momentohq/client-sdk-go) for this code in a full file format.
+# Momento Cache を Go で使うためのチートシート
+このページでは、Momento Cache を Go で素早く使ってみたい方のために必要となる基礎的な API 呼出しを解説しています。このコードのファイル全体は[Go SDK のページをご確認下さい](https://github.com/momentohq/client-sdk-go)。
 
-## Requirements
+## 必要条件
 
-* [Go installed](https://go.dev/dl/)
-* A Momento Auth Token. Generate one using the form on [Momento web site](https://www.gomomento.com/) or using the Momento CLI.
+* [Go をインストールする](https://go.dev/dl/)
+* Momento 認証トークンが必要。[Momento ウェブサイト](https://www.gomomento.com/)のフォーム、又は Momento CLI を使って作成可能です。
 
-## Create project and install the Momento client library
-If you don't already have a go module created, first run this command in your directory of choice.
+## プロジェクトを作成して、Momento クライアントライブラリをインストールする
+まだ go module を作成していなければ、お好きなディレクトリ上でまず以下のコマンドを実行します。
 ```cli
 # Add an environment variable with your Momento auth token.
 export MOMENTO_AUTH_TOKEN=<auth token that was emailed to you>
@@ -33,13 +33,13 @@ go mod init example/my-example-project
 go get github.com/momentohq/client-sdk-go
 ```
 
-## Copy and paste the code
-To see the entire code sample to run, you can find that in [the Momento Go SDK repository](https://github.com/momentohq/client-sdk-go).
+## コードをコピー＆ペーストする
+実行するコード例の全体像を見るには、[Momento Go SDK レポジトリ](https://github.com/momentohq/client-sdk-go)をご確認下さい。
 
-Let's step through what that code is doing though.
+このコードが実際に何をしているのかを、一つずつ見ていきましょう。
 
-## Import libraries and connect to return a CacheClient object
-This code sets up the main function, the necessary imports, and getting the momento auth token from the environment variables that each of the other functions will utilize.
+## ライブラリをインポートして、CacheClient オブジェクトを返却して接続する
+このコードで、必要なインポート、そしてそれぞれの他の関数が利用する Momento 認証トークンを環境変数から取得して、メイン関数をセットアップします。
 
 ```go
 package main
@@ -71,8 +71,8 @@ func main() {
 	)
 ```
 
-## Create a new cache in Momento Cache
-Use this function to create a new cache in your account.
+## Momento Cache に新しいキャッシュを作成する
+この関数を使ってアカウント内に新しいキャッシュを作成します。
 
 ```go
 // Create Cache
@@ -84,8 +84,8 @@ if err != nil {
 }
 ```
 
-## Write an item to the cache
-A simple example of doing a set operation. In the client.set call, the TTL it optional. If you did pass it in, this would override the default TTL value set with the client connection object.
+## 項目をキャッシュに書き込む
+書込み操作を行うシンプルな例です。client.set 呼出しでは、TTL はオプショナルです。もし TTL を渡すと、クライアント接続オブジェクトに設定されたデフォルトの TTL 値が上書きされます。
 
 ```go
 // Sets key with default TTL and gets value with that key
@@ -102,8 +102,8 @@ if err != nil {
 }
 ```
 
-## Read an item from the cache
-This is an example of a simple read operation to get an item from a cache.
+## キャッシュから項目を読み出す
+これは、キャッシュから項目を取得するためのシンプルな読み出し操作です。
 
 ```go
 log.Printf("Getting key: %s\n", key)
@@ -124,15 +124,15 @@ case *responses.GetMiss:
 }
 ```
 
-## Running the code
-Don't forget to copy and paste the [entire file](https://github.com/momentohq/client-sdk-go), then run this command to execute the code.
+## コードを実行する
+[全ファイル](https://github.com/momentohq/client-sdk-go)をコピー＆ペーストするのを忘れないでください。そうしたら、コードを実行するために以下のコマンドを実行します。
 
 ```cli
 go run main.go
 ```
 
 :::info
-Beyond these basic API calls check out the [API reference page](/develop/api-reference/index.mdx) for more information on the full assortment of Momento API calls.
+これらの API 呼出し以上のものは、[API リファレンスページ](/develop/api-reference/index.mdx)で Momento API 呼出しの全種類の詳しい情報をご確認下さい。
 
-For more code examples, check out the [Momento Go SDK repo](https://github.com/momentohq/client-sdk-go/tree/main/examples).
+さらなるコード例は、[Momento Go SDK レポジトリ](https://github.com/momentohq/client-sdk-go/tree/main/examples)をご確認下さい。
 :::

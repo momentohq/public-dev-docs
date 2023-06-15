@@ -10,9 +10,9 @@ description: Information about the Momento Go SDK
 
 Welcome to the Momento Go SDK documentation!
 
-The Momento go SDK is available to install via github: `go get github.com/momentohq/client-sdk-go`.
+The Momento Go SDK is available to install via GitHub: `go get github.com/momentohq/client-sdk-go`.
 
-The source code can be found on github: [momentohq/client-sdk-go](https://github.com/momentohq/client-sdk-go).
+The source code can be found on GitHub: [momentohq/client-sdk-go](https://github.com/momentohq/client-sdk-go).
 
 ## Requirements
 

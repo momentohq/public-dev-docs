@@ -12,7 +12,7 @@ Welcome to the Momento PHP SDK documentation!
 
 The Momento PHP SDK is available via the Packagist package [`momentohq/client-sdk-php`](https://packagist.org/packages/momentohq/client-sdk-php).
 
-The source code can be found on github: [momentohq/client-sdk-php](https://github.com/momentohq/client-sdk-php).
+The source code can be found on GitHub: [momentohq/client-sdk-php](https://github.com/momentohq/client-sdk-php).
 
 ## Requirements
 
