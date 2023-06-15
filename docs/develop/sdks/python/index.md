@@ -12,7 +12,7 @@ Welcome to the Momento Python SDK documentation!
 
 The Momento Python SDK is available via the pypi package [`momento`](https://pypi.org/project/momento/).
 
-The source code can be found on github: [momentohq/client-sdk-python](https://github.com/momentohq/client-sdk-python).
+The source code can be found on GitHub: [momentohq/client-sdk-python](https://github.com/momentohq/client-sdk-python).
 
 ## Requirements
 
