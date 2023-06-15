@@ -15,7 +15,7 @@ When developing Topics listeners, the two most common approaches to follow are t
 ## Deploying Topics listeners on AWS
 
 Momento Topics listeners require stateful connections to a Momento Cache to pick up new messages in a topic. The absence of stateful connections in AWS Lambda makes it unsuitable for listening to Topics, necessitating deployment in a container. As you might’ve heard, there are quite a few ways to deploy container-based applications on AWS. Let’s talk through a few common options.
-AWS App Runner
+- AWS App Runner
 - Amazon ECS on AWS Fargate
 
 AWS App Runner is an AWS service that provides a fast, simple, and cost-effective way to deploy from source code or a container image directly to a scalable and secure Momento Topics listener application on AWS. AWS App Runner is a great one to use when building new applications, especially if you’re prototyping, if you don’t need all the custom options of other container services, or if you’re new to container-based applications.
