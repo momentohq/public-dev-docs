@@ -1,22 +1,22 @@
 ---
 sidebar_position: 1
-sidebar_label: Cheat Sheet
+sidebar_label: チートシート
 sidebar_class_name: sidebar-item-python-cheat-sheet
-title: Cheat Sheet for Python + Momento Cache
-description: Everything to get you going with coding using Python and Momento Cache
+title: Python + Momento Cache のためのチートシート
+description: Python と Momento Cache を使ってコーディングするための全て
 ---
 
-# Cheat Sheet for Python with Momento Cache
-If you need to get going quickly with Python and Momento Cache, this page contains the basic API calls you'll need.
+# Momento Cache を Python で使うためのチートシート
+このページでは、Momento Cache を Python で素早く使ってみたい方のために必要となる基礎的な API 呼出しを解説しています。
 
 :::tip
 
-If you combine all of the functions on this page into one python file, you'd have a central collection of functions you can import and call from other python code. In addition, if you are using this code in production you might look to replace the print() calls with ones using the logging library (`import logging`) in python. [Click here](../../../../../../../static/code/cheat-sheets/MomentoBasics.py) to see the class file with all definitions in it.
+もしこのページにある全ての関数を1つの python ファイルにまとめた場合、それが他の python コードからインポートして呼び出すことができる関数の集合として使うことができます。加えて、もしこのコードを本番環境で利用する場合には、print() 呼出しを python のロギングライブラリ (`import logging`) に置き換えることになるでしょう。[こちらをクリックして](../../../../../../../static/code/cheat-sheets/MomentoBasics.py)全ての関数を持ったクラスファイルもご確認下さい。
 
 :::
 
-## Import libraries and connect to return a CacheClient object
-This code sets up the class with the necessary imports, the class definition, and the CacheClient instantiation that each of the other functions will need to call.
+## ライブラリをインポートして、CacheClient オブジェクトを返却して接続する
+このコードで、必要なインポート、そしてそれぞれの他の関数が呼び出す必要のある CacheClient を生成して、メイン関数をセットアップします。
 
 ```python
 from datetime import timedelta
@@ -36,8 +36,8 @@ def create_client():
   return CacheClient(**config)
 ```
 
-## Create a new cache in Momento Cache
-Use this function to create a new cache in your account.
+## Momento Cache に新しいキャッシュを作成する
+この関数を使ってアカウント内に新しいキャッシュを作成します。
 ```python
 def create_cache(client, cache_name: str) -> None:
   resp = client.create_cache(cache_name)
@@ -50,8 +50,8 @@ def create_cache(client, cache_name: str) -> None:
         print(f"Unreachable with {error.message}")
 ```
 
-## Get list of existing caches in your account
-In this example, we use the client function above to get a client object and then use it to list all of the caches for this account.
+## アカウント内の既存のキャッシュをリストする
+この例では、上で作った client 関数を使ってクライアントオブジェクトを使い、このアカウントにある全てのキャッシュをリストするために使っています。
 ```python
 def list_caches(client) -> None:
     print("Listing caches:")
@@ -66,8 +66,8 @@ def list_caches(client) -> None:
             print("Unreachable")
     print("")
 ```
-## Write an item to a cache
-A simple example of doing a set operation. In the client.set call, the TTL it optional. If you did pass it in, this would override the default TTL value set with the client connection object.
+## 項目をキャッシュに書き込む
+書込み操作を行うシンプルな例です。client.set 呼出しでは、TTL はオプショナルです。もし TTL を渡すと、クライアント接続オブジェクトに設定されたデフォルトの TTL 値が上書きされます。
 ```python
 def set(client, cache_name, key, value, ttl=None):
   resp = client.set(cache_name, key, value, ttl)
@@ -80,8 +80,8 @@ def set(client, cache_name, key, value, ttl=None):
         print("Unreachable")
 ```
 
-## Read an item from a cache
-This is an example of a simple read operation to get an item from a cache.
+## キャッシュから項目を読み出す
+これは、キャッシュから項目を取得するためのシンプルな読み出し操作です。
 ```python
 def get(client, cache_name, key):
   resp = client.get(cache_name, key)
@@ -94,8 +94,8 @@ def get(client, cache_name, key):
         print("Unreachable")
 ```
 
-## Increment the value of an item in a cache
-An example of incrementing a value in a key. You can pass in a positive or negative integer.
+## キャッシュ内の項目の値を増加する
+キーに対する値を増加させる例です。正または負の整数を渡すことができます。
 ```python
 def incr(client, cache_name, key, value:int = 1):
   resp = client.increment(cache_name, key, value)
@@ -109,8 +109,8 @@ def incr(client, cache_name, key, value:int = 1):
 ```
 
 :::info
-Beyond these basic API calls check out the [API reference page](/develop/api-reference/index.mdx) for more information on the full assortment of Momento API calls.
+これらの API 呼出し以上のものは、[API リファレンスページ](/develop/api-reference/index.mdx)で Momento API 呼出しの全種類の詳しい情報をご確認下さい。
 :::
 
-## Notes of usage
-For any of these functions, call the `create_client()` function which returns a CacheClient object. Then pass that object into subsequent functions. This way, calls are more efficient as they reuse the CacheClient for multiple calls to Momento. [Click here](../../../../../../../static/code/cheat-sheets/MomentoBasics.py) to see a file with all definitions in it.
+## 利用に関する覚書
+これらの関数では、まず CacheClient オブジェクトを返す `create_client()` を呼び出します。そしてそのオブジェクトを後続の関数に渡します。この方法では、Momento への複数の呼出しに対して CacheClient を再利用するので、より効率の良い呼出しになります。[こちらクリックして](../../../../../../../static/code/cheat-sheets/MomentoBasics.py)全ての関数を持ったクラスファイルもご確認下さい。
