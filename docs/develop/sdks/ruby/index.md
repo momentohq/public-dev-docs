@@ -12,7 +12,7 @@ Welcome to the Momento Ruby SDK documentation!
 
 The Momento Ruby SDK is available via the rubygems package [`momento`](https://rubygems.org/gems/momento).
 
-The source code can be found on github: [momentohq/client-sdk-ruby](https://github.com/momentohq/client-sdk-ruby).
+The source code can be found on GitHub: [momentohq/client-sdk-ruby](https://github.com/momentohq/client-sdk-ruby).
 
 ## Requirements
 
