@@ -20,8 +20,8 @@ The source code can be found on github: [momentohq/client-sdk-rust](https://gith
 
 ## Resources
 
-- COMING SOON: Rust SDK Cheat Sheat
-- [Rust SDK Examples](https://github.com/momentohq/client-sdk-rust/blob/main/example/README.md): working example projects that illustrate how to use the Node.js SDK
+- COMING SOON: Rust SDK Cheat Sheet
+- [Rust SDK Examples](https://github.com/momentohq/client-sdk-rust/blob/main/example/README.md): working example projects that illustrate how to use the Rust SDK
 - COMING SOON: Observability: Logging and Client-side Metrics with the Rust SDK
 - COMING SOON: Taking your code to prod: Configuration and Error handling in the Rust SDK
 
