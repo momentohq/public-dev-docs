@@ -107,6 +107,9 @@ Some APIs, such as write APIs (e.g. Set, Delete) only have `Success` and `Error`
 
 In all cases, your IDE will be able to give you hints as to which types of responses are available for a given API, and what properties/methods are available on each of the response types.
 
+For an example of how errors response work and use, watch this video:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/h9FiNCxlZso" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 For more information, see our [Response Objects](/develop/api-reference/response-objects) page, and the docs for the specific SDK that you are using (under `Develop`->`SDKs` in the left nav).
 
 
