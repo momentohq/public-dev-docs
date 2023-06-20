@@ -8,6 +8,8 @@ description: Information about the Momento Go SDK
 
 # Momento Go SDK
 
+<img src="/img/gophers.png" width="90%" alt="a picture of gophers dancing." />
+
 Welcome to the Momento Go SDK documentation!
 
 The Momento Go SDK is available to install via GitHub: `go get github.com/momentohq/client-sdk-go`.
