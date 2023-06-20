@@ -20,11 +20,11 @@ Momento Cache and Momento Topics seek to provide protection for its customers an
 | Time to live (TTL)                                                                                                 | 1 day    |
 | Per [collection (CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts) element size limit | 128KB     |
 
-| Momento Topics limits                 | Value    |
-|---------------------------------------|----------|
-| Subscribers per topic                 | 100      |
-| Message size                          | 100KiB per published message   |
-| Throughput per topic                  | 100 publish requests/sec   |
+| Momento Topics limits | Value                      |
+|-----------------------|----------------------------|
+| Subscribers per cache | 100                        |
+| Message size          | 4KiB per published message |
+| Throughput per cache  | 10 publish requests/sec    |
 
 :::info
 
