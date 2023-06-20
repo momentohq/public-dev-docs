@@ -24,7 +24,7 @@ This intro video (1:38) explains the information you need to know to get going w
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/yErvJ2Bv6dY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-## Text
+## Transcript
 
 If you have never worked with caching or want a refresher on the basics, you're in the right place. In this course, you'll learn what caching is, why it matters, and why a serverless service is a great choice for caching. I'll also walk through the basics of how caching works and caching strategies and how to employ them in your application architecture
 
