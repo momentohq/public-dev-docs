@@ -12,7 +12,7 @@ pagination_next: null
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/76qpwvn262g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-## Text
+## Transcript
 
 A database cache has a temporary storage area for frequently accessed data from a database. The purpose of a database cache is to reduce the number of times the database must be accessed in order to retrieve data. Database caches are used to improve the performance of applications that rely on a database for data storage and retrieval. They can help to reduce the load in the database server and improve the scalability and availability of your application.
 

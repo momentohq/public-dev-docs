@@ -10,7 +10,7 @@ description: Learn about the use of Time to live when caching data in a high spe
 ## Video
 <iframe width="560" height="315" src="https://www.youtube.com/embed/FDmk6RP8-b0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-## Text
+## Transcript
 Time to live or TTL is a value assigned to an item of data stored in a cache. It determines how long the data will remain in the cache before it is considered expired and will no longer be returned to clients if requested. So, why is TTL important?
 
 Well, imagine a situation where the data in the cache is overly stale. This could lead to information that's no longer relevant being displayed to a user, which can sometimes have severe consequences. By setting a TTL value, we can ensure that the data in the cache is   deleted after a given time period has elapsed, and your app knows to refresh the item from the authoritative database.
