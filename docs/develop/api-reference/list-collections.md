@@ -131,7 +131,7 @@ Remove and return the last element from a list item.
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the list item to be retreived.        |
+| listName        | String       | Name of the list item to be retrieved.        |
 
 <details>
   <summary>Method response object</summary>
@@ -155,7 +155,7 @@ Remove and return the first element from a list item.
 | Name            | Type         | Description                                   |
 | --------------- | ------------ | --------------------------------------------- |
 | cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the list item to be retreived.        |
+| listName        | String       | Name of the list item to be retrieved.        |
 
 <details>
   <summary>Method response object</summary>

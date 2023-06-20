@@ -2,7 +2,7 @@
 sidebar_position: 3
 sidebar_label: AWS Secrets Manager
 title: Momento + AWS Secrets Manager
-description: Learn how to retreive your Momento Auth Token in AWS Secrets Manager.
+description: Learn how to retrieve your Momento Auth Token in AWS Secrets Manager.
 ---
 
 import Tabs from '@theme/Tabs';
