@@ -110,13 +110,13 @@ Delete the cache value stored for the given key.
 
 ### Increment
 
-Adds to the value of a field, if and only if the existing value is a UTF-8 string representing a base 10 integer. If the field does not exist, this method sets the field's value to the amount to increment by.
+Adds to the value of an item, if and only if the existing value is a UTF-8 string representing a base 10 integer. If the item does not exist, this method sets the item's value to the amount to increment by.
 
 | Name      | Type   | Description                                     |
 | --------- | ------ | ----------------------------------------------- |
 | cacheName | String | Name of the cache.                              |
-| field       | String | The key under which the value is to be incremented. |
-| amount       | Integer | The quantity to add to the value. May be positive, negative, or zero. Defaults to 1. |
+| key       | String | The key under which the value is to be incremented. |
+| amount    | Integer | The quantity to add to the value. May be positive, negative, or zero. Defaults to 1. |
 
 :::note
 
