@@ -26,7 +26,7 @@ This intro video (1:38) explains the information you need to know to get going w
 
 ## Transcript
 
-If you have never worked with caching or want a refresher on the basics, you're in the right place. In this course, you'll learn what caching is, why it matters, and why a serverless service is a great choice for caching. I'll also walk through the basics of how caching works and caching strategies and how to employ them in your application architecture
+If you have never worked with caching or want a refresher on the basics, you're in the right place. In this course, you'll learn what caching is, why it matters, and why a serverless service is a great choice for caching. I'll also walk through the basics of how caching works and caching strategies and how to employ them in your application architecture.
 
 Let's talk about what is caching. Caching is a technique used in software development to store frequently used data. In a temporary storage area to speed up the performance of an application. The storage area might be in-memory, local disk-based storage, or a distributed caching service. The goal of application caching is to reduce the number of times an application has to retrieve data from a slower storage system, such as a database, an API, or a remote service, and to retrieve that data from a cache closer to where the data is needed.
 
