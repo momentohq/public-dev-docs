@@ -23,6 +23,18 @@ If you want to quickly get a feel for the Momento Cache experience without insta
 
 ![image](/img/getting-started/console.png)
 
+:::info
+
+Momento Console does not currently support the ability to share access to caches between accounts. Momento organizations is coming soon to solve this. In the meantime, we recommend you use internal email lists to manage cache access across your team.
+
+For instance:
+- momento+prod@yourcompany.com
+- momento+dev@yourcompany.com
+
+With this, you can control mailing list access. To login into Momento Console, simply use this mailing list and Momento will send a sign in code via email to the mailing list. Then anyone with access to the mailing list will be able to sign in and view Momento Caches.
+
+:::
+
 ## Step 2: Create an authentication token in the Momento console
 
 In the console, open the menu and select Token.
