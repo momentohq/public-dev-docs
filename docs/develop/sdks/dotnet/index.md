@@ -10,7 +10,7 @@ description: Information about the Momento .NET SDK
 
 Welcome to the Momento .NET SDK documentation!
 
-<img src="/img/net.jpg" width="90%" alt="a picture of abstract shapes as building and nodes of data connecting them at high speed" />
+<img src="/img/net.jpg" width="90%" alt="a picture of a .net being cast into ocean to catch fish." />
 
 The Momento .NET SDK is available via the nuget package [`Momento.Sdk`](https://www.nuget.org/packages/Momento.Sdk).
 
