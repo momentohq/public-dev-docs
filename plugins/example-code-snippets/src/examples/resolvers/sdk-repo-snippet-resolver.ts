@@ -11,6 +11,7 @@ import {PythonSnippetSourceParser} from './source-parsers/languages/python-snipp
 import {CsharpSnippetSourceParser} from './source-parsers/languages/csharp-snippet-source-parser';
 import {PhpSnippetSourceParser} from './source-parsers/languages/php-snippet-source-parser';
 import {JavaSnippetSourceParser} from './source-parsers/languages/java-snippet-source-parser';
+import {ElixirSnippetSourceParser} from './source-parsers/languages/elixir-snippet-source-parser';
 
 export class SdkRepoSnippetResolver implements SnippetResolver {
   private readonly sourceProvider: SdkSourceProvider =
@@ -86,6 +87,8 @@ export class SdkRepoSnippetResolver implements SnippetResolver {
         return new JavaSnippetSourceParser(sourceDir);
       case ExampleLanguage.PHP:
         return new PhpSnippetSourceParser(sourceDir);
+      case ExampleLanguage.ELIXIR:
+        return new ElixirSnippetSourceParser(sourceDir);
       case ExampleLanguage.RUST:
         return undefined;
       case ExampleLanguage.RUBY:
@@ -119,6 +122,8 @@ function sdkForLanguage(language: ExampleLanguage): Sdk {
       return Sdk.RUST;
     case ExampleLanguage.RUBY:
       return Sdk.RUBY;
+    case ExampleLanguage.ELIXIR:
+      return Sdk.ELIXIR;
     case ExampleLanguage.CLI:
       return Sdk.CLI;
     default:

@@ -31,6 +31,8 @@ export function githubRepoNameForSdk(sdk: Sdk): string {
       return 'client-sdk-rust';
     case Sdk.RUBY:
       return 'client-sdk-ruby';
+    case Sdk.ELIXIR:
+      return 'client-sdk-elixir';
     case Sdk.CLI:
       return 'momento-cli';
     default:
