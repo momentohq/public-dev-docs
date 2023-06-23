@@ -68,6 +68,7 @@ function replaceValueWithExampleTabs(literal: unist.Literal): void {
   php={\`${snippetForLanguage(ExampleLanguage.PHP, snippetId)}\`}
   rust={\`${snippetForLanguage(ExampleLanguage.RUST, snippetId)}\`}
   ruby={\`${snippetForLanguage(ExampleLanguage.RUBY, snippetId)}\`}
+  elixir={\`${snippetForLanguage(ExampleLanguage.ELIXIR, snippetId)}\`}
   cli={\`${snippetForLanguage(ExampleLanguage.CLI, snippetId)}\`}
 />
 `;

@@ -11,6 +11,7 @@ export enum Sdk {
   PHP = 'php',
   RUST = 'rust',
   RUBY = 'ruby',
+  ELIXIR = 'elixir',
   CLI = 'cli',
 }
 
@@ -34,6 +35,8 @@ export function sdkDisplayName(sdk: Sdk): string {
       return 'Rust';
     case Sdk.RUBY:
       return 'Ruby';
+    case Sdk.ELIXIR:
+      return 'Elixir';
     case Sdk.CLI:
       return 'Cli';
     default:

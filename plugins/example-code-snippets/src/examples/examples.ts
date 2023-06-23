@@ -13,6 +13,7 @@ export enum ExampleLanguage {
   PHP = 'php',
   RUST = 'rust',
   RUBY = 'ruby',
+  ELIXIR = 'elixir',
   CLI = 'cli',
 }
 
@@ -51,6 +52,8 @@ export function languageDisplayName(language: ExampleLanguage): string {
       return 'Rust';
     case ExampleLanguage.RUBY:
       return 'Ruby';
+    case ExampleLanguage.ELIXIR:
+      return 'Elixir';
     case ExampleLanguage.CLI:
       return 'CLI';
     default:
