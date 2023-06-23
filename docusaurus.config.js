@@ -294,7 +294,7 @@ const config = {
         ],
       },
       prism: {
-        additionalLanguages: ["java", "rust", "csharp", "php"],
+        additionalLanguages: ["java", "rust", "csharp", "php", "elixir"],
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
