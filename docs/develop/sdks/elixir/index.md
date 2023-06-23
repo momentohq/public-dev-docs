@@ -9,6 +9,7 @@ description: Information about the Momento Elixir SDK
 # Momento Elixir SDK
 
 Welcome to the Momento Elixir SDK documentation!
+<img src="/img/elixir.jpg" width="90%" alt="a picture of a fantasy dwarf with an water-based elixir." />
 
 The Momento Elixir SDK is available via the hex package [`gomomento`](https://hex.pm/packages/gomomento).
 
@@ -17,7 +18,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-elixir](https://gi
 ## Requirements
 
 - Elixir version 1.14 or higher is required.
-- A Momento Auth Token is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A Momento auth token is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
 
 ## Resources
 
