@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 7
 title: Momento Elixir SDK
 pagination_prev: null
 sidebar_label: Elixir
