@@ -15,6 +15,8 @@ import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBloc
 
 Momento provides two JavaScript SDKs; [one for Node.js](/develop/sdks/nodejs) and one for other web applications. The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
 
+<img src="/img/web.jpg" width="90%" alt="a picture of abstract web strung between node.js nodes." />
+
 The Node.js SDK is best suited for server-side use cases. The Momento web SDK, however, allows developers to write JavaScript code that runs in a browser and communicates directly with Momento services. This allows you to avoid the typical overhead of building and operating your own web service to mediate cache or pub/sub calls between the browser and Momento. It also means one less hop for your web traffic, so you can get even better performance out of your browser application. The best of both worlds!
 
 You can also use the web SDK in other non-Node.js JavaScript environments.
@@ -25,15 +27,15 @@ The source code can be found on GitHub: [momentohq/client-sdk-javascript](https:
 
 ## Requirements
 
-- A Momento Auth Token is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A Momento auth token is required; you can get one from the [Momento web console](https://console.gomomento.com/).
 
 ## Resources
 
-- [Momento Node.js Cheat Sheet](/develop/sdks/nodejs/cheat-sheet.mdx): this cheat sheet targets the Node.js SDK, but the web SDK APIs are fully compatible.
-- [Example Chat App](https://github.com/momentohq/example-chat-app): fully functional chat application built using the web SDK!
+- [Momento Node.js cheat sheet](/develop/sdks/nodejs/cheat-sheet.mdx): this cheat sheet targets the Node.js SDK, but the web SDK APIs are fully compatible.
+- [Example chat app](https://github.com/momentohq/example-chat-app): fully functional chat application built using the web SDK!
   ![chat screenshot](/img/web-sdk-chat-app.png)
 - [Web SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/README.md): working example projects that illustrate how to use the web SDK
-- COMING SOON: Taking your code to prod: Configuration and Error handling in the web SDK
+- COMING SOON: Taking your code to prod: configuration and error handling in the web SDK
 
 ## Momento web SDK and Momento Topics
 
