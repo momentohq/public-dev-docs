@@ -3,30 +3,30 @@ sidebar_position: 7
 title: Momento Elixir SDK
 pagination_prev: null
 sidebar_label: Elixir
-description: Information about the Momento Elixir SDK
+description: Momento Elixir SDK に関する情報です。
 ---
 
 # Momento Elixir SDK
 
-Welcome to the Momento Elixir SDK documentation!
-<img src="/img/elixir.jpg" width="90%" alt="a picture of a fantasy dwarf with an water-based elixir." />
+ようこそ、Momento Elixir SDK のドキュメントへ！
+<img src="/ja/img/elixir.jpg" width="90%" alt="a picture of a fantasy dwarf with an water-based elixir." />
 
-The Momento Elixir SDK is available via the hex package [`gomomento`](https://hex.pm/packages/gomomento).
+Momento Elixir SDK は [`gomomento`](https://hex.pm/packages/gomomento) の hex パッケージとして利用可能です。
 
-The source code can be found on GitHub: [momentohq/client-sdk-elixir](https://github.com/momentohq/client-sdk-elixir).
+ソースコードは GitHub にあります: [momentohq/client-sdk-elixir](https://github.com/momentohq/client-sdk-elixir)
 
-## Requirements
+## 必要条件
 
-- [Elixir version 1.14](https://elixir-lang.org/install.html) or higher is required.
-- A Momento auth token is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- [Elixir バージョン 1.14](https://elixir-lang.org/install.html) 又はそれ以上が必要です。
+- Momento 認証トークンが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
 
-## Resources
+## リソース
 
-- [Elixir SDK cheat sheet](./cheat-sheet.mdx)
-- [Elixir SDK examples](https://github.com/momentohq/client-sdk-elixir/blob/main/examples/README.md): working example projects that illustrate how to use the Elixir SDK
-- COMING SOON: Observability: Logging and client-side metrics with the Elixir SDK
-- COMING SOON: Taking your code to prod: configuration and error handling in the Elixir SDK
+- [Elixir SDK チートシート](./cheat-sheet.mdx)
+- [Elixir SDK 例](https://github.com/momentohq/client-sdk-elixir/blob/main/examples/README.md): Elixir SDK の使い方をお見せするための動作可能なプロジェクト例です。
+- まもなく: オブザーバビリティ: Elixir SDK を使ったロギングとクライアントサイドのメトリクス
+- まもなく: コードを本番環境へ: Elixir SDK での設定とエラーハンドリング
 
-## Integrations
+## 連携
 
-COMING SOON
+まもなくです。
