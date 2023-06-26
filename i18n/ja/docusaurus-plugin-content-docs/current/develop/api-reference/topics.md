@@ -11,8 +11,8 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Momento Cache装備のMomento Topics（Pub/Sub) APIを使用
-Momento Topicsは、分散型アプリケーションの各部分間でリアルタイム通信を可能にするメッセージングパターンです。トピックの値をパブリッシュ（生産）し、サブスクライブ（消費）します。このページでは、Momento Topics で送受信するための Momento API のメソッドについて詳しく説明します。
+# Momento Cache とともに Momento Topics（pub/sub）APIを使用する
+Momento Topicsは、分散型アプリケーションの各部分間でリアルタイム通信を可能にするメッセージングパターンです。トピックの値をパブリッシュし、サブスクライブします。このページでは、Momento Topics で送受信するための Momento API のメソッドについて詳しく説明します。
 
 詳細は[Momento Topics](./../../introduction/momento-topics.md)をご覧ください。
 
@@ -36,9 +36,9 @@ Momento Topicsは、分散型アプリケーションの各部分間でリアル
 </Tabs>
 
 <details>
-  <summary>メソッド レスポンス オブジェクト</summary>
+  <summary>メソッドレスポンスオブジェクト</summary>
 
-* 成功 - サブスクリプション オブジェクトを返します。
+* 成功 - サブスクリプションオブジェクトを返します。
 * エラー
 
 具体的な情報については[レスポンスオブジェクト](./response-objects.md)をご覧ください。
@@ -55,7 +55,7 @@ Momento Topicsは、分散型アプリケーションの各部分間でリアル
 | 名前            | タイプ            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | キャッシュ名       | String          | トピックが存在するキャッシュの名前です。     |
-| トピック名       | String          | 値をパブリッシュするトピック名です、    |
+| トピック名       | String          | 値をパブリッシュするトピック名です。    |
 | 値           | String / bytes  | 　トピックにパブリッシュする値です。                |
 
 <Tabs>
@@ -68,7 +68,7 @@ Momento Topicsは、分散型アプリケーションの各部分間でリアル
 </Tabs>
 
 <details>
-  <summary>メソッド レスポンス オブジェクト</summary>
+  <summary>メソッドレスポンスオブジェクト</summary>
 
 * 成功
 * 失敗
