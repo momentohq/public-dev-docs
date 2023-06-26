@@ -1,8 +1,8 @@
 ---
 sidebar_position: 4
 sidebar_label: Topics (Pub/Sub)
-title: Topics (pub/sub) API reference
-description: Learn how to interact programmatically with Momento Topics pub/sub API.
+title: Topics (pub/sub) API リファレンス
+description: Momento Topics pub/sub API とプログラムでやりとりする方法を学びます。
 slug: /develop/api-reference/topics
 ---
 
@@ -11,24 +11,24 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Using the Momento Topics (pub/sub) API with Momento Cache
-Momento Topics is a messaging pattern that allows for real-time communication between parts of a distributed application. It enables you to publish (produce) values to a topic, as well as subscribe (consume) from a topic. This page details the Momento API methods for interacting with Momento Topics.
+# Momento Cache装備のMomento Topics（Pub/Sub) APIを使用
+Momento Topicsは、分散型アプリケーションの各部分間でリアルタイム通信を可能にするメッセージングパターンです。トピックの値をパブリッシュ（生産）し、サブスクライブ（消費）します。このページでは、Momento Topics で送受信するための Momento API のメソッドについて詳しく説明します。
 
-For in-depth information, see [Momento Topics](./../../introduction/momento-topics.md).
+詳細は[Momento Topics](./../../introduction/momento-topics.md)をご覧ください。
 
-## Topics methods
+## Topics のメソッド
 
-### Subscribe
-This method subscribes to a topic to receive new values with a stateful connection.
+### サブスクライブ
+このメソッドでは、ステートフルな接続を用いて新しい値を受け取るためにトピックをサブスクライブします。
 
-| Name            | Type            | Description                                   |
+| 名前            | タイプ            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache where the topic exists.     |
-| topicName       | String          | Name of the topic to subscribe to.            |
+| キャッシュ名       | String          | トピックが存在するキャッシュの名前です。     |
+| トピック名       | String          | サブスクライブするトピックの名前です。           |
 
 <Tabs>
   <TabItem value="golang" label="Go" default>
-    This is <a href="https://github.com/momentohq/client-sdk-go/blob/main/examples/pubsub-example/main.go#L26">example code</a>.
+    これが <a href="https://github.com/momentohq/client-sdk-go/blob/main/examples/pubsub-example/main.go#L26">サンプルコード</a>です。
   </TabItem>
   <TabItem value="nodejs" label="Node.js" default>
     Coming soon.
@@ -36,31 +36,31 @@ This method subscribes to a topic to receive new values with a stateful connecti
 </Tabs>
 
 <details>
-  <summary>Method response object</summary>
+  <summary>メソッド レスポンス オブジェクト</summary>
 
-* Success - Returns a subscription object.
-* Error
+* 成功 - サブスクリプション オブジェクトを返します。
+* エラー
 
-See [response objects](./response-objects.md) for specific information.
+具体的な情報については[レスポンスオブジェクト](./response-objects.md)をご覧ください。
 
-With the returned subscription object, once put in a for loop, your code will receive an event when a new value is published to the Topic.
+返されたサブスクリプションオブジェクトをforループに入ると、新しい値がトピックに公開されるとイベントがコードに送信されます。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_TopicSubscribe'} />
 
-### Publish
-Publishes a message to a topic.
+### パブリッシュ
+メッセージをトピックにパブリッシュします。
 
-| Name            | Type            | Description                                   |
+| 名前            | タイプ            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache where the topic exists.     |
-| topicName       | String          | Name of the topic to publish the value to.    |
-| value           | String / bytes  | Value to publish to the topic.                |
+| キャッシュ名       | String          | トピックが存在するキャッシュの名前です。     |
+| トピック名       | String          | 値をパブリッシュするトピック名です、    |
+| 値           | String / bytes  | 　トピックにパブリッシュする値です。                |
 
 <Tabs>
   <TabItem value="golang" label="Go" default>
-    This is <a href="https://github.com/momentohq/client-sdk-go/blob/main/examples/pubsub-example/main.go#L95">example code</a>.
+    こちらが<a href="https://github.com/momentohq/client-sdk-go/blob/main/examples/pubsub-example/main.go#L95">サンプルコード</a>です。
   </TabItem>
   <TabItem value="nodejs" label="Node.js" default>
     Coming soon.
@@ -68,12 +68,12 @@ Publishes a message to a topic.
 </Tabs>
 
 <details>
-  <summary>Method response object</summary>
+  <summary>メソッド レスポンス オブジェクト</summary>
 
-* Success
-* Error
+* 成功
+* 失敗
 
-See [response objects](./response-objects.md) for specific information.
+具体的な情報については[レスポンスオブジェクト](./response-objects.md)をご覧ください。
 
 </details>
 
@@ -81,6 +81,6 @@ See [response objects](./response-objects.md) for specific information.
 
 ## TopicClient
 
-Instead of the CacheClient, as used in most Momento Cache API calls, for Topics you use a TopicClient object.
+ほとんどの Momento Cache API コールでは CacheClient を使用していますが、Topics については TopicClient オブジェクトを使用します。
 
 <SdkExampleTabs snippetId={'API_InstantiateTopicClient'} />
