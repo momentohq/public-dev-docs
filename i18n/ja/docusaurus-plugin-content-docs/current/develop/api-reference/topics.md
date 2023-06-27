@@ -11,20 +11,20 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Momento Cache とともに Momento Topics（pub/sub）APIを使用する
-Momento Topicsは、分散型アプリケーションの各部分間でリアルタイム通信を可能にするメッセージングパターンです。トピックの値をパブリッシュし、サブスクライブします。このページでは、Momento Topics で送受信するための Momento API のメソッドについて詳しく説明します。
+# Momento Cache とともに Momento Topics（pub/sub）API を使用する
+Momento Topics は、分散型アプリケーションの各部分間でリアルタイム通信を可能にするメッセージングパターンです。トピックの値をパブリッシュ(プロデュース)し、トピックからサブスクライブ(コンシューム)することを可能にします。このページでは、Momento Topics で操作するための Momento API メソッドについて詳しく説明します。
 
 詳細は[Momento Topics](./../../introduction/momento-topics.md)をご覧ください。
 
 ## Topics のメソッド
 
-### サブスクライブ
+### Subscribe
 このメソッドでは、ステートフルな接続を用いて新しい値を受け取るためにトピックをサブスクライブします。
 
-| 名前            | タイプ            | 説明                                   |
+| 名前            | 型            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| キャッシュ名       | String          | トピックが存在するキャッシュの名前です。     |
-| トピック名       | String          | サブスクライブするトピックの名前です。           |
+| キャッシュ名       | String          | トピックが存在するキャッシュの名前     |
+| トピック名       | String          | サブスクライブするトピックの名前           |
 
 <Tabs>
   <TabItem value="golang" label="Go" default>
@@ -36,27 +36,27 @@ Momento Topicsは、分散型アプリケーションの各部分間でリアル
 </Tabs>
 
 <details>
-  <summary>メソッドレスポンスオブジェクト</summary>
+  <summary>メソッドのレスポンスオブジェクト</summary>
 
-* 成功 - サブスクリプションオブジェクトを返します。
-* エラー
+* Success - サブスクリプションオブジェクトを返します。
+* Error
 
 具体的な情報については[レスポンスオブジェクト](./response-objects.md)をご覧ください。
 
-返されたサブスクリプションオブジェクトをforループに入ると、新しい値がトピックに公開されるとイベントがコードに送信されます。
+返されたサブスクリプションオブジェクトをforループに置くと、新しい値がトピックに公開される時にコードにイベントが送信されます。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_TopicSubscribe'} />
 
-### パブリッシュ
+### Publish
 メッセージをトピックにパブリッシュします。
 
-| 名前            | タイプ            | 説明                                   |
+| 名前            | 型            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| キャッシュ名       | String          | トピックが存在するキャッシュの名前です。     |
-| トピック名       | String          | 値をパブリッシュするトピック名です。    |
-| 値           | String / bytes  | 　トピックにパブリッシュする値です。                |
+| キャッシュ名       | String          | トピックが存在するキャッシュの名前     |
+| トピック名       | String          | 値をパブリッシュするトピック名    |
+| 値           | String / bytes  | 　トピックにパブリッシュする値                |
 
 <Tabs>
   <TabItem value="golang" label="Go" default>
@@ -68,10 +68,10 @@ Momento Topicsは、分散型アプリケーションの各部分間でリアル
 </Tabs>
 
 <details>
-  <summary>メソッドレスポンスオブジェクト</summary>
+  <summary>メソッドのレスポンスオブジェクト</summary>
 
-* 成功
-* 失敗
+* Success
+* Error
 
 具体的な情報については[レスポンスオブジェクト](./response-objects.md)をご覧ください。
 
