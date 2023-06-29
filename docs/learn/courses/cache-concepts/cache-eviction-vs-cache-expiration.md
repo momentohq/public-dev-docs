@@ -22,7 +22,7 @@ Now that we've established that, let's talk about cache eviction and cache expir
 
 Cache eviction policies determine which data gets removed from the cache when that happens. Some example cache eviction policies include least recently used (LRU), least frequently used (LFU), and random eviction. Cache expiration is the process of removing data from the cache because it's no longer considered fresh or up-to-date. This is typically determined by a value called the cache time to live, or TTL. This value is assigned to each piece of data when it is stored in the cache. When the TTL value is reached, the data is considered expired and is removed from the cache by the service.
 
-To summarize, cache eviction is the process of removing data from the cache to make room for new data while cache expiration is deleting data from the cache because it is no longer considered fresh or up to date. Both of these concepts are important for ensuring the efficiency and effectiveness of a caching system.
+To summarize, cache eviction is the process of removing data from the cache to make room for new data, while cache expiration is deleting data from the cache because it is no longer considered fresh or up-to-date. Both of these concepts are important for ensuring the efficiency and effectiveness of a caching system.
 
 Now that you know these two terms, let's quickly talk about them as they relate to the Momento Cache service. Momento considers cache evictions to be a key indicator of service quality degradation. The service continually monitors this and will add capacity to maintain a buffer for all customers. The service level objective of Momento Cache is to respect the TTL expiry of all cached items and not evict data.
 
