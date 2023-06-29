@@ -11,7 +11,7 @@ description: This cache concepts course gets you going with what you need to kno
 This beginner caching course covers such topics as:
 
 - What is caching
-- What it matters
+- Why it matters
 - Why a serverless service is great for caching
 - How caching works
 - Caching strategies
