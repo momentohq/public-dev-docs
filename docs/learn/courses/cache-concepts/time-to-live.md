@@ -7,19 +7,21 @@ description: Learn about the use of Time to live when caching data in a high spe
 
 # Cache Concepts: Time to live (TTL)
 
+This lesson unpacks the important concept of time to live (TTL), including best practices and common use cases. It also covers defaults and limits for TTL in Momento Cache.
+
 ## Video
 <iframe width="560" height="315" src="https://www.youtube.com/embed/FDmk6RP8-b0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Transcript
-Time to live or TTL is a value assigned to an item of data stored in a cache. It determines how long the data will remain in the cache before it is considered expired and will no longer be returned to clients if requested. So, why is TTL important?
+Time to live, or TTL, is a value assigned to an item of data stored in a cache. It determines how long the data will remain in the cache before it is considered expired and will no longer be returned to clients if requested. So, why is TTL important?
 
-Well, imagine a situation where the data in the cache is overly stale. This could lead to information that's no longer relevant being displayed to a user, which can sometimes have severe consequences. By setting a TTL value, we can ensure that the data in the cache is   deleted after a given time period has elapsed, and your app knows to refresh the item from the authoritative database.
+Well, imagine a situation where the data in the cache is overly stale. This could lead to information that's no longer relevant being displayed to a user, which can sometimes have severe consequences. By setting a TTL value, we can ensure that the data in the cache is deleted after a given time period has elapsed, and your app knows to refresh the item from the authoritative database.
 
 Storing session tokens is a good example use case scenario for TTL. Let's say you want to ensure the session lasts around 30 minutes at most. You set the TTL value on the session token item inserted into the cache for 30 minutes from session creation, and the cache deletes the session token after 30 minutes has elapsed. If your app checks for the token's existence and there's a cache miss, the app knows the user must log in again.
 
-If your app checks for the token's existence, and there's a cache miss, the app knows the user must log in again. But there's a trade-off to consider when setting a TTL value. Suppose you were setting TTL to ensure you have the freshest version of data in the cache from the database. What if you have the value set too low on frequently read data? In that case, the cache will be frequently refreshed by the app. Leading to an increased load on the database and, thus slower performance.
+If your app checks for the token's existence, and there's a cache miss, the app knows the user must log in again. But there's a tradeoff to consider when setting a TTL value. Suppose you were setting TTL to ensure you have the freshest version of data in the cache from the database. What if you have the value set too low on frequently-read data? In that case, the cache will be frequently refreshed by the app, leading to an increased load on the database and, thus slower performance.
 
-On the other hand, if the TTL value is set too high, the data in the cache may become stale and inaccurate. That last part depends on which caching style you use, but that's a topic for another video. I will put a link in the description for more on that subject. Anyhow, finding the right balance for the TTL value is crucial to your application and may take some time to tune, depending on your use case.
+On the other hand, if the TTL value is set too high, the data in the cache may become stale and inaccurate. That last part depends on which caching style you use, but that's a topic for another video. I will put a link in the description ([here](https://docs.momentohq.com/introduction/common-caching-patterns)) for more on that subject. Anyhow, finding the right balance for the TTL value is crucial to your application and may take some time to tune, depending on your use case.
 
 Now that we know what TTL is and how to use it, let's discuss how it relates to the Momento Cache service.
 
