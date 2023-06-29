@@ -111,6 +111,65 @@ run();
 ```
 
   </TabItem>
+  <TabItem value="java" label="Java" default>
+
+```java
+import java.time.Duration;
+import momento.sdk.CacheClient;
+import momento.sdk.auth.CredentialProvider;
+import momento.sdk.config.Configurations;
+import momento.sdk.exceptions.SdkException;
+import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
+import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest;
+import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueResponse;
+
+public class MomentoCacheClient {
+    private static final String AUTH_TOKEN_VAR = "MOMENTO_AUTH_TOKEN";
+    
+    private static CredentialProvider getCredentialsFromSecretsManagerAuthToken() {
+        final Region region = Region.of("us-east-1");
+
+        // Create a Secrets Manager client
+        final SecretsManagerClient client =
+                SecretsManagerClient.builder()
+                        .region(region)
+                        // make sure your AWS credentials are configured in the default profile to use this
+                        .credentialsProvider(DefaultCredentialsProvider.create())
+                        .build();
+
+        final GetSecretValueRequest getSecretValueRequest =
+                GetSecretValueRequest.builder().secretId(AUTH_TOKEN_VAR).build();
+
+        final GetSecretValueResponse getSecretValueResponse;
+
+        try {
+            getSecretValueResponse = client.getSecretValue(getSecretValueRequest);
+        } catch (Exception e) {
+            // For a list of exceptions thrown, see
+            // https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+            throw e;
+        }
+
+        final String secret = getSecretValueResponse.secretString();
+        return CredentialProvider.fromString(secret);
+    }
+
+    public static void main(String[] args) {
+        try (final CacheClient cacheClient =
+                     CacheClient.builder(
+                                     getCredentialsFromSecretsManagerAuthToken(),
+                                     Configurations.Laptop.v1(),
+                                     Duration.ofSeconds(60))
+                             .build()) {
+            // ...refer Java SDK cheat sheet for interacting with Momento! 
+            // https://docs.momentohq.com/develop/sdks/java/cheat-sheet
+        }
+    }
+}
+```
+  </TabItem>
   <TabItem value="typescript" label="TypeScript" default>
 
 This code can be copied into a library file named GetClientFunctions.ts which you import into your own code.
