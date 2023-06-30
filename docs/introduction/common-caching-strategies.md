@@ -10,6 +10,8 @@ description: Learn what serverless is in terms of caching and what Momento Cache
 
 Now that we know the key choices you need to make when implementing a caching strategy, let's review some popular caching patterns. For each pattern, we will describe the pattern, the choices the pattern makes on the three questions above, and when you may want to use that pattern.
 
+![An image of a fast moving city as Momento caching strategies](./../../static/img/common-caching-strategies.jpg)
+
 ## Local browser caching
 
 The first, and perhaps simplest, caching strategy is local browser caching. If you are building a web-based application accessed from a browser, you can use [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to store key-value data in the user's browser. For example, once a user authenticates to your service, you may store some information about the user's ID and profile used to access the service to speed display of your application upon subsequent viewings.

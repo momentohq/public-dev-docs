@@ -7,6 +7,8 @@ description: Learn what serverless is in terms of caching and what Momento Cache
 
 # Common caching patterns
 
+![An image of a fast moving city as Momento caching patterns](./../../static/img/common-caching-patterns.jpg)
+
 **_Caching is fast_**.
 
 With an in-memory system optimized for key-value access, you can get sub-millisecond p99 response times _as measured by the client_. That's fast. And because it's so fast …

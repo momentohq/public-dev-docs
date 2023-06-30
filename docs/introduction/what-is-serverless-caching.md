@@ -10,6 +10,8 @@ description: Learn what serverless is in terms of caching and what Momento Cache
 
 Serverless is one of the hottest trends in software development, and we're seeing an explosion in "serverless-friendly" services.
 
+![An image of a fast moving city as Momento serverless caching services](./../../static/img/serverless-caching.jpg)
+
 We believe Momento Cache is the most serverless-friendly cache available. But what does serverless mean, and why is Momento Cache a serverless-friendly cache?
 
 We'll look at two definitions of serverless plus a group of builders that is interested in serverless-like technologies:
