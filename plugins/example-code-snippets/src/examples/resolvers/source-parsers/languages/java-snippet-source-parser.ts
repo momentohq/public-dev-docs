@@ -8,9 +8,9 @@ import * as path from 'path';
 export class JavaSnippetSourceParser extends RegexSnippetSourceParser {
   constructor(repoSourceDir: string) {
     const wholeFileExamplesDir =
-      'examples/lib/src/main/java/momento/client/example/doc_examples';
+      'examples/cache/src/main/java/momento/client/example/doc_examples';
     const codeSnippetFiles: Array<string> = [
-      'examples/lib/src/main/java/momento/client/example/doc_examples/DocExamplesJavaAPIs.java',
+      'examples/cache/src/main/java/momento/client/example/doc_examples/DocExamplesJavaAPIs.java',
     ];
     super({
       wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),
