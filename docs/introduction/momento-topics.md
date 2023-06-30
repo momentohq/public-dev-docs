@@ -29,7 +29,7 @@ As Momento Topics uses Momento Cache as its backend, you either use an existing 
 
 ## Examples
 
-- [A serverless item publishing microservice](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/lambda-examples/topics-microservice) This micro application written in TypeScript runs on AWS using API Gateway, a Lambda function, and Momento Topics. The microservice can be used by any of your other services (with the correct security) to publish messages to various topics that are then subscribed to by other applications. You pass into this API a `topicName` and `topicValue` and this service publishes the value to that topic.
+- [A serverless item publishing microservice](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/lambda-examples/topics-microservice) This microservice is written in TypeScript and runs on AWS using API Gateway, a Lambda function, and Momento Topics. It can be used by any of your other services (with the correct security on API Gateway) to publish messages to various topics that are then subscribed to by other applications. You pass into this API a `topicName` and `topicValue` and this service publishes the value to that topic.
 
 ## API calls for Momento Topics
 See [API reference page for Topics](./../develop/api-reference/topics.md).
