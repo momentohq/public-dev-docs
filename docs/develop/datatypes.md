@@ -11,6 +11,8 @@ description: Learn the core data types in Momento Cache to match up with common 
 # Supported data types in Momento Cache and Momento Topics
 Momento Cache provides a group of core data types to match up with common types in various modern programming languages. This page has a list of the core data structures and information about each of them.
 
+![An image of a fast moving collection of various data types and ideas](./../../static/img/more-data-types.jpg)
+
 ## Core data types of Momento Cache and Topics
 
 ### Byte arrays
