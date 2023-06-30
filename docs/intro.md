@@ -13,6 +13,8 @@ slug: /
 
 Momento Cache is the world's first truly serverless caching service. It provides instant elasticity, scale-to-zero capability, and blazing-fast performance. Gone are the days where you need to choose, manage, and provision capacity. With Momento Cache, you grab the SDK, you get an end point, input a few lines into your code, and you're off and running.
 
+<img src="/img/dial.jpg" width="90%" alt="a technical illustration on a white background depicting the intersection of speed, ease of use, and security." />
+
 Momento Cache and [Momento Topics](./introduction/momento-topics.md) are available in the following cloud providers and Regions:
 
 **AWS Regions**: us-west-2, us-east-1, eu-west-1, ap-south-1, ap-northeast-1

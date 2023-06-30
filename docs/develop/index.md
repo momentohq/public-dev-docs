@@ -15,6 +15,8 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 Welcome! This page provides information about common constructs you will need in order to assemble Momento clients in all of our SDKs. This page covers how to provide your Momento credentials (called auth tokens), how to configure your client, and some basic information about error handling and production readiness.
 
+<img src="/img/city.jpg" width="90%" alt="a technical illustration on a white background depicting the intersection of speed, ease of use, and security." />
+
 ## Constructing a Cache Client
 
 The `CacheClient` is the main object you will use in your code to interact with Momento services. To instantiate one, you need to pass a `CredentialProvider`, a `Configuration`, and a default time to live (TTL) value. The default TTL determines how long items using that `CacheClient` will be stored in the cache before the cache deletes them. When performing `Set` operations, you can override this TTL value unique to that operation. See [Expire data with Time-to-Live (TTL) in Momento Cache](/learn/how-it-works/expire-data-with-ttl) for more information.
