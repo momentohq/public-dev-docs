@@ -10,7 +10,7 @@ const languageApiSupportMatrixPlugin = require('./plugins/example-code-snippets/
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Momento Cache",
-  tagline: "The World's Fastest Cache",
+  tagline: "Believe in Serverless",
   url: "https://docs.momentohq.com",
   baseUrl: "/",
   projectName: "momentohq.github.io",
