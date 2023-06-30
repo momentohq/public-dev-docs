@@ -11,7 +11,7 @@ description: Learn about Momento Topics, a high-speed, low-drag serverless pub/s
 
 Momento Topics is a high-speed, low-drag serverless pub/sub (publish/subscribe) messaging pattern that allows for real-time communication between parts of a distributed system. Momento Topics allows your apps to subscribe to topics to receive items published to the topic by your app’s publishers. As the Momento Topics service is serverless, there is no infrastructure to create or manage and no pub/sub topic to instantiate. When you publish an item to a topic, if it does not exist yet, the topic is created. As Topics utilizes Momento Cache, there is no scaling either. You’re charged just for [the data transferred in and out](./../manage/pricing).
 
-![image](./../../static/img/pub-sub-smaller.png)
+![An image of a fast moving city as Momento Topics](./../../static/img/topics-city.jpg)
 
 ## How does Momento Topics work?
 
@@ -26,6 +26,10 @@ Momento Topics operates on a fire-and-forget messaging model, which means that o
 As Momento Topics uses Momento Cache as its backend, you either use an existing cache or create a new cache in Momento Cache, then call the [Momento Topics publish and subscribe API](./../develop/api-reference/topics.md).
 
 :::
+
+## Examples
+
+- [A serverless item publishing microservice](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/lambda-examples/topics-microservice) This micro application written in TypeScript runs on AWS using API Gateway, a Lambda function, and Momento Topics. The microservice can be used by any of your other services (with the correct security) to publish messages to various topics that are then subscribed to by other applications. You pass into this API a `topicName` and `topicValue` and this service publishes the value to that topic.
 
 ## API calls for Momento Topics
 See [API reference page for Topics](./../develop/api-reference/topics.md).
