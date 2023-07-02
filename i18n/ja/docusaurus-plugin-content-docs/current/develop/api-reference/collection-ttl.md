@@ -1,43 +1,44 @@
 ---
 sidebar_position: 10
 sidebar_label: CollectionTTL object
-title: CollectionTTL API reference
-description: Learn how to interact with the CollectionTTL object in Momento Cache.
+title: CollectionTTL API リファレンス
+description: Momento Cache の CollectionTTL オブジェクトとのやり取り方法を学びましょう。
 slug: /develop/api-reference/collections/collectionttl
 ---
 
 # CollectionTTL object API reference
 
-This object is passed into API methods to say whether a TTL should be updated and if so, what the new TTL value should be.
+このオブジェクトは、API メソッドに渡され、TTL を更新するかどうか、そして更新する場合は新しい TTL 値を何にするかを指定します。
 
-This tries to make the process more intuitive by providing named constructors and copiers for various situations.
+さまざまな状況に対応するために、名前付きのコンストラクタとコピーを提供することで、プロセスをより直感的に試せます。
 
-See [Expire Data with TTL](../../../learn/how-it-works/expire-data-with-ttl) for more information on how TTL works with Momento Cache.
+Momento Cache における TTL の仕組みについての詳細情報は、[TTL を使用したデータの有効期限切れ](../../../learn/how-it-works/expire-data-with-ttl)を参照してください。こちらのドキュメントでは、Momento Cache において TTL がデータの有効期限管理にどのように機能するかについて詳しく説明されています。
 
 ## Common method behaviors
 
-- If a CollectionTTL is not passed in a function call, a default value of `CollectionTtl.fromCacheTtl()` will be used. This value is the TTL configured on the cache client. 
-- The TTL for the collection will be refreshed any time the collection is modified.
+- もしも関数呼び出し時に CollectionTTL が指定されていない場合、デフォルト値として `CollectionTtl.fromCacheTtl()` が使用されます。この値はキャッシュクライアントに設定された TTL です。
+
+- コレクションが変更されるたびに、コレクションの TTL は更新されます。
 
 ## Constructor parameters
 
 - ttl: duration - (optional)
-    * If no TTL is given, the TTL set in the current client connection object is used.
+    * もし TTL が指定されていない場合、現在のクライアントに接続されているオブジェクトで設定されている TTL が使用されます。
 - refreshTtl: boolean = true
-    * If set to true, the collection’s TTL will be reset to the provided value.
-    * If set to false, the existing TTL set on the item is retained.
+    * もし true に設定されている場合、コレクションの TTL は提供された値にリセットされます。
+    * もし false に設定されている場合、アイテムに設定されている既存の TTL は維持されます。
 
 ## Additional constructors
 
-- fromCacheTtl(): CollectionTtl - uses the client’s TTL, equivalent to `CollectionTtl(null, true)`
-- of(ttl: duration): CollectionTtl - equivalent to `CollectionTtl(ttl, true)`
-- refreshTtlIfProvided(ttl?: duration): CollectionTtl - if a value is provided, it will refresh the item's TTL. If no value is provided, it will not refresh the TTL.
+- fromCacheTtl(): CollectionTtl - クライアントの TTL を使用し、`CollectionTtl(null, true)` と同等の動作をします。
+- of(ttl: duration): CollectionTtl - `CollectionTtl(ttl, true)` と同等の動作をします。
+- refreshTtlIfProvided(ttl?: duration): CollectionTtl - もし値が指定されている場合、アイテムの TTL を更新します。値が指定されていない場合、TTL は更新されません。
 
 ## Instance methods
 
-- ttlSeconds(): duration - Returns the TTL in seconds
-- ttlMilliseconds(): duration - Returns the TTL in milliseconds
-- refreshTtl(): boolean - Sets if the TTL should be refreshed when the item is modified
-- withRefreshTtlOnUpdates(): CollectionTtl - a copy, but refresh is true
-- withNoRefreshTtlOnUpdates(): CollectionTtl - a copy, but refresh is false
-- toString(): displays the TTL in seconds and the refreshTtl configuration
+- ttlSeconds(): duration - TTL を秒単位で返します。
+- ttlMilliseconds(): duration - TTL をミリ秒単位で返します。
+- refreshTtl(): boolean - アイテムが変更された場合に TTL を更新するかどうかを設定します。
+- withRefreshTtlOnUpdates(): CollectionTtl - コピーを作成しますが、リフレッシュは true です。
+- withNoRefreshTtlOnUpdates(): CollectionTtl - コピーを作成しますが、リフレッシュは false です。
+- toString(): TTL を秒単位で表示し、refreshTtl の設定を表示します。
