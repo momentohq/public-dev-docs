@@ -25,7 +25,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-java](https://gith
 ## Resources
 
 - [Java SDK Cheat Sheet](./cheat-sheet.mdx)
-- [Java SDK Examples](https://github.com/momentohq/client-sdk-java/blob/main/examples): working example projects that illustrate how to use the Java SDK
+- [Java SDK Examples](https://github.com/momentohq/client-sdk-java/blob/main/examples/README.md): working example projects that illustrate how to use the Java SDK
 - COMING SOON: Observability: Logging and Client-side Metrics with the Java SDK
 - COMING SOON: Taking your code to prod: Configuration and Error handling in the Java SDK
 
