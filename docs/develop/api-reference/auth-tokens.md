@@ -90,10 +90,10 @@ These objects are used to define the specific role and cache or topic should be 
 ### CachePermission
 A component of a [TokenScope](#tokenscope) object that defines permissions for a cache.
 
-| Name            | Type            | Description                                                            |
-| --------------- | --------------- |------------------------------------------------------------------------|
-| role           | ReadOnly, ReadWrite      | The type of access granted by the permission. These are managed roles. |
-| cache          | CacheSelector      | A permission can be restricted to a select cache by name or AllCaches built-in value. |
+| Name            | Type                  | Description                                                                           |
+| --------------- |-----------------------|---------------------------------------------------------------------------------------|
+| role           | ReadOnly or ReadWrite | The type of access granted by the permission.                                         |
+| cache          | CacheSelector         | A permission can be restricted to a select cache by name or AllCaches built-in value. |
 
 For the role, ReadOnly allows access to all read data plane APIs on caches (e.g. `get`) defined in the CacheSelector. ReadWrite allows all data plane APIs on caches defined in the CacheSelector.
 
@@ -104,15 +104,15 @@ For `role`, there are two managed roles to assign, `CacheRole.ReadWrite` and `Ca
 ### TopicPermission
 A component of a [TokenScope](#tokenscope) object that defines permissions for a token.
 
-| Name            | Type            | Description                                                                           |
-| --------------- | --------------- |---------------------------------------------------------------------------------------|
-| role           | SubscribeOnly, PublishSubscribe      | The type of access granted by the permission. These are managed roles.                |
-| cache          | CacheSelector      | A permission can be restricted to a select cache by name or AllCaches built-in value.               |
-| topic          | TopicSelector      | A permission can be restricted to a select topic by name or AllTopics built-in value. |
+| Name            | Type                              | Description                                                                          |
+| --------------- |-----------------------------------|--------------------------------------------------------------------------------------|
+| role           | SubscribeOnly or PublishSubscribe | The type of access granted by the permission.               |
+| cache          | CacheSelector                     | A permission can be restricted to a select cache by name or AllCaches built-in value.              |
+| topic          | TopicSelector                     | A permission can be restricted to a select topic by name or AllTopics built-in value. |
 
 SubscribeOnly allows only subscription to topics, whereas PublishSubscribe allows publishing as well as subscribing to topics.
 
-When a cache selector is specified, only topics within the cache namespace are allowed by the permission.
+When a `CacheSelector` is specified, only topics within the cache namespace are allowed by the permission.
 
 For `role`, there are two managed roles to assign, `TopicRole.PublishSubscribe` and `TopicRole.SubscribeOnly`. Custom roles are not supported.
 
@@ -169,10 +169,8 @@ No. We only support managed roles listed above for each permission.
 </details>
 
 <details>
-<summary>Do tokens control access to the Momento control plane APIs?</summary>
+<summary>Do these tokens control access to the Momento control plane APIs?</summary>
 
-No. Fine-grained access tokens only control access to the Momento data place APIs.
-
-To create a token to access Momento's control plane APIs, it must be generated using the [Momento console](https://console.gomomento.com/).
+Access tokens created with the [GenerateAuthToken](#generateauthtoken) API only control access to the Momento data place APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
 
 </details>
