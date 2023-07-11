@@ -29,9 +29,9 @@ Generates a new Momento authentication token with the specified permissions and 
   <summary>Method response object</summary>
 
 * Success
-- `authToken`: string - the new auth token
-- `refreshToken`: string - a refresh token that can be used with the `RefreshAuthToken` API to refresh the token before it expires
-- `expiresAt`: Timestamp - the timestamp at which the token will expire
+  - `authToken`: string - the new auth token
+  - `refreshToken`: string - a refresh token that can be used with the `RefreshAuthToken` API to refresh the token before it expires
+  - `expiresAt`: Timestamp - the timestamp at which the token will expire
 * Error
 
 See [response objects](./response-objects) for specific information.
