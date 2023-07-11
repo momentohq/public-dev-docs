@@ -88,7 +88,7 @@ In this case, the token will still allow use of mutating APIs (e.g. `set`) on ca
 These objects are used to define the specific role and cache or topic should be assigned to an auth token's scope. 
 
 ### CachePermission
-A type of [TokenScope](#tokenscope) that defines permissions for a cache.
+A component of a [TokenScope](#tokenscope) object that defines permissions for a cache.
 
 | Name            | Type            | Description                                                            |
 | --------------- | --------------- |------------------------------------------------------------------------|
@@ -102,7 +102,7 @@ For the CacheSelector, the value can be the built-in `AllCaches` or a string val
 For `role`, there are two managed roles to assign, `CacheRole.ReadWrite` and `CacheRole.ReadOnly`. Custom roles are not supported.
 
 ### TopicPermission
-A type of [TokenScope](#tokenscope) that defines permissions for a token.
+A component of a [TokenScope](#tokenscope) object that defines permissions for a token.
 
 | Name            | Type            | Description                                                                           |
 | --------------- | --------------- |---------------------------------------------------------------------------------------|
