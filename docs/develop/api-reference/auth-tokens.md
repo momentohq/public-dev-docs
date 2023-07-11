@@ -116,8 +116,8 @@ When a `CacheSelector` is specified, only topics within the cache namespace are 
 
 For `role`, there are two managed roles to assign, `TopicRole.PublishSubscribe` and `TopicRole.SubscribeOnly`. Custom roles are not supported.
 
-#### Permission object examples
-This is an example of creating a CachePermission.
+#### Topic scope examples
+This is an example of creating a TokenScope with just CachePermissions.
 
 ```javascript
 const permissions = {
@@ -134,7 +134,7 @@ const permissions = {
 };
 ```
 
-This is an example of creating a TopicPermission.
+This is an example of creating a TokenScope with just TopicPermissions.
 
 ```javascript
 const permissions = {
