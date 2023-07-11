@@ -77,15 +77,15 @@ See [response objects](./response-objects) for specific information.
 A TokenScope is an array of [permission objects](#permission-objects). The array can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and the array can contain [up to ten](../../manage/limits) permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
 
 1. A permission object that allows ReadWrite access to all caches for the account 
-2. A permission object that allows ReadOnly access to cache foo
+2. A permission object that allows ReadOnly access to cache `foo`
 
-In this case, the token will still allow use of mutating APIs (e.g. `set`) on cache `foo` because of the first permission.
+In this case, the token will still allow use of data manipulation APIs (e.g. `set`, `delete`, `DictionarySetFields`, etc.) on cache `foo` because of the first permission.
 
 <img src="/img/momento-auth-tokens.png" />
 
 ## Permission Objects
 
-These objects are used to define the specific role and cache or topic should be assigned to an auth token's scope. 
+These objects define the specific role with cache or topic information and then assigned to a [TokenScope](#tokenscope). 
 
 ### CachePermission
 A component of a [TokenScope](#tokenscope) object that defines permissions for a cache.
@@ -95,7 +95,7 @@ A component of a [TokenScope](#tokenscope) object that defines permissions for a
 | role           | ReadOnly or ReadWrite | The type of access granted by the permission.                                         |
 | cache          | CacheSelector         | A permission can be restricted to a select cache by name or AllCaches built-in value. |
 
-For the role, ReadOnly allows access to all read data plane APIs on caches (e.g. `get`) defined in the CacheSelector. ReadWrite allows all data plane APIs on caches defined in the CacheSelector.
+For the role, ReadOnly allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. ReadWrite allows access for all read and write data plane APIs on the caches defined in the CacheSelector.
 
 For the CacheSelector, the value can be the built-in `AllCaches` or a string value of the name of the cache this permission is for.
 
@@ -116,7 +116,7 @@ When a `CacheSelector` is specified, only topics within the cache namespace are 
 
 For `role`, there are two managed roles to assign, `TopicRole.PublishSubscribe` and `TopicRole.SubscribeOnly`. Custom roles are not supported.
 
-#### Topic scope examples
+#### TopicScope examples
 This is an example of creating a TokenScope with just CachePermissions.
 
 ```javascript
