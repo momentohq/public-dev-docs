@@ -20,10 +20,10 @@ These APIs are used to manage Momento authentication tokens and access. Tokens c
 
 Generates a new Momento authentication token with the specified permissions and expiry.
 
-| Name            | Type                      | Description                                                                                       |
-| --------------- |---------------------------|---------------------------------------------------------------------------------------------------|
-| scope           | [TokenScope](#tokenscope) | The permissions to grant to the new token. Pre-built TokenScope objects are provided by the SDKs. |
-| expiresIn       | ExpiresIn                 | The number of seconds until the token automatically expires, or `never`.                          |
+| Name            | Type                       | Description                                                                                       |
+| --------------- |----------------------------|---------------------------------------------------------------------------------------------------|
+| scope           | [TokenScope](#tokenscope)  | The permissions to grant to the new token. Pre-built TokenScope objects are provided by the SDKs. |
+| expiresIn       | Number \| ExpiresIn object | The number of seconds until the token expires or an ExpireIn object calling the `ExpireIn.never()` method.  |
 
 <details>
   <summary>Method response object</summary>
@@ -70,9 +70,9 @@ See [response objects](./response-objects) for specific information.
 <SdkExampleTabs snippetId={'API_RefreshAuthToken'} />
 
 ## TokenScope
-| Name            | Type               | Description                                  |
-| --------------- |--------------------| -------------------------------------------- |
-| permissions           | Array<Permission\> | The permissions to grant to the new token.|
+| Name            | Type                                       | Description                                  |
+| --------------- |--------------------------------------------| -------------------------------------------- |
+| permissions           | Array <[Permission](#permission-objects)\> | The permissions to grant to the new token.|
 
 A TokenScope is an array of [permission objects](#permission-objects). The array can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and the array can contain [up to ten](../../manage/limits) permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
 
@@ -93,13 +93,11 @@ A component of a [TokenScope](#tokenscope) object that defines permissions for a
 | Name            | Type                  | Description                                                                           |
 | --------------- |-----------------------|---------------------------------------------------------------------------------------|
 | role           | ReadOnly or ReadWrite | The type of access granted by the permission.                                         |
-| cache          | CacheSelector         | A permission can be restricted to a select cache by name or AllCaches built-in value. |
+| cache          | `AllCaches` or String   | A permission can be restricted to a select cache by name or AllCaches built-in value. |
 
-For the role, ReadOnly allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. ReadWrite allows access for all read and write data plane APIs on the caches defined in the CacheSelector.
+For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all read and write data plane APIs on the caches defined in the CacheSelector. Custom roles are not supported.
 
-For the CacheSelector, the value can be the built-in `AllCaches` or a string value of the name of the cache this permission is for.
-
-For `role`, there are two managed roles to assign, `CacheRole.ReadWrite` and `CacheRole.ReadOnly`. Custom roles are not supported.
+For cache, the value can be the built-in `AllCaches` or a string value containing the name of the cache this permission is for.
 
 ### TopicPermission
 A component of a [TokenScope](#tokenscope) object that defines permissions for a token.
@@ -107,14 +105,14 @@ A component of a [TokenScope](#tokenscope) object that defines permissions for a
 | Name            | Type                              | Description                                                                          |
 | --------------- |-----------------------------------|--------------------------------------------------------------------------------------|
 | role           | SubscribeOnly or PublishSubscribe | The type of access granted by the permission.               |
-| cache          | CacheSelector                     | A permission can be restricted to a select cache by name or AllCaches built-in value.              |
-| topic          | TopicSelector                     | A permission can be restricted to a select topic by name or AllTopics built-in value. |
+| cache          | `AllCache` or String              | A permission can be restricted to a select cache by name or AllCaches built-in value.              |
+| topic          | `AllCache` or String              | A permission can be restricted to a select topic by name or AllTopics built-in value. |
 
-SubscribeOnly allows only subscription to topics, whereas PublishSubscribe allows publishing as well as subscribing to topics.
+For role, there are two managed roles to assign, `TopicRole.PublishSubscribe` and `TopicRole.SubscribeOnly`. Custom roles are not supported. Using the SubscribeOnly role allows only subscribing to topics, whereas using the PublishSubscribe role allows publishing and subscribing to topics.
 
-When a `CacheSelector` is specified, only topics within the cache namespace are allowed by the permission.
+For cache, only topics within that cache's namespace are allowed by the permission. This can be set to the built-in `AllCache` value or a string specifically naming a cache.
 
-For `role`, there are two managed roles to assign, `TopicRole.PublishSubscribe` and `TopicRole.SubscribeOnly`. Custom roles are not supported.
+For topic, this can be set to the built-in `AllTopics` value, which gives access to all topics in the cache(s) defined in cache or it can be a string with a specific topic name.
 
 #### TopicScope examples
 This is an example of creating a TokenScope with just CachePermissions.
