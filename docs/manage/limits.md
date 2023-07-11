@@ -19,7 +19,7 @@ Momento Cache and Momento Topics seek to provide protection for its customers an
 | Max cache count (per account)                                                                                      | 10             |
 | Time to live (TTL)                                                                                                 | 1 day          |
 | Per [collection (CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts) element size limit | 128KB          |
-| Permissions per [authentication token]()  (hard limit)                                                             | 10             |
+| Permissions per [authentication token](./../develop/api-reference/auth-tokens.md)  (hard limit)                    | 10             |
 
 | Momento Topics limits | Value                      |
 |-----------------------|----------------------------|
