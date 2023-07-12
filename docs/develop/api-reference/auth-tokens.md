@@ -172,3 +172,10 @@ No. We only support the managed roles listed above for each permission.
 Access tokens generated with the [GenerateAuthToken](#generateauthtoken) API only control access to the Momento data plane APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
 
 </details>
+
+<details>
+<summary>Can I have write only or publish only permissions?</summary>
+
+We do not support 'write only' or 'publish only' permissions. If this is something you need, please [contact us](mailto:support@momentohq.com) and let's discuss your needs.
+
+</details>
