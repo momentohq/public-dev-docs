@@ -83,7 +83,7 @@ A TokenScope is an list of [permission objects](#permission-objects). The list c
 
 In this case, the token will still allow use of data manipulation APIs (e.g. `set`, `delete`, `DictionarySetFields`, etc.) on cache `foo` because of the first permission.
 
-## Permission Objects
+## Permission objects
 
 These objects define the specific role with cache or topic information and are then assigned to a [TokenScope](#tokenscope). 
 
