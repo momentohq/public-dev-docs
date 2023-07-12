@@ -1,8 +1,8 @@
 ---
 sidebar_position: 7
-title: Authentication control token API reference information
-sidebar_label: Authentication control tokens
-description: Learn the authentication control token API calls you need to know about and how to use them with Momento services.
+title: Auth control token API reference information
+sidebar_label: Auth control tokens
+description: Learn the auth control token API calls you need to know about and how to use them with Momento services.
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -10,20 +10,20 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Authentication control API reference
+# Auth control API reference
 
 <img src="/img/access-tokens.jpg" width="90%" alt="a technical illustration of a bank vault representing security, authorization, and authentication." />
 
-These APIs are used to manage Momento authentication tokens and access. Tokens can be scoped to have one or more roles to give access to one or more caches or topics.
+These APIs are used to manage Momento auth tokens and access. Tokens can be scoped to have one or more permissions to give access to one or more caches or topics.
 
 ## GenerateAuthToken
 
-Generates a new Momento authentication token with the specified permissions and expiry.
+Generates a new Momento auth token with the specified permissions and expiry.
 
-| Name            | Type                       | Description                                                                                       |
-| --------------- |----------------------------|---------------------------------------------------------------------------------------------------|
-| scope           | [TokenScope](#tokenscope)  | The permissions to grant to the new token. Pre-built TokenScope objects are provided by the SDKs. |
-| expiresIn       | Number \| ExpiresIn object | The number of seconds until the token expires or an ExpireIn object calling the `ExpireIn.never()` method.  |
+| Name            | Type                       | Description                                                                                                                                               |
+| --------------- |----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| scope           | [TokenScope](#tokenscope)  | The permissions to grant to the new token. Pre-built TokenScope objects are provided by the SDKs.                                                         |
+| expiresIn       | Number \| ExpiresIn object | The number of seconds until the token expires or an ExpireIn object calling the `ExpireIn.never()`, `ExpireIn.minutes()`, or `ExpireIn.hours()` methods. |
 
 <details>
   <summary>Method response object</summary>
@@ -110,7 +110,7 @@ A component of a [TokenScope](#tokenscope) object that defines permissions for a
 
 For role, there are two managed roles to assign, `TopicRole.PublishSubscribe` and `TopicRole.SubscribeOnly`. Custom roles are not supported. Using the SubscribeOnly role allows only subscribing to topics, whereas using the PublishSubscribe role allows publishing and subscribing to topics.
 
-For cache, only topics within that cache's namespace are allowed by the permission. This can be set to the built-in `AllCache` value or a string specifically naming a cache.
+For cache, only topics within that cache's namespace are allowed by the permission. This can be set to the built-in `AllCaches` value or a string specifically naming a cache.
 
 For topic, this can be set to the built-in `AllTopics` value, which gives access to all topics in the cache(s) defined in cache or it can be a string with a specific topic name.
 
