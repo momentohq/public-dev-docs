@@ -1,8 +1,8 @@
 ---
 sidebar_position: 7
-title: Auth control token API reference information
-sidebar_label: Auth control tokens
-description: Learn the auth control token API calls you need to know about and how to use them with Momento services.
+title: Access control token API reference information
+sidebar_label: Access control tokens
+description: Learn the access control token API calls you need to know about and how to use them with Momento services.
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -10,11 +10,11 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Auth control API reference
+# Access control API reference
 
 <img src="/img/access-tokens.jpg" width="90%" alt="a technical illustration of a bank vault representing security, authorization, and authentication." />
 
-These APIs are used to manage Momento auth tokens and access. Tokens can be scoped to have one or more permissions to give access to one or more caches or topics.
+These APIs are used to manage Momento auth tokens and access to services. Tokens can be scoped to have one or more permissions to grant access to one or more caches or topics.
 
 ## GenerateAuthToken
 
