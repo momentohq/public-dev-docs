@@ -20,10 +20,10 @@ These APIs are used to manage Momento auth tokens and access. Tokens can be scop
 
 Generates a new Momento auth token with the specified permissions and expiry.
 
-| Name            | Type                       | Description                                                                                                                                               |
-| --------------- |----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| scope           | [TokenScope](#tokenscope)  | The permissions to grant to the new token. Pre-built TokenScope objects are provided by the SDKs.                                                         |
-| expiresIn       | Number \| ExpiresIn object | The number of seconds until the token expires or an ExpireIn object calling the `ExpireIn.never()`, `ExpireIn.minutes()`, or `ExpireIn.hours()` methods. |
+| Name            | Type                       | Description                                                                                                                                                                             |
+| --------------- |----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| scope           | [TokenScope](#tokenscope)  | The permissions to grant to the new token. Pre-built TokenScope objects are provided by the SDKs.                                                                                       |
+| expiresIn       | Number \| ExpiresIn object | The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the `ExpiresIn.never()`, `ExpiresIn.minutes()`, or `ExpiresIn.hours()` methods. |
 
 <details>
   <summary>Method response object</summary>
@@ -72,11 +72,11 @@ See [response objects](./response-objects) for specific information.
 <img src="/img/momento-auth-tokens.png" />
 
 ## TokenScope
-| Name            | Type                                       | Description                                  |
-| --------------- |--------------------------------------------| -------------------------------------------- |
-| permissions           | Array <[Permission](#permission-objects)\> | The permissions to grant to the new token.|
+| Name            | Type                                      | Description                                  |
+| --------------- |-------------------------------------------| -------------------------------------------- |
+| permissions           | List <[Permission](#permission-objects)\> | The permissions to grant to the new token.|
 
-A TokenScope is an array of [permission objects](#permission-objects). The array can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and the array can contain [up to ten](../../manage/limits) permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
+A TokenScope is an list of [permission objects](#permission-objects). The list can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and can contain [up to ten](../../manage/limits) permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
 
 1. A permission object that allows ReadWrite access to all caches for the account 
 2. A permission object that allows ReadOnly access to cache `foo`
@@ -85,7 +85,7 @@ In this case, the token will still allow use of data manipulation APIs (e.g. `se
 
 ## Permission Objects
 
-These objects define the specific role with cache or topic information and then assigned to a [TokenScope](#tokenscope). 
+These objects define the specific role with cache or topic information and then are assigned to a [TokenScope](#tokenscope). 
 
 ### CachePermission
 A component of a [TokenScope](#tokenscope) object that defines permissions for a cache.
