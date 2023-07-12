@@ -10,7 +10,7 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Access control API reference
+# Authentication control API reference
 
 <img src="/img/access-tokens.jpg" width="90%" alt="a technical illustration of a bank vault representing security, authorization, and authentication." />
 
@@ -30,7 +30,7 @@ Generates a new Momento authentication token with the specified permissions and 
 
 * Success
   - `authToken`: string - the new auth token
-  - `refreshToken`: string - a refresh token that can be used with the `RefreshAuthToken` API to refresh the token before it expires
+  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshauthtoken) to refresh a token before it expires
   - `expiresAt`: Timestamp - the timestamp at which the token will expire
 * Error
 
@@ -58,9 +58,9 @@ Refreshes an existing, unexpired Momento auth token.  Produces a new auth token 
   <summary>Method response object</summary>
 
 * Success
-- `authToken`: string - the new auth token
-- `refreshToken`: string - a refresh token that can be used with the `RefreshAuthToken` API to refresh the token before it expires
-- `expiresAt`: Timestamp - the timestamp at which the token will expire
+  - `authToken`: string - the new auth token
+  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshauthtoken) to refresh the token before it expires
+  - `expiresAt`: Timestamp - the timestamp at which the token will expire
 * Error
 
 See [response objects](./response-objects) for specific information.
@@ -68,6 +68,8 @@ See [response objects](./response-objects) for specific information.
 </details>
 
 <SdkExampleTabs snippetId={'API_RefreshAuthToken'} />
+
+<img src="/img/momento-auth-tokens.png" />
 
 ## TokenScope
 | Name            | Type                                       | Description                                  |
@@ -81,8 +83,6 @@ A TokenScope is an array of [permission objects](#permission-objects). The array
 
 In this case, the token will still allow use of data manipulation APIs (e.g. `set`, `delete`, `DictionarySetFields`, etc.) on cache `foo` because of the first permission.
 
-<img src="/img/momento-auth-tokens.png" />
-
 ## Permission Objects
 
 These objects define the specific role with cache or topic information and then assigned to a [TokenScope](#tokenscope). 
@@ -92,8 +92,8 @@ A component of a [TokenScope](#tokenscope) object that defines permissions for a
 
 | Name            | Type                  | Description                                                                           |
 | --------------- |-----------------------|---------------------------------------------------------------------------------------|
-| role           | ReadOnly or ReadWrite | The type of access granted by the permission.                                         |
-| cache          | `AllCaches` or String   | A permission can be restricted to a select cache by name or AllCaches built-in value. |
+| role           | ReadOnly \| ReadWrite | The type of access granted by the permission.                                         |
+| cache          | `AllCaches` \| String | A permission can be restricted to a select cache by name or AllCaches built-in value. |
 
 For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all read and write data plane APIs on the caches defined in the CacheSelector. Custom roles are not supported.
 
@@ -104,9 +104,9 @@ A component of a [TokenScope](#tokenscope) object that defines permissions for a
 
 | Name            | Type                              | Description                                                                          |
 | --------------- |-----------------------------------|--------------------------------------------------------------------------------------|
-| role           | SubscribeOnly or PublishSubscribe | The type of access granted by the permission.               |
-| cache          | `AllCache` or String              | A permission can be restricted to a select cache by name or AllCaches built-in value.              |
-| topic          | `AllCache` or String              | A permission can be restricted to a select topic by name or AllTopics built-in value. |
+| role           | SubscribeOnly \| PublishSubscribe | The type of access granted by the permission.               |
+| cache          | `AllCache` \| String              | A permission can be restricted to a select cache by name or AllCaches built-in value.              |
+| topic          | `AllCache` \| String              | A permission can be restricted to a select topic by name or AllTopics built-in value. |
 
 For role, there are two managed roles to assign, `TopicRole.PublishSubscribe` and `TopicRole.SubscribeOnly`. Custom roles are not supported. Using the SubscribeOnly role allows only subscribing to topics, whereas using the PublishSubscribe role allows publishing and subscribing to topics.
 
@@ -118,7 +118,7 @@ For topic, this can be set to the built-in `AllTopics` value, which gives access
 This is an example of creating a TokenScope with just CachePermissions.
 
 ```javascript
-const permissions = {
+const CachePermissions = {
     permissions: [
         {
             role: CacheRole.ReadWrite, // Managed role
@@ -135,7 +135,7 @@ const permissions = {
 This is an example of creating a TokenScope with just TopicPermissions.
 
 ```javascript
-const permissions = {
+const TopicsPermissions = {
     permissions: [
       {
         role: TopicRole.PublishSubscribe, // Managed role
@@ -162,13 +162,13 @@ If you have any questions not answered here, please jump on [our Discord server]
 <details>
 <summary>Can I create a custom role for a cache or topic permission?</summary>
 
-No. We only support managed roles listed above for each permission.
+No. We only support the managed roles listed above for each permission.
 
 </details>
 
 <details>
 <summary>Do these tokens control access to the Momento control plane APIs?</summary>
 
-Access tokens created with the [GenerateAuthToken](#generateauthtoken) API only control access to the Momento data place APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
+Access tokens generated with the [GenerateAuthToken](#generateauthtoken) API only control access to the Momento data plane APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
 
 </details>
