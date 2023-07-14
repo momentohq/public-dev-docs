@@ -22,10 +22,10 @@ The auth APIs create and manage authorization tokens for Momento services, known
 
 Generates a new Momento auth token with the specified permissions and expiry.
 
-| Name            | Type                       | Description                                                                                                                                                                             |
-| --------------- |----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| scope           | [TokenScope](#tokenscope)  | The permissions to grant to the new token. Pre-built TokenScope objects are provided by the SDKs.                                                                                       |
-| expiresIn       | Number \| ExpiresIn object | The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the `ExpiresIn.never()`, `ExpiresIn.minutes()`, or `ExpiresIn.hours()` methods. |
+| Name            | Type                      | Description                                                                                                                                                                             |
+| --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| scope           | [TokenScope](#tokenscope) | The permissions to grant to the new token. Pre-built TokenScope objects are provided by the SDKs.                                                                                       |
+| expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the `ExpiresIn.never()`, `ExpiresIn.minutes()`, or `ExpiresIn.hours()` methods. |
 
 <details>
   <summary>Method response object</summary>
@@ -90,10 +90,10 @@ These objects define the specific role with cache or topic information and are t
 ### CachePermission
 A component of a [TokenScope](#tokenscope) object that defines permissions for a cache.
 
-| Name            | Type                  | Description                                                                                                      |
-| --------------- |-----------------------|------------------------------------------------------------------------------------------------------------------|
-| role           | ReadOnly \| ReadWrite | The type of access granted by the permission.                                                                    |
-| cache          | `AllCaches` \| `CacheName` | A permission can be restricted to a select cache by name using a `CacheName` object or `AllCaches` built-in value. |
+| Name            | Type                 | Description                                                                                                      |
+| --------------- |----------------------|------------------------------------------------------------------------------------------------------------------|
+| role           | ReadOnly&nbsp;&nbsp;\|&nbsp;&nbsp;ReadWrite | The type of access granted by the permission.                                                                    |
+| cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | A permission can be restricted to a select cache by name using a `CacheName` object or `AllCaches` built-in value. |
 
 For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all read and write data plane APIs on the caches defined in the CacheSelector. Custom roles are not supported.
 
@@ -121,11 +121,11 @@ const CachePermissions = {
 ### TopicPermission
 A component of a [TokenScope](#tokenscope) object that defines permissions for a token.
 
-| Name            | Type                             | Description                                                                                                                                                                                                            |
-| --------------- |----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| role           | SubscribeOnly \| PublishSubscribe | The type of access granted by the permission.                                                                                                                                                                          |
-| cache          | `AllCaches` \| `CacheName`       | A permission can be restricted to a select cache by name using a `CacheName` object or to all caches in the account by using the `AllCaches` built-in value.                                                           |
-| topic          | `AllTopics` \| `TopicName`       | A permission can be restricted to a select topic by name using a `TopicName` object or to all topics in the above cache(s) by using the `AllTopics` built-in value. |
+| Name            | Type                            | Description                                                                                                                                                                                                            |
+| --------------- |---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| role           | SubscribeOnly&nbsp;\|&nbsp;PublishSubscribe | The type of access granted by the permission.                                                                                                                                                                          |
+| cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | A permission can be restricted to a select cache by name using a `CacheName` object or to all caches in the account by using the `AllCaches` built-in value.                                                           |
+| topic          | `AllTopics`&nbsp;&nbsp;\|&nbsp;&nbsp;`TopicName`       | A permission can be restricted to a select topic by name using a `TopicName` object or to all topics in the above cache(s) by using the `AllTopics` built-in value. |
 
 For role, there are two managed roles to assign, `TopicRole.PublishSubscribe` and `TopicRole.SubscribeOnly`. Custom roles are not supported. Using the SubscribeOnly role allows only subscribing to topics, whereas using the PublishSubscribe role allows publishing and subscribing to topics.
 
