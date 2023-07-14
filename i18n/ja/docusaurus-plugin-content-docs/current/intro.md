@@ -18,7 +18,7 @@ Momento キャッシュと[Momento トピックス](./introduction/momento-topic
 
 **AWSのリージョン**: us-west-2, us-east-1, eu-west-1, ap-south-1, ap-northeast-1
 
-**GCPのリージョン**: us-central1, us-east4
+**GCPのリージョン**: us-central1
 
 ## キャッシュとは何か、MomentoキャッシュそしてMomentoトピックスについて学ぶ
 
