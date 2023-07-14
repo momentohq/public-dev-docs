@@ -1,8 +1,8 @@
 ---
 sidebar_position: 2
 sidebar_label: Lists
-title: List API reference
-description: Learn how to interact with the API for list collection data types in Momento Cache.
+title: List API リファレンス
+description: Momento Cache内のリストコレクションデータ型のAPIとのやり取り方法を学びましょう。
 slug: /develop/api-reference/collections/list
 ---
 
@@ -13,103 +13,104 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # List API reference for Momento Cache
 This page details the Momento API methods for the [list collection data types](./../datatypes.md#list-collections).
+このページでは、[リストコレクションデータ型](./../datatypes.md#list-collections)の Momento API メソッドの詳細を説明しています。
 
 ## List methods
 
 ### ListFetch
 
-Gets a list item from a cache, with optional slices.
+キャッシュからリストアイテムを取得し、オプションでスライスを指定します。
 
-| Name       | Type   | Description                                                                 |
+| 名前       | 型   | 説明                                                                 |
 |------------|--------|-----------------------------------------------------------------------------|
-| cacheName  | String | Name of the cache.                                                          |
-| listName   | String | The name of the list item to be retrieved.                                  |
-| startIndex | Number | The starting inclusive element of the list to fetch. Default is 0. **This argument is optional.** |
-| endIndex   | Number | The ending exclusive element of the list to fetch. Default is end of list. **This argument is optional.** |
+| cacheName  | String | キャッシュの名前.                                                          |
+| listName   | String | 取得するリストアイテムの名前。                                  |
+| startIndex | Number | 取得するリストの開始位置（含む要素）。デフォルトは0です。 **この引数はオプションです。** |
+| endIndex   | Number | 取得するリストの終了位置（含まない要素）。デフォルトはリストの末尾です。 **この引数はオプションです。**|
 
 <details>
   <summary>Method response object</summary>
 
-The response object for ListFetch returns three possible options, a cache hit, miss, or an error.
+ListFetch のレスポンスオブジェクトには、キャッシュのヒット、ミス、またはエラーの3つの可能なオプションがあります。
 
 * Hit
     * valueListBytes(): Bytes[]
     * valueListString(): String[]
-    * toString(): String - Display a truncated valueListString(). See [truncation](#truncate-to-size).
+    * toString(): String - valueListString() のトランケーションされた値を表示します。[詳細は、トランケーションを参照してください。](#truncate-to-size)
 * Miss
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+特定の情報については、 [レスポンスオブジェクト](./response-objects.md) を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_ListFetch'} />
 
 ### ListConcatenateBack
-Appends the supplied list to the end of an existing list item.
+指定されたリストを既存のリストアイテムの末尾に追加します。
 
-Example:
+例:
 
-If you have [1, 2, 3] and listConcatenateBack [4, 5, 6] you will have [1, 2, 3, 4, 5, 6].
+もし[1, 2, 3]と listConcatenateBack [4, 5, 6]がある場合、[1, 2, 3, 4, 5, 6]となります。
 
-| Name            | Type                | Description                                   |
+| 名前            | 型                | 説明                                   |
 | --------------- | ------------------- | --------------------------------------------- |
-| cacheName       | String              | Name of the cache.                            |
-| listName        | String              | Name of the list item to be set. |
-| values          | String[] \| Bytes[] | Values to be added as elements to the list item. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache client connection object. |
-| truncateFrontToSize | Number | See [truncate to size](#truncate-to-size). |
+| cacheName       | String              | キャッシュの名前                            |
+| listName        | String              | 設定するリストアイテムの名前 |
+| values          | String[] \| Bytes[] | リストアイテムに追加する要素としての値|
+| ttl             | [CollectionTTL object](./collection-ttl.md) | キャッシュ内のリストアイテムの TTL（有効期限）。この TTL は、キャッシュクライアント接続オブジェクトを初期化する際に使用される TTL よりも優先されます。 |
+| truncateFrontToSize | Number | [truncate to size](#truncate-to-size)を確認してください。 |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-    * `listLength()`: Number - the new length of the list
-    * `toString()`: String - add the listLength
+    * `listLength()`: Number - リストの新しい長さ
+    * `toString()`: String - listLength を追加
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+特定の情報については、 [レスポンスオブジェクト](./response-objects.md) を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_ListConcatenateBack'} />
 
 ### ListConcatenateFront
-Appends the supplied list to the front of an existing list item.
+既存のリストアイテムの前に指定されたリストを追加します。
 
-Example:
+例:
 
-If you have [1, 2, 3] and listConcatenateFront [4, 5, 6] you will have [4, 5, 6, 1, 2, 3].
+もし [1, 2, 3] があり、listConcatenateFront に [4, 5, 6] を追加すると、[4, 5, 6, 1, 2, 3] になります。
 
-| Name            | Type         | Description                                   |
+| 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the list item to be set.              |
-| values          | String[] \| Bytes[] | Values to be added as elements to the list item. |
-| ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
-| truncateBackToSize | Number | See [truncate to size](#truncate-to-size). |
+| cacheName       | String       | キャッシュの名前                          |
+| listName        | String       | 設定するリストアイテムの名前             |
+| values          | String[] \| Bytes[] | リストアイテムに追加される要素の値。|
+| ttl          | [CollectionTTL object](./collection-ttl.md) | キャッシュ内のリストアイテムの TTL（Time To Live）。この TTL は、キャッシュクライアントを初期化する際に使用される TTL よりも優先されます。 |
+| truncateBackToSize | Number | [truncate to size](#truncate-to-size)を確認してください。 |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-    * `listLength()`: Number - the new length of the list item
-    * `toString()`: String - add the listLength
+    * `listLength()`: Number - リストアイテムの新しい長さ
+    * `toString()`: String - listLength を追加。
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+特定の情報については、 [レスポンスオブジェクト](./response-objects.md) を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_ListConcatenateFront'} />
 
 ### ListLength
-Get the length of an existing list item
+既存のリストアイテムの長さを取得します。
 
-| Name            | Type         | Description                                   |
+| 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the list item to be checked.          |
+| cacheName       | String       | キャッシュの名前                            |
+| listName        | String       | 確認するリストアイテムの名前です。         |
 
 <details>
   <summary>Method response object</summary>
@@ -119,19 +120,19 @@ Get the length of an existing list item
 * Miss
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+特定の情報については、 [レスポンスオブジェクト](./response-objects.md) を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_ListLength'} />
 
 ### ListPopBack
-Remove and return the last element from a list item.
+リストアイテムから最後の要素を削除して返します。
 
-| Name            | Type         | Description                                   |
+| 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the list item to be retreived.        |
+| cacheName       | String       | キャッシュの名前                            |
+| listName        | String       | 削除して返すリストアイテムの名前です。        |
 
 <details>
   <summary>Method response object</summary>
@@ -139,23 +140,23 @@ Remove and return the last element from a list item.
 * Hit
     * `valueString()`: String
     * `valueBytes()`: Bytes
-    * `toString()`: truncated valueString()
+    * `toString()`: 切り詰められた valueString() です。
 * Miss
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+特定の情報については、 [レスポンスオブジェクト](./response-objects.md) を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_ListPopBack'} />
 
 ### ListPopFront
-Remove and return the first element from a list item.
+リストアイテムから最初の要素を削除して返します。
 
-| Name            | Type         | Description                                   |
+| 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the list item to be retreived.        |
+| cacheName       | String       | キャッシュの名前                            |
+| listName        | String       | 取得するリストアイテムの名前        |
 
 <details>
   <summary>Method response object</summary>
@@ -163,88 +164,88 @@ Remove and return the first element from a list item.
 * Hit
     * `valueString()`: String
     * `valueBytes()`: Bytes
-    * `toString()`: truncated valueString()
+    * `toString()`: 切り詰められた valueString() です。
 * Miss
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+特定の情報については、 [レスポンスオブジェクト](./response-objects.md) を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_ListPopFront'} />
 
 ### ListPushBack
-Push a value to the end of a list item. This is exactly like passing just one value to [ListConcatenateBack](#listconcatenateback).
+リストアイテムの末尾に値を追加します。これは、[ListConcatenateBack](#listconcatenateback) に単一の値を渡すのとまったく同じです。
 
-| Name            | Type            | Description                                   |
+| 名前            | 型            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| listName        | String          | Name of the list to be set.                   |
-| value           | String \| Bytes | Value to be added.              |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
-| truncateBackToSize | Number | See [truncate to size](#truncate-to-size). |
+| cacheName       | String          | キャッシュの名前です。                            |
+| listName        | String          | 設定するリストの名前です。                   |
+| value           | String \| Bytes | 追加する値です。              |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | キャッシュ内のリストアイテムの TTL（Time To Live）です。この TTL は、キャッシュ接続クライアントの初期化時に使用される TTL より優先されます。 |
+| truncateBackToSize | Number | [truncate to size](#truncate-to-size)を確認してください。 |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-    * `listLength()`: Number - the new length of the list item
-    * `toString()`: String - add the listLength
+    * `listLength()`: Number - リストアイテムの新しい長さです。
+    * `toString()`: String - listLengthを追加
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+特定の情報については、 [レスポンスオブジェクト](./response-objects.md) を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_ListPushBack'} />
 
 ### ListPushFront
-Push a value to the beginning of a list item. Just like [ListPushBack](#listpushback), but to the front.
+リストアイテムの先頭に値を追加します。ListPushBack(#listpushback) と同様ですが、先頭に追加されます。
 
-| Name            | Type            | Description                                   |
+| 名前            | 型            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| listName        | String          | Name of the list to be set. |
-| value           | String \| Bytes | Value to be added to the list item by the operation. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
-| truncateBackToSize | Number | See [truncate to size](#truncate-to-size). |
+| cacheName       | String          | キャッシュの名前です。                            |
+| listName        | String          | 設定するリストの名前です。 |
+| value           | String \| Bytes | 操作によってリストアイテムに追加される値です。 |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | キャッシュ内のリストアイテムの TTL です。この TTL は、キャッシュ接続クライアントの初期化時に使用される TTL よりも優先されます。 |
+| truncateBackToSize | Number | [truncate to size](#truncate-to-size)を確認してください。 |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-    * `listLength()`: Number - the new length of the list
-    * `toString()`: String - add the listLength
+    * `listLength()`: Number - リストアイテムの新しい長さです。
+    * `toString()`: String - listLengthを追加
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+特定の情報については、 [レスポンスオブジェクト](./response-objects.md) を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_ListPushFront'} />
 
 ### ListRemoveValue
-Remove all elements in a list item equal to a particular value.
+特定の値と等しいすべての要素をリストアイテムから削除します。
 
-Examples
+例
 
-- If you have the list `['up', 'up', 'down', 'down', 'left', 'right']` and remove ‘up’ the list will be `['down', 'down', 'left', 'right']`
+- もしリスト ['up', 'up', 'down', 'down', 'left', 'right'] があり、'up' を削除すると、リストは ['down', 'down', 'left', 'right'] になります。
 
-| Name            | Type            | Description                                   |
+| 名前            | 型            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| listName        | String          | Name of the list item to be set.              |
-| value           | String \| Bytes | Value to be added to the list item by the operation. |
+| cacheName       | String          | キャッシュの名前。                            |
+| listName        | String          | 設定するリストアイテムの名前。             |
+| value           | String \| Bytes | 操作によってリストアイテムに追加される値。 |
 
 <details>
   <summary>Method response object</summary>
 
 Responses
 
-* Success - even if the value does not exist
+* Success - 値が存在しない場合でも、指定した値をリストアイテムに追加します。
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+特定の情報については、 [レスポンスオブジェクト](./response-objects.md) を参照してください。
 
 </details>
 
@@ -252,28 +253,28 @@ See [response objects](./response-objects.md) for specific information.
 
 ### ListRetain
 
-Retains only slice of the list where the start is inclusive and the end is exclusive.  The items outside of this range will be dropped from the list.
+指定されたリストに対して、開始位置（startIndex）を含み、終了位置（endIndex）を含まない範囲のスライスのみを保持します。この範囲外のアイテムはリストから削除されます。
 
-Example:
-For the specified list, start at index 4 (the startIndex) and keep the next five elements, end at index 10 (the endIndex). Discard all other elements in the list. In this example, elements at position 0-3 and 9 or higher are dropped.
+例：
+指定されたリストに対して、インデックス4から（startIndex）次の5つの要素を保持し、インデックス10で（endIndex）終わります。他の要素はすべて破棄されます。この例では、位置0〜3と9以上の要素が削除されます。
 
-| Name       | Type                                        | Description                                                                                                              |
+| 名前       | 型                                        | 説明                                                                                                              |
 |------------|---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| cacheName  | String                                      | Name of the cache.                                                                                                       |
+| cacheName  | String                                      | キャッシュの名前。 cache.                                                                                                       |
 | listName   | String                                      | Name of the list item to be set.                                                                                         |
-| startIndex | Number                                      | The starting inclusive element of the list to retain. Default is 0.                                                      |
-| endIndex   | Number                                      | The ending exclusive element of the list to retain. Default is end of list.                                              |
-| ttl        | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| startIndex | Number                                      | 保持するリストの開始位置（含む要素）です。デフォルトは0です。                                                      |
+| endIndex   | Number                                      | 保持するリストの終了位置（含まない要素）です。デフォルトはリストの末尾です。                                              |
+| ttl        | [CollectionTTL object](./collection-ttl.md) | キャッシュ内のリストアイテムの TTL（Time To Live）です。この TTL は、キャッシュ接続クライアントを初期化する際に使用される TTL よりも優先されます。
 
 <details>
   <summary>Method response object</summary>
 
 Responses
 
-* Success - even if the value does not exist
+* Success - 値が存在しなくても、スライス範囲内のリストのみを保持します。
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+特定の情報については、 [レスポンスオブジェクト](./response-objects.md) を参照してください。
 
 </details>
 
@@ -282,8 +283,8 @@ See [response objects](./response-objects.md) for specific information.
 
 ## Truncate to size
 
-[ListConcatenate](#listconcatenateback) and [ListPush](#listpushback) type API calls all have truncation options. If after adding their elements the list exceeds this size, this list will be truncated.
+[ListConcatenate](#listconcatenateback) や [ListPush](#listpushback) などの API 呼び出しには、トランケーションオプションがあります。要素を追加した後、リストのサイズがこの制限を超える場合、リストは切り詰められます。
 
-* Example: If the list is `[1, 2, 3]` and you ListConcatenateBack `[4, 5, 6]` with `truncateFrontToSize: 5` the list will be truncated to `[2, 3, 4, 5, 6]` and the response ListLength will be 5.
+例：リストが [1, 2, 3] で、ListConcatenateBack に [4, 5, 6] を使用し、truncateFrontToSize: 5 とすると、リストは [2, 3, 4, 5, 6] に切り詰められ、応答の ListLength は 5 になります。
 
-* Example: If the list is `[1, 2, 3]` and you ListConcatenateBack `[4, 5, 6]` with `truncateFrontToSize: 10` the list will not be truncated. It will be `[1, 2, 3, 4, 5, 6]`
+例：リストが [1, 2, 3] で、ListConcatenateBack に [4, 5, 6] を使用し、truncateFrontToSize: 10 とすると、リストは切り詰められません。リストは [1, 2, 3, 4, 5, 6] となります。
