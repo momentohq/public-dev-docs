@@ -71,6 +71,13 @@ const SDKS: Array<SdkInfo> = [
     authClientFile: undefined,
   },
   {
+    sdk: Sdk.ELIXIR,
+    cacheClientFile: 'src/lib/momento/cache_client.ex',
+    configObjectFile: 'src/lib/momento/config/configuration.ex',
+    topicClientFile: undefined,
+    authClientFile: undefined,
+  },
+  {
     sdk: Sdk.PHP,
     cacheClientFile: 'src/Cache/CacheClient.php',
     configObjectFile: 'src/Config/Configuration.php',
