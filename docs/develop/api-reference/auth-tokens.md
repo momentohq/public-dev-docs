@@ -99,22 +99,8 @@ For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs o
 
 For cache, the value can be the built-in `AllCaches` or a string value containing the name of the cache this permission is for.
 
-### TopicPermission
-A component of a [TokenScope](#tokenscope) object that defines permissions for a token.
 
-| Name            | Type                             | Description                                                                                                                                                                                                            |
-| --------------- |----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| role           | SubscribeOnly \| PublishSubscribe | The type of access granted by the permission.                                                                                                                                                                          |
-| cache          | `AllCaches` \| `CacheName`       | A permission can be restricted to a select cache by name using a `CacheName` object or to all caches in the account by using the `AllCaches` built-in value.                                                           |
-| topic          | `AllTopics` \| `TopicName`       | A permission can be restricted to a select topic by name using a `TopicName` object or to all topics in the above cache(s) by using the `AllTopics` built-in value. |
-
-For role, there are two managed roles to assign, `TopicRole.PublishSubscribe` and `TopicRole.SubscribeOnly`. Custom roles are not supported. Using the SubscribeOnly role allows only subscribing to topics, whereas using the PublishSubscribe role allows publishing and subscribing to topics.
-
-For cache, only topics within that cache's namespace are allowed by the permission. This can be set to the built-in `AllCaches` value or a string specifically naming a cache.
-
-For topic, this can be set to the built-in `AllTopics` value, which gives access to all topics in the cache(s) defined in cache or it can be a string with a specific topic name.
-
-#### TopicScope examples
+#### TokenScope example for a CachePermission object
 This is an example of creating a TokenScope with just CachePermissions.
 
 ```javascript
@@ -132,6 +118,23 @@ const CachePermissions = {
 };
 ```
 
+### TopicPermission
+A component of a [TokenScope](#tokenscope) object that defines permissions for a token.
+
+| Name            | Type                             | Description                                                                                                                                                                                                            |
+| --------------- |----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| role           | SubscribeOnly \| PublishSubscribe | The type of access granted by the permission.                                                                                                                                                                          |
+| cache          | `AllCaches` \| `CacheName`       | A permission can be restricted to a select cache by name using a `CacheName` object or to all caches in the account by using the `AllCaches` built-in value.                                                           |
+| topic          | `AllTopics` \| `TopicName`       | A permission can be restricted to a select topic by name using a `TopicName` object or to all topics in the above cache(s) by using the `AllTopics` built-in value. |
+
+For role, there are two managed roles to assign, `TopicRole.PublishSubscribe` and `TopicRole.SubscribeOnly`. Custom roles are not supported. Using the SubscribeOnly role allows only subscribing to topics, whereas using the PublishSubscribe role allows publishing and subscribing to topics.
+
+For cache, only topics within that cache's namespace are allowed by the permission. This can be set to the built-in `AllCaches` value or a string specifically naming a cache.
+
+For topic, this can be set to the built-in `AllTopics` value, which gives access to all topics in the cache(s) defined in cache or it can be a string with a specific topic name.
+
+#### TokenScope example for a TopicPermission object
+
 This is an example of creating a TokenScope with just TopicPermissions.
 
 ```javascript
@@ -143,19 +146,13 @@ const TopicsPermissions = {
         topic: 'highlights', // grants access to a specific topic
       },
       {
-        role: TopicRole.SubscribeOnly, // Built-in role
+        role: TopicRole.SubscribeOnly, // Managed role
         cache: AllCaches, // This is a built-in value for access to all caches in the account
         topic: AllTopics, // This is a built-in value for access to all topic in the listed cache(s).
       },
     ],
 };
 ```
-
-:::tip
-
-If you have any questions not answered here, please jump on [our Discord server](https://discord.gg/2c24SK6W) and ask our experts in the support channel.
-
-:::
 
 ## FAQ
 
@@ -179,3 +176,9 @@ Access tokens generated with the [GenerateAuthToken](#generateauthtoken) API onl
 We do not support 'write only' or 'publish only' permissions. If this is something you need, please [contact us](mailto:support@momentohq.com) and let's discuss your needs.
 
 </details>
+
+:::tip
+
+If you have any questions not answered here, please jump on [our Discord server](https://discord.gg/2c24SK6W) and ask our experts in the support channel.
+
+:::
