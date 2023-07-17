@@ -133,7 +133,7 @@ func initRedisClient() redis.Cmdable {
 }
 ```
 
-For more in-depth information, with example code, please see [Momento StackExchange compatibility client](https://github.com/momentohq/momento-go-redis-client) on GitHub.
+For more in-depth information, with example code, please see [Go-redis compatibility client](https://github.com/momentohq/momento-go-redis-client) on GitHub.
 
 </TabItem>
 </Tabs>
