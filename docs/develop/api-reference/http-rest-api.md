@@ -77,7 +77,11 @@ Gets a scalar value from a cache.
 
 *Status Code: 401 Unauthorized*
 
-- This error type typically indicates that there was an issue with authentication/authorization. See the body of the message for further details.
+- This error type typically indicates that the Momento auth token passed in is either invalid or expired. See the body of the message for further details.
+
+*Status Code: 403 Forbidden*
+
+- This error type typically indicates the Momento auth token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
 
 *Status Code: 429 Too Many Requests*
 
@@ -128,7 +132,18 @@ Sets a scalar value in a cache.
 - This error type typically indicates that the request was incorrectly specified. See the message body for further details.
 
 *Status Code: 401 Unauthorized*
-- This error type typically indicates that there was an issue with authentication/authorization. See the message body for further details.
+
+- This error type typically indicates that the Momento auth token passed in is either invalid or expired. See the body of the message for further details.
+
+*Status Code: 403 Forbidden*
+
+- This error type typically indicates the Momento auth token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.*Status Code: 401 Unauthorized*
+
+- This error type typically indicates that the Momento auth token passed in is either invalid or expired. See the body of the message for further details.
+
+*Status Code: 403 Forbidden*
+
+- This error type typically indicates the Momento auth token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
 
 *Status Code: 404 Not Found*
 - “Cache Not Found” indicates that the specified cache does not exist.
@@ -175,7 +190,18 @@ Deletes a scalar value from a cache.
 - This error type typically indicates that the request was incorrectly specified. See the message body for further details.
 
 *Status Code: 401 Unauthorized*
-- This error type typically indicates that there was an issue with authentication/authorization. See the message body for further details.
+
+- This error type typically indicates that the Momento auth token passed in is either invalid or expired. See the body of the message for further details.
+
+*Status Code: 403 Forbidden*
+
+- This error type typically indicates the Momento auth token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.*Status Code: 401 Unauthorized*
+
+- This error type typically indicates that the Momento auth token passed in is either invalid or expired. See the body of the message for further details.
+
+*Status Code: 403 Forbidden*
+
+- This error type typically indicates the Momento auth token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
 
 *Status Code: 404 Not Found*
 - “Cache Not Found” indicates that the specified cache does not exist.
