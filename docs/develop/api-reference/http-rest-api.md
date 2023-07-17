@@ -123,9 +123,9 @@ Sets a scalar value in a cache.
 ### Response
 #### Ok
 
-*Status Code: 200 OK*
+*Status Code: 204 No Content*
 
-- The key-value pair was stored in the cache.
+- The key-value pair was stored in the cache, but no content was returned (by design).
 
 #### Error
 *Status Code: 400 Bad Request*
@@ -181,9 +181,9 @@ Deletes a scalar value from a cache.
 ### Response
 #### Ok
 
-*Status Code: 200 OK*
+*Status Code: 204 No Content*
 
-- The key was deleted or was already not present.
+- The key-value pair was stored in the cache, but no content was returned (by design).
 
 #### Error
 *Status Code: 400 Bad Request*
