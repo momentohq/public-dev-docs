@@ -15,6 +15,8 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 A set is a collection of elements, but each element can appear only once and order is not guaranteed.
 
+<img src="/img/sets.jpg" width="90%" alt="a diagram of luggage as sets, but in any old order and not organized at all." />
+
 Example: if your set contains `[1, 2, 3]` and you add 2, the set remains `[1, 2, 3].`
 
 See [Sets](./../datatypes.md#set-collections) for more information on their usage.
