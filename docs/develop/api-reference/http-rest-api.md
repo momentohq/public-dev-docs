@@ -54,9 +54,13 @@ Gets a scalar value from a cache.
 
 | Parameter&nbsp;name | Required? | Type                                         | Description           |
 |---------------|-----------|------|------------------|
-| key           | no        | URL-safe&nbsp;string                         | The key to retrieve from the cache. Must specify either this parameter or `key_base64`.|
-| key_base64    | no        | Base64&nbsp;URL-encoded&nbsp;binary&nbsp;key | The key to retrieve from the cache. Must specify either this parameter or `key_base64`.|
-| token         | no        | URL-safe string                              | The Momento auth token to be used for authentication/authorization of the request. Must be provided either here or as the `authorization` header in the HTTP call. |
+| key           | no**      | URL-safe&nbsp;string                         | The key to retrieve from the cache. Must specify either this parameter or `key_base64`.|
+| key_base64    | no**      | Base64&nbsp;URL-encoded&nbsp;binary&nbsp;key | The key to retrieve from the cache. Must specify either this parameter or `key_base64`.|
+| token         | no***     | URL-safe string                              | The Momento auth token to be used for authentication/authorization of the request. Must be provided either here or as the `authorization` header in the HTTP call. |
+
+** You must specify a key to be accessed in the cache. This may be either the key query parameter, which allows a URL-safe string, or the key_base64 parameter, which allows a Base64 URL-encoded key.
+
+*** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter, or as the  authorization header.
 
 ### Response
 #### Hit
@@ -108,12 +112,16 @@ Sets a scalar value in a cache.
 
 #### Query Parameters
 
-| Parameter&nbsp;name | Required?   | Type                                         | Description                                                                                                                                                                           |
-|---------------|-------------|----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| key           | no          | URL-safe&nbsp;string                         | The key to retrieve from the cache. Must specify either this parameter or `key_base64`.                                                                                               |
-| key_base64    | no          | Base64&nbsp;URL-encoded&nbsp;binary&nbsp;key | The key to retrieve from the cache. Must specify either this parameter or `key_base64`.                                                                                               |
-| token         | no          | URL-safe&nbsp;string                         | The Momento auth token, in string format, to be used for authentication/authorization of the request. Must be provided either here or as the `authorization` header in the HTTP call. |
-| ttl_seconds   | yes | Integer                                      | The TTL to be set on the key, in seconds. For more on TTL, see  [Expire Data with Time-to-Live](/learn/how-it-works/expire-data-with-ttl). |
+| Parameter&nbsp;name | Required? | Type                                         | Description                                                                                                                                                                           |
+|---------------|-----------|----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| key           | no**      | URL-safe&nbsp;string                         | The key to retrieve from the cache. Must specify either this parameter or `key_base64`.                                                                                               |
+| key_base64    | no**      | Base64&nbsp;URL-encoded&nbsp;binary&nbsp;key | The key to retrieve from the cache. Must specify either this parameter or `key_base64`.                                                                                               |
+| token         | no***     | URL-safe&nbsp;string                         | The Momento auth token, in string format, to be used for authentication/authorization of the request. Must be provided either here or as the `authorization` header in the HTTP call. |
+| ttl_seconds   | yes       | Integer                                      | The TTL to be set on the key, in seconds. For more on TTL, see  [Expire Data with Time-to-Live](/learn/how-it-works/expire-data-with-ttl). |
+
+** You must specify a key to be accessed in the cache. This may be either the key query parameter, which allows a URL-safe string, or the key_base64 parameter, which allows a Base64 URL-encoded key.
+
+*** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter, or as the  authorization header.
 
 #### Header Parameters
 | Parameter&nbsp;name | Required?                | Type                 | Description                                                                                                                                                        |
@@ -167,11 +175,15 @@ Deletes a scalar value from a cache.
 
 #### Query Parameters
 
-| Parameter&nbsp;name | Required?               | Type                                         | Description     |
-|---------------|-------------------------|----------------------------------------------|--------------------------------------|
-| key           | no                      | URL-safe&nbsp;string                         | The key to retrieve from the cache. Must specify either this parameter or `key_base64`.|
-| key_base64    | no                      | Base64&nbsp;URL-encoded&nbsp;binary&nbsp;key | The key to retrieve from the cache. Must specify either this parameter or `key_base64`.|
-| token         | no | URL-safe&nbsp;string                         | The Momento auth token, in string format, to be used for authentication/authorization of the request. Must be provided either here or as the `authorization` header in the HTTP call. |
+| Parameter&nbsp;name | Required? | Type                                         | Description     |
+|---------------|-----------|----------------------------------------------|--------------------------------------|
+| key           | no**      | URL-safe&nbsp;string                         | The key to retrieve from the cache. Must specify either this parameter or `key_base64`.|
+| key_base64    | no**      | Base64&nbsp;URL-encoded&nbsp;binary&nbsp;key | The key to retrieve from the cache. Must specify either this parameter or `key_base64`.|
+| token         | no***     | URL-safe&nbsp;string                         | The Momento auth token, in string format, to be used for authentication/authorization of the request. Must be provided either here or as the `authorization` header in the HTTP call. |
+
+** You must specify a key to be accessed in the cache. This may be either the key query parameter, which allows a URL-safe string, or the key_base64 parameter, which allows a Base64 URL-encoded key.
+
+*** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter, or as the  authorization header.
 
 #### Header Parameters
 | Parameter&nbsp;name | Required?               | Type                 | Description                                                                                                                                                        |
