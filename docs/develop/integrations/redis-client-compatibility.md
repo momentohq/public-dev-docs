@@ -97,5 +97,44 @@ var db = MomentoRedisDatabase(
 For more in-depth information, with example code, please see [Momento StackExchange compatibility client](https://github.com/momentohq/momento-dotnet-stackexchange-redis) on GitHub.
 
 </TabItem>
+
+<TabItem value="go" label="Go" default>
+
+```go
+package redis
+
+import (
+	"context"
+	"github.com/momentohq/client-sdk-go/auth"
+	"github.com/momentohq/client-sdk-go/config"
+	"github.com/momentohq/client-sdk-go/momento"
+	momentoredis "github.com/momentohq/momento-go-redis-client/momento-redis"
+	"github.com/redis/go-redis/v9"
+	"time"
+)
+
+func initRedisClient() redis.Cmdable {
+	credential, eErr := auth.NewEnvMomentoTokenProvider("MOMENTO_AUTH_TOKEN")
+	if eErr != nil {
+		panic("Failed to initialize credentials through auth token " + eErr.Error())
+	}
+	cacheClient, cErr := momento.NewCacheClient(config.LaptopLatest(), credential, 60*time.Second)
+	if cErr != nil {
+		panic("Failed to initialize Momento cache client " + cErr.Error())
+	}
+	// create cache; it resumes execution normally incase the cache already exists
+	_, createErr := cacheClient.CreateCache(context.Background(),
+		&momento.CreateCacheRequest{CacheName: "default_cache"})
+	if createErr != nil {
+		panic("Failed to create cache with cache name default cache \n" + createErr.Error())
+	}
+	redisClient := momentoredis.NewMomentoRedisClient(cacheClient, "default_cache")
+	return redisClient
+}
+```
+
+For more in-depth information, with example code, please see [Go-redis compatibility client](https://github.com/momentohq/momento-go-redis-client) on GitHub.
+
+</TabItem>
 </Tabs>
 
