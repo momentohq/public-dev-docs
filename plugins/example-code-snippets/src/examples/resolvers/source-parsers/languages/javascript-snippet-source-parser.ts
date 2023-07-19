@@ -13,6 +13,7 @@ export class JavascriptSnippetSourceParser extends RegexSnippetSourceParser {
       'examples/nodejs/observability/doc-example-files/doc-examples-js-apis.ts',
       'examples/nodejs/observability/utils/instrumentation.ts',
       'examples/nodejs/observability/advanced-logging.ts',
+      'examples/nodejs/aws/doc-example-files/doc-examples-js-aws-secrets.ts',
     ];
     super({
       wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),
