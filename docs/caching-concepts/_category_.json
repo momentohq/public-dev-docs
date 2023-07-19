@@ -1,9 +1,0 @@
-{
-  "label": "Caching Concepts",
-  "position": 5,
-  "link": {
-    "type": "generated-index",
-    "description": "Key concepts in the world of caching."
-  },
-  "className": "sidebar-item-caching-concepts"
-}
