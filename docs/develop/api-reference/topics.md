@@ -14,6 +14,8 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 # Using the Momento Topics (pub/sub) API with Momento Cache
 Momento Topics is a messaging pattern that allows for real-time communication between parts of a distributed application. It enables you to publish (produce) values to a topic, as well as subscribe (consume) from a topic. This page details the Momento API methods for interacting with Momento Topics.
 
+<img src="/img/topics-api.jpg" width="100%" alt="An image showing the movement of lots of data, messages published, moved to where they need to go quickly and accurately." />
+
 For in-depth information, see [Momento Topics](./../../introduction/momento-topics.md).
 
 ## Topics methods
