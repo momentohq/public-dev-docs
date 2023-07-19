@@ -13,6 +13,9 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # List API reference for Momento Cache
 This page details the Momento API methods for the [list collection data types](./../datatypes.md#list-collections).
+
+<br />
+
 <img src="/img/list-collections.jpg" width="90%" alt="a technical illustration of a scroll with lists of information. All collected into groups." />
 
 ## List methods

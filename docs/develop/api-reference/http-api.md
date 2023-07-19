@@ -1,15 +1,15 @@
 ---
 sidebar_position: 7
-title: REST API
-sidebar_label: REST API
-description: Discover the REST API for edge computing services to access serverless caching and pub/sub services.
+title: HTTP API
+sidebar_label: HTTP API
+description: Discover the HTTP API for edge computing services to access serverless caching and pub/sub services.
 ---
 
-# REST API for caching and edge compute services
+# HTTP API for caching and edge compute services
 
-<img src="/img/rest-api.jpg" width="90%" alt="a picture of abstract shapes as building and nodes of data connecting them at high speed" />
+<img src="/img/http-api.jpg" width="90%" alt="a picture of abstract shapes as building and nodes of data connecting them at high speed" />
 
-Momento provides a RESTful HTTP API interface for your applications that can’t use our [SDKs](/develop). For example, when deploying to edge compute services like [Cloudflare Workers](https://workers.cloudflare.com/), [Fastly Compute@Edge](https://www.fastly.com/products/edge-computeutm_source=Momento-Documentation), etm. this API is for you. Be aware that most other applications should likely use [Momento’s SDK clients](/develop).
+Momento provides a HTTP API interface for your applications that can’t use our [SDKs](/develop). For example, when deploying to edge compute services like [Cloudflare Workers](https://workers.cloudflare.com/), [Fastly Compute@Edge](https://www.fastly.com/products/edge-computeutm_source=Momento-Documentation), etm. this API is for you. Be aware that most other applications should likely use [Momento’s SDK clients](/develop).
 
 Queries are executed by sending HTTP requests to the `https://<environment>/cache/{yourCacheName}` endpoint.
 
