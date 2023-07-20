@@ -31,6 +31,8 @@ As Momento Topics uses Momento Cache as its backend, you either use an existing 
 
 - [A serverless item publishing microservice](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/lambda-examples/topics-microservice) This microservice is written in TypeScript and runs on AWS using API Gateway, a Lambda function, and Momento Topics. It can be used by any of your other services (with the correct security on API Gateway) to publish messages to various topics that are then subscribed to by other applications. You pass into this API a `topicName` and `topicValue` and this service publishes the value to that topic.
 
+- [Using topics inside a Next.js chat application](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/nextjs-chat) This application is written in TypeScript using the Next.js framework. A user selects a chatroom to join, using a cache and topic name. There is an API that vends low scope, short lived tokens to the front end, which uses these tokens to subscribe to the topic. When the token expires, the frontend calls the API to get a new token, and resubscribes to the topic automatically. There is a [static version](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/vite-chat-app) of this application as well, that requires an API available to vend tokens to the frontend.
+
 ## Blog posts
 
 - [Introducing Momento Topics](https://www.gomomento.com/blog/momento-just-got-more-powerful-introducing-topics) - A simply priced, fully serverless event messaging system ready for massive scale.
