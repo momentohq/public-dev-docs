@@ -12,10 +12,21 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Working with Momento auth tokens
 
-To access Momento services from your application, a Momento auth token is required. The auth token is an alphanumeric string Momento generates that is unique to your account and the cloud provider's Region you select. When creating an auth token, you can set up one of two types of expiration:
+<img src="/img/pile-of-tokens.jpg" width="90%" alt="a technical illustration of a bank vault representing security, authorization, and authentication." />
 
-1. An auth token that never expires. This should only be used for dev/test environments.
-2. An auth token which expires and requires periodic rotation. You can set the expiration to 7, 30, 60, 90 days or custom, where you can select a specific calendar date. An expiring auth token is considered best practice for production deployments. We will walk through how to do exactly that in this page.
+To access Momento services from your application, a Momento auth token is required. The auth token is an alphanumeric string Momento generates that is unique to your account and the cloud provider's Region you select. When creating an auth token, you can setup one of two types of tokens:
+
+1. A super-user token which grant access to all resources and APIs (both data plane and control plane) in the account.
+2. A fine-grained access control (FGAC) token which only has access to data plan APIs and can be configured to restrict access to the single cache and/or topic level, if so desired.
+
+See [Auth API reference information](./../api-reference/auth-tokens.md) for information on using Momento's Auth API to programmatically create, manage, and refresh Momento auth tokens.
+
+## Token expiration
+
+Tokens can be set to expire after N time set at their creation. There are two types of expiration for Momento auth tokens:
+
+- An auth token that never expires. This should only be used for dev/test environments. 
+- An auth token which expires and requires periodic rotation. You can set the expiration to 7, 30, 60, 90 days or custom, where you can select a specific calendar date. An expiring auth token is considered best practice for production deployments. We will walk through how to do exactly that in this page.
 
 :::info
 In addition to using an expiring auth token, it is best practice to store an auth token in a service like [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) or [GCP Secret Manager](https://cloud.google.com/secret-manager). Go to [Retrieving a Momento auth token from AWS Secrets Manager](/develop/integrations/aws-secrets-manager) for an example on using this.
