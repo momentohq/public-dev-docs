@@ -11,17 +11,17 @@ sidebar_label: AWS Lambda でキャッシュ
 
 さらに、Lambda はアプリケーションのトラフィックに基づいて必要に応じて関数インスタンスを削除できるステートレスモデルです。これは、実行中のインスタンスが利用可能であるとは限らないことを意味しますが、既存のコンテナへのリクエストがコールドスタートからのものよりも速くなるようにコードを最適化することができます。
 
-このガイドでは、AWS Lambda で Momento を使用する実用的な側面を見ていきます。具体的には、Lambda で Momento を効率的に使用するための3つの側面をカバーします:
+このガイドでは、AWS Lambda で Momento を使用する実用的な側面を見ていきます。具体的には、Lambda で Momento を効率的に使用するための3つの側面をカバーします。
 
-- [接続の再利用](#接続の再利用);
+- [接続の再利用](#接続の再利用)
 
-- [クレデンシャル情報の管理](#クレデンシャル情報の管理);
+- [クレデンシャル情報の管理](#クレデンシャル情報の管理)
 
-- [パッケージ管理](#パッケージ管理).
+- [パッケージ管理](#パッケージ管理)
 
 これは、サーバーレスアプリケーションで Momento を設定するための、実用的で内容の濃いガイドとなるよう設計されています。
 
-サーバーレスアプリケーションと Momento がなぜうまく機能するのかをより詳しく知りたい場合は、サーバーレスとキャッシングに関するガイド](./../../learn/how-it-works)をご参照ください。
+サーバーレスアプリケーションと Momento がなぜうまく機能するのかをより詳しく知りたい場合は、[サーバーレスとキャッシングに関するガイド](./../../learn/how-it-works)をご参照ください。
 
 ## 接続の再利用
 
@@ -29,13 +29,13 @@ Momento をサーバーレスアプリケーションで効果的に使用する
 
 ### 背景
 
-Lambda はステートレスで、関数ベースのイベント駆動型のコンピューティングモデルであることを思い出してください。よくある Lambda 関数のハンドラは以下のような形になります：
+Lambda はステートレスで、関数ベースのイベント駆動型のコンピューティングモデルであることを思い出してください。よくある Lambda 関数のハンドラは以下のような形になります。
 
 ![Lambda handlerの実装例](images/caching-with-aws-lambda/lambda-handler.png "Lambda handler example")
 
 Lambda 関数のエントリーポイントとなるハンドラがあります。HTTP リクエスト、SQS キューメッセージ、またはストリームレコードのバッチなどの設定されたイベントが到着するたびに、Lambda 関数のインスタンスはそのイベントを受け取り、ハンドラを呼び出してイベントの詳細を処理します。
 
-重要な点は、ハンドラのスコープ内のすべての要素は毎回新しいものになるということです。例えば、ハンドラ内で初期化され、インクリメントされるカウンター変数がある場合、次のようになります：
+重要な点は、ハンドラのスコープ内のすべての要素は毎回新しいものになるということです。例えば、ハンドラ内で初期化され、インクリメントされるカウンター変数がある場合、次のようになります。
 
 ![Lambda ハンドラとローカル変数の実装例](images/caching-with-aws-lambda/handler-local-variable.png "Lambda handler with local variables")
 
@@ -61,13 +61,13 @@ Lambda 関数のエントリーポイントとなるハンドラがあります�
 
 Lambda における接続の再利用の詳細について理解したところで、具体的な動作方法について説明します。
 
-グローバルスコープ内の要素はリクエスト間で再利用されることを忘れないでください。したがって、Momento クライアントをハンドラのグローバルスコープで次のように初期化することができます：
+グローバルスコープ内の要素はリクエスト間で再利用されることを忘れないでください。したがって、Momento クライアントをハンドラのグローバルスコープで次のように初期化することができます。
 
 ![Code example with a global Momento client](images/caching-with-aws-lambda/global-momento-client.png "Global Momento client")
 
 これは機能するかもしれませんが、各関数ハンドラに大量の冗長なコードが追加されます。また、設定ロジックが複数の異なるファイルに分散されるため、単一のファイルに集約されるのではなく、複製されることになります。
 
-なので、Momento クライアントを初期化するために別のファイルを作成する形もできます。以下のようになります：
+なので、Momento クライアントを初期化するために別のファイルを作成する形もできます。以下のようになります。
 
 ![Code example for Momento client module](images/caching-with-aws-lambda/momento-client-module.png "Momento client module")
 
@@ -75,7 +75,7 @@ Lambda における接続の再利用の詳細について理解したところ�
 
 このモジュールは、関数インスタンスが初期化されるときにハンドラによってロードされます。最初にクライアントが `getMomentoClient` 関数を呼び出すとき、既存のクライアントは存在せず、新たに初期化されます。ただし、将来のリクエストでは、Momento サービスへの既存の接続を持つ事前に初期化されたクライアントが取得されるため、リクエストが高速化されます。
 
-このモジュールをハンドラ関数やサービスクラスで次のように使用できます：
+このモジュールをハンドラ関数やサービスクラスで次のように使用できます。
 
 ![Code example for using Momento client module](images/caching-with-aws-lambda/momento-client-usage.png "Momento client usage")
 
@@ -103,21 +103,17 @@ Momento は、Momento サービスへのクライアントの認証に JWT を�
 
 AWS Lambda でのシークレットの管理について少し理解したところで、Lambda での Momento 認証トークンの保存と管理方法を見てみましょう。
 
-認証情報の管理には、アプリケーションの部分が3つのコンポーネントから成り立ちます：
+認証情報の管理には、アプリケーションの部分が3つのコンポーネントから成り立ちます
 
-1. Secrets Manager で Momento 認証トークンを保存すること；
+1. Secrets Manager で Momento 認証トークンを保存すること
 
-2. Lambda 関数がシークレットにアクセスするために必要な IAM の権限を付与すること；
+2. Lambda 関数がシークレットにアクセスするために必要な IAM の権限を付与すること
 
-3. Lambda 関数内でシークレットにアクセスすること。
+3. Lambda 関数内でシークレットにアクセスすること
 
 これら3つを順番に対応させましょう。
 
 #### Momento 認証トークンを Secrets Manager に保存する
-
-First, we need to store our Momento authentication token in AWS Secrets Manager.
-
-Navigate to the [AWS Secrets Manager section of the AWS console](https://console.aws.amazon.com/secretsmanager/home). Make sure you are in the same region you use for your serverless application. Then, click the **Store a new secret** button to add a new secret to Secrets Manager.
 
 まず、Momento の認証トークンを AWS Secrets Manager に保存する必要があります。
 
@@ -155,7 +151,7 @@ AWS Secrets Manager でシークレットを設定したので、AWS Lambda 関�
 
 AWS Identity and Access Management（IAM）は、AWS全体で使用される認証システムです。Lambda 関数を作成する際には、関数は IAM ロールに関連付けられます。この IAM ロールは、さまざまなAWSサービスへの認証に使用されます。Momento の認証トークンを AWS Secrets Manager から取得するために、IAM にシークレットへのアクセス許可を付与する必要があります。
 
-一般的に、設定する必要のある IAM ステートメントは次のようになります:
+一般的に、設定する必要のある IAM ステートメントは次のようになります
 
 ```
 - Effect: "Allow"
@@ -168,7 +164,7 @@ AWS Identity and Access Management（IAM）は、AWS全体で使用される認�
 
 IAM ステートメントを設定する方法は、Lambda 関数のデプロイツールによって異なります。
 
-Serverless Framework を使用している場合、次の内容を **serverless.yml** ファイルの **provider:** ブロックに追加することで、この許可を設定できます:
+Serverless Framework を使用している場合、次の内容を **serverless.yml** ファイルの **provider:** ブロックに追加することで、この許可を設定できます。
 
 ```
 provider:
@@ -183,7 +179,7 @@ provider:
 
 **"&lt;yourSecretArn>"** の部分を、Secrets Manager コンソールからコピーしたシークレットのARNで置き換えてください。
 
-AWS SAM を使用している場合、Momento の認証トークンへのアクセスが必要な各関数の **Policies:** セクションに次の内容を追加してください:
+AWS SAM を使用している場合、Momento の認証トークンへのアクセスが必要な各関数の **Policies:** セクションに次の内容を追加してください。
 
 ```
 Policies:
@@ -225,13 +221,6 @@ const getMomentoAuthToken = async () => {
 };
 ```
 
-Be sure to replace **"&lt;yourSecretName>"** with the name of the secret you used in the Secrets Manager console.
-
-This code will create a client for accessing AWS Secrets Manager. Then, it will call the `GetSecretValue` action on the Secrets Manager service. Finally, it will parse the response and return the value for the configured MOMENTO_AUTH_TOKEN.
-
-Notice that this will make an external network call, and thus you should optimize your Lambda code around this. Ideally, you are only constructing your SimpleCache object once within a given Lambda function instance, as discussed above in the [Connection reuse section](#heading=h.rkchdfjttru6). Because of this, you should only need to retrieve the Momento authentication token once within a particular function instance.
-
-
 **"&lt;yourSecretName>"** の部分を、Secrets Manager コンソールで使用したシークレットの名前で置き換えてください。
 
 このコードは、AWS Secrets Manager にアクセスするためのクライアントを作成します。その後、Secrets Manager サービスで `GetSecretValue` アクションを呼び出します。最後に、レスポンスを解析して構成された MOMENTO_AUTH_TOKEN の値を返します。
@@ -252,7 +241,7 @@ AWS Lambda を使用する際に、サードパーティの依存関係を考慮
 
 第二に、依存関係が AWS Lambda 環境で動作することを確認する必要があります。Lambda 関数にコンテナイメージではなく ZIP ファイルを使用している場合、コード自体は Amazon Linux 2 オペレーティングシステム上で実行されます。関数コードと依存関係のほとんどは、ローカルマシンと Lambda 実行環境で同様に動作します。ただし、特定の依存関係は特定のアーキテクチャ用にコンパイルする必要があります。
 
-[Momento の SimpleCache クライアントは、Momento サービスに接続するために gRPC を使用します](./../../learn/how-it-works#grpc)。Python の gRPC ライブラリはアーキテクチャ固有のバインディングを使用しているため、Amazon Linux 2 の実行環境に対してコンパイルする必要があります。Mac や Windows のマシン上で直接依存関係をビルドした場合、Lambda の実行環境と互換性がありません。
+[Momento の CacheClient クライアントは、Momento サービスに接続するために gRPC を使用します](./../../learn/how-it-works#grpc)。Python の gRPC ライブラリはアーキテクチャ固有のバインディングを使用しているため、Amazon Linux 2 の実行環境に対してコンパイルする必要があります。Mac や Windows のマシン上で直接依存関係をビルドした場合、Lambda の実行環境と互換性がありません。
 
 以下では、人気のあるデプロイメントフレームワークを使用してこれらの問題をどのように解決するかを見ていきます。
 
