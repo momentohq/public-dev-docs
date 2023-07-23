@@ -12,7 +12,6 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # List API reference for Momento Cache
-This page details the Momento API methods for the [list collection data types](./../datatypes.md#list-collections).
 このページでは、[リストコレクションデータ型](./../datatypes.md#list-collections)の Momento API メソッドの詳細を説明しています。
 
 ## List methods
@@ -23,7 +22,7 @@ This page details the Momento API methods for the [list collection data types](.
 
 | 名前       | 型   | 説明                                                                 |
 |------------|--------|-----------------------------------------------------------------------------|
-| cacheName  | String | キャッシュの名前.                                                          |
+| cacheName  | String | キャッシュの名前。                                                          |
 | listName   | String | 取得するリストアイテムの名前。                                  |
 | startIndex | Number | 取得するリストの開始位置（含む要素）。デフォルトは0です。 **この引数はオプションです。** |
 | endIndex   | Number | 取得するリストの終了位置（含まない要素）。デフォルトはリストの末尾です。 **この引数はオプションです。**|
@@ -55,9 +54,9 @@ ListFetch のレスポンスオブジェクトには、キャッシュのヒッ�
 
 | 名前            | 型                | 説明                                   |
 | --------------- | ------------------- | --------------------------------------------- |
-| cacheName       | String              | キャッシュの名前                            |
-| listName        | String              | 設定するリストアイテムの名前 |
-| values          | String[] \| Bytes[] | リストアイテムに追加する要素としての値|
+| cacheName       | String              | キャッシュの名前。                            |
+| listName        | String              | 設定するリストアイテムの名前。                  |
+| values          | String[] \| Bytes[] | リストアイテムに追加する要素としての値。          |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | キャッシュ内のリストアイテムの TTL（有効期限）。この TTL は、キャッシュクライアント接続オブジェクトを初期化する際に使用される TTL よりも優先されます。 |
 | truncateFrontToSize | Number | [truncate to size](#truncate-to-size)を確認してください。 |
 
@@ -84,8 +83,8 @@ ListFetch のレスポンスオブジェクトには、キャッシュのヒッ�
 
 | 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | キャッシュの名前                          |
-| listName        | String       | 設定するリストアイテムの名前             |
+| cacheName       | String       | キャッシュの名前。                          |
+| listName        | String       | 設定するリストアイテムの名前。             |
 | values          | String[] \| Bytes[] | リストアイテムに追加される要素の値。|
 | ttl          | [CollectionTTL object](./collection-ttl.md) | キャッシュ内のリストアイテムの TTL（Time To Live）。この TTL は、キャッシュクライアントを初期化する際に使用される TTL よりも優先されます。 |
 | truncateBackToSize | Number | [truncate to size](#truncate-to-size)を確認してください。 |
@@ -109,7 +108,7 @@ ListFetch のレスポンスオブジェクトには、キャッシュのヒッ�
 
 | 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | キャッシュの名前                            |
+| cacheName       | String       | キャッシュの名前。                            |
 | listName        | String       | 確認するリストアイテムの名前です。         |
 
 <details>
@@ -131,7 +130,7 @@ ListFetch のレスポンスオブジェクトには、キャッシュのヒッ�
 
 | 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | キャッシュの名前                            |
+| cacheName       | String       | キャッシュの名前。                            |
 | listName        | String       | 削除して返すリストアイテムの名前です。        |
 
 <details>
@@ -155,8 +154,8 @@ ListFetch のレスポンスオブジェクトには、キャッシュのヒッ�
 
 | 名前            | 型         | 説明                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | キャッシュの名前                            |
-| listName        | String       | 取得するリストアイテムの名前        |
+| cacheName       | String       | キャッシュの名前。                            |
+| listName        | String       | 取得するリストアイテムの名前。        |
 
 <details>
   <summary>Method response object</summary>
@@ -260,8 +259,8 @@ Responses
 
 | 名前       | 型                                        | 説明                                                                                                              |
 |------------|---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| cacheName  | String                                      | キャッシュの名前。 cache.                                                                                                       |
-| listName   | String                                      | Name of the list item to be set.                                                                                         |
+| cacheName  | String                                      | キャッシュの名前。                                                                                                      |
+| listName   | String                                      | 設定されるべきリストアイテムの名前。                                                                                         |
 | startIndex | Number                                      | 保持するリストの開始位置（含む要素）です。デフォルトは0です。                                                      |
 | endIndex   | Number                                      | 保持するリストの終了位置（含まない要素）です。デフォルトはリストの末尾です。                                              |
 | ttl        | [CollectionTTL object](./collection-ttl.md) | キャッシュ内のリストアイテムの TTL（Time To Live）です。この TTL は、キャッシュ接続クライアントを初期化する際に使用される TTL よりも優先されます。
