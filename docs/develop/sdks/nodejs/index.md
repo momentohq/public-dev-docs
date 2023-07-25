@@ -25,6 +25,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-javascript](https:
 
 - [Node.js SDK Cheat Sheet](./cheat-sheet.mdx)
 - [Node.js SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/README.md): working example projects that illustrate how to use the Node.js SDK
+- [Node.js Token Vending Machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine): provides temporary, restricted scope Momento Auth tokens that can be used by browsers running apps written against the [Momento Web SDK](https://github.com/momentohq/client-sdk-javascript/tree/main/packages/client-sdk-web).
 - [Node.js SDK Observability](./observability.mdx): Logging and Client-side Metrics with the Node.js SDK
 - COMING SOON: Taking your code to prod: Configuration and Error handling in the Node.js SDK
 
