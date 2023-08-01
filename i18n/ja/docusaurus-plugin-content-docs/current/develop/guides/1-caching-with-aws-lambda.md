@@ -5,153 +5,153 @@ sidebar_label: AWS Lambda でキャッシュ
 
 # AWS Lambda でキャッシュ
 
-The release of AWS Lambda in November 2014 kicked off the serverless revolution in software architecture. Lambda's event-driven, function-based compute solution changed the nature of how we build applications in the cloud.
+2014年11月の AWS Lambda のリリースは、ソフトウェアアーキテクチャにおけるサーバーレス革命の始まりを告げました。Lambda のイベント駆動型、関数ベースのコンピューティングソリューションは、クラウドでアプリケーションを構築する方法の本質を変えました。
 
-However, Lambda's compute model is quite different from the instance-based or even container-based models that came before it. It is hyper-ephemeral, as function instances are spun up on demand as needed to handle incoming events. This means you need to optimize for quick startup of your function instances and remove anything that could add to cold-start latency.
+しかし、Lambda のコンピューティングモデルは、それ以前のインスタンスベースまたはコンテナベースのモデルとは大きく異なります。それは超短命で、必要に応じて入力イベントを処理するために関数インスタンスがオンデマンドで起動します。これは、関数インスタンスの迅速な起動を最適化し、コールドスタートの遅延を増やす可能性があるものをすべて削除する必要があることを意味します。
 
-Further, Lambda is a stateless model where function instances can be removed as needed based on your application traffic. This means you can't assume a running instance will be available, but you can optimize your code so that requests to an existing container will be faster than those from a cold start.
+さらに、Lambda はアプリケーションのトラフィックに基づいて必要に応じて関数インスタンスを削除できるステートレスモデルです。これは、実行中のインスタンスが利用可能であるとは限らないことを意味しますが、既存のコンテナへのリクエストがコールドスタートからのものよりも速くなるようにコードを最適化することができます。
 
-In this guide, we will look at practical aspects of using Momento in AWS Lambda. Specifically, we'll cover three aspects of efficient use of Momento in Lambda:
+このガイドでは、AWS Lambda で Momento を使用する実用的な側面を見ていきます。具体的には、Lambda で Momento を効率的に使用するための3つの側面をカバーします。
 
-- [Connection reuse](#connection-reuse);
+- [接続の再利用](#接続の再利用)
 
-- [Credential management](#credential-management);
+- [クレデンシャル情報の管理](#クレデンシャル情報の管理)
 
-- [Package management](#package-management).
+- [パッケージ管理](#パッケージ管理)
 
-This is designed to be a dense, practical guide on getting Momento configured in your serverless application.
+これは、サーバーレスアプリケーションで Momento を設定するための、実用的で内容の濃いガイドとなるよう設計されています。
 
-If you want to know more about why Momento works well with serverless applications, please refer to our [guide on Caching with Serverless](./../../learn/how-it-works).
+サーバーレスアプリケーションと Momento がなぜうまく機能するのかをより詳しく知りたい場合は、[サーバーレスとキャッシングに関するガイド](./../../learn/how-it-works)をご参照ください。
 
-## Connection reuse
+## 接続の再利用
 
-The first step to using Momento well in your serverless application is to make sure you're reusing your connection to the Momento service in your Lambda function. We'll describe some background first, then give you the practical steps to take in your application.
+Momento をサーバーレスアプリケーションで効果的に使用するための最初のステップは、Lambda 関数内で Momento サービスへの接続が再利用されていることを確認することです。まずは背景について説明し、その後にアプリケーションで実際に取るべき具体的な手順を説明します。
 
-### Background
+### 背景
 
-Recall that Lambda is a stateless, function-based, event-driven compute model. Often, your Lambda function handler will look something like the following:
+Lambda はステートレスで、関数ベースのイベント駆動型のコンピューティングモデルであることを思い出してください。よくある Lambda 関数のハンドラは以下のような形になります。
 
-![Code for example Lambda handler](images/caching-with-aws-lambda/lambda-handler.png "Lambda handler example")
+![Lambda handlerの実装例](images/caching-with-aws-lambda/lambda-handler.png "Lambda handler example")
 
-You will have a handler that serves as the entrypoint to your Lambda function. Whenever you have a configured event arrive, such as an HTTP request, an SQS queue message, or a batch of stream records, an instance of your Lambda function will receive the event and invoke your handler with the details of the event.
+Lambda 関数のエントリーポイントとなるハンドラがあります。HTTP リクエスト、SQS キューメッセージ、またはストリームレコードのバッチなどの設定されたイベントが到着するたびに、Lambda 関数のインスタンスはそのイベントを受け取り、ハンドラを呼び出してイベントの詳細を処理します。
 
-The important thing to note is that everything within the scope of your handler will be new each time. For example, in our handler, we have a counter variable that is both initialized and incremented within the handler:.
+重要な点は、ハンドラのスコープ内のすべての要素は毎回新しいものになるということです。例えば、ハンドラ内で初期化され、インクリメントされるカウンター変数がある場合、次のようになります。
 
-![Code with example Lambda handler and local variables](images/caching-with-aws-lambda/handler-local-variable.png "Lambda handler with local variables")
+![Lambda ハンドラとローカル変数の実装例](images/caching-with-aws-lambda/handler-local-variable.png "Lambda handler with local variables")
 
-However, because the variable is within the scope of the handler, it is not persisted across requests. Each time we invoke this specific function instance, the counter variable will be set to 1, but the count will be lost once the handler is finished executing for an event.
+しかし、変数はハンドラのスコープ内にあるため、リクエスト間で保持されません。この特定の関数インスタンスを実行するたびに、カウンター変数は1に設定されますが、ハンドラがイベントの実行を終えると、カウントは失われます。
 
-We can reuse state within a function instance if we want. If we set our variable in the global scope, outside of our handler scope, the variable will be retained across function instances.
+関数インスタンス内で状態を再利用することもできます。ハンドラのスコープの外部、つまりグローバルスコープで変数を設定すると、変数は関数インスタンス間で保持されます。
 
 ![Code with example Lambda handler and global variable](images/caching-with-aws-lambda/global-variable.png "Lambda handler with global variable")
 
-In the image above, we've set the counter variable in the global scope. Now, each invocation of this function instance will increment that counter and the aggregated data will be retained across requests.
+上記の画像では、カウンター変数をグローバルスコープで設定しました。これにより、この関数インスタンスの各呼び出しでカウンターが増加し、集計されたデータがリクエスト間で保持されます。
 
-Note that this state is still retained within a specific instance of our Lambda function. The Lambda service may spin up multiple instances of your Lambda function if you have multiple, concurrent events that trigger your function at the same time. Data will be shared across requests to a single function instance across time but not across function instances.
+この状態は、特定の Lambda 関数のインスタンス内で保持されます。Lambda サービスは、同時に複数のイベントが発生した場合に、複数の Lambda 関数のインスタンスを起動する可能性があります。データは時間を超えて単一の関数インスタンスへのリクエスト間で共有されますが、関数インスタンス間では共有されません。
 
 ![Architecture diagram with pool of Lambda functions](images/caching-with-aws-lambda/lambda-pool.png "Lambda pool")
 
-For example, in the image above, there are three separate instances of our Lambda function running. Multiple users are making HTTP requests to our function, and each function can handle only a single request at a time. However, once a function instance is initialized, it can be reused for multiple requests over time. You can see that each function instance has a counter variable, each with a different value based on the state of that individual function instance.
+例えば、上記の画像では、3つの別々の Lambda 関数インスタンスが実行されています。複数のユーザーが私たちの関数に対して HTTP リクエストを行っていますが、各関数は一度に1つのリクエストしか処理できません。ただし、関数インスタンスが初期化されると、時間の経過とともに複数のリクエストで再利用することができます。各関数インスタンスにはカウンター変数があり、個々の関数インスタンスの状態に基づいて異なる値が設定されていることがわかります。
 
-While this variable reuse can be helpful for things like counters, it is more commonly used for reusing things that can take a long time to initialize. If you are making network calls to external services like Momento in your Lambda function, establishing the initial connection can be the slowest part of your request. You will need to do both the TCP handshake to connect to the remote server and the TLS handshake to set up TLS encryption. This can easily take 100 milliseconds or more. Given that Momento has client-side latency of 1-2 milliseconds, this can defeat all of the gains from our caching!
+変数の再利用はカウンターなどに役立つ場合がありますが、より一般的には初期化に時間がかかる要素の再利用に使用されます。Lambda 関数内で Momento などの外部サービスへのネットワーク呼び出しを行う場合、初期接続の確立はリクエストの最も遅い部分になることがよくあります。リモートサーバーへの TCP ハンドシェイクと TLS 暗号化のための TLS ハンドシェイクを行う必要があります。これには100ミリ秒以上かかることもあります。Momento のクライアント側のレイテンシは1〜2ミリ秒ですので、これではキャッシュの恩恵が打ち消されてしまいます。
 
-However, we can take advantage of Lambda's global variable reuse to cache our Momento client. Our first invocation within a specific function instance will take the time to establish the connection to Momento, but all subsequent invocations within that instance will be able to reuse the connection and drastically reduce overall response time.
+しかし、Lambda のグローバル変数の再利用を活用して Momento クライアントをキャッシュすることができます。特定の関数インスタンス内の最初の呼び出しでは、Momento への接続を確立するための時間がかかりますが、その後のすべての呼び出しでは接続を再利用し、全体的なレスポンス時間を劇的に短縮することができます。
 
-### Application
+### アプリケーション
 
-Now that we know the details on why connection reuse is necessary in Lambda, let's get to the specifics of how it works.
+Lambda における接続の再利用の詳細について理解したところで、具体的な動作方法について説明します。
 
-Remember that anything in the global scope will be reused across requests. This means you could initialize your Momento client in the global scope of your handler as follows:
+グローバルスコープ内の要素はリクエスト間で再利用されることを忘れないでください。したがって、Momento クライアントをハンドラのグローバルスコープで次のように初期化することができます。
 
 ![Code example with a global Momento client](images/caching-with-aws-lambda/global-momento-client.png "Global Momento client")
 
-While this can work, it adds a lot of boilerplate to each function handler in your application. Additionally, it means your configuration logic is replicated across multiple different files rather than centralized in a single file.
+これは機能するかもしれませんが、各関数ハンドラに大量の冗長なコードが追加されます。また、設定ロジックが複数の異なるファイルに分散されるため、単一のファイルに集約されるのではなく、複製されることになります。
 
-I prefer to create a separate file for initializing my Momento client, as follows:
+なので、Momento クライアントを初期化するために別のファイルを作成する形もできます。以下のようになります。
 
 ![Code example for Momento client module](images/caching-with-aws-lambda/momento-client-module.png "Momento client module")
 
-Notice that we have a `client` variable in the global scope of this module. Then, we have a `getMomentoClient` function that is exported from the module. Within that function, we first check if the `client` variable is null and return it if not. Otherwise, we initialize a Momento client and save it to the `client` variable. Then, we return the client to the caller.
+このモジュールのグローバルスコープには `client` 変数があります。そして、モジュールからエクスポートされる `getMomentoClient` 関数があります。この関数内では、まず `client` 変数が null でないかをチェックし、null でない場合はそのまま返します。そうではない場合は、Momento クライアントを初期化して `client` 変数に保存します。そして、クライアントを呼び出し元に返します。
 
-This module will be loaded by our handler when our function instance is initialized. The first time a client calls the `getMomentoClient` function, there will not be an existing client available and one will be initialized. However, future requests will get a previously initialized client that has an existing connection to the Momento service, resulting in faster requests.
+このモジュールは、関数インスタンスが初期化されるときにハンドラによってロードされます。最初にクライアントが `getMomentoClient` 関数を呼び出すとき、既存のクライアントは存在せず、新たに初期化されます。ただし、将来のリクエストでは、Momento サービスへの既存の接続を持つ事前に初期化されたクライアントが取得されるため、リクエストが高速化されます。
 
-You can use this in your handler function or service class as follows:
+このモジュールをハンドラ関数やサービスクラスで次のように使用できます。
 
 ![Code example for using Momento client module](images/caching-with-aws-lambda/momento-client-usage.png "Momento client usage")
 
-While the example here is in Node.js, the same pattern will apply to other programming languages.
+ここでの例は Node.js でのものですが、同じパターンは他のプログラミング言語にも適用されます。
 
-## Credential management
+## クレデンシャル情報の管理
 
-Momento uses a JWT to authenticate your client to the Momento service. In this section, we'll talk about how to manage this token in AWS Lambda.
+Momento は、Momento サービスへのクライアントの認証に JWT を使用します。このセクションでは、AWS Lambda でこのトークンを管理する方法について説明します。
 
-### Background
+### 背景
 
-As discussed above, Lambda is a stateless compute environment. This means all data used within your application must be either built directly into your function code or must be dynamically loaded at runtime into your application. Building data directly into your code can work for specific bits of data but is less flexible than needed for other bits of data.
+先述の通り、Lambda はステートレスなコンピューティング環境です。つまり、アプリケーション内で使用するすべてのデータは、関数コードに直接組み込まれるか、実行時に動的に読み込まれる必要があります。データをコードに直接組み込む方法は特定のデータには機能しますが、他のデータに対しては柔軟性に欠けます。
 
-There are two main options for handling more dynamic data in your code. For non-sensitive information, you can inject data into your function code via environment variables. This works well for data that changes across stages in your application, such as the names of DynamoDB tables or S3 buckets. It can also work well for slight configuration differences across environments, such as the log level or feature-flagging behavior of your application.
+コード内でより動的なデータを処理するための主なオプションは2つあります。機密性のない情報の場合、環境変数を介してデータを関数コードに流すことができます。これは、アプリケーション内のステージ間で変化するデータ（たとえば、DynamoDB テーブルや S3 バケットの名前など）に適しています。また、アプリケーションのログレベルやフィーチャーフラグの振る舞いなど、環境ごとのわずかな設定の違いにも適しています。
 
-However, environment variables do not work as well for sensitive information. All environment variables can be accessed by your application code, and this means compromised third-party libraries could easily read and capture your sensitive credentials.
+ただし、環境変数は機密情報にはあまり適していません。すべての環境変数はアプリケーションコードからアクセスできるため、侵害されたサードパーティのライブラリが簡単に機密情報を読み取り、キャプチャすることができます。
 
-To manage credentials, AWS Lambda users generally turn to one of two services: [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html), or [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html).
+認証情報の管理について、AWS Lambda を使うユーザーは通常、2つのサービスのいずれかを利用します。[AWS Systems Manager パラメータストア](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html), と [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)です。
 
-These two systems are quite similar. Both provide a simple API for storing and receiving credentials and integrate with IAM to manage permissions. Secrets Manager is a more advanced solution that provides higher request limits, automated credential rotation, and more fine-grained access control.
+これらの2つのシステムは非常に似ています。両方とも、認証情報の保存と取得のためのシンプルな API を提供し、IAM と統合して権限を管理します。Secrets Manager はより高度なソリューションであり、より高いリクエスト制限、自動化された認証情報のローテーション、およびより細かいアクセス制御を提供します。
 
-For these advanced features, you pay both for each secret you store and for API calls to the Secrets Manager service. Conversely, Parameter Store is free to use but has lower per-second request limits and no automated credential rotation.
+これらの高度な機能については、ストアするごとに料金が発生し、Secrets Manager サービスへの API 呼び出しにも料金がかかります。一方、Parameter Store は無料で使用できますが、リクエストの制限が少なく、自動化された認証情報のローテーションはありません。
 
-### Application
+### アプリケーション
 
-Now that we know a bit about secret management in AWS Lambda, let's see how to store and manage our Momento authentication token in Lambda.
+AWS Lambda でのシークレットの管理について少し理解したところで、Lambda での Momento 認証トークンの保存と管理方法を見てみましょう。
 
-The application portion of credential management has three components:
+認証情報の管理には、アプリケーションの部分が3つのコンポーネントから成り立ちます
 
-1. Storing the Momento authentication token in Secrets Manager;
+1. Secrets Manager で Momento 認証トークンを保存すること
 
-2. Granting the needed IAM permissions for a Lambda function to access the secret;
+2. Lambda 関数がシークレットにアクセスするために必要な IAM の権限を付与すること
 
-3. Accessing the secret within your Lambda function.
+3. Lambda 関数内でシークレットにアクセスすること
 
-Let's handle these in order.
+これら3つを順番に対応させましょう。
 
-#### Storing the Momento authentication token in Secrets Manager
+#### Momento 認証トークンを Secrets Manager に保存する
 
-First, we need to store our Momento authentication token in AWS Secrets Manager.
+まず、Momento の認証トークンを AWS Secrets Manager に保存する必要があります。
 
-Navigate to the [AWS Secrets Manager section of the AWS console](https://console.aws.amazon.com/secretsmanager/home). Make sure you are in the same region you use for your serverless application. Then, click the **Store a new secret** button to add a new secret to Secrets Manager.
+[AWS コンソールの AWS Secrets Manager セクション](https://console.aws.amazon.com/secretsmanager/home)に移動します。サーバーレスアプリケーションで使用しているリージョンと同じリージョンにいることを確認してください。次に、**Store a new secret** をクリックして、Secrets Manager に新しいシークレットを追加します。
 
 ![Example showing how to start storing a new secret in AWS Secrets Manager](images/caching-with-aws-lambda/secrets-manager-creation.png "Secrets Manager creation")
 
-This will open the Secrets Manager wizard for creating a new secret.
+これにより、新しいシークレットを作成するための Secrets Manager ウィザードが開きます。
 
-For the **Secret type**, select "**Other type of secret**". Then, enter "**MOMENTO_AUTH_TOKEN**" for your secret key and paste your authentication token as the secret value.
+**Secret type** では、"**Other type of secret**"を選択します。次に、シークレットキーとして"**MOMENTO_AUTH_TOKEN**"を入力し、認証トークンをシークレット値として貼り付けます。
 
-You can keep the default encryption key. Click the **Next** button to continue the wizard.
+デフォルトの暗号化キーを使用することができます。**Next** ボタンをクリックしてウィザードを続行します。
 
 ![Example showing how to store a new secret in Secrets Manager](images/caching-with-aws-lambda/secrets-manager-store-new-secret.png "Secrets Manager Store a new secret")
 
-On the next screen, give your secret a name to identify the secret. and enter a quick description of the secret. Then, click **Next.**
+次の画面では、シークレットを識別するための名前を付け、シークレットの簡単な説明を入力します。その後、**Next**をクリックします。
 
 ![Example showing how to name and describe secret in Secrets Manager](images/caching-with-aws-lambda/secrets-manager-name-and-description.png "Secrets Manager Name and Description")
 
-The next screen handles secret rotation, which we will not set up here. Click **Next** to continue to the final screen.
+次の画面では、シークレットのローテーションについて設定しますが、ここでは設定しません。**Next** をクリックして最終画面に進んでください。
 
-On the final page, click the **Store** button to confirm storage of your secret.
+最終ページで、**Store** をクリックしてシークレットの保存を確認します。
 
-You should now see your secret listed on the Secrets Manager page:
+これで、Secrets Manager ページにシークレットがリストされているはずです。
 
 ![Example showing how to find secret in Secrets Manager](images/caching-with-aws-lambda/secrets-manager-list-secrets.png "Secrets Manager List Secrets")
 
-Click on the secret name for your secret to open the detail screen for your secret.
+シークレットの詳細画面を開くために、シークレット名をクリックしてください。
 
-In the **Secret details** section, there is a **Secret ARN** for your secret. Copy this value, as you will need it for the next step.
+**Secret details** には、シークレットの **Secret ARN** があります。この値をコピーしておくと、次のステップで使用する必要があります。
 
-#### Granting IAM permissions to access your secret
+#### シークレットにアクセスするための IAM 権限の付与
 
-Now that we have configured the secret in AWS Secrets Manager, we need to grant permission for your AWS Lambda function to access the secret.
+AWS Secrets Manager でシークレットを設定したので、AWS Lambda 関数がシークレットにアクセスするための許可を付与する必要があります。
 
-AWS Identify and Access Management (IAM) is the authorization system across all of AWS. When creating a Lambda function, your function will be associated with an IAM role that it will use to authenticate to various AWS services. You must grant permission for that IAM to access your Momento authentication token in order to retrieve the token from AWS Secrets Manager.
+AWS Identity and Access Management（IAM）は、AWS全体で使用される認証システムです。Lambda 関数を作成する際には、関数は IAM ロールに関連付けられます。この IAM ロールは、さまざまなAWSサービスへの認証に使用されます。Momento の認証トークンを AWS Secrets Manager から取得するために、IAM にシークレットへのアクセス許可を付与する必要があります。
 
-In general, the IAM statement you will need to configure will look as follows:
+一般的に、設定する必要のある IAM ステートメントは次のようになります
 
 ```
 - Effect: "Allow"
@@ -160,11 +160,11 @@ In general, the IAM statement you will need to configure will look as follows:
   Resource: "<yourSecretArn>"
 ```
 
-Be sure to replace **"&lt;yourSecretArn>"** with the Secret ARN you copied from the Secrets Manager console.
+**"&lt;yourSecretArn>"**の部分を、Secrets Manager コンソールからコピーしたシークレットの ARN で置き換えてください。
 
-The mechanism you use to configure your IAM statements will depend on the deployment tooling you use for your Lambda functions.
+IAM ステートメントを設定する方法は、Lambda 関数のデプロイツールによって異なります。
 
-If you are using the [Serverless Framework](https://www.serverless.com/framework), you can configure this permission by adding the following to the **provider:** block of your **serverless.yml** file:
+Serverless Framework を使用している場合、次の内容を **serverless.yml** ファイルの **provider:** ブロックに追加することで、この許可を設定できます。
 
 ```
 provider:
@@ -177,9 +177,9 @@ provider:
           Resource: "<yourSecretArn>"
 ```
 
-Be sure to replace **"&lt;yourSecretArn>"** with the Secret ARN you copied from the Secrets Manager console.
+**"&lt;yourSecretArn>"** の部分を、Secrets Manager コンソールからコピーしたシークレットのARNで置き換えてください。
 
-If you are using [AWS SAM](https://aws.amazon.com/serverless/sam/), add the following in the **Policies:** section for each function that needs access to your Momento auth token:
+AWS SAM を使用している場合、Momento の認証トークンへのアクセスが必要な各関数の **Policies:** セクションに次の内容を追加してください。
 
 ```
 Policies:
@@ -190,15 +190,15 @@ Policies:
         Resource: "<yourSecretArn>"
 ```
 
-Be sure to replace **"&lt;yourSecretArn>"** with the Secret ARN you copied from the Secrets Manager console.
+**"&lt;yourSecretArn>"** の部分を、Secrets Manager コンソールからコピーしたシークレットの ARN で置き換えてください。
 
-If you are using other deployment tooling, you can follow similar steps to attach permissions to the IAM role for your Lambda function.
+その他のデプロイツールを使用している場合は、Lambda 関数の IAM ロールに許可を付与するために同様の手順を実行できます。
 
-#### Accessing the secret in your Lambda function code
+#### Lambda 関数コード内のシークレットへのアクセス
 
-After you have configured permissions for your Lambda function to access the secret in AWS Secrets Manager, you can now access your Momento authentication token within your Lambda function.
+AWS Secrets Manager に Lambda 関数がシークレットにアクセスできるように権限を設定した後、Lambda 関数内で Momento の認証トークンにアクセスすることができます。
 
-To retrieve the secret from Secrets Manager, add code like the following to your application:
+Secrets Manager からシークレットを取得するために、次のようなコードをアプリケーションに追加してください。
 
 ```
 const AWS = require("aws-sdk");
@@ -221,53 +221,53 @@ const getMomentoAuthToken = async () => {
 };
 ```
 
-Be sure to replace **"&lt;yourSecretName>"** with the name of the secret you used in the Secrets Manager console.
+**"&lt;yourSecretName>"** の部分を、Secrets Manager コンソールで使用したシークレットの名前で置き換えてください。
 
-This code will create a client for accessing AWS Secrets Manager. Then, it will call the `GetSecretValue` action on the Secrets Manager service. Finally, it will parse the response and return the value for the configured MOMENTO_AUTH_TOKEN.
+このコードは、AWS Secrets Manager にアクセスするためのクライアントを作成します。その後、Secrets Manager サービスで `GetSecretValue` アクションを呼び出します。最後に、レスポンスを解析して構成された MOMENTO_AUTH_TOKEN の値を返します。
 
-Notice that this will make an external network call, and thus you should optimize your Lambda code around this. Ideally, you are only constructing your SimpleCache object once within a given Lambda function instance, as discussed above in the [Connection reuse section](#heading=h.rkchdfjttru6). Because of this, you should only need to retrieve the Momento authentication token once within a particular function instance.
+これにより、外部ネットワーク呼び出しが行われるため、Lambda コードを最適化する必要があります。特定の Lambda 関数インスタンス内で SimpleCache オブジェクトを一度だけ構築するようにする必要があります [接続の再利用で説明済み](#heading=h.rkchdfjttru6)。したがって、特定の関数インスタンス内で Momento の認証トークンを1回だけ取得する必要があります。
 
-## Package management
+## パッケージ管理
 
-The final piece of practical advice for using Momento in an AWS Lambda function is around package management. We'll first discuss the Lambda compute environment, then we'll discuss specifics around including the Momento SDK within your Lambda function.
+Momento を AWS Lambda 関数で使用するための実用的なアドバイスの最後の部分は、パッケージ管理に関するものです。まずは Lambda のコンピュート環境について説明し、その後は Lambda 関数内に Momento SDK を含める方法について詳しく説明します。
 
-### Background
+### 背景
 
-AWS Lambda is a fully-managed, function-based compute environment. You will give Lambda a ZIP file with your function code (or, alternatively, [a Docker container image](https://aws.amazon.com/blogs/aws/new-for-aws-lambda-container-image-support/)), and the Lambda environment will handle running your code in response to events.
+AWS Lambda は、完全に管理された関数ベースのコンピュート環境です。Lambda には、関数コードの ZIP ファイル[または Docker コンテナイメージの場合もあります](https://aws.amazon.com/blogs/aws/new-for-aws-lambda-container-image-support/)を提供し、Lambda 環境がイベントに応じてコードを実行します。
 
-As an application developer, there are two aspects you need to consider when using third-party dependencies in AWS Lambda.
+AWS Lambda を使用する際に、サードパーティの依存関係を考慮する必要があります。アプリケーション開発者としては、以下の2つの側面を考慮する必要があります。
 
-First, you need to ensure that the dependency is included within your function ZIP file. Many deployment tools, including the [Serverless Framework](https://www.serverless.com/framework), [AWS SAM](https://aws.amazon.com/serverless/sam/), [AWS CDK](https://aws.amazon.com/cdk/), and [Architect](https://arc.codes/docs/en/get-started/why-architect), will assist you with dependency management. They will either build the dependencies for you as part of a deployment process, or they will create a ZIP file from the contents of your application directory. Specific details can be found below.
+まず第一に、依存関係が関数のZIPファイルに含まれていることを確認する必要があります。[Serverless Framework](https://www.serverless.com/framework)、[AWS SAM](https://aws.amazon.com/serverless/sam/)、[AWS CDK](https://aws.amazon.com/cdk/)、[Architect](https://arc.codes/docs/en/get-started/why-architect)などのデプロイツールは、依存関係の管理をサポートしています。これらのツールは、デプロイプロセスの一部として依存関係をビルドしたり、アプリケーションディレクトリの内容からZIPファイルを作成したりします。具体的な詳細は以下に記載されています。
 
-Second, you must ensure that your dependencies will work in the AWS Lambda environment. If you are using a ZIP file rather than a container image for your Lambda function, the code itself will be running on top of the Amazon Linux 2 operating system. Most of your function code and dependencies will work the same on your local machine as in the Lambda execution environment. However, certain dependencies must be compiled for specific architectures.
+第二に、依存関係が AWS Lambda 環境で動作することを確認する必要があります。Lambda 関数にコンテナイメージではなく ZIP ファイルを使用している場合、コード自体は Amazon Linux 2 オペレーティングシステム上で実行されます。関数コードと依存関係のほとんどは、ローカルマシンと Lambda 実行環境で同様に動作します。ただし、特定の依存関係は特定のアーキテクチャ用にコンパイルする必要があります。
 
-The [Momento SimpleCache clients use gRPC](./../../learn/how-it-works#grpc) to connect to the Momento service. The gRPC library for Python uses architecture-specific bindings and thus must be compiled for the Amazon Linux 2 execution environment. If you build the dependency directly on your Mac or Windows machine, it won't be compatible with the Lambda execution environment.
+[Momento の CacheClient クライアントは、Momento サービスに接続するために gRPC を使用します](./../../learn/how-it-works#grpc)。Python の gRPC ライブラリはアーキテクチャ固有のバインディングを使用しているため、Amazon Linux 2 の実行環境に対してコンパイルする必要があります。Mac や Windows のマシン上で直接依存関係をビルドした場合、Lambda の実行環境と互換性がありません。
 
-Below, we will see how to handle both of these problems using popular deployment frameworks.
+以下では、人気のあるデプロイメントフレームワークを使用してこれらの問題をどのように解決するかを見ていきます。
 
-### Application
+### アプリケーション
 
-Now that we know the background on using dependencies within AWS Lambda, let's see how to use the Momento SDK with different runtimes and deployment tooling.
+AWS Lambda 内での依存関係の使用についての背景を理解したので、さまざまなランタイムやデプロイツールを使用して Momento SDK をどのように使用するかを見てみましょう。
 
 #### Node.js
 
-If you are using Node.js for your Lambda functions, you don't need to worry about compiling for a specific execution environment. The Momento SDK and all of its dependencies are pure JavaScript and will work across different architectures.
+Node.js を使用している場合、特定の実行環境にコンパイルする必要はありません。Momento SDK およびそのすべての依存関係は純粋な JavaScript であり、異なるアーキテクチャで動作します。
 
-To add Momento to your Lambda function, you need to install it and save it to your `package.json` file:
+Lambda 関数に Momento を追加するには、以下の手順で SDK をインストールし、`package.json` ファイルに保存する必要があります：
 
 ```
 npm install --save @gomomento/sdk
 ```
 
-Most of the popular deployment tools will automatically include the installed package in your Lambda function ZIP file.
+多くの人気のあるデプロイツールは、インストールされたパッケージを自動的に Lambda 関数の ZIP ファイルに含めます。
 
 #### Python
 
-If you are using Python for your Lambda function, you need to ensure to compile the gRPC package for the Amazon Linux 2 execution environment. How you do so depends on your deployment tooling.
+Python を使用して Lambda 関数を作成している場合、gRPC パッケージを Amazon Linux 2 の実行環境に対してコンパイルする必要があります。この方法は、使用しているデプロイツールによって異なります。
 
-If you are using the Serverless Framework, you can use the [serverless-python-requirements](https://github.com/serverless/serverless-python-requirements) plugin to assist in building and managing your Python requirements. The serverless-python-requirements package will integrate with your Python package manager of choice to build your Python dependencies when deploying your Lambda function. Importantly, you can choose to build your dependencies in a Docker container that matches the Lambda execution environment and thus will be built correctly.
+もし Serverless Framework を使用している場合、[serverless-python-requirements](https://github.com/serverless/serverless-python-requirements) プラグインを使って Python の依存関係の構築と管理をサポートすることができます。serverless-python-requirements パッケージは、選択した Python パッケージマネージャと連携して、Lambda 関数をデプロイする際に Python の依存関係をビルドします。重要な点は、Lambda の実行環境と一致する Docker コンテナ内で依存関係をビルドすることができるため、正しくビルドされます。
 
-To configure serverless-python-requirements, be sure to add the following configuration to your `serverless.yml` file:
+serverless-python-requirements を設定するには、`serverless.yml` ファイルに以下の設定を追加してください。
 
 ```
 plugins:
@@ -278,24 +278,24 @@ custom:
     dockerizePip: true
 ```
 
-Be sure to read the rest of the [documentation on serverless-python-requirements](https://github.com/serverless/serverless-python-requirements) to customize for your specific environment.
+特定の環境に合わせてカスタマイズするために、[serverless-python-requirements](https://github.com/serverless/serverless-python-requirements)のドキュメンテーションの残りの部分を読むことをお勧めします。
 
-If you are using AWS SAM, you can use the following command to build your ZIP file properly for the Lambda execution environment:
+AWS SAM を使用している場合、以下のコマンドを使用して Lambda の実行環境に適切に ZIP ファイルをビルドすることができます。
 
 ```
 sam build --use-container
 ```
 
-This will [indicate to SAM that you want to use a Docker image](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-using-build.html#build-zip-archive) that is similar to the Lambda execution environment to build your dependencies.
+これにより、SAM に対して Lambda の実行環境に類似した Docker イメージを使用して依存関係をビルドするよう指示します。[詳細はこちらを参照してください。](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-using-build.html#build-zip-archive)
 
-If you are using the AWS CDK, it will [install all dependencies in a Lambda-compatible Docker container](https://docs.aws.amazon.com/cdk/api/v1/docs/aws-lambda-python-readme.html#packaging) based on the Python package management tool of your choice.
+AWS CDK を使用している場合、それはあなたの選択した Python パッケージ管理ツールに基づいて、Lambda 互換の Docker コンテナ内ですべての依存関係をインストールします。[詳細はこちらを参照してください。](https://docs.aws.amazon.com/cdk/api/v1/docs/aws-lambda-python-readme.html#packaging)
 
-#### Other languages
+#### そのほかの言語
 
-For other languages, you should install the Momento SDK according to the installation instructions. Then, refer to the AWS Lambda documentation for building ZIP files for those languages:
+他の言語の場合、Momento SDK のインストール手順に従って SDK をインストールする必要があります。その後、各言語の ZIP ファイルをビルドするための AWS Lambda のドキュメンテーションを参照してください。
 
-- [Lambda Java deployment package](https://docs.aws.amazon.com/lambda/latest/dg/java-package.html)
+- [Lambda Java デプロイメントパッケージ](https://docs.aws.amazon.com/lambda/latest/dg/java-package.html)
 
-- [Lambda Golang deployment package](https://docs.aws.amazon.com/lambda/latest/dg/golang-package.html)
+- [Lambda Golang デプロイメントパッケージ](https://docs.aws.amazon.com/lambda/latest/dg/golang-package.html)
 
-- [Lambda C# deployment package](https://docs.aws.amazon.com/lambda/latest/dg/csharp-package.html)
+- [Lambda C# デプロイメントパッケージ](https://docs.aws.amazon.com/lambda/latest/dg/csharp-package.html)
