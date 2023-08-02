@@ -75,7 +75,7 @@ You're now ready to chat with your friends! Navigate to the `Site overview` in t
 
 ![Netlify site overview](/img/netlify-site-overview.png)
 
-Clicking on the `https://charming-salmiakki-e07713.netlify.app/` link in the overview (your URL will, of course, be different) reveals your chat app's lobby screen. Select the `chat` cache we created earlier from the dropdown and also use `chat` as the name of the chat room. You could use any name, but using `chat` makes it easy to remember and share. If it doesn't exist, the chat room will be created.
+Clicking on the `https://charming-salmiakki-e07713.netlify.app/` link in the overview (your URL will, of course, be different) reveals your chat app's lobby screen. Use `chat` as the name of the chat room. You could use any name, but using `chat` makes it easy to remember and share. If it doesn't exist, the chat room will be created.
 
 ![Chat app lobby](/img/nextjs-chat-app-lobby.png)
 

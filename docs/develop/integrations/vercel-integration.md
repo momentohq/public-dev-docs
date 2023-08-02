@@ -76,7 +76,7 @@ Use the `Continue to Dashboard` button to view detailed information about your d
 
 You're now ready to chat with your friends! There are a few URLs to choose from listed here, but you'll want to use the simplest one listed in the `Domains` section. You would, of course, set up a custom domain were this a production app, but the generated vercel.app URL is good enough for our purposes.
 
-Clicking on the `client-sdk-javascript.vercel.app` link (your URL will likely be different) reveals your chat app's lobby screen. Select the `chat` cache we created earlier from the dropdown and also use `chat` as the name of the chat room. You could use any name, but using `chat` makes it easy to remember and share. If it doesn't exist, the chat room will be created.
+Clicking on the `client-sdk-javascript.vercel.app` link (your URL will likely be different) reveals your chat app's lobby screen. Use `chat` as the name of the chat room. You could use any name, but using `chat` makes it easy to remember and share. If it doesn't exist, the chat room will be created.
 
 ![Chat app lobby](/img/nextjs-chat-app-lobby.png)
 
