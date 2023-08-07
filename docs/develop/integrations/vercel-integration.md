@@ -17,8 +17,6 @@ To get this app deployed and running, you'll need to have the following availabl
 - An account with a Git provider such as [GitHub](https://github.com/), [GitLab](https://gitlab.com), or [Bitbucket](https://bitbucket.org/).
 - A [Vercel](https://vercel.com/) account.
 - A copy or fork of the [Momento Javascript SDK](https://github.com/momentohq/client-sdk-javascript) in your personal repositories.
-- A Momento authentication token.
-- A Momento cache.
 
 Once you have a Vercel account and a copy or fork of the Momento Javascript SDK in your Git provider account, you're ready to configure the Momento side of things using the [Momento console](https://console.gomomento.com). You can create an account in the console by providing your email address or linking an existing Google or GitHub account. Once you've logged into the console, click the `Create Cache` button on the top right of the page:
 
