@@ -3,7 +3,6 @@ sidebar_position: 5
 sidebar_label: Bulk data writing
 title: Bulk data writing Redis, CSV, and JSON into Momento Cache
 description: Learn to migrate heaps of data into Momento Cache smoothly.
-pagination_next: null
 ---
 
 # Efficient bulk writes to Momento Cache from Redis, CSV, JSON, and more
