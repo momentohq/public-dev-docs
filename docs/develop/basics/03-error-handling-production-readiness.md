@@ -3,7 +3,7 @@ sidebar_position: 3
 sidebar_label: SDK Error Handling
 sidebar_class_name: "sidebar-item-api-reference"
 title: SDK error handling / Production readiness
-description: need to write this.
+description: Discover how to handle errors when using the Momento SDK.
 pagination_next: null
 ---
 
