@@ -40,7 +40,7 @@ We frequently find customers provisioning an entire cluster to handle low-RPS wo
 
 <details>
   <summary>Can I run a production app for $5.00/month on Momento Cache?</summary>
-Absolutely! If you are transferring 60 GB of data in/out of Momento Cache each month, you get the first 5GB free each month and pay $0.50/GB for the remaining 55GB each month. Access enterprise-grade availability, security, and performance at any scale with Momento.
+Absolutely! If you are transferring 15 GB of data in/out of Momento Cache each month, you get the first 5GB free each month and pay $0.50/GB for the remaining 10GB each month. Access enterprise-grade availability, security, and performance at any scale with Momento.
 
 
 As crazy as it sounds, we are not the first to do this. You can experience this with other serverless services like Amazon DynamoDB, Amazon S3, and more—we are just bringing serverless to caching!
