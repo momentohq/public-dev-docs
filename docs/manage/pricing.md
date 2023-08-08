@@ -8,11 +8,11 @@ description: Explore the simplicity of the pricing model and free tier informati
 # Pricing and free tier for Momento Cache and Momento Topics
 Serverless is about simplicity in every dimension, including pricing! Momento Cache costs $0.50/GB transferred, metered in 1 KB increments each time. That's it!
 
-Your first 50 GBs transferred each month are free and you don't need a credit card to get started.
+Your first 5 GBs transferred each month are free, and you don't need a credit card to get started.
 
 Momento Cache has no hidden charges. You don’t have to pay for storage, replication, or instances. We literally only charge you for data transferred in/out of Momento Cache or Topics services. Everything else is included. Sign up with confidence and create something wonderful.
 
- If you need further assistance (or just can’t believe it), drop a message in our [Discord](https://discord.gg/Z7FSXB89), and we’ll help get it sorted out. Take the Momento Cache challenge: see how much you can save!
+If you need further assistance (or just can’t believe it), drop a message in our [Discord](https://discord.gg/Z7FSXB89), and we’ll help get it sorted out. Take the Momento Cache challenge: see how much you can save!
 
 ### FAQ's
 <details open>
@@ -33,14 +33,14 @@ Yes. Your best source is <a href="https://www.gomomento.com/blog/complicated-pri
 
 <details>
 <summary>Can I run a production app for free on Momento Cache and Topics?</summary>
-Absolutely! Our free tier and low usage tiers are just billing. It is the same exact service and features whether you use 40GB/month or 40TB/month. You get all our availability features like multi-AZ replication, hot key protection, and automatic scaling to handle bursts. In the free tier, you even get all our security features for free (end-to-end encryption, per request authentication, TLS).
+Absolutely! Our free tier and low usage tiers are just billing. It is the same exact service and features whether you use 40GB/month or 40TB/month. You get all our availability features like multi-AZ replication, hot key protection, and automatic scaling to handle bursts. In the free tier, you even get all our security features for free (end-to-end encryption, per-request authentication, TLS).
 
 We frequently find customers provisioning an entire cluster to handle low-RPS workflows. If you want them to be HA, you need multiple nodes. If you believe in CICD, you likely have a similarly sized cluster in staging—and maybe even in dev. That adds up! Turn off those machines—and save the environment. Go Momento!
 </details>
 
 <details>
   <summary>Can I run a production app for $5.00/month on Momento Cache?</summary>
-Absolutely! If you are transferring 60 GB of data in/out of Momento Cache each month, you get the first 50GB free each month and pay $0.50/GB for the remaining 10GB each month. Access enterprise-grade availability, security, and performance at any scale with Momento.
+Absolutely! If you are transferring 60 GB of data in/out of Momento Cache each month, you get the first 5GB free each month and pay $0.50/GB for the remaining 55GB each month. Access enterprise-grade availability, security, and performance at any scale with Momento.
 
 
 As crazy as it sounds, we are not the first to do this. You can experience this with other serverless services like Amazon DynamoDB, Amazon S3, and more—we are just bringing serverless to caching!
@@ -48,7 +48,7 @@ As crazy as it sounds, we are not the first to do this. You can experience this 
 
 <details>
   <summary>Can I really store as much data in my cache(s) as I want?</summary>
-Heck yeah! You are billed for the inbound and outbound transfer of data, not for the volume of data in your cache.
+Heck yeah! You are billed for the inbound and outbound data transfer, not the volume of data in your cache.
 </details>
 
 <details>
@@ -58,7 +58,7 @@ Hell yes! Momento Cache is the best way to future-proof your caching story. You 
   
 <details>
   <summary>Will it blend?</summary>
-We do not recommend putting Momento Cache in a blender as it may void the warranty of your blender, but Momento Cache  is robust with enterprise grade security and availability. Momento Cache does blend seamlessly with your current cloud setup, whether you're on AWS, GCP, Azure, or multi-cloud!
+We do not recommend putting Momento Cache in a blender as it may void the warranty of your blender, but Momento Cache  is robust with enterprise-grade security and availability. Momento Cache blends seamlessly with your current cloud setup, whether on AWS, GCP, Azure, or multi-cloud!
 </details>
 
 [Give Momento Cache a Try!](./../getting-started.md)
