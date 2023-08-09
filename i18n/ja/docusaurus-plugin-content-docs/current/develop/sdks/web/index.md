@@ -61,7 +61,7 @@ API 呼出しは [Momento Node.js SDK と同一](/develop/sdks/nodejs/cheat-shee
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateAuthToken'} />
 
-他にも、認可のための `TokenScope` や、期限切れのトークンをどうやってリフレッシュするか、などを含めた Momento 認証トークンに関する情報は、[Momento 認証トークンを使う](/develop/guides/working-with-momento-auth-tokens)をご覧下さい。
+他にも、認可のための `TokenScope` や、期限切れのトークンをどうやってリフレッシュするか、などを含めた Momento 認証トークンに関する情報は、[Momento 認証トークンを使う](/develop/basics/working-with-momento-auth-tokens)をご覧下さい。
 
 ## よくある質問
 

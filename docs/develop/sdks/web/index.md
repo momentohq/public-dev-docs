@@ -63,7 +63,7 @@ Then you will use the `generateAuthToken` API to create a token that you can ven
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateAuthToken'} />
 
-For more information on Momento auth tokens, including `TokenScope` for authorization, and how to refresh expiring tokens, see [Working with Momento auth tokens](/develop/guides/working-with-momento-auth-tokens).
+For more information on Momento auth tokens, including `TokenScope` for authorization, and how to refresh expiring tokens, see [Working with Momento auth tokens](./../basics/working-with-momento-auth-tokens).
 
 ## FAQ
 
