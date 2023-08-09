@@ -35,7 +35,7 @@ Momento クライアントを生成するときには Momento 認証トークン
 
 AWS Secrets Manager から認証情報を取得する方法の例は、[AWS Secrets Manager から Momento 認証トークンを取得する](/develop/integrations/aws-secrets-manager)をご覧下さい。
 
-Momento 認証トークンを生成したりリフレッシュするための一般的な情報は、[期限付きのトークンで Momento と認証する](/develop/guides/working-with-momento-auth-tokens)をご覧下さい。
+Momento 認証トークンを生成したりリフレッシュするための一般的な情報は、[期限付きのトークンで Momento と認証する](/develop/basics/working-with-momento-auth-tokens)をご覧下さい。
 
 ## クライアント設定オブジェクト
 

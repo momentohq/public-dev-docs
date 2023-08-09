@@ -37,10 +37,6 @@ If you're storing your Momento auth token in a secret manager such as [AWS Secre
 
 For an example of how to retrieve credentials from AWS Secrets Manager, see [Retrieving a Momento auth token from AWS Secrets Manager](/develop/integrations/aws-secrets-manager).
 
-For general information on creating and refreshing Momento auth tokens, see [Momento authentication with expiring tokens](/develop/guides/working-with-momento-auth-tokens).
+For general information on creating and refreshing Momento auth tokens, see [Momento authentication with expiring tokens](/develop/basics/working-with-momento-auth-tokens).
 
 For more information, see our [Response Objects](/develop/api-reference/response-objects) page, and the docs for the specific SDK that you are using (under `Develop`->`SDKs` in the left nav).
-
-
-
-

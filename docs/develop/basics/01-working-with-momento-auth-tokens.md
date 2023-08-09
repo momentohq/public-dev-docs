@@ -19,7 +19,7 @@ To access Momento services from your application, a Momento auth token is requir
 1. A super-user token which grant access to all resources and APIs (both data plane and control plane) in the account.
 2. A fine-grained access control (FGAC) token which only has access to data plan APIs and can be configured to restrict access to the single cache and/or topic level, if so desired.
 
-See [Auth API reference information](./../api-reference/auth-tokens.md) for information on using Momento's Auth API to programmatically create, manage, and refresh Momento auth tokens.
+See [Auth API reference information](/develop/api-reference/auth-tokens.md) for information on using Momento's Auth API to programmatically create, manage, and refresh Momento auth tokens.
 
 ## Token expiration
 
