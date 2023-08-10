@@ -27,11 +27,6 @@ If you need further assistance (or just can’t believe it), drop a message in o
 | Single sign-on & teams (coming soon) | $0/user                   |
   
  </details>
- 
-<details>
-<summary>Can I see a few pricing examples of using Momento Cache Cache or Topics to help estimate my costs?</summary>
-Yes. Your best source is <a href="https://www.gomomento.com/blog/complicated-pricing-is-not-serverless">this Momento blog post</a>.
-</details>
 
 <details>
 <summary>Can I run a production app for free on Momento Cache and Topics?</summary>
