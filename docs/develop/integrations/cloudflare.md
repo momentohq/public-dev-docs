@@ -16,9 +16,9 @@ To get this app deployed and running, you'll need to have the following availabl
 
 - An account with a Git provider such as [GitHub](https://github.com/), [GitLab](https://gitlab.com), or [Bitbucket](https://bitbucket.org/).
 - A [Cloudflare](https://workers.cloudflare.com/) account.
-- A copy or fork of the [Momento Javascript SDK](https://github.com/momentohq/client-sdk-javascript) in your personal repositories.
+- A copy or fork of the [Momento JavaScript SDK](https://github.com/momentohq/client-sdk-javascript) in your personal repositories.
 
-Once you have a Cloudflare account and a copy or fork of the Momento Javascript SDK in your Git provider account, you're ready to configure the Momento side of things using the [Momento console](https://console.gomomento.com). You can create an account in the console by providing your email address or linking an existing Google or GitHub account. Once you've logged into the console, click the `Create Cache` button on the top right of the page:
+Once you have a Cloudflare account and a copy or fork of the Momento JavaScript SDK in your Git provider account, you're ready to configure the Momento side of things using the [Momento console](https://console.gomomento.com). You can create an account in the console by providing your email address or linking an existing Google or GitHub account. Once you've logged into the console, click the `Create Cache` button on the top right of the page:
 
 ![Create Cache button](/img/console-create-cache.png)
 
@@ -40,7 +40,7 @@ Copy the `Auth Token` and `HTTP Endpoint` and save it in a safe place. You'll ne
 
 ## Deploying with Cloudflare
 
-Now it's time to configure and deploy the application to your Cloudflare account. As noted before, you need a copy of the Momento Javascript SDK available in your repository. 
+Now it's time to configure and deploy the application to your Cloudflare account. As noted before, you need a copy of the Momento JavaScript SDK available in your repository. 
 In this example, we'll deploy from a GitHub repository forked from [the original](https://github.com/momentohq/client-sdk-javascript).
 
 ![Fork SDK Repository](/img/github-fork-js-sdk.png)
@@ -51,18 +51,14 @@ This repository contains a directory under `examples` for `cloudflare-workers`. 
 - [Web-SDK](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/cloudflare-workers/web-sdk) - How to interact with Momento cache using its Web SDK on Cloudflare workers.
 
 There are a few reasons why you might choose one over the other when interacting with Momento within a Cloudflare Worker.
-- The HTTP APIs is lighter-weight; you don't need to add any dependencies, you can just use the standard `fetch` HTTP
-  client methods. However, it only provides a basic subset of all of the Momento APIs, such as `get`, `set`, and `delete`.
+- The HTTP APIs is lighter-weight; you don't need to add any dependencies, you can just use the standard `fetch` HTTP client methods. However, it only provides a basic subset of all of the Momento APIs, such as `get`, `set`, and `delete`.
 
-- The Web SDK is heavier-weight; you need to add a dependency on the SDK. However, it supports the full Momento API
-  (including collections like Dictionaries and SortedSets, plus the ability to publish to Momento Topics). It also has a
-  complete TypeScript/JavaScript API that makes it simpler to write code to interact with Momento. This can save you time
-  and effort when developing your Worker.
+- The Web SDK is heavier-weight; you need to add a dependency on the SDK. However, it supports the full Momento API (including collections like Dictionaries and SortedSets, plus the ability to publish to Momento Topics). It also has a complete TypeScript/JavaScript API that makes it simpler to write code to interact with Momento. This can save you time and effort when developing your Worker.
 
 
 Cloudflare uses a file called wrangler.toml to configure the development and publishing of a worker. More information about Cloudflare configuration can be found [on their website](https://developers.cloudflare.com/workers/wrangler/configuration/).
 
-### Using Momento HTTP API
+### Using the Momento HTTP API
 
 First let's navigate to the relevant example directory to use Momento's HTTP API in a Cloudflare worker.
 
@@ -70,7 +66,7 @@ First let's navigate to the relevant example directory to use Momento's HTTP API
 cd examples/cloudflare-workers/http-api
 ```
 
-Update the `wrangler.toml` file in this directory with the cache name `worker` and the HTTP endpoint we copied before as they appeared in the Momento Console.
+Update the `wrangler.toml` file in this directory with the cache name `worker` and the HTTP endpoint we copied before as they appeared in the Momento console.
 
 ```toml
 name = "momento-cloudflare-worker-http"
@@ -137,7 +133,7 @@ Published momento-cloudflare-worker-http (0.40 sec)
   https://momento-cloudflare-worker-http.pratik-37c.workers.dev
 ```
 
-### Using Momento Web SDK
+### Using the Momento Web SDK
 
 
 First let's navigate to the relevant example directory to use Momento's HTTP API in a Cloudflare worker.
