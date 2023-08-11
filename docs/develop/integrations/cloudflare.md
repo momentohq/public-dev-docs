@@ -8,7 +8,7 @@ pagination_next: null
 
 [Cloudflare Workers](https://workers.cloudflare.com/) is a popular platform for deploying and running serverless code.
 
-In this tutorial, we'll make use of two simple [examples](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/cloudflare-workers) from our [Javascript SDK](https://github.com/momentohq/client-sdk-javascript). By the end of the exercise, you'll have a Cloudflare worker that interacts with Momento cache to populate and retrieve data.
+In this tutorial, we'll make use of two [examples](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/cloudflare-workers) from our [JavaScript SDK](https://github.com/momentohq/client-sdk-javascript). By the end of the exercise, you'll have a Cloudflare worker that interacts with Momento Cache to populate and retrieve data.
 
 ## Prerequisites
 
