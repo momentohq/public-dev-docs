@@ -136,7 +136,7 @@ Published momento-cloudflare-worker-http (0.40 sec)
 ### Using the Momento Web SDK
 
 
-First let's navigate to the relevant example directory to use Momento's HTTP API in a Cloudflare worker.
+First let's navigate to the relevant example directory to use Momento's Web SDK in a Cloudflare worker.
 
 ```bash
 cd examples/cloudflare-workers/web-sdk
@@ -177,7 +177,7 @@ Open your browser to [localhost:8787](http://localhost:8787). The code in this e
     return new Response(JSON.stringify({ response: getResponse.toString() }));
 ```
 
-A deployed example can be found [here](https://momento-cloudflare-worker-http.pratik-37c.workers.dev).
+A deployed example can be found [here](https://momento-cloudflare-worker-web.pratik-37c.workers.dev/).
 
 If you would like to deploy this example to your own Cloudflare worker, make sure you add the `MOMENTO_AUTH_TOKEN` as a secret inside of your Cloudflare account:
 
