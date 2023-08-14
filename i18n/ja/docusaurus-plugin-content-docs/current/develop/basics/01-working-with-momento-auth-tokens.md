@@ -2,7 +2,7 @@
 sidebar_position: 4
 sidebar_label: Momento Authentication
 title: Working with Momento auth tokens
-description: Learn how to use expiring tokens to enhance the security of your application
+description: 有効期限がある認証トークンを使用してアプリケーションのセキュリティを強化する方法について学ぶ
 pagination_next: null
 ---
 
@@ -11,66 +11,66 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Working with Momento auth tokens
+# Momento 認証トークンを使用する
 
-To access Momento services from your application, a Momento auth token is required. The auth token is an alphanumeric string Momento generates that is unique to your account and the cloud provider's Region you select. When creating an auth token, you can set up one of two types of expiration:
+アプリケーションから Momento のサービスにアクセスするには、Momento の認証トークンが必要です。認証トークンは Momento が生成する英数字の文字列で、あなたのアカウントと選択したクラウドプロバイダのリージョンに固有のものです。認証トークンを作成する際、2種類の有効期限を設定できます：
 
-1. An auth token that never expires. This should only be used for dev/test environments.
-2. An auth token which expires and requires periodic rotation. You can set the expiration to 7, 30, 60, 90 days or custom, where you can select a specific calendar date. An expiring auth token is considered best practice for production deployments. We will walk through how to do exactly that in this page.
+1. 有効期限のない認証トークン。これは開発/テスト環境でのみ使用すべきです。
+2. 有効期限があり、定期的なローテーションが必要な認証トークン。有効期限は、7、30、60、90 日、あるいは特定の暦日を選択できるカスタムで設定できます。有効期限がある認証トークンは、本番環境におけるベストプラクティスと考えられています。このページではその方法を説明します。
 
 :::info
-In addition to using an expiring auth token, it is best practice to store an auth token in a service like [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) or [GCP Secret Manager](https://cloud.google.com/secret-manager). Go to [Retrieving a Momento auth token from AWS Secrets Manager](/develop/integrations/aws-secrets-manager) for an example on using this.
+有効期限がある認証トークンを使用することに加えて、[AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)や[GCP Secret Manager](https://cloud.google.com/secret-manager)のようなサービスに認証トークンを保存するのがベストプラクティスです。[AWS Secrets Manager から Momento の認証トークンを取得する方法](/develop/integrations/aws-secrets-manager)を参照してください。
 :::
 
-## Generating expiring tokens
+## 有効期限があるトークンの生成
 
-### Step 1: Sign up or log into the Momento console
-Go to the [Momento console](https://console.gomomento.com/tokens) and follow the instructions to log in with your email address, Google account, or GitHub account.
+### ステップ 1: サインアップするか、Momento コンソールにログインする
+[Momento コンソール](https://console.gomomento.com/tokens)にアクセスし、指示に従ってメールアドレス、Googleアカウント、またはGitHubアカウントでログインします。
 
 ![image](/img/getting-started/console.png)
 
-### Step 2: Generate a Momento auth token
-In the console, open the menu and select token.
+### ステップ 2: Momento 認証トークンを生成する
+コンソールでメニューを開き、token を選択する。
 
 ![image of console menu](/img/getting-started/auth-token.gif)
 
-On the token page, select your 1/ cloud provider, 2/ an available region from the drop down list, 3/ when the token should expire, and then 4/ hit the "Generate Token" button.
+トークンページで、1/ クラウド・プロバイダーを選択し、2/ 利用可能なリージョンをドロップダウンリストから選択し、3/ トークンの有効期限を選択し、4/ "Generate Token "ボタンを押す。
 
 ![image](/img/getting-started/select-provider-region.png)
 
-Scroll down and you will see your token in a grey box. The tokens in the screenshot has been blurred out, but yours won't be. The box contains 3 separate fields:
-1. Auth Token: this is the actual authentication token that gives your application access to Momento. This token will expired after the specified time period you selected.
-2. Refresh Token: if you wish to programmatically obtain a new auth token before the current token expires, you need this refresh token.
-3. Valid Until: this is purely informational, and displays the date and time the current auth token expires at.
+下にスクロールすると、グレーのボックスにトークンが表示されます。スクリーンショットのトークンはぼかされていますが、あなたのトークンはぼかされていません。ボックスには3つのフィールドがあります：
+1. Auth Token: アプリケーションが Momento にアクセスするための実際の認証トークンです。このトークンは、指定した期間が経過すると失効します。
+2. Refresh Token: 現在のトークンの有効期限が切れる前に、プログラムで新しい認証トークンを取得したい場合は、このリフレッシュトークンが必要です。
+3. 有効期限：現在の認証トークンの有効期限が切れる日時を表示します。
 
 ![image](/img/getting-started/generated-token.jpg)
 
-### Step 3: Store your Momento auth token
-If you wish to quickly test out Momento, click on the copy icon beside the auth token to copy the token to your clipboard and supply it to the Momento SDK. We recommend you also click the "Download JSON" button to store both the auth token and refresh token. Tokens are like passwords, the best practice is to store it in and retrieve it from a secure location such as [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) or [GCP Secret Manager](https://cloud.google.com/secret-manager).
+### ステップ 3: Momento の認証トークンを保存する
+Momento をすぐに試したい場合は、認証トークンの横にあるコピーアイコンをクリックしてトークンをクリップボードにコピーし、Momento SDK に設定してください。また、"Download JSON" ボタンをクリックして、認証トークンとリフレッシュトークンの両方を保存することをお勧めします。トークンはパスワードのようなものなので、[AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)や[GCP Secret Manager](https://cloud.google.com/secret-manager)のような安全な場所に保存し、そこから取り出すのがベストプラクティスです。
 
-### Step 4: Automating token refresh
+### ステップ 4: トークン更新の自動化
 
-To refresh an expiring token, you will use the Momento `AuthClient` and its `refreshAuthToken` API.
+有効期限切れのトークンをリフレッシュするには、Momento の `AuthClient` と `refreshAuthToken` API を使います。
 
-To instantiate an `AuthClient`:
+`AuthClient` のインスタンスを作成する：
 
 <SdkExampleTabs snippetId={'API_InstantiateAuthClient'} />
 
-To use the `refreshAuthToken` API:
+`refreshAuthToken` API を使用する：
 
 <SdkExampleTabs snippetId={'API_RefreshAuthToken'} />
 
-Once your application is running in production. You will need an automated script that periodically refreshes the auth token, **before** it expires. If you are running in AWS, scheduling a function in AWS Lambda that does this for you. For GCP, Google Cloud Functions is likely your solution of choice. For an example using AWS Lambda, check out our [1-click deploy example Lambda function](https://github.com/momentohq/auth-token-refresh-lambda) that will automatically refresh your token stored in AWS Secrets Manager.
+アプリケーションを本番環境で動かそうとすると、認証トークンを定期的に更新する自動化スクリプトが必要になります。AWSで実行している場合は、AWS Lambda でこれを行う関数をスケジューリングします。GCP の場合は、Google Cloud Functions が最適なソリューションになるでしょう。AWS Lambda を使った例として、AWS Secrets Manager に保存されたトークンを自動的にリフレッシュする[1クリックでデプロイできるラムダ関数の例](https://github.com/momentohq/auth-token-refresh-lambda)をご覧ください。
 
 :::note
-While a Lambda function, Google Cloud Function, or another automated script refreshes the auth token, your application also needs to check AWS Secrets Manager (or wherever you are storing your tokens) periodically for newly refreshed tokens if it is caching the token locally!
+Lambda 関数や Google Cloud Function、その他の自動化スクリプトが認証トークンをリフレッシュする間、アプリケーションは AWS Secrets Manager（またはトークンを保存している場所）を定期的にチェックし、トークンをローカルにキャッシュしている場合は新しくリフレッシュされたトークンを確認する必要があります！
 :::
 
-## Token Scopes
+## トークンのスコープ
 
-Momento auth tokens have an associated `TokenScope` which controls their level of access to Momento resources. Here is a list of the available `TokenScope`s:
+Momento 認証トークンには関連付けられた `TokenScope` があり、Momento リソースへのアクセスレベルを制御します。以下に利用可能な `TokenScope` の一覧を示します：
 
-- `SuperUser`: these tokens have full access to all control plane and data plane operations. They can also be used to generate new tokens via the [`generateAuthToken`](/develop/api-reference#generateauthtoken) API. The only way to create a `SuperUser` token is through the [Momento web console](https://console.gomomento.com).
-- `AllDataReadWrite`: these tokens have full read/write access to all data plane operations, but no access to control plane operations. They can be used to read/write any cache, and to publish and subscribe to any topic. They cannot be used to create or delete caches, nor to generate new Momento auth tokens. `AllDataReadWrite` tokens are created via the [`generateAuthToken`](/develop/api-reference#generateauthtoken) API. 
+- `SuperUser`: これらのトークンはすべてのコントロールプレーンとデータプレーンの操作にフルアクセスができます。また、[`generateAuthToken`](/develop/api-reference#generateauthtoken) API を使って新しいトークンを生成することもできる。`SuperUser` トークンを作成する唯一の方法は、[Momento コンソール](https://console.gomomento.com) を使用することです。
+- `AllDataReadWrite`: これらのトークンはすべてのデータプレーン操作に対する完全な読み書きアクセス権を持つが、コントロールプレーン操作に対するアクセス権は持たない。これらのトークンはあらゆるキャッシュの読み書きと、あらゆるトピックのパブリッシュとサブスクライブに使用できます。キャッシュの作成や削除、新しい Momento 認証トークンの生成には使用できません。`AllDataReadWrite` トークンは [`generateAuthToken`](/develop/api-reference#generateauthtoken) API で生成されます。
 
-Got more questions or feedback for us? Join our [Discord community](https://discord.gg/GDStRczm) or reach out to [Momento support](mailto:support@momentohq.com) for help.
+もっと質問やフィードバックがある場合は、私たちの[Discordコミュニティ](https://discord.gg/GDStRczm)に参加するか、[Momentoサポート](mailto:support@momentohq.com)までお問い合わせください。
