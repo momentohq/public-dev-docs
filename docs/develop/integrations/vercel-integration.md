@@ -30,11 +30,9 @@ After pressing the `Create` button you'll see the new `chat` cache in the list o
 
 ![Chat cache](/img/console-caches-chat.png)
 
-Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento authentication token in the next step. Navigate to the [tokens](https://console.gomomento.com/tokens) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained token that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations such as delete. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
+Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when you generate a Momento authentication token in the next step. Navigate to the [tokens](https://console.gomomento.com/tokens) page, choose the cloud provider and region you used to create your cache, choose the `Super User Token` token type, and hit the `Generate Token` button.
 
-Choose the `Fine-Grained Access Token` token type, select `chat` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Token` is used for managing control plane operations. More information about Momento authentication can be found [here](https://docs.momentohq.com/develop/basics/working-with-momento-auth-tokens). Hit the `Generate Token` button.
-
-![Generate token](/img/fgac-chat-auth.png)
+![Generate token](/img/console-generate-token-form.png)
 
 Copy the `Auth Token` and save it in a safe place. You'll need to use it later to configure your Vercel deployment, where you will add it as an environment variable for use in the chat app.
 
