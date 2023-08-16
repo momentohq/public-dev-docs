@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
 sidebar_class_name: sidebar-item-overview
-sidebar_label: Momento Cache and Topics
-title: Momento Cache and Momento Topics Documentation
+sidebar_label: Momento
+title: Momento Documentation
 description: Learn what you need to know to speed up your cloud application with the world's first serverless cache.
 pagination_next: null
 slug: /
@@ -11,7 +11,12 @@ slug: /
   <meta name="google-site-verification" content="jXAJxglm5PRXRtL0R8kfGf80Xs1WM3IVAwAUPJC23lI" />
 </head>
 
-Momento Cache is the world's first truly serverless caching service. It provides instant elasticity, scale-to-zero capability, and blazing-fast performance. Gone are the days where you need to choose, manage, and provision capacity. With Momento Cache, you grab the SDK, you get an end point, input a few lines into your code, and you're off and running.
+Momento provides instantly scalable and simply priced data platform you can take to production today. It currently provides
+the below suite of serverless distributed services:
+
+- Momento Cache is the world's first truly serverless caching service. It provides instant elasticity, scale-to-zero capability, zero infrastructure management, and blazing-fast performance. With Momento Cache, you grab the SDK, you get an end point, input a few lines into your code, and you're off and running. [Learn More](./introduction/what-is-serverless-caching.md)
+- Momento Topics is a high-speed, low-drag serverless pub/sub (publish/subscribe) messaging pattern that allows for real-time communication between parts of a distributed system. Momento Topics allows your apps to subscribe to topics to receive items published to the topic by your app’s publishers. [Learn More](./introduction/momento-topics.md)
+- Momento Vector Index simplifies vector database management with a truly serverless service, and provides the fastest path to get your AI project production ready at scale. [Join our waitlist](https://events.gomomento.com/momento-vector-index)
 
 <img src="/img/dial.jpg" width="90%" alt="a technical illustration on a white background depicting the intersection of speed, ease of use, and security." />
 
