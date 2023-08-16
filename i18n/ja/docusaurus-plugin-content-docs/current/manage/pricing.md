@@ -30,7 +30,7 @@ Momento キャッシュには隠れた料金はありません。ストレージ
 
  <details>
 <summary>Momento CacheやMomento Topicsの費用の予測をするためにいくつかの価格例を確認できますか？</summary>
-はい、<a href="https://www.gomomento.com/blog/complicated-pricing-is-not-serverless">こちらのMomentoブログ</a>から確認していただけます。
+はい、<a href="https://www.gomomento.com/blog/simple-the-way-cloud-pricing-should-be">こちらのMomentoブログ</a>から確認していただけます。
 </details>
 
 <details>
