@@ -1,8 +1,8 @@
 ---
 sidebar_position: 9
 sidebar_label: Fastly
-title: Integrating Momento with Fastly Compute@Edge
-description: Learn to deploy a Fastly Compute@Edge project that uses Momento HTTP API
+title: Integrating Momento Cache with Fastly Compute@Edge
+description: Learn to deploy a Fastly Compute@Edge project that uses Momento Cache via HTTP API
 pagination_next: null
 ---
 
@@ -30,7 +30,7 @@ Create a cache called `worker`. You can create the cache in your choice of cloud
 
 After pressing the `Create` button you'll see the new `worker` cache in the list of available caches.
 
-![Chat cache](/img/console-caches-worker.png)
+![New cache](/img/console-caches-worker.png)
 
 Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento authentication token in the next step. 
 
@@ -85,6 +85,8 @@ Second, create a `secrets.json` file with the following contents:
 ```
 
 The name your assign to the variable `MOMENTO_BACKEND` can be anything you want, just make sure that your HTTP endpoint corresponds to the region where you created your Momento Cache. This is the HTTP we copied from the Momento Console.
+
+**Note**: for production environments, the Momento auth token should be saved in a [Fastly Secret Store](https://developer.fastly.com/reference/api/services/resources/secret-store/). However, this is a feature currently restricted to beta users, so this example saves the auth token in a [Config Store](https://developer.fastly.com/reference/api/services/resources/config-store/) along with the other values specified in the `secrets.json`.
 
 Next, you'll want to make sure the contents of your `secrets.json` file match the contents in the `fastly.toml` file. 
 
@@ -141,7 +143,8 @@ Next, start the development server and navigate to [localhost:7676](http://local
 fastly compute serve
 ```
 
-The code in this example sets an item in the cache, gets it, deletes it, and returns an HTML response:
+The code in this example sets an item in the cache, gets it, deletes it, and returns an HTML response. 
+What you should see is a simple text response that matches the result seen in the [deployed example](https://solely-civil-crab.edgecompute.app/).
    
 ```typescript
     const momento = new MomentoFetcher(authToken, httpEndpoint, backend);
@@ -169,8 +172,6 @@ When you're ready to run the project on Fastly, run this command to build and de
 ```bash
 fastly compute publish
 ```
-
-A deployed example can be found [here](https://solely-civil-crab.edgecompute.app/).
 
 If you want to see logs from your deployed service, you can enable log tailing from the same directory where the `fastly.toml` lives:
 
