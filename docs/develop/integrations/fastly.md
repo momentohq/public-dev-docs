@@ -8,11 +8,13 @@ pagination_next: null
 
 [Compute@Edge](https://www.fastly.com/products/edge-compute) is Fastly's platform for deploying and running serverless code.
 
-In this tutorial, we'll walk through the [example](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/fastly-compute) from our [JavaScript SDK](https://github.com/momentohq/client-sdk-javascript). By the end of the exercise, you'll have a Fastly Compute@Edge project that interacts with Momento Cache to get, set, and delete some data.
+In this tutorial, we'll walk through the [example](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/fastly-compute) from our [JavaScript SDK](https://github.com/momentohq/client-sdk-javascript). By the end of the exercise, you'll have a Fastly Compute@Edge project that interacts with Momento Cache via the HTTP API to get, set, and delete some data.
+
+The HTTP API is lightweight in that you won't need any additional dependencies beyond what Fastly requires and you can use the standard `fetch` HTTP client methods. However, it only provides a basic subset of all of the Momento APIs, such as `get`, `set`, and `delete`, and is currently only available if you use AWS as your cloud provider.
 
 ## Prerequisites
 
-To get this app deployed and running, you'll need to have the following available:
+To get this app deployed and running, you'll need to have the following:
 
 - An account with a Git provider such as [GitHub](https://github.com/), [GitLab](https://gitlab.com), or [Bitbucket](https://bitbucket.org/).
 - A [Fastly](https://www.fastly.com/) account.
@@ -62,7 +64,7 @@ In this example, we'll deploy from a GitHub repository forked from [the original
 
 ![Fork SDK Repository](/img/github-fork-js-sdk.png)
 
-This repository contains a directory under `examples` for `fastly-compute` which contains the example code for interacting with your Momento Cache using the Momento HTTP API. The HTTP API is lightweight in that you won't need any additional dependencies beyond what Fastly requires and you can use the standard `fetch` HTTP client methods. However, it only provides a basic subset of all of the Momento APIs, such as `get`, `set`, and `delete`.
+This repository contains a directory under `examples` for `fastly-compute` which contains the example code for interacting with your Momento Cache using the Momento HTTP API. 
 
 Fastly Compute@Edge uses a file called `fastly.toml` to configure the local and deployed execution environments for your edge code. More information about Compute@Edge configuration can be found [on their website](https://developer.fastly.com/reference/compute/fastly-toml/).
 
@@ -86,7 +88,7 @@ Second, create a `secrets.json` file with the following contents:
 
 You can set the variable `MOMENTO_BACKEND` to any string value. Make sure that your HTTP endpoint corresponds to the region where you created your Momento Cache. This is the HTTP endpoint value we copied from the Generate Token output on the Momento Console.
 
-**Note**: for production environments, the Momento auth token should be saved in a [Fastly Secret Store](https://developer.fastly.com/reference/api/services/resources/secret-store/). However, this is a feature currently restricted to beta users, so this example saves the auth token in a [Config Store](https://developer.fastly.com/reference/api/services/resources/config-store/) along with the other values specified in the `secrets.json`.
+**Note**: for production environments, the Momento auth token should be saved in a [Fastly Secret Store](https://developer.fastly.com/reference/api/services/resources/secret-store/). However, this is a feature currently restricted to beta users, so this example saves the auth token in a [Config Store](https://developer.fastly.com/reference/api/services/resources/config-store/) along with the other values specified in the `secrets.json` file.
 
 Next, you'll want to make sure the contents of your `secrets.json` file match the contents in the `fastly.toml` file. 
 
