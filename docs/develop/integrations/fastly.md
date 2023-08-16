@@ -24,7 +24,7 @@ Once you have a copy or fork of the Momento JavaScript SDK in your Git provider 
 
 ![Create Cache button](/img/console-create-cache.png)
 
-Create a cache called `worker`. You can create the cache in your choice of cloud provider, AWS or GCP, and in any region.
+Create a cache called `worker` using AWS. Currently, the Momento HTTP API is supported only by AWS, but you can create the cache in any of the supported AWS regions.
 
 ![Create cache form](/img/console-create-worker-cache-form.png)
 
@@ -46,7 +46,7 @@ Copy the `Auth Token` and `HTTP Endpoint` and save it in a safe place. You'll ne
 
 ### Fastly Setup
 
-Once you have created your Fastly account, you're ready to configure the Fastly side of things using the [Fastly console](https://manage.fastly.com/services/all). Once you're logged in, click on your account name in the top right corner and select `Account`. Under the `Peronsal profile` section of the side bar, select `API tokens`. Click on the `Create Token` button in the top right and follow Fastly's instructions for creating a [user API token](https://docs.fastly.com/en/guides/using-api-tokens#creating-api-tokens). Make sure to save this API token in a safe place.
+Once you have created your Fastly account, you're ready to configure the Fastly side of things using the [Fastly console](https://manage.fastly.com/services/all). Once you're logged in, click on your account name in the top right corner and select `Account`. Under the `Personal profile` section of the side bar, select `API tokens`. Click on the `Create Token` button in the top right and follow Fastly's instructions for creating a [user API token](https://docs.fastly.com/en/guides/using-api-tokens#creating-api-tokens). Make sure to save this API token in a safe place.
 
 Next, you will install the [Fastly CLI](https://developer.fastly.com/learning/compute/#install-the-fastly-cli) and follow the command line prompts for providing the API token you just created:
 
@@ -84,7 +84,7 @@ Second, create a `secrets.json` file with the following contents:
 }
 ```
 
-The name your assign to the variable `MOMENTO_BACKEND` can be anything you want, just make sure that your HTTP endpoint corresponds to the region where you created your Momento Cache. This is the HTTP we copied from the Momento Console.
+You can set the variable `MOMENTO_BACKEND` to any string value. Make sure that your HTTP endpoint corresponds to the region where you created your Momento Cache. This is the HTTP endpoint value we copied from the Generate Token output on the Momento Console.
 
 **Note**: for production environments, the Momento auth token should be saved in a [Fastly Secret Store](https://developer.fastly.com/reference/api/services/resources/secret-store/). However, this is a feature currently restricted to beta users, so this example saves the auth token in a [Config Store](https://developer.fastly.com/reference/api/services/resources/config-store/) along with the other values specified in the `secrets.json`.
 
@@ -144,7 +144,7 @@ fastly compute serve
 ```
 
 The code in this example sets an item in the cache, gets it, deletes it, and returns an HTML response. 
-What you should see is a simple text response that matches the result seen in the [deployed example](https://solely-civil-crab.edgecompute.app/).
+It uses the [`MomentoFetcher` class](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/fastly-compute/src/index.ts#L98) which provides a small wrapper that adds some error handling to the basic fetch calls to the Momento HTTP API.
    
 ```typescript
     const momento = new MomentoFetcher(authToken, httpEndpoint, backend);
@@ -166,6 +166,10 @@ What you should see is a simple text response that matches the result seen in th
       headers: new Headers({'Content-Type': 'text/html; charset=utf-8'}),
     });
 ```
+
+What you should see is a simple text response that matches: 
+
+![Fastly example response](/img/deployed-fastly-response.png)
 
 When you're ready to run the project on Fastly, run this command to build and deploy:
 
