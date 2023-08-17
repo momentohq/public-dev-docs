@@ -5,7 +5,7 @@ pagination_prev: null
 description: Basic cache metrics
 ---
 
-# Basic cache metrics
+# Basic metrics for Momento Cache
 When developing and operating applications with Momento Cache, you'll want visibility to effectively diagnose bugs and optimize performance. Momento provides an hour of basic service-side metrics to all customers via the Momento console, aimed at facilitating troubleshooting and tuning. If you're an enterprise with critical dependency on Momento Cache, we recommend partnering more closely with the Momento team for support and delivery of detailed historical metrics.
 
 # Metrics within the console
