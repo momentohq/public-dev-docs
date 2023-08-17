@@ -31,7 +31,7 @@ This graph tells you about the number of error and success responses from Moment
 ![image](/img/metrics_success-error.png)
 
 ## Hits and misses (hit rate)
-This graph tells you how well your application is applying caching - you want to see a nice high rate of hits versus misses. Factors which can affect your hit rate include the TTL chosen for your items and your strategy for populating the cache (you need to write the items into the cache if you expect to find them there next time you make a read). The higher the hit rate you achieve, the greater the benefit you'll see from caching. However, you should also balance this against the staleness of the data your application is working with if you are using long TTLs.
+This graph tells you how well your application is applying caching - you want to see a high rate of hits versus misses. Factors that can affect your hit rate include the TTL chosen for your items and your strategy for populating the cache (you need to write the items into the cache if you expect to find them there next time you make a read). The higher the hit rate you achieve, the greater the benefit you'll see from caching. However, you should balance this against the staleness of the data your application is working with if you are using long TTLs.
 
 ![image](/img/metrics_hit-miss.png)
 
