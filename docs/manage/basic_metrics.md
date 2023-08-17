@@ -13,7 +13,7 @@ Within the Momento Console, you can visit the cache metrics dashboard by selecti
 
 ![image](/img/metrics_select.png)
 
-The available metrics cover cache data plane operations only (control plane operations such as creation or deletion of a cache are not included), and for the preceding hour. The metrics presently show an aggregation for all the caches in your Momento account - a capability to filter to a particular cache is planned for the near future. You can view point data for any given minute by hovering over the bubble for that minute in the line graph. Metrics display typically lags behind by a minute or two.
+The available metrics cover cache data plane operations only (control plane operations such as creation or deletion of a cache are not included), and for the preceding hour. The metrics presently show an aggregation for all the caches in your Momento account. You can view point data for any given minute by hovering over the bubble for that minute in the line graph. Metrics display typically lags by a minute or two.
 
 ## TPS (transactions per second)
 This line graph represents the number of cache data operation requests per second, averaged over each one minute period. You can use this to understand the level of application activity within your caches. If you don't see anything here, you're not using any caches and should check the operational health of your application and the logic within your code!
