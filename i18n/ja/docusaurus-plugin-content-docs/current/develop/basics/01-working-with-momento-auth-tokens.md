@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
-sidebar_label: Momento Authentication
-title: Working with Momento auth tokens
+sidebar_label: Momento の認証トークン
+title: Momento の認証トークンを使用する
 description: 有効期限がある認証トークンを使用してアプリケーションのセキュリティを強化する方法について学ぶ
 pagination_next: null
 ---
@@ -11,7 +11,7 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Momento 認証トークンを使用する
+# Momento の認証トークンを使用する
 
 アプリケーションから Momento のサービスにアクセスするには、Momento の認証トークンが必要です。認証トークンは Momento が生成する英数字の文字列で、あなたのアカウントと選択したクラウドプロバイダのリージョンに固有のものです。認証トークンを作成する際、2種類の有効期限を設定できます：
 
@@ -70,7 +70,7 @@ Lambda 関数や Google Cloud Function、その他の自動化スクリプトが
 
 Momento 認証トークンには関連付けられた `TokenScope` があり、Momento リソースへのアクセスレベルを制御します。以下に利用可能な `TokenScope` の一覧を示します：
 
-- `SuperUser`: これらのトークンはすべてのコントロールプレーンとデータプレーンの操作にフルアクセスができます。また、[`generateAuthToken`](/develop/api-reference#generateauthtoken) API を使って新しいトークンを生成することもできる。`SuperUser` トークンを作成する唯一の方法は、[Momento コンソール](https://console.gomomento.com) を使用することです。
-- `AllDataReadWrite`: これらのトークンはすべてのデータプレーン操作に対する完全な読み書きアクセス権を持つが、コントロールプレーン操作に対するアクセス権は持たない。これらのトークンはあらゆるキャッシュの読み書きと、あらゆるトピックのパブリッシュとサブスクライブに使用できます。キャッシュの作成や削除、新しい Momento 認証トークンの生成には使用できません。`AllDataReadWrite` トークンは [`generateAuthToken`](/develop/api-reference#generateauthtoken) API で生成されます。
+- `SuperUser`: これらのトークンはすべてのコントロールプレーンとデータプレーンの操作にフルアクセスができます。また、[`generateAuthToken`](/develop/api-reference#generateauthtoken) API を使って新しいトークンを生成することもできます。`SuperUser` トークンを作成する唯一の方法は、[Momento コンソール](https://console.gomomento.com) を使用することです。
+- `AllDataReadWrite`: これらのトークンはすべてのデータプレーン操作に対する完全な読み書きアクセス権を持つが、コントロールプレーン操作に対するアクセス権は持ちません。これらのトークンはあらゆるキャッシュの読み書きと、あらゆるトピックのパブリッシュとサブスクライブに使用できます。キャッシュの作成や削除、新しい Momento 認証トークンの生成には使用できません。`AllDataReadWrite` トークンは [`generateAuthToken`](/develop/api-reference#generateauthtoken) API で生成されます。
 
-もっと質問やフィードバックがある場合は、私たちの[Discordコミュニティ](https://discord.gg/GDStRczm)に参加するか、[Momentoサポート](mailto:support@momentohq.com)までお問い合わせください。
+質問やフィードバックがある場合は、私たちの[Discordコミュニティ](https://discord.gg/GDStRczm)に参加するか、[Momentoサポート](mailto:support@momentohq.com)までお問い合わせください。
