@@ -1,8 +1,8 @@
 ---
 sidebar_position: 3
-sidebar_label: SDK Error Handling
+sidebar_label: SDK のエラーハンドリング
 sidebar_class_name: "sidebar-item-api-reference"
-title: SDK error handling / Production readiness
+title: SDK のエラーハンドリング / 本番環境への準備
 description: Momento SDK を使用する際のエラー処理の方法について説明します。
 pagination_next: null
 ---
@@ -12,7 +12,7 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# SDK Error Handling / Production Readiness
+# SDK のエラーハンドリング / 本番環境への準備
 
 <img src="/img/error-handling.jpg" width="90%" alt="a technical illustration of Momento client configuration objects." />
 
