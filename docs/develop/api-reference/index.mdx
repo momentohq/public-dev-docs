@@ -130,12 +130,13 @@ The resulting incremented value must be between -9223372036854775808 and 9223372
 Sends a ping to the server. This API can be used for checking connectivity to confirm that the client can connect to the server successfully.
 
 <details>
-    <summary>Method response object</summary>
 
-    * Success
-    * Error
+<summary>Method response object</summary>
 
-    See [response objects](./response-objects.md) for specific information.
+* Success
+* Error
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
@@ -151,15 +152,16 @@ For a given key, returns the type (SCALAR, DICTIONARY, LIST, etc.) of the corres
 | key        | String \| Byte          | Key whose item type should be returned.              |
 
 <details>
-  <summary>Method response object</summary>
 
-  * Cache hit
-  - `type()`: enum: SCALAR, DICTIONARY, SET, LIST, SORTED_SET
+<summary>Method response object</summary>
 
-  * Cache miss
-  * Cache error
+* Cache hit
+- `type()`: enum: SCALAR, DICTIONARY, SET, LIST, SORTED_SET
 
-  See [response objects](./response-objects.md) for specific information.
+* Cache miss
+* Cache error
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
@@ -175,13 +177,14 @@ Checks if a provided key exists in the cache.
 | key        | String \| Byte          | Key which is to be checked for its existence in the cache.              |
 
 <details>
-    <summary>Method response object</summary>
 
-    * Success
-    - `exists()`: Bool
-    * Error
+<summary>Method response object</summary>
 
-    See [response objects](./response-objects.md) for specific information.
+* Success
+- `exists()`: Bool
+* Error
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
@@ -197,13 +200,14 @@ Checks if provided keys exist in the cache.
 | keys        | String[] \| Byte[]          | Keys which are to be checked for their existence in the cache.              |
 
 <details>
-    <summary>Method response object</summary>
 
-    * Success
-    - `exists()`: Bool[]
-    * Error
+<summary>Method response object</summary>
 
-    See [response objects](./response-objects.md) for specific information.
+* Success
+- `exists()`: Bool[]
+* Error
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
@@ -221,13 +225,15 @@ Associates the provided value to a cache item with a given key.
 | ttlSeconds | Duration    | Time to Live for the item in Cache.           |
 
 <details>
-    <summary>Method response object</summary>
 
-    * Stored
-    * NotStored
-    * Error
+<summary>Method response object</summary>
 
-    See [response objects](./response-objects.md) for specific information.
+
+* Stored
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
@@ -291,15 +297,16 @@ For a given key, returns the duration of time remaining (Time To Live) before th
 | key        | String \| Byte          | Key whose item type should be returned.              |
 
 <details>
-  <summary>Method response object</summary>
+    
+<summary>Method response object</summary>
 
-  * Cache hit
-  - `remainingTtl()`: Duration
+* Cache hit
+- `remainingTtl()`: Duration
 
-  * Cache miss
-  * Cache error
+* Cache miss
+* Cache error
 
-  See [response objects](./response-objects.md) for specific information.
+See [response objects](./response-objects.md) for specific information.
 
 </details>
 
