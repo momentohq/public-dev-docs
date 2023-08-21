@@ -3,7 +3,7 @@ sidebar_position: 2
 sidebar_label: SDK Configuration Objects
 sidebar_class_name: "sidebar-item-api-reference"
 title: SDK configuration objects
-description: Discover how to use the configuration objects used to initialize the Momento SDK client.
+description: Discover how to use configuration objects to initialize the Momento SDK client.
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -59,6 +59,6 @@ Here are some of the pre-built configurations that you might be interested in.
 
 ### Lambda
 
-`Configurations.Lambda` is a configuration that is available in some SDKs, and is optimized for the AWS Lambda environment. It has configuration settings designed to pre-warm the client on Lambda cold starts, and to ensure the connection is re-established proactively if a Lambda remains idle for long enough for the connection to time out.
+`Configurations.Lambda` is a configuration that is available in some SDKs, and is optimized for the AWS Lambda environment. It has configuration settings designed to pre-warm the client on Lambda function cold starts, and to ensure the connection is re-established proactively if a Lambda function remains idle long enough for the connection to time out.
 
 <SdkExampleTabs snippetId={'API_ConfigurationLambda'} />
