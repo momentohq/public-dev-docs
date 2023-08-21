@@ -42,5 +42,7 @@ In the following pages, you can learn about caching in general and how to use Mo
 
 - _For specific guides on integrating with AWS Lambda or other systems_, look to the [guides](./develop/guides/1-caching-with-aws-lambda.md) section.
 
+- _Looking for Momento icons for your architecture diagrams?_ Download [Momento_Architecture_Icons.zip](img/icons/Momento_Architecture_Icons.zip).
+
 Have any questions or comments? We'd love to hear from you! You can chat with a Momento specialist by
 [joining our Discord](https://discord.com/invite/3HkAKjUZGq), or e-mail us at [support@momentohq.com](mailto:support@momentohq.com).
