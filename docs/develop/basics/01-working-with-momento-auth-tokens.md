@@ -21,6 +21,8 @@ To access Momento services from your application, a Momento auth token is requir
 
 See [Auth API reference information](/develop/api-reference/auth-tokens.md) for information on using Momento's Auth API to programmatically create, manage, and refresh Momento auth tokens.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F32zTUBkWzw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ## Token expiration
 
 Tokens can be set to expire after N time set at their creation. There are two types of expiration for Momento auth tokens:
