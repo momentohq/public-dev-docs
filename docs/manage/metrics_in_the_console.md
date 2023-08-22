@@ -38,11 +38,6 @@ This graph tells you how well your application is applying caching - you want to
 
 
 ### FAQ's
-<details open>
-  <summary>How can I see metrics for one particular cache?</summary>
-Hang in there - we plan to add this capability in the near future.
- </details>
-
 <details>
 <summary>How can I get metrics for more than an hour?</summary>
 For production, we recommend partnering with the Momento team for support - this includes publishing of detailed metrics into your observability tooling (presently CloudWatch but more options to come). With delivery of detailed metrics enabled, you can build alarms and dashboards in accordance with your operating standards.
