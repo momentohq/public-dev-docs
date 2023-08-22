@@ -28,7 +28,7 @@ To ensure that Momento is compatible with all of these libraries (and more!), we
 
 <SdkExampleCodeBlock language={'javascript'} file={'packages/core/src/config/logging/momento-logger.ts'} />
 
-Your implementation will just be a thin wrapper around your logging library of choice. We provide a complete, working example implementation that uses the [`pino`](https://github.com/pinojs/pino) logger; you can find the source code for that here: [https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/doc-example-files/pino-logger.ts](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/basic/doc-example-files/pino-logger.ts).
+Your implementation will just be a thin wrapper around your logging library of choice. We provide a complete, working example implementation that uses the [`pino`](https://github.com/pinojs/pino) logger; you can find the [source code for that here](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/observability/pino-logger.ts).
 
 Once you have defined your `MomentoLoggerFactory` and `MomentoLogger`, the last step is to configure your Momento client to use your preferred logger, like this:
 

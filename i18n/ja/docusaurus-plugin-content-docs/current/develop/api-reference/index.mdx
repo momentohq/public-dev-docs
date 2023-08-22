@@ -130,12 +130,12 @@ cacheの全データをフラッシュします。
 サーバにpingを送信します。このAPIは、クライアントがサーバに正常に接続できることを確認するた めの接続性のチェックに使用できます。
 
 <details>
-    <summary>メソッドのレスポンスオブジェクト</summary>
+<summary>メソッドのレスポンスオブジェクト</summary>
 
-    * Success
-    * Error
+* Success
+* Error
 
-    具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
@@ -175,13 +175,13 @@ cacheの全データをフラッシュします。
 | key        | String \| Byte          | cacheに存在するかどうかをチェックするkey。             |
 
 <details>
-    <summary>メソッドのレスポンスオブジェクト</summary>
+<summary>メソッドのレスポンスオブジェクト</summary>
 
-    * Success
-    - `exists()`: Bool
-    * Error
+* Success
+- `exists()`: Bool
+* Error
 
-    具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
@@ -197,13 +197,13 @@ cacheの全データをフラッシュします。
 | keys        | String[] \| Byte[]          | cacheに存在するかどうかをチェックするkey(複数)。              |
 
 <details>
-    <summary>メソッドのレスポンスオブジェクト</summary>
+<summary>メソッドのレスポンスオブジェクト</summary>
 
-    * Success
-    - `exists()`: Bool[]
-    * Error
+* Success
+- `exists()`: Bool[]
+* Error
 
-    具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
@@ -221,13 +221,13 @@ cacheの全データをフラッシュします。
 | ttlSeconds | Duration    | cacheにあるアイテムの生存時間 (TTL)。          |
 
 <details>
-    <summary>メソッドのレスポンスオブジェクト</summary>
+<summary>メソッドのレスポンスオブジェクト</summary>
 
-    * Stored
-    * NotStored
-    * Error
+* Stored
+* NotStored
+* Error
 
-    具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
@@ -290,15 +290,15 @@ TTLを減少させる場合のみ、keyのTTL秒数を指定された値に減�
 | key        | String \| Byte          | アイテムの型を返すkeyの指定。              |
 
 <details>
-  <summary>メソッドのレスポンスオブジェクト</summary>
+<summary>メソッドのレスポンスオブジェクト</summary>
 
-  * Cache hit
-  - `remainingTtl()`: Duration
+* Cache hit
+- `remainingTtl()`: Duration
 
-  * Cache miss
-  * Cache error
+* Cache miss
+* Cache error
 
-  具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
@@ -318,15 +318,15 @@ TTLを減少させる場合のみ、keyのTTL秒数を指定された値に減�
 | expiresIn       | ExpiresIn       | トークンが期限切れになるまでの秒数、または`never`の指定。              |
 
 <details>
-  <summary>メソッドのレスポンスオブジェクト</summary>
+<summary>メソッドのレスポンスオブジェクト</summary>
 
-  * Success
-  - `authToken`: string - the new auth token
-  - `refreshToken`: string - a refresh token that can be used with the `RefreshAuthToken` API to refresh the token before it expires
-  - `expiresAt`: Timestamp - the timestamp at which the token will expire
-  * Error
+* Success
+- `authToken`: string - the new auth token
+- `refreshToken`: string - a refresh token that can be used with the `RefreshAuthToken` API to refresh the token before it expires
+- `expiresAt`: Timestamp - the timestamp at which the token will expire
+* Error
 
-  具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
@@ -341,15 +341,15 @@ TTLを減少させる場合のみ、keyのTTL秒数を指定された値に減�
 | refreshToken    | String          | 最初の`GenerateAuthToken`の呼び出しから取得した、現在の認証トー クンのrefreshTokenを指定。 |
 
 <details>
-  <summary>メソッドのレスポンスオブジェクト</summary>
+<summary>メソッドのレスポンスオブジェクト</summary>
 
-  * Success
-  - `authToken`: string - the new auth token
-  - `refreshToken`: string - a refresh token that can be used with the `RefreshAuthToken` API to refresh the token before it expires
-  - `expiresAt`: Timestamp - the timestamp at which the token will expire
-  * Error
+* Success
+- `authToken`: string - the new auth token
+- `refreshToken`: string - a refresh token that can be used with the `RefreshAuthToken` API to refresh the token before it expires
+- `expiresAt`: Timestamp - the timestamp at which the token will expire
+* Error
 
-  具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
