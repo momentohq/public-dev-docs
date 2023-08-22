@@ -14,6 +14,21 @@ This tries to make the process more intuitive by providing named constructors an
 
 See [Expire Data with TTL](../../../learn/how-it-works/expire-data-with-ttl) for more information on how TTL works with Momento Cache.
 
+## Compatible data types
+
+The CollectionTTL object is compatible with the following data types *when performing write operations*:
+
+* [Dictionary](../api-reference/dictionary-collections.md)
+* [List](../api-reference/list-collections.md)
+* [Set](../api-reference/set-collections.md)
+* [Sorted Set](../api-reference/sorted-set-collections.md)
+
+:::info
+
+You cannot provide a CollectionTTL object when performing a read operation like `dictionaryFetch` or `listLength`. 
+
+:::
+
 ## Common method behaviors
 
 - If a CollectionTTL is not passed in a function call, a default value of `CollectionTtl.fromCacheTtl()` will be used. This value is the TTL configured on the cache client. 
