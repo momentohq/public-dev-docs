@@ -83,6 +83,6 @@ While a Lambda function, Google Cloud Function, or another automated script refr
 Momento auth tokens have an associated `TokenScope` which controls their level of access to Momento resources. Here is a list of the available `TokenScope`s:
 
 - `SuperUser`: these tokens have full access to all control plane and data plane operations. They can also be used to generate new tokens via the [`generateAuthToken`](/develop/api-reference#generateauthtoken) API. Creating a `SuperUser` token must be performed in the [Momento web console](https://console.gomomento.com).
-- Fine-grained access control (FGAC): These tokens enable you to more precisely control the access granted by a token. You can control if the token is granted access to one or more caches and/or topics. FGAC tokens can only be used for data plane operations, but can be created in the [Momento web console](https://console.gomomento.com), or via the [Momento auth API](/develop/api-reference/auth-tokens.md).
+- Fine-grained access control (FGAC): These tokens enable you to more precisely control the access granted by a token. You can control if the token grants access to one or more caches and/or topics. FGAC tokens can only be used for data plane operations, but can be created in the [Momento web console](https://console.gomomento.com), or via the [Momento auth API](/develop/api-reference/auth-tokens.md).
 
 Got more questions or feedback for us? Join our [Discord community](https://discord.gg/GDStRczm) or reach out to [Momento support](mailto:support@momentohq.com) for help.
