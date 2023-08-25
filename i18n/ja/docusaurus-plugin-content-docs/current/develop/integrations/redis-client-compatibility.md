@@ -59,7 +59,7 @@ import {
 
 // Instantiate Momento Adapter Directly
 const Redis = new MomentoRedisAdapter(
-    new CacheClient({
+    await CacheClient.create({
         configuration: Configurations.Laptop.v1(),
         credentialProvider: CredentialProvider.fromEnvironmentVariable({
             environmentVariableName: authTokenEnvVarName,

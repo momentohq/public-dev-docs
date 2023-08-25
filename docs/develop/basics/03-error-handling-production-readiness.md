@@ -7,6 +7,11 @@ description: Discover how to handle errors when using the Momento SDK.
 pagination_next: null
 ---
 
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
 # SDK Error Handling
 
 <img src="/img/error-handling.jpg" width="90%" alt="a technical illustration of Momento client configuration objects." />

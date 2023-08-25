@@ -43,7 +43,7 @@ async function readFile(filePath) {
 
 // Creates the Momento cache client object
 async function createCacheClient() {
-    return new CacheClient({
+    return await CacheClient.create({
         configuration: Configurations.Laptop.v1(),
         credentialProvider: CredentialProvider.fromEnvironmentVariable({
             environmentVariableName: 'MOMENTO_AUTH_TOKEN',

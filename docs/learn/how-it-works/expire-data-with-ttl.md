@@ -31,7 +31,7 @@ There are three locations to set a TTL value:
 
     ```javascript
     const MY_DEFAULT_TTL = 60; // This value is in seconds
-    const momento = new CacheClient(authToken, MY_DEFAULT_TTL);
+    const momento = await CacheClient.create(authToken, MY_DEFAULT_TTL);
     ```
 
 2. In a SET operation, you can set a TTL value just for this operation and it will override the TTL value set in the CacheClient object.
