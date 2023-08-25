@@ -3,7 +3,7 @@ sidebar_position: 2
 sidebar_label: Topics Cheat Sheet
 sidebar_class_name: sidebar-item-nodejs
 title: Topics cheat sheet for TypeScript and Node.js
-description: Get started really quickly coding using TypeScript and Node.js with Momento Cache
+description: Get started really quickly coding using TypeScript and Node.js with Momento Topics
 ---
 
 import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
@@ -11,9 +11,9 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Cheat sheet for Node.js with Momento Topics
+# Cheat Sheet for Node.js with Momento Topics
 
-If you need to get going quickly with Node.js + TypeScript and Momento Topics, this page contains the basic API calls you'll need. [Check the Node.js SDK examples](https://github.com/momentohq/client-sdk-javascript/tree/main/examples) for complete, working examples including build configuration files.
+If you need to get going quickly with Node.js + TypeScript and Momento Topics, this page contains the basic API calls you'll need. [Check the Node.js SDK examples](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/topics) for complete, working examples including build configuration files.
 
 ## Install the Momento client library
 
@@ -32,10 +32,14 @@ Once you have a token, store it in an environment variable so that the Momento c
 export MOMENTO_AUTH_TOKEN=<your Momento token here>
 ```
 
-## Import libraries and connect to return a TopicClient object
-This code sets up the main function, the necessary imports, and the TopicClient instantiation that each of the other functions will need to call.
+**Note**: it is best practice to put the token into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
+
+## Import libraries and create a TopicClient object
+This code sets up the main function, pulls in the necessary imports, and instantiates the TopicClient that will be used to interact with your pub/sub topic.
 
 <SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/topics/doc-example-files/cheat-sheet-main.ts'} />
+
+## Create a new topic in Momento Topics
 
 ## Running the code
 
