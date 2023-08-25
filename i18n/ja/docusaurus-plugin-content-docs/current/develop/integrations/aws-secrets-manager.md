@@ -68,7 +68,7 @@ async function createCacheClient() {
     // Get the token from AWS Secrets Manager
     const token = await getToken("Momento_Auth_Token");
 
-    return new CacheClient({
+    return await CacheClient.create({
         configuration: Configurations.Laptop.v1(),
         credentialProvider: CredentialProvider.fromString({"authToken": token.SecretString}),
         defaultTtlSeconds: 600,
@@ -163,7 +163,7 @@ export default async function CreateCacheClient(
     tokenName: string = "Momento_Auth_Token",
 ): Promise<CacheClient> {
     const token: string = await GetToken(tokenName);
-    return new CacheClient({
+    return await CacheClient.create({
         configuration: Configurations.Laptop.v1(),
         credentialProvider: CredentialProvider.fromString({"authToken": token}),
         defaultTtlSeconds: ttl,
