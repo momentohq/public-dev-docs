@@ -59,7 +59,7 @@ import {
 
 // Instantiate Momento Adapter Directly
 const Redis = new MomentoRedisAdapter(
-    new CacheClient({
+    await CacheClient.create({
         configuration: Configurations.Laptop.v1(),
         credentialProvider: CredentialProvider.fromEnvironmentVariable({
             environmentVariableName: authTokenEnvVarName,
@@ -85,7 +85,7 @@ using Momento.StackExchange.Redis;
 
 // Create a Momento-backed Redis client
 var db = MomentoRedisDatabase(
-  new CacheClient(
+  await CacheClient.create(
     config: Configurations.Laptop.v1(),
     authProvider: new EnvMomentoTokenProvider("MOMENTO_AUTH_TOKEN"),
     defaultTtl: TimeSpan.FromSeconds(60),
