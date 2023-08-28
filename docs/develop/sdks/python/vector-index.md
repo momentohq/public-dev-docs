@@ -7,7 +7,7 @@ description: Everything to get you going with coding using Python and Momento Ve
 ---
 
 # Cheat Sheet for Python with Momento Vector Index
-If you need to get going quickly with Python and Momento Vector Indexs, this page contains the basic API calls you'll need.
+If you need to get going quickly with Python and Momento Vector Index, this page contains the basic API calls you'll need.
 
 :::tip
 
@@ -117,5 +117,5 @@ def delete_items(client, index_name: str):
         raise(Exception("Error while deleting items " + delete_response.message))
 ```
 
-## Notes of usage
+## Usage notes
 For any of these functions, call the `create_vector_index_client()` function which returns a `PreviewVectorIndexClient` object. Then pass that object into subsequent functions. This way, calls are more efficient as they reuse the `PreviewVectorIndexClient` for multiple calls to Momento.
