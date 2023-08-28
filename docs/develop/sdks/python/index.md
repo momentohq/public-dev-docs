@@ -30,4 +30,4 @@ The source code can be found on GitHub: [momentohq/client-sdk-python](https://gi
 
 ## Integrations
 
-COMING SOON
+- [Redis Compatibility Client for `redis/redis-py`](https://github.com/momentohq/momento-python-redis-client) - a drop-in replacement that allows you to use Momento Cache with your existing `redis/redis-py` code! See also our [Redis Client Compatibility](/develop/integrations/redis-client-compatibility.md) page.
