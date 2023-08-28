@@ -15,8 +15,8 @@ If you combine all of the functions on this page into one python file, you'd hav
 
 :::
 
-## Import libraries and connect to return a CacheClient object
-This code sets up the class with the necessary imports, the class definition, and the CacheClient instantiation that each of the other functions will need to call.
+## Import libraries and connect to return a PreviewVectorIndexClient object
+This code sets up the class with the necessary imports, the class definition, and the PreviewVectorIndexClient instantiation that each of the other functions will need to call.
 
 ```python
 from momento import (
@@ -58,7 +58,7 @@ def create_index(client, index_name: str) -> None:
         raise(Exception("Error while creating index " + create_index_response.message))
 ```
 
-## Get list of existing caches in your account
+## Get list of existing indexes in your account
 In this example, we use the client function above to get a client object and then use it to list all of the indexes for this account.
 ```python
 def list_indexes(client) -> None:
