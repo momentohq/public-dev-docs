@@ -33,7 +33,7 @@ def create_client():
     'credential_provider': momento_auth_token,
     'default_ttl':  ttl
   }
-  return CacheClient(**config)
+  return CacheClient.create(**config)
 ```
 
 ## Momento Cache に新しいキャッシュを作成する

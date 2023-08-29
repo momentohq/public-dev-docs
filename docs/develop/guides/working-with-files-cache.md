@@ -126,7 +126,7 @@ def client():
       'default_ttl':  ttl
     }
     # print(config)
-    return CacheClient(**config)
+    return CacheClient.create(**config)
 
 def run():
     # read the file contents in. They already come in byte format, so no casting necessary
