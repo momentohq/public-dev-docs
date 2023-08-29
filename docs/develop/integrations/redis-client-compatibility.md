@@ -136,5 +136,27 @@ func initRedisClient() redis.Cmdable {
 For more in-depth information, with example code, please see [Go-redis compatibility client](https://github.com/momentohq/momento-go-redis-client) on GitHub.
 
 </TabItem>
+<TabItem value="redis-py" label="redis-py" default>
+
+```python
+import datetime
+# Import the Momento redis compatibility client.
+import momento
+from momento_redis import MomentoRedis
+
+# Initialize Momento client.
+redis_client = MomentoRedis(
+    momento.CacheClient(
+        momento.Configurations.Laptop.latest(),
+        momento.CredentialProvider.from_environment_variable("MOMENTO_AUTH_TOKEN"),
+        datetime.timedelta(seconds=60)
+    ),
+    "cache_name"
+)
+```
+
+For more in-depth information, with example code, please see [Momento Python Redis compatibility client](https://github.com/momentohq/momento-python-redis-client) on GitHub.
+
+</TabItem>
 </Tabs>
 
