@@ -17,7 +17,7 @@ def create_client():
     'credential_provider': momento_auth_token,
     'default_ttl':  ttl
   }
-  return CacheClient(**config)
+  return CacheClient.create(**config)
 
 # A function to create a new cache.
 def create_cache(client, cache_name: str) -> None:
@@ -66,7 +66,7 @@ def get(client, cache_name, key):
     case _:
         print("Unreachable")
 
-# A function to increment the value of a key.    
+# A function to increment the value of a key.
 def incr(client, cache_name, key, value:int = 1):
   resp = client.increment(cache_name, key, value)
   match resp:
@@ -79,7 +79,7 @@ def incr(client, cache_name, key, value:int = 1):
 
 # Call all of the functions to interact with Momento Cache
 with create_client() as client:
-   
+
    create_cache(client, cache_name)
 
    list_caches(client)
