@@ -21,7 +21,7 @@ Momento Go SDK は GitHub 経由でインストール可能です: `go get githu
 
 ## リソース
 
-- [Go SDK チートシート](./cheat-sheet.md)
+- [Go SDK チートシート](./go/cheat-sheet)
 - [Go SDK 例](https://github.com/momentohq/client-sdk-go/blob/main/examples/README.md): Go SDK の使い方をお見せするための動作可能なプロジェクト例です。
 - まもなく: オブザーバビリティ: Go SDK を使ったロギングとクライアントサイドのメトリクス
 - まもなく: コードを本番環境へ: Go SDK での設定とエラーハンドリング
