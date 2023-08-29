@@ -32,7 +32,7 @@ import {
 
 // Initialize Momento's client.
 const redisClient = createClient(
-    new momento.CacheClient({
+    momento.CacheClient.create({
         configuration: momento.Configurations.Laptop.v1(),
         credentialProvider: momento.CredentialProvider.fromEnvironmentVariable({
             environmentVariableName: 'MOMENTO_AUTH_TOKEN',
@@ -146,7 +146,7 @@ from momento_redis import MomentoRedis
 
 # Initialize Momento client.
 redis_client = MomentoRedis(
-    momento.CacheClient(
+    momento.CacheClient.create(
         momento.Configurations.Laptop.latest(),
         momento.CredentialProvider.from_environment_variable("MOMENTO_AUTH_TOKEN"),
         datetime.timedelta(seconds=60)
