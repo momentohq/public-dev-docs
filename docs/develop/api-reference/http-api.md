@@ -21,7 +21,7 @@ This documentation does not describe how to implement HTTP request syntax as tha
 
 ## Authentication
 
-For each connection, you will need a Momento API token generated via the [Momento console](https://console.gomomento.com/tokens) or a [token "vending machine" microservice you host](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine). Momento API tokens control access to the Momento services and can be set to expire and grant/restrict access to specific resources. 
+For each connection, you will need a Momento auth token generated via the [Momento console](https://console.gomomento.com/tokens) or a [token "vending machine" microservice you host](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine). Momento auth tokens control access to the Momento services and can be set to expire and grant/restrict access to specific resources. 
 
 ## Regions
 
@@ -61,19 +61,19 @@ Gets a scalar value from a cache.
 |---------------------|-----------|----------------------------------------------|-------------------------------------------------------------------------------------------------------|
 | key                 | no**      | URL-safe&nbsp;string                         | The key to retrieve from the cache.                                                                   |
 | key_base64          | no**      | Base64&nbsp;URL-encoded&nbsp;binary&nbsp;key | The key to retrieve from the cache.                                                                   |
-| token               | no***     | URL-safe string                              | The Momento API token, in string format, to be used for authentication/authorization of the request. |
+| token               | no***     | URL-safe string                              | The Momento auth token, in string format, to be used for authentication/authorization of the request. |
 
 ** You must specify a key to be accessed in the cache. This may be either the key query parameter, which allows a URL-safe string, or the key_base64 parameter, which allows a Base64 URL-encoded key.
 
-*** You must provide a Momento API token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
+*** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
 ##### Headers
 
 | Header&nbsp;name | Required? | Type                 | Description                                                                                        |
 |------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
-| Authorization    | no***     | URL-safe&nbsp;string | The Momento API token, in string format, is used for authentication/authorization of the request. |
+| Authorization    | no***     | URL-safe&nbsp;string | The Momento auth token, in string format, is used for authentication/authorization of the request. |
 
-*** You must provide a Momento API token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
+*** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
 #### Responses
 
@@ -96,10 +96,10 @@ Gets a scalar value from a cache.
 - This error type typically indicates that the request was incorrectly specified. See the body of the message for further details.
 
 *Status Code: 401 Unauthorized*
-- This error type typically indicates that the Momento API token passed in is either invalid or expired. See the body of the message for further details.
+- This error type typically indicates that the Momento auth token passed in is either invalid or expired. See the body of the message for further details.
 
 *Status Code: 403 Forbidden*
-- This error type typically indicates the Momento API token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
+- This error type typically indicates the Momento auth token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
 
 *Status Code: 429 Too Many Requests*
 - This error type typically indicates that account limits were exceeded. See the body of the message for further details, or contact Momento support to request a limit increase.
@@ -133,20 +133,20 @@ Sets a scalar value in a cache.
 |---------------------|-----------|----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 | key                 | no**      | URL-safe&nbsp;string                         | The key to retrieve from the cache.                                                                                                        |
 | key_base64          | no**      | Base64&nbsp;URL-encoded&nbsp;binary&nbsp;key | The key to retrieve from the cache.                                                                                                        |
-| token               | no***     | URL-safe&nbsp;string                         | The Momento API token, in string format, to be used for authentication/authorization of the request.                                      |
+| token               | no***     | URL-safe&nbsp;string                         | The Momento auth token, in string format, to be used for authentication/authorization of the request.                                      |
 | ttl_seconds         | yes       | Integer                                      | The TTL to be set on the key, in seconds. For more on TTL, see  [Expire Data with Time-to-Live](/learn/how-it-works/expire-data-with-ttl). |
 
 ** You must specify a key to be accessed in the cache. This may be either the key query parameter, which allows a URL-safe string, or the key_base64 parameter, which allows a Base64 URL-encoded key.
 
-*** You must provide a Momento API token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
+*** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
 ##### Headers
 
 | Header&nbsp;name | Required? | Type                 | Description                                                                                        |
 |------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
-| Authorization    | no***     | URL-safe&nbsp;string | The Momento API token, in string format, is used for authentication/authorization of the request. |
+| Authorization    | no***     | URL-safe&nbsp;string | The Momento auth token, in string format, is used for authentication/authorization of the request. |
 
-*** You must provide a Momento API token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
+*** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
 #### Responses
 
@@ -162,10 +162,10 @@ Sets a scalar value in a cache.
 - This error type typically indicates that the request was incorrectly specified. See the message body for further details.
 
 *Status Code: 401 Unauthorized*
-- This error type typically indicates that the Momento API token passed in is either invalid or expired. See the body of the message for further details.
+- This error type typically indicates that the Momento auth token passed in is either invalid or expired. See the body of the message for further details.
 
 *Status Code: 403 Forbidden*
-- This error type typically indicates the Momento API token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
+- This error type typically indicates the Momento auth token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
 
 *Status Code: 404 Not Found*
 - “Cache Not Found” indicates that the specified cache does not exist.
@@ -197,19 +197,19 @@ Deletes a scalar value from a cache.
 |---------------------|-----------|----------------------------------------------|-------------------------------------------------------------------------------------------------------|
 | key                 | no**      | URL-safe&nbsp;string                         | The key to retrieve from the cache.                                                                   |
 | key_base64          | no**      | Base64&nbsp;URL-encoded&nbsp;binary&nbsp;key | The key to retrieve from the cache.                                                                   |
-| token               | no***     | URL-safe&nbsp;string                         | The Momento API token, in string format, to be used for authentication/authorization of the request. |
+| token               | no***     | URL-safe&nbsp;string                         | The Momento auth token, in string format, to be used for authentication/authorization of the request. |
 
 ** You must specify a key to be accessed in the cache. This may be either the key query parameter, which allows a URL-safe string, or the key_base64 parameter, which allows a Base64 URL-encoded key.
 
-*** You must provide a Momento API token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
+*** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
 ##### Headers
 
 | Header&nbsp;name | Required? | Type                 | Description                                                                                        |
 |------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
-| Authorization    | no***     | URL-safe&nbsp;string | The Momento API token, in string format, is used for authentication/authorization of the request. |
+| Authorization    | no***     | URL-safe&nbsp;string | The Momento auth token, in string format, is used for authentication/authorization of the request. |
 
-*** You must provide a Momento API token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
+*** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
 #### Responses
 
@@ -225,10 +225,10 @@ Deletes a scalar value from a cache.
 - This error type typically indicates that the request was incorrectly specified. See the message body for further details.
 
 *Status Code: 401 Unauthorized*
-- This error type typically indicates that the Momento API token passed in is either invalid or expired. See the body of the message for further details.
+- This error type typically indicates that the Momento auth token passed in is either invalid or expired. See the body of the message for further details.
 
 *Status Code: 403 Forbidden*
-- This error type typically indicates the Momento API token passed in does not grant the required access to the resources you attempted. See the body of the message for further details. 
+- This error type typically indicates the Momento auth token passed in does not grant the required access to the resources you attempted. See the body of the message for further details. 
 
 *Status Code: 404 Not Found*
 - “Cache Not Found” indicates that the specified cache does not exist.
@@ -266,17 +266,17 @@ Publishes a message to a topic.
 
 | Parameter&nbsp;name | Required? | Type                | Description                                                                                         |
 |---------------------|-----------|---------------------|-----------------------------------------------------------------------------------------------------|
-| token               | no**     | URL-safe&nbsp;string | The Momento API token, in string format, to be used for authentication/authorization of the request.|
+| token               | no**     | URL-safe&nbsp;string | The Momento auth token, in string format, to be used for authentication/authorization of the request.|
 
-*** You must provide a Momento API token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
+*** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
 ##### Headers
 
 | Header&nbsp;name | Required? | Type                 | Description                                                                                        |
 |------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
-| Authorization    | no**     | URL-safe&nbsp;string | The Momento API token, in string format, is used for authentication/authorization of the request. |
+| Authorization    | no**     | URL-safe&nbsp;string | The Momento auth token, in string format, is used for authentication/authorization of the request. |
 
-** You must provide a Momento API token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
+** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
 #### Responses
 
@@ -292,10 +292,10 @@ Publishes a message to a topic.
 - This error type typically indicates that the request was incorrectly specified. See the message body for further details.
 
 *Status Code: 401 Unauthorized*
-- This error type typically indicates that the Momento API token passed in is either invalid or expired. See the body of the message for further details.
+- This error type typically indicates that the Momento auth token passed in is either invalid or expired. See the body of the message for further details.
 
 *Status Code: 403 Forbidden*
-- This error type typically indicates the Momento API token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
+- This error type typically indicates the Momento auth token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
 
 *Status Code: 404 Not Found*
 - “Cache Not Found” indicates that the specified cache does not exist.
