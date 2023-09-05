@@ -14,6 +14,22 @@ slug: /develop/api-reference/collections/collectionttl
 
 Momento Cache における TTL の仕組みについての詳細情報は、[TTL を使用したデータの有効期限切れ](../../../learn/how-it-works/expire-data-with-ttl)を参照してください。こちらのドキュメントでは、Momento Cache において TTL がデータの有効期限管理にどのように機能するかについて詳しく説明されています。
 
+
+## Compatible data types
+
+CollectionTTLオブジェクトは、**書き込み操作を行う際**、以下のデータ型と互換性があります：
+
+* [Dictionary](../api-reference/dictionary-collections.md)
+* [List](../api-reference/list-collections.md)
+* [Set](../api-reference/set-collections.md)
+* [Sorted Set](../api-reference/sorted-set-collections.md)
+
+:::info
+
+`dictionaryFetch` や `listLength` のような読み取り操作を行う際には、CollectionTTL オブジェクトを指定することはできません。
+
+:::
+
 ## Common method behaviors
 
 - もしも関数呼び出し時に CollectionTTL が指定されていない場合、デフォルト値として `CollectionTtl.fromCacheTtl()` が使用されます。この値はキャッシュクライアントに設定された TTL です。
