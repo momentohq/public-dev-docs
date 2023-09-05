@@ -163,7 +163,7 @@ Generates a new disposable Momento auth token with the specified permissions and
 Disposable tokens differ from the usual Momento auth token in several key ways:
   - They cannot be generated in the console, they can only be generated programatically. 
   - They cannot be refreshed and thus do not come with a refresh token. 
-  - Permissions are specified using DisposableTokenScope. Disposable tokens can permit access to specific cache items by specifying the key or key-prefix. This can be for all caches or just the caches you specify. Permissions cannot be applied to Topics.
+  - Permissions are specified using the usual TokenScope object or using DisposableTokenScope object, which allows you to permit access to specific cache items by specifying a key or key-prefix. 
 
 | Name            | Type                      | Description                                                                                                                                                                             |
 | --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
