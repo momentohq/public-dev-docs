@@ -1,9 +1,9 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 sidebar_label: Topics チートシート
 sidebar_class_name: sidebar-item-nodejs
 title: TypeScriptとNode.jsのためのTopicsチートシート
-description: Momento Cacheを使って、TypeScriptとNode.jsを使った開発を素早く始める
+description: Momento Topicsを使って、TypeScriptとNode.jsを使った開発を素早く始める
 ---
 
 import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
@@ -13,7 +13,7 @@ import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBloc
 
 # Node.js と Momento Topics のチートシート
 
-Node.js + TypeScript で Momento Topics をすぐに使い始める必要がある場合、このページには基本的に必要となるAPI呼び出しを記載しています。[Node.js SDK の例](https://github.com/momentohq/client-sdk-javascript/tree/main/examples)には、ビルド設定ファイルを含む、実用的な例が記載されています。
+Node.js + TypeScript で Momento Topics をすぐに使い始める必要がある場合、このページには基本的に必要となるAPI呼び出しを記載しています。[Node.js SDK の例](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/topics)には、ビルド設定ファイルを含む、実用的な例が記載されています。
 
 ## Momento クライアント・ライブラリをインストールする
 
@@ -32,10 +32,17 @@ Momento で認証するには、[Momento auth token](/develop/basics/working-wit
 export MOMENTO_AUTH_TOKEN=<your Momento token here>
 ```
 
+**Note**: セキュリティ強化のためには、トークンを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに格納するのがベストプラクティスですが、ここではデモのために環境変数を利用しています。
+
 ## ライブラリをインポートして TopicClient のインスタンスを作成する
 このコードでは、メイン関数、必要なライブラリのメソッドをインポート、および他の各関数が呼び出す時に必要になる TopicClient のインスタンス化を設定します。
 
 <SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/topics/doc-example-files/cheat-sheet-main.ts'} />
+
+## トピックへのメッセージのパブリッシュとサブスクライブ
+この例では、"test-cache" という名前の Momento Cache の "test-topic" というトピックをサブスクライブし、サブスクライブが成功したらそのトピックにパブリッシュします。
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_TopicSubscribe'}>
 
 ## コードの実行
 
