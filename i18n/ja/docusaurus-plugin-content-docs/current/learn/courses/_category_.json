@@ -1,0 +1,11 @@
+{
+  "label": "Courses",
+  "position": 5,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Learn through these courses about Momento Cache and Momento Topics.",
+    "slug": "/learn/courses"
+  },
+  "className": "sidebar-item-guides"
+}
