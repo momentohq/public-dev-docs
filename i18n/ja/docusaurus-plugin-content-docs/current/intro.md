@@ -40,4 +40,6 @@ Momento キャッシュと[Momento トピックス](./introduction/momento-topic
 
 - AWS Lambda や他のシステムとの具体的な連携ガイドについては、[ガイド](./develop/guides/1-caching-with-aws-lambda.md)のセクションをご覧下さい。
 
+- アーキテクチャダイアグラム用にMomentoアイコンをお探しですか？ [Momento_Architecture_Icons.zip](/img/icons/Momento_Architecture_Icons.zip)をダウンロードしてください。
+
 ご質問やコメントをお持ちでしょうか？ぜひお聞かせ下さい！[Discord に入って](https://discord.com/invite/3HkAKjUZGq)Momento のスペシャリストとチャットすることもできますし、[support@momentohq.com](mailto:support@momentohq.com) へメールをすることもできます。
