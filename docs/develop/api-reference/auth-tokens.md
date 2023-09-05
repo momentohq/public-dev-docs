@@ -97,7 +97,7 @@ A component of a [TokenScope](#tokenscope-objects) object that defines permissio
 | role           | ReadOnly&nbsp;&nbsp;\|&nbsp;&nbsp;ReadWrite&nbsp;&nbsp;\|&nbsp;&nbsp;WriteOnly | The type of access granted by the permission.                                                                    |
 | cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | A permission can be restricted to a select cache by name using a `CacheName` object or `AllCaches` built-in value. |
 
-For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all read and write data plane APIs on the caches defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all write data plane APIs on the caches defined in the CacheSelector. Custom roles are not supported.
+For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all read and write data plane APIs on the caches defined in the CacheSelector. Using `CacheRole.WriteOnly` allows access for all write data plane APIs on the caches defined in the CacheSelector. `CacheRole.WriteOnly` cannot be used for APIs that imply conditional writes like `SetIfNotExists` or return information about the updated state of a collection e.g. `ListPushBack` returns the new length. Custom roles are not supported.
 
 For cache, the value can be the built-in `AllCaches` or a string value containing the name of the cache this permission is for.
 
@@ -161,14 +161,15 @@ const TopicsPermissions = {
 Generates a new disposable Momento auth token with the specified permissions and expiry.
 
 Disposable tokens differ from the usual Momento auth token in several key ways:
-  - They cannot be generated in the console, they can only be generated programatically. 
+  - They cannot be generated in the console, they can only be generated programatically. The token that's used for the `generateDisposableToken` API call must be a token with Super User scope generated via the Momento console.
+  - They must expire within one hour.
   - They cannot be refreshed and thus do not come with a refresh token. 
   - Permissions are specified using the usual TokenScope object or using DisposableTokenScope object, which allows you to permit access to specific cache items by specifying a key or key-prefix. 
 
 | Name            | Type                      | Description                                                                                                                                                                             |
 | --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | scope           | [DisposableTokenScope](#disposabletokenscope-objects) | The permissions to grant to the new disposable token. Pre-built DisposableTokenScope objects are provided by the SDKs.                                                                                       |
-| expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the `ExpiresIn.never()`, `ExpiresIn.minutes()`, or `ExpiresIn.hours()` methods. |
+| expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the `ExpiresIn.minutes()` or `ExpiresIn.hours()` methods. |
 
 <details>
   <summary>Method response object</summary>
@@ -201,15 +202,17 @@ A component of a [DisposableTokenCachePermissions](#disposable-permission-object
 | cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | A permission can be restricted to a select cache by name using a `CacheName` object or `AllCaches` built-in value. |
 | item          | `AllCacheItems`&nbsp;&nbsp;\|&nbsp;&nbsp;`Key`&nbsp;&nbsp;\|&nbsp;&nbsp;`KeyPrefix` | A permission can be restricted to select cache items by name using a `Key` or `KeyPrefix` object or `AllCachesItems` built-in value. |
 
-For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all read and write data plane APIs on the caches defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all write data plane APIs on the caches defined in the CacheSelector. Custom roles are not supported.
+For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all read and write data plane APIs on the caches defined in the CacheSelector. Using `CacheRole.WriteOnly` allows access for all write data plane APIs on the caches defined in the CacheSelector. `CacheRole.WriteOnly` cannot be used for APIs that imply conditional writes like `SetIfNotExists` or return information about the updated state of a collection e.g. `ListPushBack` returns the new length. Custom roles are not supported.
 
 For cache, the value can be the built-in `AllCaches` or a string value containing the name of the cache this permission is for.
 
 For item, the value can be the built-in `AllCacheItems` or a string value containing the key or key prefix of the cache item(s) this permission is for.
 
+In addition to DisposableTokenCachePermissions, `generateDisposableToken` will also accept [CachePermissions](#cachepermission) and [TopicPermissions](#topicpermission).
+
 #### DisposableTokenScope example for a DisposableTokenCachePermission object
 
-This is an example of creating a TokenScope with just TopicPermissions.
+This is an example of creating a DisposableTokenScope with CachePermissions and TopicPermissions.
 
 ```javascript
 const DisposableTokenCachePermissions = {
@@ -228,6 +231,11 @@ const DisposableTokenCachePermissions = {
               keyPrefix: "WriteKey" // grants access to items with this prefix in the cache
             }
         },
+        {
+            role: TopicRole.SubscribeOnly, // Managed role
+            cache: "MyCache", // grants access to a specific cache
+            topic: AllTopics  // grants items to all topics in this cache
+        }
     ],
 };
 ```
