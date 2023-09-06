@@ -15,7 +15,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 <img src="/img/access-tokens.jpg" width="90%" alt="a technical illustration of a bank vault representing security, authorization, and authentication." />
 
-auth APIは、[Momento auth tokens](./../guides/working-with-momento-auth-tokens) として知られる Momento サービスのauthトークンを作成し管理します。トークンは、1つ以上のキャッシュやトピックへのアクセスを許可するために、1つまたは複数の権限を持つように設定することができます。
+auth APIは、[Momento auth tokens](../../develop/basics/01-working-with-momento-auth-tokens.md) として知られる Momento サービスのauthトークンを作成し管理します。トークンは、1つ以上のキャッシュやトピックへのアクセスを許可するために、1つまたは複数の権限を持つように設定することができます。
 
 <img src="/img/momento-auth-tokens.png" width="60%"/>
 
