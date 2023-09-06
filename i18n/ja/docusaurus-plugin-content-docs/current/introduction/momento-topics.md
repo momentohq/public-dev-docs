@@ -31,7 +31,7 @@ Momento Topics は Momento Cache をバックエンドとして使うので、�
 
 トピックスは、チャネルとコネクションを処理してくれるマネージドWebSocketサービスのようなものだと考えることができます。
 
-![A diagram showing service-to-service, service-to-browser, and browser-to-browser connectivity with Topics](./../../static/img/topics-connections.png)
+![A diagram showing service-to-service, service-to-browser, and browser-to-browser connectivity with Topics](../../../../../static//img/topics-connections.png)
 
 ### ブラウザから接続
 
