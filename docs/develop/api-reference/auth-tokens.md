@@ -24,7 +24,7 @@ Generates a new Momento auth token with the specified permissions and expiry.
 
 | Name            | Type                      | Description                                                                                                                                                                             |
 | --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| scope           | [TokenScope](#tokenscope) | The permissions to grant to the new token. Pre-built TokenScope objects are provided by the SDKs.                                                                                       |
+| scope           | [TokenScope](#tokenscope-objects) | The permissions to grant to the new token. Pre-built TokenScope objects are provided by the SDKs.                                                                                       |
 | expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the `ExpiresIn.never()`, `ExpiresIn.minutes()`, or `ExpiresIn.hours()` methods. |
 
 <details>
@@ -32,7 +32,8 @@ Generates a new Momento auth token with the specified permissions and expiry.
 
 * Success
   - `authToken`: string - the new auth token
-  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshauthtoken) to refresh a token before it expires
+  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshauthtoken-api) to refresh a token before it expires
+  - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
   - `expiresAt`: Timestamp - the timestamp at which the token will expire
 * Error
 
@@ -61,7 +62,8 @@ Refreshes an existing, unexpired Momento auth token.  Produces a new auth token 
 
 * Success
   - `authToken`: string - the new auth token
-  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshauthtoken) to refresh the token before it expires
+  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshauthtoken-api) to refresh the token before it expires
+  - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
   - `expiresAt`: Timestamp - the timestamp at which the token will expire
 * Error
 
@@ -85,17 +87,17 @@ In this case, the token will still allow use of data manipulation APIs (e.g. `se
 
 ## Permission objects
 
-These objects define the specific role with cache or topic information and are then assigned to a [TokenScope](#tokenscope). 
+These objects define the specific role with cache or topic information and are then assigned to a [TokenScope](#tokenscope-objects). 
 
 ### CachePermission
-A component of a [TokenScope](#tokenscope) object that defines permissions for a cache.
+A component of a [TokenScope](#tokenscope-objects) object that defines permissions for a cache.
 
 | Name            | Type                 | Description                                                                                                      |
 | --------------- |----------------------|------------------------------------------------------------------------------------------------------------------|
-| role           | ReadOnly&nbsp;&nbsp;\|&nbsp;&nbsp;ReadWrite | The type of access granted by the permission.                                                                    |
+| role           | ReadOnly&nbsp;&nbsp;\|&nbsp;&nbsp;ReadWrite&nbsp;&nbsp;\|&nbsp;&nbsp;WriteOnly | The type of access granted by the permission.                                                                    |
 | cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | A permission can be restricted to a select cache by name using a `CacheName` object or `AllCaches` built-in value. |
 
-For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all read and write data plane APIs on the caches defined in the CacheSelector. Custom roles are not supported.
+For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all read and write data plane APIs on the caches defined in the CacheSelector. Using `CacheRole.WriteOnly` allows access for all write data plane APIs on the caches defined in the CacheSelector. `CacheRole.WriteOnly` cannot be used for APIs that imply conditional writes like `SetIfNotExists` or return information about the updated state of a collection e.g. `ListPushBack` returns the new length. Custom roles are not supported.
 
 For cache, the value can be the built-in `AllCaches` or a string value containing the name of the cache this permission is for.
 
@@ -119,15 +121,15 @@ const CachePermissions = {
 ```
 
 ### TopicPermission
-A component of a [TokenScope](#tokenscope) object that defines permissions for a token.
+A component of a [TokenScope](#tokenscope-objects) object that defines permissions for a token.
 
 | Name            | Type                            | Description                                                                                                                                                                                                            |
 | --------------- |---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| role           | SubscribeOnly&nbsp;\|&nbsp;PublishSubscribe | The type of access granted by the permission.                                                                                                                                                                          |
+| role           | SubscribeOnly&nbsp;\|&nbsp;PublishSubscribe&nbsp;&nbsp;\|&nbsp;&nbsp;PublishOnly | The type of access granted by the permission.                                                                                                                                                                          |
 | cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | A permission can be restricted to a select cache by name using a `CacheName` object or to all caches in the account by using the `AllCaches` built-in value.                                                           |
 | topic          | `AllTopics`&nbsp;&nbsp;\|&nbsp;&nbsp;`TopicName`       | A permission can be restricted to a select topic by name using a `TopicName` object or to all topics in the above cache(s) by using the `AllTopics` built-in value. |
 
-For role, there are two managed roles to assign, `TopicRole.PublishSubscribe` and `TopicRole.SubscribeOnly`. Custom roles are not supported. Using the SubscribeOnly role allows only subscribing to topics, whereas using the PublishSubscribe role allows publishing and subscribing to topics.
+For role, there are three managed roles to assign, `TopicRole.PublishSubscribe`, `TopicRole.SubscribeOnly`, and `TopicRole.PublishOnly`. Custom roles are not supported. Using the SubscribeOnly role allows only subscribing to topics, using the PublishSubscribe role allows publishing and subscribing to topics, and using the PublishOnly role allows only publishing to topics.
 
 For cache, only topics within that cache's namespace are allowed by the permission. This can be set to the built-in `AllCaches` value or a string specifically naming a cache.
 
@@ -154,6 +156,90 @@ const TopicsPermissions = {
 };
 ```
 
+## GenerateDisposableToken API
+
+Generates a new disposable Momento auth token with the specified permissions and expiry.
+
+Disposable tokens differ from the usual Momento auth token in several key ways:
+  - They cannot be generated in the console, they can only be generated programatically. The token that's used for the `generateDisposableToken` API call must be a token with Super User scope generated via the Momento console.
+  - They must expire within one hour.
+  - They cannot be refreshed and thus do not come with a refresh token. 
+  - Permissions are specified using the usual TokenScope object or using DisposableTokenScope object, which allows you to permit access to specific cache items by specifying a key or key-prefix. 
+
+| Name            | Type                      | Description                                                                                                                                                                             |
+| --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| scope           | [DisposableTokenScope](#disposabletokenscope-objects) | The permissions to grant to the new disposable token. Pre-built DisposableTokenScope objects are provided by the SDKs.                                                                                       |
+| expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the `ExpiresIn.minutes()` or `ExpiresIn.hours(1)` methods. Disposable tokens must expire within 1 hour. |
+
+<details>
+  <summary>Method response object</summary>
+
+* Success
+  - `authToken`: string - the new disposable auth token
+  - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
+  - `expiresAt`: Timestamp - the timestamp at which the token will expire
+* Error
+
+See [response objects](./response-objects) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_GenerateDisposableToken'} />
+
+## DisposableTokenScope objects
+| Name            | Type                                      | Description                                  |
+| --------------- |-------------------------------------------| -------------------------------------------- |
+| permissions           | List <[DisposableTokenCachePermissions](#disposable-permission-objects)\> | The permissions to grant to the new disposable token.|
+
+
+### DisposableTokenCachePermissions
+
+A component of a [DisposableTokenCachePermissions](#disposable-permission-objects) object that defines permissions for a cache and the items within the cache.
+
+| Name            | Type                 | Description                                                                                                      |
+| --------------- |----------------------|------------------------------------------------------------------------------------------------------------------|
+| role           | ReadOnly&nbsp;&nbsp;\|&nbsp;&nbsp;ReadWrite&nbsp;&nbsp;\|&nbsp;&nbsp;WriteOnly | The type of access granted by the permission.                                                                    |
+| cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | A permission can be restricted to a select cache by name using a `CacheName` object or `AllCaches` built-in value. |
+| item          | `AllCacheItems`&nbsp;&nbsp;\|&nbsp;&nbsp;`Key`&nbsp;&nbsp;\|&nbsp;&nbsp;`KeyPrefix` | A permission can be restricted to select cache items by name using a `Key` or `KeyPrefix` object or `AllCachesItems` built-in value. |
+
+For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all read and write data plane APIs on the caches defined in the CacheSelector. Using `CacheRole.WriteOnly` allows access for all write data plane APIs on the caches defined in the CacheSelector. `CacheRole.WriteOnly` cannot be used for APIs that imply conditional writes like `SetIfNotExists` or return information about the updated state of a collection e.g. `ListPushBack` returns the new length. Custom roles are not supported.
+
+For cache, the value can be the built-in `AllCaches` or a string value containing the name of the cache this permission is for.
+
+For item, the value can be the built-in `AllCacheItems` or a string value containing the key or key prefix of the cache item(s) this permission is for.
+
+In addition to DisposableTokenCachePermissions, `generateDisposableToken` will also accept [CachePermissions](#cachepermission) and [TopicPermissions](#topicpermission).
+
+#### DisposableTokenScope example for a DisposableTokenCachePermission object
+
+This is an example of creating a DisposableTokenScope with CachePermissions and TopicPermissions.
+
+```javascript
+const DisposableTokenCachePermissions = {
+    permissions: [
+      {
+            role: CacheRole.ReadWrite, // Managed role
+            cache: "MyCache", // grants access to a specific cache
+            item: {
+              key: "OneKey" // grants access to a specific item in the cache
+            }
+        },
+        {
+            role: CacheRole.WriteOnly, // Managed role
+            cache: AllCaches, // Built-in value for access to all caches in the account.
+            item: {
+              keyPrefix: "WriteKey" // grants access to items with this prefix in the cache
+            }
+        },
+        {
+            role: TopicRole.SubscribeOnly, // Managed role
+            cache: "MyCache", // grants access to a specific cache
+            topic: AllTopics  // grants items to all topics in this cache
+        }
+    ],
+};
+```
+
 ## FAQ
 
 <details>
@@ -166,7 +252,7 @@ No. We only support the managed roles listed above for each permission.
 <details>
 <summary>Do these tokens control access to the Momento control plane APIs?</summary>
 
-Access tokens generated with the [GenerateAuthToken](#generateauthtoken) API only control access to the Momento data plane APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
+Access tokens generated with the [GenerateAuthToken](#generateauthtoken-api) API only control access to the Momento data plane APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
 
 </details>
 
