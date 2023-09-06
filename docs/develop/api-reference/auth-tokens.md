@@ -78,7 +78,7 @@ See [response objects](./response-objects) for specific information.
 | --------------- |-------------------------------------------| -------------------------------------------- |
 | permissions           | List <[Permission](#permission-objects)\> | The permissions to grant to the new token.|
 
-A TokenScope is an list of [permission objects](#permission-objects). The list can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and can contain [up to ten](../../manage/limits) permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
+A TokenScope is a list of [permission objects](#permission-objects). The list can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and can contain [up to ten](../../manage/limits) permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
 
 1. A permission object that allows ReadWrite access to all caches for the account 
 2. A permission object that allows ReadOnly access to cache `foo`
@@ -164,7 +164,7 @@ Disposable tokens differ from the usual Momento auth token in several key ways:
   - They cannot be generated in the console, they can only be generated programatically. The token that's used for the `generateDisposableToken` API call must be a token with Super User scope generated via the Momento console.
   - They must expire within one hour.
   - They cannot be refreshed and thus do not come with a refresh token. 
-  - Permissions are specified using the usual TokenScope object or using DisposableTokenScope object, which allows you to permit access to specific cache items by specifying a key or key-prefix. 
+  - Permissions are specified using DisposableTokenScope object.
 
 | Name            | Type                      | Description                                                                                                                                                                             |
 | --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -186,15 +186,19 @@ See [response objects](./response-objects) for specific information.
 
 <SdkExampleTabs snippetId={'API_GenerateDisposableToken'} />
 
-## DisposableTokenScope objects
+### DisposableTokenScope objects
+
 | Name            | Type                                      | Description                                  |
 | --------------- |-------------------------------------------| -------------------------------------------- |
-| permissions           | List <[DisposableTokenCachePermissions](#disposable-permission-objects)\> | The permissions to grant to the new disposable token.|
+| permissions           | List <[DisposableTokenCachePermission](#disposabletokencachepermissions)&nbsp;&nbsp;\|&nbsp;&nbsp;[Permission](#permission-objects)\> | The permissions to grant to the new token.|
 
+The DisposableTokenScope object will accept permissions objects of the type [CachePermission](#cachepermission), [TopicPermission](#topicpermission), or [DisposableTokenCachePermission](#disposabletokencachepermissions).
 
 ### DisposableTokenCachePermissions
 
-A component of a [DisposableTokenCachePermissions](#disposable-permission-objects) object that defines permissions for a cache and the items within the cache.
+The DisposableTokenCachePermission is an extension of CachePermission, so it has the same fields as CachePermission but also has an additional `item` field so you can define permissions for a cache and the items within the cache. 
+
+For example, you can restrict access to only a specific key or a set of keys beginning with some prefix when you set `item` to a string that represents a key or key-prefix. Alternately, if you set `item` to AllCacheItems, you would produce the same set of permissions as a normal CachePermission.
 
 | Name            | Type                 | Description                                                                                                      |
 | --------------- |----------------------|------------------------------------------------------------------------------------------------------------------|
@@ -208,36 +212,44 @@ For cache, the value can be the built-in `AllCaches` or a string value containin
 
 For item, the value can be the built-in `AllCacheItems` or a string value containing the key or key prefix of the cache item(s) this permission is for.
 
-In addition to DisposableTokenCachePermissions, `generateDisposableToken` will also accept [CachePermissions](#cachepermission) and [TopicPermissions](#topicpermission).
+#### Example DisposableTokenScope object 
 
-#### DisposableTokenScope example for a DisposableTokenCachePermission object
-
-This is an example of creating a DisposableTokenScope with CachePermissions and TopicPermissions.
+This is an example of creating a DisposableTokenScope with all three types of permission objects: CachePermission, TopicPermission, and DisposableTokenCachePermission.
 
 ```javascript
-const DisposableTokenCachePermissions = {
+const exampleDisposableTokenPermission: DisposableTokenCachePermission = {
+  role: CacheRole.WriteOnly,
+  cache: "WriteCache",
+  item: {
+    keyPrefix: "WriteKey"
+  }
+};
+
+const exampleCachePermission: CachePermission = {
+  role: CacheRole.ReadOnly,
+  cache: "ReadCache"
+};
+
+const exampleTopicPermission: TopicPermission = {
+  role: TopicRole.PublishSubscribe,
+  cache: "ReadWriteCache",
+  topic: "MyTopic"
+}
+
+const exampleScope: DisposableTokenScope = {
     permissions: [
-      {
-            role: CacheRole.ReadWrite, // Managed role
-            cache: "MyCache", // grants access to a specific cache
-            item: {
-              key: "OneKey" // grants access to a specific item in the cache
-            }
-        },
-        {
-            role: CacheRole.WriteOnly, // Managed role
-            cache: AllCaches, // Built-in value for access to all caches in the account.
-            item: {
-              keyPrefix: "WriteKey" // grants access to items with this prefix in the cache
-            }
-        },
-        {
-            role: TopicRole.SubscribeOnly, // Managed role
-            cache: "MyCache", // grants access to a specific cache
-            topic: AllTopics  // grants items to all topics in this cache
-        }
+      exampleDisposableTokenPermission,
+      exampleCachePermission,
+      exampleTopicPermission,
     ],
 };
+
+// Then pass in the entire DisposableTokenScope object when
+// you call generateDisposableToken
+const tokenResponse = await authClient.generateDisposableToken(
+  exampleScope,
+  ExpiresIn.minutes(30)
+);
 ```
 
 ## FAQ
@@ -253,13 +265,6 @@ No. We only support the managed roles listed above for each permission.
 <summary>Do these tokens control access to the Momento control plane APIs?</summary>
 
 Access tokens generated with the [GenerateAuthToken](#generateauthtoken-api) API only control access to the Momento data plane APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
-
-</details>
-
-<details>
-<summary>Can I have write only or publish only permissions?</summary>
-
-We do not support 'write only' or 'publish only' permissions. If this is something you need, please [contact us](mailto:support@momentohq.com) and let's discuss your needs.
 
 </details>
 
