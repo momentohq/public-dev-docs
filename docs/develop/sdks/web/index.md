@@ -53,17 +53,20 @@ Here's an example import statement for the web SDK:
 
 ## Credentials for Browsers
 
-In order for your browser application to communicate with Momento services, you will need to provide the browser with a Momento auth token. The recommended practice is to generate a Momento auth token that has expiring credentials for each browser session. This enables the app to distribute tokens without worrying about your data being compromised.
+In order for your browser application to communicate with Momento services, you will need to provide the browser with a Momento auth token. 
+The recommended practice is to generate a Momento disposable token that has expiring credentials for each browser session. This enables the app to distribute tokens without worrying about your data being compromised.
 
-To create a Momento auth token for use in the browser, you will generally have a web application using another Momento SDK such as the Node.js SDK. First, you will need to instantiate a Momento `AuthClient`:
+To create a Momento disposable token for use in the browser, you will generally need a ["token vending machine"](https://www.gomomento.com/blog/introducing-the-momento-token-vending-machine) component. The token vending machine can be a [standalone application](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine) with an HTTP endpoint that a static website can access, or it can be a component embedded into the server side of your web application, as in our [Next.js chat app example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/nextjs-chat/README.md).
+
+In either case, you will likely use the Node.js SDK to instantiate a Momento `AuthClient` and providing it an API key with Super User scope generated via the [Momento Console](https://console.gomomento.com/):
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_InstantiateAuthClient'} />
 
-Then you will use the `generateAuthToken` API to create a token that you can vend to the browser:
+Then you will use the `generateDisposableToken` API to create a disposable token that you can vend to the browser. These tokens are short-lived by default and they must expire within one hour.
 
-<SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateAuthToken'} />
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateDisposableToken'} />
 
-For more information on Momento auth tokens, including `TokenScope` for authorization, and how to refresh expiring tokens, see [Working with Momento auth tokens](./../basics/working-with-momento-auth-tokens).
+For more information on Momento disposable tokens, including `DisposableTokenScope` and permission objects for authorization, see [Auth API Reference](../../api-reference/auth-tokens.md#generatedisposabletoken-api).
 
 ## FAQ
 
