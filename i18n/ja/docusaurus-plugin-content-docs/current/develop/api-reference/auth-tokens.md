@@ -15,13 +15,13 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 <img src="/img/access-tokens.jpg" width="90%" alt="a technical illustration of a bank vault representing security, authorization, and authentication." />
 
-認証APIは、"Momento auth tokens" として知られる Momento サービスの認証トークンを作成し管理します。トークンは、1つ以上のキャッシュやトピックへのアクセスを許可するために、1つまたは複数の権限を持つように設定することができます。
+auth APIは、[Momento auth tokens](../../develop/basics/01-working-with-momento-auth-tokens.md) として知られる Momento サービスのauthトークンを作成し管理します。トークンは、1つ以上のキャッシュやトピックへのアクセスを許可するために、1つまたは複数の権限を持つように設定することができます。
 
 <img src="/img/momento-auth-tokens.png" width="60%"/>
 
 ## GenerateAuthToken API
 
-権限と有効期限を指定することで新しい Momento 認証トークンを生成します。
+権限と有効期限を指定することで新しい Momento authトークンを生成します。
 
 | 名前            | 型                       | 説明                                                                                                                                                                             |
 | --------------- |----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -32,7 +32,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
   <summary>Method response object</summary>
 
 * Success
-  - `authToken`: string - 新しい認証トークン
+  - `authToken`: string - 新しいauthトークン
   - `refreshToken`: string - 有効期限前にトークンを更新するために、[RefreshAuthToken API](#refreshauthtoken)と共に使用できるリフレッシュトークン
   - `expiresAt`: Timestamp - トークンが失効するタイムスタンプ
 * Error
@@ -51,17 +51,17 @@ Momento のコントロールプレーン API にアクセスするためのト�
 
 ## RefreshAuthToken API
 
-既存の有効な Momento 認証トークンを更新します。新しい認証トークンは、元の認証トークンと同じ権限と有効期間を持ちます。
+既存の有効な Momento authトークンを更新します。新しいauthトークンは、元のauthトークンと同じ権限と有効期間を持ちます。
 
 | 名前            | 型            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| refreshToken    | String          | 現在の認証トークンのリフレッシュトークンで、これは `GenerateAuthToken` の元の呼び出しから取得されます。 |
+| refreshToken    | String          | 現在のauthトークンのリフレッシュトークンで、これは `GenerateAuthToken` の元の呼び出しから取得されます。 |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-  - `authToken`: string - 新しい認証トークン
+  - `authToken`: string - 新しいauthトークン
   - `refreshToken`: string - 有効期限前にトークンを更新するために、[RefreshAuthToken API](#refreshauthtoken) と共に使用できるリフレッシュトークン
   - `expiresAt`: Timestamp - トークンが失効するタイムスタンプ
 * Error
@@ -77,7 +77,7 @@ Momento のコントロールプレーン API にアクセスするためのト�
 | --------------- |-------------------------------------------| -------------------------------------------- |
 | permissions           | List <[Permission](#permission-objects)\> | 新しいトークンに付与する権限です。|
 
-TokenScope は [permission objects](#permission-objects)のリストです。リストには、[CachePermission](#cachepermission)型または [TopicPermission](#topicpermission)型の権限が含まれ、[最大で十](../../manage/limits)のパーミッションオブジェクトを含むことができます。権限はMomento データプレーンAPI（例えば get、set など）へのアクセスのみを許可します。複数のパーミッションオブジェクトで認証トークンが作成されると、どの一致するパーミッションでもアクセスが許可されます。例えば、次の二つのパーミッションオブジェクトで単一のトークンが作成された場合：
+TokenScope は [permission objects](#permission-objects)のリストです。リストには、[CachePermission](#cachepermission)型または [TopicPermission](#topicpermission)型の権限が含まれ、[最大で十](../../manage/limits)のパーミッションオブジェクトを含むことができます。権限はMomento データプレーンAPI（例えば get、set など）へのアクセスのみを許可します。複数のパーミッションオブジェクトでauthトークンが作成されると、どの一致するパーミッションでもアクセスが許可されます。例えば、次の二つのパーミッションオブジェクトで単一のトークンが作成された場合：
 
 1. アカウントの全てのキャッシュに対して読み書きアクセスを許可するパーミッションオブジェクト 
 2. キャッシュ `foo` への読み取り専用アクセスを許可するパーミッションオブジェクト

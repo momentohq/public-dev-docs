@@ -62,6 +62,6 @@ Configurations.Browser は [web SDK](/develop/sdks/web) に特有の設定にな
 
 ### Lambda
 
-`Configurations.Lambda` はいくつかの SDK で利用可能な、AWS Lambda 環境に最適化された設定です。Lambda のコールドスタートでクライアントを暖気する様に設計された設定を持ち、もし接続がタイムアウトするほど長く Lambda がアイドル状態になった時は、接続が再度確立されていることを積極的に保証してくれます。
+`Configurations.Lambda` はいくつかの SDK で利用可能な、AWS Lambda 環境に最適化された設定です。Lambda 関数のコールドスタートでクライアントを暖気する様に設計された設定を持ち、もし接続がタイムアウトするほど長く Lambda 関数がアイドル状態になった時は、接続が再度確立されていることを積極的に保証してくれます。
 
 <SdkExampleTabs snippetId={'API_ConfigurationLambda'} />

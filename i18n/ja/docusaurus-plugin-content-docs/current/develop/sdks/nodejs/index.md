@@ -21,7 +21,8 @@ Momento Node.js SDK は [`@gomomento/sdk`](https://www.npmjs.com/package/@gomome
 
 ## リソース
 
-- [Node.js SDK チートシート](./cheat-sheet.mdx)
+- [Node.js SDK Cache チートシート](./cheat-sheet.mdx)
+- [Node.js SDK Topics チートシート](./topics-cheat-sheet.mdx)
 - [Node.js SDK 例](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/README.md): Node.js SDK の使い方をお見せするための動作可能なプロジェクト例です。
 - まもなく: オブザーバビリティ: Node.js SDK を使ったロギングとクライアントサイドのメトリクス
 - まもなく: コードを本番環境へ: Node.js SDK での設定とエラーハンドリング

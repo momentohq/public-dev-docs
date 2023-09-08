@@ -22,7 +22,7 @@ Momento Java SDK は Maven Central 経由で利用可能です: [`software.momen
 
 ## リソース
 
-- まもなく: Java SDK チートシート
+- [Java SDK Cheat Sheet](./cheat-sheet.mdx)
 - [Java SDK 例](https://github.com/momentohq/client-sdk-java/blob/main/examples/README.md): Java SDK の使い方をお見せするための動作可能なプロジェクト例です。
 - まもなく: オブザーバビリティ: Java SDK を使ったロギングとクライアントサイドのメトリクス
 - まもなく: コードを本番環境へ: Java SDK での設定とエラーハンドリング

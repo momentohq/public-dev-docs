@@ -11,6 +11,8 @@ description: Momento Cache のコアとなるデータ型を学び、現代的�
 # Momento Cache と Momento Topics でサポートしているデータ型
 Momento Cache は、現代的な様々なプログラミング言語に共通する型と対応するコアとなるデータ型を提供しています。このページでは、コアのデータ構造の一覧と、それぞれの情報を紹介しています。
 
+![さまざまな種類のデータ型とアイデアが高速で移動するイメージ](../../../../../static/img/more-data-types.jpg)
+
 ## Momento Cache と Topics のコアデータ型
 
 ### バイト配列
