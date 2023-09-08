@@ -70,7 +70,7 @@ Lambda 関数や Google Cloud Function、その他の自動化スクリプトが
 
 Momento 認証トークンには関連付けられた `TokenScope` があり、Momento リソースへのアクセスレベルを制御します。以下に利用可能な `TokenScope` の一覧を示します：
 
-- `SuperUser`: これらのトークンはすべてのコントロールプレーンとデータプレーンの操作にフルアクセスができます。また、[`generateAuthToken`](/develop/api-reference#generateauthtoken) API を使って新しいトークンを生成することもできます。`SuperUser` トークンを作成する唯一の方法は、[Momento コンソール](https://console.gomomento.com) を使用することです。
-- `AllDataReadWrite`: これらのトークンはすべてのデータプレーン操作に対する完全な読み書きアクセス権を持つが、コントロールプレーン操作に対するアクセス権は持ちません。これらのトークンはあらゆるキャッシュの読み書きと、あらゆるトピックのパブリッシュとサブスクライブに使用できます。キャッシュの作成や削除、新しい Momento 認証トークンの生成には使用できません。`AllDataReadWrite` トークンは [`generateAuthToken`](/develop/api-reference#generateauthtoken) API で生成されます。
+- `SuperUser`： このトークンのスコープでは、すべてのコントロールプレーンとデータプレーンの操作にフルアクセスできます。`SuperUser` スコープを持つトークンは、[`generateAuthToken`](/develop/api-reference#generateauthtoken) API を使って新しいトークンを生成することもできます。`SuperUser` スコープのトークンは [Momento webコンソール](https://console.gomomento.com) でのみ作成することができます。
+- Fine-grained access control (FGAC): このトークンのスコープでは、トークンによって付与されるアクセスをより正確に制御することができます。トークンが1つまたは複数のキャッシュやトピックへのアクセスを許可するかどうかを制御できます。FGACスコープを持つトークンは、データプレーン操作にのみ使用できます。[Momento Webコンソール](https://console.gomomento.com)、または[Momento auth API](/develop/api-reference/auth-tokens.md)から作成できます。
 
 質問やフィードバックがある場合は、私たちの[Discordコミュニティ](https://discord.gg/GDStRczm)に参加するか、[Momentoサポート](mailto:support@momentohq.com)までお問い合わせください。
