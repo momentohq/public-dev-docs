@@ -190,27 +190,6 @@ Momento Cache はフルマネージドで、API ベースの、サーバーレ�
 
 <br />
 
-まず、無料の認証トークンをリクエストし、CLI に設定し、 `set` と `get` コマンドをあなたのキャッシュに対して実行してみます。以下を立ち上げて下さい。
-
-[![image](/img/cli_lab.png)](https://play.instruqt.com/embed/momento/tracks/sandbox-container-1challenge?token=em_54kTDywfWaG95-rC&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser)
-
-<br />
-<br />
-
-次に、認証トークンとキャッシュを使って、Node.js SDK を使った JavaScript のアプリケーションを作成し実行してみます。以下を立ち上げて下さい。
-
-[![image](/img/sdk_lab.png)](https://play.instruqt.com/embed/momento/tracks/momento-nodejs-demo?token=em_f8PM8Aob-mHIfOTT&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser)
-
-<br />
-<br />
-
-Momento Topics も試してみたいですか？このデモでは、一方の画面でトピックのメッセージをサブスクライブし、もう一方の画面ではそのトピックにメッセージをパブリッシュすることができます。以下を立ち上げて下さい。
-
-[![image](/img/topics_lab.png)](https://play.instruqt.com/embed/momento/tracks/topics-on-the-momento-cli?token=em_Q_mgzhVtWtP5B_jj&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser)
-
-<br />
-<br />
-
 ## Momento CLIのインストール
 
 CLIをローカル(Linux, Windows, Mac)にインストールすることも可能です。[こちらのリポ](https://github.com/momentohq/momento-cli)
