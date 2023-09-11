@@ -30,7 +30,7 @@ Considerations for deploying your Topics listener on AWS
     - Consider how you’ll store your Momento auth token for retrieval by your listener application. 
     - We recommend using AWS Secrets Manager to store and retrieve your token.
     - You can cache your secret in memory to reduce Secrets Manager cost.
-    - See [here](./../basics/working-with-momento-auth-tokens) for more on Momento auth tokens.
+    - See [here](/develop/authentication) for more on Momento authentication.
 - Runtime selection (AWS App Runner only)
     - Ensure the runtime is supported on AWS App Runner and the Momento SDK.
 - Infrastructure as code
