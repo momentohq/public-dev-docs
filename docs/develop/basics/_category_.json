@@ -1,9 +1,9 @@
 {
   "label": "Basics",
-  "position": 2,
+  "position": 3,
   "link": {
     "title": "Basics",
-    "description": "Basics to help get you going on using the Momento SDK.",
+    "description": "Basics to help get you going using the Momento SDK."
   },
   "className": "sidebar-item-guides"
 }
