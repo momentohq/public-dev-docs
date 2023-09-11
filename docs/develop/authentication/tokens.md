@@ -32,7 +32,7 @@ Unlike our [API keys](/develop/authentication/api-keys.md), the only way to crea
 
 Below are some examples to create tokens with different sets of permissions:
 
-<SdkExampleTabs snippetId={'API_GenerateAuthToken'} />
+<SdkExampleTabs snippetId={'API_GenerateDisposableToken'} />
 
 For detailed information on creating a token, please refer to the [API reference page](/develop/api-reference/auth.md).
 
