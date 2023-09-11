@@ -14,6 +14,8 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 # Momento Cache とともに Momento Topics（pub/sub）API を使用する
 Momento Topics は、分散型アプリケーションの各部分間でリアルタイム通信を可能にするメッセージングパターンです。トピックの値をパブリッシュ(プロデュース)し、トピックからサブスクライブ(コンシューム)することを可能にします。このページでは、Momento Topics で操作するための Momento API メソッドについて詳しく説明します。
 
+<img src="/img/topics-api.jpg" width="100%" alt="An image showing the movement of lots of data, messages published, moved to where they need to go quickly and accurately." />
+
 詳細は[Momento Topics](./../../introduction/momento-topics.md)をご覧ください。
 
 ## Topics のメソッド
@@ -84,3 +86,11 @@ Momento Topics は、分散型アプリケーションの各部分間でリア�
 ほとんどの Momento Cache API コールでは CacheClient を使用していますが、Topics については TopicClient オブジェクトを使用します。
 
 <SdkExampleTabs snippetId={'API_InstantiateTopicClient'} />
+
+## Example apps using Momento Topics APIs
+
+A growing list of example apps using the Momento Topics.
+
+Momento Topicsを使用したアプリの例が続々と増えています。
+
+- [サーバーレスで作成されたアイテムをパブリッシュするマイクロサービス](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/lambda-examples/topics-microservice) このマイクロサービスはTypeScriptで書かれ、API Gateway、Lambda関数、Momento Topicsを使ってAWS上で実行される。(API Gateway上で適切なセキュリティが設定されていれば）他のサービスでも利用することができ、様々なトピックにメッセージを発行して他のアプリケーションから購読させることができます。この API に `topicName` と `topicValue` を渡すと、このサービスはその値をトピックにパブリッシュします。

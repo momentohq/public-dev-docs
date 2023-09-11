@@ -10,6 +10,8 @@ description: キャッシュの文脈でサーバーレスとはどういうこ�
 
 サーバーレスは今ソフトウェア開発業界で最も熱いトレンドで、"サーバーレスにやさしい" サービスが爆発的に増えていいます。
 
+![An image of a fast moving city as Momento serverless caching services](../../../../../static/img/serverless-caching.jpg)
+
 私達は Momento Cache がその中で最もサーバーレスにやさしいキャッシュであると信じています。でも、サーバーレスとはどういう意味で、なぜ Momento Cache がサーバーレスにやさしいキャッシュなのでしょうか？
 
 ここでは、サーバーレスの2つの定義と、サーバーレス的な技術に興味のある開発者達について、詳しく見ていきましょう。

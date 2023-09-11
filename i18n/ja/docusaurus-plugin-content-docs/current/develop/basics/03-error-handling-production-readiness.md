@@ -16,10 +16,11 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 <img src="/img/error-handling.jpg" width="90%" alt="a technical illustration of Momento client configuration objects." />
 
-各 SDK はドキュメント内の個別のページを持っています。左のナビゲーションから `開発` -> `SDKs` をクリックすることで見られます。それぞれのページで、"コードを本番環境へ持っていく"というリンクから、その言語に応じた本番環境への準備のためのベストプラクティスを提供しています。
+左のナビゲーションメニューから `Develop`->`SDKs` をクリックすることで、それぞれのSDKのページに移動することができます。それぞれのページには「コードを本番環境へ」というリンクがあり、その言語でプロダクションで使えるコードを作るためのベストプラクティスが紹介されています。
 
-全ての SDK に適応できる Momento のエラーハンドリングに関する一般的な注意書きがこちらになります。
+Momento SDKは、あらかじめ用意された設定オブジェクトを使用して本番環境でも問題なく動作するように設計されているため、ほとんどのユーザーは運用方法を変更することなく、検証環境から本番環境に簡単に移行できます。このページでは、Momento SDK のエラー処理に関する一般的な注意点と、デフォルトの動作が推奨される理由について説明します。
 
+## Surfacing errors
 `CacheClient` のメソッド (例: Get、Set、Increment) を呼び出す時に起こるエラーは、例外を投げるのではなく、呼出しの返り値として開発者には見えます。これは、コードを書いている時にエラーをもっと見えやすくしてくれ、IDE が対応すべきエラーを処理しているかを保証するのを手助けしてくれます。これに関する私たちの哲学については、なぜ[例外はバグ](https://www.gomomento.com/blog/exceptions-are-bugs)なのかのブログ投稿をご覧頂き、私たちにフィードバックを下さい。
 
 これは実行時にアプリケーションがクラッシュしないことを保証するのにも役立ちます。Momento はキャッシュで、通常アプリケーションはキャッシュが利用できないときにデータを取得できる信頼できるデータソースを持っています。従って、Momento SDK は例外を投げない様に設計されていて、もし try/catch ブロックを忘れたとしてもアプリケーションはクラッシュしません。
@@ -38,3 +39,10 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 エラー・レスポンスの仕組みと使い方の例については、こちらのビデオをご覧ください：
 <iframe width="560" height="315" src="https://www.youtube.com/embed/h9FiNCxlZso" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+## 呼び出しでエラーを返した時の再試行
+エラー応答後に呼び出しを再試行する場合、Momento SDK に期待できる一般的な動作パターンは次のとおりです：
+
+<img src="/img/sdk_retry_behavior.png" width="100%" alt="logic diagram depicting SDK retry behavior"/>
+
+Momento SDKはスロット付きリクエスト([制限超過](/manage/limits/))を再試行しません。その他のエラーについては、要求された操作が [idempotent](https://en.wikipedia.org/wiki/Idempotence) でない場合、SDK は再試行しません。例えば、カウンターをインクリメントしているときにエラー応答を受け取った場合、SDKはあなたの代わりにリトライしません(これはオーバーカウントになる可能性があるため)。リトライするかどうかは開発者に選択させることが安全だと考えているためです。

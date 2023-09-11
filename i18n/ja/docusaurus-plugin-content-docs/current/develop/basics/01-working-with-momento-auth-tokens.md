@@ -11,15 +11,28 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Momento の認証トークンを使用する
+# Momento authトークンを使用する
 
-アプリケーションから Momento のサービスにアクセスするには、Momento の認証トークンが必要です。認証トークンは Momento が生成する英数字の文字列で、あなたのアカウントと選択したクラウドプロバイダのリージョンに固有のものです。認証トークンを作成する際、2種類の有効期限を設定できます：
+<img src="/img/pile-of-tokens.jpg" width="90%" alt="a technical illustration of a bank vault representing security, authorization, and authentication." />
 
-1. 有効期限のない認証トークン。これは開発/テスト環境でのみ使用すべきです。
-2. 有効期限があり、定期的なローテーションが必要な認証トークン。有効期限は、7、30、60、90 日、あるいは特定の暦日を選択できるカスタムで設定できます。有効期限がある認証トークンは、本番環境におけるベストプラクティスと考えられています。このページではその方法を説明します。
+アプリケーションからMomentoのサービスにアクセスするには、Momentoのauthトークンが必要です。authトークンは Momento が生成する英数字の文字列で、あなたのアカウントと選択したクラウドプロバイダのリージョンに固有のものです。authトークンを作成する際には、次の 2 種類のトークンを設定できます：
+
+1. アカウント内のすべてのリソースとAPI（データプレーンとコントロールプレーンの両方）へのアクセスを許可するスーパーユーザートークン。
+2. A fine-grained access control (FGAC) tokenは、データプレーンAPIへのアクセス権のみを持ち、必要に応じてシングルキャッシュやトピックレベルへのアクセスを制限するように設定できます。
+
+プログラムによる Momento authトークンの作成、管理、更新のための Momento auth API の使用については、[authトークン](/develop/api-reference/auth-tokens.md) を参照してください。
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F32zTUBkWzw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+## トークンの有効期限
+
+トークンは、作成時に設定した N 時間後に失効するように設定できます。Momento authトークンには、2 種類の有効期限があります：
+
+- 有効期限のないauthトークン。これは開発/テスト環境でのみ使用することを推奨しています。
+- 有効期限があり、定期的なローテーションが必要なauthトークン。有効期限は7日、30日、60日、90日、あるいはカスタムで設定できます。期限切れのauthトークンは、本番環境におけるベストプラクティスと考えられています。このページではその方法を説明します。
 
 :::info
-有効期限がある認証トークンを使用することに加えて、[AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)や[GCP Secret Manager](https://cloud.google.com/secret-manager)のようなサービスに認証トークンを保存するのがベストプラクティスです。[AWS Secrets Manager から Momento の認証トークンを取得する方法](/develop/integrations/aws-secrets-manager)を参照してください。
+期限切れのauthトークンを使用することに加えて、[AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)や[GCP Secret Manager](https://cloud.google.com/secret-manager)のようなサービスにauthトークンを保存するのがベストプラクティスです。[AWS Secrets ManagerからMomentoのauthトークンを取得する](/develop/integrations/aws-secrets-manager)を参照してください。
 :::
 
 ## 有効期限があるトークンの生成
@@ -70,7 +83,7 @@ Lambda 関数や Google Cloud Function、その他の自動化スクリプトが
 
 Momento 認証トークンには関連付けられた `TokenScope` があり、Momento リソースへのアクセスレベルを制御します。以下に利用可能な `TokenScope` の一覧を示します：
 
-- `SuperUser`: これらのトークンはすべてのコントロールプレーンとデータプレーンの操作にフルアクセスができます。また、[`generateAuthToken`](/develop/api-reference#generateauthtoken) API を使って新しいトークンを生成することもできます。`SuperUser` トークンを作成する唯一の方法は、[Momento コンソール](https://console.gomomento.com) を使用することです。
-- `AllDataReadWrite`: これらのトークンはすべてのデータプレーン操作に対する完全な読み書きアクセス権を持つが、コントロールプレーン操作に対するアクセス権は持ちません。これらのトークンはあらゆるキャッシュの読み書きと、あらゆるトピックのパブリッシュとサブスクライブに使用できます。キャッシュの作成や削除、新しい Momento 認証トークンの生成には使用できません。`AllDataReadWrite` トークンは [`generateAuthToken`](/develop/api-reference#generateauthtoken) API で生成されます。
+- `SuperUser`： このトークンのスコープでは、すべてのコントロールプレーンとデータプレーンの操作にフルアクセスできます。`SuperUser` スコープを持つトークンは、[`generateAuthToken`](/develop/api-reference#generateauthtoken) API を使って新しいトークンを生成することもできます。`SuperUser` スコープのトークンは [Momento webコンソール](https://console.gomomento.com) でのみ作成することができます。
+- Fine-grained access control (FGAC): このトークンのスコープでは、トークンによって付与されるアクセスをより正確に制御することができます。トークンが1つまたは複数のキャッシュやトピックへのアクセスを許可するかどうかを制御できます。FGACスコープを持つトークンは、データプレーン操作にのみ使用できます。[Momento Webコンソール](https://console.gomomento.com)、または[Momento auth API](/develop/api-reference/auth-tokens.md)から作成できます。
 
 質問やフィードバックがある場合は、私たちの[Discordコミュニティ](https://discord.gg/GDStRczm)に参加するか、[Momentoサポート](mailto:support@momentohq.com)までお問い合わせください。

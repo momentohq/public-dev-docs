@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 sidebar_label: Observability
 sidebar_class_name: sidebar-item-nodejs
 title: Observability for TypeScript and Node.js
@@ -28,7 +28,7 @@ Momento がこれらのライブラリ (そしてそれ以上に) と互換性�
 
 <SdkExampleCodeBlock language={'javascript'} file={'packages/core/src/config/logging/momento-logger.ts'} />
 
-ユーザの実装は、選択したロギングライブラリの薄いラッパーになるでしょう。私たちは、[`pino`](https://github.com/pinojs/pino)ロガーを使用し動作する実装例を提供しています： [https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/doc-example-files/pino-logger.ts](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/basic/doc-example-files/pino-logger.ts)。
+ユーザの実装は、選択したロギングライブラリの薄いラッパーになるでしょう。私たちは、[`pino`](https://github.com/pinojs/pino)ロガーを使用し動作する実装例を提供しています： [https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/doc-example-files/pino-logger.ts](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/observability/pino-logger.ts)。
 
 `MomentoLoggerFactory` と `MomentoLogger` を定義したら、最後に Momento クライアントを設定します：
 

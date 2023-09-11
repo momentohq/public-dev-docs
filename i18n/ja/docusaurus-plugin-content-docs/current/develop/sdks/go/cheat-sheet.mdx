@@ -1,0 +1,100 @@
+---
+sidebar_position: 1
+sidebar_label: チートシート
+sidebar_class_name: sidebar-item-go
+title: Go のためのチートシート
+description: Momento Cache を Go を使ってすぐにコードを書き始めましょう
+pagination_next: null
+---
+
+
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
+
+
+
+# Momento Cache を Go で使うためのチートシート
+このページでは、Momento Cache を Go で素早く使ってみたい方のために必要となる基礎的な API 呼出しを解説しています。このコードのファイル全体は[Go SDK のページをご確認下さい](https://github.com/momentohq/client-sdk-go)。
+
+## Momento クライアントライブラリをインストールします
+
+[Goのプロジェクトを作成](https://go.dev/doc/code#Command)したら、Momento Go SDKをインストールします。
+```cli
+go get github.com/momentohq/client-sdk-go
+``` 
+
+## authトークンをセットアップします
+Momento で認証するには、[Momento auth token](/develop/basics/working-with-momento-auth-tokens) が必要です。 [Momento Webコンソール](https://console.gomomento.com/caches) から取得できます。
+トークンを取得したら、Momento クライアントが利用できるように環境変数に保存します：
+
+```
+export MOMENTO_AUTH_TOKEN=<your Momento token here>
+```
+
+**Note**: セキュリティ強化のためには、トークンを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに格納するのがベストプラクティスですが、ここではデモのために環境変数に保存しています。
+
+## ライブラリをインポートし、CacheClient オブジェクトを作成します
+まず、必要なインポートを取り込み、main関数に設定します。
+
+```go
+package main
+
+import (
+	"context"
+	"errors"
+	"log"
+	"time"
+
+	"github.com/google/uuid"
+	"github.com/momentohq/client-sdk-go/auth"
+	"github.com/momentohq/client-sdk-go/config"
+	"github.com/momentohq/client-sdk-go/config/logger"
+	"github.com/momentohq/client-sdk-go/momento"
+	"github.com/momentohq/client-sdk-go/responses"
+)
+
+func main() {
+    fmt.Println("Hello, world.")
+}
+```
+
+次に、Momento Cache とのやりとりに使用する CacheClient オブジェクトをインスタンス化します。
+
+<SdkExampleCodeBlock language={'go'} snippetId={'API_InstantiateCacheClient'} />
+
+## Momento Cacheで新しいキャッシュを作成します
+この機能を使用して、アカウントに新しいキャッシュを作成します。
+
+<SdkExampleCodeBlock language={'go'} snippetId={'API_CreateCache'} />
+
+## アカウントに存在するキャッシュの名前をリストアップする
+アカウントに存在するキャッシュ名のリストが取得できます。
+
+<SdkExampleCodeBlock language={'go'} snippetId={'API_ListCaches'} />
+
+## アイテムをキャッシュに書き込む
+セット操作の簡単な例です。
+client.set呼び出しでは、TTLはオプションです。
+TTLを渡すと、クライアント接続オブジェクトで設定されたデフォルトのTTL値が上書きされます。
+
+<SdkExampleCodeBlock language={'go'} snippetId={'API_Set'} />
+
+## キャッシュからアイテムを読み込む
+これは、キャッシュから項目を取得する単純な読み取り操作の例です。
+
+<SdkExampleCodeBlock language={'go'} snippetId={'API_Get'} />
+
+## コードを実行する
+コードを実行するには、`go run`コマンドを使用します。
+
+```cli
+go run main.go
+```
+
+:::info
+これらの API 呼出し以上のものは、[API リファレンスページ](/develop/api-reference/index.mdx)で Momento API 呼出しの全種類の詳しい情報をご確認下さい。
+
+さらなるコード例は、[Momento Go SDK レポジトリ](https://github.com/momentohq/client-sdk-go/tree/main/examples)をご確認下さい。
+:::
