@@ -17,43 +17,15 @@ If you're looking to jump in and get started with Momento Cache with an SDK, you
 
 If you want to quickly get a feel for the Momento Cache experience without installing any software? You can do so right here [in your browser](#try-our-cli-and-an-sdk-in-your-browser).
 
-## Step 1: Sign up and log into the Momento console
+## Step 1: Create your API key
 
-[Go to the Momento Console](https://console.gomomento.com/) and follow the instructions to login with your email address, Google account, or GitHub account.
+Follow our [step-by-step instructions](/develop/authentication/api-keys.md) to create an API key via the [Momento console](https://console.gomomento.com). Come back here when you have your key.
 
-![image](/img/getting-started/console.png)
+## Step 2: Store it
 
-:::info
+There are multiple places you can store the API key you just created. For this simple example, we'll store it in an environment variable, but the best practice is to store it in a secure location like AWS Secrets Manager or GCP Secret Manager.
 
-Momento Console does not currently support the ability to share access to caches between accounts. Momento organizations is coming soon to solve this. In the meantime, we recommend you use internal email lists to manage cache access across your team.
-
-For instance:
-- momento+prod@yourcompany.com
-- momento+dev@yourcompany.com
-
-With this, you can control mailing list access. To login into Momento Console, simply use this mailing list and Momento will send a sign in code via email to the mailing list. Then anyone with access to the mailing list will be able to sign in and view Momento Caches.
-
-:::
-
-## Step 2: Create an authentication token in the Momento console
-
-In the console, open the menu and select Token.
-
-![image of console menu](/img/getting-started/auth-token.gif)
-
-On the token page, select your 1/ cloud provider, 2/ an available Region from the drop down list, 3/ when the token should expire, and then 4/ hit the "Generate Token" button.
-
-![image](/img/getting-started/select-provider-region.png)
-
-Scroll down and you will see your token in a grey box. The token in the screenshot has been blurred out, but yours won't be. Click on the copy icon to copy the token to your clipboard.
-
-![image](/img/getting-started/generated-token.jpg)
-
-## Step 3: Store auth token
-
-There are multiple places you can store the auth token used to authenticate with Momento. For this simple example, we'll store the auth token in an environment variable, but best practice is to store the auth token in something like AWS Secrets Manager or GCP Secret Manager.
-
-## Step 4: Grab the SDK, create a cache, and read/write data
+## Step 3: Grab the SDK, create a cache, and read/write data
 
 <Tabs>
    <TabItem value="node" label="Node.js" default>
@@ -67,10 +39,10 @@ npm install dotenv
 
 **Create a .env file**
 
-Create a .env file in the directory to hold your Momento auth token and the TTL (in seconds) you want to use by default.
+Create a .env file in the directory to hold your Momento API key and the TTL (in seconds) you want to use by default.
 
 ```cli
-export MOMENTO_AUTH_TOKEN=<your Momento token here>
+export MOMENTO_API_KEY=<your key here>
 export MOMENTO_TTL_SECONDS=300
 ```
 
@@ -95,7 +67,7 @@ async function createCacheClient() {
   return CacheClient.create({
     configuration: Configurations.Laptop.v1(),
     credentialProvider: CredentialProvider.fromEnvironmentVariable({
-      environmentVariableName: 'MOMENTO_AUTH_TOKEN',
+      environmentVariableName: 'MOMENTO_API_KEY',
     }),
     defaultTtlSeconds: 600,
   });
@@ -188,44 +160,9 @@ Cache hit:  12345
    </TabItem>
 </Tabs>
 
-## Try our CLI and an SDK in your browser
-
-You can try out Momento Cache today, right in your browser. No software installation required!
-
-:::note
-Momento Cache is a fully-managed, API-based, serverless service. It does not deploy any resources in your (AWS, GCP, Azure, etm.) accounts.
-:::
-
-<br />
-
-First, request your free auth token, create a cache, configure your CLI, and start running `set` and `get` commands on your cache. Launch below.
-
-<a href="https://play.instruqt.com/embed/momento/tracks/sandbox-container-1challenge?token=em_54kTDywfWaG95-rC&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/cli_lab.png" alt="CLI lab" /></a>
-
-<br />
-<br />
-
-Then, use the auth token and cache you just created to run a JavaScript application using our Node.js SDK. Launch below.
-
-<a href="https://play.instruqt.com/embed/momento/tracks/momento-nodejs-demo?token=em_f8PM8Aob-mHIfOTT&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/sdk_lab.png" alt="SDK lab" /></a>
-
-<br />
-<br />
-
-Want to experiment with Momento Topics? This demo lets you subscribe to Topic messages in one pane, while publishing
-messages to the topic in a second pane! Launch below.
-
-<a href="https://play.instruqt.com/embed/momento/tracks/topics-on-the-momento-cli?token=em_Q_mgzhVtWtP5B_jj&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/topics_lab.png" alt="Topics lab" /></a>
-
-<br />
-<br />
-
-
-
-
 ## Installing the Momento CLI
 
-You can also install the Momento CLI locally (Linux, Windows, Mac) if desired. The latest version of the CLI and instructions for install and use is available from [this repo](https://github.com/momentohq/momento-cli).
+You can also install the Momento CLI locally (Linux, Windows, Mac) if desired. The latest version of the CLI and instructions for installation and usage is available in [this repo](https://github.com/momentohq/momento-cli).
 
 ## All Momento SDKs
 
@@ -240,9 +177,11 @@ We currently have the following SDK languages available:
 - [Java](/develop/sdks/java)
 - [Rust](/develop/sdks/rust)
 - [Ruby](/develop/sdks/ruby)
+- [Elixir](/develop/sdks/elixir)
 
 ## FAQ
+
 <details>
   <summary>Does Momento deploy any resources into my cloud account?</summary>
-No it does not. Momento Cache is a fully-managed, API-based, serverless service that you call from within your application code.
+No, it does not. Momento Cache is a fully managed, API-based, serverless service that you call from within your application code.
 </details>

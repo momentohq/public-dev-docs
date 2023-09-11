@@ -1,9 +1,9 @@
 {
     "label": "Integrations",
-    "position": 5,
+    "position": 6,
     "link": {
       "title": "Integrations",
-      "description": "Integrations with other services.",
+      "description": "Integrations with other services."
     },
     "className": "sidebar-item-limits"
   }

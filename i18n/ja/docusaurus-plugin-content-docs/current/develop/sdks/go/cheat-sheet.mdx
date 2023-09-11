@@ -26,11 +26,11 @@ go get github.com/momentohq/client-sdk-go
 ``` 
 
 ## authトークンをセットアップします
-Momento で認証するには、[Momento auth token](/develop/basics/working-with-momento-auth-tokens) が必要です。 [Momento Webコンソール](https://console.gomomento.com/caches) から取得できます。
+Momento で認証するには、[Momento API keys](/develop/authentication) が必要です。 [Momento Webコンソール](https://console.gomomento.com/caches) から取得できます。
 トークンを取得したら、Momento クライアントが利用できるように環境変数に保存します：
 
 ```
-export MOMENTO_AUTH_TOKEN=<your Momento token here>
+export MOMENTO_API_KEY=<your key here>
 ```
 
 **Note**: セキュリティ強化のためには、トークンを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに格納するのがベストプラクティスですが、ここではデモのために環境変数に保存しています。

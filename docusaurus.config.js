@@ -187,6 +187,10 @@ const config = {
             from: '/develop/sdks-integrations/deploying-javascript-web-sdk',
             to: '/develop/sdks/web',
           },
+          {
+            from: '/develop/api-reference/auth-tokens',
+            to: '/develop/api-reference/auth'
+          }
         ],
         /**createRedirects(existingPath) {
           if (existingPath.includes('/docs')) {

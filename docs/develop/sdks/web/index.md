@@ -58,7 +58,7 @@ The recommended practice is to generate a Momento disposable token that has expi
 
 To create a Momento disposable token for use in the browser, you will generally need a ["token vending machine"](https://www.gomomento.com/blog/introducing-the-momento-token-vending-machine) component. The token vending machine can be a [standalone application](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine) with an HTTP endpoint that a static website can access, or it can be a component embedded into the server side of your web application, as in our [Next.js chat app example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/nextjs-chat/README.md).
 
-In either case, you will likely use the Node.js SDK to instantiate a Momento `AuthClient` and providing it an API key with Super User scope generated via the [Momento Console](https://console.gomomento.com/):
+In either case, you will likely use the Node.js SDK to instantiate a Momento `AuthClient` and provide it an API key with Super User scope generated via the [Momento Console](https://console.gomomento.com/):
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_InstantiateAuthClient'} />
 
@@ -66,7 +66,7 @@ Then you will use the `generateDisposableToken` API to create a disposable token
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateDisposableToken'} />
 
-For more information on Momento disposable tokens, including `DisposableTokenScope` and permission objects for authorization, see [Auth API Reference](../../api-reference/auth-tokens.md#generatedisposabletoken-api).
+For more information on Momento tokens, including `DisposableTokenScope` and permission objects for authorization, see [Auth API Reference](../../api-reference/auth.md#generatedisposabletoken-api).
 
 ## FAQ
 

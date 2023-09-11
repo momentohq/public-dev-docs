@@ -1,9 +1,9 @@
 {
   "label": "Guides",
-  "position": 4,
+  "position": 5,
   "link": {
     "title": "Guides",
-    "description": "Guides to help you out.",
+    "description": "Guides to help you out."
   },
   "className": "sidebar-item-guides"
 }
