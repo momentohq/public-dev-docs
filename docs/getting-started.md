@@ -160,44 +160,9 @@ Cache hit:  12345
    </TabItem>
 </Tabs>
 
-## Try our CLI and an SDK in your browser
-
-You can try out Momento today, right in your browser. No software installation required!
-
-:::note
-Momento offers fully-managed, API-based, serverless services. It does not deploy any resources in your (AWS, GCP, Azure, etm.) accounts.
-:::
-
-<br />
-
-First, request your free auth token, create a cache, configure your CLI, and start running `set` and `get` commands on your cache. Launch below.
-
-<a href="https://play.instruqt.com/embed/momento/tracks/sandbox-container-1challenge?token=em_54kTDywfWaG95-rC&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/cli_lab.png" alt="CLI lab" /></a>
-
-<br />
-<br />
-
-Then, use the auth token and cache you just created to run a JavaScript application using our Node.js SDK. Launch below.
-
-<a href="https://play.instruqt.com/embed/momento/tracks/momento-nodejs-demo?token=em_f8PM8Aob-mHIfOTT&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/sdk_lab.png" alt="SDK lab" /></a>
-
-<br />
-<br />
-
-Want to experiment with Momento Topics? This demo lets you subscribe to Topic messages in one pane, while publishing
-messages to the topic in a second pane! Launch below.
-
-<a href="https://play.instruqt.com/embed/momento/tracks/topics-on-the-momento-cli?token=em_Q_mgzhVtWtP5B_jj&finish_btn_target=_top&finish_btn_text=Return+to+Docs&finish_btn_url=https%3A%2F%2Fdocs.momentohq.com%2Fgetting-started#try-our-cli-and-an-sdk-in-your-browser" target="_top"><img src="/img/topics_lab.png" alt="Topics lab" /></a>
-
-<br />
-<br />
-
-
-
-
 ## Installing the Momento CLI
 
-You can also install the Momento CLI locally (Linux, Windows, Mac) if desired. The latest version of the CLI and instructions for install and use is available from [this repo](https://github.com/momentohq/momento-cli).
+You can also install the Momento CLI locally (Linux, Windows, Mac) if desired. The latest version of the CLI and instructions for installation and usage is available in [this repo](https://github.com/momentohq/momento-cli).
 
 ## All Momento SDKs
 
@@ -212,9 +177,11 @@ We currently have the following SDK languages available:
 - [Java](/develop/sdks/java)
 - [Rust](/develop/sdks/rust)
 - [Ruby](/develop/sdks/ruby)
+- [Elixir](/develop/sdks/elixir)
 
 ## FAQ
+
 <details>
   <summary>Does Momento deploy any resources into my cloud account?</summary>
-No it does not. Momento Cache is a fully-managed, API-based, serverless service that you call from within your application code.
+No, it does not. Momento Cache is a fully managed, API-based, serverless service that you call from within your application code.
 </details>
