@@ -2,69 +2,71 @@
 sidebar_position: 10
 title: API Keys
 sidebar_label: API Keys
-description: Learn what Momento API keys are, how to create them, and how they are used.
+description: Momento API キーとは何か、どのように作成し、どのように使用するかを学びます。
 ---
 
 # Momento API keys
 
-API keys are *long-lived values intended for programmatic use*. These keys grant integrating applications access to certain caches and topics. When creating an API key, you are presented with two options via the [Momento console](https://console.gomomento.com/tokens):
+APIキーは、プログラム的な使用を目的とした、長期間の利用できるものです。これらのキーは、統合されたアプリケーションに特定のキャッシュやトピックスへのアクセスを許可します。API キーを作成する際、[Momento コンソール](https://console.gomomento.com/tokens) から 2 つのオプションが表示されます：
 
-1. A "super-user" key that grants access to everything in your account, like creating and deleting caches, setting and getting cache items, and publishing and subscribing to topics.
-2. A fine-grained access control (FGAC) key that is limited to data operations only, like setting and getting cache items or publishing and subscribing to topics.
+1. "super-user"キーは、キャッシュの作成と削除、キャッシュ項目の設定と取得、トピックのパブリッシュとサブスクライブなど、アカウント内のすべてにアクセスできるようにするキーです。
+2. "A fine-grained access control (FGAC)"キーは、キャッシュアイテムの設定と取得、トピックのパブリッシュとサブスクライブなど、データ操作のみに制限ができるキーです。
 
 :::info
 
-You are not able to create "super-user" API keys via the Momento SDK. However, you *can* create fine-grain access controlled keys! Check out our [Auth API reference page](/develop/api-reference/auth.md) for more details.
+Momento SDKを使用して"super-user" APIキーを作成することはできません。しかし、"A fine-grained access control (FGAC)"キーを作成することは可能です！
+詳しくは[Auth API reference page](/develop/api-reference/auth.md)をご覧ください。
 
 :::
 
-## Creating an API key
+## APIキーを作成する
 
-While you are certainly allowed to create API keys via our SDK, it is generally recommended to use the [Momento console](https://console.gomomento.com/tokens). This allows you to monitor and maintain your long-lived keys visually, making sure you don't accidentally open up a security hole in your account. 
+SDKを使用してAPIキーを作成することもできますが、一般的には[Momento コンソール](https://console.gomomento.com/tokens)を使用して作成することをお勧めします。このコンソールを使用することで、長期間使用するキーを視覚的に監視・管理することができ、誤ってアカウントのセキュリティホールを開けないようにすることができます。
 
-### Step 1: Sign up or log into the Momento console
+### ステップ 1: サインアップするか、Momento コンソールにログインする
 
-Go to the [Momento console](https://console.gomomento.com/tokens) and follow the instructions to log in with your email address, Google account, or GitHub account.
+[Momento コンソール](https://console.gomomento.com/tokens)にアクセスし、指示に従ってメールアドレス、Googleアカウント、またはGitHubアカウントでログインします。
 
 ![Image of Momento console landing page](/img/getting-started/console.png)
 
-### Step 2: Generate your API key
+### ステップ 2: API キーを作成する
 
-In the console, select the [API Keys](https://console.gomomento.com/tokens) menu option.
+コンソールで、[API Keys](https://console.gomomento.com/tokens)のメニューオプションを選択します。
 
-Once on the API key page, select the information that matches where your caches live:
+APIキーのページで、キャッシュが存在する場所に一致する情報を選択します：
 
-1. Cloud provider
-2. Region
+1. クラウドプロバイダー
+2. リージョン
 3. Key Type
-3. (Optional) Expiration date
+3. (オプション) Expiration date
 
 ![Image showing the fields to create a new API key](/img/getting-started/select-provider-region.png)
 
-Once complete, click on the **Generate** button to create your API Key!
+入力が完了したら、**Generate**ボタンをクリックしてAPIキーを作成します！
 
-You can copy the value of the key directly and store it in a secure location or you can click on the **Download JSON** button to download the key and expiration date to your machine.
+キーの値を直接コピーして安全な場所に保存するか、**Download JSON** ボタンをクリックしてキーと有効期限をお使いのPCにダウンロードすることができます。
 
-### Step 3: Secure it!
+### ステップ 3: セキュアに!
 
-API keys are long-lived and typically grant high levels of access to the holder. With this in mind, be sure to securely store your API key in a location that encrypts the value and prevents plain-text viewing. 
+APIキーは長期間有効であり、通常、高レベルのアクセスを許可します。このことを念頭に置き、APIキーは値を暗号化し、プレーンテキストの閲覧を防ぐ場所に安全に保管するようにしてください。
 
-If your application is hosted in the cloud, you could use services like [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/), [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/overview), or [GCP Secret Manager](https://cloud.google.com/secret-manager). 
+アプリケーションがクラウドでホストされている場合、[AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)、[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/overview)、または[GCP Secret Manager](https://cloud.google.com/secret-manager)のようなサービスを使うことができます。
 
-Storage of an API key is specific to your implementation and standard coding practices, but one thing is consistent across all applications - *keep it safe*!
+APIキーの保管は、あなたの実装と標準的なコーディングプラクティスによって異なりますが、すべてのアプリケーションで一貫していることが1つあります。**安全に保管してください！**
 
-## Expiration
+## 有効期限
 
-When creating an API key, you have the option to create one that never expires and one that expires after a certain amount of time. We **do not recommend creating keys that never expire**. This ends up being a security risk if the key were ever to become compromised. 
+APIキーを作成する際、有効期限のないものと、一定期間後に失効するものを選択することができます。**有効期限のないキーを作成することはお勧めしません。**
+これは、キーが漏洩した場合のセキュリティリスクとなります。
 
-The Momento console offers several pre-configured options for expiration ranges or you can select your own date. Just remember to create a new API key and rotate it in your application before it expires to prevent outages!
+Momento コンソールには、有効期限の設定オプションがいくつか用意されています。有効期限が切れる前に新しい API キーを作成し、アプリケーションでローテーションすることを忘れないでください！
 
-## Use cases
+## ユースケース
 
-There are many reasons to **not** use an API key for auth but there are also a few reasons to use one. 
+認証にAPIキーを**使わない**理由はたくさんありますが、使うべき理由もいくつかあります。
 
-* All usage is programmatic and server-side
-* You are okay with longer-lived keys that must be rotated on a monthly/yearly basis
-* You need to create session tokens  (must use a "super-user" token for this)
+* すべての使い方がプログラム的でサーバーサイドで利用している。
+* 月/年単位でローテーションされる、より長寿命なAPI キーでも構わない。
+* セッショントークンを作成する必要がある。("super-user"を利用する必要がある場合)
 
-Ready to get started? Head on over to the [Momento console](https://console.gomomento.com/tokens) and get your API key!
+体験してみる準備はできていますか？[Momento コンソール](https://console.gomomento.com/tokens)にアクセスして、APIキーを取得してください！
