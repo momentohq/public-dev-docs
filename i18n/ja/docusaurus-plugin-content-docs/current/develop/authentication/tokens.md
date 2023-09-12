@@ -2,7 +2,7 @@
 sidebar_position: 20
 title: Tokens
 sidebar_label: Tokens
-description: Learn what Momento tokens are, how to create them, and how they are used.
+description: Momentoトークンとは何か、トークンの作成方法、トークンの使用方法について説明します。
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -12,51 +12,53 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Momento tokens
 
-Tokens are short-lived, limited-scope values intended to be used in temporary situations like user sessions. Software lifecycle events like a user login often result in the issuing of a token only valid for the standard duration of a session. 
+トークンは、ユーザーセッションのような一時的な状況で使用されることを目的とした、短命でスコープが限定された値です。
+ユーザーログインのようなソフトウェアライフサイクルイベントでは、セッションの標準的な期間だけ有効なトークンが発行されることがよくあります。
 
-A Momento token only has access to the *data plane*. This means users who have a valid token will not be able do things like create, delete, or flush a cache. They also cannot create new tokens. 
+Momento トークンは、*データプレーン*にのみアクセスできます。つまり、有効なトークンを持つユーザは、キャッシュの作成、削除、フラッシュなどを行うことができません。また、新しいトークンを作成することもできません。
 
-A user with a fully privileged token will be able to perform the following actions:
+完全に特権化されたトークンを持つユーザーは、以下のアクションを実行できます：
 
-* Add/edit/delete cache items in any cache
-* Publish and subscribe to any topic in any cache
-* Increment cache values via the increment API in any cache
+* あらゆるキャッシュのキャッシュアイテムを追加/編集/削除する。
+* 任意のキャッシュ内の任意のトピックをパブリッシュ、サブスクライブする。
+* どのキャッシュでも、インクリメント API を使ってキャッシュの値を増やすことができます。
 
-It's up to you to limit the access of a token based on your system requirements. 
+システム要件に基づいてトークンのアクセスを制限するのはあなた次第です。
 
-## Creating a token
+## トークンを作成する
 
-Unlike our [API keys](/develop/authentication/api-keys.md), the only way to create a token is through code. You cannot create them through the Momento console. 
+[APIキー](/develop/authentication/api-keys.md)を作成する手順とは異なり、トークンを作成する唯一の方法はコードから作成することです。Momentoコンソールから作成することはできません。
 
-Below are some examples to create tokens with different sets of permissions:
+以下は、さまざまな権限でトークンを作成する例です：
 
 <SdkExampleTabs snippetId={'API_GenerateAuthToken'} />
 
-For detailed information on creating a token, please refer to the [API reference page](/develop/api-reference/auth.md).
+トークン作成の詳細については、[APIリファレンスページ](/develop/api-reference/auth.md)を参照してください。
 
-## Expiration
+## 有効期限
 
-Momento tokens are required to have an expiration time. The **maximum expiration time for a token is 1 hour**. When the token expiration time elapses, you will be required to create a new one. 
+Momento トークンには有効期限が必要です。**トークンの最大有効期限は1時間**です。トークンの有効期限が切れると、新しいトークンを作成する必要があります。
 
-If you attempt to make a call with an expired token, you will receive a `AUTHENTICATION_ERROR` response indicating the provided credentials could not connect to the service.
+有効期限が切れたトークンでmomentoを呼び出しても、提供された認証情報がサービスに接続できなかったことを示す `AUTHENTICATION_ERROR` 応答が返されます。
 
 :::tip
 
-Tokens cannot be refreshed. So once it expires, it's gone forever. You'll be responsible for creating and issuing a new one if the session continues.
+トークンはリフレッシュできません。そのため、トークンの有効期限が切れると、永久に使えなくなります。セッションを継続する場合は、新しいものを作成して発行する責任があります。
 
 :::
 
-## Use cases
+## ユースケース
 
-These tokens are a great fit for the following use cases:
+これらのトークンは、以下のユースケースに最適です：
 
-* Using Momento for front-end development
-* Communicating with IoT devices
-* Issuing temporary access to specific resources
-* Providing credentials to users on login
+* フロントエンド開発にMomentoを使用する
+* IoT デバイスとの通信
+* 特定のリソースへの一時的なアクセス権の発行
+* ログイン時にユーザーに認証情報を提供する
 
-## Data restriction
+## データ制限
 
-A common use case for a token is to limit access to only a small subset of resources. Not only can you limit capabilities, like providing a token with *read-only* access, but you can also scope it to individual cache items or topics. 
+トークンの一般的な使用例は、リソースの小さなサブセットのみにアクセスを制限することです。
+トークンを*読み取り専用*アクセスで提供するように機能を制限できるだけでなく、個々のキャッシュアイテムやトピックにスコープすることもできます。
 
-To get a full understanding of what you can do with data restriction, check out our [permissions page](/develop/authentication/permissions.md).
+データ制限で何ができるかを完全に理解するには、[permissions page](/develop/authentication/permissions.md)をチェックしてください。
