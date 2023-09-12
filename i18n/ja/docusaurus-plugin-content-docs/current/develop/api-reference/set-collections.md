@@ -2,7 +2,7 @@
 sidebar_position: 3
 sidebar_label: Sets
 title: Set API reference
-description: Learn how to interact with the API for set collection data types in Momento Cache.
+description: Momento Cacheのセット・コレクション・データ型のAPIを操作する方法について説明します。
 slug: /develop/api-reference/collections/sets
 ---
 
@@ -11,25 +11,26 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Set API reference for Momento Cache
+# Momento CacheのためのSet APIについて
 
-A set is a collection of elements, but each element can appear only once and order is not guaranteed.
+<img src="/img/sets.jpg" width="90%" alt="a diagram of luggage as sets, but in any old order and not organized at all." />
 
-Example: if your set contains `[1, 2, 3]` and you add 2, the set remains `[1, 2, 3].`
+集合は要素の集まりですが、各要素は一度しか現れず、順序は保証されません。
+例: セットが `[1, 2, 3]` を含み、2 を追加してもセットは `[1, 2, 3].` のままです。
 
-See [Sets](./../datatypes.md#set-collections) for more information on their usage.
+詳しくは、[Sets](./../datatypes.md#set-collections)を参照してください。
 
 ## Set methods
 
 ### SetAddElement
-Adds an element to a set. If the set item does not already exist, this method will create one.
+セットに要素を追加します。セット項目がまだ存在しない場合、このメソッドはそれを作成します。
 
-| Name            | Type            | Description                                   |
+| 名前            | 型            | 詳細                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| setName         | String          | Name of the set item to be altered. |
-| element         | String \| Bytes | Element to be added by this operation. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the set item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| cacheName       | String          | キャッシュの名前。                            |
+| setName         | String          | 変更するセットアイテムの名前。 |
+| element         | String \| Bytes | この操作によって追加される要素。 |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | キャッシュに設定された項目の TTLです。この TTL は、キャッシュ接続クライアントを初期化するときに使用される TTL よりも優先されます。 |
 
 <details>
   <summary>Method response object</summary>
@@ -37,7 +38,7 @@ Adds an element to a set. If the set item does not already exist, this method wi
 * Success
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
@@ -46,12 +47,12 @@ See [response objects](./response-objects.md) for specific information.
 ### SetAddElements
 Adds multiple elements to a set item.
 
-| Name            | Type         | Description                                   |
+| 名前            | 型            | 詳細                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| setName         | String       | Name of the set item to be altered. |
-| elements        | String[] \| Bytes[] | Elements to be added by this operation. |
-| ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the set item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| cacheName       | String       | キャッシュの名前。                            |
+| setName         | String       | 変更するセットアイテムの名前。 |
+| elements        | String[] \| Bytes[] | この操作によって追加される要素。 |
+| ttl          | [CollectionTTL object](./collection-ttl.md) | キャッシュに設定された項目の TTLです。この TTL は、キャッシュ接続クライアントを初期化するときに使用される TTL よりも優先されます。 |
 
 <details>
   <summary>Method response object</summary>
@@ -59,7 +60,7 @@ Adds multiple elements to a set item.
 * Success
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
@@ -69,15 +70,15 @@ See [response objects](./response-objects.md) for specific information.
 
 Gets a set item from a cache.
 
-| Name            | Type   | Description                                   |
+| 名前            | 型            | 詳細                                   |
 | --------------- | ------ | --------------------------------------------- |
-| cacheName       | String | Name of the cache.                            |
-| setName         | String | The name of the set item to be retreived.     |
+| cacheName       | String | キャッシュの名前。                            |
+| setName         | String | 取得するセットアイテムの名前。    |
 
 <details>
   <summary>Method response object</summary>
 
-The response object for SetFetch returns three possible options, a cache hit, miss, or an error.
+SetFetch のレスポンスオブジェクトは、キャッシュヒット、ミス、エラーの3つの可能なオプションを返します。
 
 * Hit
     * valueSetBytes(): Bytes[]
@@ -86,20 +87,20 @@ The response object for SetFetch returns three possible options, a cache hit, mi
 * Miss
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_SetFetch'} />
 
 ### SetRemoveElement
-Removes a single element from an existing set item.
+既存のセット項目から単一の要素を削除します。
 
-| Name            | Type            | Description                                   |
+| 名前            | 型            | 詳細                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| setName         | String          | Name of the set item to be altered.           |
-| element         | String \| Bytes | Element to be removed by this operation.   |
+| cacheName       | String          | キャッシュの名前。                            |
+| setName         | String          | 変更するセットアイテムの名前。           |
+| element         | String \| Bytes | この操作によって削除される要素。  |
 
 <details>
   <summary>Method response object</summary>
@@ -107,20 +108,20 @@ Removes a single element from an existing set item.
 * Success
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_SetRemoveElement'} />
 
 ### SetRemoveElements
-Removes multiple elements from an existing set item.
+既存のセットアイテムから複数の要素を削除します。
 
-| Name            | Type         | Description                                   |
+| 名前            | 型            | 詳細                                   |
 | --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| setName         | String       | Name of the set item to be altered. |
-| elements         | String[] \| Bytes[] | Elements to be removed by this operation.   |
+| cacheName       | String       | キャッシュの名前。                            |
+| setName         | String       | 変更するセットアイテムの名前。 |
+| elements         | String[] \| Bytes[] | この操作によって削除される要素。   |
 
 <details>
   <summary>Method response object</summary>
@@ -128,69 +129,69 @@ Removes multiple elements from an existing set item.
 * Success
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_SetRemoveElements'} />
 
 ### SetContainsElement
-Checks if a provided element is in the given set.
+指定された要素が指定されたセットに含まれるかどうかを調べます。
 
-| Name      | Type            | Description           |
+| 名前            | 型            | 詳細                |
 |-----------| --------------- |-----------------------|
-| cacheName | String          | Name of the cache.    |
-| setName   | String          | Name of the set item. |
-| element   | String \| Bytes                 | Name of the element to check existence of.   |
+| cacheName | String          | キャッシュの名前。    |
+| setName   | String          | セットアイテムの名前。 |
+| element   | String \| Bytes | 存在をチェックする要素の名前。  |
 
 <details>
   <summary>Method response object</summary>
 
-The response object for SetContainsElement returns three possible options, a cache hit, miss, or an error.
+SetContainsElementのレスポンスオブジェクトは、キャッシュヒット、ミス、エラーの3つの可能なオプションを返します。
 
 * Hit
   * containsElement(): bool
 * Miss
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_SetContainsElement'} />
 
 ### SetContainsElements
-Checks if provided elements are in the given set.
+指定された要素が指定されたセットに含まれるかどうかをチェックします。
 
-| Name      | Type       | Description                         |
+| 名前            | 型            | 詳細                         |
 |-----------|------------|-------------------------------------|
-| cacheName | String     | Name of the cache.                  |
-| setName   | String     | Name of the set item. |
-| elements  | String[] \| Bytes[]                             | Array of element names to check existence of.   |
+| cacheName | String     | キャッシュの名前。                  |
+| setName   | String     | セットアイテムの名前。 |
+| elements  | String[] \| Bytes[]          | 存在をチェックする要素名の配列。  |
 
 <details>
   <summary>Method response object</summary>
 
-The response object for SetContainsElements returns three possible options, a cache hit, miss, or an error.
+SetContainsElementsのレスポンスオブジェクトは、キャッシュヒット、ミス、エラーの3つの可能なオプションを返します。
 
 * Hit
   * containsElements(): bool[]
 * Miss
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_SetContainsElements'} />
 
 ### SetLength
-Get the length of an existing set item
+既存のセットアイテムの長さを取得します。
 
-| Name      | Type         | Description                         |
+| 名前            | 型            | 詳細                           |
 |-----------| ------------ |-------------------------------------|
-| cacheName | String       | Name of the cache.                  |
-| setName   | String       | Name of the set item to be checked. |
+| cacheName | String       | キャッシュの名前。                  |
+| setName   | String       | チェックするセットアイテムの名前。 |
 
 <details>
   <summary>Method response object</summary>
@@ -200,7 +201,7 @@ Get the length of an existing set item
 * Miss
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
