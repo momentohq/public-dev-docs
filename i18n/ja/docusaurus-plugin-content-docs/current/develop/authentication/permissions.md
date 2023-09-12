@@ -2,47 +2,52 @@
 sidebar_position: 30
 title: Permissions
 sidebar_label: Permissions
-description: Learn about the permissions available when creating your API keys and tokens.
+description: APIキーとトークンを作成する際に利用可能な権限について説明します。
 ---
 
 # Permissions
 
-It's all fun and games until you can't access your resources. Speaking of accessing your resources, that's exactly what we're here to talk about - *stopping people from accessing things they shouldn't.*
+自分のリソースにアクセスできなくなるまでは、楽しいことばかりです。リソースにアクセスするといえば、まさにここで話すことでもあります。
 
-As a reminder, there are two primary forms of authentication in Momento:
+注意点として、Momentoでは主に2つの認証方法があります：
 
-* [API keys](/develop/authentication/api-keys.md): long-lived, durable values for programmatic usage
-* [Tokens](/develop/authentication/tokens.md): short-lived, limited-scope values for temporary usage by individuals (users or devices)
+* [API キー](/develop/authentication/api-keys.md): プログラムで使用するための、長寿命で耐久性があります。
+* [トークン](/develop/authentication/tokens.md): 個人 (ユーザーまたはデバイス) が一時的に使用する、短命で限定された範囲のものです。
 
-You can create API keys directly in the [Momento console](https://console.gomomento.com/tokens) but you are required to create tokens programmatically. Let's talk about the options you have when limiting the permission set for an API key or token.
+APIキーは[Momento コンソール](https://console.gomomento.com/tokens)で直接作成できますが、トークンはプログラムで作成する必要があります。
+APIキーやトークンの権限を制限する際のオプションについてをここでは説明します。
 
 ## Scope
 
-When creating an API key, you build a `PermissionScope` object. When creating a token, you create a `TokenScope` object. These objects are mostly the same but with one big difference. First, the similarities.
+API キーを作成する際には `PermissionScope` オブジェクトを作成します。
+トークンを作成する際には `TokenScope` オブジェクトを作成します。これらのオブジェクトはほとんど同じですが、1つだけ大きな違いがあります。
+まず、類似点です。
 
 ### Roles
 
-Momento provides pre-built roles to use when creating your scope objects 👇
+Momento には、スコープオブジェクトを作成する際に使用する、事前に作成されたロールが用意されています 👇。
 
 #### Cache roles
 
-* *readwrite* - Provides full access to cache data
-* *writeonly* - Provides access to only write operations (`set`, `sortedSetIncrementScore`, `listPopFront`, etc...)
-* *readonly* - Provides access to only read operations (`get`, `dictionaryFetch`, `setFetch`, etc...). These are non-destructive operations
+* *readwrite* - キャッシュデータへのフルアクセスを提供します。
+* *writeonly* - 書き込み操作のみにアクセスできます(`set`、`sortedSetIncrementScore`、`listPopFront` など)。
+* *readonly* - 読み込み操作 (`get`, `dictionaryFetch`, `setFetch` など) のみにアクセスできます。これらは非破壊的な操作です。
 
 #### Topic roles
 
-* *publishsubscribe* - Provides full access to topic data
-* *publishonly* - Provides access to only write operations (`publish`)
-* *subscribeonly* - Provides access to only read operations (`subscribe`)
+* *publishsubscribe* - トピックデータへのフルアクセスを提供します。
+* *publishonly* - 書き込み操作 (`publish`) のみにアクセスできます。
+* *subscribeonly* - 読み取り操作 (`subscribe`) のみにアクセスできます。
 
 ### Cache
 
-Believe it or not, you must provide a cache name when creating permissions for caches *and* topics. Topics don't technically use the cache itself but utilize them as a namespace of sorts. So when building your scope, you must provide the cache name no matter what.
+信じられないかもしれませんが、キャッシュとトピックのパーミッションを作成する際には、キャッシュ名を指定する必要があります。
+トピックは技術的にはキャッシュそのものを使用しませんが、一種の名前空間としてキャッシュを使用します。
+そのため、スコープを構築する際には、どのような場合でもキャッシュ名を指定する必要があります。
 
-You can provide the name of the cache as a string or use a value imported from the SDK. The same goes for the topic name.
+キャッシュ名は文字列で指定するか、SDKからインポートした値を使用します。トピック名も同様です。
 
-#### Cache Examples
+#### キャッシュの例
 
 ```json
 {
@@ -55,7 +60,7 @@ You can provide the name of the cache as a string or use a value imported from t
 }
 ```
 
-or
+もしくは
 
 ```JavaScript
 import { AllCaches } from '@gomomento/sdk';
@@ -70,7 +75,7 @@ const scope = {
 };
 ```
 
-#### Topic Examples
+#### トピックの例
 
 ```json
 {
@@ -84,7 +89,7 @@ const scope = {
 }
 ```
 
-or
+もしくは
 
 ```JavaScript
 import { AllCaches, AllTopics } from '@gomomento/sdk';
@@ -100,11 +105,13 @@ const scope = {
 };
 ```
 
-### Item-level restriction
+### アイテムレベルの制限
 
-Everything we've discussed so far applies to both API keys and tokens. But now we need to talk about a token-specific restriction you can use: **item-level restrictions**.
+これまで説明してきたことはすべて、APIキーとトークンの両方に適用されます。
+しかしここで、トークン特有の制限について説明する必要があります。： **アイテムレベルの制限**です。
 
-When you give access to a cache, you can limit access down to individual keys or keys that begin with a certain prefix. Let's take an example of a permission set that limits the user to two specific keys in a cache.
+キャッシュへのアクセスを許可するとき、個々のキーや特定のプレフィックスで始まるキーにアクセスを制限することができます。
+キャッシュ内の特定の2つのキーにユーザーを制限するパーミッションをセットする例を見てみましょう。
 
 ```json
 {
@@ -127,9 +134,10 @@ When you give access to a cache, you can limit access down to individual keys or
 }
 ```
 
-This will explicitly grant *read-only* access to the `mappings` key and *read and write* access to the `hits` key in the *demo* cache. If you wanted to grand the same role for multiple keys, you would construct the permission set similar to above but providing the desired role. You cannot pass multiple keys to a single permission.
+これは、`mappings`キーへ*read only*でアクセスし、*demo*キャッシュ内の`hits`キーへ*read and write*でアクセスすることを明示的に許可することになります。
+複数のキーに対して同じロールを付与したい場合は、上記と同様にパーミッションのセットを作成し、必要なロールを指定します。1つのパーミッションに複数のキーを渡すことはできません。
 
-If you want to grant access to a range of keys, you also have the option to use a prefix - meaning all keys starting with a specific string will be granted access. Imagine you had your cache keys in a format that included the tenant id in a multi-tenanted system: `{tenantId}-{key}`. To create a permission set that allows read access to all keys for a specific tenant, you can build out the following:
+キーの範囲でアクセスを許可したい場合は、プレフィックスを使用することもできます。プレフィックスとは、特定の文字列で始まるすべてのキーにアクセスを許可するという意味です。マルチテナントのシステムで、テナントIDを含む形式でキャッシュキーを持っていたとしましょう。特定のテナントのすべてのキーへの読み取りアクセスを許可する権限セットを作成するには、次のようにします：
 
 ```json
 {
@@ -145,5 +153,5 @@ If you want to grant access to a range of keys, you also have the option to use 
 }
 ```
 
-Consumers of the token generated with this permission set would be allowed to read from any key that started with `MYTENANTID-`. Attempting to read from a key starting with a different tenant id would result in an authorization error.
+この権限セットで生成されたトークンの利用者は、`MYTENANTID-`で始まるキーからの読み取りが許可されます。異なるテナントIDで始まるキーから読み込もうとすると、認証エラーになります。
 
