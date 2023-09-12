@@ -1,6 +1,6 @@
 ---
 sidebar_position: 20
-title: Tokens
+title: Momento tokens for short-lived, limited scope permissions
 sidebar_label: Tokens
 description: Learn what Momento tokens are, how to create them, and how they are used.
 ---
@@ -10,11 +10,13 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Momento tokens
+# Momento tokens for short-lived permissions
 
-Tokens are short-lived, limited-scope values intended to be used in temporary situations like user sessions. Software lifecycle events like a user login often result in the issuing of a token only valid for the standard duration of a session. 
+<img src="/img/tokens-page.jpg" width="90%" alt="a technical illustration of Momento authentication and access control." />
 
-A Momento token only has access to the *data plane*. This means users who have a valid token will not be able do things like create, delete, or flush a cache. They also cannot create new tokens. 
+Tokens are short-lived, limited-scope values intended to be used in temporary situations like a user's session. Software lifecycle events like a user login often result in the issuing of a token only valid for the duration of that session. 
+
+A Momento token allows access to *data plane* API operations only. The user is unable to do control plan operations or  
 
 A user with a fully privileged token will be able to perform the following actions:
 

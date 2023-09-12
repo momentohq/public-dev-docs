@@ -7,6 +7,8 @@ description: Learn what Momento API keys are, how to create them, and how they a
 
 # Momento API keys
 
+<img src="/img/api-keys-page.jpg" width="95%" alt="a technical illustration of API keys and their use to secure your application." />
+
 API keys are *long-lived values intended for programmatic use*. These keys grant integrating applications access to certain caches and topics. When creating an API key, you are presented with two options via the [Momento console](https://console.gomomento.com/tokens):
 
 1. A "super-user" key that grants access to everything in your account, like creating and deleting caches, setting and getting cache items, and publishing and subscribing to topics.
@@ -49,7 +51,7 @@ You can copy the value of the key directly and store it in a secure location or 
 
 API keys are long-lived and typically grant high levels of access to the holder. With this in mind, be sure to securely store your API key in a location that encrypts the value and prevents plain-text viewing. 
 
-If your application is hosted in the cloud, you could use services like [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/), [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/overview), or [GCP Secret Manager](https://cloud.google.com/secret-manager). 
+If your application is hosted in the cloud, it is best practice to store your keys in and retrieve from services like [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/), [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/overview), or [GCP Secret Manager](https://cloud.google.com/secret-manager). 
 
 Storage of an API key is specific to your implementation and standard coding practices, but one thing is consistent across all applications - *keep it safe*!
 

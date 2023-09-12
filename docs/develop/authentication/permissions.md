@@ -1,11 +1,13 @@
 ---
 sidebar_position: 30
-title: Permissions
+title: Permissions and access control
 sidebar_label: Permissions
-description: Learn about the permissions available when creating your API keys and tokens.
+description: Learn about the permissions available when creating your API keys and tokens to control access to Momento resources.
 ---
 
-# Permissions
+# Permissions and access control
+
+<img src="/img/permissions-page.jpg" width="95%" alt="a technical illustration of Momento permissions and access control." />
 
 It's all fun and games until you can't access your resources. Speaking of accessing your resources, that's exactly what we're here to talk about - *stopping people from accessing things they shouldn't.*
 
@@ -14,7 +16,7 @@ As a reminder, there are two primary forms of authentication in Momento:
 * [API keys](/develop/authentication/api-keys.md): long-lived, durable values for programmatic usage
 * [Tokens](/develop/authentication/tokens.md): short-lived, limited-scope values for temporary usage by individuals (users or devices)
 
-You can create API keys directly in the [Momento console](https://console.gomomento.com/tokens) but you are required to create tokens programmatically. Let's talk about the options you have when limiting the permission set for an API key or token.
+You can create API keys directly in the [Momento console](https://console.gomomento.com/tokens), but you are required to create tokens programmatically. Let's talk about the options you have when limiting the permission set for an API key or token using access control.
 
 ## Scope
 
@@ -22,7 +24,7 @@ When creating an API key, you build a `PermissionScope` object. When creating a 
 
 ### Roles
 
-Momento provides pre-built roles to use when creating your scope objects 👇
+Momento provides pre-built roles to use when creating your scope objects. 👇
 
 #### Cache roles
 
@@ -70,7 +72,7 @@ const scope = {
 };
 ```
 
-#### Topic Examples
+#### Topic examples
 
 ```json
 {
@@ -102,7 +104,7 @@ const scope = {
 
 ### Item-level restriction
 
-Everything we've discussed so far applies to both API keys and tokens. But now we need to talk about a token-specific restriction you can use: **item-level restrictions**.
+Everything we've discussed so far applies to both API keys and tokens. But now we need to talk about a token-specific restriction you can use: **item-level restrictions** to control access.
 
 When you give access to a cache, you can limit access down to individual keys or keys that begin with a certain prefix. Let's take an example of a permission set that limits the user to two specific keys in a cache.
 
@@ -145,5 +147,5 @@ If you want to grant access to a range of keys, you also have the option to use 
 }
 ```
 
-Consumers of the token generated with this permission set would be allowed to read from any key that started with `MYTENANTID-`. Attempting to read from a key starting with a different tenant id would result in an authorization error.
+Consumers of the token generated with this permission set would be allowed to read from any key that started with `MYTENANTID-`. Attempting to read from a key starting with a different tenant id would result in an authorization error being returned.
 
