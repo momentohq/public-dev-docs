@@ -3,7 +3,6 @@ sidebar_position: 7
 sidebar_label: Vercel
 title: Integrating Momento with your Vercel app
 description: Learn to deploy a chat app using Momento Javascript Web SDK to Vercel.
-pagination_next: null
 ---
 
 [Vercel](https://vercel.com/) is a popular platform for building, deploying, and scaling modern websites and apps. Vercel are also the creators and maintainers of [Next.js](https://nextjs.org/). Their platform's offerings include a fast global edge network, the scalability of serverless, and deployments seamlessly integrated with the most popular Git providers: [GitHub](https://github.com/), [GitLab](https://gitlab.com), and [Bitbucket](https://bitbucket.org/). 

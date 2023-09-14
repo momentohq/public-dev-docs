@@ -3,7 +3,6 @@ sidebar_position: 5
 sidebar_label: Working with Time Series Data
 title: Working with Time Series Data
 description: Learn how to store time series data in Momento Cache
-pagination_next: null
 ---
 
 # Storing time series data

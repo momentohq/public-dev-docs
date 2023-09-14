@@ -3,7 +3,6 @@ sidebar_position: 8
 sidebar_label: Cloudflare
 title: Integrating Momento with your Cloudflare worker
 description: Learn to deploy a Cloudflare worker that uses Momento HTTP API or Web SDK
-pagination_next: null
 ---
 
 [Cloudflare Workers](https://workers.cloudflare.com/) is a popular platform for deploying and running serverless code.

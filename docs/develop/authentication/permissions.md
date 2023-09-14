@@ -3,6 +3,7 @@ sidebar_position: 30
 title: Permissions and access control
 sidebar_label: Permissions
 description: Learn about the permissions available when creating your API keys and tokens to control access to Momento resources.
+pagination_next: null
 ---
 
 # Permissions and access control
