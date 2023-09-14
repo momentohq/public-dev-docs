@@ -2,8 +2,7 @@
 sidebar_position: 9
 sidebar_label: Fastly
 title: Integrating Momento Cache with Fastly Compute@Edge
-description: Learn to deploy a Fastly Compute@Edge project that uses Momento Cache via HTTP API
-pagination_next: null
+description: Learn to deploy a Fastly Compute@Edge project that uses Momento Cache via HTTP API.
 ---
 
 [Compute@Edge](https://www.fastly.com/products/edge-compute) is Fastly's platform for deploying and running serverless code.

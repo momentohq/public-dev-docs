@@ -3,7 +3,6 @@ sidebar_position: 10
 sidebar_label: Deno
 title: Integrating Momento Cache with Deno
 description: Learn to deploy a Deno project that uses Momento Cache
-pagination_next: null
 ---
 
 [Deno](https://deno.land/) is a JavaScript, TypeScript, and WebAssembly runtime with secure defaults and [Deno Deploy](https://deno.com/deploy) is their corresponding serverless edge worker platform.

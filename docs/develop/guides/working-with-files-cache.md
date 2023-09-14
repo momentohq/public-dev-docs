@@ -3,7 +3,6 @@ sidebar_position: 4
 sidebar_label: Working with files
 title: Adding and retrieving files in a cache
 description: Learn to add and retrieve files from Momento Cache with hands on code samples.
-pagination_next: null
 ---
 
 import Tabs from '@theme/Tabs';
