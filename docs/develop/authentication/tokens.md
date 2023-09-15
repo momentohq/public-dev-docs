@@ -16,7 +16,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 Tokens are short-lived, limited-scope values intended to be used in temporary situations like a user's session. Software lifecycle events like a user login often result in the issuing of a token only valid for the duration of that session. 
 
-A Momento token allows access to *data plane* API operations only. The user is unable to do control plan operations or  
+A Momento token allows access to *data plane* API operations only. The user is unable to do *control plane* operations like creating, deleting, or flushing a cache.
 
 A user with a fully privileged token will be able to perform the following actions:
 
