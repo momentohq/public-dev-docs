@@ -208,16 +208,14 @@ const config = {
           },
             //This redirects from the pre v1.5.0 of the docs for the Topics page to the home page for the topics service /topics.
           {
-            to: '/topics',
             from: '/introduction/momento-topics',
+            to: '/topics'
           },
-
             //This redirects from the pre v1.5.0 docs api-reference/topics page to the new /topics/develop/api-reference page.
           {
             from: '/develop/api-reference/topics',
             to: '/topics/develop/api-reference'
           },
-
             //This redirects users from the pre v1.5.0 docs location of the Node.js topics cheat sheet to the new location under /topics.
           {
             from: '/develop/sdks/nodejs/topics-cheat-sheet',

@@ -7,9 +7,9 @@ description: <TBD>
 
 # What is Momento Vector Index?
 
-![Main image about vector index service.](@site/static/img/vector-index/mvi.jpg)
-
 Momento Vector Index (MVI) is a scalable, developer-friendly vector index service designed for real-time storage and retrieval of vector data for use in AI-powered applications.
+
+![Main image about vector index service.](@site/static/img/vector-index/mvi.jpg)
 
 MVI's serverless and API-driven approach to vector indexes aligns with modern development needs, providing compute resources as required without the burden of infrastructure or maintenance. The combination of simple self-service and consumption-based pricing reflects an intentional design that considers both initial development and future scaling. It's a solution that offers flexibility and convenience for developers at various stages of the development lifecycle.
 
