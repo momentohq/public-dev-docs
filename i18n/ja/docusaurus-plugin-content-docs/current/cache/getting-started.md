@@ -208,6 +208,7 @@ CLIをローカル(Linux, Windows, Mac)にインストールすることも可�
 - [Java](./develop/sdks/java)
 - [Rust](./develop/sdks/rust)
 - [Ruby](./develop/sdks/ruby)
+- [Elixir](./develop/sdks/elixir)
 
 ## FAQ
 

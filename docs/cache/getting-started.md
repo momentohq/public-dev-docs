@@ -5,13 +5,13 @@ sidebar_class_name: sidebar-item-getting-started
 title: Getting Started
 pagination_prev: null
 pagination_next: null
-description: Jump in and get started quickly using Momento Cache and Momento Topics with your SDK of choice.
+description: Jump in and get started quickly using Momento Cache with your SDK of choice.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Getting Started with Momento Cache and Momento Topics
+# Getting started with Momento Cache
 
 If you're looking to jump in and get started with Momento Cache with an SDK, you've come to the right place.
 
@@ -19,7 +19,7 @@ If you want to quickly get a feel for the Momento Cache experience without insta
 
 ## Step 1: Create your API key
 
-Follow our [step-by-step instructions](/cache/develop/authentication/api-keys.md) to create an API key via the [Momento console](https://console.gomomento.com). Come back here when you have your key.
+Follow our [step-by-step instructions](./develop/authentication/api-keys.md) to create an API key via the [Momento console](https://console.gomomento.com). Come back here when you have your key.
 
 ## Step 2: Store it
 
@@ -169,16 +169,16 @@ You can also install the Momento CLI locally (Linux, Windows, Mac) if desired. T
 
 We currently have the following SDK languages available:
 
-- [Node.js](/cache/develop/sdks/nodejs)
-- [JavaScript Web SDK](/cache/develop/sdks/web)
-- [Python](/cache/develop/sdks/python)
-- [.NET](/cache/develop/sdks/dotnet)
-- [Go](/cache/develop/sdks/go)
-- [PHP](/cache/develop/sdks/php)
-- [Java](/cache/develop/sdks/java)
-- [Rust](/cache/develop/sdks/rust)
-- [Ruby](/cache/develop/sdks/ruby)
-- [Elixir](/cache/develop/sdks/elixir)
+- [Node.js](./develop/sdks/nodejs)
+- [JavaScript Web SDK](./develop/sdks/web)
+- [Python](./develop/sdks/python)
+- [.NET](./develop/sdks/dotnet)
+- [Go](./develop/sdks/go)
+- [PHP](./develop/sdks/php)
+- [Java](./develop/sdks/java)
+- [Rust](./develop/sdks/rust)
+- [Ruby](./develop/sdks/ruby)
+- [Elixir](./develop/sdks/elixir)
 
 ## FAQ
 

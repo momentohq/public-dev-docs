@@ -27,13 +27,16 @@ Momento キャッシュと[Momento トピックス](./../topics/index.md) は次
 
 - オープンソースの SDK をお探しの方は、[GitHub](https://github.com/momentohq)をご覧下さい:
 
-  - [Go](https://github.com/momentohq/client-sdk-go)
-  - [Java](https://github.com/momentohq/client-sdk-java)
-  - [JavaScript/Node.js](https://github.com/momentohq/client-sdk-javascript)
-  - [Python](https://github.com/momentohq/client-sdk-python)
-  - [.NET](https://github.com/momentohq/client-sdk-dotnet)
-  - [Rust](https://github.com/momentohq/client-sdk-rust)
-  - [PHP](https://github.com/momentohq/client-sdk-php)
+  - [Node.js](./cache/develop/sdks/nodejs)
+  - [JavaScript Web SDK](./cache/develop/sdks/web)
+  - [Python](./cache/develop/sdks/python)
+  - [.NET](./cache/develop/sdks/dotnet)
+  - [Go](./cache/develop/sdks/go)
+  - [PHP](./cache/develop/sdks/php)
+  - [Java](./cache/develop/sdks/java)
+  - [Rust](./cache/develop/sdks/rust)
+  - [Ruby](./cache/develop/sdks/ruby)
+  - [Elixir](./cache/develop/sdks/elixir)
 
 - Momento キャッシュについてもっと詳しく、どの様に動作するのかを知りたい方は、のセクション、特に[Momento キャッシュの概念](./learn/how-it-works/index.mdx)に関する部分をご覧下さい。
 

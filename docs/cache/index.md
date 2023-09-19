@@ -26,15 +26,17 @@ In the following pages, you can learn about caching in general and how to use Mo
 
 - _If you want to quickly get up and running an SDK example with Momento Cache_, check out [Getting Started](./getting-started.md).
 
-- _If you're looking for our open source SDK's_, head to [Github](https://github.com/momentohq):
-  - [Go](https://github.com/momentohq/client-sdk-go)
-  - [Java](https://github.com/momentohq/client-sdk-java)
-  - [JavaScript/Node.js](https://github.com/momentohq/client-sdk-javascript)
-  - [Python](https://github.com/momentohq/client-sdk-python)
-  - [.NET](https://github.com/momentohq/client-sdk-dotnet)
-  - [Rust](https://github.com/momentohq/client-sdk-rust)
-  - [Php](https://github.com/momentohq/client-sdk-php)
-  - [Ruby](https://github.com/momentohq/client-sdk-ruby)
+- _If you're looking for our open source SDK's_, head to:
+  - [Node.js](./cache/develop/sdks/nodejs)
+  - [JavaScript Web SDK](./cache/develop/sdks/web)
+  - [Python](./cache/develop/sdks/python)
+  - [.NET](./cache/develop/sdks/dotnet)
+  - [Go](./cache/develop/sdks/go)
+  - [PHP](./cache/develop/sdks/php)
+  - [Java](./cache/develop/sdks/java)
+  - [Rust](./cache/develop/sdks/rust)
+  - [Ruby](./cache/develop/sdks/ruby)
+  - [Elixir](./cache/develop/sdks/elixir)
 
 - _If you want to know more about Momento Cache and how it works_, refer to the reference on [Momento Cache concepts](./learn/how-it-works/index.mdx).
 
