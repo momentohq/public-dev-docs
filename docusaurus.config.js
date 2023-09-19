@@ -69,157 +69,172 @@ const config = {
         id: "GTM-THBDHDQ", // GTM Container ID
       },
     ],
-      /**
     [
       require.resolve("@docusaurus/plugin-client-redirects"),
-      {
+        {
         redirects: [
           // Redirect overview
 
           {
-            to: '/',
+            to: '/cache',
             from: '/docs/overview',
           },
           // Redirect limits
           {
-            to: '/manage/limits',
+            to: '/cache/manage/limits',
             from: '/limits',
           },
           {
-            to: '/manage/limits',
+            to: '/cache/manage/limits',
             from: '/docs/limits',
           },
           // Redirect getting started
           {
-            to: '/getting-started',
+            to: '/cache/getting-started',
             from: '/docs/getting-started',
           },
           // Redirect pricing
           {
-            to: '/manage/pricing',
+            to: '/cache/manage/pricing',
             from: '/pricing',
           },
           {
-            to: '/manage/pricing',
+            to: '/cache/manage/pricing',
             from: '/docs/pricing',
           },
           // Redirect how-it-works
           {
-            to: '/learn/how-it-works/',
+            to: '/cache/learn/how-it-works/',
             from: '/how-it-works',
           },
           {
-            to: '/learn/how-it-works/',
+            to: '/cache/learn/how-it-works/',
             from: '/docs/how-it-works',
           },
           // Redirect momento-concepts
           {
-            to: '/learn/how-it-works/',
+            to: '/cache/learn/how-it-works/',
             from: '/how-it-works/momento-concepts',
           },
           {
-            to: '/learn/how-it-works/',
+            to: '/cache/learn/how-it-works/',
             from: '/docs/how-it-works/momento-concepts',
           },
+          {
+              to: '/topics',
+              from: '/introduction/momento-topics',
+          },
+
           // Redirect how-it-works/caching-with-serverless
           {
-            to: '/introduction/what-is-serverless-caching',
+            to: '/cache/introduction/what-is-serverless-caching',
             from: '/how-it-works/caching-with-serverless',
           },
           {
-            to: '/introduction/what-is-serverless-caching',
+            to: '/cache/introduction/what-is-serverless-caching',
             from: '/docs/how-it-works/caching-with-serverless',
           },
           // Redirect category/caching-concepts
           {
-            to: '/introduction/common-caching-patterns',
+            to: '/cache/introduction/common-caching-patterns',
             from: '/docs/category/caching-concepts',
           },
           // Redirect caching-concepts/caching-strategies-and-patterns
           {
-            to: '/introduction/common-caching-patterns',
+            to: '/cache/introduction/common-caching-patterns',
             from: '/docs/caching-concepts/caching-strategies-and-patterns',
           },
           // Redirect guides
           {
-            to: '/develop/guides/caching-with-aws-lambda',
+            to: '/cache/develop/guides/caching-with-aws-lambda',
             from: '/guides',
           },
           {
-            to: '/develop/guides/caching-with-aws-lambda',
+            to: '/cache/develop/guides/caching-with-aws-lambda',
             from: '/docs/guides',
           },
           // Redirect guides/caching-with-aws-lambda
           {
-            to: '/develop/guides/caching-with-aws-lambda',
+            to: '/cache/develop/guides/caching-with-aws-lambda',
             from: '/guides/caching-with-aws-lambda',
           },
           {
-            to: '/develop/guides/caching-with-aws-lambda',
+            to: '/cache/develop/guides/caching-with-aws-lambda',
             from: '/docs/guides/caching-with-aws-lambda',
           },
           // Redirect API-reference
           {
-            to: '/develop/api-reference',
+            to: '/cache/develop/api-reference',
             from: '/docs/API-reference',
           },
           {
-            to: '/develop/api-reference',
+            to: '/cache/develop/api-reference',
             from: '/API-reference',
           },
           {
             from: '/develop/sdks-integrations/aws-secrets-manager',
-            to: '/develop/integrations/aws-secrets-manager',
+            to: '/cache/develop/integrations/aws-secrets-manager',
           },
           {
             from: '/develop/sdks-integrations/bulk-writing-from-redis-json-csv',
-            to: '/develop/integrations/bulk-writing-from-redis-json-csv',
+            to: '/cache/develop/integrations/bulk-writing-from-redis-json-csv',
           },
           {
             from: '/develop/sdks-integrations/momento-cache-laravel-php',
-            to: '/develop/integrations/momento-cache-laravel-php',
+            to: '/cache/develop/integrations/momento-cache-laravel-php',
           },
           {
             from: '/develop/sdks-integrations/redis-client-compatibility',
-            to: '/develop/integrations/redis-client-compatibility',
+            to: '/cache/develop/integrations/redis-client-compatibility',
           },
           {
             from: '/develop/guides/cheat-sheets/momento-cache-go-cheat-sheet',
-            to: '/develop/sdks/go/cheat-sheet',
+            to: '/cache/develop/sdks/go/cheat-sheet',
           },
           {
             from: '/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet',
-            to: '/develop/sdks/nodejs/cheat-sheet',
+            to: '/cache/develop/sdks/nodejs/cheat-sheet',
           },
           {
             from: '/develop/guides/cheat-sheets/momento-cache-php-cheat-sheet',
-            to: '/develop/sdks/php/cheat-sheet',
+            to: '/cache/develop/sdks/php/cheat-sheet',
           },
           {
             from: '/develop/guides/cheat-sheets/momento-cache-python-cheat-sheet',
-            to: '/develop/sdks/python/cheat-sheet',
+            to: '/cache/develop/sdks/python/cheat-sheet',
           },
           {
             from: '/develop/sdks-integrations/deploying-javascript-web-sdk',
-            to: '/develop/sdks/web',
+            to: '/cache/develop/sdks/web',
           },
           {
             from: '/develop/api-reference/auth-tokens',
-            to: '/develop/api-reference/auth'
+            to: '/cache/develop/api-reference/auth'
+          },
+          {
+            from: '/develop/api-reference/topics',
+            to: '/topics/develop/api-reference'
           }
         ],
-        /**createRedirects(existingPath) {
-          if (existingPath.includes('/docs')) {
-            // Redirect from /docs/X to /X
-            console.log("this is a test");
+        createRedirects(existingPath) {
+          if (existingPath.includes('/develop') || existingPath.includes('/learn') || existingPath.includes('/manage')) {
             return [
-              existingPath.replace('/docs', '/'),
+              existingPath.replace('/cache/develop', '/develop'),
+              existingPath.replace('/cache/learn', '/learn'),
+              existingPath.replace('/cache/manage', '/manage'),
             ];
           }
+            // this one is done separately so we can redirect the Momento Topics intro page in a separate redirect.
+          if (existingPath.includes('/introduction')) {
+              return [
+                  existingPath.replace('/cache/introduction', '/introduction'),
+              ];
+          }
+
           return undefined; // Return a falsy value: no redirect created
         },
       }
-    ], **/
+    ],
     // This plugin will print out information / statistics about which SDK repos
     // are missing docs code snippets.
     './plugins/example-code-snippets/dist/example-code-snippets-post-build'
