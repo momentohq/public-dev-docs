@@ -1,6 +1,6 @@
 {
   "name": "momento-docs",
-  "version": "1.1.0",
+  "version": "1.5.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
@@ -20,7 +20,7 @@
   },
   "engines": {
     "npm": ">=9.0.0",
-    "node": ">=18.0.0"
+    "node": ">=18.16.0"
   },
   "dependencies": {
     "@docusaurus/core": "2.4.0",
