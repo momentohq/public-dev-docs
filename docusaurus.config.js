@@ -91,7 +91,7 @@ const config = {
           // Redirect getting started
           {
             to: '/cache/getting-started',
-            from: '/docs/getting-started',
+            from: '/getting-started',
           },
           // Redirect pricing
           {
