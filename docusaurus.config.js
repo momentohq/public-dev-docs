@@ -9,15 +9,15 @@ const languageApiSupportMatrixPlugin = require('./plugins/example-code-snippets/
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Momento Cache",
-  tagline: "Believe in Serverless",
+  title: "Momento Documentation",
+  tagline: "Believe in Serverless!",
   url: "https://docs.momentohq.com",
   baseUrl: "/",
   projectName: "momentohq.github.io",
   organizationName: "momentohq",
   trailingSlash: false,
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.ico",
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -235,12 +235,13 @@ const config = {
         logo: {
           alt: "Momento Logo",
           src: "img/logo.svg",
-          href: "https://www.gomomento.com/",
+          href: "/",
           target: "_blank",
         },
         items: [
           {to: '/cache', label: 'Cache', position: 'left'},
           {to: '/topics', label: 'Topics', position: 'left'},
+          {to: '/vector-index', label: 'Vector Index', position: 'left'},
           {
             to: "https://www.gomomento.com/blog",
             label: "Blog",

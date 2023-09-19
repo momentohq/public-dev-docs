@@ -13,7 +13,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: 'Momento Cache',
     url: '/cache',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/cache/momento-cache-brand-icon.svg').default,
     description: (
       <>
           Accelerate your app, reduce costs, and free your developers.
@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: 'Momento Topics',
     url: '/topics',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/topics/momento-topics-brand-icons.svg').default,
     description: (
       <>
         Enable real-time communication between different parts of a distributed system.
@@ -33,7 +33,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: 'Momento Vector Index',
     url: '/vector-index',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('@site/static/img/vector-index/momento-vector-index-brand-icon.svg').default,
     description: (
       <>
         A serverless vector index for your AI-enabled applications.
