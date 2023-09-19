@@ -273,6 +273,10 @@ const config = {
                 label: 'Documentation Home',
                 to: '/',
               },
+              {
+                label: 'Momento Home',
+                to: 'https://www.gomomento.com/',
+              },
             ],
           },
           {
