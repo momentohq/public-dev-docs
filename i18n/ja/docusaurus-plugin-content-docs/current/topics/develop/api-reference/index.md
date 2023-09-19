@@ -13,7 +13,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 # Momento Topics（pub/sub）API を使用する
 Momento Topics は、分散型アプリケーションの各部分間でリアルタイム通信を可能にするメッセージングパターンです。トピックの値をパブリッシュ(プロデュース)し、トピックからサブスクライブ(コンシューム)することを可能にします。このページでは、Momento Topics で操作するための Momento API メソッドについて詳しく説明します。
 
-<img src="@site/static/img/topics-api.jpg" width="100%" alt="An image showing the movement of lots of data, messages published, moved to where they need to go quickly and accurately." />
+![An image showing the movement of lots of data, messages published, moved to where they need to go quickly and accurately.](@site/static/img/topics-api.jpg)
 
 詳細は[Momento Topics](./../../index.md)をご覧ください。
 

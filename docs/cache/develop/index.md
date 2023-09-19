@@ -15,7 +15,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 Welcome! This page provides information about common constructs you will need in order to assemble Momento clients in all of our SDKs. This page covers how to provide your Momento credentials (called auth tokens), how to configure your client, and some basic information about error handling and production readiness.
 
-<img src="@site/static/img/city.jpg" width="90%" alt="a technical illustration on a white background depicting the intersection of speed, ease of use, and security." />
+![a technical illustration on a white background depicting the intersection of speed, ease of use, and security.](@site/static/img/city.jpg)
 
 ## Constructing a Cache Client
 

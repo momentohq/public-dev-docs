@@ -13,7 +13,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # SDK Client configuration objects
 
-<img src="@site/static/img/client-configurations.jpg" width="90%" alt="a technical illustration of Momento client configuration objects." />
+![a technical illustration of Momento client configuration objects.](@site/static/img/client-configurations.jpg)
 
 `Configuration` オブジェクトには、Momento クライアントが Momento サービスに接続するために必要な設定が含まれます。
 `Configuration` オブジェクトは、タイムアウトや再試行、ロギング、ミドルウェアなどの設定を制御します。

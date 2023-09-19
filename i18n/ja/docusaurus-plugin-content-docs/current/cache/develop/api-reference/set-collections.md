@@ -12,7 +12,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Momento CacheのためのSet APIについて
 
-<img src="@site/static/img/sets.jpg" width="90%" alt="a diagram of luggage as sets, but in any old order and not organized at all." />
+![A diagram of luggage as sets, but in any old order and not organized at all.](@site/static/img/sets.jpg)
 
 集合は要素の集まりですが、各要素は一度しか現れず、順序は保証されません。
 例: セットが `[1, 2, 3]` を含み、2 を追加してもセットは `[1, 2, 3].` のままです。

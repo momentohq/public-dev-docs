@@ -15,7 +15,7 @@ This page details the Momento API methods for the [list collection data types](.
 
 <br />
 
-<img src="@site/static/img/list-collections.jpg" width="90%" alt="a technical illustration of a scroll with lists of information. All collected into groups." />
+![a technical illustration of a scroll with lists of information. All collected into groups.](@site/static/img/list-collections.jpg)
 
 ## List methods
 

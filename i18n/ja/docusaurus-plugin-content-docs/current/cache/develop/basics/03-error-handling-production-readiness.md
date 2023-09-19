@@ -14,7 +14,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # SDK のエラーハンドリング
 
-<img src="@site/static/img/error-handling.jpg" width="90%" alt="a technical illustration of Momento client configuration objects." />
+![a technical illustration of Momento client configuration objects.](@site/static/img/error-handling.jpg)
 
 左のナビゲーションメニューから `Develop`->`SDKs` をクリックすることで、それぞれのSDKのページに移動することができます。それぞれのページには「コードを本番環境へ」というリンクがあり、その言語でプロダクションで使えるコードを作るためのベストプラクティスが紹介されています。
 
@@ -43,6 +43,6 @@ Momento SDKは、あらかじめ用意された設定オブジェクトを使用
 ## 呼び出しでエラーを返した時の再試行
 エラー応答後に呼び出しを再試行する場合、Momento SDK に期待できる一般的な動作パターンは次のとおりです：
 
-<img src="@site/static/img/sdk_retry_behavior.png" width="100%" alt="logic diagram depicting SDK retry behavior"/>
+![logic diagram depicting SDK retry behavior](@site/static/img/sdk_retry_behavior.png)
 
 Momento SDKはスロット付きリクエスト([制限超過](../../manage/limits.md))を再試行しません。その他のエラーについては、要求された操作が [idempotent](https://en.wikipedia.org/wiki/Idempotence) でない場合、SDK は再試行しません。例えば、カウンターをインクリメントしているときにエラー応答を受け取った場合、SDKはあなたの代わりにリトライしません(これはオーバーカウントになる可能性があるため)。リトライするかどうかは開発者に選択させることが安全だと考えているためです。

@@ -16,7 +16,7 @@ const config = {
   projectName: "momentohq.github.io",
   organizationName: "momentohq",
   trailingSlash: false,
-  onBrokenLinks: "warn",
+  onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
 

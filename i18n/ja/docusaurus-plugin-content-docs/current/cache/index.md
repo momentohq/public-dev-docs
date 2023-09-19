@@ -5,7 +5,6 @@ sidebar_label: Momento キャッシュとトピックス
 title: Momentoキャッシュとトピックスのドキュメント
 description: Learn what you need to know to speed up your cloud application with the world's easiest serverless cache.
 pagination_next: null
-slug: /
 ---
 
 <head>
@@ -36,7 +35,7 @@ Momento キャッシュと[Momento トピックス](./../topics/index.md) は次
   - [Rust](https://github.com/momentohq/client-sdk-rust)
   - [PHP](https://github.com/momentohq/client-sdk-php)
 
-- Momento キャッシュについてもっと詳しく、どの様に動作するのかを知りたい方は、のセクション、特に[Momento キャッシュの概念](./learn/how-it-works)に関する部分をご覧下さい。
+- Momento キャッシュについてもっと詳しく、どの様に動作するのかを知りたい方は、のセクション、特に[Momento キャッシュの概念](./learn/how-it-works/index.mdx)に関する部分をご覧下さい。
 
 - AWS Lambda や他のシステムとの具体的な連携ガイドについては、[ガイド](./develop/guides/1-caching-with-aws-lambda.md)のセクションをご覧下さい。
 
