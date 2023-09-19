@@ -1,0 +1,10 @@
+{
+    "label": "Learn",
+    "position": 5,
+    "collapsible": true,
+    "collapsed": true,
+    "link": {
+      "description": "Learn more in depth about Momento Cache."
+    },
+    "className": "sidebar-item-guides"
+  }

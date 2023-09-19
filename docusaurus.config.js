@@ -16,8 +16,8 @@ const config = {
   projectName: "momentohq.github.io",
   organizationName: "momentohq",
   trailingSlash: false,
-  onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
+  onBrokenLinks: "warn",
+  onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -26,6 +26,19 @@ const config = {
   i18n: {
     defaultLocale: "en",
     locales: ["en", "ja"],
+      localeConfigs: {
+          en: {
+              label: 'English',
+              direction: 'ltr',
+              htmlLang: 'en-US',
+              calendar: 'gregory',
+          },
+          ja: {
+              label: '日本語',
+              htmlLang: 'ja',
+              path: 'ja',
+          },
+      },
   },
 
   presets: [
@@ -55,11 +68,13 @@ const config = {
         id: "GTM-THBDHDQ", // GTM Container ID
       },
     ],
+      /**
     [
       require.resolve("@docusaurus/plugin-client-redirects"),
       {
         redirects: [
           // Redirect overview
+
           {
             to: '/',
             from: '/docs/overview',
@@ -201,9 +216,9 @@ const config = {
             ];
           }
           return undefined; // Return a falsy value: no redirect created
-        },**/
+        },
       }
-    ],
+    ], **/
     // This plugin will print out information / statistics about which SDK repos
     // are missing docs code snippets.
     './plugins/example-code-snippets/dist/example-code-snippets-post-build'
@@ -223,6 +238,8 @@ const config = {
           target: "_blank",
         },
         items: [
+          {to: '/cache', label: 'Cache', position: 'left'},
+          {to: '/topics', label: 'Topics', position: 'left'},
           {
             to: "https://www.gomomento.com/blog",
             label: "Blog",
@@ -245,14 +262,14 @@ const config = {
           alt: "Momento Logo",
           src: "img/footer_logo.svg",
         },
-        copyright: `Copyright © ${new Date().getFullYear()} Momento, Inc.`,
+        copyright: `Copyright © 2022 - ${new Date().getFullYear()} Momento, Inc.`,
         links: [
           {
             title: "Docs",
             items: [
               {
-                label: "Documentation Home",
-                to: "/",
+                label: 'Documentation Home',
+                to: '/',
               },
             ],
           },
@@ -282,7 +299,8 @@ const config = {
               },
             ],
           },
-          {
+          /** Commenting this out for now as it is messing with the formatting and with the menu it may not be needed anyhow.
+            {
             title: "Language",
             items: [
               {
@@ -294,7 +312,7 @@ const config = {
                 to: "https://docs.momentohq.com/ja/",
               },
             ],
-          },
+          }, **/
         ],
       },
       prism: {

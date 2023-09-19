@@ -1,0 +1,55 @@
+---
+sidebar_position: 2
+sidebar_label: Topics チートシート
+sidebar_class_name: sidebar-item-nodejs
+title: TypeScriptとNode.jsのためのTopicsチートシート
+description: Momento Topicsを使って、TypeScriptとNode.jsを使った開発を素早く始める
+---
+
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
+
+# Node.js と Momento Topics のチートシート
+
+Node.js + TypeScript で Momento Topics をすぐに使い始める必要がある場合、このページには基本的に必要となるAPI呼び出しを記載しています。[Node.js SDK の例](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/topics)には、ビルド設定ファイルを含む、実用的な例が記載されています。
+
+## Momento クライアント・ライブラリをインストールする
+
+既存の Node.js プロジェクトにクライアント・ライブラリをインストールします：
+
+```cli
+npm install @gomomento/sdk
+```
+
+## 認証トークンを設定する
+
+Momento で認証するには、[Momento API key](./../../authentication) が必要です。できれば、[Momento Web コンソール](https://console.gomomento.com/caches) から取得できます。
+トークンを取得したら、Momento クライアントがそれを利用できるように環境変数に保存します：
+
+```
+export MOMENTO_API_KEY=<your key here>
+```
+
+**Note**: セキュリティ強化のためには、トークンを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに格納するのがベストプラクティスですが、ここではデモのために環境変数を利用しています。
+
+## ライブラリをインポートして TopicClient のインスタンスを作成する
+このコードでは、メイン関数、必要なライブラリのメソッドをインポート、および他の各関数が呼び出す時に必要になる TopicClient のインスタンス化を設定します。
+
+<SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/topics/doc-example-files/cheat-sheet-main.ts'} />
+
+## トピックへのメッセージのパブリッシュとサブスクライブ
+この例では、"test-cache" という名前の Momento Cache の "test-topic" というトピックをサブスクライブし、サブスクライブが成功したらそのトピックにパブリッシュします。
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_TopicSubscribe'}>
+
+## コードの実行
+
+[GitHubリポジトリのJavaScript SDKにあるexamples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples)に動作例があります。
+
+:::info
+これらの基本的なAPI呼び出し以外の詳細については、[APIリファレンスページ](./../../api-reference/index.md)を参照してください。
+
+この[リンク](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/advanced.ts)から、同じタイプの、より高度なAPI呼び出しのコード例を見ることができます。
+:::
