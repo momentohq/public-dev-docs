@@ -7,7 +7,7 @@ description: Learn what Momento API keys are, how to create them, and how they a
 
 # Momento API keys
 
-<img src="/img/api-keys-page.jpg" width="95%" alt="a technical illustration of API keys and their use to secure your application." />
+![a technical illustration of API keys and their use to secure your application.](@site/static/img/api-keys-page.jpg)
 
 API keys are *long-lived values intended for programmatic use*. These keys grant integrating applications access to certain caches and topics. When creating an API key, you are presented with two options via the [Momento console](https://console.gomomento.com/tokens):
 
@@ -28,7 +28,7 @@ While you are certainly allowed to create API keys via our SDK, it is generally 
 
 Go to the [Momento console](https://console.gomomento.com/tokens) and follow the instructions to log in with your email address, Google account, or GitHub account.
 
-![Image of Momento console landing page](/img/getting-started/console.png)
+![Image of Momento console landing page](@site/static/img/getting-started/console.png)
 
 ### Step 2: Generate your API key
 
@@ -41,7 +41,7 @@ Once on the API key page, select the information that matches where your caches 
 3. Key Type
 3. (Optional) Expiration date
 
-![Image showing the fields to create a new API key](/img/getting-started/select-provider-region.png)
+![Image showing the fields to create a new API key](@site/static/img/getting-started/select-provider-region.png)
 
 Once complete, click on the **Generate** button to create your API Key!
 

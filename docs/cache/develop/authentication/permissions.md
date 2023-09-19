@@ -8,7 +8,7 @@ pagination_next: null
 
 # Permissions and access control
 
-<img src="/img/permissions-page.jpg" width="95%" alt="a technical illustration of Momento permissions and access control." />
+![a technical illustration of Momento permissions and access control.](@site/static/img/permissions-page.jpg)
 
 It's all fun and games until you can't access your resources. Speaking of accessing your resources, that's exactly what we're here to talk about - *stopping people from accessing things they shouldn't.*
 

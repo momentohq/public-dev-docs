@@ -12,7 +12,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Momento tokens for short-lived permissions
 
-<img src="/img/tokens-page.jpg" width="90%" alt="a technical illustration of Momento authentication and access control." />
+![a technical illustration of Momento authentication and access control.](@site/static/img/tokens-page.jpg)
 
 Tokens are short-lived, limited-scope values intended to be used in temporary situations like a user's session. Software lifecycle events like a user login often result in the issuing of a token only valid for the duration of that session. 
 
