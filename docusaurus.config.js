@@ -120,11 +120,6 @@ const config = {
             to: '/cache/learn/how-it-works/',
             from: '/docs/how-it-works/momento-concepts',
           },
-          {
-              to: '/topics',
-              from: '/introduction/momento-topics',
-          },
-
           // Redirect how-it-works/caching-with-serverless
           {
             to: '/cache/introduction/what-is-serverless-caching',
@@ -211,26 +206,35 @@ const config = {
             from: '/develop/api-reference/auth-tokens',
             to: '/cache/develop/api-reference/auth'
           },
+            //This redirects from the pre v1.5.0 of the docs for the Topics page to the home page for the topics service /topics.
+          {
+            to: '/topics',
+            from: '/introduction/momento-topics',
+          },
+
+            //This redirects from the pre v1.5.0 docs api-reference/topics page to the new /topics/develop/api-reference page.
           {
             from: '/develop/api-reference/topics',
             to: '/topics/develop/api-reference'
+          },
+
+            //This redirects users from the pre v1.5.0 docs location of the Node.js topics cheat sheet to the new location under /topics.
+          {
+            from: '/develop/sdks/nodejs/topics-cheat-sheet',
+            to: '/topics/develop/sdks/nodejs/cheat-sheet'
           }
         ],
+          // This came in with v1.5.0 of the docs where we split out by service.
+          // This function redirects anything coming into /develop, /learn, /manage, or /introduction to /cache/<directory>.
         createRedirects(existingPath) {
-          if (existingPath.includes('/develop') || existingPath.includes('/learn') || existingPath.includes('/manage')) {
+          if (existingPath.includes('/develop') || existingPath.includes('/learn') || existingPath.includes('/manage') || existingPath.includes('/introduction')) {
             return [
               existingPath.replace('/cache/develop', '/develop'),
               existingPath.replace('/cache/learn', '/learn'),
               existingPath.replace('/cache/manage', '/manage'),
+              existingPath.replace('/cache/introduction', '/introduction'),
             ];
           }
-            // this one is done separately so we can redirect the Momento Topics intro page in a separate redirect.
-          if (existingPath.includes('/introduction')) {
-              return [
-                  existingPath.replace('/cache/introduction', '/introduction'),
-              ];
-          }
-
           return undefined; // Return a falsy value: no redirect created
         },
       }
