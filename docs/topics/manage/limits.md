@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 sidebar_label: Service Limits
-title: Service limits
+title: Service limits for Momento Topics
 pagination_next: null
 description: Explore Momento Topic's service limits, the default values, and how to get them changed if you need.
 ---
@@ -18,20 +18,9 @@ Momento Topics seek to protect themselves and their customers when it comes to s
 
 :::info
 
-As Momento Topics utilizes Momento Cache, all Cache limits apply to Topics as well.
+Since Topics utilizes Momento Cache, so all [Cache limits](/cache/manage/limits) apply to Topics as well.
 
 :::
-
-| Momento Cache limits                                                                                               | Value          |
-|--------------------------------------------------------------------------------------------------------------------|----------------|
-| API rate per cache (data plane)                                                                                    | 100 requests/s |
-| API rate per customer (control plane)                                                                              | 5 requests/s   |
-| Throughput per cache                                                                                               | 1MB/s          |
-| Maximum item size                                                                                                  | 1MB            |
-| Max cache count (per account)                                                                                      | 10             |
-| Time to live (TTL)                                                                                                 | 1 day          |
-| Per [collection (CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts) element size limit | 128KB          |
-| Permissions per [API key or token](./../develop/api-reference/auth.md)  (hard limit)                    | 10             |
 
 ## Soft limits and support
 
