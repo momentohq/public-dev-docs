@@ -17,9 +17,14 @@ MVI's serverless and API-driven approach to vector indexes aligns with modern de
 
 Build with Momento Vector Indexes with use cases such as:
 
-MVI can be leveraged for semantic searches, which enhance search capabilities by understanding context and meaning. By employing vector indexing, your app can interpret relationships between words and concepts, allowing for more relevant results. This technology supports applications like personalized recommendations, fraud detection, and Natural Language Processing (NLP), providing a more nuanced search experience than simple text-based search. MVI's potential to bridge language barriers and understand user intent makes it a valuable tool for delivering a more intelligent and satisfying search experience.
+### Semantic search
+MVI improves your search features by understanding context and meaning. By using vector indexing, your application delivers more relevant and nuanced search results. This feature shines in areas like e-commerce, personalized recommendations, fraud detection, and information retrieval.
 
-For sentiment analysis applications, you can use MVI to map data into a multidimensional space, where patterns correlating to positive, negative, or neutral emotions can be discerned. This allows for efficient comparison across large datasets, helping gauge opinions on products or trends. With real-time processing and adaptability, vector indexes become increasingly valuable for understanding and responding to user sentiments.
+### Multimodal search
+MVI also supports multimodal search, letting users search across different types of data such as text, images, videos, and audio. Users can start a search in one modality and target any other, creating a flexible and comprehensive search experience.
+
+### Additional applications
+While semantic and multimodal search are the main uses, MVI can be valuable for sentiment analysis, specifically in assessing user feelings toward a business across multiple dimensions. By identifying emotional patterns in customer reviews, social media mentions, or survey responses, MVI helps you gain a multi-faceted understanding of customer sentiment. This can inform business strategies, customer engagement, and service improvements.
 
 ## Why is it called a vector index, not a vector database?
 
