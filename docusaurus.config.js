@@ -10,7 +10,7 @@ const languageApiSupportMatrixPlugin = require('./plugins/example-code-snippets/
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Momento Documentation",
-  tagline: "Believe in Serverless!",
+  tagline: "A serverless platform for caching, messaging, and vector search.",
   url: "https://docs.momentohq.com",
   baseUrl: "/",
   projectName: "momentohq.github.io",
