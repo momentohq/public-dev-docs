@@ -206,6 +206,10 @@ const config = {
             from: '/develop/api-reference/auth-tokens',
             to: '/cache/develop/api-reference/auth'
           },
+          {
+            from: '/develop/datatypes',
+            to: '/cache/develop/basics/datatypes'
+          },
             //This redirects from the pre v1.5.0 of the docs for the Topics page to the home page for the topics service /topics.
           {
             from: '/introduction/momento-topics',
