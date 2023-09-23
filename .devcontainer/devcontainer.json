@@ -1,6 +1,6 @@
 {
 	"name": "Node.js",
-	"image": "mcr.microsoft.com/devcontainers/javascript-node:18-bullseye",
+	"image": "mcr.microsoft.com/devcontainers/javascript-node:20-bullseye",
 	"features": {
 		"ghcr.io/devcontainers/features/github-cli:1": {}
 	}

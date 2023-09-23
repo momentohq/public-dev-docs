@@ -1,0 +1,44 @@
+name: Translate
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "docs/**/*.md"
+      - "docs/**/*.mdx"
+
+jobs:
+  ja:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - run: |
+          node translate/list.mjs ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | tee /tmp/modified
+      - run: |
+          node translate/translate.mjs $(cat /tmp/modified)
+        env:
+          SIMPLEEN_AUTH_KEY: ${{ secrets.SIMPLEEN_AUTH_KEY }}
+          SIMPLEEN_TRANSLATOR_ID: ${{ secrets.SIMPLEEN_TRANSLATOR_ID }}
+          TARGET_LANG: ja
+      - run: git diff
+      - uses: peter-evans/create-pull-request@v5
+        with:
+          add-paths: i18n/ja/docusaurus-plugin-content-docs/current/
+          base: main
+          branch: ja/${{ github.event.pull_request.head.ref }}
+          author: GitHub <noreply@github.com>
+          commit-message: ${{ github.event.pull_request.title }} [ja]
+          title: ${{ github.event.pull_request.title }} [ja]
+          body: |
+            Auto translated PR from #${{ github.event.pull_request.number }}
+            cc: @MomentoBigFun @Yoshiitaka
+          assignees: MomentoBigFun,Yoshiitaka
