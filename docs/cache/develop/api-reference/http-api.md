@@ -1,11 +1,11 @@
 ---
 sidebar_position: 7
-title: HTTP API
+title: HTTP API reference for Momento Cache
 sidebar_label: HTTP API
-description: Discover the HTTP API for edge computing services to access serverless caching and pub/sub services.
+description: Discover the HTTP API for edge computing services to access serverless caching.
 ---
 
-# HTTP API Reference
+# HTTP API Reference for Momento Cache
 
 <img src="/img/http-api.jpg" width="90%" alt="a picture of abstract shapes as building and nodes of data connecting them at high speed" />
 
@@ -38,24 +38,22 @@ To access the Momento HTTP API, use one of the following endpoints in the region
 
 If you do not see a Region you require, let’s discuss. Please contact [Support](mailto:support@momentohq.com).
 
-## Cache
-
-### Get Value
+## Get Value
 
 Gets a scalar value from a cache.
 
-#### Request
+### Request
 
 - Path: /cache/{cacheName}
 - HTTP Method: GET
 
-##### Path Parameters
+#### Path Parameters
 
 | Parameter&nbsp;name | Required? | Type            | Description                          |
 |---------------------|-----------|-----------------|--------------------------------------|
 | cacheName           | yes       | URL-safe string | The name of the cache to operate on. |
 
-##### Query Parameters
+#### Query Parameters
 
 | Parameter&nbsp;name | Required? | Type                                         | Description                                                                                           |
 |---------------------|-----------|----------------------------------------------|-------------------------------------------------------------------------------------------------------|
@@ -67,7 +65,7 @@ Gets a scalar value from a cache.
 
 *** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
-##### Headers
+#### Headers
 
 | Header&nbsp;name | Required? | Type                 | Description                                                                                        |
 |------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
@@ -75,22 +73,22 @@ Gets a scalar value from a cache.
 
 *** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
-#### Responses
+### Responses
 
-##### Hit
+#### Hit
 
 *Status Code: 200 OK*
 
 - Content-Type: octet-stream
 - Body: The binary value stored at the specified key.
 
-##### Miss
+#### Miss
 
 *Status Code: 404 Not Found*
 
 - "Key Not Found" indicates that the key was not present in the cache, while "Cache Not Found" indicates that the specified cache does not exist.
 
-##### Error
+#### Error
 
 *Status Code: 400 Bad Request*
 - This error type typically indicates that the request was incorrectly specified. See the body of the message for further details.
@@ -107,27 +105,27 @@ Gets a scalar value from a cache.
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
 
-### Set Value
+## Set Value
 
 Sets a scalar value in a cache.
 
-#### Request
+### Request
 
 - Path: /cache/{cacheName}
 - HTTP Method: PUT
 
-##### Body
+#### Body
 
 - Content-Type: octet-stream
 - The body of the request should contain the binary value to be stored in the cache at the specified key.
 
-##### Path Parameters
+#### Path Parameters
 
 | Parameter&nbsp;name | Required? | Type            | Description                          |
 |---------------------|-----------|-----------------|--------------------------------------|
 | cacheName           | yes       | URL-safe string | The name of the cache to operate on. |
 
-##### Query Parameters
+#### Query Parameters
 
 | Parameter&nbsp;name | Required? | Type                                         | Description                                                                                                                                       |
 |---------------------|-----------|----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -140,7 +138,7 @@ Sets a scalar value in a cache.
 
 *** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
-##### Headers
+#### Headers
 
 | Header&nbsp;name | Required? | Type                 | Description                                                                                        |
 |------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
@@ -148,15 +146,15 @@ Sets a scalar value in a cache.
 
 *** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
-#### Responses
+### Responses
 
-##### Ok
+#### Ok
 
 *Status Code: 204 No Content*
 
 - The key-value pair was stored in the cache, but no content was returned (by design).
 
-##### Error
+#### Error
 
 *Status Code: 400 Bad Request*
 - This error type typically indicates that the request was incorrectly specified. See the message body for further details.
@@ -176,22 +174,22 @@ Sets a scalar value in a cache.
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
 
-### Delete Value
+## Delete Value
 
 Deletes a scalar value from a cache.
 
-#### Request
+### Request
 
 - Path: /cache/{cacheName}
 - HTTP Method: DELETE
 
-##### Path Parameters
+#### Path Parameters
 
 | Parameter&nbsp;name | Required? | Type            | Description                          |
 |---------------------|-----------|-----------------|--------------------------------------|
 | cacheName           | yes       | URL-safe string | The name of the cache to operate on. |
 
-##### Query Parameters
+#### Query Parameters
 
 | Parameter&nbsp;name | Required? | Type                                         | Description                                                                                           |
 |---------------------|-----------|----------------------------------------------|-------------------------------------------------------------------------------------------------------|
@@ -203,7 +201,7 @@ Deletes a scalar value from a cache.
 
 *** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
-##### Headers
+#### Headers
 
 | Header&nbsp;name | Required? | Type                 | Description                                                                                        |
 |------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
@@ -211,15 +209,15 @@ Deletes a scalar value from a cache.
 
 *** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
-#### Responses
+### Responses
 
-##### Ok
+#### Ok
 
 *Status Code: 204 No Content*
 
 - The key-value pair was stored in the cache, but no content was returned (by design).
 
-##### Error
+#### Error
 
 *Status Code: 400 Bad Request*
 - This error type typically indicates that the request was incorrectly specified. See the message body for further details.
@@ -239,78 +237,9 @@ Deletes a scalar value from a cache.
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
 
-## Topics
-
-### Publish
-
-Publishes a message to a topic.
-
-#### Request
-
-- Path: /topics/{cacheName}/{topicName}
-- HTTP Method: POST
-
-##### Body
-
-- Content-Type: octet-stream
-- The body of the request should contain the binary value to be published to the topic.
-
-##### Path Parameters
-
-| Parameter&nbsp;name | Required? | Type            | Description                                 |
-|---------------------|-----------|-----------------|---------------------------------------------|
-| cacheName           | yes       | URL-safe string | The name of the cache containing the topic. |
-| topicName           | yes       | URL-safe string | Name of the topic to publish to.            |
-
-##### Query Parameters
-
-| Parameter&nbsp;name | Required? | Type                | Description                                                                                         |
-|---------------------|-----------|---------------------|-----------------------------------------------------------------------------------------------------|
-| token               | no**     | URL-safe&nbsp;string | The Momento auth token, in string format, to be used for authentication/authorization of the request.|
-
-*** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
-
-##### Headers
-
-| Header&nbsp;name | Required? | Type                 | Description                                                                                        |
-|------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
-| Authorization    | no**     | URL-safe&nbsp;string | The Momento auth token, in string format, is used for authentication/authorization of the request. |
-
-** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
-
-#### Responses
-
-#### Success
-
-*Status Code: 204 No Content*
-
-- The message was successfully published to the provided topic
-
-##### Error
-
-*Status Code: 400 Bad Request*
-- This error type typically indicates that the request was incorrectly specified. See the message body for further details.
-
-*Status Code: 401 Unauthorized*
-- This error type typically indicates that the Momento auth token passed in is either invalid or expired. See the body of the message for further details.
-
-*Status Code: 403 Forbidden*
-- This error type typically indicates the Momento auth token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
-
-*Status Code: 404 Not Found*
-- “Cache Not Found” indicates that the specified cache does not exist.
-
-*Status Code: 429 Too Many Requests*
-- This error type typically indicates that account limits were exceeded. See the message body for further details, or contact Momento support to request a limit increase.
-
-*Status Code: 500 Internal Server Error*
-- This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
-
 ## Examples
 
-### Cache
-
-#### Put
+### Put
 
 Below is an example of a curl command that sets an item with a key of *example_key* and value of *example value* in the *default-cache* cache in the *ap-south-1* region:
 
@@ -321,7 +250,7 @@ URL-safe Key, token provided in query parameter:
 Base64 Key, token as *Authorization* header:
 `curl -X PUT -H "Authorization: <token>" -d 'example value' "https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com/cache/default-cache?key_base64=ZXhhbXBsZV9rZXk&ttl_seconds=300"`
 
-#### Get
+### Get
 
 Below is an example of a curl command that gets an item with a key of *example_key* in the *default-cache* cache in the *eu-west-1* region:
 
@@ -333,7 +262,7 @@ Base64 Key, token provided as *Authorization* header:
 
 `curl -H "Authorization: <token>" "https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com/cache/default-cache?key_base64=ZXhhbXBsZV9rZXk"`
 
-#### Delete
+### Delete
 
 Below is an example of a curl command that deletes an item with a key of *example_key* in the *default-cache* cache in the *us-west-2* region:
 
@@ -344,17 +273,3 @@ URL-safe key, token provided in query parameter:
 Base64 Key, token provided as *Authorization* header:
 
 `curl -X DELETE -H "Authorization: <token>" "https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com/cache/default-cache?key_base64=ZXhhbXBsZV9rZXk"`
-
-### Topics
-
-#### Publish
-
-Below is an example that publishes the value `hello world!` to the *example* topic in the *my-cache* cache in the *us-east-1* region.
-
-Token provided in query parameter:
-
-`curl -X POST -d 'hello world!' "https://api.cache.cell-us-east-1-1.prod.a.momentohq.com/topics/my-cache/example?token=<token>"`
-
-Token provided as *Authorization* header:
-
-`curl -X POST -H "Authorization: <token>" -d 'hello world!' "https://api.cache.cell-us-east-1-1.prod.a.momentohq.com/topics/my-cache/example"`
