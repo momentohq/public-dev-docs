@@ -38,30 +38,28 @@ To access the Momento HTTP API, use one of the following endpoints in the region
 
 If you do not see a Region you require, let’s talk. Please contact [Support](mailto:support@momentohq.com).
 
-## Topics
-
-### Publish
+## Publish
 
 Publishes a message to a topic.
 
-#### Request
+### Request
 
 - Path: /topics/{cacheName}/{topicName}
 - HTTP Method: POST
 
-##### Body
+#### Body
 
 - Content-Type: octet-stream
 - The body of the request should contain the binary value to be published to the topic.
 
-##### Path Parameters
+#### Path Parameters
 
 | Parameter&nbsp;name | Required? | Type            | Description                                 |
 |---------------------|-----------|-----------------|---------------------------------------------|
 | cacheName           | yes       | URL-safe string | The name of the cache containing the topic. |
 | topicName           | yes       | URL-safe string | Name of the topic to publish to.            |
 
-##### Query Parameters
+#### Query Parameters
 
 | Parameter&nbsp;name | Required? | Type                | Description                                                                                         |
 |---------------------|-----------|---------------------|-----------------------------------------------------------------------------------------------------|
@@ -69,7 +67,7 @@ Publishes a message to a topic.
 
 *** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
-##### Headers
+#### Headers
 
 | Header&nbsp;name | Required? | Type                 | Description                                                                                        |
 |------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
@@ -77,15 +75,15 @@ Publishes a message to a topic.
 
 ** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
-#### Responses
+## Responses
 
-#### Success
+### Success
 
 *Status Code: 204 No Content*
 
 - The message was successfully published to the provided topic
 
-##### Error
+### Error
 
 *Status Code: 400 Bad Request*
 - This error type typically indicates that the request was incorrectly specified. See the message body for further details.
@@ -107,7 +105,7 @@ Publishes a message to a topic.
 
 ## Examples
 
-#### Publish
+### Publish
 
 Below is an example that publishes the value `hello world!` to the *example* topic in the *my-cache* cache in the *us-east-1* region.
 
