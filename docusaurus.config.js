@@ -248,9 +248,9 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      colorMode: {
+      /** colorMode: {
         disableSwitch: true,
-      },
+      }, **/
       navbar: {
         title: "",
         logo: {
@@ -288,7 +288,7 @@ const config = {
         copyright: `Copyright © 2022 - ${new Date().getFullYear()} Momento, Inc.`,
         links: [
           {
-            title: "Docs",
+            title: "Sites",
             items: [
               {
                 label: 'Documentation Home',
@@ -316,6 +316,10 @@ const config = {
           {
             title: "More",
             items: [
+              {
+                label: "Contact us",
+                to: "https://www.gomomento.com/contact-us",
+              },
               {
                 label: "Blog",
                 to: "https://www.gomomento.com/blog",
