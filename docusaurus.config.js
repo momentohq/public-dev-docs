@@ -203,6 +203,26 @@ const config = {
             to: '/cache/develop/sdks/web',
           },
           {
+            from: '/develop/api-reference/collections/collectionttl',
+            to: '/cache/develop/api-reference/collection-ttl',
+          },
+          {
+            from: '/develop/api-reference/collections/sortedsets',
+            to: '/cache/develop/api-reference/sorted-set-collections',
+          },
+          {
+            from: '/develop/api-reference/collections/dictionary',
+            to: '/cache/develop/api-reference/dictionary-collections',
+          },
+          {
+            from: '/develop/api-reference/collections/list',
+            to: '/cache/develop/api-reference/list-collections',
+          },
+          {
+            from: '/develop/api-reference/collections/sets',
+            to: '/cache/develop/api-reference/set-collections',
+          },
+          {
             from: '/develop/api-reference/auth-tokens',
             to: '/cache/develop/api-reference/auth'
           },
