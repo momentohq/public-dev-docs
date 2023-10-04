@@ -41,4 +41,4 @@ jobs:
           body: |
             Auto translated PR from #${{ github.event.pull_request.number }}
             cc: @MomentoBigFun @Yoshiitaka
-          assignees: MomentoBigFun,Yoshiitaka
+          reviewers: poppoerika
