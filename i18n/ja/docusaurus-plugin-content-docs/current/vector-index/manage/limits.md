@@ -6,16 +6,14 @@ pagination_next: null
 description: Explore Momento Vector Index service limits, the default values, and how to get them changed if you need.
 ---
 
-# Service Limits for Momento Cache and Momento Topics
+#
 
-Momento Vector Index seeks to protect itself and their customers when it comes to service resources. To do this, every account and index have service limits, or what we call "guardrails" (like a curvy mountain road) to help keep operations running how they should and as smoothly as possible. This page outlines the default service limits:
+Momento Vector Indexは、サービス・リソースに関して、自社と顧客を保護しようと努めています。そのため、すべてのアカウントとインデックスには、サービス制限、または私たちが「ガードレール」と呼ぶもの（カーブの多い山道のようなもの）があり、オペレーションを可能な限り円滑に、あるべきように維持するのに役立っています。このページでは、デフォルトのサービス制限の概要を説明します：
 
-| Momento Vector Index limits | Value |
-|-----------------------------|-------|
-| Total Indexes               | 5     |
-| Vector Max Dimensions       | 2500  |
+| Momento Vector インデックスの制限 | 値    |
+| ------------------------ | ---- |
+| インデックス総数                 | 5    |
+| ベクトルの最大寸法                | 2500 |
 
-## Soft limits and support
-
-The limits on this page are soft limits that can be altered unless specifically denoted. If you need limits adjusted, please reach out to [Momento Support](mailto:support@momentohq.com). Please include your login email, the name of the index(es) to be altered, the cloud+region the cache is located in (e.g. AWS us-west-2), and which limits from the list you’d like increased.
+## ソフトリミットとサポート
 
