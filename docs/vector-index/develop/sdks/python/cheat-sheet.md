@@ -149,4 +149,3 @@ if isinstance(delete_response, DeleteIndex.Success):
 elif isinstance(delete_response, DeleteIndex.Error):
     print(f"Error while deleting index {delete_response.message}")
 ```
-
