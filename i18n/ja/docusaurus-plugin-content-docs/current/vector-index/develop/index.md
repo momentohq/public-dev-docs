@@ -30,4 +30,3 @@ You need to provide a Momento auth token when instantiating a Momento client. If
 If you're storing your Momento auth token in a secret manager such as [AWS Secret Manager](https://aws.amazon.com/secrets-manager/), [GCP Secret Manager](https://cloud.google.com/secret-manager), or a local config file, you must first retrieve the credentials from there and then instantiate a `CredentialProvider` from a string, like this:
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromString'} />
-
