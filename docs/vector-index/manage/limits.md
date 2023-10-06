@@ -6,7 +6,7 @@ pagination_next: null
 description: Explore Momento Vector Index service limits, the default values, and how to get them changed if you need.
 ---
 
-# Service Limits for Momento Cache and Momento Topics
+# Service Limits for Momento Vector Index
 
 Momento Vector Index seeks to protect itself and their customers when it comes to service resources. To do this, every account and index have service limits, or what we call "guardrails" (like a curvy mountain road) to help keep operations running how they should and as smoothly as possible. This page outlines the default service limits:
 
