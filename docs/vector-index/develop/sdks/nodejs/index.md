@@ -1,12 +1,12 @@
 ---
 sidebar_position: 1
-title: Momento MVI Node.js SDK
+title: Momento Vector Index Node.js SDK
 pagination_prev: null
 sidebar_label: Node.js
 description: Information about the Momento Node.js SDK
 ---
 
-# Momento MVI Node.js SDK
+# Momento Vector Index Node.js SDK
 
 <img src="/img/nodes.png" width="95%" alt="a picture of abstract shapes as building and nodes of data connecting them at high speed" />
 
