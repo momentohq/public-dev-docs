@@ -6,7 +6,7 @@ pagination_next: null
 description: Explore Momento Cache  service limits, the default values, and how to get them changed if you need.
 ---
 
-# Service Limits for Momento Cache and Momento Topics
+# Service Limits for Momento Cache
 
 Momento Cache and Momento Topics seek to protect themselves and their customers when it comes to service resources. To do this, every account, cache, and topic has service limits, or what we call "guardrails" (like a curvy mountain road) to help keep operations running how they should and as smoothly as possible. This page outlines the default service limits:
 
