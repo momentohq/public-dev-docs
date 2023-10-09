@@ -18,6 +18,7 @@ interface SdkInfo {
   configObjectFile: string | undefined;
   topicClientFile: string | undefined;
   authClientFile: string | undefined;
+  leaderboardClientFile: Array<string> | undefined;
 }
 
 const SDKS: Array<SdkInfo> = [
@@ -30,6 +31,9 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'packages/client-sdk-nodejs/src/config/configuration.ts',
     topicClientFile: 'packages/core/src/clients/ITopicClient.ts',
     authClientFile: 'packages/core/src/clients/IAuthClient.ts',
+    leaderboardClientFile: [
+      'packages/core/src/internal/clients/leaderboard/AbstractLeaderboard.ts',
+    ],
   },
   {
     sdk: Sdk.WEB,
@@ -40,13 +44,17 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'packages/client-sdk-web/src/config/configuration.ts',
     topicClientFile: 'packages/core/src/clients/ITopicClient.ts',
     authClientFile: 'packages/core/src/clients/IAuthClient.ts',
+    leaderboardClientFile: [
+      'packages/core/src/internal/clients/leaderboard/AbstractLeaderboard.ts',
+    ],
   },
   {
     sdk: Sdk.DOTNET,
     cacheClientFile: 'src/Momento.Sdk/ICacheClient.cs',
     configObjectFile: 'src/Momento.Sdk/Config/Configuration.cs',
-    topicClientFile: undefined,
+    topicClientFile: 'src/Momento.Sdk/ITopicClient.cs',
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.PYTHON,
@@ -54,6 +62,7 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'src/momento/config/configuration.py',
     topicClientFile: undefined,
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.GO,
@@ -61,6 +70,7 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'config/config.go',
     topicClientFile: 'momento/topic_client.go',
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.JAVA,
@@ -69,6 +79,7 @@ const SDKS: Array<SdkInfo> = [
       'momento-sdk/src/main/java/momento/sdk/config/Configuration.java',
     topicClientFile: undefined,
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.ELIXIR,
@@ -76,6 +87,7 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'src/lib/momento/config/configuration.ex',
     topicClientFile: undefined,
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.PHP,
@@ -83,6 +95,7 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'src/Config/Configuration.php',
     topicClientFile: undefined,
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.RUST,
@@ -90,6 +103,7 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: undefined,
     topicClientFile: 'src/preview/topics.rs',
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.RUBY,
@@ -97,6 +111,7 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: undefined,
     topicClientFile: undefined,
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
 ];
 
@@ -232,6 +247,22 @@ const AUTH_API_GROUPS: Array<ApiGroup> = [
   },
 ];
 
+const LEADERBOARD_API_GROUPS: Array<ApiGroup> = [
+  {
+    groupName: 'Leaderboard',
+    groupDescription: 'A matrix of SDK support for Momento Leaderboard APIs',
+    apis: [
+      'leaderboardUpsert',
+      'leaderboardFetchByScore',
+      'leaderboardFetchByRank',
+      'leaderboardGetRank',
+      'leaderboardLength',
+      'leaderboardRemoveElements',
+      'leaderboardDelete',
+    ],
+  },
+];
+
 export class ApiSupportMatrixGenerator {
   generateApiMatrixMarkdownNodes(): Array<Heading | Paragraph | Table> {
     const sourceProvider: SdkSourceProvider = new SdkGithubRepoSourceProvider();
@@ -240,6 +271,10 @@ export class ApiSupportMatrixGenerator {
     const allSdksConfigApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksTopicsApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksAuthApiSupport = new Map<string, Map<string, boolean>>();
+    const allSdksLeaderboardApiSupport = new Map<
+      string,
+      Map<string, boolean>
+    >();
 
     for (const sdk of SDKS) {
       const sdkRepoDir = sourceProvider.sdkSourceDir(sdk.sdk);
@@ -270,10 +305,19 @@ export class ApiSupportMatrixGenerator {
         AUTH_API_GROUPS
       );
       allSdksAuthApiSupport.set(sdkName, authApiSupport);
+      const leaderboardApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.leaderboardClientFile,
+        LEADERBOARD_API_GROUPS
+      );
+      allSdksLeaderboardApiSupport.set(sdkName, leaderboardApiSupport);
     }
 
     const nodes: Array<Heading | Paragraph | Table> = [];
     nodes.push(...renderApiGroups(CACHE_API_GROUPS, allSdksCacheApiSupport));
+    nodes.push(
+      ...renderApiGroups(LEADERBOARD_API_GROUPS, allSdksLeaderboardApiSupport)
+    );
     nodes.push(...renderApiGroups(TOPIC_API_GROUPS, allSdksTopicsApiSupport));
     nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
     nodes.push(...renderApiGroups(CONFIG_API_GROUPS, allSdksConfigApiSupport));
