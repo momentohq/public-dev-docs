@@ -264,22 +264,42 @@ const LEADERBOARD_API_GROUPS: Array<ApiGroup> = [
 ];
 
 export class ApiSupportMatrixGenerator {
-  generateApiMatrixMarkdownNodes(): Array<Heading | Paragraph | Table> {
-    const sourceProvider: SdkSourceProvider = new SdkGithubRepoSourceProvider();
+  private sourceProvider: SdkSourceProvider;
 
+  constructor() {
+    this.sourceProvider = new SdkGithubRepoSourceProvider();
+  }
+  generateApiMatrixMarkdownNodes(
+    matrixType: string
+  ): Array<Heading | Paragraph | Table> {
+    switch (matrixType) {
+      case '%%%TOPICS_API_SUPPORT_MATRIX%%%': {
+        return this.generateTopicsMatrixNodes();
+      }
+      case '%%%CACHE_API_SUPPORT_MATRIX%%%': {
+        return this.generateCacheMatrixNodes();
+      }
+      case '%%%VECTOR_INDEX_API_SUPPORT_MATRIX%%%': {
+        return this.generateVectorIndexMatrixNodes();
+      }
+      case '%%%LEADERBOARD_API_SUPPORT_MATRIX%%%': {
+        return this.generateLeaderboardMatrixNodes();
+      }
+      default: {
+        console.log('Unknown matrix type:', matrixType);
+        return [];
+      }
+    }
+  }
+
+  generateCacheMatrixNodes(): Array<Heading | Paragraph | Table> {
     const allSdksCacheApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksConfigApiSupport = new Map<string, Map<string, boolean>>();
-    const allSdksTopicsApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksAuthApiSupport = new Map<string, Map<string, boolean>>();
-    const allSdksLeaderboardApiSupport = new Map<
-      string,
-      Map<string, boolean>
-    >();
 
     for (const sdk of SDKS) {
-      const sdkRepoDir = sourceProvider.sdkSourceDir(sdk.sdk);
+      const sdkRepoDir = this.sourceProvider.sdkSourceDir(sdk.sdk);
       const sdkName = sdk.sdk.valueOf();
-      // console.log(`Checking sdk: ${sdkName}`);
 
       const cacheApiSupport = determineApiSupport(
         sdkRepoDir,
@@ -293,18 +313,65 @@ export class ApiSupportMatrixGenerator {
         CONFIG_API_GROUPS
       );
       allSdksConfigApiSupport.set(sdkName, configApiSupport);
-      const topicApiSupport = determineApiSupport(
-        sdkRepoDir,
-        sdk.topicClientFile,
-        TOPIC_API_GROUPS
-      );
-      allSdksTopicsApiSupport.set(sdkName, topicApiSupport);
       const authApiSupport = determineApiSupport(
         sdkRepoDir,
         sdk.authClientFile,
         AUTH_API_GROUPS
       );
       allSdksAuthApiSupport.set(sdkName, authApiSupport);
+    }
+
+    const nodes: Array<Heading | Paragraph | Table> = [];
+    nodes.push(...renderApiGroups(CACHE_API_GROUPS, allSdksCacheApiSupport));
+
+    nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
+    nodes.push(...renderApiGroups(CONFIG_API_GROUPS, allSdksConfigApiSupport));
+    return nodes;
+  }
+
+  generateTopicsMatrixNodes(): Array<Heading | Paragraph | Table> {
+    const allSdksTopicsApiSupport = new Map<string, Map<string, boolean>>();
+    const allSdksAuthApiSupport = new Map<string, Map<string, boolean>>();
+
+    for (const sdk of SDKS) {
+      const sdkRepoDir = this.sourceProvider.sdkSourceDir(sdk.sdk);
+      const sdkName = sdk.sdk.valueOf();
+
+      const topicApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.topicClientFile,
+        TOPIC_API_GROUPS
+      );
+      allSdksTopicsApiSupport.set(sdkName, topicApiSupport);
+
+      const authApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.authClientFile,
+        AUTH_API_GROUPS
+      );
+      allSdksAuthApiSupport.set(sdkName, authApiSupport);
+    }
+
+    const nodes: Array<Heading | Paragraph | Table> = [];
+    nodes.push(...renderApiGroups(TOPIC_API_GROUPS, allSdksTopicsApiSupport));
+    nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
+    return nodes;
+  }
+
+  generateVectorIndexMatrixNodes(): Array<Heading | Paragraph | Table> {
+    return [];
+  }
+
+  generateLeaderboardMatrixNodes(): Array<Heading | Paragraph | Table> {
+    const allSdksLeaderboardApiSupport = new Map<
+      string,
+      Map<string, boolean>
+    >();
+
+    for (const sdk of SDKS) {
+      const sdkRepoDir = this.sourceProvider.sdkSourceDir(sdk.sdk);
+      const sdkName = sdk.sdk.valueOf();
+
       const leaderboardApiSupport = determineApiSupport(
         sdkRepoDir,
         sdk.leaderboardClientFile,
@@ -314,13 +381,9 @@ export class ApiSupportMatrixGenerator {
     }
 
     const nodes: Array<Heading | Paragraph | Table> = [];
-    nodes.push(...renderApiGroups(CACHE_API_GROUPS, allSdksCacheApiSupport));
     nodes.push(
       ...renderApiGroups(LEADERBOARD_API_GROUPS, allSdksLeaderboardApiSupport)
     );
-    nodes.push(...renderApiGroups(TOPIC_API_GROUPS, allSdksTopicsApiSupport));
-    nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
-    nodes.push(...renderApiGroups(CONFIG_API_GROUPS, allSdksConfigApiSupport));
     return nodes;
   }
 }
