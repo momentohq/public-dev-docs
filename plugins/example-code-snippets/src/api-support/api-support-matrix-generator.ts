@@ -285,11 +285,76 @@ export class ApiSupportMatrixGenerator {
       case '%%%LEADERBOARD_API_SUPPORT_MATRIX%%%': {
         return this.generateLeaderboardMatrixNodes();
       }
+      case '%%%ALL_API_SUPPORT_MATRIX%%%': {
+        return this.generateAllMatrixNodes();
+      }
       default: {
         console.log('Unknown matrix type:', matrixType);
         return [];
       }
     }
+  }
+
+  generateAllMatrixNodes(): Array<Heading | Paragraph | Table> {
+    const allSdksCacheApiSupport = new Map<string, Map<string, boolean>>();
+    const allSdksConfigApiSupport = new Map<string, Map<string, boolean>>();
+    const allSdksAuthApiSupport = new Map<string, Map<string, boolean>>();
+    const allSdksTopicsApiSupport = new Map<string, Map<string, boolean>>();
+    const allSdksLeaderboardApiSupport = new Map<
+      string,
+      Map<string, boolean>
+    >();
+
+    for (const sdk of SDKS) {
+      const sdkRepoDir = this.sourceProvider.sdkSourceDir(sdk.sdk);
+      const sdkName = sdk.sdk.valueOf();
+
+      const cacheApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.cacheClientFile,
+        CACHE_API_GROUPS
+      );
+      allSdksCacheApiSupport.set(sdkName, cacheApiSupport);
+
+      const configApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.configObjectFile,
+        CONFIG_API_GROUPS
+      );
+      allSdksConfigApiSupport.set(sdkName, configApiSupport);
+
+      const authApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.authClientFile,
+        AUTH_API_GROUPS
+      );
+      allSdksAuthApiSupport.set(sdkName, authApiSupport);
+
+      const topicApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.topicClientFile,
+        TOPIC_API_GROUPS
+      );
+      allSdksTopicsApiSupport.set(sdkName, topicApiSupport);
+
+      const leaderboardApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.leaderboardClientFile,
+        LEADERBOARD_API_GROUPS
+      );
+      allSdksLeaderboardApiSupport.set(sdkName, leaderboardApiSupport);
+    }
+
+    const nodes: Array<Heading | Paragraph | Table> = [];
+    nodes.push(...renderApiGroups(CACHE_API_GROUPS, allSdksCacheApiSupport));
+
+    nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
+    nodes.push(...renderApiGroups(CONFIG_API_GROUPS, allSdksConfigApiSupport));
+    nodes.push(...renderApiGroups(TOPIC_API_GROUPS, allSdksTopicsApiSupport));
+    nodes.push(
+      ...renderApiGroups(LEADERBOARD_API_GROUPS, allSdksLeaderboardApiSupport)
+    );
+    return nodes;
   }
 
   generateCacheMatrixNodes(): Array<Heading | Paragraph | Table> {
