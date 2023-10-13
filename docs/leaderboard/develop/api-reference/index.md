@@ -30,9 +30,9 @@ Then you can create a Leaderboard by specifying a cache and leaderboard name.
 
 Inserts elements if they do not already exist in the leaderboard. Updates elements if they do already exist in the leaderboard.
 
-| Name         | Type                | Description                                        |
-|--------------|---------------------|----------------------------------------------------|
-| elements     | Map<number, number> | A Map of elements (id and score) to upsert.        |
+| Name         | Type                | Description                                                    |
+|--------------|---------------------|----------------------------------------------------------------|
+| elements     | Map<number, number> | A Map or Record of elements (id,score pairs) to upsert.        |
 
 <details>
   <summary>Method response object</summary>
@@ -66,9 +66,8 @@ Fetches elements that fall within the specified min and max scores.
 <details>
   <summary>Method response object</summary>
 
-* Found
+* Success
     * values(): {`id`: number, `score`: number, `rank`: number}[]
-* NotFound
 * Error
 
 See [response objects](./response-objects.md) for specific information.
@@ -88,16 +87,15 @@ Fetches elements that fall within the specified min and max ranks.
 
 | Name         | Type                | Description                                                                  |
 |--------------|---------------------|------------------------------------------------------------------------------|
-| startRank    | Optional[number]    | Inclusive lower bound for the rank range. Defaults to 0.                     |
-| endRank      | Optional[number]    | Exclusive upper bound for the rank range. Defaults to `startRank` + 8192.    |
+| startRank    | number    | Inclusive lower bound for the rank range. Defaults to 0.                     |
+| endRank      | number    | Exclusive upper bound for the rank range. Defaults to `startRank` + 8192.    |
 | order        | Optional[Ascending / Descending]    | The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.   |
 
 <details>
   <summary>Method response object</summary>
 
-* Found
+* Success
     * values(): {`id`: number, `score`: number, `rank`: number}[]
-* NotFound
 * Error
 
 See [response objects](./response-objects.md) for specific information.
@@ -123,9 +121,8 @@ Fetches elements given a list of element IDs.
 <details>
   <summary>Method response object</summary>
 
-* Found
+* Success
     * values(): {`id`: number, `score`: number, `rank`: number}[]
-* NotFound
 * Error
 
 See [response objects](./response-objects.md) for specific information.
@@ -145,9 +142,8 @@ Gets the length of the leaderboard.
 <details>
   <summary>Method response object</summary>
 
-* Found
+* Success
     * length(): number
-* NotFound
 * Error
 
 See [response objects](./response-objects.md) for specific information.

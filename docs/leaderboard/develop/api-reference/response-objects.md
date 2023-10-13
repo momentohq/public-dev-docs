@@ -27,11 +27,3 @@ Returned in lieu of an exception.
 ## Success
 
 The command was successful.
-
-## Found
-
-The leaderboard existed and the requested values were fetched.
-
-## NotFound
-
-The leaderboard did not exist or the requested values were not found.
