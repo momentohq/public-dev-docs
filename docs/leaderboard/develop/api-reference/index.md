@@ -28,7 +28,9 @@ Then you can create a Leaderboard by specifying a cache and leaderboard name.
 
 ### Upsert elements
 
-Inserts elements if they do not already exist in the leaderboard. Updates elements if they do already exist in the leaderboard.
+Inserts elements if they do not already exist in the leaderboard. Updates elements if they do already exist in the leaderboard. There are no partial failures; an upsert call will either succeed or fail.
+
+The ID can be a player identifier, session identifier, browser identifier or any other kind of identifier you want to use for this scoreboard. The full unsigned 64 bit range is allowed here, between 0 and 2^63-1 inclusive. An id can only appear in a leaderboard one time, meaning you can't have two scores for one player unless that player has two ids!
 
 | Name         | Type                | Description                                                    |
 |--------------|---------------------|----------------------------------------------------------------|
@@ -46,7 +48,7 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_LeaderboardUpsert'} />
 
-For large leaderboards, you will need to upsert in batches of 8192 elements.
+Upsert is implemented as a batched operation, so for large leaderboards, you can upsert in batches of up to 8192 elements. 
 
 <SdkExampleTabs snippetId={'API_LeaderboardUpsertPagination'} />
 
@@ -76,7 +78,7 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByScore'} />
 
-For large leaderboards, you will need to fetch in batches of 8192 elements.
+FetchByScore is implemented as a batch operation, so for large leaderboards, you can fetch in batches of 8192 elements. You can page through multiple elements that fall within the requested score range using the `offset` parameter until you receive an empty list, which indicates the end of the requested elements. 
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByScorePagination'} />
 
@@ -108,7 +110,7 @@ For large leaderboards, you will need to fetch in batches of 8192 elements.
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByRankPagination'} />
 
-### Fetch elements' rank
+### Fetch elements by ID
 
 Fetches elements given a list of element IDs. 
 
@@ -129,15 +131,11 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
-<SdkExampleTabs snippetId={'API_LeaderboardFetchByRank'} />
-
-For large leaderboards, you will need to fetch in batches of 8192 elements.
-
-<SdkExampleTabs snippetId={'API_LeaderboardFetchByRankPagination'} />
+<SdkExampleTabs snippetId={'API_LeaderboardGetRank'} />
 
 ### Get leaderboard length
 
-Gets the length of the leaderboard.
+Gets the number of entries in the leaderboard. There are no parameters for this method; the leaderboard name is inferred from the `Leaderboard` object.
 
 <details>
   <summary>Method response object</summary>
@@ -178,7 +176,7 @@ For large leaderboards, you will need to remove in batches of 8192 elements.
 
 ### Delete leaderboard
 
-Deletes the leaderboard.
+Deletes the leaderboard. There are no parameters for this method; the leaderboard name is inferred from the `Leaderboard` object.
 
 <details>
   <summary>Method response object</summary>

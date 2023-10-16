@@ -11,6 +11,13 @@ pagination_next: null
 
 Momento Leaderboard is a purpose-built leaderboard that supports tens of millions of items and rapid ingestion/querying/updates. While many databases approximate leaderboards via general purpose data structures like sorted set or range queries, Momento Leaderboard is a first-class, full-fledged service that you can quickly and easily integrate with your application. 
 
+:::info
+
+Momento Leaderboard is currently in preview mode. To be allowlisted for this service, please contact our team through the [contact form](https://www.gomomento.com/contact-us) or on [Discord](https://discord.com/invite/3HkAKjUZGq).
+
+:::
+
+
 ## Getting Started with Momento Leaderboard
 
 ### Step 1: Create your Momento API key and cache
@@ -24,18 +31,9 @@ Click on the Create Cache button and create a cache using the cloud provider and
 
 ![Image of Momento console Create Cache form](@site/static/img/console-create-cache-form.png)
 
-Then create an API key via the [Momento console](https://console.gomomento.com) on the Generate API Key screen by selecting the [API Keys](https://console.gomomento.com/tokens) menu option.
+Then follow our [step-by-step instructions](../cache/develop/authentication/api-keys.md) to create an API key via the [Momento console](https://console.gomomento.com). 
 
-Once on the API key page, select the information that matches where your caches live:
-
-1. Cloud provider - AWS
-2. Region - us-west-2
-3. Key Type - Super User
-4. (Optional) Expiration date
-
-![Image showing the fields to create a new API key](@site/static/img/getting-started/select-provider-region-us-west-2.png)
-
-### Step 3: Create a Momento Leaderboard
+### Step 2: Create a Momento Leaderboard
 
 ```javascript
 // Create a new leaderboard client, which you can use to create
@@ -51,7 +49,7 @@ const client = new PreviewLeaderboardClient({
 const leaderboard = client.leaderboard('my-cache', 'my-leaderboard');
 ```
 
-### Step 4: Upsert, fetch, and remove elements
+### Step 3: Upsert, fetch, and remove elements
 
 See the [API reference](./develop/api-reference/index.md) page for documentation on each available leaderboard API.
 
@@ -61,8 +59,7 @@ Check out the [Node.js example](https://github.com/momentohq/client-sdk-javascri
 
 <details>
   <summary>What's the difference between Momento Leaderboard and Redis Sorted Sets?</summary>
-  Momento Leaderboard has a much more efficient memory footprint, allowing us to scale to tens of millions of records. 
-  Additionally, we will soon offer more purpose-built APIs for leaderboards, like competition ranking.
+  Momento Leaderboard has a much more efficient memory footprint, allowing us to scale to tens of millions of records, and the APIs were built with gaming use cases specifically in mind.
 </details>
 
 <details>

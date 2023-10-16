@@ -2,7 +2,7 @@
 sidebar_position: 2
 sidebar_label: Language Support
 title: Language API Support Matrix
-description: A reference as to which Momento SDK languages support each API
+description: See which Momento SDKs support the Leaderboard service
 pagination_next: null
 ---
 
