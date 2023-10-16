@@ -16,13 +16,13 @@ API keys are *long-lived values intended for programmatic use*. These keys grant
 
 :::info
 
-You are not able to create "super-user" API keys via the Momento SDK. However, you *can* create fine-grain access controlled keys! Check out our [Auth API reference page](./../api-reference/auth.md) for more details.
+It is not possible to create "super-user" API keys via the Momento SDK; these may only be created in the console. However, you *can* use the SDK to create API keys with specific permissions, via fine-grain access control! Check out our [Auth API reference page](./../api-reference/auth.md) for more details.
 
 :::
 
 ## Creating an API key
 
-While you are certainly allowed to create API keys via our SDK, it is generally recommended to use the [Momento console](https://console.gomomento.com/tokens). This allows you to monitor and maintain your long-lived keys visually, making sure you don't accidentally open up a security hole in your account. 
+While it is possible to create API keys via the Momento SDK, it is generally recommended to use the [Momento console](https://console.gomomento.com/tokens). This allows you to monitor and maintain your long-lived keys visually, making sure you don't accidentally open up a security hole in your account. 
 
 ### Step 1: Sign up or log into the Momento console
 
@@ -61,12 +61,27 @@ When creating an API key, you have the option to create one that never expires a
 
 The Momento console offers several pre-configured options for expiration ranges or you can select your own date. Just remember to create a new API key and rotate it in your application before it expires to prevent outages!
 
-## Use cases
+## API Keys vs. Tokens
 
-There are many reasons to **not** use an API key for auth but there are also a few reasons to use one. 
+For a good overview on the differences between API Keys and Tokens, check out [Allen Helton's blog on the topic](https://www.gomomento.com/blog/api-keys-vs-tokens-whats-the-difference).
 
-* All usage is programmatic and server-side
-* You are okay with longer-lived keys that must be rotated on a monthly/yearly basis
-* You need to create session tokens  (must use a "super-user" token for this)
+The most important distinctions:
+
+API Keys:
+
+* Are longer-lived (days, weeks, or months) and intended mostly for programmatic, server-side use cases
+* Are usually rotated on a monthly or yearly basis using tools like AWS Secrets Manager
+* May have relatively broad permissions and thus it is important to ensure they are not compromised
+
+Tokens:
+
+* Are shorter-lived (hours) and intended for interactive use caches (e.g. from a user's browser or mobile device)
+* Usually have much more narrow permissions (only what the user needs access to)
+* Are not refreshed, so once they expire, they are gone forever
+* Due to their shorter lifespan and narrower permissions, are significantly less sensitive in the event that one is compromised
+
+For more information on Momento Tokens, see the [tokens page](./tokens.md).
+
+For more information on managing the permissions on either API Keys or Tokens via fine-grained access control, see the [permissions page](./permissions.md).
 
 Ready to get started? Head on over to the [Momento console](https://console.gomomento.com/tokens) and get your API key!
