@@ -13,7 +13,9 @@ Momento Leaderboard is a purpose-built leaderboard that supports tens of million
 
 :::info
 
-Momento Leaderboard is currently in preview mode. To be allowlisted for this service, please contact our team through the [contact form](https://www.gomomento.com/contact-us) or on [Discord](https://discord.com/invite/3HkAKjUZGq).
+Momento Leaderboard is currently in preview mode. Trying to use Leaderboard APIs without being allowlisted will produce a GRPC status code 7 (PERMISSION_DENIED).
+
+To be allowlisted for this service, please contact our team through the [contact form](https://www.gomomento.com/contact-us), on [Discord](https://discord.com/invite/3HkAKjUZGq), or by emailing support@momentohq.com. 
 
 :::
 
