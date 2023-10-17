@@ -1,0 +1,10 @@
+{
+  "label": "Develop",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": ""
+  },
+  "className": "sidebar-item-api-reference"
+}
