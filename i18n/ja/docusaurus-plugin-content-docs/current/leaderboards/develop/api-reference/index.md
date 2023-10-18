@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
 sidebar_label: API Reference
-title: Leaderboard API reference
-description: Learn how to interact programmatically with Momento Leaderboard API.
+title: Leaderboards API reference
+description: Learn how to interact programmatically with Momento Leaderboards API.
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -10,9 +10,9 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-## Using the Momento Leaderboard
+## Using the Momento Leaderboards
 
-Momento Leaderboard is a first-class service with purpose-built APIs that supports leaderboards with tens of millions of items and rapid ingestion/querying/updates.
+Momento Leaderboards is a first-class service with purpose-built APIs that supports leaderboards with tens of millions of items and rapid ingestion/querying/updates.
 
 ## Leaderboard Client
 
@@ -20,7 +20,7 @@ To create and interact with leaderboards, you must first create a LeaderboardCli
 
 <SdkExampleTabs snippetId={'API_InstantiateLeaderboardClient'} />
 
-Then you can create a Leaderboard by specifying a cache and leaderboard name.
+Then you can create a leaderboard by specifying a cache and leaderboard name.
 
 <SdkExampleTabs snippetId={'API_CreateLeaderboard'} />
 
@@ -54,7 +54,9 @@ Upsert is implemented as a batched operation, so for large leaderboards, you can
 
 ### Fetch elements by score
 
-Fetches elements that fall within the specified min and max scores.
+Fetches elements that fall within the specified min and max scores. 
+
+Elements with the same score will be returned in alphanumerical order based on their ID (e.g. IDs of elements with the same score would be returned in the order `[1, 10, 123, 2, 234, ...]` rather than `[1, 2, 10, 123, 234, ...]`).
 
 
 | Name         | Type                | Description                                                       |
@@ -78,7 +80,7 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByScore'} />
 
-FetchByScore is implemented as a batch operation, so for large leaderboards, you can fetch in batches of 8192 elements. You can page through multiple elements that fall within the requested score range using the `offset` parameter until you receive an empty list, which indicates the end of the requested elements. 
+FetchByScore is implemented as a batch operation, so for large leaderboards, you can fetch in batches of up to 8192 elements. You can page through multiple elements that fall within the requested score range using the `offset` parameter until you receive an empty list, which indicates the end of the requested elements. 
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByScorePagination'} />
 
@@ -106,7 +108,7 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByRank'} />
 
-For large leaderboards, you will need to fetch in batches of 8192 elements.
+For large leaderboards, you will need to fetch in batches of up to 8192 elements.
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByRankPagination'} />
 
@@ -170,7 +172,7 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_LeaderboardRemoveElements'} />
 
-For large leaderboards, you will need to remove in batches of 8192 elements.
+For large leaderboards, you will need to remove in batches of up to 8192 elements.
 
 <SdkExampleTabs snippetId={'API_LeaderboardRemoveElementsPagination'} />
 

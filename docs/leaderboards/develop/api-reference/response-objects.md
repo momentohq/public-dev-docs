@@ -5,7 +5,7 @@ title: Response object API reference in Momento Leaderboards
 description: Learn how to interact with the response object in the Momento API for Leaderboards.
 ---
 
-# Response objects from Momento APIs in Momento Leaderboard
+# Response objects from Momento APIs in Momento Leaderboards
 
 These are the baseline responses for all commands. Some commands will add more data and functionality.
 
