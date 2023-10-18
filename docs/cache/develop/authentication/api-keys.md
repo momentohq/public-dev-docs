@@ -22,7 +22,7 @@ It is not possible to create "super-user" API keys via the Momento SDK; these ma
 
 ## Creating an API key
 
-While it is possible to create API keys via the Momento SDK, it is generally recommended to use the [Momento console](https://console.gomomento.com/tokens). This allows you to monitor and maintain your long-lived keys visually, making sure you don't accidentally open up a security hole in your account. 
+While it is possible to create API keys via the Momento SDK, the simplest way to create them is to use the [Momento console](https://console.gomomento.com/tokens).
 
 ### Step 1: Sign up or log into the Momento console
 
