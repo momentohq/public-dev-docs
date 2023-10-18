@@ -9,7 +9,7 @@ pagination_next: null
 
 ## What is Momento Leaderboard?
 
-Momento Leaderboardd is a purpose-built leaderboard service that supports tens of millions of items and rapid ingestion/querying/updates. While many databases approximate leaderboards via general purpose data structures like sorted set or range queries, Momento Leaderboards is a first-class, full-fledged service that you can quickly and easily integrate with your application.
+Momento Leaderboards is a purpose-built leaderboard service that supports tens of millions of items and rapid ingestion/querying/updates. While many databases approximate leaderboards via general purpose data structures like sorted set or range queries, Momento Leaderboards is a first-class, full-fledged service that you can quickly and easily integrate with your application.
 
 :::info
 
