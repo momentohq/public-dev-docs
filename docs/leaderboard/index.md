@@ -9,11 +9,11 @@ pagination_next: null
 
 ## What is Momento Leaderboards?
 
-Momento Leaderboards is a purpose-built leaderboard that supports tens of millions of items and rapid ingestion/querying/updates. While many databases approximate leaderboards via general purpose data structures like sorted set or range queries, Momento Leaderboard is a first-class, full-fledged service that you can quickly and easily integrate with your application. 
+Momento Leaderboards is a serverless leaderboards service that supports tens of millions of items and rapid ingestion/querying/updates. While many databases approximate leaderboards via general purpose data structures like sorted set or range queries, Momento Leaderboard is a first-class, full-fledged service that you can quickly and easily integrate with your application. 
 
 :::info
 
-Leaderboard items will have a 7-day TTL by default. For  persistence (unlimited TTL), please contact our team through the [contact form](https://www.gomomento.com/contact-us), on [Discord](https://discord.com/invite/3HkAKjUZGq), or by emailing support@momentohq.com. 
+Leaderboard items will have a 7-day TTL by default. For persistence (unlimited TTL), please contact our team through the [contact form](https://www.gomomento.com/contact-us), on [Discord](https://discord.com/invite/3HkAKjUZGq), or by emailing support@momentohq.com. 
 
 :::
 
@@ -63,5 +63,5 @@ Check out the [Node.js example](https://github.com/momentohq/client-sdk-javascri
 
 <details>
   <summary>Do Momento Leaderboards items expire?</summary>
-  No, Momento Leaderboards items have no TTL.
+  Momento Leaderboards items have a 7-day TTL by default. If the default TTL for leaderboard items doesn’t work for you, reach out to support@momentohq.com to discuss removing limits.
 </details>

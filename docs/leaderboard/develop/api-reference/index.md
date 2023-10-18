@@ -54,7 +54,7 @@ Upsert is implemented as a batched operation, so for large leaderboards, you can
 
 ### Fetch elements by score
 
-Fetches elements that fall within the specified min and max scores.
+Fetches elements that fall within the specified min and max scores. Elements with the same score will be returned in ascending order based on their ID.
 
 
 | Name         | Type                | Description                                                       |
@@ -78,7 +78,7 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByScore'} />
 
-FetchByScore is implemented as a batch operation, so for large leaderboards, you can fetch in batches of 8192 elements. You can page through multiple elements that fall within the requested score range using the `offset` parameter until you receive an empty list, which indicates the end of the requested elements. 
+FetchByScore is implemented as a batch operation, so for large leaderboards, you can fetch in batches of up to 8192 elements. You can page through multiple elements that fall within the requested score range using the `offset` parameter until you receive an empty list, which indicates the end of the requested elements. 
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByScorePagination'} />
 
@@ -106,7 +106,7 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByRank'} />
 
-For large leaderboards, you will need to fetch in batches of 8192 elements.
+For large leaderboards, you will need to fetch in batches of up to 8192 elements.
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByRankPagination'} />
 
@@ -170,7 +170,7 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_LeaderboardRemoveElements'} />
 
-For large leaderboards, you will need to remove in batches of 8192 elements.
+For large leaderboards, you will need to remove in batches of up to 8192 elements.
 
 <SdkExampleTabs snippetId={'API_LeaderboardRemoveElementsPagination'} />
 
