@@ -13,9 +13,7 @@ Momento Leaderboard is a purpose-built leaderboard that supports tens of million
 
 :::info
 
-Momento Leaderboard is currently in preview mode. Trying to use Leaderboard APIs without being allowlisted will produce a GRPC status code 7 (PERMISSION_DENIED).
-
-To be allowlisted for this service, please contact our team through the [contact form](https://www.gomomento.com/contact-us), on [Discord](https://discord.com/invite/3HkAKjUZGq), or by emailing support@momentohq.com. 
+Momento Leaderboard is currently in beta, and leaderboard items will have a 7-day TTL by default. For  persistence (unlimited TTL), please contact our team through the [contact form](https://www.gomomento.com/contact-us), on [Discord](https://discord.com/invite/3HkAKjUZGq), or by emailing support@momentohq.com. 
 
 :::
 
@@ -24,8 +22,7 @@ To be allowlisted for this service, please contact our team through the [contact
 
 ### Step 1: Create your Momento API key and cache
 
-Go to the [Momento console](https://console.gomomento.com/tokens) and follow the instructions to log in with your email
-address, Google account, or GitHub account.
+Go to the [Momento console](https://console.gomomento.com/tokens) and follow the instructions to log in with your email address, Google account, or GitHub account.
 
 ![Image of Momento console landing page](@site/static/img/getting-started/console.png)
 
