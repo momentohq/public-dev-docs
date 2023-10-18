@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
 sidebar_label: API Reference
-title: Leaderboard API reference
-description: Learn how to interact programmatically with Momento Leaderboard API.
+title: Leaderboards API reference
+description: Learn how to interact programmatically with Momento Leaderboards API.
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -10,9 +10,9 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-## Using the Momento Leaderboard
+## Using the Momento Leaderboards
 
-Momento Leaderboard is a first-class service with purpose-built APIs that supports leaderboards with tens of millions of items and rapid ingestion/querying/updates.
+Momento Leaderboards is a first-class service with purpose-built APIs that supports leaderboards with tens of millions of items and rapid ingestion/querying/updates.
 
 ## Leaderboard Client
 
@@ -20,7 +20,7 @@ To create and interact with leaderboards, you must first create a LeaderboardCli
 
 <SdkExampleTabs snippetId={'API_InstantiateLeaderboardClient'} />
 
-Then you can create a Leaderboard by specifying a cache and leaderboard name.
+Then you can create a leaderboard by specifying a cache and leaderboard name.
 
 <SdkExampleTabs snippetId={'API_CreateLeaderboard'} />
 
