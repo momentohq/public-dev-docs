@@ -1,24 +1,24 @@
 ---
 sidebar_position: 1
 sidebar_class_name: sidebar-item-overview
-sidebar_label: Momento Leaderboard
-title: Momento Leaderboard Documentation
+sidebar_label: Momento Leaderboards
+title: Momento Leaderboards Documentation
 description: Learn about Momento's purpose-built Leaderboard API
 pagination_next: null
 ---
 
-## What is Momento Leaderboard?
+## What is Momento Leaderboards?
 
-Momento Leaderboard is a purpose-built leaderboard that supports tens of millions of items and rapid ingestion/querying/updates. While many databases approximate leaderboards via general purpose data structures like sorted set or range queries, Momento Leaderboard is a first-class, full-fledged service that you can quickly and easily integrate with your application. 
+Momento Leaderboards is a purpose-built leaderboard that supports tens of millions of items and rapid ingestion/querying/updates. While many databases approximate leaderboards via general purpose data structures like sorted set or range queries, Momento Leaderboard is a first-class, full-fledged service that you can quickly and easily integrate with your application. 
 
 :::info
 
-Momento Leaderboard is currently in beta, and leaderboard items will have a 7-day TTL by default. For  persistence (unlimited TTL), please contact our team through the [contact form](https://www.gomomento.com/contact-us), on [Discord](https://discord.com/invite/3HkAKjUZGq), or by emailing support@momentohq.com. 
+Leaderboard items will have a 7-day TTL by default. For  persistence (unlimited TTL), please contact our team through the [contact form](https://www.gomomento.com/contact-us), on [Discord](https://discord.com/invite/3HkAKjUZGq), or by emailing support@momentohq.com. 
 
 :::
 
 
-## Getting Started with Momento Leaderboard
+## Getting Started with Momento Leaderboards
 
 ### Step 1: Create your Momento API key and cache
 
@@ -26,13 +26,13 @@ Go to the [Momento console](https://console.gomomento.com/tokens) and follow the
 
 ![Image of Momento console landing page](@site/static/img/getting-started/console.png)
 
-Click on the Create Cache button and create a cache using the cloud provider and region you want to use for your Momento Leaderboard.
+Click on the Create Cache button and create a cache using the cloud provider and region you want to use for your Momento Leaderboards.
 
 ![Image of Momento console Create Cache form](@site/static/img/console-create-cache-form.png)
 
 Then follow our [step-by-step instructions](https://docs.momentohq.com/cache/develop/authentication/api-keys) to create an API key via the [Momento console](https://console.gomomento.com). 
 
-### Step 2: Create a Momento Leaderboard
+### Step 2: Create a Momento Leaderboards
 
 ```javascript
 // Create a new leaderboard client, which you can use to create
@@ -57,11 +57,11 @@ Check out the [Node.js example](https://github.com/momentohq/client-sdk-javascri
 ## Frequently asked questions about Momento Topics
 
 <details>
-  <summary>What's the difference between Momento Leaderboard and Redis Sorted Sets?</summary>
-  Momento Leaderboard has a much more efficient memory footprint, allowing us to scale to tens of millions of records, and the APIs were built with gaming use cases specifically in mind.
+  <summary>What's the difference between Momento Leaderboards and Redis Sorted Sets?</summary>
+  Momento Leaderboards has a much more efficient memory footprint, allowing us to scale to tens of millions of records, and the APIs were built with gaming use cases specifically in mind.
 </details>
 
 <details>
-  <summary>Do Momento Leaderboard items expire?</summary>
-  No, Momento Leaderboard items have no TTL.
+  <summary>Do Momento Leaderboards items expire?</summary>
+  No, Momento Leaderboards items have no TTL.
 </details>
