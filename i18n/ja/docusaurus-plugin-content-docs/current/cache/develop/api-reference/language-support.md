@@ -7,4 +7,4 @@ description: 各Momento SDK言語がどのAPIをサポートしているかの�
 
 ## 現在のMomento SDKでのAPIサポート状況
 
-%%%API_SUPPORT_MATRIX%%%
+%%%CACHE_API_SUPPORT_MATRIX%%%
