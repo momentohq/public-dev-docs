@@ -15,7 +15,7 @@ Momento Cache is the world's first truly serverless caching service. It provides
 
 Momento Cache is available in the following cloud providers and Regions:
 
-**AWS Regions**: us-west-2, us-east-1, eu-west-1, ap-south-1, ap-northeast-1
+**AWS Regions**: us-west-2, us-east-1, eu-west-1, ap-south-1, ap-northeast-1, us-east-2
 
 **GCP Regions**: us-central1
 

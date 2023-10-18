@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 # Getting started with Momento Vector Index
 
-If you're looking to jump in and get started with Momento Vector Index with an SDK, you've come to the right place.
+If you're looking to jump in and get started with Momento Vector Index with an SDK, you've come to the right place. Please note that Momento Vector Index is currently in beta. At this time, the beta is supported in AWS us-west-2, and to test the service you'll need an API key which is also created for that region.
 
 ## Step 1: Create your API key
 

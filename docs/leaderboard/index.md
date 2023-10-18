@@ -9,11 +9,11 @@ pagination_next: null
 
 ## What is Momento Leaderboard?
 
-Momento Leaderboard is a purpose-built leaderboard that supports tens of millions of items and rapid ingestion/querying/updates. While many databases approximate leaderboards via general purpose data structures like sorted set or range queries, Momento Leaderboard is a first-class, full-fledged service that you can quickly and easily integrate with your application. 
+Momento Leaderboardd is a purpose-built leaderboard service that supports tens of millions of items and rapid ingestion/querying/updates. While many databases approximate leaderboards via general purpose data structures like sorted set or range queries, Momento Leaderboards is a first-class, full-fledged service that you can quickly and easily integrate with your application.
 
 :::info
 
-Momento Leaderboard is currently in beta, and leaderboard items will have a 7-day TTL by default. For  persistence (unlimited TTL), please contact our team through the [contact form](https://www.gomomento.com/contact-us), on [Discord](https://discord.com/invite/3HkAKjUZGq), or by emailing support@momentohq.com. 
+Momento Leaderboards is currently in beta, and leaderboard items will have a 7-day TTL by default. For  persistence (unlimited TTL), please contact our team through the [contact form](https://www.gomomento.com/contact-us), on [Discord](https://discord.com/invite/3HkAKjUZGq), or by emailing support@momentohq.com. 
 
 :::
 
@@ -54,14 +54,14 @@ See the [API reference](./develop/api-reference/index.md) page for documentation
 
 Check out the [Node.js example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/leaderboard.ts) for a runnable program that includes examples of how to call each API.
 
-## Frequently asked questions about Momento Topics
+## Frequently asked questions about Momento Leaderboards
 
 <details>
-  <summary>What's the difference between Momento Leaderboard and Redis Sorted Sets?</summary>
-  Momento Leaderboard has a much more efficient memory footprint, allowing us to scale to tens of millions of records, and the APIs were built with gaming use cases specifically in mind.
+  <summary>What's the difference between Momento Leaderboards and Momento Cache Sorted Sets?</summary>
+  Momento Leaderboards have a much more efficient memory footprint, allowing us to scale to tens of millions of elements, and the APIs were built with gaming use cases specifically in mind.
 </details>
 
 <details>
-  <summary>Do Momento Leaderboard items expire?</summary>
-  No, Momento Leaderboard items have no TTL.
+  <summary>Do Momento Leaderboards items expire?</summary>
+  No, Momento Leaderboards items have no TTL.
 </details>
