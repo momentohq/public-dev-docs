@@ -54,7 +54,9 @@ Upsert is implemented as a batched operation, so for large leaderboards, you can
 
 ### Fetch elements by score
 
-Fetches elements that fall within the specified min and max scores. Elements with the same score will be returned in ascending order based on their ID.
+Fetches elements that fall within the specified min and max scores. 
+
+Elements with the same score will be returned in alphanumerical order based on their ID (e.g. IDs of elements with the same score would be returned in the order `[1, 10, 123, 2, 234, ...]` rather than `[1, 2, 10, 123, 234, ...]`).
 
 
 | Name         | Type                | Description                                                       |
