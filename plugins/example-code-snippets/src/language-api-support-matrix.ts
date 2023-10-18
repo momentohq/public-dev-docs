@@ -22,8 +22,9 @@ function isSupportMatrixNode<T extends unist.Node>(node: unknown): node is T {
 }
 
 /**
- * This is a docusaurus MDX/remark plugin.  It finds the %%%API_SUPPORT_MATRIX%%% marker
+ * This is a docusaurus MDX/remark plugin.  It finds the %%%{product}_API_SUPPORT_MATRIX%%% marker
  * in the markdown and injects the API support matrix tables in its place.
+ * Current supported markers are in the `generateApiMatrixMarkdownNodes` switch statement.
  *
  * @param options
  * @returns {unknown}
