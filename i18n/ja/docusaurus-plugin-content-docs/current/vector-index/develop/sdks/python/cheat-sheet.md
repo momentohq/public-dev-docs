@@ -6,16 +6,15 @@ title: Cheat Sheet for Python + Momento Vector Index
 description: Everything to get you going with coding using Python and Momento Vector Index
 ---
 
-# Cheat Sheet for Python with Momento Vector Index
+# PythonとMomento Vector Indexのチートシート
 
-If you need to get going quickly with Python and Momento Vector Index, this page contains the basic API calls you'll need.
+PythonとMomento Vector Indexをすぐに使いたい場合、このページには必要な基本的なAPIコールが含まれています。
 
-![An image of a python on a pile of books searching through them like a vector index.](@site/static/img/vector-index/python-mvi-cheat-sheet.jpg)
+![ニシキヘビが本の山でベクトルインデックスのように検索しているイメージ。](@site/static/img/vector-index/python-mvi-cheat-sheet.jpg)
 
+## ライブラリのインポートとvector index clientのインスタンス化
 
-## Import libraries and instantiate a vector index client
-
-This code sets up the class with the necessary imports, the class definition, and the `PreviewVectorIndexClient` instantiation that each of the other functions will need to call.
+このコードでは、必要なインポート、クラス定義、そして他の各関数が呼び出す必要のある `PreviewVectorIndexClient` のインスタンスをセットアップします。
 
 ```python
 from momento import (
@@ -44,11 +43,11 @@ client = PreviewVectorIndexClient(
   )
 ```
 
-The following examples assume that you have already instantiated a `PreviewVectorIndexClient` as shown above.
+以下の例では、すでに `PreviewVectorIndexClient` をインスタンス化しているものとします。
 
-## Create a new index in Momento Vector Index
+## Momento Vector Index で新しいインデックスを作成する
 
-Use this snippet to create a new index in your account. The `similarity_metric` parameter is optional and defaults to `SimilarityMetric.COSINE_SIMILARITY`.
+このスニペットを使用して、アカウントに新しいインデックスを作成します。`similarity_metric`パラメータはオプションで、デフォルトは`SimilarityMetric.COSINE_SIMILARITY` です。
 
 ```python
 index_name = "my_index"
@@ -65,9 +64,9 @@ elif isinstance(create_index_response, CreateIndex.Error):
     print(f"Error while creating index: {create_index_response.message}")
 ```
 
-## Get list of existing indexes in your account
+## アカウント内の既存インデックスの一覧を取得
 
-In this example, we list the indexes in your account.
+この例では、アカウント内のインデックスを一覧表示します。
 
 ```python
 list_indexes_response = client.list_indexes()
@@ -78,9 +77,9 @@ elif isinstance(list_indexes_response, ListIndexes.Error):
     print(f"Error while listing indexes: {list_indexes_response.message}")
 ```
 
-## Write a batch of items to the index
+## インデックスに項目を一括して書き込む
 
-A simple example of doing an `upsert_item_batch` operation. This operation will insert the items if they don't exist, or replace them if they do.
+`upsert_item_batch`操作を行う単純な例です。この操作は、項目が存在しなければ挿入し、存在すれば置き換えます。
 
 ```python
 index_name = "my_index"
@@ -101,12 +100,11 @@ elif isinstance(upsert_response, UpsertItemBatch.Error):
     print(f"Error while adding items to index {index_name!r}: {upsert_response.message}")
 ```
 
-## Searching the index
+## インデックスの検索
 
-This is an example of a search operation to get the top-k items from the index matching the `query_vector`. The `metadata_fields` parameter is optional and can be used to specify which metadata fields to return in the response.
+これは、`query_vector` にマッチするインデックスから top-k 個の項目を取得する検索操作の例です。`metadata_fields`パラメータはオプションで、 レスポンスに返すメタデータフィールドを指定するために使用します。
 
-Here we use a `query_vector` of `[1.0, 2.0]` and ask for the top 2 results.
-
+ここでは、`[1.0, 2.0]`の`query_vectorを`使用し、上位2つの結果を求めています。
 
 ```python
 index_name = "my_index"
@@ -121,9 +119,9 @@ elif isinstance(search_response, Search.Error):
     print(f"Error while searching on index {index_name}: {search_response.message}")
 ```
 
-## Deleting items from the index
+## インデックスからの項目の削除
 
-An example of deleting the items from an index using `delete_item_batch`.
+`delete_item_batch` を使用してインデックスから項目を削除する例です。
 
 ```python
 index_name = "my_index"
@@ -136,9 +134,9 @@ elif isinstance(delete_response, DeleteItemBatch.Error):
     print(f"Error while deleting items {delete_response.message}")
 ```
 
-## Deleting an index
+## インデックスの削除
 
-An example of deleting an index using `delete_index`.
+`delete_index` を使用してインデックスを削除する例です。
 
 ```python
 index_name = "my_index"
