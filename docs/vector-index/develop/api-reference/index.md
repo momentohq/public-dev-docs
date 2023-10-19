@@ -13,6 +13,12 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 # Using the Momento Vector Index API
 Momento Vector Index (MVI) is a scalable, developer-friendly vector index service designed for real-time storage and retrieval of vector data for use in AI-powered applications.
 
+## Vector Index Client
+
+To interact with Momento Vector Indexes, you must use a VectorIndexClient.
+
+<SdkExampleTabs snippetId={'API_InstantiateVectorClient'} />
+
 ## Vector Index methods
 
 ### Create Index
