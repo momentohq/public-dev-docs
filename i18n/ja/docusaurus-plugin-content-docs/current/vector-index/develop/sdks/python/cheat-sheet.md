@@ -12,9 +12,9 @@ PythonとMomento Vector Indexをすぐに使いたい場合、このページに
 
 ![ニシキヘビが本の山でベクトルインデックスのように検索しているイメージ。](@site/static/img/vector-index/python-mvi-cheat-sheet.jpg)
 
-## ライブラリのインポートとベクトルインデックスクライアントのインスタンス化
+## ライブラリのインポートとvector index clientのインスタンス化
 
-このコードでは、必要なインポート、クラス定義、他の各関数が呼び出す必要のある`PreviewVectorIndexClient の`インスタンス化でクラスをセットアップします。
+このコードでは、必要なインポート、クラス定義、そして他の各関数が呼び出す必要のある `PreviewVectorIndexClient` のインスタンスをセットアップします。
 
 ```python
 from momento import (
@@ -43,7 +43,7 @@ client = PreviewVectorIndexClient(
   )
 ```
 
-以下の例では、すでに`PreviewVectorIndexClient`をインスタンス化しているものとします。
+以下の例では、すでに `PreviewVectorIndexClient` をインスタンス化しているものとします。
 
 ## Momento Vector Index で新しいインデックスを作成する
 
@@ -77,7 +77,7 @@ elif isinstance(list_indexes_response, ListIndexes.Error):
     print(f"Error while listing indexes: {list_indexes_response.message}")
 ```
 
-## インデックスへの項目の一括書き込み
+## インデックスに項目を一括して書き込む
 
 `upsert_item_batch`操作を行う単純な例です。この操作は、項目が存在しなければ挿入し、存在すれば置き換えます。
 
