@@ -9,7 +9,15 @@ description: Learn what Momento API keys are, how to create them, and how they a
 
 ![a technical illustration of API keys and their use to secure your application.](@site/static/img/api-keys-page.jpg)
 
-API keys are *long-lived values intended for programmatic use*. These keys grant integrating applications access to certain caches and topics. When creating an API key, you are presented with two options via the [Momento console](https://console.gomomento.com/tokens):
+API keys are *long-lived values intended for programmatic use*. These keys grant integrating applications access to certain caches and topics.
+
+:::tip
+
+Not sure if you should be using an `API key` or a `token`? Check out our [authentication](./index.mdx) page for all the details!
+
+:::
+
+When creating an API key, you are presented with two options via the [Momento console](https://console.gomomento.com/tokens):
 
 1. A "super-user" key that grants access to everything in your account, like creating and deleting caches, setting and getting cache items, and publishing and subscribing to topics.
 2. A fine-grained access control (FGAC) key that is limited to data operations only, like setting and getting cache items or publishing and subscribing to topics.
@@ -61,26 +69,15 @@ When creating an API key, you have the option to create one that never expires a
 
 The Momento console offers several pre-configured options for expiration ranges or you can select your own date. Just remember to create a new API key and rotate it in your application before it expires to prevent outages!
 
-## API Keys vs. Tokens
+## Use cases
 
-For a good overview on the differences between API Keys and Tokens, check out [Allen Helton's blog on the topic](https://www.gomomento.com/blog/api-keys-vs-tokens-whats-the-difference).
+For shorter-lived authentication use cases, with targeted permission scopes, consider using [Momento tokens](./tokens.md).
 
-The most important distinctions:
+API keys are a good choice for situations where:
 
-API Keys:
-
-* Are longer-lived (days, weeks, or months) and intended mostly for programmatic, server-side use cases
-* Are usually rotated on a monthly or yearly basis using tools like AWS Secrets Manager
-* May have relatively broad permissions and thus it is important to ensure they are not compromised
-
-Tokens:
-
-* Are shorter-lived (hours) and intended for interactive use caches (e.g. from a user's browser or mobile device)
-* Usually have much more narrow permissions (only what the user needs access to)
-* Are not refreshed, so once they expire, they are gone forever
-* Due to their shorter lifespan and narrower permissions, are significantly less sensitive in the event that one is compromised
-
-For more information on Momento Tokens, see the [tokens page](./tokens.md).
+* All usage is programmatic and server-side
+* You are okay with longer-lived keys that must be rotated on a monthly/yearly basis
+* The key needs relatively broad permissions
 
 For more information on managing the permissions on either API Keys or Tokens via fine-grained access control, see the [permissions page](./permissions.md).
 
