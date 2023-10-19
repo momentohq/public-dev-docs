@@ -31,7 +31,7 @@ APIキーのページで、キャッシュが存在する場所に一致する�
 
 ![Image showing the fields to create a new API key](@site/static/img/getting-started/select-provider-region-us-west-2.png)
 
-## Step 2: インデックスを作成し、いくつかのベクトルを挿入する！
+## Step 2: インデックスを作成し、いくつかのベクトルを挿入する
 
 <Tabs>
    <TabItem value="node" label="Node.js" default>
@@ -106,7 +106,7 @@ MVI は、コンテキストと意味を理解することで検索機能を向�
 
 ### Multimodal search
 
-MVI はマルチモーダル検索もサポートしており、ユーザーはテキスト、画像、ビデオ、オーディオなどのさまざまな種類のデータを検索できます。 ユーザーは 1 つのモダリティで検索を開始し、他のモダリティをターゲットにすることができるため、柔軟で包括的な検索エクスペリエンスを実現できます。
+MVI はマルチモーダル検索もサポートしており、ユーザーはテキスト、画像、ビデオ、オーディオなどのさまざまな種類のデータを検索できます。 ユーザーは 1 つのモダリティで検索を開始し、他のモダリティをターゲットにすることができるため、柔軟で包括的な検索体験を実現できます。
 
 ### Additional applications
 
