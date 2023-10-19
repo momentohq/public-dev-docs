@@ -40,11 +40,21 @@ const FeatureList: FeatureItem[] = [
       </>
     ),
   },
+  {
+    title: 'Momento Leaderboards',
+    url: '/leaderboards',
+    Svg: require('@site/static/img/leaderboards/momento-leaderboards-2d.svg').default,
+    description: (
+      <>
+        A serverless leaderboard service
+      </>
+    ),
+  },
 ];
 
 function Feature({title, Svg, description, url}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--3')}>
 
       <div className="text--center">
           <a href={url}>

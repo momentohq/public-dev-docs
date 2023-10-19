@@ -283,6 +283,7 @@ const config = {
           {to: '/cache', label: 'Cache', position: 'left'},
           {to: '/topics', label: 'Topics', position: 'left'},
           {to: '/vector-index', label: 'Vector Index', position: 'left'},
+          {to: '/leaderboards', label: 'Leaderboards', position: 'left'},
           {
             to: "https://www.gomomento.com/blog",
             label: "Blog",

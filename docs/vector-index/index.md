@@ -67,6 +67,26 @@ async function run(){
 ```
 
    </TabItem>
+   <TabItem value="python" label="Python" default>
+
+```python
+from momento import PreviewVectorIndexClientAsync, VectorIndexConfigurations, CredentialProvider
+from momento.requests.vector_index import Item
+
+async def run() -> None:
+    mvi_client = PreviewVectorIndexClientAsync(
+        configuration=VectorIndexConfigurations.Default.latest(),
+        credential_provider=CredentialProvider.from_environment_variable("MOMENTO_API_KEY"),
+    )
+
+    await mvi_client.create_index("test-index", 2);
+    await mvi_client.upsert_item_batch("test-index", [
+        Item(id="example_item_1", vector=[1.0, 2.0], metadata={"key1": "value1"}),
+        Item(id="example_item_2", vector=[3.0, 4.0], metadata={"key2": "value2"}),
+    ]);
+```
+
+   </TabItem>
 </Tabs>
 
 # What is Momento Vector Index?

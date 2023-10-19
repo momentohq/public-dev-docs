@@ -18,6 +18,7 @@ interface SdkInfo {
   configObjectFile: string | undefined;
   topicClientFile: string | undefined;
   authClientFile: string | undefined;
+  leaderboardClientFile: Array<string> | undefined;
 }
 
 const SDKS: Array<SdkInfo> = [
@@ -30,6 +31,9 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'packages/client-sdk-nodejs/src/config/configuration.ts',
     topicClientFile: 'packages/core/src/clients/ITopicClient.ts',
     authClientFile: 'packages/core/src/clients/IAuthClient.ts',
+    leaderboardClientFile: [
+      'packages/core/src/internal/clients/leaderboard/AbstractLeaderboard.ts',
+    ],
   },
   {
     sdk: Sdk.WEB,
@@ -40,13 +44,17 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'packages/client-sdk-web/src/config/configuration.ts',
     topicClientFile: 'packages/core/src/clients/ITopicClient.ts',
     authClientFile: 'packages/core/src/clients/IAuthClient.ts',
+    leaderboardClientFile: [
+      'packages/core/src/internal/clients/leaderboard/AbstractLeaderboard.ts',
+    ],
   },
   {
     sdk: Sdk.DOTNET,
     cacheClientFile: 'src/Momento.Sdk/ICacheClient.cs',
     configObjectFile: 'src/Momento.Sdk/Config/Configuration.cs',
-    topicClientFile: undefined,
+    topicClientFile: 'src/Momento.Sdk/ITopicClient.cs',
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.PYTHON,
@@ -54,6 +62,7 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'src/momento/config/configuration.py',
     topicClientFile: undefined,
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.GO,
@@ -61,6 +70,7 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'config/config.go',
     topicClientFile: 'momento/topic_client.go',
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.JAVA,
@@ -69,6 +79,7 @@ const SDKS: Array<SdkInfo> = [
       'momento-sdk/src/main/java/momento/sdk/config/Configuration.java',
     topicClientFile: undefined,
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.ELIXIR,
@@ -76,6 +87,7 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'src/lib/momento/config/configuration.ex',
     topicClientFile: undefined,
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.PHP,
@@ -83,6 +95,7 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'src/Config/Configuration.php',
     topicClientFile: undefined,
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.RUST,
@@ -90,6 +103,7 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: undefined,
     topicClientFile: 'src/preview/topics.rs',
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.RUBY,
@@ -97,6 +111,7 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: undefined,
     topicClientFile: undefined,
     authClientFile: undefined,
+    leaderboardClientFile: undefined,
   },
 ];
 
@@ -232,19 +247,124 @@ const AUTH_API_GROUPS: Array<ApiGroup> = [
   },
 ];
 
-export class ApiSupportMatrixGenerator {
-  generateApiMatrixMarkdownNodes(): Array<Heading | Paragraph | Table> {
-    const sourceProvider: SdkSourceProvider = new SdkGithubRepoSourceProvider();
+const LEADERBOARD_API_GROUPS: Array<ApiGroup> = [
+  {
+    groupName: 'Leaderboard',
+    groupDescription: 'A matrix of SDK support for Momento Leaderboard APIs',
+    apis: [
+      'upsert',
+      'fetchByScore',
+      'fetchByRank',
+      'getRank',
+      'length',
+      'removeElements',
+      'delete',
+    ],
+  },
+];
 
+export class ApiSupportMatrixGenerator {
+  private sourceProvider: SdkSourceProvider;
+
+  constructor() {
+    this.sourceProvider = new SdkGithubRepoSourceProvider();
+  }
+  generateApiMatrixMarkdownNodes(
+    matrixType: string
+  ): Array<Heading | Paragraph | Table> {
+    switch (matrixType) {
+      case '%%%TOPICS_API_SUPPORT_MATRIX%%%': {
+        return this.generateTopicsMatrixNodes();
+      }
+      case '%%%CACHE_API_SUPPORT_MATRIX%%%': {
+        return this.generateCacheMatrixNodes();
+      }
+      case '%%%VECTOR_INDEX_API_SUPPORT_MATRIX%%%': {
+        return this.generateVectorIndexMatrixNodes();
+      }
+      case '%%%LEADERBOARD_API_SUPPORT_MATRIX%%%': {
+        return this.generateLeaderboardMatrixNodes();
+      }
+      case '%%%ALL_API_SUPPORT_MATRIX%%%': {
+        return this.generateAllMatrixNodes();
+      }
+      default: {
+        console.log('Unknown matrix type:', matrixType);
+        return [];
+      }
+    }
+  }
+
+  generateAllMatrixNodes(): Array<Heading | Paragraph | Table> {
     const allSdksCacheApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksConfigApiSupport = new Map<string, Map<string, boolean>>();
+    const allSdksAuthApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksTopicsApiSupport = new Map<string, Map<string, boolean>>();
+    const allSdksLeaderboardApiSupport = new Map<
+      string,
+      Map<string, boolean>
+    >();
+
+    for (const sdk of SDKS) {
+      const sdkRepoDir = this.sourceProvider.sdkSourceDir(sdk.sdk);
+      const sdkName = sdk.sdk.valueOf();
+
+      const cacheApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.cacheClientFile,
+        CACHE_API_GROUPS
+      );
+      allSdksCacheApiSupport.set(sdkName, cacheApiSupport);
+
+      const configApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.configObjectFile,
+        CONFIG_API_GROUPS
+      );
+      allSdksConfigApiSupport.set(sdkName, configApiSupport);
+
+      const authApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.authClientFile,
+        AUTH_API_GROUPS
+      );
+      allSdksAuthApiSupport.set(sdkName, authApiSupport);
+
+      const topicApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.topicClientFile,
+        TOPIC_API_GROUPS
+      );
+      allSdksTopicsApiSupport.set(sdkName, topicApiSupport);
+
+      const leaderboardApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.leaderboardClientFile,
+        LEADERBOARD_API_GROUPS
+      );
+      allSdksLeaderboardApiSupport.set(sdkName, leaderboardApiSupport);
+    }
+
+    const nodes: Array<Heading | Paragraph | Table> = [];
+    nodes.push(...renderApiGroups(CACHE_API_GROUPS, allSdksCacheApiSupport));
+
+    nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
+    nodes.push(...renderApiGroups(CONFIG_API_GROUPS, allSdksConfigApiSupport));
+    nodes.push(...renderApiGroups(TOPIC_API_GROUPS, allSdksTopicsApiSupport));
+    nodes.push(
+      ...renderApiGroups(LEADERBOARD_API_GROUPS, allSdksLeaderboardApiSupport)
+    );
+    return nodes;
+  }
+
+  generateCacheMatrixNodes(): Array<Heading | Paragraph | Table> {
+    const allSdksCacheApiSupport = new Map<string, Map<string, boolean>>();
+    const allSdksConfigApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksAuthApiSupport = new Map<string, Map<string, boolean>>();
 
     for (const sdk of SDKS) {
-      const sdkRepoDir = sourceProvider.sdkSourceDir(sdk.sdk);
+      const sdkRepoDir = this.sourceProvider.sdkSourceDir(sdk.sdk);
       const sdkName = sdk.sdk.valueOf();
-      // console.log(`Checking sdk: ${sdkName}`);
 
       const cacheApiSupport = determineApiSupport(
         sdkRepoDir,
@@ -258,12 +378,6 @@ export class ApiSupportMatrixGenerator {
         CONFIG_API_GROUPS
       );
       allSdksConfigApiSupport.set(sdkName, configApiSupport);
-      const topicApiSupport = determineApiSupport(
-        sdkRepoDir,
-        sdk.topicClientFile,
-        TOPIC_API_GROUPS
-      );
-      allSdksTopicsApiSupport.set(sdkName, topicApiSupport);
       const authApiSupport = determineApiSupport(
         sdkRepoDir,
         sdk.authClientFile,
@@ -274,9 +388,67 @@ export class ApiSupportMatrixGenerator {
 
     const nodes: Array<Heading | Paragraph | Table> = [];
     nodes.push(...renderApiGroups(CACHE_API_GROUPS, allSdksCacheApiSupport));
-    nodes.push(...renderApiGroups(TOPIC_API_GROUPS, allSdksTopicsApiSupport));
+
     nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
     nodes.push(...renderApiGroups(CONFIG_API_GROUPS, allSdksConfigApiSupport));
+    return nodes;
+  }
+
+  generateTopicsMatrixNodes(): Array<Heading | Paragraph | Table> {
+    const allSdksTopicsApiSupport = new Map<string, Map<string, boolean>>();
+    const allSdksAuthApiSupport = new Map<string, Map<string, boolean>>();
+
+    for (const sdk of SDKS) {
+      const sdkRepoDir = this.sourceProvider.sdkSourceDir(sdk.sdk);
+      const sdkName = sdk.sdk.valueOf();
+
+      const topicApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.topicClientFile,
+        TOPIC_API_GROUPS
+      );
+      allSdksTopicsApiSupport.set(sdkName, topicApiSupport);
+
+      const authApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.authClientFile,
+        AUTH_API_GROUPS
+      );
+      allSdksAuthApiSupport.set(sdkName, authApiSupport);
+    }
+
+    const nodes: Array<Heading | Paragraph | Table> = [];
+    nodes.push(...renderApiGroups(TOPIC_API_GROUPS, allSdksTopicsApiSupport));
+    nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
+    return nodes;
+  }
+
+  generateVectorIndexMatrixNodes(): Array<Heading | Paragraph | Table> {
+    return [];
+  }
+
+  generateLeaderboardMatrixNodes(): Array<Heading | Paragraph | Table> {
+    const allSdksLeaderboardApiSupport = new Map<
+      string,
+      Map<string, boolean>
+    >();
+
+    for (const sdk of SDKS) {
+      const sdkRepoDir = this.sourceProvider.sdkSourceDir(sdk.sdk);
+      const sdkName = sdk.sdk.valueOf();
+
+      const leaderboardApiSupport = determineApiSupport(
+        sdkRepoDir,
+        sdk.leaderboardClientFile,
+        LEADERBOARD_API_GROUPS
+      );
+      allSdksLeaderboardApiSupport.set(sdkName, leaderboardApiSupport);
+    }
+
+    const nodes: Array<Heading | Paragraph | Table> = [];
+    nodes.push(
+      ...renderApiGroups(LEADERBOARD_API_GROUPS, allSdksLeaderboardApiSupport)
+    );
     return nodes;
   }
 }
