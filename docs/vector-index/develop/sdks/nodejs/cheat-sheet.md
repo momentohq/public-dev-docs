@@ -100,7 +100,7 @@ const searchResponse = await client.search(indexName, queryVector, {
     topK: 2,
     metadataFields: ALL_VECTOR_METADATA,
 });
-if (searchResponse instanceof VectorUpsertItemBatch.Success) {
+if (searchResponse instanceof VectorSearch.Success) {
     console.log(`Search succeeded with ${searchResponse.hits().length} results`);
 } else {
     console.log(`Error searching items: ${searchResponse.toString()}`);
@@ -119,7 +119,7 @@ const itemsToDelete = [
 ];
 
 const deleteResponse = await client.deleteItemBatch(indexName, itemsToDelete);
-if (deleteResponse instanceof VectorUpsertItemBatch.Success) {
+if (deleteResponse instanceof VectorDeleteItemBatch.Success) {
     console.log('Successfully deleted items');
 } else {
     console.log(`Error deleting items: ${deleteResponse.toString()}`);
