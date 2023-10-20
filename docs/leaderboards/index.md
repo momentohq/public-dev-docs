@@ -54,10 +54,10 @@ See the [API reference](./develop/api-reference/index.md) page for documentation
 
 Check out the [Node.js example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/leaderboard.ts) for a runnable program that includes examples of how to call each API.
 
-## Frequently asked questions about Momento Topics
+## Frequently asked questions about Momento Leaderboards
 
 <details>
-  <summary>What's the difference between Momento Leaderboards and Redis Sorted Sets?</summary>
+  <summary>What's the difference between Momento Leaderboards and a Sorted Sets?</summary>
   Momento Leaderboards has a much more efficient memory footprint, allowing us to scale to tens of millions of records, and the APIs were built with gaming use cases specifically in mind.
 </details>
 
