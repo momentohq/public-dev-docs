@@ -57,7 +57,7 @@ Check out the [Node.js example](https://github.com/momentohq/client-sdk-javascri
 ## Frequently asked questions about Momento Leaderboards
 
 <details>
-  <summary>What's the difference between Momento Leaderboards and a Sorted Sets?</summary>
+  <summary>What's the difference between Momento Leaderboards and a Sorted Set?</summary>
   Momento Leaderboards has a much more efficient memory footprint, allowing us to scale to tens of millions of records, and the APIs were built with gaming use cases specifically in mind.
 </details>
 
