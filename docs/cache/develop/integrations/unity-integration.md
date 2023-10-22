@@ -5,9 +5,11 @@ title: Integrating Momento with your Unity app
 description: Learn to deploy a chat app using Momento .NET SDK to Unity.
 ---
 
-[Unity](https://unity.com/) is a real-time development platform that is one of the most popular game engines on the market today. The Unity game engine is used by thousands of developers to create 2D and 3D interactive apps, across a variety of platforms, including mobile, desktop, and immersive platforms.
+[Unity](https://unity.com/) is a real-time development platform that is one of the most popular game engines on the market today. The Unity game engine is used by thousands of developers to create 2D and 3D interactive apps, across a variety of platforms, including mobile, desktop, and immersive platforms (e.g., augmented and virtual reality).
 
-In this tutorial, we'll build a [simple Unity chat application](https://github.com/momentohq/momento-unity-demo) using the [Momento .NET SDK](https://github.com/momentohq/client-sdk-dotnet). We'll utilize [Momento Topics](https://docs.momentohq.com/topics) for publishing and subscribing to the chat messages. The result will be a real-time Unity-based chat application.
+In this tutorial, we'll build a [simple Unity chat application](https://github.com/momentohq/momento-unity-demo) using the [Momento .NET SDK](https://github.com/momentohq/client-sdk-dotnet). Specifically, we'll utilize [Momento Topics](https://docs.momentohq.com/topics) for publishing and subscribing to the chat messages. 
+
+Momento Topics is a serverless approach to real-time communication that allows clients to subscribe and publish to dedicated channels called topics. This makes it perfect for a real-time Unity-based chat application. Furthermore, since it's a serverless approach, there's no need for you to worry about all the details of creating or configuring your own server. More details can be found on the [Momento Topics Documentation page](https://docs.momentohq.com/topics).
 
 ## Prerequisites
 
