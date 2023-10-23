@@ -8,4 +8,4 @@ pagination_next: null
 
 ## Current Status of API support in Momento SDKs
 
-%%%API_SUPPORT_MATRIX%%%
+%%%CACHE_API_SUPPORT_MATRIX%%%

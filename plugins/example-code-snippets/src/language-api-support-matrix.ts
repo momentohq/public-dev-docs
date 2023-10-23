@@ -12,7 +12,7 @@ function isSupportMatrixNode<T extends unist.Node>(node: unknown): node is T {
         .children[0] as unist.Literal;
       if (childLiteral.type === 'text') {
         const value = childLiteral.value as string;
-        if (value.match('%%%API_SUPPORT_MATRIX%%%')) {
+        if (value.includes('API_SUPPORT_MATRIX%%%')) {
           return true;
         }
       }
@@ -22,18 +22,24 @@ function isSupportMatrixNode<T extends unist.Node>(node: unknown): node is T {
 }
 
 /**
- * This is a docusaurus MDX/remark plugin.  It finds the %%%API_SUPPORT_MATRIX%%% marker
+ * This is a docusaurus MDX/remark plugin.  It finds the %%%{product}_API_SUPPORT_MATRIX%%% marker
  * in the markdown and injects the API support matrix tables in its place.
+ * Current supported markers are in the `generateApiMatrixMarkdownNodes` switch statement.
  *
  * @param options
  * @returns {unknown}
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function plugin(options: unknown): unknown {
+  const matrixGenerator = new ApiSupportMatrixGenerator();
   function transformer(tree: unist.Parent) {
     visit(tree, isSupportMatrixNode, node => {
-      const matrixGenerator = new ApiSupportMatrixGenerator();
-      const newNodes = matrixGenerator.generateApiMatrixMarkdownNodes();
+      const matrixType = ((node as unist.Parent).children[0] as unist.Literal)
+        .value as string;
+      console.log('Found matrix type:', matrixType);
+
+      const newNodes =
+        matrixGenerator.generateApiMatrixMarkdownNodes(matrixType);
 
       const treeChildren: Array<unist.Node> = tree.children;
       const thisNodeIndex = treeChildren.findIndex(n => n === node);
