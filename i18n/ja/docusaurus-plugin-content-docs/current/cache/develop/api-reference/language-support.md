@@ -1,10 +1,11 @@
 ---
 sidebar_position: 12
-sidebar_label: 言語サポート
-title: 言語APIサポート表
+sidebar_label: Language Support
+title: Language API Support Matrix
 description: 各Momento SDK言語がどのAPIをサポートしているかのリファレンス
+pagination_next: null
 ---
 
 ## 現在のMomento SDKでのAPIサポート状況
 
-%%%API_SUPPORT_MATRIX%%%
+%%%CACHE_API_SUPPORT_MATRIX%%%

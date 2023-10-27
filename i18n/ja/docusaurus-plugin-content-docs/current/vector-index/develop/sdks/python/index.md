@@ -10,19 +10,18 @@ description: Information about the Momento Python SDK
 
 ![image of a python](@site/static/img/snake.png)
 
-Welcome to the Momento Python SDK documentation!
+Momento Python SDK ドキュメントへようこそ！
 
-The Momento Python SDK is available via the pypi package [`momento`](https://pypi.org/project/momento/).
+Momento Python SDK は pypi パッケージ [`momento`](https://pypi.org/project/momento/) から入手できます。
 
-The source code can be found on GitHub: [momentohq/client-sdk-python](https://github.com/momentohq/client-sdk-python).
+ソースコードは GitHub にあります： [momentohq/client-sdk-python](https://github.com/momentohq/client-sdk-python)にあります。
 
-## Requirements
+## 必要条件
 
-- [Python 3.7](https://www.python.org/downloads/) or above is required
-- A Momento Auth Token is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- [Python 3.7](https://www.python.org/downloads/)以上が必要です。
+- Momento Auth Tokenが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
+## リソース
 
-## Resources
-
-- [Python SDK Examples](https://github.com/momentohq/client-sdk-python/blob/main/examples/README.md): working example projects that illustrate how to use the Python SDK with Momento Vector Index.
-- COMING SOON: Observability: Logging and Client-side Metrics with the Python SDK
-- COMING SOON: Taking your code to prod: Configuration and Error handling in the Python SDK
+- [例: Python SDK](https://github.com/momentohq/client-sdk-python/blob/main/examples/README.md): Python SDKとMomento Vector Indexの使い方を説明するサンプルプロジェクトです。
+- COMING SOON: Observability： Python SDKを使ったロギングとクライアントサイドのメトリクス
+- COMING SOON: あなたのコードをprodへ： Python SDKの設定とエラー処理
