@@ -6,9 +6,9 @@ title: Momento Vector Index cheat sheet for TypeScript and Node.js
 description: Everything to get you going with coding using Node.js and Momento Vector Index
 ---
 
-#
+# Node.js用チートシート (Momento Vector Index)
 
-
+Node.jsとMomento Vector Indexをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。
 
 ## ライブラリのインポートとベクトルインデックスクライアントのインスタンス化
 
@@ -31,7 +31,7 @@ const client = new PreviewVectorIndexClient({
 
 ## Momento Vector Index で新しいインデックスを作成する
 
-
+このスニペットを使用して、アカウントに新しいインデックスを作成します。`similarityMetric`パラメータはオプションで、デフォルトは `VectorSimilarityMetric.COSINE_SIMILARITY` です。
 
 ```typescript
 const indexName = "my-index";
@@ -62,7 +62,7 @@ if (listResponse instanceof ListVectorIndexes.Success) {
 
 ## インデックスへの項目の一括書き込み
 
-
+`upsertItemBatch`操作を行う簡単な例です。この操作はアイテムが存在しなければ挿入し、存在すれば置き換える。
 
 ```typescript
 const indexName = "my-index";
@@ -87,9 +87,9 @@ if (upsertResponse instanceof VectorUpsertItemBatch.Success) {
 
 ## インデックスの検索
 
+これは `queryVector` にマッチするインデックスから上位 k 個のアイテムを取得する検索操作の例である。metadataFields` パラメータはオプションであり、レスポンスで返すメタデータフィールドを指定するために使用します。
 
-
-
+ここでは `queryVector` に `[1.0, 2.0]` を指定し、上位 2 件の検索結果を求めています。
 
 ```typescript
 const indexName = "my-index";
@@ -107,7 +107,7 @@ if (searchResponse instanceof VectorSearch.Success) {
 
 ## インデックスからの項目の削除
 
-
+`deleteItemBatch` を使用してインデックスから項目を削除する例である。
 
 ```typescript
 const indexName = "my-index";
@@ -126,7 +126,7 @@ if (deleteResponse instanceof VectorDeleteItemBatch.Success) {
 
 ## インデックスの削除
 
-
+`deleteIndex`を使用してインデックスを削除する例。
 
 ```typescript
 const indexName = "my-index";
