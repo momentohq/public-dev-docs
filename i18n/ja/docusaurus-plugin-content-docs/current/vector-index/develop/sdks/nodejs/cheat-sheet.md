@@ -6,14 +6,13 @@ title: Momento Vector Index cheat sheet for TypeScript and Node.js
 description: Everything to get you going with coding using Node.js and Momento Vector Index
 ---
 
-# Cheat Sheet for Node.js with Momento Vector Index
+# Node.js用チートシート (Momento Vector Index)
 
-If you need to get going quickly with Node.js and Momento Vector Index, this page contains the basic API calls you'll need.
+Node.jsとMomento Vector Indexをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。
 
+## ライブラリのインポートとベクトルインデックスクライアントのインスタンス化
 
-## Import libraries and instantiate a vector index client
-
-This code sets up the class with the necessary imports, the class definition, and the `PreviewVectorIndexClient` instantiation that each of the other functions will need to call.
+このコードでは、必要なインポート、クラス定義、他の各関数が呼び出す必要のある`PreviewVectorIndexClient の`インスタンス化でクラスをセットアップします。
 
 ```typescript
 import {CredentialProvider, PreviewVectorIndexClient, VectorIndexConfigurations} from "@gomomento/sdk";
@@ -28,11 +27,11 @@ const client = new PreviewVectorIndexClient({
 
 ```
 
-The following examples assume that you have already instantiated a `PreviewVectorIndexClient` as shown above.
+以下の例では、すでに`PreviewVectorIndexClient`をインスタンス化しているものとします。
 
-## Create a new index in Momento Vector Index
+## Momento Vector Index で新しいインデックスを作成する
 
-Use this snippet to create a new index in your account. The `similarityMetric` parameter is optional and defaults to `VectorSimilarityMetric.COSINE_SIMILARITY`.
+このスニペットを使用して、アカウントに新しいインデックスを作成します。`similarityMetric`パラメータはオプションで、デフォルトは `VectorSimilarityMetric.COSINE_SIMILARITY` です。
 
 ```typescript
 const indexName = "my-index";
@@ -48,9 +47,9 @@ if (createResponse instanceof CreateVectorIndex.Success) {
 }
 ```
 
-## Get list of existing indexes in your account
+## アカウント内の既存インデックスの一覧を取得
 
-In this example, we list the indexes in your account.
+この例では、アカウント内のインデックスを一覧表示します。
 
 ```typescript
 const listResponse = await client.listIndexes();
@@ -61,9 +60,9 @@ if (listResponse instanceof ListVectorIndexes.Success) {
 }
 ```
 
-## Write a batch of items to the index
+## インデックスへの項目の一括書き込み
 
-A simple example of doing an `upsertItemBatch` operation. This operation will insert the items if they don't exist, or replace them if they do.
+`upsertItemBatch`操作を行う簡単な例です。この操作はアイテムが存在しなければ挿入し、存在すれば置き換える。
 
 ```typescript
 const indexName = "my-index";
@@ -86,12 +85,11 @@ if (upsertResponse instanceof VectorUpsertItemBatch.Success) {
 }
 ```
 
-## Searching the index
+## インデックスの検索
 
-This is an example of a search operation to get the top-k items from the index matching the `queryVector`. The `metadataFields` parameter is optional and can be used to specify which metadata fields to return in the response.
+これは `queryVector` にマッチするインデックスから上位 k 個のアイテムを取得する検索操作の例である。metadataFields` パラメータはオプションであり、レスポンスで返すメタデータフィールドを指定するために使用します。
 
-Here we use a `queryVector` of `[1.0, 2.0]` and ask for the top 2 results.
-
+ここでは `queryVector` に `[1.0, 2.0]` を指定し、上位 2 件の検索結果を求めています。
 
 ```typescript
 const indexName = "my-index";
@@ -100,16 +98,16 @@ const searchResponse = await client.search(indexName, queryVector, {
     topK: 2,
     metadataFields: ALL_VECTOR_METADATA,
 });
-if (searchResponse instanceof VectorUpsertItemBatch.Success) {
+if (searchResponse instanceof VectorSearch.Success) {
     console.log(`Search succeeded with ${searchResponse.hits().length} results`);
 } else {
     console.log(`Error searching items: ${searchResponse.toString()}`);
 }
 ```
 
-## Deleting items from the index
+## インデックスからの項目の削除
 
-An example of deleting the items from an index using `deleteItemBatch`.
+`deleteItemBatch` を使用してインデックスから項目を削除する例である。
 
 ```typescript
 const indexName = "my-index";
@@ -119,16 +117,16 @@ const itemsToDelete = [
 ];
 
 const deleteResponse = await client.deleteItemBatch(indexName, itemsToDelete);
-if (deleteResponse instanceof VectorUpsertItemBatch.Success) {
+if (deleteResponse instanceof VectorDeleteItemBatch.Success) {
     console.log('Successfully deleted items');
 } else {
     console.log(`Error deleting items: ${deleteResponse.toString()}`);
 }
 ```
 
-## Deleting an index
+## インデックスの削除
 
-An example of deleting an index using `deleteIndex`.
+`deleteIndex`を使用してインデックスを削除する例。
 
 ```typescript
 const indexName = "my-index";
