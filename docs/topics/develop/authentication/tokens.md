@@ -12,9 +12,17 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Momento tokens for short-lived permissions
 
-<img src="/img/tokens-page.jpg" width="90%" alt="a technical illustration of Momento authentication and access control." />
+![a technical illustration of Momento authentication and access control.](@site/static/img/tokens-page.jpg)
 
 Tokens are short-lived, limited-scope values intended to be used in temporary situations like a user's session. Software lifecycle events like a user login often result in the issuing of a token only valid for the duration of that session. 
+
+:::tip
+
+Not sure if you should be using an `API key` or a `token`? Check out our [authentication](./index.mdx) page for all the details!
+
+:::
+
+Tokens cannot be refreshed. So once it expires, it's gone forever. You'll be responsible for creating and issuing a new one if the session continues.
 
 A Momento token allows access to *data plane* API operations only. The user is unable to do *control plane* operations like creating, deleting, or flushing a cache.
 

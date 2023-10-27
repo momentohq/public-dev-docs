@@ -3,7 +3,6 @@ sidebar_position: 11
 sidebar_label: Amazon EventBridge
 title: Momento + Amazon EventBridge
 description: Trigger async events in Momento directly with Amazon EventBridge!
-pagination_next: null
 ---
 
 If you build event-driven architectures in AWS, you're likely familiar with [Amazon EventBridge](https://aws.amazon.com/eventbridge/). This serverless event bus service helps you filter, transform, route, and deliver events with robust error handling and high availability. Wouldn't it be great if you could use it directly with Momento? Good news, you can!
