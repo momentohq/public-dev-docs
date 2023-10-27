@@ -17,9 +17,7 @@ Momento Leaderboards は、数千万のアイテムと迅速な取り込み/ク�
 
 :::
 
-
 ## Momento Leaderboardsを始める
-
 ### ステップ 1: Create your Momento API key and cache
 
 [Momento コンソール](https://console.gomomento.com/tokens) に移動し、指示に従ってメール アドレス、Google アカウント、または GitHub アカウントでログインします。
@@ -27,9 +25,6 @@ Momento Leaderboards は、数千万のアイテムと迅速な取り込み/ク�
 ![Momento コンソールのランディング ページの画像](@site/static/img/getting-started/console.png)
 
 [キャッシュの作成] ボタンをクリックし、Momento Leaderboards に使用するクラウド プロバイダーとリージョンを使用してキャッシュを作成します。
-
-![Image of Momento console Create Cache form](@site/static/img/console-create-cache-form.png)
-
 次に、[ステップバイステップの手順](https://docs.momentohq.com/cache/develop/authentication/api-keys) に従って、[Momento コンソール](https://console.gomomento.com)からAPIキーを作成します。
 
 ### ステップ 2: Momento Leaderboardsを作成

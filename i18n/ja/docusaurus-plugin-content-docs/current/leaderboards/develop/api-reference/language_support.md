@@ -7,5 +7,3 @@ pagination_next: null
 ---
 
 ## Momento SDKにおけるAPIサポートの現状
-
-%%%LEADERBOARD_API_SUPPORT_MATRIX%%%
