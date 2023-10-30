@@ -5,25 +5,25 @@ title: Response object API reference in Momento Leaderboards
 description: Learn how to interact with the response object in the Momento API for Leaderboards.
 ---
 
-# Response objects from Momento APIs in Momento Leaderboard
+# Momento LeaderboardsのMomento APIからのレスポンスオブジェクト
 
-These are the baseline responses for all commands. Some commands will add more data and functionality.
+これらは、すべてのコマンドに対する基本的な応答です。いくつかのコマンドは、より多くのデータと機能を追加します。
 
 ## Error
 
-Returned in lieu of an exception.
+例外に代えて返却される
 
 ### Constructor
 
-- innerException: Exception - the exception which caused the error
+- innerException： 例外 - エラーの原因となった例外
 
 ### Methods
 
-- message(): String - a human readable error message
-- innerException(): Exception - the original exception.
-- errorCode(): MomentoErrorCode - Momento’s own category of errors such as InvalidArgument or BadRequest. See [Standards And Practices - Error Handling](https://github.com/momentohq/standards-and-practices/blob/main/docs/client-specifications/error-handling.md)
-- toString(): String - alias for message()
+- message()： 文字列 - 人間が読めるエラーメッセージ。
+- innerException()： 例外 - 元の例外。
+- errorCode()： MomentoErrorCode - InvalidArgument や BadRequest などの Momento 独自のエラー。[標準と実践 エラー処理](https://github.com/momentohq/standards-and-practices/blob/main/docs/client-specifications/error-handling.md) を参照ください。
+- toString()： 文字列 - message() のエイリアス。
 
 ## Success
 
-The command was successful.
+コマンドは成功しました。

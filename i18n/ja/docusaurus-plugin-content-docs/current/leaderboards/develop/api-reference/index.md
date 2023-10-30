@@ -10,31 +10,31 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-## Using the Momento Leaderboards
+## Momento Leaderboardsを使用する
 
-Momento Leaderboards is a first-class service with purpose-built APIs that supports leaderboards with tens of millions of items and rapid ingestion/querying/updates.
+Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービスであり、数千万のアイテムを持つリーダーボードと、迅速なingestion/querying/updatesをサポートします。
 
 ## Leaderboard Client
 
-To create and interact with leaderboards, you must first create a LeaderboardClient.
+リーダーボードを作成し、操作するには、まずLeaderboardClientを作成する必要があります。
 
 <SdkExampleTabs snippetId={'API_InstantiateLeaderboardClient'} />
 
-Then you can create a leaderboard by specifying a cache and leaderboard name.
+そして、キャッシュとリーダーボード名を指定して、リーダーボードを作成することができます。
 
 <SdkExampleTabs snippetId={'API_CreateLeaderboard'} />
 
-## Leaderboard Methods
+## Leaderboard メソッド
 
-### Upsert elements
+### 要素をUpsert
 
-Inserts elements if they do not already exist in the leaderboard. Updates elements if they do already exist in the leaderboard. There are no partial failures; an upsert call will either succeed or fail.
+リーダボードにまだ要素が存在しない場合、要素を挿入します。要素がすでにリーダーボードに存在する場合は、要素を更新する。upsertコールは成功するか失敗するかのどちらかです。
 
-The ID can be a player identifier, session identifier, browser identifier or any other kind of identifier you want to use for this scoreboard. The full unsigned 64 bit range is allowed here, between 0 and 2^63-1 inclusive. An id can only appear in a leaderboard one time, meaning you can't have two scores for one player unless that player has two ids!
+IDは、プレーヤー識別子、セッション識別子、ブラウザ識別子、またはこのスコアボードに使用したい他の種類の識別子にすることができます。0から2^63-1まで、64ビットの符号なし整数で指定できます。idはリーダーボードに一度しか表示されません。つまり、プレイヤーが2つのidを持っていない限り、一人のプレイヤーに対して2つのスコアを表示することはできません。
 
-| Name         | Type                | Description                                                    |
+| 名前         | タイプ                | 説明                                                    |
 |--------------|---------------------|----------------------------------------------------------------|
-| elements     | Map<number, number> | A Map or Record of elements (id,score pairs) to upsert.        |
+| elements     | Map<number, number> | upsertする要素(id,scoreのペア)のマップまたはレコード       |
 
 <details>
   <summary>Method response object</summary>
@@ -42,30 +42,29 @@ The ID can be a player identifier, session identifier, browser identifier or any
 * Success
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_LeaderboardUpsert'} />
 
-Upsert is implemented as a batched operation, so for large leaderboards, you can upsert in batches of up to 8192 elements. 
+アップサートはバッチ操作として実装されているので、大規模なリーダーボードでは、最大8192要素のバッチでアップサートを行うことができます。
 
 <SdkExampleTabs snippetId={'API_LeaderboardUpsertPagination'} />
 
-### Fetch elements by score
+### スコアで要素を取得する
 
-Fetches elements that fall within the specified min and max scores. 
+指定された最小スコアと最大スコアの範囲内にある要素を取得します。
 
-Elements with the same score will be returned in alphanumerical order based on their ID (e.g. IDs of elements with the same score would be returned in the order `[1, 10, 123, 2, 234, ...]` rather than `[1, 2, 10, 123, 234, ...]`).
+同じスコアを持つ要素は、IDに基づいた英数字順で返されます (例えば、同じスコアを持つ要素のIDは、`[1, 2, 10, 123, 2, 234, ...]` ではなく `[1, 10, 123, 234, ...]` の順に返されます)。
 
-
-| Name         | Type                | Description                                                       |
+| 名前         | タイプ                | 説明                                                       |
 |--------------|---------------------|-------------------------------------------------------------------|
-| minScore     | Optional[number]    | Inclusive lower bound for the score range. Defaults to `-inf`.    |
-| maxScore     | Optional[number]    | Exclusive upper bound for the score range. Defaults to `+inf`.    |
-| order        | Optional[Ascending / Descending]    | The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.   |
-| offset       | Optional[number]    | The number of elements to skip before returning the first element. Defaults to 0. Note: this is not the score of the first element to return, but the number of elements of the result set to skip before returning the first element.    |
-| count        | Optional[number]    | The maximum number of elements to return. Defaults to 8192, which is the maximum that can be fetched per request.    |
+| minScore     | Optional[number]    | スコア範囲の下限を含む。デフォルトは `-inf`    |
+| maxScore     | Optional[number]    | スコア範囲の排他的上限値。デフォルトは `+inf`    |
+| order        | Optional[Ascending / Descending]    | 要素を取得する順番。デフォルトは昇順で、0が最も低いスコアとなります。   |
+| offset       | Optional[number]    | 最初の要素を返す前にスキップする要素の数。注意: これは最初に返す要素のスコアではなく、最初の要素を返す前にスキップする結果セットの要素数です。    |
+| count        | Optional[number]    | 返す要素の最大数。デフォルトは 8192 で、これはリクエストごとに取得できる最大数です。    |
 
 <details>
   <summary>Method response object</summary>
@@ -74,26 +73,26 @@ Elements with the same score will be returned in alphanumerical order based on t
     * values(): {`id`: number, `score`: number, `rank`: number}[]
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByScore'} />
 
-FetchByScore is implemented as a batch operation, so for large leaderboards, you can fetch in batches of up to 8192 elements. You can page through multiple elements that fall within the requested score range using the `offset` parameter until you receive an empty list, which indicates the end of the requested elements. 
+FetchByScore はバッチ処理として実装されているので、大規模なリーダーボードの場合、最大 8192 要素までまとめて取得することができます。offset` パラメータを使用すると、要求されたスコア範囲に含まれる複数の要素を、要求された要素の終わりを示す空のリストが返されるまでページ送りすることができます。
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByScorePagination'} />
 
-### Fetch elements by rank
+### ランク別に要素を取得する
 
-Fetches elements that fall within the specified min and max ranks.
+指定された最小ランクと最大ランクの範囲内にある要素を取得する。
 
 
-| Name         | Type                | Description                                                                  |
+| 名前         | タイプ                | 説明                                                                  |
 |--------------|---------------------|------------------------------------------------------------------------------|
-| startRank    | number    | Inclusive lower bound for the rank range. Defaults to 0.                     |
-| endRank      | number    | Exclusive upper bound for the rank range. Defaults to `startRank` + 8192.    |
-| order        | Optional[Ascending / Descending]    | The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.   |
+| startRank    | number    | ランク範囲の包含下限。デフォルトは0。                    |
+| endRank      | number    | ランク範囲の排他的上限。デフォルトは `startRank` + 8192 です。   |
+| order        | Optional[Ascending / Descending]    | 要素を取得する順番。デフォルトは昇順で、0が最も低いスコアとなります。   |
 
 <details>
   <summary>Method response object</summary>
@@ -102,25 +101,25 @@ Fetches elements that fall within the specified min and max ranks.
     * values(): {`id`: number, `score`: number, `rank`: number}[]
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByRank'} />
 
-For large leaderboards, you will need to fetch in batches of up to 8192 elements.
+大規模なリーダーボードでは、最大8192個の要素を一括でフェッチする必要があります。
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByRankPagination'} />
 
-### Fetch elements by ID
+### IDで要素を取得する
 
-Fetches elements given a list of element IDs. 
+要素IDのリストを指定して要素を取得する。
 
 
-| Name         | Type                                | Description                                                  |
+| 名前         | タイプ                                | 説明                                                  |
 |--------------|-------------------------------------|--------------------------------------------------------------|
-| ids          | Array<`number`>                       | The ids of the elements whose rank we are retrieving.        |
-| order        | Optional[Ascending / Descending]    | The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.   |
+| ids          | Array<`number`>                       | 順位を取得する要素のID       |
+| order        | Optional[Ascending / Descending]    | 要素を取得する順番。デフォルトは昇順で、0が最も低いスコアとなります。   |
 
 <details>
   <summary>Method response object</summary>
@@ -129,15 +128,15 @@ Fetches elements given a list of element IDs.
     * values(): {`id`: number, `score`: number, `rank`: number}[]
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_LeaderboardGetRank'} />
 
-### Get leaderboard length
+### リーダーボードの長さを取得する
 
-Gets the number of entries in the leaderboard. There are no parameters for this method; the leaderboard name is inferred from the `Leaderboard` object.
+リーダーボードのエントリー数を取得する。リーダーボードの名前は `Leaderboard` オブジェクトから推測されます。
 
 <details>
   <summary>Method response object</summary>
@@ -146,19 +145,19 @@ Gets the number of entries in the leaderboard. There are no parameters for this 
     * length(): number
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_LeaderboardLength'} />
 
-### Remove elements
+### 要素を削除する
 
-Removes elements with the specified IDs.
+指定されたIDを持つ要素を削除します。
 
-| Name             | Type   | Description                                                                                                                                            |
+| 名前             | タイプ   | 説明                                                                                                                                            |
 |------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ids        | Array<`number`> | An Array of element IDs for the elements you want to remove.                                                                                                                              |
+| ids        | Array<`number`> | 削除したい要素のID配列。                                                                                                                              |
 
 <details>
   <summary>Method response object</summary>
@@ -166,19 +165,19 @@ Removes elements with the specified IDs.
 * Success
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_LeaderboardRemoveElements'} />
 
-For large leaderboards, you will need to remove in batches of up to 8192 elements.
+大規模なリーダーボードでは、最大8192個の要素を一括して削除する必要があります。
 
 <SdkExampleTabs snippetId={'API_LeaderboardRemoveElementsPagination'} />
 
-### Delete leaderboard
+### リーダーボードの削除
 
-Deletes the leaderboard. There are no parameters for this method; the leaderboard name is inferred from the `Leaderboard` object.
+リーダーボードを削除する。リーダーボードの名前は `Leaderboard` オブジェクトから推測されます。
 
 <details>
   <summary>Method response object</summary>
@@ -186,7 +185,7 @@ Deletes the leaderboard. There are no parameters for this method; the leaderboar
 * Success
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
