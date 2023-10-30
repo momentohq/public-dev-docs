@@ -9,20 +9,28 @@ description: Learn what Momento API keys are, how to create them, and how they a
 
 ![a technical illustration of API keys and their use to secure your application.](@site/static/img/api-keys-page.jpg)
 
-API keys are *long-lived values intended for programmatic use*. These keys grant integrating applications access to certain caches and topics. When creating an API key, you are presented with two options via the [Momento console](https://console.gomomento.com/tokens):
+API keys are *long-lived values intended for programmatic use*. These keys grant integrating applications access to certain caches and topics.
+
+:::tip
+
+Not sure if you should be using an `API key` or a `token`? Check out our [authentication](./index.mdx) page for all the details!
+
+:::
+
+When creating an API key, you are presented with two options via the [Momento console](https://console.gomomento.com/tokens):
 
 1. A "super-user" key that grants access to everything in your account, like creating and deleting caches, setting and getting cache items, and publishing and subscribing to topics.
 2. A fine-grained access control (FGAC) key that is limited to data operations only, like setting and getting cache items or publishing and subscribing to topics.
 
 :::info
 
-You are not able to create "super-user" API keys via the Momento SDK. However, you *can* create fine-grain access controlled keys! Check out our [Auth API reference page](./../api-reference/auth.md) for more details.
+It is not possible to create "super-user" API keys via the Momento SDK; these may only be created in the console. However, you *can* use the SDK to create API keys with specific permissions, via fine-grain access control! Check out our [Auth API reference page](./../api-reference/auth.md) for more details.
 
 :::
 
 ## Creating an API key
 
-While you are certainly allowed to create API keys via our SDK, it is generally recommended to use the [Momento console](https://console.gomomento.com/tokens). This allows you to monitor and maintain your long-lived keys visually, making sure you don't accidentally open up a security hole in your account. 
+While it is possible to create API keys via the Momento SDK, the simplest way to create them is to use the [Momento console](https://console.gomomento.com/tokens).
 
 ### Step 1: Sign up or log into the Momento console
 
@@ -63,10 +71,14 @@ The Momento console offers several pre-configured options for expiration ranges 
 
 ## Use cases
 
-There are many reasons to **not** use an API key for auth but there are also a few reasons to use one. 
+For shorter-lived authentication use cases, with targeted permission scopes, consider using [Momento tokens](./tokens.md).
+
+API keys are a good choice for situations where:
 
 * All usage is programmatic and server-side
 * You are okay with longer-lived keys that must be rotated on a monthly/yearly basis
-* You need to create session tokens  (must use a "super-user" token for this)
+* The key needs relatively broad permissions
+
+For more information on managing the permissions on either API Keys or Tokens via fine-grained access control, see the [permissions page](./permissions.md).
 
 Ready to get started? Head on over to the [Momento console](https://console.gomomento.com/tokens) and get your API key!
