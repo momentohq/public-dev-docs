@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+pagination_prev: null
 sidebar_label: API Reference
 title: MVI API reference
 description: Learn how to interact programmatically with Momento Vector Index API.
