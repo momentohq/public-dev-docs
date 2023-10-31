@@ -45,7 +45,7 @@ npm install @gomomento-poc/momento-sequelize-cache
 ```
 
 Now you're ready to add the necessary imports and `wrap` your Sequelize models such that it will be backed by Momento as a read-aside cache.
-Creating a Momento wrapper over your Sequelize backed database simply involves creating a Momento client and passing it to a factory method. Remember to export your copied `ApiKey` as an environment variable.
+Creating a Momento wrapper over your Sequelize backed database simply involves creating a Momento client and passing it to a factory method. Remember to export your copied `ApiKey` as an environment variable `MOMENTO_API_KEY`.
 
 ```typescript
 import { Configurations, CredentialProvider } from "@gomomento/sdk";
@@ -70,7 +70,7 @@ This call orchestrates the read-aside caching lifecycle: prioritizing cache retr
 
 ## Examples
 
-Ready to jump in? You can also get started with our [examples](https://github.com/momentohq/momento-sequelize-cache/tree/main/examples) by forking the repo and running the example:
+Ready to jump in and explore more functionalities? You can also get started with our [examples](https://github.com/momentohq/momento-sequelize-cache/tree/main/examples) by forking the repo and running the example:
 
 ```bash
 git clone https://github.com/momentohq/momento-sequelize-cache
@@ -78,6 +78,8 @@ cd examples
 npm install
 MOMENTO_API_KEY="yourApiKey" npm run basic
 ```
+
+This example demonstrates various Sequelize operations supported by the wrapper such as `findByPk`, `findOne`, `count`, and `findAll`. It also demonstrates `joins` between different tables whose queries can be cached.
 
 ## Conclusion
 
