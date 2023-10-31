@@ -13,12 +13,10 @@ In this tutorial, we'll walk through our [Momento sequelize model cache wrapper]
 
 ## Prerequisites
 
-To get this example running, you'll need to have the following available:
+To use Momento with Sequelize in your app, you'll need to have the following available:
 
-- An account with a Git provider such as [GitHub](https://github.com/), [GitLab](https://gitlab.com), or [Bitbucket](https://bitbucket.org/).
 - Node version 16 and above installed on your machine https://nodejs.org/en/download
-
-Now you're ready to configure the Momento side of things using the [Momento console](https://console.gomomento.com). You can create an account in the console by providing your email address or linking an existing Google or GitHub account. Once you've logged into the console, click the `Create Cache` button on the top right of the page:
+- Configure the Momento side of things using the [Momento console](https://console.gomomento.com). You can create an account in the console by providing your email address or linking an existing Google or GitHub account. Once you've logged into the console, click the `Create Cache` button on the top right of the page:
 
 ![Create Cache button](/img/console-create-cache.png)
 
