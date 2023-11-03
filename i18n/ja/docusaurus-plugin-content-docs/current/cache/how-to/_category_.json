@@ -1,0 +1,10 @@
+{
+  "label": "How To",
+  "position": 4,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Things you can build with Momento."
+  },
+  "className": "sidebar-item-walkthrough"
+}
