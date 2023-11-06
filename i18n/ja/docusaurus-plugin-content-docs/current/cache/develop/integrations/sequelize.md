@@ -9,7 +9,7 @@ description: Supercharge your sequelize backed databases with Momento cache
 
 [Sequelize](https://sequelize.org/)は、Oracle、Postgres、MySQL、MariaDB、SQLite、SQL Serverなどでよく使われているORMです。
 
-このチュートリアルでは、[Momento sequelize モデルキャッシュラッパー](https://github.com/momentohq/momento-sequelize-cache) について説明します。このチュートリアルでは、[Momento sequelize モデルキャッシュラッパー]() を紹介します。このチュートリアルが終わるころには、最小限のコード変更で、sequelize でバックアップされた ORM データベースをシームレスにキャッシュできるようになっていることでしょう。
+このチュートリアルでは、[Momento sequelize モデル キャッシュ ラッパー](https://github.com/momentohq/momento-sequelize-cache) について説明します。 チュートリアルが終わるまでに、最小限のコード変更で Sequelize-Backed ORM データベースをシームレスにキャッシュできるようになります。
 
 ## 前提条件
 
