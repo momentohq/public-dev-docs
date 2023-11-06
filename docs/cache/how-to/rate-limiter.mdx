@@ -1,0 +1,53 @@
+---
+sidebar_position: 2
+sidebar_label: Build a Rate-limiter
+title:  Implement a distributed rate-limiter using Momento
+description: Learn how you can implement a distributed rate-limiter using a centralized backend source, Momento.
+---
+
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
+
+# Building a distributed and centralized rate-limiter using Momento
+
+## What is rate-limiting?
+
+Rate limiting is a strategy for limiting network traffic. It puts a cap on how often someone can repeat an action within a certain timeframe. Rate-limiting exists literally everywhere; whether you are looking at your Twitter news feed or streaming a live video, there’s a non-zero chance that you are interacting with a rate-limiter. It is watching you, making decisions about your traffic, and rightfully stopping you if you start making too much noise.
+
+## What’s the use of rate-limiters?
+
+The need for rate-limiting stems from the fundamental requirement to maintain the health and quality of any service. Without it, resources could easily become overwhelmed, leading to service degradation or outright failure. This is particularly important in distributed systems, web services, and multi-tenant applications where client requests can vary dramatically in volume and frequency. Rate-limiting ensures a fair distribution of resources, prevents abuse, and can even be a crucial component in defending against certain types of cyber-attacks, such as Distributed Denial of Service (DDoS) attacks.
+
+Some common use-cases of rate-limiting includes:
+
+- API Management: In a platform offering various APIs, rate-limiting is crucial to prevent a single user or service from monopolizing the bandwidth, ensuring that all users have equitable access to the resources.
+
+- E-commerce Websites: During high-traffic events like Black Friday sales, rate-limiting can prevent the website from crashing by controlling the influx of user requests, thus providing a stable and fair shopping experience to all customers.
+
+- Online Gaming Servers: Rate-limiting can help in mitigating cheating by throttling the number of actions a player can perform in a given time, ensuring a level playing field and maintaining the game's integrity.
+
+## Using Momento to build a distributed rate-limiter
+
+Let’s imagine you want to create a distributed rate-limiter that could effectively manage transactions-per-minute (TPM) for individual users.
+Our approach utilizes Momento's `increment` and `updateTTL` [APIs](./../develop/api-reference). This method proves to be not only efficient but also highly accurate.
+
+At the heart of our rate-limiter is a key mechanism that allows us to perform rate limiting based on user-per-minute granularity. The key is constructed using a combination of a user or entity and the current minute. This key plays a pivotal role in tracking and limiting the number of transactions a user can make in a given minute.
+
+The rate limiter increments the value of the unique key for each user when they make a request, setting a time-to-live (TTL) for the first request of the minute to 60 seconds. This is important as we want our keys to expire as they are not meaningful after they have served their purpose for a given minute.
+
+A flow of the rate-limiter looks like:
+
+- Increment the value of `user_id-current_minute`. If the returned value is 1, that indicates that this was the first request for the user for that given minute. Note that Momento's `increment` API is guaranteed to be atomic. If this return value is 1, we set the TTL of that key using `updateTTL` API to be 60 seconds.
+- If the value is less than the configured TPM limit for the rate limiter, we allow the request, or else, throttle it.
+
+Let's dive right into our implementation; pay attention to comments in this code where we explain the thought process.
+
+<SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/rate-limiter/doc-examples-files/doc-examples.ts'} />
+
+## We want more!
+
+- You can quickly get started with our SDK examples to play around the Momento rate limiter, where you can also simulate contention and cause your rate-limiter to throttle requests.
+  - [Typescript](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/rate-limiter )
+- [Read our blog](https://www.gomomento.com/blog/did-you-say-you-want-a-distributed-rate-limiter) where we analyze different heuristics of the rate-limiter and also compare it with other approaches.
