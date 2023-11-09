@@ -113,7 +113,7 @@ def write_file(file_path, data):
     with open(file_path, "wb") as out_file:
         out_file.write(data)
 
-# Get a connection to and existing cache with your Api key.
+# Get a connection to and existing cache with your API key.
 def client():
     momento_api_key = CredentialProvider.from_environment_variable('MOMENTO_API_KEY')
     momento_ttl_seconds = os.getenv('MOMENTO_TTL_SECONDS')

@@ -25,9 +25,9 @@ Here is an example of how to construct a `TopicClient`:
 
 <SdkExampleTabs snippetId={'API_InstantiateTopicClient'} />
 
-## Instantiating credential providers using Momento Api keys
+## Instantiating credential providers using Momento API keys
 
-You need to provide a Momento Api key when instantiating a Momento client. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). Once you have a token, provide it to Momento SDKs when you create an instance of `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider` object, either from an environment variable or from a String. Below is an example of how to instantiate `CredentialProvider` from an environment variable:
+You need to provide a Momento API key when instantiating a Momento client. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). Once you have a token, provide it to Momento SDKs when you create an instance of `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider` object, either from an environment variable or from a String. Below is an example of how to instantiate `CredentialProvider` from an environment variable:
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromEnvVar'} />
 

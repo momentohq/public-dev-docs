@@ -33,9 +33,9 @@ After pressing the `Create` button you'll see the new `worker` cache in the list
 
 ![New cache](/img/console-caches-worker.png)
 
-Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento Api key in the next step. 
+Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento API key in the next step. 
 
-Navigate to the [Api keys](https://consotle.gomomento.com/api_keys) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained key that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations, such as creating or deleting a cache. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
+Navigate to the [API keys](https://consotle.gomomento.com/api_keys) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained key that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations, such as creating or deleting a cache. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
 
 Choose the `Fine-Grained Access Key` key type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Key` is used for managing control plane operations. More information about Momento authentication can be found [here](./../authentication/index.mdx). Hit the `Generate Api Key` button.
 
@@ -87,7 +87,7 @@ Second, create a `secrets.json` file with the following contents:
 
 You can set the variable `MOMENTO_BACKEND` to any string value. Make sure that your HTTP endpoint corresponds to the region where you created your Momento Cache. This is the HTTP endpoint value we copied from the `Generate Api Key` output on the Momento Console.
 
-**Note**: for production environments, the Momento Api Key should be saved in a [Fastly Secret Store](https://developer.fastly.com/reference/api/services/resources/secret-store/). However, this is a feature currently restricted to beta users, so this example saves the Api key in a [Config Store](https://developer.fastly.com/reference/api/services/resources/config-store/) along with the other values specified in the `secrets.json` file.
+**Note**: for production environments, the Momento Api Key should be saved in a [Fastly Secret Store](https://developer.fastly.com/reference/api/services/resources/secret-store/). However, this is a feature currently restricted to beta users, so this example saves the API key in a [Config Store](https://developer.fastly.com/reference/api/services/resources/config-store/) along with the other values specified in the `secrets.json` file.
 
 Next, you'll want to make sure the contents of your `secrets.json` file match the contents in the `fastly.toml` file. 
 

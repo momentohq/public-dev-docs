@@ -63,7 +63,7 @@ Assuming you've entered the base directory correctly, you should see some magic 
 
 ![Netlify build settings](/img/netlify-build-settings.png)
 
-Recall that we generated and saved a Momento Api key earlier for use with this application. Use the `Add environment variables` button below the build settings to add an environment variable with `MOMENTO_API_KEY` as the key and the token you generated as the value. Next, add a second environment variable with `NEXT_PUBLIC_MOMENTO_CACHE_NAME` as the key and `chat` as the value to point your app to the cache you created earlier. And that's all there is to do to configure the deployment. Press the `Deploy client-sdk-javascript` button to deploy the app into the wild!
+Recall that we generated and saved a Momento API key earlier for use with this application. Use the `Add environment variables` button below the build settings to add an environment variable with `MOMENTO_API_KEY` as the key and the token you generated as the value. Next, add a second environment variable with `NEXT_PUBLIC_MOMENTO_CACHE_NAME` as the key and `chat` as the value to point your app to the cache you created earlier. And that's all there is to do to configure the deployment. Press the `Deploy client-sdk-javascript` button to deploy the app into the wild!
 
 During the deployment, Netlify displays a detailed log showing what it's doing to build and publish your site and, if necessary, reporting on deployment failures to assist in troubleshooting. If all went as planned, you'll be directed to a page summarizing the deployment.
 

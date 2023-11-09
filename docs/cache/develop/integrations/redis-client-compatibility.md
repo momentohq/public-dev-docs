@@ -116,7 +116,7 @@ import (
 func initRedisClient() redis.Cmdable {
 	credential, eErr := auth.NewEnvMomentoTokenProvider("MOMENTO_API_KEY")
 	if eErr != nil {
-		panic("Failed to initialize credentials through api key " + eErr.Error())
+		panic("Failed to initialize credentials through API key " + eErr.Error())
 	}
 	cacheClient, cErr := momento.NewCacheClient(config.LaptopLatest(), credential, 60*time.Second)
 	if cErr != nil {

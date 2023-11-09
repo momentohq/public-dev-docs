@@ -48,7 +48,7 @@ $settings['momento_cache']['api_token'] = '<YOUR_MOMENTO_TOKEN>';
 $settings['momento_cache']['cache_name'] = '<YOUR_CACHE_NAME>';
 ```
 
-Replace <YOUR_MOMENTO_TOKEN> with the Api key you generated in the console. You may also use an environment variable named MOMENTO_API_TOKEN to pass your API token to the Momento cache backend. If both are supplied, the settings file takes precedence. Replace <YOUR_CACHE_NAME> with the name of the underlying Momento cache you created earlier. You may also use an environment variable named MOMENTO_CACHE_NAME to pass this value. If both are supplied, the settings file takes precedence.
+Replace <YOUR_MOMENTO_TOKEN> with the API key you generated in the console. You may also use an environment variable named MOMENTO_API_TOKEN to pass your API token to the Momento cache backend. If both are supplied, the settings file takes precedence. Replace <YOUR_CACHE_NAME> with the name of the underlying Momento cache you created earlier. You may also use an environment variable named MOMENTO_CACHE_NAME to pass this value. If both are supplied, the settings file takes precedence.
 
 You may also optionally provide the path to a log file (make sure it's writable by Drupal) for tracking the module's caching operations and how long each operation is taking:
 
