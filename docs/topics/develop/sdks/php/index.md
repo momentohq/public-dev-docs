@@ -18,7 +18,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-php](https://githu
 
 ## Requirements
 
-- A Momento api key is required; you can get one from the [Momento web console](https://console.gomomento.com/).
+- A Momento API key is required; you can get one from the [Momento web console](https://console.gomomento.com/).
 - At least PHP 8.0
 - The grpc PHP extension. See the [gRPC docs](https://github.com/grpc/grpc/blob/v1.54.0/src/php/README.md) section on installing the extension.
 
