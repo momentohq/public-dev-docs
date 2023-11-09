@@ -21,6 +21,9 @@ function markdownNodeContainsExampleSnippets<T extends unist.Node>(
     if (value.startsWith('<SdkExampleCodeBlock')) {
       return true;
     }
+    if (value.startsWith('<SdkExampleFileTabs')) {
+      return true;
+    }
   }
   return false;
 }
@@ -43,6 +46,8 @@ function plugin(options: unknown): unknown {
         replaceValueWithExampleTabs(literal);
       } else if (value.startsWith('<SdkExampleCodeBlock')) {
         replaceValueWithExampleCodeBlock(literal);
+      } else if (value.startsWith('<SdkExampleFileTabs')) {
+        replaceValueWithExampleFileTabs(literal);
       }
     });
   }
@@ -72,6 +77,23 @@ function replaceValueWithExampleTabs(literal: unist.Literal): void {
   cli={\`${snippetForLanguage(ExampleLanguage.CLI, snippetId)}\`}
 />
 `;
+}
+
+function replaceValueWithExampleFileTabs(literal: unist.Literal): void {
+  const value = literal.value as string;
+  literal.value = `<SdkExampleFileTabsImpl
+    js={\`${fileTabContentsForLanguage(value, ExampleLanguage.JAVASCRIPT)}\`}
+    python={\`${fileTabContentsForLanguage(value, ExampleLanguage.PYTHON)}\`}
+    java={\`${fileTabContentsForLanguage(value, ExampleLanguage.JAVA)}\`}
+    go={\`${fileTabContentsForLanguage(value, ExampleLanguage.GO)}\`}
+    csharp={\`${fileTabContentsForLanguage(value, ExampleLanguage.CSHARP)}\`}
+    php={\`${fileTabContentsForLanguage(value, ExampleLanguage.PHP)}\`}
+    rust={\`${fileTabContentsForLanguage(value, ExampleLanguage.RUST)}\`}
+    ruby={\`${fileTabContentsForLanguage(value, ExampleLanguage.RUBY)}\`}
+    elixir={\`${fileTabContentsForLanguage(value, ExampleLanguage.ELIXIR)}\`}
+    cli={\`${fileTabContentsForLanguage(value, ExampleLanguage.CLI)}\`}
+  />
+  `;
 }
 
 function replaceValueWithExampleCodeBlock(literal: unist.Literal): void {
@@ -122,10 +144,22 @@ function snippetForLanguage(
   ).replace(/[\\`$]/g, '\\$&');
 }
 
+function fileTabContentsForLanguage(
+  tagValue: string,
+  language: ExampleLanguage
+): string {
+  const re = new RegExp(`${language}={'([^']+)'}`, 'm');
+  const filePath = tagValue.match(re)?.[1];
+  return fileContentsForLanguage(language, filePath);
+}
+
 function fileContentsForLanguage(
   language: ExampleLanguage,
-  file: string
+  file: string | undefined
 ): string {
+  if (file === undefined) {
+    return '';
+  }
   return (SNIPPET_RESOLVER.getFileContent(language, file) ?? '').replace(
     /[\\`$]/g,
     '\\$&'
