@@ -18,7 +18,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-java](https://gith
 
 ## Requirements
 
-- A Momento Auth Token is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
 - At least the java 8 run time installed
 - mvn or gradle for downloading the sdk
 

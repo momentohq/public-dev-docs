@@ -31,11 +31,11 @@ After pressing the `Create` button you'll see the new `worker` cache in the list
 
 Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento authentication token in the next step. Navigate to the [tokens](https://console.gomomento.com/tokens) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained token that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations such as delete. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
 
-Choose the `Fine-Grained Access Token` token type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Token` is used for managing control plane operations. More information about Momento authentication can be found [here](./../authentication/index.mdx). Hit the `Generate Token` button.
+Choose the `Fine-Grained Access Token` token type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Token` is used for managing control plane operations. More information about Momento authentication can be found [here](./../authentication/index.mdx). Hit the `Generate API Key` button.
 
 ![Generate token](/img/fgac-worker-auth.png)
 
-Copy the `Auth Token` and `HTTP Endpoint` and save it in a safe place. You'll need to use it later to configure your Worker deployment, where you will add it as an environment variable for use in the worker.
+Copy the `API Key` and `HTTP Endpoint` and save it in a safe place. You'll need to use it later to configure your Worker deployment, where you will add it as an environment variable for use in the worker.
 
 ![Generated token](/img/http-endpoint-auth-token.png)
 
@@ -79,10 +79,10 @@ MOMENTO_REST_ENDPOINT = "https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.c
 MOMENTO_CACHE_NAME = "worker"
 ```
 
-Update the `.dev.vars` file in the example directory with the Momento auth token. Since this is a secret token, we don’t store it as an environment variable, instead storing it as a Cloudflare secret.
+Update the `.dev.vars` file in the example directory with the Momento API Key. Since this is a secret token, we don’t store it as an environment variable, instead storing it as a Cloudflare secret.
 
 ```.vars
-MOMENTO_AUTH_TOKEN="<your token here>"
+MOMENTO_API_KEY="<your token here>"
 ```
 
 Start the development server:
@@ -106,14 +106,14 @@ Open your browser to [localhost:8787](http://localhost:8787). The code in this e
 ```
 A deployed example can be found [here](https://momento-cloudflare-worker-http.pratik-37c.workers.dev).
 
-If you would like to deploy this example to your own Cloudflare worker, make sure you add the `MOMENTO_AUTH_TOKEN` as a secret inside of your Cloudflare account:
+If you would like to deploy this example to your own Cloudflare worker, make sure you add the `MOMENTO_API_KEY` as a secret inside of your Cloudflare account:
 
 ```shell
 
-npx wrangler secret put MOMENTO_AUTH_TOKEN
+npx wrangler secret put MOMENTO_API_KEY
 > Enter a secret value: **************************
 > 🌀 Creating the secret for the Worker "momento-cloudflare-worker-http"
-> ✨ Success! Uploaded secret MOMENTO_AUTH_TOKEN
+> ✨ Success! Uploaded secret MOMENTO_API_KEY
 ```
 
 Then you can run `npm run deploy`. You will be prompted for a Cloudflare login before deploying to your Cloudflare account.
@@ -154,10 +154,10 @@ compatibility_date = "2023-07-10"
 MOMENTO_CACHE_NAME = "worker"
 ```
 
-Update the `.dev.vars` file in the example directory with the Momento auth token. Since this is a secret token, we don’t store it as an environment variable, instead storing it as a Cloudflare secret.
+Update the `.dev.vars` file in the example directory with the Momento API Key. Since this is a secret token, we don’t store it as an environment variable, instead storing it as a Cloudflare secret.
 
 ```.vars
-MOMENTO_AUTH_TOKEN="<your token here>"
+MOMENTO_API_KEY="<your token here>"
 ```
 
 Start the development server:
@@ -180,14 +180,14 @@ Open your browser to [localhost:8787](http://localhost:8787). The code in this e
 
 A deployed example can be found [here](https://momento-cloudflare-worker-web.pratik-37c.workers.dev/).
 
-If you would like to deploy this example to your own Cloudflare worker, make sure you add the `MOMENTO_AUTH_TOKEN` as a secret inside of your Cloudflare account:
+If you would like to deploy this example to your own Cloudflare worker, make sure you add the `MOMENTO_API_KEY` as a secret inside of your Cloudflare account:
 
 ```shell
 
-npx wrangler secret put MOMENTO_AUTH_TOKEN
+npx wrangler secret put MOMENTO_API_KEY
 > Enter a secret value: **************************
 > 🌀 Creating the secret for the Worker "momento-cloudflare-worker-http"
-> ✨ Success! Uploaded secret MOMENTO_AUTH_TOKEN
+> ✨ Success! Uploaded secret MOMENTO_API_KEY
 ```
 
 Then you can run `npm run deploy`. You will be prompted for a Cloudflare login before deploying to your Cloudflare account.

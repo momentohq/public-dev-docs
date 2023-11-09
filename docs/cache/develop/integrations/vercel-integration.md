@@ -31,11 +31,11 @@ After pressing the `Create` button you'll see the new `chat` cache in the list o
 
 Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when you generate a Momento authentication token in the next step. Navigate to the [tokens](https://console.gomomento.com/tokens) page, choose the cloud provider and region you used to create your cache, choose the `Super User Token` token type, and hit the `Generate Token` button.
 
-![Generate token](/img/console-generate-token-form.png)
+![Generate token](/img/console-generate-api-key.png)
 
 Copy the `Auth Token` and save it in a safe place. You'll need to use it later to configure your Vercel deployment, where you will add it as an environment variable for use in the chat app.
 
-![Generated token](/img/console-generate-token-result.png)
+![Generated token](/img/console-api-key-result.png)
 
 ## Deploying with Vercel
 

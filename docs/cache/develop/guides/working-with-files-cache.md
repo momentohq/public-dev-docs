@@ -42,7 +42,7 @@ async function createCacheClient() {
   return CacheClient.create({
     configuration: Configurations.Laptop.v1(),
     credentialProvider: CredentialProvider.fromEnvironmentVariable({
-      environmentVariableName: 'MOMENTO_AUTH_TOKEN',
+      environmentVariableName: 'MOMENTO_API_KEY',
     }),
     defaultTtlSeconds: 600,
   });
@@ -113,15 +113,15 @@ def write_file(file_path, data):
     with open(file_path, "wb") as out_file:
         out_file.write(data)
 
-# Get a connection to and existing cache with your auth token.
+# Get a connection to and existing cache with your API key.
 def client():
-    momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_AUTH_TOKEN')
+    momento_api_key = CredentialProvider.from_environment_variable('MOMENTO_API_KEY')
     momento_ttl_seconds = os.getenv('MOMENTO_TTL_SECONDS')
     ttl  = timedelta(seconds=int(momento_ttl_seconds))
 
     config = {
       'configuration': Configurations.Laptop.v1(),
-      'credential_provider': momento_auth_token,
+      'credential_provider': momento_api_key,
       'default_ttl':  ttl
     }
     # print(config)
