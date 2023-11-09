@@ -31,11 +31,11 @@ After pressing the `Create` button you'll see the new `worker` cache in the list
 
 Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento authentication token in the next step. Navigate to the [tokens](https://console.gomomento.com/tokens) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained token that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations such as delete. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
 
-Choose the `Fine-Grained Access Token` token type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Token` is used for managing control plane operations. More information about Momento authentication can be found [here](./../authentication/index.mdx). Hit the `Generate Api Key` button.
+Choose the `Fine-Grained Access Token` token type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Token` is used for managing control plane operations. More information about Momento authentication can be found [here](./../authentication/index.mdx). Hit the `Generate API Key` button.
 
 ![Generate token](/img/fgac-worker-auth.png)
 
-Copy the `Api Key` and `HTTP Endpoint` and save it in a safe place. You'll need to use it later to configure your Worker deployment, where you will add it as an environment variable for use in the worker.
+Copy the `API Key` and `HTTP Endpoint` and save it in a safe place. You'll need to use it later to configure your Worker deployment, where you will add it as an environment variable for use in the worker.
 
 ![Generated token](/img/http-endpoint-auth-token.png)
 
@@ -79,7 +79,7 @@ MOMENTO_REST_ENDPOINT = "https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.c
 MOMENTO_CACHE_NAME = "worker"
 ```
 
-Update the `.dev.vars` file in the example directory with the Momento Api Key. Since this is a secret token, we don’t store it as an environment variable, instead storing it as a Cloudflare secret.
+Update the `.dev.vars` file in the example directory with the Momento API Key. Since this is a secret token, we don’t store it as an environment variable, instead storing it as a Cloudflare secret.
 
 ```.vars
 MOMENTO_API_KEY="<your token here>"
@@ -154,7 +154,7 @@ compatibility_date = "2023-07-10"
 MOMENTO_CACHE_NAME = "worker"
 ```
 
-Update the `.dev.vars` file in the example directory with the Momento Api Key. Since this is a secret token, we don’t store it as an environment variable, instead storing it as a Cloudflare secret.
+Update the `.dev.vars` file in the example directory with the Momento API Key. Since this is a secret token, we don’t store it as an environment variable, instead storing it as a Cloudflare secret.
 
 ```.vars
 MOMENTO_API_KEY="<your token here>"

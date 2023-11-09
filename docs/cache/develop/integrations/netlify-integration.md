@@ -35,7 +35,7 @@ Notice the region you created your cache in is also displayed in the list of cac
 
 ![Generate token](/img/console-generate-api-key.png)
 
-Copy the `Api Key` and save it in a safe place. You'll need to use it later to configure your Netlify deployment, where you will add it as an environment variable for use in the chat app. 
+Copy the `API Key` and save it in a safe place. You'll need to use it later to configure your Netlify deployment, where you will add it as an environment variable for use in the chat app. 
 
 ![Generated token](/img/console-api-key-result.png)
 

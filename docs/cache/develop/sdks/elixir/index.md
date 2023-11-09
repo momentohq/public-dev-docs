@@ -18,7 +18,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-elixir](https://gi
 ## Requirements
 
 - [Elixir version 1.14](https://elixir-lang.org/install.html) or higher is required.
-- A Momento Api Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
 
 ## Resources
 

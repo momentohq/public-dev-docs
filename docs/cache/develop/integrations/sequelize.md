@@ -26,11 +26,11 @@ Create a cache called `model-cache`. You can create the cache in your choice of 
 
 After pressing the `Create` button you'll see the new `model-cache` cache in the list of available caches.
 
-Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when you generate a Momento authentication token in the next step. Navigate to the [api_keys](https://console.gomomento.com/api_keys) page, choose the cloud provider and region you used to create your cache, choose the `Super User Api Key` key type, and hit the `Generate Api Key` button.
+Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when you generate a Momento authentication token in the next step. Navigate to the [api_keys](https://console.gomomento.com/api_keys) page, choose the cloud provider and region you used to create your cache, choose the `Super User API Key` key type, and hit the `Generate API Key` button.
 
 ![Generate token](/img/console-generate-api-key.png)
 
-Copy the `Api Key` and save it in a safe place. You'll need to use it later to run your application, where you will add it as an environment variable.
+Copy the `API Key` and save it in a safe place. You'll need to use it later to run your application, where you will add it as an environment variable.
 
 ![Generated token](/img/console-api-key-result.png)
 
