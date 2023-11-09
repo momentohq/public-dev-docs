@@ -2,35 +2,34 @@
 sidebar_position: 3
 sidebar_label: AWS Secrets Manager
 title: Momento + AWS Secrets Manager
-description: AWS Secrets ManagerからMomento認証トークンを取得する方法を学ぶ。
+description: Learn how to retrieve your Momento API Key in AWS Secrets Manager.
 ---
 
-import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
-// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
-// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
-import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+import{ SdkExampleTabs }from "@site/src/components/SdkExampleTabs";// このインポートは、使用されていないように見えても必要です。inject-example-code-snippet// プラグインは、SdkExampleTabs のインスタンスを SdkExampleTabsImplimport{ SdkExampleTabsImpl }from "@site/src/components/SdkExampleTabsImpl" に変換します；
 
-# AWS Secrets ManagerからMomento認証トークンを取得する
-Momento認証トークンを安全に保存することがベストプラクティスです。AWSをご使用の場合は、Momento認証トークンを[AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)に安全に保存することができます。そして、正しいIAMクレデンシャルで実行されているコードのみがMomento認証トークンを取得し、そのトークンを使ってMomento CacheまたはMomento Topicsにアクセスできるようになります。
+#
 
-:::備考
 
-可能であればMomentoの`CacheClient`と`TopicClient`オブジェクトを再利用した方がいいように、AWS Secrets Managerから取得したMomento認証トークンを使ってこれらのオブジェクトを再利用した方がよいです。再利用しなければ、AWS Secrets Managerへのラウンドトリップに対する各MomentoAPI呼び出しに対して、時間面と金銭面の両方から負担が増える危険性が生じます。負担を抑え、AWS Secrets Managerによって管理される可能性を排除するには、この[AWSブログ](https://aws.amazon.com/blogs/security/use-aws-secrets-manager-client-side-caching-libraries-to-improve-the-availability-and-latency-of-using-your-secrets/)で詳細にご説明させていただいた通り、クライアント側のクレデンシャルのキャッシュを使用するのがベストです。
+
+:::info
+
+Momento`CacheClientと` `TopicClient`オブジェクトを可能な限り再利用するのと同様に、AWS Secrets ManagerからMomento認証トークンも再利用する必要があります。そうしないと、AWS Secrets Manager への往復のために、Momento API 呼び出しのたびに時間とコストの両方が追加される危険性があります。コストを低く抑え、AWS Secrets Manager によるスロットリングを避けるには、この[AWS ブログで](https://aws.amazon.com/blogs/security/use-aws-secrets-manager-client-side-caching-libraries-to-improve-the-availability-and-latency-of-using-your-secrets/)詳しく説明されているように、クライアント側で認証情報をキャッシュするのが最善です。
+
 :::
 
-## AWS Secrets Managerへの入力
+## AWS Secrets Manager のエントリ
 
-Momento認証トークンをAWS Secrets Managerへ入力する際は、下のスクリーンショットの通り、JSONを含まないプレーンテキストとして入力するようにしてください（セキュリティのためトークンにはぼかしを入れております）。
 
-![AWS Secrets Manager](/img/aws-secrets-manager.png)
 
-## AWS Secrets Managerのコード例
+![AWSシークレットマネージャー](/img/aws-secrets-manager.png)
 
-<SdkExampleTabs snippetId={'API_retrieveAuthTokenFromSecretsManager'} />
+## AWS Secrets Manager のコード例
 
-## よくある質問（FAQ）
+\<SdkExampleTabs{'API_retrieveAuthTokenFromSecretsManager'}/>を参照してください。
+
+## FAQ
 
 <details>
-  <summary>Momento認証トークンをAWS Secrets Managerに保存する必要がありますか？</summary>
-いいえ、必要ありません。Momento認証トークンを環境変数またはファイルに保存できますが、AWS Secrets Manager等に保存するよりも安全性が低いため、ベストプラクティスではありません。
+ <summary>これを行う必要がありますか？</summary>
+Momentoの認証トークンを環境変数やファイルに保存することもできますが、AWS Secrets Managerに保存するほど安全ではないので、ベストプラクティスではありません。
 </details>
