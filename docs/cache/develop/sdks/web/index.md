@@ -27,7 +27,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-javascript](https:
 
 ## Requirements
 
-- A Momento auth token is required; you can get one from the [Momento web console](https://console.gomomento.com/).
+- A Momento Api key is required; you can get one from the [Momento web console](https://console.gomomento.com/).
 
 ## Resources
 

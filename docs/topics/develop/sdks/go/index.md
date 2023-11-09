@@ -19,7 +19,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-go](https://github
 ## Requirements
 
 - [Go](https://go.dev/dl/)
-- A Momento Auth Token is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A Momento Api key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
 
 ## Resources
 

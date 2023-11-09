@@ -28,11 +28,11 @@ While waiting for Unity to download and install, you can configure the Momento s
 4. After pressing the `Create` button you'll see the new `Unity-Topics-Cache` cache in the list of available caches. Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when you generate a Momento authentication token in the next step.
 ![Chat cache](/img/unity/Unity-Topics-Cache.png)
 
-5. Navigate to the [tokens](https://console.gomomento.com/tokens) page, choose the cloud provider and region you used to create your cache, choose the `Super User Token` token type, and hit the `Generate Token` button.
-![Generate token](/img/console-generate-token-form.png)
+5. Navigate to the [tokens](https://console.gomomento.com/tokens) page, choose the cloud provider and region you used to create your cache, choose the `Super User Token` token type, and hit the `Generate Api Key` button.
+![Generate token](/img/console-generate-api-key.png)
 
-6. Copy the `Auth Token` and save it in a safe place. You'll need to use it later to configure your Unity chat application.
-![Generated token](/img/console-generate-token-result.png)
+6. Copy the `Api Key` and save it in a safe place. You'll need to use it later to configure your Unity chat application.
+![Generated token](/img/console-api-key-result.png)
 
 ## Setting up the Unity Project
 
@@ -82,11 +82,11 @@ A helper C# script `EmojiHelper.cs` is used to handle the emoji insertion.
 ### Understanding the C# script that subscribes to the Momento Topic
 In our example code, the magic happens in `Assets/TopicsTest.cs`, which is based upon the [Momento .NET SDK Topic Example](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample).
 
-The first thing we need to do is to let our C# script know about the auth token we created above in the [Momento Prerequisite](#momento) step. Following the [Momento .NET SDK Topic Example](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample), we can either grab the auth token from an environment variable or by hard-coding it in our code (note that hard-coding your auth token in code is NOT recommended but can be used for testing purposes, if necessary):
+The first thing we need to do is to let our C# script know about the Api key we created above in the [Momento Prerequisite](#momento) step. Following the [Momento .NET SDK Topic Example](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample), we can either grab the Api key from an environment variable or by hard-coding it in our code (note that hard-coding your Api key in code is NOT recommended but can be used for testing purposes, if necessary):
 - To set the environment variable in Windows, click the Windows Start button, search for "environment" and click on "Edit the system environment variables." Then click on "Environment Variables" and ensure the `MOMENTO_AUTH_TOKEN` environment variable is set. You may need to restart Unity to get it to recognize your newly created environment variable.
-- To hard-code the auth token in C# script, copy and paste your auth token into `Assets/TopicsTest.cs` replacing `ADD_YOUR_TOKEN_HERE` in the `ReadAuthToken()` function.
+- To hard-code the Api key in C# script, copy and paste your Api key into `Assets/TopicsTest.cs` replacing `ADD_YOUR_TOKEN_HERE` in the `ReadAuthToken()` function.
 
-After the auth token is appropriately set, you can go ahead and click on the "Play" button in the Unity Editor to test it out! 
+After the Api key is appropriately set, you can go ahead and click on the "Play" button in the Unity Editor to test it out! 
 
 ## Conclusion
 

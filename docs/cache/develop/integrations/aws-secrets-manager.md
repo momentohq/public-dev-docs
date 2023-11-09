@@ -2,7 +2,7 @@
 sidebar_position: 3
 sidebar_label: AWS Secrets Manager
 title: Momento + AWS Secrets Manager
-description: Learn how to retrieve your Momento Auth Token in AWS Secrets Manager.
+description: Learn how to retrieve your Momento Api Key in AWS Secrets Manager.
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -10,9 +10,9 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Retrieving a Momento auth token from AWS Secrets Manager
+# Retrieving a Momento Api Key from AWS Secrets Manager
 
-It's best practice to securely store your Momento authentication token. If you are using AWS, you can securely store the auth token in [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html). With that, only code running with the correct IAM credentials will be able to fetch the auth token and use it to access Momento Cache or Momento Topics.
+It's best practice to securely store your Momento Api Key. If you are using AWS, you can securely store the auth token in [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html). With that, only code running with the correct IAM credentials will be able to fetch the Api key and use it to access Momento Cache or Momento Topics.
 
 :::info
 
@@ -22,7 +22,7 @@ Just as you should reuse your Momento `CacheClient` and `TopicClient` objects wh
 
 ## Entry in AWS Secrets Manager
 
-When inserting the Momento auth token into AWS Secrets Manager, it should be as plaintext with no JSON as in this screenshot. (Token blurred for security.)
+When inserting the Momento Api key into AWS Secrets Manager, it should be as plaintext with no JSON as in this screenshot. (Token blurred for security.)
 
 ![AWS Secrets Manager](/img/aws-secrets-manager.png)
 

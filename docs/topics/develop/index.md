@@ -25,13 +25,13 @@ Here is an example of how to construct a `TopicClient`:
 
 <SdkExampleTabs snippetId={'API_InstantiateTopicClient'} />
 
-## Instantiating credential providers using Momento auth tokens
+## Instantiating credential providers using Momento Api keys
 
-You need to provide a Momento auth token when instantiating a Momento client. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). Once you have a token, provide it to Momento SDKs when you create an instance of `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider` object, either from an environment variable or from a String. Below is an example of how to instantiate `CredentialProvider` from an environment variable:
+You need to provide a Momento Api key when instantiating a Momento client. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). Once you have a token, provide it to Momento SDKs when you create an instance of `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider` object, either from an environment variable or from a String. Below is an example of how to instantiate `CredentialProvider` from an environment variable:
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromEnvVar'} />
 
-If you're storing your Momento auth token in a secret manager such as [AWS Secret Manager](https://aws.amazon.com/secrets-manager/), [GCP Secret Manager](https://cloud.google.com/secret-manager), or a local config file, you must first retrieve the credentials from there and then instantiate a `CredentialProvider` from a string, like this:
+If you're storing your Momento api key in a secret manager such as [AWS Secret Manager](https://aws.amazon.com/secrets-manager/), [GCP Secret Manager](https://cloud.google.com/secret-manager), or a local config file, you must first retrieve the credentials from there and then instantiate a `CredentialProvider` from a string, like this:
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromString'} />
 

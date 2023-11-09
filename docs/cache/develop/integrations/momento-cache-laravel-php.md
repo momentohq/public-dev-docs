@@ -26,7 +26,7 @@ If you would like to see a working example of a Laravel app that uses Momento ca
 ## Setting up your own Laravel project
 
 ### Prerequisites
-* A Momento auth token is required. You can generate one using [the Momento CLI](https://github.com/momentohq/momento-cli).
+* A Momento Api Key is required. You can generate one using [the Momento CLI](https://github.com/momentohq/momento-cli).
 * Installation of PHP 8.0 or higher
 * Installation of Laravel 9.x or higher
 * Installation of the [gRPC PHP extension](https://github.com/grpc/grpc/blob/v1.46.3/src/php/README.md).

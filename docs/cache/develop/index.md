@@ -13,7 +13,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Developing applications with Momento SDKs
 
-Welcome! This page provides information about common constructs you will need in order to assemble Momento clients in all of our SDKs. This page covers how to provide your Momento credentials (called auth tokens), how to configure your client, and some basic information about error handling and production readiness.
+Welcome! This page provides information about common constructs you will need in order to assemble Momento clients in all of our SDKs. This page covers how to provide your Momento credentials (called api keys), how to configure your client, and some basic information about error handling and production readiness.
 
 ![a technical illustration on a white background depicting the intersection of speed, ease of use, and security.](@site/static/img/city.jpg)
 
@@ -25,9 +25,9 @@ Here is an example of how to construct a `CacheClient`:
 
 <SdkExampleTabs snippetId={'API_InstantiateCacheClient'} />
 
-## Instantiating credential providers using Momento auth tokens
+## Instantiating credential providers using Momento api keys
 
-You need to provide a Momento auth token when instantiating a Momento client. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). Once you have a token, provide it to Momento SDKs when you create an instance of `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider` object, either from an environment variable or from a String. Below is an example of how to instantiate `CredentialProvider` from an environment variable:
+You need to provide a Momento Api key when instantiating a Momento client. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). Once you have a token, provide it to Momento SDKs when you create an instance of `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider` object, either from an environment variable or from a String. Below is an example of how to instantiate `CredentialProvider` from an environment variable:
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromEnvVar'} />
 

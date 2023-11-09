@@ -33,15 +33,15 @@ After pressing the `Create` button you'll see the new `worker` cache in the list
 
 ![New cache](/img/console-caches-worker.png)
 
-Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento authentication token in the next step. 
+Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento Api key in the next step. 
 
-Navigate to the [tokens](https://console.gomomento.com/tokens) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained token that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations, such as creating or deleting a cache. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
+Navigate to the [Api keys](https://consotle.gomomento.com/api_keys) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained key that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations, such as creating or deleting a cache. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
 
-Choose the `Fine-Grained Access Token` token type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Token` is used for managing control plane operations. More information about Momento authentication can be found [here](./../authentication/index.mdx). Hit the `Generate Token` button.
+Choose the `Fine-Grained Access Key` key type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Key` is used for managing control plane operations. More information about Momento authentication can be found [here](./../authentication/index.mdx). Hit the `Generate Api Key` button.
 
 ![Generate token](/img/fgac-worker-auth.png)
 
-Copy the `Auth Token` and `HTTP Endpoint` and save it in a safe place. You'll need to use it later to configure your Fastly Compute@Edge deployment.
+Copy the `Api Key` and `HTTP Endpoint` and save it in a safe place. You'll need to use it later to configure your Fastly Compute@Edge deployment.
 
 ![Generated token](/img/http-endpoint-auth-token.png)
 
@@ -81,13 +81,13 @@ Second, create a `secrets.json` file with the following contents:
     "MOMENTO_HTTP_ENDPOINT": "<YOUR-HTTP-ENDPOINT>",
     "MOMENTO_BACKEND": "<YOUR-MOMENTO-BACKEND-NAME>",
     "MOMENTO_CACHE": "<YOUR-CACHE-NAME>",
-    "MOMENTO_TOKEN": "<YOUR-MOMENTO-AUTH-TOKEN>
+    "MOMENTO_API_KEY": "<YOUR-MOMENTO-API-KEY>"
 }
 ```
 
-You can set the variable `MOMENTO_BACKEND` to any string value. Make sure that your HTTP endpoint corresponds to the region where you created your Momento Cache. This is the HTTP endpoint value we copied from the Generate Token output on the Momento Console.
+You can set the variable `MOMENTO_BACKEND` to any string value. Make sure that your HTTP endpoint corresponds to the region where you created your Momento Cache. This is the HTTP endpoint value we copied from the `Generate Api Key` output on the Momento Console.
 
-**Note**: for production environments, the Momento auth token should be saved in a [Fastly Secret Store](https://developer.fastly.com/reference/api/services/resources/secret-store/). However, this is a feature currently restricted to beta users, so this example saves the auth token in a [Config Store](https://developer.fastly.com/reference/api/services/resources/config-store/) along with the other values specified in the `secrets.json` file.
+**Note**: for production environments, the Momento Api Key should be saved in a [Fastly Secret Store](https://developer.fastly.com/reference/api/services/resources/secret-store/). However, this is a feature currently restricted to beta users, so this example saves the Api key in a [Config Store](https://developer.fastly.com/reference/api/services/resources/config-store/) along with the other values specified in the `secrets.json` file.
 
 Next, you'll want to make sure the contents of your `secrets.json` file match the contents in the `fastly.toml` file. 
 
@@ -135,7 +135,7 @@ Finally, you'll want to make sure all four variables in the `secrets.json` file 
           value = "<YOUR-HTTP-ENDPOINT>"
 
         [setup.config_stores.secrets.items.MOMENTO_TOKEN]
-          value = "<YOUR-MOMENTO-AUTH-TOKEN>"
+          value = ""<YOUR-MOMENTO-API-KEY>""
 ```
 
 Next, start the development server and navigate to [localhost:7676](http://localhost:7676) to check that it's working.
