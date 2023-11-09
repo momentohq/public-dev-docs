@@ -44,7 +44,39 @@ Then you should see log messages from Momento coming through your pino logging e
 ## Metrics
 Metrics are measurements that provide quantitative information about system performance and behavior. They are numerical values captured and recorded over regular intervals, providing statistical data to aid in understanding the trends and patterns in a system.
 
-For Momento specifically, you might desire to capture metrics on the number of requests made, their duration, request or response size, or failure rates. Capture these in the Node.js SDK using a middleware, which intercepts the Momento gRPC calls and responses. Here is an example that uses OpenTelemetry and Prometheus to capture request count faceted by request type:
+For Momento, specifically, you might want to capture client-side metrics on the number of requests made, their duration, request or response size, or failure rates. 
+
+The most straightforward way to emit these metrics is to use one of the `ExperimentalMetricsMiddleware` classes. These classes emit metrics in JSON format:
+
+```
+(Momento: _ExperimentalMetricsLoggingMiddleware): 
+{
+  "momento": {
+    "numActiveRequestsAtStart": 1,
+    "numActiveRequestsAtFinish": 1,
+    "requestType": "_GetRequest",
+    "status": 0,
+    "startTime": 1697663118489,
+    "requestBodyTime": 1697663118489,
+    "endTime": 1697663118492,
+    "duration": 3,
+    "requestSize": 32,
+    "responseSize": 2,
+    "connectionID": "0"
+  }
+}
+```
+
+The metrics format is currently considered experimental; in a future release, once the format is considered stable, this class will be renamed to remove the `Experimental` prefix. The two middleware classes available are:
+
+- `ExperimentalMetricsLoggingMiddleware`: will emit metrics to your chosen logger. WARNING: depending on your request volume, this middleware will produce a high volume of log output. If you are writing logs directly to local disk, be aware of disk usage and make sure you have log rotation / compression enabled via a tool such as `logrotate`.
+- `ExperimentalMetricsCsvMiddleware`: will emit metrics to a CSV file. WARNING: enabling this middleware may have minor performance implications, so enable with caution. Depending on your request volume, the CSV file size may grow quickly, and neither sampling nor file compression / rotation are included at this time.
+
+Log files and CSVs can be analyzed or shared with Momento to diagnose performance issues. You may also direct your logs to an AWS CloudWatch Log Group and create a CloudWatch dashboard to monitor your Momento requests; [an example of launching a Momento metrics dashboard](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/lambda-examples/cloudwatch-metrics) and optional example application is available in the Node.js SDK. The example Lambda and Fargate applications utilize the `ExperimentalMetricsLoggingMiddleware` class and CloudWatch metric filters to populate a dashboard like the one shown below.
+
+![An image of a CloudWatch dashboard with nine graphs populated by Momento metrics](@site/static/img/cloudwatch-dashboard.png)
+
+Alternatively, you can capture client-side metrics using your own custom middleware that intercepts  Momento gRPC calls and responses. Here is an example that uses OpenTelemetry and Prometheus to capture request count faceted by request type:
 
 First, set up metrics in your application:
 
