@@ -2,7 +2,7 @@
 sidebar_position: 2
 title: Auth API reference information
 sidebar_label: Auth
-description: Learn the Auth API calls you need to know about and how to use them with Momento services.
+description: 知っておく必要がある Auth API 呼び出しと、それらを Momento サービスで使用する方法について学びます。
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -10,40 +10,40 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Auth API reference
+# Auth API リファレンス
 
 <img src="/img/access-tokens.jpg" width="90%" alt="a technical illustration of a bank vault representing security, authorization, and authentication." />
 
-The auth APIs create and manage API keys and tokens for Momento services. These auth mechanisms can be scoped to have one or more permissions to grant access to one or more caches or topics. 
+Auth API は、Momento サービスの API キーとトークンを作成および管理します。これらの認証メカニズムは、1つ以上のキャッシュやトピックスへのアクセスを許可するために、1つ以上のパーミッションを持つようにスコープすることができます。
 
 <img src="/img/momento-auth-tokens.png" width="60%"/>
 
 ## GenerateAuthToken API
 
-Generates a new Momento auth token with the specified permissions and expiry.
+指定した権限と有効期限を持つ新しい Momento Auth トークンを生成します。
 
-| Name            | Type                      | Description                                                                                                                                                                             |
+| 名前            | タイプ                      | 説明                                                                                                                                                                             |
 | --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| scope           | [TokenScope](#tokenscope-objects) | The permissions to grant to the new token. Pre-built TokenScope objects are provided by the SDKs.                                                                                       |
-| expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the `ExpiresIn.never()`, `ExpiresIn.minutes()`, or `ExpiresIn.hours()` methods. |
+| scope           | [TokenScope](#tokenscope-objects) | 新しいトークンに付与する権限。TokenScopeオブジェクトはSDKによって提供されます。                                                                                       |
+| expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | `ExpiresIn.never()`メソッド、`ExpiresIn.minutes()`メソッド、`ExpiresIn.hours()`メソッドを呼び出すことで、トークンが期限切れになるまでの秒数、またはその期間を表すExpiresInオブジェクト。 |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-  - `authToken`: string - the new auth token
-  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshauthtoken-api) to refresh a token before it expires
-  - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
-  - `expiresAt`: Timestamp - the timestamp at which the token will expire
+  - `authToken`: string - 新しいAuthトークン
+  - `refreshToken`: string - [RefreshAuthToken API](#refreshauthtoken-api) を使って、トークンの有効期限が切れる前にリフレッシュするためのトークン
+  - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
+  - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 :::note
 
-Tokens to access the Momento control plane APIs can only be generated using the [Momento console](https://console.gomomento.com/).
+MomentoコントロールプレーンAPIにアクセスするためのトークンは、[Momentoコンソール](https://console.gomomento.com/)を使用してのみ生成できます。
 
 :::
 
@@ -51,59 +51,63 @@ Tokens to access the Momento control plane APIs can only be generated using the 
 
 ## RefreshAuthToken API
 
-Refreshes an existing, unexpired Momento auth token.  Produces a new auth token with the same permissions and expiry duration as the original auth token.
+既存の有効期限が切れていない Momento Authトークンをリフレッシュします。 元のトークンと同じ権限と有効期限を持つ新しいトークンを生成します。
 
-| Name            | Type            | Description                                   |
+| 名前            | タイプ            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| refreshToken    | String          | The refreshToken for the current auth token, acquired from the original call to `GenerateAuthToken`. |
+| refreshToken    | String          | `GenerateAuthToken` をコールした際に取得した、現在のAuthトークンの refreshToken。 |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-  - `authToken`: string - the new auth token
-  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshauthtoken-api) to refresh the token before it expires
-  - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
-  - `expiresAt`: Timestamp - the timestamp at which the token will expire
+  - `authToken`: string - 新しいAuthトークン
+  - `refreshToken`: string - [RefreshAuthToken API](#refreshauthtoken-api)で使用するリフレッシュトークン。
+  - `endpoint`: string - Momentoクライアントがリクエストを行う際に使用する HTTP エンドポイント。
+  - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_RefreshAuthToken'} />
 
 ## TokenScope objects
-| Name            | Type                                      | Description                                  |
+| 名前            | タイプ                                      | 説明                                  |
 | --------------- |-------------------------------------------| -------------------------------------------- |
-| permissions           | List <[Permission](#permission-objects)\> | The permissions to grant to the new token.|
+| permissions           | List <[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション |
 
-A TokenScope is a list of [permission objects](#permission-objects). The list can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and can contain up to ten permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
+TokenScopeは、[パーミッションオブジェクト](#permission-objects)のリストです。このリストには、[CachePermission](#cachepermission) 型または [TopicPermission](#topicpermission) 型のパーミッションを含めることができ、最大 10 個のパーミッションオブジェクトを含めることができます。パーミッションは Momento データプレーン API (`get` や `set` など) へのアクセスのみを許可します。
+複数のパーミッションオブジェクトを持つAuthトークンが作成された場合、一致するパーミッションがアクセスを許可します。たとえば、1 つのトークンに 2 つのパーミッションオブジェクトを設定した場合、次のようになります：
 
-1. A permission object that allows ReadWrite access to all caches for the account 
-2. A permission object that allows ReadOnly access to cache `foo`
+1. アカウントのすべてのキャッシュへの ReadWrite アクセスを許可するパーミッションオブジェクト
+2. キャッシュ `foo` に対する ReadOnly アクセスを許可するパーミッションオブジェクト
 
-In this case, the token will still allow use of data manipulation APIs (e.g. `set`, `delete`, `DictionarySetFields`, etc.) on cache `foo` because of the first permission.
+この場合でも、トークンはキャッシュ `foo` に対してデータ操作 API (`set`、`delete`、`DictionarySetFields` など) を使用することができます。
 
 ## Permission objects
 
-These objects define the specific role with cache or topic information and are then assigned to a [TokenScope](#tokenscope-objects). 
+これらのオブジェクトはキャッシュやトピック情報を持つ特定のロールを定義し、[TokenScope](#tokenscope-objects)に割り当てられます。
 
 ### CachePermission
-A component of a [TokenScope](#tokenscope-objects) object that defines permissions for a cache.
+キャッシュのパーミッションを定義する [TokenScope](#tokenscope-objects) オブジェクトのコンポーネント
 
-| Name            | Type                 | Description                                                                                                      |
+| 名前            | タイプ                 | 説明                                                                                                      |
 | --------------- |----------------------|------------------------------------------------------------------------------------------------------------------|
-| role           | ReadOnly&nbsp;&nbsp;\|&nbsp;&nbsp;ReadWrite&nbsp;&nbsp;\|&nbsp;&nbsp;WriteOnly | The type of access granted by the permission.                                                                    |
-| cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | A permission can be restricted to a select cache by name using a `CacheName` object or `AllCaches` built-in value. |
+| role           | ReadOnly&nbsp;&nbsp;\|&nbsp;&nbsp;ReadWrite&nbsp;&nbsp;\|&nbsp;&nbsp;WriteOnly | パーミッションによって許可されたアクセスのタイプ                                                                    |
+| cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | パーミッションは `CacheName` オブジェクトまたは `AllCaches` 組み込みの値を使用して、セレクトキャッシュの名前で制限することができます。 |
 
-For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all read and write data plane APIs on the caches defined in the CacheSelector. Using `CacheRole.WriteOnly` allows access for all write data plane APIs on the caches defined in the CacheSelector. `CacheRole.WriteOnly` cannot be used for APIs that imply conditional writes like `SetIfNotExists` or return information about the updated state of a collection e.g. `ListPushBack` returns the new length. Custom roles are not supported.
+ロールの場合、`CacheRole.ReadOnly` を使用すると、CacheSelector で定義されたキャッシュ上のすべての読み取りデータプレーン API (`get`、`DictionaryGetField` など) にアクセスできるようになります。
+`CacheRole.ReadWrite` を使用すると、CacheSelector で定義されたキャッシュ上のすべての読み取りデータプレーン API および書き込みデータプレーン API にアクセスできるようになります。
+`CacheRole.WriteOnly` を使用すると、CacheSelector で定義されたキャッシュのすべての書き込みデータプレーン API にアクセスできるようになります。
+`CacheRole.WriteOnly` は、`SetIfNotExists` のような条件付きの書き込みを意味する API や、`ListPushBack` が新しい長さを返すなど、コレクションの更新状態に関する情報を返す API には使用できません。カスタムロールはサポートされていません。
 
-For cache, the value can be the built-in `AllCaches` or a string value containing the name of the cache this permission is for.
+キャッシュの場合、値は組み込みの `AllCaches` か、このパーミッションのキャッシュ名を含む文字列となります。
 
 
-#### TokenScope example for a CachePermission object
-This is an example of creating a TokenScope with just CachePermissions.
+#### CachePermission オブジェクトの TokenScope の例
+これは、CachePermissions だけで TokenScope を作成する例です。
 
 ```javascript
 const CachePermissions = {
@@ -121,23 +125,25 @@ const CachePermissions = {
 ```
 
 ### TopicPermission
-A component of a [TokenScope](#tokenscope-objects) object that defines permissions for a token.
+トークンのパーミッションを定義する[TokenScope](#tokenscope-objects)オブジェクトのコンポーネント
 
-| Name            | Type                            | Description                                                                                                                                                                                                            |
+| 名前            | タイプ                            | 説明                                                                                                                                                                                                            |
 | --------------- |---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| role           | SubscribeOnly&nbsp;\|&nbsp;PublishSubscribe&nbsp;&nbsp;\|&nbsp;&nbsp;PublishOnly | The type of access granted by the permission.                                                                                                                                                                          |
-| cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | A permission can be restricted to a select cache by name using a `CacheName` object or to all caches in the account by using the `AllCaches` built-in value.                                                           |
-| topic          | `AllTopics`&nbsp;&nbsp;\|&nbsp;&nbsp;`TopicName`       | A permission can be restricted to a select topic by name using a `TopicName` object or to all topics in the above cache(s) by using the `AllTopics` built-in value. |
+| role           | SubscribeOnly&nbsp;\|&nbsp;PublishSubscribe&nbsp;&nbsp;\|&nbsp;&nbsp;PublishOnly | パーミッションによって許可されたアクセスのタイプ。                                                                                                                                                                          |
+| cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | パーミッションは `CacheName` オブジェクトを使用して選択したキャッシュに制限することも、`AllCaches` 組み込み値を使用してアカウント内のすべてのキャッシュに制限することもできます。                                                           |
+| topic          | `AllTopics`&nbsp;&nbsp;\|&nbsp;&nbsp;`TopicName`       | パーミッションは `TopicName` オブジェクトを使用して選択したトピックに制限することも、 `AllTopics` 組み込み値を使用して上記のキャッシュ内のすべてのトピックに制限することもできます。 |
 
-For role, there are three managed roles to assign, `TopicRole.PublishSubscribe`, `TopicRole.SubscribeOnly`, and `TopicRole.PublishOnly`. Custom roles are not supported. Using the SubscribeOnly role allows only subscribing to topics, using the PublishSubscribe role allows publishing and subscribing to topics, and using the PublishOnly role allows only publishing to topics.
+ロールには、`TopicRole.PublishSubscribe`、`TopicRole.SubscribeOnly`、`TopicRole.PublishOnly`の3つの管理ロールがあります。カスタムロールはサポートされていません。SubscribeOnlyロールを使用するとトピックの購読のみが可能になり、PublishSubscribeロールを使用するとトピックの発行と購読が可能になり、PublishOnlyロールを使用するとトピックの発行のみが可能になります。
 
-For cache, only topics within that cache's namespace are allowed by the permission. This can be set to the built-in `AllCaches` value or a string specifically naming a cache.
+キャッシュでは、そのキャッシュの名前空間内のトピックのみがパーミッションによって許可されます。
+これは組み込みの `AllCaches` 値またはキャッシュを指定する文字列に設定することができます。
 
-For topic, this can be set to the built-in `AllTopics` value, which gives access to all topics in the cache(s) defined in cache or it can be a string with a specific topic name.
+トピックには、組み込みの `AllTopics` 値を設定することができます。
+これは、cache で定義されているキャッシュ内のすべてのトピックにアクセスできるようにするもので、特定のトピック名を文字列で指定することもできます。
 
-#### TokenScope example for a TopicPermission object
+#### TopicPermissionオブジェクトのTokenScopeの例
 
-This is an example of creating a TokenScope with just TopicPermissions.
+これは、TopicPermissions だけで TokenScope を作成する例です。
 
 ```javascript
 const TopicsPermissions = {
@@ -158,29 +164,29 @@ const TopicsPermissions = {
 
 ## GenerateDisposableToken API
 
-Generates a new disposable Momento auth token with the specified permissions and expiry.
+指定した権限と有効期限を持つ、使い捨ての Momento Authトークンを生成します。
 
-Disposable tokens differ from the usual Momento auth token in several key ways:
-  - They cannot be generated in the console, they can only be generated programatically. The token that's used for the `generateDisposableToken` API call must be a token with Super User scope generated via the Momento console.
-  - They must expire within one hour.
-  - They cannot be refreshed and thus do not come with a refresh token. 
-  - Permissions are specified using DisposableTokenScope object.
+使い捨てトークンは、通常の Momento 認証トークンとはいくつかの点で異なります：
+- 使い捨てトークンはコンソールで生成することはできません。generateDisposableToken`APIコールに使用するトークンは、Momentoコンソールから生成したスーパーユーザースコープのトークンでなければなりません。
+- トークンの有効期限は1時間です。
+- リフレッシュはできないので、リフレッシュトークンは付属しません。
+- パーミッションは DisposableTokenScope オブジェクトで指定します。
 
-| Name            | Type                      | Description                                                                                                                                                                             |
+| 名前            | タイプ                      | 説明                                                                                                                                                                             |
 | --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| scope           | [DisposableTokenScope](#disposabletokenscope-objects) | The permissions to grant to the new disposable token. Pre-built DisposableTokenScope objects are provided by the SDKs.                                                                                       |
-| expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the `ExpiresIn.minutes()` or `ExpiresIn.hours(1)` methods. Disposable tokens must expire within 1 hour. |
+| scope           | [DisposableTokenScope](#disposabletokenscope-objects) | 新しい使い捨てトークンに付与する権限。SDK は、あらかじめ DisposableTokenScope オブジェクトを用意しています。                                                                                       |
+| expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | トークンが失効するまでの秒数、または `ExpiresIn.minutes()` メソッドや `ExpiresIn.hours(1)` メソッドを呼び出して期間を指定した ExpiresIn オブジェクト。使い捨てトークンは1時間以内に失効しなければなりません。 |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-  - `authToken`: string - the new disposable auth token
-  - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
-  - `expiresAt`: Timestamp - the timestamp at which the token will expire
+  - `authToken`: string - 新しい使い捨てAuthトークン
+  - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
+  - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
@@ -188,33 +194,36 @@ See [response objects](./response-objects.md) for specific information.
 
 ### DisposableTokenScope objects
 
-| Name            | Type                                      | Description                                  |
+| 名前            | タイプ                                      | 説明                                  |
 | --------------- |-------------------------------------------| -------------------------------------------- |
-| permissions           | List <[DisposableTokenCachePermission](#disposabletokencachepermissions)&nbsp;&nbsp;\|&nbsp;&nbsp;[Permission](#permission-objects)\> | The permissions to grant to the new token.|
+| permissions           | List <[DisposableTokenCachePermission](#disposabletokencachepermissions)&nbsp;&nbsp;\|&nbsp;&nbsp;[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション |
 
-The DisposableTokenScope object will accept permissions objects of the type [CachePermission](#cachepermission), [TopicPermission](#topicpermission), or [DisposableTokenCachePermission](#disposabletokencachepermissions).
+DisposableTokenScope オブジェクトは、[CachePermission](#cachepermission)、[TopicPermission](#topicpermission)、または [DisposableTokenCachePermission](#disposabletokencachepermissions) タイプのパーミッション・オブジェクトを受け入れます。
 
 ### DisposableTokenCachePermissions
 
-The DisposableTokenCachePermission is an extension of CachePermission, so it has the same fields as CachePermission but also has an additional `item` field so you can define permissions for a cache and the items within the cache. 
+DisposableTokenCachePermission は CachePermission を拡張したもので、CachePermission と同じフィールドを持ちますが、`item` フィールドが追加されています。 
 
-For example, you can restrict access to only a specific key or a set of keys beginning with some prefix when you set `item` to a string that represents a key or key-prefix. Alternately, if you set `item` to AllCacheItems, you would produce the same set of permissions as a normal CachePermission.
+例えば、キーまたはキープレフィックスを表す文字列に `item` を設定すると、特定のキーまたはプレフィックスで始まるキーのセットのみにアクセスを制限できます。別の方法として、`item` を AllCacheItems に設定すると、通常の CachePermission と同じパーミッションのセットが作成されます。
 
-| Name            | Type                 | Description                                                                                                      |
+| 名前            | タイプ                 | 説明                                                                                                      |
 | --------------- |----------------------|------------------------------------------------------------------------------------------------------------------|
-| role           | ReadOnly&nbsp;&nbsp;\|&nbsp;&nbsp;ReadWrite&nbsp;&nbsp;\|&nbsp;&nbsp;WriteOnly | The type of access granted by the permission.                                                                    |
-| cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | A permission can be restricted to a select cache by name using a `CacheName` object or `AllCaches` built-in value. |
-| item          | `AllCacheItems`&nbsp;&nbsp;\|&nbsp;&nbsp;`Key`&nbsp;&nbsp;\|&nbsp;&nbsp;`KeyPrefix` | A permission can be restricted to select cache items by name using a `Key` or `KeyPrefix` object or `AllCachesItems` built-in value. |
+| role           | ReadOnly&nbsp;&nbsp;\|&nbsp;&nbsp;ReadWrite&nbsp;&nbsp;\|&nbsp;&nbsp;WriteOnly | パーミッションによって許可されるアクセスのタイプ                                                                    |
+| cache          | `AllCaches`&nbsp;&nbsp;\|&nbsp;&nbsp;`CacheName` | パーミッションは `CacheName` オブジェクトまたは `AllCaches` 組み込みの値を使用して、セレクトキャッシュの名前で制限することができます。 |
+| item          | `AllCacheItems`&nbsp;&nbsp;\|&nbsp;&nbsp;`Key`&nbsp;&nbsp;\|&nbsp;&nbsp;`KeyPrefix` | パーミッションは、`Key` または `KeyPrefix` オブジェクト、あるいは `AllCachesItems` 組み込みの値を使用して、名前によるキャッシュアイテムの選択を制限することができます。 |
 
-For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs on caches (e.g. `get`, `DictionaryGetField`, etc.) defined in the CacheSelector. Using `CacheRole.ReadWrite` allows access for all read and write data plane APIs on the caches defined in the CacheSelector. Using `CacheRole.WriteOnly` allows access for all write data plane APIs on the caches defined in the CacheSelector. `CacheRole.WriteOnly` cannot be used for APIs that imply conditional writes like `SetIfNotExists` or return information about the updated state of a collection e.g. `ListPushBack` returns the new length. Custom roles are not supported.
+ロールの場合、`CacheRole.ReadOnly` を使用すると、CacheSelector で定義されたキャッシュ上のすべての読み取りデータプレーン API (`get`、`DictionaryGetField` など) にアクセスできるようになります。
+`CacheRole.ReadWrite` を使用すると、CacheSelector で定義されたキャッシュ上のすべての読み取りデータプレーン API および書き込みデータプレーン API にアクセスできるようになります。
+`CacheRole.WriteOnly` を使用すると、CacheSelector で定義されたキャッシュのすべての書き込みデータプレーン API にアクセスできるようになります。
+`CacheRole.WriteOnly` は、`SetIfNotExists` のような条件付きの書き込みを意味する API や、`ListPushBack` が新しい長さを返すなど、コレクションの更新状態に関する情報を返す API には使用できません。カスタムロールはサポートされていません。
 
-For cache, the value can be the built-in `AllCaches` or a string value containing the name of the cache this permission is for.
+キャッシュの場合、値は組み込みの `AllCaches` か、このパーミッションのキャッシュ名を含む文字列となります。
 
-For item, the value can be the built-in `AllCacheItems` or a string value containing the key or key prefix of the cache item(s) this permission is for.
+item の場合、値は組み込みの `AllCacheItems` か、このパーミッションが対象とするキャッシュアイテムのキーまたはキープレフィックスを含む文字列となります。
 
-#### Example DisposableTokenScope object 
+#### DisposableTokenScope オブジェクトの例
 
-This is an example of creating a DisposableTokenScope with all three types of permission objects: CachePermission, TopicPermission, and DisposableTokenCachePermission.
+これは、3 種類のパーミッション・オブジェクトをすべて持つ DisposableTokenScope を作成する例です： CachePermission、TopicPermission、DisposableTokenCachePermission です。
 
 ```javascript
 const exampleDisposableTokenPermission: DisposableTokenCachePermission = {
@@ -255,21 +264,21 @@ const tokenResponse = await authClient.generateDisposableToken(
 ## FAQ
 
 <details>
-<summary>Can I create a custom role for a cache or topic permission?</summary>
+<summary>キャッシュやトピックのパーミッションにカスタムロールを作成できますか?</summary>
 
-No. We only support the managed roles listed above for each permission.
+各権限について、上記の管理された役割のみをサポートしています。
 
 </details>
 
 <details>
-<summary>Do these tokens control access to the Momento control plane APIs?</summary>
+<summary>これらのトークンは、MomentoのコントロールプレーンAPIへのアクセスを制御しますか？</summary>
 
-Access tokens generated with the [GenerateAuthToken](#generateauthtoken-api) API only control access to the Momento data plane APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
+[GenerateAuthToken](#generateauthtoken-api)APIで生成されたアクセストークンは、MomentoのデータプレーンAPIへのアクセスのみを制御します。Momento のコントロールプレーン API にアクセスするためのトークンは、[Momento console](https://console.gomomento.com/) を使用して生成する必要があります。
 
 </details>
 
 :::tip
 
-If you have any questions not answered here, please jump on [our Discord server](https://discord.gg/2c24SK6W) and ask our experts in the support channel.
+ここで答えられない質問があれば、[私たちのDiscordサーバー](https://discord.gg/2c24SK6W)に飛び、サポートチャンネルで私たちに質問してください。
 
 :::

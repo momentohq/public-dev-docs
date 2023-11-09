@@ -3,36 +3,36 @@ sidebar_position: 11
 sidebar_label: Amazon EventBridge
 title: Momento + Amazon EventBridge
 description: Trigger async events in Momento directly with Amazon EventBridge!
-pagination_next: null
 ---
 
-If you build event-driven architectures in AWS, you're likely familiar with [Amazon EventBridge](https://aws.amazon.com/eventbridge/). This serverless event bus service helps you filter, transform, route, and deliver events with robust error handling and high availability. Wouldn't it be great if you could use it directly with Momento? Good news, you can!
+AWSでイベントドリブンアーキテクチャを構築している方なら、[Amazon EventBridge](https://aws.amazon.com/eventbridge/)を知っているでしょう。このサーバーレスイベントバスサービスは、イベントのフィルタリング、変換、ルーティング、配信を堅牢なエラー処理と高可用性で支援します。これをMomentoで直接使えたら最高だと思いませんか？
 
-Using the Momento [HTTP API](./../api-reference/http-api.md) and [Amazon EventBridge API Destinations](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html), you can trigger asynchronous events with a simple `PutEvents` call in your workflows. Here's how it works:
+Momentoの[HTTP API](./../api-reference/http-api.md)と[Amazon EventBridge API Destinations](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html)を使うことで、ワークフローで`PutEvents`を呼び出すだけで非同期イベントをトリガーすることができます。
 
 ![Diagram of compute resources triggering an event that calls Momento](@site/static/img/eventbridge_destinations.png)
 
-1. A compute service calls the `PutEvents` API for EventBridge
-2. EventBridge routes the event to qualifying [rules](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules.html) based on the content of the event
-3. The qualifying rule will invoke an API destination
-4. The API destination looks up the auth token from [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)
-5. The event payload is transformed and calls the Momento HTTP API
+1. コンピュートサービスが EventBridge の `PutEvents` API を呼び出す。
+2. EventBridgeは、イベントの内容に基づいて、イベントを[ルール](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules.html)にルーティングする。
+3. Qualifying ルールは APIを呼び出す。
+4. APIは[AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)から認証トークンを検索する。
+5. イベントペイロードは変換され、Momento HTTP APIを呼び出す。
 
-Given the event-based nature of this workflow, *it is an asynchronous process* and your code will not wait for completion before continuing. If something goes wrong or the API returns an error, the message will be delivered to a [dead letter queue](https://aws.amazon.com/what-is/dead-letter-queue/).
+このワークフローのイベントベースの性質を考えると、*それは非同期処理*であり、あなたのコードは続行する前に完了を待つことはないです。何かがうまくいかなかったり、APIがエラーを返したりした場合、メッセージは[dead letter queue](https://aws.amazon.com/what-is/dead-letter-queue/)に配送されます。
 
-For the tl;dr, you can deploy the EventBridge resources directly into your account by clicking this button [![Launch stack button](@site/static/img/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=momento-api&templateURL=https://momento-developers.s3.amazonaws.com/api-destinations.yaml)
+## Tl;dr
+このボタン[[スタック起動ボタン](@site/static/img/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=momento-api&templateURL=https://momento-developers.s3.amazonaws.com/api-destinations.yaml)をクリックすることで、EventBridgeリソースをアカウントに直接デプロイできます。
 
-## Deploying to AWS
+## AWSへデプロイ
 
-When you hit the *Launch stack* button above, it will open a tab to the CloudFormation console in AWS. The screen will prompt you for your Momento auth token, which can be created via the [Momento Console](https://console.gomomento.com/tokens). You can create a super user token in the region you want to deploy this stack into. Once you generate your token, come back to the console and fill in the property. This will be stored securely in Secrets Manager on your behalf.
+上記の*Launch stack*ボタンを押すと、AWSのCloudFormationコンソールへのタブが開きます。[Momento Console](https://console.gomomento.com/tokens)から作成できます。このスタックをデプロイしたいリージョンでスーパーユーザートークンを作成できます。トークンを生成したら、コンソールに戻ってプロパティを入力してください。これはあなたに代わって Secrets Manager に安全に保存されます。
 
-You optionally can provide the EventBridge event bus name that will rules will trigger from. It automatically fills in the *default* event bus, but you can use any existing event bus you'd like. The deployment will fail if you do not provide a valid bus name.
+オプションで、ルールがトリガーされるEventBridgeイベントバス名を指定できます。デフォルトのイベントバスが自動的に入力されますが、既存のイベントバスを使用することもできます。有効なバス名を指定しないと、デプロイは失敗します。
 
 ![CloudFormation UI with deployment parameters configured](@site/static/img/eb-destination-ui.png)
 
-With the two parameters filled out, you can hit *Create stack* and the resources will be deployed automatically for you, optimized for your deployment region. *Wondering what that means?* Momento, like AWS, is region-based, and your auth tokens target a specific region. For the HTTP API, this means you must [hit a different base URL](./../api-reference/http-api.md#regions) depending on the region you wish to use. The quick start we've provided will determine the appropriate base URL upon deployment so you don't have to think about it 👍
+2つのパラメータを入力し、*Create stack*を押すと、リソースが自動的にデプロイされます。*MomentoはAWSのようにリージョンベースであり、認証トークンは特定のリージョンをターゲットにしています。HTTP API の場合、使用したいリージョンに応じて [異なるベース URL](./../api-reference/http-api.md#regions) をヒットする必要があります。私たちが提供するクイックスタートは、デプロイ時に適切なベースURLを決定するので、考える必要はありません👍
 
-This also means the integration will only work in the Momento-supported AWS Regions:
+これは、MomentoがサポートするAWSリージョンでのみ機能します。
 
 * us-east-1
 * us-west-2
@@ -40,25 +40,25 @@ This also means the integration will only work in the Momento-supported AWS Regi
 * ap-south-1
 * eu-west-1
 
-### Resources
+### リソース
 
-The deployed stack will create the following resources in your AWS account:
+デプロイされたスタックは、AWSアカウントに以下のリソースを作成します：
 
-* 1x [EventBridge Connection](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_Connection.html) - for storing connection info to Momento
-* 3x EventBridge API Destinations - *Cache Item Set*, *Cache Item Delete*, *Topic Publish*
-* 3x EventBridge Rules - for triggering the API calls
-* 1x IAM Role - to allow EventBridge to invoke the destinations when the rules are triggered
-* 1x SQS Queue - for Dead Letter Queue on failed delivery
+* 1x [EventBridge Connection](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_Connection.html) - Momento への接続情報を保存します。
+* 3x EventBridge API Destinations - *Cache Item Set*、*Cache Item Delete*、*Topic Publish* 。
+* 3x EventBridge Rules - APIコールをトリガーするためのルール。
+* 1x IAM Role - ルールがトリガーされたときに、EventBridgeがデスティネーションを呼び出すことを許可します。
+* 1x SQS キュー - 配信失敗時のデッドレターキュー用
 
-If you wish to see the raw CloudFormation template, [click here](https://momento-developers.s3.amazonaws.com/api-destinations.yaml).
+生のCloudFormationテンプレートを見たい場合は、[ここをクリック](https://momento-developers.s3.amazonaws.com/api-destinations.yaml)。
 
-## Triggering the API calls
+## APIコールのトリガー
 
-We currently support three API calls with this integration, *Cache Item Set*, *Cache Item Delete*, and *Topic Publish*. To invoke one of these rules, you must put an event on the configured event bus. 
+現在、この統合では、*Cache Item Set*、*Cache Item Delete*、*Topic Publish*の 3 つの API 呼び出しをサポートしています。これらのルールを呼び出すには、構成されたイベント・バスにイベントを配置する必要があります。
 
-### Setting a cache item
+### キャッシュ項目の設定
 
-To set a cache item, publish an event with the following information:
+キャッシュアイテムを設定するには、以下の情報を含むイベントをパブリッシュします。：
 
 **Detail Type**: *cacheSet*
 
@@ -73,13 +73,13 @@ To set a cache item, publish an event with the following information:
 }
 ```
 
-All values are required and the name of the cache must be a valid, existing cache available in your account. If you don't have a cache, you can [create one here](https://console.gomomento.com).
+すべての値は必須で、キャッシュ名はあなたのアカウントで利用可能な有効な既存のキャッシュでなければなりません。キャッシュを持っていない場合は、[ここで作成](https://console.gomomento.com) することができます。
 
-*NOTE -* The `key` and `key_base64` properties are mutually exclusive. If you provide both (or neither) your cache item will not be set.
+*注意 -* `key` プロパティと `key_base64` プロパティは互いに排他的です。両方を指定した場合 (またはどちらも指定しなかった場合)、キャッシュアイテムは設定されません。
 
-### Deleting a cache item
+### キャッシュアイテムの削除
 
-Cache items will expire automatically but in the event when you need to delete one manually, you can use the following event:
+キャッシュアイテムは自動的に期限切れになりますが、手動で削除する必要がある場合は、以下のイベントを使用できます：
 
 **Detail Type**: *cacheDelete*
 
@@ -92,11 +92,11 @@ Cache items will expire automatically but in the event when you need to delete o
 }
 ```
 
-Once again, the `key` and `key_base64` properties are mutually exclusive. Providing both will result in an error and your cache item not being deleted.
+繰り返しますが、`key` プロパティと `key_base64` プロパティは互いに排他的です。両方を指定するとエラーとなり、キャッシュアイテムは削除されません。
 
-### Publishing to a topic
+### トピックへのパブリッシュ
 
-You can publish to any topic (unless restricted by your provided auth token) with the following event:
+以下のイベントを使えば、（Authトークンで制限されていない限り）どのトピックにも公開できる：
 
 **Detail Type**: *topicPublish*
 
@@ -110,17 +110,17 @@ You can publish to any topic (unless restricted by your provided auth token) wit
 }
 ```
 
-## Possible use cases
+## 想定される使用例
 
-The ability to update a cache item or publish to a topic via EventBridge opens up a wide range of possible use cases:
+EventBridge経由でキャッシュアイテムの更新やトピックへのパブリッシュができるようになると、さまざまなユースケースが考えられます：
 
-* Automatically updating or deleting your cache items from a DynamoDB stream using EventBridge pipes
-* Sending status updates to end users in your user interface directly via a Step Function workflow
-* Updating cache items from fan-out operations that already use EventBridge
+* EventBridgeパイプを使用して、DynamoDBストリームからキャッシュ・アイテムを自動的に更新または削除します。
+* ステップ関数ワークフローを使用して、ユーザ・インターフェースのエンド・ユーザにステータスの更新を直接送信。
+* すでにEventBridgeを使用しているファンアウト操作からのキャッシュアイテムの更新
 
-## Example
+## 例
 
-Below is an example using the AWS SDK v3 for JavaScript to save an item in the cache via an EventBridge event on the default event bus:
+以下は、AWS SDK v3 for JavaScript を使用して、デフォルトのイベントバス上の EventBridge イベントを経由してキャッシュにアイテムを保存する例です：
 
 ```javascript
 const events = new EventBridgeClient(config);
@@ -140,10 +140,10 @@ await events.send(new PutEventsCommand({
 }));
 ```
 
-When that code runs, it will publish an event to the default event bus, the *Cache Item Set* rule will trigger and invoke the API destination, then the cache item will be set in the `my-cache` cache with the value *hello world!* for 5 minutes (300 seconds).
+このコードが実行されると、デフォルトのイベントバスにイベントをパブリッシュし、*Cache Item Set*ルールをトリガーしてAPIを呼び出し、`my-cache`キャッシュに5分間（300秒間）*hello world!*という値でキャッシュアイテムをセットする。
 
-## Try it out!
+## 試してみよう！
 
-This integration will continue to grow as our HTTP API gains more and more features. You can always come back here, [deploy the stack to your AWS account](https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=momento-api&templateURL=https://momento-developers.s3.amazonaws.com/api-destinations.yaml) and get the updated version automatically. 
+このインテグレーションは、私たちのHTTP APIがより多くの機能を得るにつれて成長し続けます。いつでもここに戻ってきて、[スタックを AWS アカウントにデプロイ](https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=momento-api&templateURL=https://momento-developers.s3.amazonaws.com/api-destinations.yaml) して、アップデートされたバージョンを自動的に取得することができます。
 
-If you have issues deploying the stack to your account or would like support for another region, feel free to [reach out on Discord](https://discord.com/invite/3HkAKjUZGq) and the team will be happy to help you.
+スタックをアカウントにデプロイする際に問題がある場合や、他の地域のサポートをご希望の場合は、お気軽に[Discord](https://discord.com/invite/3HkAKjUZGq)までご連絡ください。

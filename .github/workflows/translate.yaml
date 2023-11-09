@@ -11,6 +11,8 @@ on:
 jobs:
   ja:
     runs-on: ubuntu-latest
+    # Do not run translation on PRs from forks since they don't have access to the SIMPLEEN secret
+    if: ${{ !github.event.pull_request.head.repo.fork }}
     steps:
       - uses: actions/checkout@v4
         with:

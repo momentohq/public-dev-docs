@@ -15,7 +15,7 @@ Momento キャッシュは世界で初めての本物のサーバーレスキャ
 
 Momento キャッシュと[Momento トピックス](./../topics/index.md) は次のクラウドプロバイダーとリージョンで利用可能です：
 
-**AWSのリージョン**: us-west-2, us-east-1, eu-west-1, ap-south-1, ap-northeast-1
+**AWSのリージョン**: us-west-2, us-east-1, us-east-2, eu-west-1, ap-south-1, ap-northeast-1
 
 **GCPのリージョン**: us-central1
 
