@@ -18,7 +18,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-ruby](https://gith
 
 ## Requirements
 
-- A Momento  is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
 - Ruby 2.7 or later.
 
 ## Resources
