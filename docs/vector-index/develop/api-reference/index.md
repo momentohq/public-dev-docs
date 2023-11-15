@@ -73,7 +73,9 @@ Lists all vector indexes.
 * Success
     * getIndexes(): VectorIndexInfo[]
         * VectorIndexInfo:
-            * getName(): string
+            * name: String
+            * numDimensions: number
+            * similarityMetric: String
 * Error
 
 See [response objects](./response-objects.md) for specific information.
@@ -104,7 +106,7 @@ See [response objects](./response-objects.md) for specific information.
 <SdkExampleTabs snippetId={'API_UpsertItemBatch'} />
 
 ### Search
-Deletes a batch of items from a vector index.
+Searches for items with vectors most similar to a query vector.
 
 
 | Name           | Type                            | Description                                                                                                                                                              |
@@ -130,6 +132,35 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 <SdkExampleTabs snippetId={'API_Search'} />
+
+### Search And Fetch Vectors
+Searches for items with vectors most similar to a query vector. Also returns corresponding vectors to search hits.
+
+
+| Name           | Type                            | Description                                                                                                                                                              |
+|----------------|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| indexName      | String                          | Name of the vector index.                                                                                                                                                |
+| queryVector    | number[]                        | Vector to search for.                                                                                                                                                    |
+| topK           | number                          | Number of results to return. Defaults to 10.                                                                                                                             |
+| metadataFields | String[] or ALL_VECTOR_METADATA | A list of metadata fields to return with each result, or a value indicating all metadata should be returned. If not provided, no metadata is returned. Defaults to None. |
+
+<details>
+  <summary>Method response object</summary>
+
+* Success
+    * hits(): SearchAndFetchVectorsHit[]
+        * SearchAndFetchVectorsHit:
+            * id: string
+            * score: number
+            * metadata: Map<string, string>
+            * vector: number[]
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SearchAndFetchVectors'} />
 
 ### Delete Item Batch
 Deletes a batch of items from a vector index.
