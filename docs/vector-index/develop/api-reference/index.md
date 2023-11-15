@@ -73,7 +73,9 @@ Lists all vector indexes.
 * Success
     * getIndexes(): VectorIndexInfo[]
         * VectorIndexInfo:
-            * getName(): string
+            * name: String
+            * numDimensions: number
+            * similarityMetric: String
 * Error
 
 See [response objects](./response-objects.md) for specific information.
