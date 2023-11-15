@@ -71,7 +71,9 @@ Lists all vector indexes.
   <summary>Method response object</summary>
 
 * Success
-    * getIndexNames(): string[]
+    * getIndexes(): VectorIndexInfo[]
+        * VectorIndexInfo:
+            * getName(): string
 * Error
 
 See [response objects](./response-objects.md) for specific information.
@@ -118,9 +120,9 @@ Deletes a batch of items from a vector index.
 * Success
     * hits(): SearchHit[]
         * SearchHit: 
-            * id(): string
-            * distance(): number
-            * metadata(): Map<string, string>
+            * id: string
+            * score: number
+            * metadata: Map<string, string>
 * Error
 
 See [response objects](./response-objects.md) for specific information.
