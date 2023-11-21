@@ -35,7 +35,7 @@ const redisClient = createClient(
     momento.CacheClient.create({
         configuration: momento.Configurations.Laptop.v1(),
         credentialProvider: momento.CredentialProvider.fromEnvironmentVariable({
-            environmentVariableName: 'MOMENTO_AUTH_TOKEN',
+            environmentVariableName: 'MOMENTO_API_KEY',
         }),
         defaultTtlSeconds: 60,
     }),
@@ -62,7 +62,7 @@ const Redis = new MomentoRedisAdapter(
     await CacheClient.create({
         configuration: Configurations.Laptop.v1(),
         credentialProvider: CredentialProvider.fromEnvironmentVariable({
-            environmentVariableName: authTokenEnvVarName,
+            environmentVariableName: 'MOMENTO_API_KEY',
         }),
         defaultTtlSeconds: config.defaultTTLSeconds,
     }),
@@ -87,7 +87,7 @@ using Momento.StackExchange.Redis;
 var db = MomentoRedisDatabase(
   await CacheClient.create(
     config: Configurations.Laptop.v1(),
-    authProvider: new EnvMomentoTokenProvider("MOMENTO_AUTH_TOKEN"),
+    authProvider: new EnvMomentoTokenProvider("MOMENTO_API_KEY"),
     defaultTtl: TimeSpan.FromSeconds(60),
   }),
   "cache_name"
@@ -114,9 +114,9 @@ import (
 )
 
 func initRedisClient() redis.Cmdable {
-	credential, eErr := auth.NewEnvMomentoTokenProvider("MOMENTO_AUTH_TOKEN")
+	credential, eErr := auth.NewEnvMomentoTokenProvider("MOMENTO_API_KEY")
 	if eErr != nil {
-		panic("Failed to initialize credentials through auth token " + eErr.Error())
+		panic("Failed to initialize credentials through API key " + eErr.Error())
 	}
 	cacheClient, cErr := momento.NewCacheClient(config.LaptopLatest(), credential, 60*time.Second)
 	if cErr != nil {
@@ -148,7 +148,7 @@ from momento_redis import MomentoRedis
 redis_client = MomentoRedis(
     momento.CacheClient.create(
         momento.Configurations.Laptop.latest(),
-        momento.CredentialProvider.from_environment_variable("MOMENTO_AUTH_TOKEN"),
+        momento.CredentialProvider.from_environment_variable("MOMENTO_API_KEY"),
         datetime.timedelta(seconds=60)
     ),
     "cache_name"

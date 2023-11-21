@@ -12,7 +12,7 @@ If you need to get going quickly with PHP and Momento Cache, this page contains 
 For more info, you can also see [the PHP SDK on GitHub](https://github.com/momentohq/client-sdk-php).
 
 ### Prerequisites
-* A Momento auth token is required. You can generate one using [the Momento CLI](https://github.com/momentohq/momento-cli).
+* A Momento API Key is required. You can generate one using [the Momento console](https://console.gomomento.com/).
 * Installation of PHP 8.0 or higher
 * Installation of the [gRPC PHP extension](https://github.com/grpc/grpc/blob/v1.46.3/src/php/README.md).
 * Installation of [Composer](https://getcomposer.org/doc/00-intro.md)  - A common library and dependency manager for PHP.
@@ -52,7 +52,7 @@ $KEY = "MyKey";
 $VALUE = "MyValue";
 
 // Setup
-$authProvider = CredentialProvider::fromEnvironmentVariable("MOMENTO_AUTH_TOKEN");
+$authProvider = CredentialProvider::fromEnvironmentVariable("MOMENTO_API_KEY");
 $configuration = Laptop::latest(new StderrLoggerFactory());
 $client = new CacheClient($configuration, $authProvider, $ITEM_DEFAULT_TTL_SECONDS);
 $logger = $configuration->getLoggerFactory()->getLogger("ex:");

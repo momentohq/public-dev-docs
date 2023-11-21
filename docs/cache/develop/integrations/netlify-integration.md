@@ -33,11 +33,11 @@ After pressing the `Create` button you'll see the new `chat` cache in the list o
 
 Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when you generate a Momento authentication token in the next step. Navigate to the [tokens](https://console.gomomento.com/tokens) page, choose the cloud provider and region you used to create your cache, choose the `Super User Token` token type, and hit the `Generate Token` button. 
 
-![Generate token](/img/console-generate-token-form.png)
+![Generate token](/img/console-generate-api-key.png)
 
-Copy the `Auth Token` and save it in a safe place. You'll need to use it later to configure your Netlify deployment, where you will add it as an environment variable for use in the chat app. 
+Copy the `API Key` and save it in a safe place. You'll need to use it later to configure your Netlify deployment, where you will add it as an environment variable for use in the chat app. 
 
-![Generated token](/img/console-generate-token-result.png)
+![Generated token](/img/console-api-key-result.png)
 
 ## Deploying with Netlify
 
@@ -63,7 +63,7 @@ Assuming you've entered the base directory correctly, you should see some magic 
 
 ![Netlify build settings](/img/netlify-build-settings.png)
 
-Recall that we generated and saved a Momento auth token earlier for use with this application. Use the `Add environment variables` button below the build settings to add an environment variable with `MOMENTO_AUTH_TOKEN` as the key and the token you generated as the value. Next, add a second environment variable with `NEXT_PUBLIC_MOMENTO_CACHE_NAME` as the key and `chat` as the value to point your app to the cache you created earlier. And that's all there is to do to configure the deployment. Press the `Deploy client-sdk-javascript` button to deploy the app into the wild!
+Recall that we generated and saved a Momento API key earlier for use with this application. Use the `Add environment variables` button below the build settings to add an environment variable with `MOMENTO_API_KEY` as the key and the token you generated as the value. Next, add a second environment variable with `NEXT_PUBLIC_MOMENTO_CACHE_NAME` as the key and `chat` as the value to point your app to the cache you created earlier. And that's all there is to do to configure the deployment. Press the `Deploy client-sdk-javascript` button to deploy the app into the wild!
 
 During the deployment, Netlify displays a detailed log showing what it's doing to build and publish your site and, if necessary, reporting on deployment failures to assist in troubleshooting. If all went as planned, you'll be directed to a page summarizing the deployment.
 

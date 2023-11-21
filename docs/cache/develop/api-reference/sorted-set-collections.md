@@ -16,6 +16,12 @@ A sorted set in Momento Cache is a collection of unique elements with a value (S
 
 ![A diagram of luggage as sets, but organized and stacked nicely.](@site/static/img/sorted-sets.jpg)
 
+:::info
+
+Momento collection types use a [CollectionTTL](./collection-ttl.md) to specify their TTL behavior. This is an optional argument for all "write" operations.
+
+:::
+
 ## Sorted set methods
 
 ### SortedSetPutElement

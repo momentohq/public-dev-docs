@@ -19,7 +19,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-dotnet](https://gi
 ## Requirements
 
 - [`dotnet` runtime and command line tools](https://dotnet.microsoft.com/en-us/download); after installing them, you should have the `dotnet` command on your PATH.
-- A Momento Auth Token is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
 - You will most likely want an IDE that supports .NET development, such as [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs), [JetBrains Rider](https://www.jetbrains.com/rider/), or [Microsoft Visual Studio Code](https://code.visualstudio.com/).
 
 ## Resources

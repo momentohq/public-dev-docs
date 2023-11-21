@@ -5,11 +5,19 @@ title: CollectionTTL API reference
 description: Learn how to interact with the CollectionTTL object in Momento Cache.
 ---
 
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
 # CollectionTTL object API reference
 
-This object is passed into API methods to say whether a TTL should be updated and if so, what the new TTL value should be.
+The CollectionTtl type is used when performing write operations on a collection.
 
-This tries to make the process more intuitive by providing named constructors and copiers for various situations.
+Sometimes, when you update a collection, you want to refresh the TTL. Other times you want to keep the TTL the same. The
+CollectionTtl parameter allows you to specify this behavior.
+
+The default behavior is that the collection TTL is modified whenever a write operation occurs.
 
 See [Expire Data with TTL](./../../learn/how-it-works/expire-data-with-ttl.md) for more information on how TTL works with Momento Cache.
 
@@ -28,10 +36,31 @@ You cannot provide a CollectionTTL object when performing a read operation like 
 
 :::
 
-## Common method behaviors
+## Default Behavior
 
-- If a CollectionTTL is not passed in a function call, a default value of `CollectionTtl.fromCacheTtl()` will be used. This value is the TTL configured on the cache client. 
+- The `CollectionTtl` parameter is optional for all collection write operations.
+- If a CollectionTTL is not specified, a default value of `CollectionTtl.fromCacheTtl()` will be used. This value is the default TTL configured on the cache client. 
 - The TTL for the collection will be refreshed any time the collection is modified.
+
+## Examples
+
+If you need a behavior other than the default, you can provide a CollectionTtl object for any collection write operation.
+
+To specify an explicit TTL to refresh the collection to on a write operation, you can use `CollectionTtl.of()`:
+
+<SdkExampleTabs snippetId={'API_CollectionTtlOf'} />
+
+This is a convenience method that is equivalent to calling the constructor directly:
+
+<SdkExampleTabs snippetId={'API_CollectionTtlNew'} />
+
+If you want to specify a TTL that is only set when the collection is created, but not refreshed on subsequent writes, you can use `withNoRefreshTtlOnUpdates()`:
+
+<SdkExampleTabs snippetId={'API_CollectionTtlOfNoRefresh'} />
+
+This is also a convenience method that is equivalent to calling the constructor directly:
+
+<SdkExampleTabs snippetId={'API_CollectionTtlNewNoRefresh'} />
 
 ## Constructor parameters
 

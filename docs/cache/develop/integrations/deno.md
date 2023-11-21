@@ -41,15 +41,15 @@ After pressing the `Create` button you'll see the new `worker` cache in the list
 
 ![New cache](/img/console-caches-worker.png)
 
-Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento authentication token in the next step. 
+Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento API Key in the next step. 
 
 Navigate to the [tokens](https://console.gomomento.com/tokens) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained token that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations, such as creating or deleting a cache. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
 
-Choose the `Fine-Grained Access Token` token type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Token` is used for managing control plane operations. More information about Momento authentication can be found [here](./../authentication/index.mdx). Hit the `Generate Token` button.
+Choose the `Fine-Grained Access Token` token type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Token` is used for managing control plane operations. More information about Momento authentication can be found [here](./../authentication/index.mdx). Hit the `Generate API Key` button.
 
 ![Generate token](/img/fgac-worker-auth.png)
 
-Copy the `Auth Token` and `HTTP Endpoint` and save it in a safe place. You'll need to use it later to configure your Deno Deploy deployment.
+Copy the `API Key` and `HTTP Endpoint` and save it in a safe place. You'll need to use it later to configure your Deno Deploy deployment.
 
 ![Generated token](/img/http-endpoint-auth-token.png)
 
@@ -86,7 +86,7 @@ cd client-sdk-javascript/examples/deno/http-api
 Create a `.env` file and provide the name of your Momento Cache, the corresponding fine-grained access token, and the HTTP endpoint associated with your token. 
 
 ```
-MOMENTO_AUTH_TOKEN="<your-auth-token>"
+MOMENTO_API_KEY="<your-api-key>"
 MOMENTO_CACHE_NAME="<your-cache-name>"
 MOMENTO_HTTP_ENDPOINT="<your-http-endpoint>"
 ```
@@ -101,7 +101,7 @@ The [example code](https://github.com/momentohq/client-sdk-javascript/tree/main/
 It uses the [`MomentoFetcher` class](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/deno/http-api/index.ts#L10) which provides a small wrapper that adds some error handling to the basic fetch calls to the Momento HTTP API.
    
 ```typescript
-  const momento = new MomentoFetcher(authToken, endpoint)
+  const momento = new MomentoFetcher(apiKey, endpoint)
 
   await momento.set(cacheName, key, value, 10)
   console.log(`Set the key-value pair in the cache ${cacheName}`)
@@ -144,7 +144,7 @@ cd client-sdk-javascript/examples/deno/web-sdk
 Create a `.env` file and provide the name of your Momento Cache and a corresponding fine-grained access token.
 
 ```
-MOMENTO_AUTH_TOKEN="<your-auth-token>"
+MOMENTO_API_KEY="<your-api-key>"
 MOMENTO_CACHE_NAME="<your-cache-name>"
 ```
 
@@ -160,7 +160,7 @@ The [example code](https://github.com/momentohq/client-sdk-javascript/tree/main/
   const momento = new CacheClient({
     configuration: Configurations.Browser.v1(),
     credentialProvider: CredentialProvider.fromString({
-      authToken: env['MOMENTO_AUTH_TOKEN'],
+      apiKey: env['MOMENTO_API_TOKEN'],
     }),
     defaultTtlSeconds: 60,
   })
