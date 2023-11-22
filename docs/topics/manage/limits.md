@@ -18,7 +18,7 @@ Momento Topics seek to protect themselves and their customers when it comes to s
 
 :::info
 
-Since Topics utilizes Momento Cache, so all [Cache limits](/cache/manage/limits) apply to Topics as well.
+Since Topics utilizes Momento Cache, all [Cache limits](/cache/manage/limits) apply to Topics as well.
 
 :::
 
