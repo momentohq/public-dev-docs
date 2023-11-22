@@ -32,12 +32,12 @@ Vercelアカウントを取得し、GitプロバイダーアカウントにMomen
 
 ![Chat cache](/img/console-caches-chat.png)
 
-キャッシュを作成したリージョンの情報もキャッシュのリストに表示されているため、その情報を参考にしつつ次のステップでMomento authトークンを生成する際に、同じリージョンを選択する必要があります。[tokens](https://console.gomomento.com/tokens)ページに移動し、キャッシュの作成に使用したクラウドプロバイダとリージョンを選択し、`Super User Token` トークンタイプを選択し、`Generate Token` ボタンをクリックします。
+キャッシュを作成したリージョンの情報もキャッシュのリストに表示されているため、その情報を参考にしつつ次のステップでMomento authトークンを生成する際に、同じリージョンを選択する必要があります。[tokens](https://console.gomomento.com/tokens)ページに移動し、キャッシュの作成に使用したクラウドプロバイダとリージョンを選択し、`Super User API KEY` keyタイプを選択し、`Generate API KEY` ボタンをクリックします。
 
-![Generate token](/img/console-generate-token-form.png)
+![Generate token](/img/console-generate-api-key.png)
 
-`Auth Token`をコピーして安全な場所に保存してください。後でVercelのデプロイを設定する際に、チャットアプリで使用する環境変数として追加する必要があります。
-![Generated token](/img/console-generate-token-result.png)
+`API Key`をコピーして安全な場所に保存してください。後でVercelのデプロイを設定する際に、チャットアプリで使用する環境変数として追加する必要があります。
+![Generated token](/img/console-api-key-result.png)
 
 ## Vercelを使ったデプロイ
 
