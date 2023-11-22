@@ -5,7 +5,8 @@ title: Adding and retrieving files in a cache
 description: Learn to add and retrieve files from Momento Cache with hands on code samples.
 ---
 
-import Tabs from '@theme/Tabs';import TabItem from '@theme/TabItem'；
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem'；
 
 # Momento Cacheを使ったファイルの追加と取得
 
