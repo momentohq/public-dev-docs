@@ -27,7 +27,7 @@ Generates a new webhook with the provided webhook.
   <summary>Method response object</summary>
 
 * Success
-  - `secretString`: string - the secret string for the webhook
+  - `secretString`: string - the signing secret for the webhook
 * Error
 
 See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific information.
@@ -217,6 +217,17 @@ Steps to validate
 1. Retrieve the `momento-signature` header from the request, as well as the signing secret for the webhook (stored in a secret vault or environment variable)
 2. Using HMAC SHA3-256, hash the request body, using the signing secret associated with the webhook
 3. Compare the computed signature to the `momento-signature` header on the request
+
+### Example
+```typescript
+import * as crypto from 'crypto';
+
+const didRequestComeFromMomento = (req: Request): boolean => {
+  const hash = crypto.createHmac("SHA3-256", "the signing secret");
+  const hashed = hash.update(req.rawBody).digest('hex');
+  return hashed === req.headers['momento-signature'];
+}
+```
 
 </details>
 
