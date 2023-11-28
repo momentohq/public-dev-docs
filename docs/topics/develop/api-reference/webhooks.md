@@ -30,7 +30,7 @@ Generates a new webhook with the provided webhook.
   - `secretString`: string - the secret string for the webhook
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific information.
 
 </details>
 
@@ -39,6 +39,25 @@ See [response objects](./response-objects.md) for specific information.
 Webhooks are essential for real-time updates and notifications. Make sure to securely store the `secretString` provided upon success, as it is required for validating incoming webhook requests.
 
 :::
+
+### Example
+```javascript
+const exampleWebhook: Webhook = {
+  id: {
+    cacheName: 'exampleCache',
+    webhookName: 'exampleWebhook',
+  },
+  topicName: 'exampleTopic',
+  destination: new PostUrlWebhookDestination('https://example.com/webhook'),
+};
+
+const result = await webhookClient.putWebhook(exampleWebhook);
+if (result instanceof PutWebhook.Success) {
+  console.log('Webhook created successfully. Secret:', result.secret);
+} else {
+  console.error('Error creating webhook:', result.error.message);
+}
+```
 
 ## List Webhook API
 
@@ -55,7 +74,7 @@ Retrieves a list of webhooks for a specific cache.
   - `webhooks`: array of [Webhook](#webhook-object) - the list of webhooks for the specified cache.
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific information.
 
 </details>
 
@@ -64,6 +83,18 @@ See [response objects](./response-objects.md) for specific information.
 The List Webhook API can be called as frequently as needed to retrieve the latest list of webhooks. However, consider caching the results to reduce unnecessary API calls and improve performance.
 
 :::
+
+### Example
+```javascript
+const cacheName: string = 'exampleCache';
+
+const result = await webhookClient.listWebhooks(cacheName);
+if (result instanceof ListWebhooks.Success) {
+  console.log('Webhooks retrieved successfully:', result.webhooks);
+} else {
+  console.error('Error retrieving webhooks:', result.error.message);
+}
+```
 
 ## Delete Webhook API
 
@@ -80,7 +111,7 @@ Deletes a webhook with the specified identifier.
   - No additional data on success.
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific information.
 
 </details>
 
@@ -89,6 +120,21 @@ See [response objects](./response-objects.md) for specific information.
 When a webhook is deleted, it will no longer be active, and incoming requests to the deleted webhook will be ignored.
 
 :::
+
+### Example
+```javascript
+const webhookId: WebhookId = {
+  cacheName: 'exampleCache',
+  webhookName: 'exampleWebhook',
+};
+
+const result = await webhookClient.deleteWebhook(webhookId);
+if (result instanceof DeleteWebhook.Success) {
+  console.log('Webhook deleted successfully');
+} else {
+  console.error('Error deleting webhook:', result.error.message);
+}
+```
 
 ## Get Webhook Secret API
 
@@ -107,7 +153,7 @@ Retrieves the secret string associated with a specific webhook.
   - `cacheName`: string - the name of the cache associated with the webhook.
 * Error
 
-See [response objects](./response-objects.md) for specific information.
+See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific information.
 
 </details>
 
@@ -117,6 +163,20 @@ The signing secret is essential for validating incoming webhook requests. Ensure
 
 :::
 
+### Example
+```javascript
+const webhookId: WebhookId = {
+  cacheName: 'exampleCache',
+  webhookName: 'exampleWebhook',
+};
+
+const result = await webhookClient.getWebhookSecret(webhookId);
+if (result instanceof GetWebhookSecret.Success) {
+  console.log('Webhook secret retrieved successfully:', result.secret);
+} else {
+  console.error('Error retrieving webhook secret:', result.error.message);
+}
+```
 
 ## Webhook object
 
