@@ -218,7 +218,6 @@ Steps to validate
 2. Using HMAC SHA3-256, hash the request body, using the signing secret associated with the webhook
 3. Compare the computed signature to the `momento-signature` header on the request
 
-### Example
 ```typescript
 import * as crypto from 'crypto';
 
