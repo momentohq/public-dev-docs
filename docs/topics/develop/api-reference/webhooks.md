@@ -22,7 +22,7 @@ Generates a new webhook with the provided webhook.
   - `secretString`: string - the secret string for the webhook
 * Error
 
-[//]: # (See [response objects]&#40;./response-objects.md&#41; for specific information.)
+See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific information.
 
 </details>
 
@@ -47,7 +47,7 @@ Retrieves a list of webhooks for a specific cache.
   - `webhooks`: array of [Webhook](#webhook-object) - the list of webhooks for the specified cache.
 * Error
 
-[//]: # (See [response objects]&#40;./response-objects.md&#41; for specific information.)
+See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific information.
 
 </details>
 
@@ -72,7 +72,7 @@ Deletes a webhook with the specified identifier.
   - No additional data on success.
 * Error
 
-[//]: # (See [response objects]&#40;./response-objects.md&#41; for specific information.)
+See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific information.
 
 </details>
 
@@ -99,7 +99,7 @@ Retrieves the secret string associated with a specific webhook.
   - `cacheName`: string - the name of the cache associated with the webhook.
 * Error
 
-[//]: # (See [response objects]&#40;./response-objects.md&#41; for specific information.)
+See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific information.
 
 </details>
 
