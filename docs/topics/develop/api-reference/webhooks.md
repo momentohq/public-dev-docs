@@ -1,11 +1,19 @@
 ---
 sidebar_position: 6
 title: Webhook API reference information
-sidebar_label: Webhook API Reference
+sidebar_label: Webhooks
 description: Learn the Webhook API calls you need to know about and how to use them with Momento services.
 ---
 
 # Webhook API reference
+
+<img src="/img/topics/webhooks-page.png" width="90%" alt="minified javascript code with the text 'Trigger the hook'" />
+
+Webhooks provide an additional way to consume messages on a topic. When a webhook is created, it gets attached to a topic. When messages are published to this topic, an outbound http call gets POSTed to the webhook callback url. The endpoint that is associated with the webhook must be publicly accessible for Momento to be able to POST requests. To confirm receipt, your api should respond with an empty HTTP 200 response to the original request. If confirmation is not received within _5 seconds_, we drop the message and mark it as timed out.  
+
+:::note
+All messages that are sent to the webhook are still available to be received with a subscription to the topic.
+:::
 
 ## Put Webhook API
 
@@ -94,7 +102,7 @@ Retrieves the secret string associated with a specific webhook.
   <summary>Method response object</summary>
 
 * Success
-  - `secret`: string - the secret string for the webhook.
+  - `secret`: string - the signing secret for the webhook.
   - `webhookName`: string - the name of the webhook.
   - `cacheName`: string - the name of the cache associated with the webhook.
 * Error
@@ -105,7 +113,7 @@ See [response objects](./response-objects.md) for specific information.
 
 :::note
 
-The secret string is essential for validating incoming webhook requests. Ensure to securely store and manage the retrieved secret.
+The signing secret is essential for validating incoming webhook requests. Ensure to securely store and manage the retrieved secret.
 
 :::
 
@@ -114,11 +122,11 @@ The secret string is essential for validating incoming webhook requests. Ensure 
 
 The `Webhook` object contains the necessary information to create a webhook.
 
-| Name      | Type                           | Description                       |
-|-----------|--------------------------------|-----------------------------------|
-| id        | [WebhookId](#webhookid-object) | The unique identifier for the webhook. |
-| destination | [WebhookDestination](#webhookdestination-object) | The destination where the webhook payload will be sent. |
-| topicName | string | The name of the topic to which the webhook is subscribed. |
+| Name      | Type                           | Description                                                                         |
+|-----------|--------------------------------|-------------------------------------------------------------------------------------|
+| id        | [WebhookId](#webhookid-object) | The unique identifier for the webhook.                                              |
+| destination | [WebhookDestination](#webhookdestination-object) | The destination where the webhook payload will be sent. Must be publicy accessible. |
+| topicName | string | The name of the topic to which the webhook is subscribed.                           |
 
 ## WebhookId object
 
@@ -142,7 +150,30 @@ The `WebhookDestination` object contains the information about where the webhook
 <details>
 <summary>How do I validate incoming webhook requests?</summary>
 
-Upon successful creation of a webhook, store the `secretString` returned. When receiving a webhook request, validate it by comparing the computed hash of the received payload and the stored `secretString`. This ensures the authenticity of the incoming data.
+Each webhook that gets created will get a unique signing secret. Using this signing secret, you can verify whether this request came from Momento. On each HTTP request that Momento sends, we include a `momento-signature` header. This signature is created by combining the the signing secret with the request body using a standard HMAC hash.
+
+Steps to validate
+
+1. Retrieve the `momento-signature` header from the request, as well as the signing secret for the webhook (stored in a secret vault or environment variable)
+2. Using HMAC SHA3-256, hash the request body, using the signing secret associated with the webhook
+3. Compare the computed signature to the `momento-signature` header on the request
+
+</details>
+
+<details>
+<summary>What is the structure of the POST body?</summary>
+
+```typescript
+{
+  cache: string;
+  topic: string;
+  event_timestamp: number;
+  publish_timestamp: number;
+  topic_sequence_number: number;
+  token_id: string; // is an empty string if the message was published with an api key that does not contain a token_id
+  text: string; // this is the message that was published
+}
+```
 
 </details>
 
