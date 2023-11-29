@@ -3,28 +3,27 @@ sidebar_position: 1
 sidebar_label: Cheat Sheet
 sidebar_class_name: sidebar-item-java
 title: Cheat Sheet for Java
-description: Momento CacheでJavaを使ったコーディングを素早く始めるためのチートシートです。
+description: Get started really quickly coding using Java with Momento Cache
 ---
 
-import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
-// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
-// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
-import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Momento Cacheを使ったJavaのチートシート
 
-JavaとMomento Cacheをすぐに使い始める必要がある場合、このページには基本的なAPIコールが記載されています。ビルド設定ファイルを含む実用的な例については、[Java SDK examples](https://github.com/momentohq/client-sdk-java/tree/main/examples) を確認してください。
+#
 
-## Momento clientライブラリのインストール
 
-既存のJavaプロジェクトにクライアントライブラリをインストールします：
 
-### Gradle
+##
+
+
+
+###
+
 ```kotlin
 implementation("software.momento.java:sdk:1.0.0")
 ```
 
-### Maven
+###
+
 ```xml
 <dependency>
     <groupId>software.momento.java</groupId>
@@ -33,46 +32,46 @@ implementation("software.momento.java:sdk:1.0.0")
 </dependency>
 ```
 
-## auth tokenを設定
-
-Momentoで認証するには、Momento authトークンが必要です。 [Momento Web コンソール](https://console.gomomento.com/caches)から取得できます。
-トークンを取得したら、Momento クライアントが利用できるように環境変数に保存します：
-
-```
-export MOMENTO_AUTH_TOKEN=<your Momento token here>
-```
-
-## ライブラリをインポートし、CacheClient オブジェクトを返すように接続する
-このコードでは、メイン関数、必要なインポート、および他の各関数が呼び出す必要のある CacheClient インスタンスを設定します。
-
-<SdkExampleCodeBlock language={'java'} file={'CheatSheet.java'} />
-
-## Momento Cacheに新しいキャッシュを作成する
-アカウントに新しいキャッシュを作成するには、この関数を使います。
-
-<SdkExampleCodeBlock language={'java'} snippetId={'API_CreateCache'} />
+##
 
 
-## アカウントに存在するキャッシュ名のリスト
-アカウントに存在するキャッシュ名のリストを取得します。
 
-<SdkExampleCodeBlock language={'java'} snippetId={'API_ListCaches'} />
+    export MOMENTO_API_KEY=<your Momento API key here>
 
-## アイテムをキャッシュに書き込む
-セット操作の簡単な例です。client.set呼び出しでは、TTLはオプションです。もしTTLを渡した場合、クライアント接続オブジェクトで設定されたデフォルトのTTL値が上書きされます。
+##
 
-<SdkExampleCodeBlock language={'java'} snippetId={'API_Set'} />
 
-## キャッシュからアイテムを読み込む
-これは、キャッシュから項目を取得する単純な読み込み操作の例です。
 
-<SdkExampleCodeBlock language={'java'} snippetId={'API_Get'} />
 
-## コードを実行する
 
-[Java SDKのgithubリポジトリにあるexamplesディレクトリ](https://github.com/momentohq/client-sdk-java/tree/main/examples)に動作例があります。
+##
 
-:::info
-これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](../../api-reference/index.mdx)を参照してください。
+
+
+
+
+##
+
+
+
+
+
+##
+
+
+
+
+
+##
+
+
+
+
+
+##
+
+
+
+
 
 :::
