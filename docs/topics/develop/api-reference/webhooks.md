@@ -250,7 +250,7 @@ const didRequestComeFromMomento = (req: Request): boolean => {
 <details>
 <summary>What should I do if the webhook subscription fails?</summary>
 
-Check the provided error response for details. Common issues include invalid cache or topic names, or issues with the provided `postUrl`.
+Ensure that your webhook url is public and valid. Common issues include wrong cache or topic names, or issues with the provided `postUrl`.
 
 </details>
 
