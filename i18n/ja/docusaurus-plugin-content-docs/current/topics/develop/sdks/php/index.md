@@ -16,7 +16,7 @@ Momento PHP SDK は [`momentohq/client-sdk-php`](https://packagist.org/packages/
 
 ## 必要条件
 
-- Momento 認証トークンが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
+- Momento api keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
 - PHP 8.0 以上。
 - grpc PHP 拡張モジュール。[gRPC ドキュメント](https://github.com/grpc/grpc/blob/v1.54.0/src/php/README.md) の拡張モジュールインストールに関するセクションもご覧下さい。
 

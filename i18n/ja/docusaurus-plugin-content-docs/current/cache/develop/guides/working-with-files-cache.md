@@ -3,25 +3,21 @@ sidebar_position: 4
 sidebar_label: Working with files
 title: Adding and retrieving files in a cache
 description: Learn to add and retrieve files from Momento Cache with hands on code samples.
-pagination_next: null
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Add and retrieve a file with Momento Cache
+# Momento Cacheを使ったファイルの追加と取得
+Momento Cache のアイテムはバイト配列なので、[アイテムあたりの上限 1MB](./../../manage/limits)以内であれば、作成したいほとんどのファイルをキャッシュに簡単に保存することができます。
 
-An item in Momento Cache is a byte array, so a cache can easily store most any file you want to create, as long as it is
-under the [per item limit of 1MB](./../../manage/limits.md).
-
-Here is an example of reading a file from the filesystem, saving the file to an item in a cache, reading it from the
-cache, and then writing it to the filesystem.
-<Tabs>
-<TabItem value="nodejs" label="Node.js" default>
+以下は、ファイルシステムからファイルを読み込み、そのファイルをキャッシュのアイテムに保存し、キャッシュから読み込み、ファイルシステムに書き込む例です。
+  <Tabs>
+    <TabItem value="nodejs" label="Node.js" default>
 
 ```javascript
 const fs = require('fs');
-const {CacheClient, CacheGet, CacheSet, Configurations, CredentialProvider} = require('@gomomento/sdk');
+const { CacheClient, CacheGet, CacheSet, Configurations, CredentialProvider } = require('@gomomento/sdk');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -32,70 +28,69 @@ const CACHE_NAME = 'test-cache';
 
 // Read a file from the filesystem
 async function readFile(filePath) {
-    try {
-        const data = fs.readFileSync(filePath);
-        return new Uint8Array(data);
-    } catch (error) {
-        console.error(`Error reading file: ${error}`);
-        return null;
-    }
+  try {
+    const data = fs.readFileSync(filePath);
+    return new Uint8Array(data);
+  } catch (error) {
+    console.error(`Error reading file: ${error}`);
+    return null;
+  }
 }
 
 // Creates the Momento cache client object
 async function createCacheClient() {
-    return await CacheClient.create({
-        configuration: Configurations.Laptop.v1(),
-        credentialProvider: CredentialProvider.fromEnvironmentVariable({
-            environmentVariableName: 'MOMENTO_AUTH_TOKEN',
-        }),
-        defaultTtlSeconds: 600,
-    });
+  return CacheClient.create({
+    configuration: Configurations.Laptop.v1(),
+    credentialProvider: CredentialProvider.fromEnvironmentVariable({
+      environmentVariableName: 'MOMENTO_API_KEY',
+    }),
+    defaultTtlSeconds: 600,
+  });
 }
 
 async function writeToCache(client, cacheName, key, data) {
-    const setResponse = await client.set(cacheName, key, data);
-    if (setResponse instanceof CacheSet.Success) {
-        console.log('Key stored successfully!');
-    } else if (setResponse instanceof CacheSet.Error) {
-        console.log(`Error setting key: ${setResponse.toString()}`);
-    } else {
-        console.log(`Some other error: ${setResponse.toString()}`);
-    }
+  const setResponse = await client.set(cacheName, key, data);
+  if (setResponse instanceof CacheSet.Success) {
+    console.log('Key stored successfully!');
+  } else if (setResponse instanceof CacheSet.Error) {
+    console.log(`Error setting key: ${setResponse.toString()}`);
+  } else {
+    console.log(`Some other error: ${setResponse.toString()}`);
+  }
 }
 
 async function readFromCache(client, cacheName, key) {
-    const fileResponse = await client.get(cacheName, key);
-    if (fileResponse instanceof CacheGet.Hit) {
-        console.log(`cache hit: ${fileResponse.valueString()}`);
-        const contents = fileResponse.valueUint8Array();
-        const buffer = Buffer.from(contents);
-        fs.writeFileSync("./myfile2.json", buffer);
-    } else if (fileResponse instanceof CacheGet.Miss) {
-        console.log('cache miss');
-    } else if (fileResponse instanceof CacheGet.Error) {
-        console.log(`Error: ${fileResponse.message()}`);
-    }
+  const fileResponse = await client.get(cacheName, key);
+  if (fileResponse instanceof CacheGet.Hit) {
+    console.log(`cache hit: ${fileResponse.valueString()}`);
+    const contents = fileResponse.valueUint8Array();
+    const buffer = Buffer.from(contents);
+    fs.writeFileSync("./myfile2.json", buffer);
+  } else if (fileResponse instanceof CacheGet.Miss) {
+    console.log('cache miss');
+  } else if (fileResponse instanceof CacheGet.Error) {
+    console.log(`Error: ${fileResponse.message()}`);
+  }
 }
 
 async function run() {
-    const byteArray = await readFile(filePath);
-    if (byteArray === null) {
-        return;
-    }
+  const byteArray = await readFile(filePath);
+  if (byteArray === null) {
+    return;
+  }
 
-    const cacheClient = await createCacheClient();
+  const cacheClient = await createCacheClient();
 
-    await writeToCache(cacheClient, CACHE_NAME, fileName, byteArray);
-    await readFromCache(cacheClient, CACHE_NAME, fileName);
+  await writeToCache(cacheClient, CACHE_NAME, fileName, byteArray);
+  await readFromCache(cacheClient, CACHE_NAME, fileName);
 }
 
 run();
 ```
 
-Check our [Node.js cheat sheet](./../sdks/nodejs/cheat-sheet.mdx) for more on using our
-Node.js SDK.
-</TabItem>
-<TabItem value="py" label="Python">
+Node.jsSDKの使い方については、[Node.jsチートシート](./../sdks/nodejs/cheat-sheet.mdx)をご覧ください。
+   </TabItem>
+   <TabItem value="py" label="Python">
 
 ```python
 import os
@@ -118,15 +113,15 @@ def write_file(file_path, data):
     with open(file_path, "wb") as out_file:
         out_file.write(data)
 
-# Get a connection to and existing cache with your auth token.
+# Get a connection to and existing cache with your API key.
 def client():
-    momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_AUTH_TOKEN')
+    momento_api_key = CredentialProvider.from_environment_variable('MOMENTO_API_KEY')
     momento_ttl_seconds = os.getenv('MOMENTO_TTL_SECONDS')
     ttl  = timedelta(seconds=int(momento_ttl_seconds))
 
     config = {
       'configuration': Configurations.Laptop.v1(),
-      'credential_provider': momento_auth_token,
+      'credential_provider': momento_api_key,
       'default_ttl':  ttl
     }
     # print(config)
@@ -164,8 +159,7 @@ if __name__ == '__main__':
 
 ```
 
-Check our [Python cheat sheet](./../sdks/python/cheat-sheet.md) for more on using our
-Python SDK.
+Python SDKの使い方については、[Pythonチートシート](./../sdks/python/cheat-sheet.md)をご覧ください。
 
    </TabItem>
 </Tabs>

@@ -17,7 +17,7 @@ Momento .NET SDK は [`Momento.Sdk`](https://www.nuget.org/packages/Momento.Sdk)
 ## 必要条件
 
 - [`dotnet` ランタイムとコマンドラインツール](https://dotnet.microsoft.com/en-us/download); インストールが完了したら、`dotnet` コマンドが PATH 内にあることになります。
-- Momento 認証トークンが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
+- Momento API Keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
 - 多くの場合、.NET 開発をサポートしている IDE、例えば [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs)、[JetBrains Rider](https://www.jetbrains.com/rider/)、または [Microsoft Visual Studio Code](https://code.visualstudio.com/)等を使った方がいいでしょう。
 
 ## リソース

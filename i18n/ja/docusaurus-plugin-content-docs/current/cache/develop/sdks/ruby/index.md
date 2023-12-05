@@ -16,7 +16,7 @@ Momento Ruby SDK は [`momento`](https://rubygems.org/gems/momento) の rubygems
 
 ## 必要条件
 
-- Momento 認証トークンが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
+- Momento API Keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
 - Ruby 2.7 以上。
 
 ## リソース

@@ -6,7 +6,7 @@ pagination_next: null
 description: Explore Momento Topic's service limits, the default values, and how to get them changed if you need.
 ---
 
-# Service limits for Momento Topics
+# Service limits for Momento Topics/Webhooks
 
 Momento Topics seek to protect themselves and their customers when it comes to service resources. To do this, every account, topic, and cache has service limits, or what we call "guardrails" (like on a curvy mountain road) to help keep operations running how they should and as smoothly as possible. This page outlines the default service limits:
 
@@ -16,9 +16,18 @@ Momento Topics seek to protect themselves and their customers when it comes to s
 | Message size          | 4KiB per published message |
 | Throughput per cache  | 10 publish requests/sec    |
 
+In addition to the topic limits, there are a few additional limits that apply to webhooks
+
+| Webhooks limits        | Value            |
+|------------------------|------------------|
+| Number of Webhooks     | 10               |
+| Throughput per webhook | 5 requests/sec   |
+| Request Timeout        | 5 seconds        |
+| Name                   | 128 characters   |
+| URL                    | 1024 characters  |
 :::info
 
-Since Topics utilizes Momento Cache, all [Cache limits](/cache/manage/limits) apply to Topics as well.
+Since Topics and Webhooks utilize Momento Cache, all [Cache limits](/cache/manage/limits) apply to them as well.
 
 :::
 

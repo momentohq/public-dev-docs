@@ -12,7 +12,7 @@ description: PHP と Momento Cache を使ってコーディングするための
 より詳しい情報は、[GitHub 上の PHP SDK](https://github.com/momentohq/client-sdk-php) でご確認下さい。
 
 ### 前提条件
-* Momento 認証トークンが必要。[Momento CLI](https://github.com/momentohq/momento-cli) を使って作成可能です。
+* A Momento API Key is required. You can generate one using [the Momento console](https://console.gomomento.com/).
 * PHP 8.0 以上をインストール。
 * [gRPC PHP 拡張モジュール](https://github.com/grpc/grpc/blob/v1.46.3/src/php/README.md) をインストール。
 * [Composer](https://getcomposer.org/doc/00-intro.md) をインストール - PHP でよく使われている依存管理ライブラリです。

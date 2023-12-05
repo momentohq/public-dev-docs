@@ -16,7 +16,7 @@ Momento Rust SDK は [`momento`](https://crates.io/crates/momento) の crates.io
 
 ## 必要条件
 
-- Momento 認証トークンが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
+- Momento API Keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
 
 ## リソース
 
