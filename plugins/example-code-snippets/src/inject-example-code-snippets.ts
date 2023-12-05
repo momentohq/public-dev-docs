@@ -74,6 +74,7 @@ function replaceValueWithExampleTabs(literal: unist.Literal): void {
   rust={\`${snippetForLanguage(ExampleLanguage.RUST, snippetId)}\`}
   ruby={\`${snippetForLanguage(ExampleLanguage.RUBY, snippetId)}\`}
   elixir={\`${snippetForLanguage(ExampleLanguage.ELIXIR, snippetId)}\`}
+  swift={\`${snippetForLanguage(ExampleLanguage.SWIFT, snippetId)}\`}
   cli={\`${snippetForLanguage(ExampleLanguage.CLI, snippetId)}\`}
 />
 `;
@@ -91,6 +92,7 @@ function replaceValueWithExampleFileTabs(literal: unist.Literal): void {
     rust={\`${fileTabContentsForLanguage(value, ExampleLanguage.RUST)}\`}
     ruby={\`${fileTabContentsForLanguage(value, ExampleLanguage.RUBY)}\`}
     elixir={\`${fileTabContentsForLanguage(value, ExampleLanguage.ELIXIR)}\`}
+    swift={\`${fileTabContentsForLanguage(value, ExampleLanguage.SWIFT)}\`}
     cli={\`${fileTabContentsForLanguage(value, ExampleLanguage.CLI)}\`}
   />
   `;

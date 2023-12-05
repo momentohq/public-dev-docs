@@ -19,12 +19,13 @@ import React from 'react';
  * @param rust
  * @param ruby
  * @param elixir
+ * @param swift
  * @param cli
  * @returns {JSX.Element|null}
  * @constructor
  */
-export const SdkExampleFileTabsImpl = ({js, python, java, go, csharp, php, rust, ruby, elixir, cli}) => {
-  if (js || python || java || go || csharp || php || rust || ruby || elixir || cli) {
+export const SdkExampleFileTabsImpl = ({js, python, java, go, csharp, php, rust, ruby, elixir, swift, cli}) => {
+  if (js || python || java || go || csharp || php || rust || ruby || elixir || swift || cli) {
     return (
   <Tabs>
     {js &&
@@ -62,6 +63,10 @@ export const SdkExampleFileTabsImpl = ({js, python, java, go, csharp, php, rust,
     {elixir &&
         <TabItem value="elixir" label="Elixir">
           <CodeBlock language={'elixir'}>{elixir}</CodeBlock>
+        </TabItem>}
+    {swift &&
+        <TabItem value="swift" label="Swift">
+          <CodeBlock language={'swift'}>{swift}</CodeBlock>
         </TabItem>}
     {cli &&
       <TabItem value="cli" label="CLI">

@@ -14,6 +14,7 @@ export enum ExampleLanguage {
   RUST = 'rust',
   RUBY = 'ruby',
   ELIXIR = 'elixir',
+  SWIFT = 'swift',
   CLI = 'cli',
 }
 

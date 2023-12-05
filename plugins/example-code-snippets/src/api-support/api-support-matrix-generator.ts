@@ -53,7 +53,7 @@ const SDKS: Array<SdkInfo> = [
     cacheClientFile: 'src/Momento.Sdk/ICacheClient.cs',
     configObjectFile: 'src/Momento.Sdk/Config/Configuration.cs',
     topicClientFile: 'src/Momento.Sdk/ITopicClient.cs',
-    authClientFile: undefined,
+    authClientFile: 'src/Momento.Sdk/IAuthClient.cs',
     leaderboardClientFile: undefined,
   },
   {
@@ -110,6 +110,14 @@ const SDKS: Array<SdkInfo> = [
     cacheClientFile: 'lib/momento/simple_cache_client.rb',
     configObjectFile: undefined,
     topicClientFile: undefined,
+    authClientFile: undefined,
+    leaderboardClientFile: undefined,
+  },
+  {
+    sdk: Sdk.SWIFT,
+    cacheClientFile: 'Sources/Momento/CacheClient.swift',
+    configObjectFile: 'Sources/Momento/config/CacheConfiguration.swift',
+    topicClientFile: 'Sources/Momento/TopicClient.swift',
     authClientFile: undefined,
     leaderboardClientFile: undefined,
   },

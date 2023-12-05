@@ -37,6 +37,7 @@ In the following pages, you can learn about caching in general and how to use Mo
   - [Rust](./cache/develop/sdks/rust)
   - [Ruby](./cache/develop/sdks/ruby)
   - [Elixir](./cache/develop/sdks/elixir)
+  - [Swift](./cache/develop/sdks/swift)
 
 - _If you want to know more about Momento Cache and how it works_, refer to the reference on [Momento Cache concepts](./learn/how-it-works/index.mdx).
 
