@@ -16,6 +16,12 @@ A set is a collection of elements, but each element can appear only once and ord
 
 ![a diagram of luggage as sets, but in any old order and not organized at all.](@site/static/img/sets.jpg)
 
+:::info
+
+Momento collection types use a [CollectionTTL](./collection-ttl.md) to specify their TTL behavior. This is an optional argument for all "write" operations.
+
+:::
+
 Example: if your set contains `[1, 2, 3]` and you add 2, the set remains `[1, 2, 3].`
 
 See [Sets](./../basics/datatypes.md#set-collections) for more information on their usage.

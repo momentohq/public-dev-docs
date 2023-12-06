@@ -17,7 +17,7 @@ Momento Topics is a serverless approach to real-time communication that allows c
 Download the [Unity 2022 LTS release](https://unity.com/releases/lts). In writing this tutorial, we specifically used Unity 2022.3.9f1 but any Unity 2022 LTS release should work.
 
 ### Momento
-While waiting for Unity to download and install, you can configure the Momento side of things using the [Momento console](https://console.gomomento.com). 
+While waiting for Unity to download and install, you can configure the Momento side of things using the [Momento console](https://console.gomomento.com). Note that this step may be unnecessary if you are already using a [Token Vending Machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine) (see `MomentoTopicsDemo-TokenVendingMachine.unity` in [Example Scenes](#example-scenes) below for more information).
 
 1. You can create an account in the console by providing your email address or linking an existing Google or GitHub account. 
 2. Once you've logged into the console, click the `Create Cache` button on the top right of the page:
@@ -79,14 +79,20 @@ The MessagingCanvas also has an emoji button that allows the user to view availa
 
 A helper C# script `EmojiHelper.cs` is used to handle the emoji insertion.
 
-### Understanding the C# script that subscribes to the Momento Topic
+### Setting up the C# script that subscribes to the Momento Topic
 In our example code, the magic happens in `Assets/TopicsTest.cs`, which is based upon the [Momento .NET SDK Topic Example](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample).
 
-The first thing we need to do is to let our C# script know about the API key we created above in the [Momento Prerequisite](#momento) step. Following the [Momento .NET SDK Topic Example](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample), we can either grab the API key from an environment variable or by hard-coding it in our code (note that hard-coding your API key in code is NOT recommended but can be used for testing purposes, if necessary):
+The first thing we need to do is to let our C# script know about the API key we created above in the [Momento Prerequisite](#momento) step. Following the [Momento .NET SDK Topic Example](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample), we can either grab the API key from an environment variable or hard-code the API key in our code (note that hard-coding your API key in code is NOT recommended but can be used for testing purposes, if necessary; an alternative approach using a [Token Vending Machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine) is described below in [Example Scenes](#example-scenes)):
 - To set the environment variable in Windows, click the Windows Start button, search for "environment" and click on "Edit the system environment variables." Then click on "Environment Variables" and ensure the `MOMENTO_AUTH_TOKEN` environment variable is set. You may need to restart Unity to get it to recognize your newly created environment variable.
-- To hard-code the API key in C# script, copy and paste your API key into `Assets/TopicsTest.cs` replacing `ADD_YOUR_TOKEN_HERE` in the `ReadAuthToken()` function.
+- To hard-code the API key in a C# script, copy and paste your API key into `Assets/TopicsTest.cs` replacing `ADD_YOUR_TOKEN_HERE` in the `ReadAuthToken()` function.
 
 After the API key is appropriately set, you can go ahead and click on the "Play" button in the Unity Editor to test it out! 
+
+### Example Scenes
+In the example code, we provide three example Unity scenes, showcasing various ways to integrate the Momento SDK with Unity:
+- `MomentoTopicsDemo.unity` (using `TopicsTest.cs`): utilizes `Task.Run()` to run the subscription to the Momento Topic in a background thread. This is the approach descirbed above.
+- `MomentoTopicsDemo-Coroutine.unity` (using `TopicsTestCoroutine.cs`): utilizes Unity Coroutines to run the subscription asyncronously in the main thread.
+- `MomentoTopicsDemo-TokenVendingMachine.unity` (using `TopicsTestTokenVendingMachine.cs`): utilizes the example [Momento Token Vending Machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine) to obtain a temporary, restricted scope Momento auth token. This is beneficial because (1) we no longer need to hard-code in a specific auth token into the app, and (2) we can utilize a `tokenId` embedded in the Topics message to more securely know which client/username sent a specific message. Note that you'll need to explicitly setup the Token Vending Machine separately and then specify its URL via the `tokenVendingMachineURL` variable specified in `TopicsTestTokenVendingMachine.cs`.
 
 ## Conclusion
 

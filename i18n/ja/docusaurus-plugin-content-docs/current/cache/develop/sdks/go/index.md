@@ -17,7 +17,7 @@ Momento Go SDK は GitHub 経由でインストール可能です: `go get githu
 ## 必要条件
 
 - [Go](https://go.dev/dl/)
-- Momento 認証トークンが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
+- Momento API Keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
 
 ## リソース
 

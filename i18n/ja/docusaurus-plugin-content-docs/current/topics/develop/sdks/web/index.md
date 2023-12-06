@@ -25,7 +25,7 @@ Momento web SDK は [`@gomomento/sdk-web`](https://www.npmjs.com/package/@gomome
 
 ## 必要条件
 
-- Momento 認証トークンは必要です。[Momento Web コンソール](https://console.gomomento.com/)で取得可能です。
+- Momento API Keyは必要です。[Momento Web コンソール](https://console.gomomento.com/)で取得可能です。
 
 ## リソース
 

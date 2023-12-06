@@ -48,7 +48,7 @@ $settings['momento_cache']['api_token'] = '<YOUR_MOMENTO_TOKEN>';
 $settings['momento_cache']['cache_name'] = '<YOUR_CACHE_NAME>';
 ```
 
-<YOUR_MOMENTO_TOKEN> をコンソールで生成したトークンに置き換えてください。MOMENTO_API_TOKEN という環境変数を使用して、API トークンを Momento キャッシュバックエンドに渡すこともできます。両方を指定した場合は、設定ファイルが優先されます。<YOUR_CACHE_NAME> は、先に作成した Momento キャッシュの名前に置き換えてください。MOMENTO_CACHE_NAME という環境変数を使ってこの値を渡すこともできます。両方を指定した場合は、設定ファイルが優先されます。
+<YOUR_MOMENTO_TOKEN> をコンソールで生成したトークンに置き換えてください。MOMENTO_API_TOKEN という環境変数を使用して、API keyを Momento キャッシュバックエンドに渡すこともできます。両方を指定した場合は、設定ファイルが優先されます。<YOUR_CACHE_NAME> は、先に作成した Momento キャッシュの名前に置き換えてください。MOMENTO_CACHE_NAME という環境変数を使ってこの値を渡すこともできます。両方を指定した場合は、設定ファイルが優先されます。
 
 オプションで、モジュールのキャッシュ操作と各操作にかかる時間を追跡するためのログファイル（Drupalによって書き込み可能であることを確認してください）へのパスを指定することもできます：
 

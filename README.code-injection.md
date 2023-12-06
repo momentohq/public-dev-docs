@@ -74,6 +74,18 @@ https://github.com/momentohq/public-dev-docs/blob/04716fc6f508985881cf2c5efef118
 
 The function names in your SDK example code file need to match the `snippetId` specified in this tag.
 
+
+### `SdkExampleFileTabs`
+
+Use the `<SdkExampleFileTabs>` component if you want to add a tab view that shows examples for all available languages,
+loading an entire file as the source content for each language:
+
+```
+<SdkExampleFileTabs js={'examples/nodejs/my-awesome-example.ts'} go={'examples/my-awesome-example.go'} />
+```
+
+TODO: link to example of usage
+
 ### `SdkExampleCodeBlock`
 
 Use the `<SdkExampleCodeBlock>` if you want to inject examples for a single language, either from a

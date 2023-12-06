@@ -17,6 +17,12 @@ This page details the Momento API methods for the [list collection data types](.
 
 ![a technical illustration of a scroll with lists of information. All collected into groups.](@site/static/img/list-collections.jpg)
 
+:::info
+
+Momento collection types use a [CollectionTTL](./collection-ttl.md) to specify their TTL behavior. This is an optional argument for all "write" operations.
+
+:::
+
 ## List methods
 
 ### ListFetch

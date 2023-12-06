@@ -23,12 +23,12 @@ Unityのダウンロードとインストールを待つ間、[Momentoコンソ�
 2. コンソールにログインしたら、ページの右上にある `Create Cache` ボタンをクリックします：
 [キャッシュ作成ボタン](/img/console-create-cache.png)
 3. `Unity-Topics-Cache`というキャッシュを作成します。キャッシュはクラウドプロバイダー、AWSまたはGCPのいずれかを選択し、任意のリージョンに作成できます。
-4. `Create`ボタンを押すと、利用可能なキャッシュのリストに新しい`Unity-Topics-Cache`キャッシュが表示されます。キャッシュを作成した地域もキャッシュのリストに表示されます。次のステップで Momento 認証トークンを生成するときに、同じ地域を選択する必要があります。
+4. `Create`ボタンを押すと、利用可能なキャッシュのリストに新しい`Unity-Topics-Cache`キャッシュが表示されます。キャッシュを作成した地域もキャッシュのリストに表示されます。次のステップで Momento API Keyを生成するときに、同じ地域を選択する必要があります。
 [チャットキャッシュ](/img/unity/Unity-Topics-Cache.png)
-5. [tokens](https://console.gomomento.com/tokens)ページに移動し、キャッシュの作成に使用したクラウドプロバイダーとリージョンを選択し、`Super User Token` トークンタイプを選択し、`Generate Token` ボタンをクリックします。
-[トークンの生成](/img/console-generate-token-form.png)
-6. `Auth Token`をコピーして安全な場所に保存してください。後でUnityチャットアプリケーションを設定するために使用する必要があります。
-[生成されたトークン](/img/console-generate-token-result.png)
+5. [API Key](https://console.gomomento.com/tokens)ページに移動し、キャッシュの作成に使用したクラウドプロバイダーとリージョンを選択し、`Super User API Key` トークンタイプを選択し、`Generate API Key` ボタンをクリックします。
+![Generate token](/img/console-generate-api-key.png)
+6. `API Key`をコピーして安全な場所に保存してください。後でUnityチャットアプリケーションを設定するために使用する必要があります。
+![Generated token](/img/console-api-key-result.png)
 
 ## Unityプロジェクトのセットアップ
 
@@ -78,11 +78,11 @@ MessagingCanvasには絵文字ボタンもあり、利用可能な絵文字を�
 ### MomentoトピックをサブスクライブするC#スクリプトを理解する
 このサンプルコードでは、[Momento .NET SDK Topic Example](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample) に基づいている `Assets/TopicsTest.cs` でマジックが起こります。
 
-最初に行う必要があるのは、[Momento Prerequisite](#momento) ステップで作成した認証トークンを C# スクリプトに知らせることです。[Momento .NET SDK Topic Example](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample)に従って、環境変数から認証トークンを取得するか、コードにハードコーディングします（コードに認証トークンをハードコーディングすることは推奨されませんが、必要に応じてテスト目的で使用することはできます）：
-- Windowsで環境変数を設定するには、Windowsのスタートボタンをクリックし、"environment "を検索して、"Edit the system environment variables "をクリックします。次に "Environment Variables "をクリックし、`MOMENTO_AUTH_TOKEN`環境変数が設定されていることを確認してください。新しく作成した環境変数を認識させるためにUnityを再起動する必要があるかもしれません。
-- C# スクリプトで認証トークンをハードコードするには、認証トークンをコピーして `Assets/TopicsTest.cs` に貼り付け、`ReadAuthToken()` 関数の `ADD_YOUR_TOKEN_HERE` を置き換えます。
+最初に行う必要があるのは、[Momento Prerequisite](#momento) ステップで作成したAPI Keyを C# スクリプトに知らせることです。[Momento .NET SDK Topic Example](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample)に従って、環境変数からAPI keyを取得するか、コードにハードコーディングします（コードにAPI Keyをハードコーディングすることは推奨されませんが、必要に応じてテスト目的で使用することはできます）：
+- Windowsで環境変数を設定するには、Windowsのスタートボタンをクリックし、"environment "を検索して、"Edit the system environment variables "をクリックします。次に "Environment Variables "をクリックし、`MOMENTO_API_KEY`環境変数が設定されていることを確認してください。新しく作成した環境変数を認識させるためにUnityを再起動する必要があるかもしれません。
+- C# スクリプトでAPI key をハードコードするには、API KEYをコピーして `Assets/TopicsTest.cs` に貼り付け、`ReadAuthToken()` 関数の `ADD_YOUR_TOKEN_HERE` を置き換えます。
 
-認証トークンが適切に設定されたら、Unity Editorの "Play "ボタンをクリックしてテストすることができます！
+API Keyが適切に設定されたら、Unity Editorの "Play "ボタンをクリックしてテストすることができます！
 
 ## まとめ
 

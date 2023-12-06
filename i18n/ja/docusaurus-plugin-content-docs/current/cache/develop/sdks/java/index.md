@@ -16,7 +16,7 @@ Momento Java SDK は Maven Central 経由で利用可能です: [`software.momen
 
 ## 必要条件
 
-- Momento 認証トークンが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
+- Momento API Keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
 - 少なくとも java 8 ランタイムがインストールされている。
 - SDK をダウンロードするために、mvn または gradle
 
