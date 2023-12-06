@@ -2,7 +2,7 @@
 sidebar_position: 3
 sidebar_label: AWS Secrets Manager
 title: Momento + AWS Secrets Manager
-description: AWS Secrets ManagerからMomento認証トークンを取得する方法を学ぶ。
+description: AWS Secrets ManagerからMomento API Key を取得する方法を学ぶ。
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -10,8 +10,8 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# AWS Secrets ManagerからMomento認証トークンを取得する
-Momento認証トークンを安全に保存することがベストプラクティスです。AWSをご使用の場合は、Momento認証トークンを[AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)に安全に保存することができます。そして、正しいIAMクレデンシャルで実行されているコードのみがMomento認証トークンを取得し、そのトークンを使ってMomento CacheまたはMomento Topicsにアクセスできるようになります。
+# AWS Secrets ManagerからMomento API Key を取得する
+Momento API Keyを安全に保存することがベストプラクティスです。AWSをご使用の場合は、Momento API Keyを[AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)に安全に保存することができます。そして、正しいIAMクレデンシャルで実行されているコードのみがMomento API keyを取得し、そのトークンを使ってMomento CacheまたはMomento Topicsにアクセスできるようになります。
 
 :::備考
 
@@ -20,7 +20,7 @@ Momento認証トークンを安全に保存することがベストプラクテ�
 
 ## AWS Secrets Managerへの入力
 
-Momento認証トークンをAWS Secrets Managerへ入力する際は、下のスクリーンショットの通り、JSONを含まないプレーンテキストとして入力するようにしてください（セキュリティのためトークンにはぼかしを入れております）。
+Momento API keyをAWS Secrets Managerへ入力する際は、下のスクリーンショットの通り、JSONを含まないプレーンテキストとして入力するようにしてください（セキュリティのためトークンにはぼかしを入れております）。
 
 ![AWS Secrets Manager](/img/aws-secrets-manager.png)
 
@@ -31,6 +31,6 @@ Momento認証トークンをAWS Secrets Managerへ入力する際は、下のス
 ## よくある質問（FAQ）
 
 <details>
-  <summary>Momento認証トークンをAWS Secrets Managerに保存する必要がありますか？</summary>
-いいえ、必要ありません。Momento認証トークンを環境変数またはファイルに保存できますが、AWS Secrets Manager等に保存するよりも安全性が低いため、ベストプラクティスではありません。
+  <summary>Momento API keyをAWS Secrets Managerに保存する必要がありますか？</summary>
+あります。MomentoのAPI keyを環境変数やファイルに保存することはできますが、AWS Secrets Managerなどに保存するよりも安全ではないため、ベストプラクティスではありません。
 </details>
