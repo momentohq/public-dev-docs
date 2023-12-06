@@ -25,11 +25,11 @@ description: Supercharge your sequelize backed databases with Momento cache
 
 `Create` ボタンを押すと、利用可能なキャッシュのリストに新しい `model-cache` キャッシュが表示されます。
 
-キャッシュを作成した地域もキャッシュのリストに表示されていることに注意してください。次のステップで Momento 認証トークンを生成するときに、同じリージョンを選択する必要があります。[tokens](https://console.gomomento.com/tokens)ページに移動し、キャッシュの作成に使用したクラウドプロバイダとリージョンを選択し、`Super User Token` トークンタイプを選択し、`Generate Token` ボタンをクリックします。
+キャッシュを作成した地域もキャッシュのリストに表示されていることに注意してください。次のステップで Momento 認証トークンを生成するときに、同じリージョンを選択する必要があります。[api_keys](https://console.gomomento.com/api_keys)ページに移動し、キャッシュの作成に使用したクラウドプロバイダとリージョンを選択し、`Super User API Key` トークンタイプを選択し、`Generate API Key` ボタンをクリックします。
 
 ![Generate token](/img/console-generate-api-key.png)
 
-この`Api Key`をコピーし、安全な場所に保存します。後でアプリケーションを実行する際に、環境変数として追加する必要があります。
+この`API Key`をコピーし、安全な場所に保存します。後でアプリケーションを実行する際に、環境変数として追加する必要があります。
 
 ![Generated token](/img/console-api-key-result.png)
 

@@ -69,6 +69,8 @@ When creating an API key, you have the option to create one that never expires a
 
 The Momento console offers several pre-configured options for expiration ranges or you can select your own date. Just remember to create a new API key and rotate it in your application before it expires to prevent outages!
 
+Momento provides an example of an automatic API key rotation lambda for your convenience [here](https://github.com/momentohq/auth-token-refresh-lambda).
+
 ## Use cases
 
 For shorter-lived authentication use cases, with targeted permission scopes, consider using [Momento tokens](./tokens.md).
