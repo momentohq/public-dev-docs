@@ -269,6 +269,23 @@ const didRequestComeFromMomento = (req: Request): boolean => {
 }
 ```
 
+Momento also provides utility functions in certain languages to assist with the request validation.
+
+```typescript
+import {WebhookUtils} from '@gomomento/sdk';
+
+const res = WebhookUtils.validateWebhookRequest({
+  body: requestBody,
+  signature,
+  signingSecret,
+});
+if (res === WebhookUtils.RequestValidation.VALID) {
+    // request is valid
+} else {
+    // request is invalid
+}
+```
+
 </details>
 
 <details>
