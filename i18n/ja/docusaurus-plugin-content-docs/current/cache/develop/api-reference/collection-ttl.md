@@ -18,7 +18,7 @@ CollectionTtl型は、コレクションに対して書き込み操作を行う�
 
 デフォルトの動作は、書き込み操作が発生するたびにコレクションのTTLが変更されます。
 
-Momento CacheでのTTLの動作については、[Expire Data with TTL](./../../learn/how--it-works/expire-data-with-ttl.md) を参照してください。
+Momento CacheでのTTLの動作については、[Expire Data with TTL](./../../learn/how-it-works/expire-data-with-ttl.md) を参照してください。
 
 ## 互換性のあるデータ型
 
