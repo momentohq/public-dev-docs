@@ -17,7 +17,7 @@ The Momento Python SDK は [`momento`](https://pypi.org/project/momento/) の py
 ## 必要条件
 
 - [Python 3.7](https://www.python.org/downloads/) 以上が必要です。
-- Momento 認証トークンが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
+- Momento api keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
 
 ## リソース
 

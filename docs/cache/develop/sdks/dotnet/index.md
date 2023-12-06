@@ -24,9 +24,9 @@ The source code can be found on GitHub: [momentohq/client-sdk-dotnet](https://gi
 
 ## Resources
 
-- COMING SOON: .NET SDK Cheat Sheet
+- [.NET SDK Cheat Sheet](./cheat-sheet.mdx)
 - [.NET SDK Examples](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples/README.md): working example projects that illustrate how to use the .NET SDK
-- COMING SOON: Observability: Logging and Client-side Metrics with the .NET SDK
+- [.NET SDK Observability](./observability.mdx): Logging and Client-side Metrics with the .NET SDK
 - COMING SOON: Taking your code to prod: Configuration and Error handling in the .NET SDK
 
 ## Integrations
