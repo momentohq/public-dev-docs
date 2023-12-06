@@ -178,6 +178,48 @@ if (result instanceof GetWebhookSecret.Success) {
 }
 ```
 
+## Rotate Webhook Secret API
+
+Rotates the signing secret used for the webhook. Once the secret is rotated, all new POST requests sent to the webhook endpoint will have a 'momento-signature' header signed with the new secret.
+
+| Name  | Type                           | Description                                                    |
+|-------|--------------------------------|----------------------------------------------------------------|
+| id    | [WebhookId](#webhookid-object) | The unique identifier of the webhook to rotate the secret for. |
+
+<details>
+  <summary>Method response object</summary>
+
+* Success
+  - `secret`: string - the new signing secret for the webhook.
+  - `webhookName`: string - the name of the webhook.
+  - `cacheName`: string - the name of the cache associated with the webhook.
+* Error
+
+See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific information.
+
+</details>
+
+:::note
+
+Secret rotation cannot be reverted, it is important to update all webhooks that are validating requests against a previous secret. 
+
+:::
+
+### Example
+```javascript
+const webhookId: WebhookId = {
+  cacheName: 'exampleCache',
+  webhookName: 'exampleWebhook',
+};
+
+const result = await webhookClient.getWebhookSecret(webhookId);
+if (result instanceof GetWebhookSecret.Success) {
+  console.log('Webhook secret retrieved successfully:', result.secret);
+} else {
+  console.error('Error retrieving webhook secret:', result.error.message);
+}
+```
+
 ## Webhook object
 
 The `Webhook` object contains the necessary information to create a webhook.
