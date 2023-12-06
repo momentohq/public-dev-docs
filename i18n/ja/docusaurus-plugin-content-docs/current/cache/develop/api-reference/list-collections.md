@@ -13,6 +13,16 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 # List API reference for Momento Cache
 このページでは、[リストコレクションデータ型](./../basics/datatypes.md#list-collections)の Momento API メソッドの詳細を説明しています。
 
+<br />
+
+![a technical illustration of a scroll with lists of information. All collected into groups.](@site/static/img/list-collections.jpg)
+
+:::info
+
+Momentoコレクションタイプは、[CollectionTTL](./collection-ttl.md)を使用してTTL動作を指定します。これは、すべての "write" 操作のオプション引数です。
+
+:::
+
 ## List methods
 
 ### ListFetch

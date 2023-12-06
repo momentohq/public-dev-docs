@@ -12,7 +12,13 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Momento CacheのためのSet APIについて
 
-![A diagram of luggage as sets, but in any old order and not organized at all.](@site/static/img/sets.jpg)
+![a diagram of luggage as sets, but in any old order and not organized at all.](@site/static/img/sets.jpg)
+
+:::info
+
+Momentoコレクションタイプは、[CollectionTTL](./collection-ttl.md)を使用してTTL動作を指定します。これは、すべての "write" 操作のオプション引数です。
+
+:::
 
 集合は要素の集まりですが、各要素は一度しか現れず、順序は保証されません。
 例: セットが `[1, 2, 3]` を含み、2 を追加してもセットは `[1, 2, 3].` のままです。

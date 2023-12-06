@@ -14,6 +14,14 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 Momento Cache におけるソート済みのセットは、値（String, Byte[], など）とスコア（符号付き64ビット浮動小数点数）のペアを持つユニークな要素の集まりです。アイテム内の要素はスコアによって順序付けられています。
 
+![A diagram of luggage as sets, but organized and stacked nicely.](@site/static/img/sorted-sets.jpg)
+
+:::info
+
+Momentoコレクションタイプは、[CollectionTTL](./collection-ttl.md)を使用してTTL動作を指定します。これは、すべての "write" 操作のオプション引数です。
+
+:::
+
 ## Sorted set メソッド
 
 ### SortedSetPutElement
