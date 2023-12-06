@@ -27,7 +27,7 @@ The limits on this page are soft limits that can be altered unless specifically 
 
 ## Operations
 
-Service limits are based on the number of operations performed per second. Some cache data plane APIs can perform multiple operations in a single request. Since batch operations are more efficient, the limit cost of these APIs is discounted at a 2:1 ratio. This means every two elements will count as one towards the limiter. For example, a `SetAddElements` request adding one or two elements costs one, but with three or four elements it costs two, etc.
+Service limits are based on the number of operations performed per second. Some cache data plane APIs can perform multiple operations in a single request. Since batch operations are more efficient, the limit cost of these APIs is discounted at a 2:1 ratio. This means every two elements will count as one operation towards the limiter. For example, a `SetAddElements` request adding one or two elements costs one operation, but with three or four elements it costs two operations, etc.
 
 The below table describes how the number of operations is calculated for all cache APIs.
 
