@@ -42,16 +42,15 @@ Webhooks are essential for real-time updates and notifications. Make sure to sec
 
 ### Example
 ```javascript
-const exampleWebhook: Webhook = {
-  id: {
-    cacheName: 'exampleCache',
-    webhookName: 'exampleWebhook',
-  },
-  topicName: 'exampleTopic',
-  destination: new PostUrlWebhookDestination('https://example.com/webhook'),
+const webhookId: WebhookId = {
+  cacheName: 'exampleCache',
+  webhookName: 'exampleWebhook',
 };
 
-const result = await webhookClient.putWebhook(exampleWebhook);
+const result = await webhookClient.putWebhook(webhookId.cacheName, webhookId.webhookName, {
+    destination: new PostUrlWebhookDestination('https://example.com/webhook'),
+    topicName: 'exampleTopic',
+});
 if (result instanceof PutWebhook.Success) {
   console.log('Webhook created successfully. Secret:', result.secret);
 } else {
@@ -128,7 +127,7 @@ const webhookId: WebhookId = {
   webhookName: 'exampleWebhook',
 };
 
-const result = await webhookClient.deleteWebhook(webhookId);
+const result = await webhookClient.deleteWebhook(webhookId.cacheName, webhookId.webhookName);
 if (result instanceof DeleteWebhook.Success) {
   console.log('Webhook deleted successfully');
 } else {
@@ -170,7 +169,7 @@ const webhookId: WebhookId = {
   webhookName: 'exampleWebhook',
 };
 
-const result = await webhookClient.getWebhookSecret(webhookId);
+const result = await webhookClient.getWebhookSecret(webhookId.cacheName, webhookId.webhookName);
 if (result instanceof GetWebhookSecret.Success) {
   console.log('Webhook secret retrieved successfully:', result.secret);
 } else {
@@ -212,11 +211,11 @@ const webhookId: WebhookId = {
   webhookName: 'exampleWebhook',
 };
 
-const result = await webhookClient.getWebhookSecret(webhookId);
-if (result instanceof GetWebhookSecret.Success) {
-  console.log('Webhook secret retrieved successfully:', result.secret);
+const result = await webhookClient.rotateWebhookSecret(webhookId.cacheName, webhookId.webhookName);
+if (result instanceof RotateWebhookSecret.Success) {
+  console.log('Webhook secret rotated successfully:', result.secret);
 } else {
-  console.error('Error retrieving webhook secret:', result.error.message);
+  console.error('Error rotating webhook secret:', result.error.message);
 }
 ```
 
