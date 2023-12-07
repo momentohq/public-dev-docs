@@ -169,7 +169,7 @@ Deletes a batch of items from a vector index.
 | Name      | Type     | Description                     |
 |-----------|----------|---------------------------------|
 | indexName | String   | Name of the vector index.       |
-| items     | String[] | IDs of the items to be deleted. |
+| ids       | String[] | IDs of the items to be deleted. |
 
 <details>
   <summary>Method response object</summary>
