@@ -22,15 +22,15 @@ import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBloc
 npm install @gomomento/sdk
 ```
 
-## 認証トークンをセットアップする
-Momento で認証するためには Momento 認証トークンが必要になります。[Momento ウェブコンソール](https://console.gomomento.com/caches)から取得可能です。
-トークンを取得したら、環境変数に格納して Momento クライアントから使えるようにします:
+## API keyセットアップする
+Momento で認証するためには Momento API keyが必要になります。[Momento ウェブコンソール](https://console.gomomento.com/caches)から取得可能です。
+API keyを取得したら、環境変数に格納して Momento クライアントから使えるようにします:
 
 ```
-export MOMENTO_AUTH_TOKEN=<your Momento token here>
+export MOMENTO_API_KEY=<your Momento API key here>
 ```
 
-**Note**: セキュリティ強化のためには、トークンを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに格納するのがベストプラクティスですが、ここではデモのために環境変数を利用しています。
+**Note**: セキュリティ強化のためには、API keyを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに格納するのがベストプラクティスですが、ここではデモのために環境変数を利用しています。
 
 ## ライブラリをインポートして、CacheClient オブジェクトを返却して接続する
 このコードで、必要なインポート、そしてそれぞれの他の関数が呼び出す必要のある CacheClient を生成して、メイン関数をセットアップします。

@@ -1,0 +1,68 @@
+---
+sidebar_position: 1
+sidebar_label: Cache Cheat Sheet
+sidebar_class_name: sidebar-item-dotnet
+title: Cheat sheet for .NET SDK
+description: Get started really quickly coding using the .NET SDK with Momento Cache
+---
+
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
+
+# Momentoキャッシュを使った.NETのチートシート
+
+.NETとMomento Cacheをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。[.NETのSDKサンプル](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples)には、ビルド設定ファイルを含む完全なサンプルがあります。
+
+## Momentoクライアントライブラリをインストールする
+
+既存の.NETプロジェクトにクライアントライブラリをインストールします：
+
+```cli
+dotnet add package Momento.Sdk
+```
+
+## API keyをセットアップします。
+
+Momentoで認証するには、Momento APIキーが必要です。 [Momento Web Console](https://console.gomomento.com/caches)から取得できます。
+APIキーを取得したら、Momentoクライアントが利用できるように環境変数に保存してください：
+
+```
+export MOMENTO_API_KEY=<your Momento API key here>
+```
+
+**Note**: セキュリティ強化のためには、APIキーを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに入れるのがベストプラクティスだが、ここではデモのためにAPIキーを使っています。。
+
+## ライブラリをインポートし、CacheClient オブジェクトを作成します。
+[このサンプル・ファイル](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples/MomentoUsage/Program.cs) は、必要なインポートを取り込み、環境変数から API キーを読み取り、キャッシュとの対話に使用する CacheClient をインスタンス化します。
+
+## Momento Cacheに新しいキャッシュを作成
+この機能を使用して、アカウントに新しいキャッシュを作成します。
+
+<SdkExampleCodeBlock language={'csharp'} snippetId={'API_CreateCache'} />
+
+## あなたのアカウントにある既存のキャッシュの名前をリストアップします
+アカウントのキャッシュ名の単純なリスト。
+
+<SdkExampleCodeBlock language={'csharp'} snippetId={'API_ListCaches'} />
+
+## キャッシュに項目を書き込む
+セット操作の簡単な例です。client.set呼び出しでは、TTLはオプションです。TTLを渡すと、クライアント接続オブジェクトで設定されたデフォルトのTTL値が上書きされます。
+
+<SdkExampleCodeBlock language={'csharp'} snippetId={'API_Set'} />
+
+## キャッシュからアイテムを読み込む
+これは、キャッシュから項目を取得する単純な読み取り操作の例です。
+
+<SdkExampleCodeBlock language={'csharp'} snippetId={'API_Get'} />
+
+## コードの実行
+
+[csharp SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples)に完全な動作例があります。
+
+:::info
+これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](/cache/develop/api-reference/index.mdx)をチェックしてください。
+
+[より高度な呼び出し](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples/MomentoApplication/Program.cs)については、このサンプルコードをチェックしてください。
+:::

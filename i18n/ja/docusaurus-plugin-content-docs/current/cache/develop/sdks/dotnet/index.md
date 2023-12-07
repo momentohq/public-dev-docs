@@ -22,9 +22,9 @@ Momento .NET SDK は [`Momento.Sdk`](https://www.nuget.org/packages/Momento.Sdk)
 
 ## リソース
 
-- まもなく: .NET SDK チートシート
+- [.NET SDK Cheat Sheet](./cheat-sheet.mdx)
 - [.NET SDK 例](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples/README.md): .NET SDK の使い方をお見せするための動作可能なプロジェクト例です。
-- まもなく: オブザーバビリティ: .NET SDK を使ったロギングとクライアントサイドのメトリクス
+- [.NET SDK Observability](./observability.mdx): .NET SDK を使ったロギングとクライアントサイドのメトリクス
 - まもなく: コードを本番環境へ: .NET SDK での設定とエラーハンドリング
 
 ## 連携
