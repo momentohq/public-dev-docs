@@ -235,7 +235,15 @@ const TOPIC_API_GROUPS: Array<ApiGroup> = [
   {
     groupName: 'Topics',
     groupDescription: 'A matrix of SDK support for Momento Topics APIs',
-    apis: ['subscribe', 'publish'],
+    apis: [
+      'subscribe', 
+      'publish', 
+      'listWebhooks', 
+      'putWebhook', 
+      'deleteWebhook', 
+      'getWebhookSecret', 
+      'rotateWebhookSecret'
+    ],
   },
 ];
 
