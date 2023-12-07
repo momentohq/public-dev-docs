@@ -11,12 +11,12 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Momento Vector Index API の使用
-Momento Vector Index (MVI) は、AI を活用したアプリケーションで使用するベクトルデータのリアルタイムの保存と取得のために設計された、スケーラブルで開発者に優しいVector Indexサービスです。
+# Momento Vector Index APIを使う
+Momento Vector Index（MVI）は、AIを活用したアプリケーションで使用するベクトルデータをリアルタイムで保存・検索するために設計された、スケーラブルで開発者に優しいベクトルインデックスサービスです。
 
 ## Vector Index Client
 
-Momento Vector Index を操作するには、VectorIndexClient を使用する必要があります。
+Momento Vector Indexes を操作するには、VectorIndexClient を使用する必要があります。
 
 <SdkExampleTabs snippetId={'API_InstantiateVectorClient'} />
 
@@ -25,11 +25,11 @@ Momento Vector Index を操作するには、VectorIndexClient を使用する�
 ### Create Index
 vector indexを作成
 
-| Name             | Type   | Description                                                                                                                                            |
+| 名前             | タイプ   | 詳細                                                                                                                                            |
 |------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| indexName        | String | ベクターの名前 index.                                                                                                                              |
-| numDimensions    | String | ベクトルごとの次元数                                                                                                                       |
-| similarityMetric | String | ベクトル間の距離を定量化するために使用されるメトリックです。 コサイン類似度、内積、またはユークリッド類似度を使用できます。 デフォルトはコサイン類似度です。 |
+| indexName        | String | vector indexの名前                                                                                                                              |
+| numDimensions    | String | Number of dimensions per vector.                                                                                                                       |
+| similarityMetric | String | Metric used to quantify the distance between vectors. Can be cosine similarity, inner product, or euclidean similarity. Defaults to cosine similarity. |
 
 
 <details>
@@ -39,7 +39,7 @@ vector indexを作成
 * AlreadyExists
 * Error
 
-具体的な情報については、[レスポンスオブジェクト](./response-objects.md) を参照してください。
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
@@ -48,7 +48,7 @@ vector indexを作成
 ### Delete Index
 vector indexの削除
 
-| Name      | Type            | Description               |
+| 名前             | タイプ   | 詳細     |
 |-----------| --------------- |---------------------------|
 | indexName | String          | vector indexの名前 |
 
@@ -58,36 +58,40 @@ vector indexの削除
 * Success
 * Error
 
-具体的な情報については、[レスポンスオブジェクト](./response-objects.md) を参照してください。
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_DeleteIndex'} />
 
 ### List Indexes
-全てのvector indexのリスト.
+vector indexesの全てのリスト
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-    * getIndexNames(): string[]
+    * getIndexes(): VectorIndexInfo[]
+        * VectorIndexInfo:
+            * name: String
+            * numDimensions: number
+            * similarityMetric: String
 * Error
 
-具体的な情報については、[レスポンスオブジェクト](./response-objects.md) を参照してください。
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_ListIndexes'} />
 
 ### Upsert Item Batch
-vector indexにアイテムを一括挿入します。
+アイテムを一括でvector indexにUpsertsします。
 
 
-| Name      | Type            | Description                     |
+| 名前             | タイプ   | 詳細     |
 |-----------|-----------------|---------------------------------|
 | indexName | String          | vector indexの名前       |
-| items     | VectorIndexItem | インデックスにUpsertする項目。 |
+| items     | VectorIndexItem | indexにアップサートする項目。 |
 
 <details>
   <summary>Method response object</summary>
@@ -95,22 +99,22 @@ vector indexにアイテムを一括挿入します。
 * Success
 * Error
 
-具体的な情報については、[レスポンスオブジェクト](./response-objects.md) を参照してください。
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_UpsertItemBatch'} />
 
 ### Search
-vector indexからアイテムを一括検索します。
+クエリのベクトルに最も近いベクトルを持つアイテムを検索する。
 
 
-| Name           | Type                            | Description                                                                                                                                                              |
+| 名前             | タイプ   | 詳細     |
 |----------------|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | indexName      | String                          | vector indexの名前                                                                                                                                                |
 | queryVector    | number[]                        | 検索するベクトル                                                                                                                                                    |
-| topK           | number                          | 返す結果の数。デフォルトは10。                                                                                                                             |
-| metadataFields | String[] or ALL_VECTOR_METADATA | 各結果とともに返すメタデータフィールドのリスト、またはすべてのメタデータを返すことを示す値。指定しない場合は、メタデータは返されません。デフォルトは None　|
+| topK           | number                          | 返す結果の数。デフォルトは10                                                                                                                             |
+| metadataFields | String[] or ALL_VECTOR_METADATA | 各結果とともに返すメタデータ・フィールドのリスト、またはすべてのメタデータを返すことを示す値です。指定しない場合は、メタデータは返されません。デフォルトは None |
 
 <details>
   <summary>Method response object</summary>
@@ -118,25 +122,54 @@ vector indexからアイテムを一括検索します。
 * Success
     * hits(): SearchHit[]
         * SearchHit: 
-            * id(): string
-            * distance(): number
-            * metadata(): Map<string, string>
+            * id: string
+            * score: number
+            * metadata: Map<string, string>
 * Error
 
-具体的な情報については、[レスポンスオブジェクト](./response-objects.md) を参照してください。
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
 <SdkExampleTabs snippetId={'API_Search'} />
 
+### Search And Fetch Vectors
+クエリのベクトルに最も近いベクトルを持つアイテムを検索します。検索ヒットしたベクトルに対応するベクトルも返します。
+
+
+| 名前             | タイプ   | 詳細     |
+|----------------|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| indexName      | String                          | vector indexの名前                                                                                                                                                |
+| queryVector    | number[]                        | 検索するベクトル                                                                                                                                                    |
+| topK           | number                          | 返す結果の数。デフォルトは10。                                                                                                                             |
+| metadataFields | String[] or ALL_VECTOR_METADATA | 各結果とともに返すメタデータ・フィールドのリスト、またはすべてのメタデータを返すことを示す値です。指定しない場合は、メタデータは返されません。デフォルトは None |
+
+<details>
+  <summary>Method response object</summary>
+
+* Success
+    * hits(): SearchAndFetchVectorsHit[]
+        * SearchAndFetchVectorsHit:
+            * id: string
+            * score: number
+            * metadata: Map<string, string>
+            * vector: number[]
+* Error
+
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SearchAndFetchVectors'} />
+
 ### Delete Item Batch
 vector indexから項目を一括削除します。
 
 
-| Name      | Type     | Description                     |
+| 名前             | タイプ   | 詳細     |
 |-----------|----------|---------------------------------|
 | indexName | String   | vector indexの名前       |
-| items     | String[] | 削除する項目のID |
+| items     | String[] | IDs of the items to be deleted. |
 
 <details>
   <summary>Method response object</summary>
@@ -144,7 +177,7 @@ vector indexから項目を一括削除します。
 * Success
 * Error
 
-具体的な情報については、[レスポンスオブジェクト](./response-objects.md) を参照してください。
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
