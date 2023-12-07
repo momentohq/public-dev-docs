@@ -33,13 +33,13 @@ implementation("software.momento.java:sdk:1.0.0")
 </dependency>
 ```
 
-## auth tokenを設定
+## API keyを設定
 
-Momentoで認証するには、Momento authトークンが必要です。 [Momento Web コンソール](https://console.gomomento.com/caches)から取得できます。
-トークンを取得したら、Momento クライアントが利用できるように環境変数に保存します：
+Momentoで認証するには、Momento API keyが必要です。 [Momento Web コンソール](https://console.gomomento.com/caches)から取得できます。
+API keyを取得したら、Momento クライアントが利用できるように環境変数に保存します：
 
 ```
-export MOMENTO_AUTH_TOKEN=<your Momento token here>
+export MOMENTO_API_KEY=<your Momento API key here>
 ```
 
 ## ライブラリをインポートし、CacheClient オブジェクトを返すように接続する
