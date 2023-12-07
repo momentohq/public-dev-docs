@@ -234,7 +234,7 @@ const didRequestComeFromMomento = (req: Request): boolean => {
 </details>
 
 <details>
-<summary>POSTのbody構造は？/summary>
+<summary>POSTのbody構造は？</summary>
 
 ```typescript
 {
