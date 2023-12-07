@@ -31,13 +31,13 @@ After pressing the `Create` button you'll see the new `chat` cache in the list o
 
 ![Chat cache](/img/console-caches-chat.png)
 
-Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when you generate a Momento authentication token in the next step. Navigate to the [tokens](https://console.gomomento.com/tokens) page, choose the cloud provider and region you used to create your cache, choose the `Super User Token` token type, and hit the `Generate Token` button. 
+Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when you generate a Momento authentication token in the next step. Navigate to the [api-keys](https://console.gomomento.com/api-keys) page, choose the cloud provider and region you used to create your cache, choose the `Super User Key` token type, and hit the `Generate Key` button. 
 
-![Generate token](/img/console-generate-api-key.png)
+![Generate Key](/img/console-generate-api-key.png)
 
 Copy the `API Key` and save it in a safe place. You'll need to use it later to configure your Netlify deployment, where you will add it as an environment variable for use in the chat app. 
 
-![Generated token](/img/console-api-key-result.png)
+![Generated Key](/img/console-api-key-result.png)
 
 ## Deploying with Netlify
 
