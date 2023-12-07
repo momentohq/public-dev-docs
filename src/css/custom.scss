@@ -199,6 +199,10 @@ code span {
   content: url("/img/icons/api.svg");
 }
 
+.sidebar-item-webhooks-overview a::before {
+  content: url("/img/icons/api.svg");
+}
+
 .sidebar-item-guides div a::before {
   content: url("/img/icons/book.svg");
 }
