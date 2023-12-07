@@ -18,7 +18,7 @@ Momento Elixir SDK は [`gomomento`](https://hex.pm/packages/gomomento) の hex 
 ## 必要条件
 
 - [Elixir バージョン 1.14](https://elixir-lang.org/install.html) 又はそれ以上が必要です。
-- Momento 認証トークンが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
+- Momento API Keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
 
 ## リソース
 
