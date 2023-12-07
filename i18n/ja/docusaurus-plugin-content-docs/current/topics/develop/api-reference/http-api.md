@@ -31,9 +31,10 @@ HTTP API にアクセスするには、キャッシュが存在し、Momento 認
 |---|----------------|------------------------------------------------------|
 | 1 | us-west-2      | api.cache.cell-4-us-west-2-1.prod.a.momentohq.com    |
 | 2 | us-east-1      | api.cache.cell-us-east-1-1.prod.a.momentohq.com      |
-| 3 | ap-northeast-1 | api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com |
-| 4 | eu-west-1      | api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com    |
-| 5 | ap-south-1     | api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com   |
+| 3 | us-east-2      | https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com    |
+| 4 | ap-northeast-1 | https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com |
+| 5 | eu-west-1      | https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com    |
+| 6 | ap-south-1     | https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com   |
 
 ご希望のリージョンがない場合は、[サポート](mailto:support@momentohq.com)までご連絡してください。
 
