@@ -13,6 +13,14 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 # Momento CacheのDictionary APIリファレンス
 このページでは、Dictionary[コレクションデータ型](./../basics/datatypes.md#dictionary-collections)のMomento APIメソッドについて詳しく説明します。
 
+<img src="/img/dictionary-collections.jpg" width="90%" alt="a technical illustration of stacks of books. some dusty, so not. All collected into groups." />
+
+
+:::info
+
+Momentoコレクションタイプは、[CollectionTTL](./collection-ttl.md)を使用してTTL動作を指定します。これは、すべての "write" 操作のオプション引数です。
+:::
+
 ## Dictionaryのメソッド
 
 ### DictionaryFetch
