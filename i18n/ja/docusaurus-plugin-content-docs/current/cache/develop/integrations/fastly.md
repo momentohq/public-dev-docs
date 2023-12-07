@@ -5,76 +5,76 @@ title: Integrating Momento Cache with Fastly Compute@Edge
 description: Learn to deploy a Fastly Compute@Edge project that uses Momento Cache via HTTP API.
 ---
 
-[Compute@Edge](https://www.fastly.com/products/edge-compute) is Fastly's platform for deploying and running serverless code.
+[Compute@Edge](https://www.fastly.com/products/edge-compute)は、サーバーレスにコードをデプロイして実行するためのFastlyのプラットフォームです。
 
-In this tutorial, we'll walk through the [example](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/fastly-compute) from our [JavaScript SDK](https://github.com/momentohq/client-sdk-javascript). By the end of the exercise, you'll have a Fastly Compute@Edge project that interacts with Momento Cache via the HTTP API to get, set, and delete some data.
+このチュートリアルでは、[JavaScript SDK](https://github.com/momentohq/client-sdk-javascript) の [example](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/fastly-compute) を見ていきます。このチュートリアルでは、Fastly Compute@Edgeプロジェクトを作成し、HTTP APIを介してMomento Cacheと対話し、データの取得、設定、削除を行います。
 
-The HTTP API is lightweight in that you won't need any additional dependencies beyond what Fastly requires and you can use the standard `fetch` HTTP client methods. However, it only provides a basic subset of all of the Momento APIs, such as `get`, `set`, and `delete`, and is currently only available if you use AWS as your cloud provider.
+HTTP API は軽量で、Fastly が要求する以上の依存関係を必要とせず、標準の `fetch` HTTP クライアントメソッドを使用することができます。ただし、`get`、`set`、`delete` などの Momento API の基本的なサブセットしか提供されておらず、現在のところ AWS をクラウドプロバイダーとして使用している場合にのみ利用可能です。
 
-## Prerequisites
+## 前提条件
 
-To get this app deployed and running, you'll need to have the following:
+このアプリをデプロイして実行するには、以下のものが必要です：
 
-- An account with a Git provider such as [GitHub](https://github.com/), [GitLab](https://gitlab.com), or [Bitbucket](https://bitbucket.org/).
-- A [Fastly](https://www.fastly.com/) account.
-- A copy or fork of the [Momento JavaScript SDK](https://github.com/momentohq/client-sdk-javascript) in your personal repositories.
+- [GitHub](https://github.com/)、[GitLab](https://gitlab.com)、[Bitbucket](https://bitbucket.org/)などのGitプロバイダーのアカウント。
+- [Fastly](https://www.fastly.com/)のアカウント。
+- 個人リポジトリにある [Momento JavaScript SDK](https://github.com/momentohq/client-sdk-javascript) のコピーまたはフォーク。
 
-### Momento Setup
+### Momentoをセットアップ
 
-Once you have a copy or fork of the Momento JavaScript SDK in your Git provider account, you're ready to configure the Momento side of things using the [Momento console](https://console.gomomento.com). You can create an account in the console by providing your email address or linking an existing Google or GitHub account. Once you've logged into the console, click the `Create Cache` button on the top right of the page:
+Git プロバイダーのアカウントに Momento JavaScript SDK のコピーまたはフォークがあれば、[Momento コンソール](https://console.gomomento.com) を使って Momento 側を設定する準備が整います。コンソールにアカウントを作成するには、メールアドレスを入力するか、既存の Google または GitHub アカウントをリンクします。コンソールにログインしたら、ページの右上にある `Create Cache` ボタンをクリックします：
 
 ![Create Cache button](@site/static/img/console-create-cache.png)
 
-Create a cache called `worker` using AWS. Currently, the Momento HTTP API is supported only by AWS, but you can create the cache in any of the supported AWS regions.
+AWSを使って`worker`というキャッシュを作成します。現在、Momento HTTP APIはAWSでのみサポートされていますが、サポートされているAWSリージョンであればどのリージョンでもキャッシュを作成することができます。
 
 ![Create cache form](@site/static/img/console-create-worker-cache-form.png)
 
-After pressing the `Create` button you'll see the new `worker` cache in the list of available caches.
+`Create`ボタンを押すと、利用可能なキャッシュのリストに新しい`worker`キャッシュが表示されます。
 
 ![New cache](@site/static/img/console-caches-worker.png)
 
-Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento API key in the next step. 
+キャッシュを作成した地域もキャッシュのリストに表示されていることに注意してください。次のステップでMomento APIキーを生成する際に、同じリージョンを選択していることを確認する必要があります。
 
-Navigate to the [API keys](https://console.gomomento.com/api_keys) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained key that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations, such as creating or deleting a cache. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
+[API keys](https://console.gomomento.com/api_keys)ページに移動し、キャッシュの作成に使用したクラウドプロバイダとリージョンを選択します。キャッシュはすでに作成されているので、ワーカーにキャッシュからの読み込みとキャッシュへの書き込みを許可し、キャッシュの作成や削除などのコントロールプレーン操作を許可しない、 fine-grained keyを使用します。これは特に、コントロールプレーンとデータプレーンの操作のセキュリティを別々に管理したい場合に便利です。
 
-Choose the `Fine-Grained Access Key` key type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Key` is used for managing control plane operations. More information about Momento authentication can be found [here](./../authentication/index.mdx). Hit the `Generate API Key` button.
+`Fine-Grained Access Key` キータイプを選択し、ドロップダウンリストから `Cache Name` として `worker` を選択し、`Role Type` として `readwrite` を選択する。`Super User Key` はコントロールプレーンの操作を管理するために使用します。Momento 認証の詳細については [こちら](./../authentication/index.mdx) を参照してください。その後、`Generate API Key` ボタンを押します。
 
 ![Generate API Key](@site/static/img/fgac-worker-auth.png)
 
-Copy the `API Key` and `HTTP Endpoint` and save it in a safe place. You'll need to use it later to configure your Fastly Compute@Edge deployment.
+`API Key` と `HTTP Endpoint` をコピーして安全な場所に保存します。後でFastly Compute@Edgeのデプロイメントを構成するために使用する必要があります。
 
 ![Generated token](@site/static/img/http-endpoint-auth-token.png)
 
-### Fastly Setup
+### Fastly のセットアップ
 
-Once you have created your Fastly account, you're ready to configure the Fastly side of things using the [Fastly console](https://manage.fastly.com/services/all). Once you're logged in, click on your account name in the top right corner and select `Account`. Under the `Personal profile` section of the side bar, select `API tokens`. Click on the `Create Token` button in the top right and follow Fastly's instructions for creating a [user API token](https://docs.fastly.com/en/guides/using-api-tokens#creating-api-tokens). Make sure to save this API token in a safe place.
+Fastlyアカウントを作成したら、[Fastlyコンソール](https://manage.fastly.com/services/all)を使ってFastly側の設定を行います。ログインしたら、右上のアカウント名をクリックし、「アカウント」を選択します。サイドバーの`Personal profile`セクションで、`API tokens`を選択します。右上の`Create Token`ボタンをクリックし、Fastlyの指示に従って[ユーザーAPIトークン](https://docs.fastly.com/en/guides/using-api-tokens#creating-api-tokens)を作成します。このAPIトークンは必ず安全な場所に保存してください。
 
-Next, you will install the [Fastly CLI](https://developer.fastly.com/learning/compute/#install-the-fastly-cli) and follow the command line prompts for providing the API token you just created:
+次に、[Fastly CLI](https://developer.fastly.com/learning/compute/#install-the-fastly-cli)をインストールし、コマンドラインプロンプトに従って、先ほど作成したAPIトークンを提供します：
 
 ```bash
 brew install fastly/tap/fastly
 fastly profile create
 ```
 
-## Deploying with Fastly
+## Fastlyへのデプロイ
 
-Now it's time to configure and deploy the application to your Fastly account. As noted before, you need a copy of the Momento JavaScript SDK available in your repository. 
-In this example, we'll deploy from a GitHub repository forked from [the original](https://github.com/momentohq/client-sdk-javascript).
+次に、アプリケーションを設定し、Fastly アカウントにデプロイします。前述したように、リポジトリで利用可能な Momento JavaScript SDK のコピーが必要です。
+この例では、[オリジナル](https://github.com/momentohq/client-sdk-javascript) からフォークした GitHub リポジトリからデプロイします。
 
 ![Fork SDK Repository](@site/static/img/github-fork-js-sdk.png)
 
-This repository contains a directory under `examples` for `fastly-compute` which contains the example code for interacting with your Momento Cache using the Momento HTTP API. 
+このリポジトリには `examples` の下に `fastly-compute` というディレクトリがあり、Momento HTTP API を使って Momento Cache とやり取りするためのサンプルコードが含まれています。
 
-Fastly Compute@Edge uses a file called `fastly.toml` to configure the local and deployed execution environments for your edge code. More information about Compute@Edge configuration can be found [on their website](https://developer.fastly.com/reference/compute/fastly-toml/).
+Fastly Compute@Edgeは、`fastly.toml`というファイルを使用して、エッジコードのローカルおよびデプロイされた実行環境を設定します。Compute@Edgeの設定についての詳細は、[彼らのウェブサイト](https://developer.fastly.com/reference/compute/fastly-toml/)を参照してください。
 
-First let's navigate to the relevant example directory and install the dependencies:
+まず、関連するexampleディレクトリに移動し、依存関係をインストールします:
 
 ```bash
 cd client-sdk-javascript/examples/fastly-compute
 npm install
 ```
 
-Second, create a `secrets.json` file with the following contents:
+次に、以下の内容の`secrets.json`ファイルを作成します：
 
 ```
 {
@@ -85,13 +85,14 @@ Second, create a `secrets.json` file with the following contents:
 }
 ```
 
-You can set the variable `MOMENTO_BACKEND` to any string value. Make sure that your HTTP endpoint corresponds to the region where you created your Momento Cache. This is the HTTP endpoint value we copied from the `Generate API Key` output on the Momento Console.
+変数 `MOMENTO_BACKEND` には任意の文字列を設定できます。HTTP エンドポイントが Momento Cache を作成したリージョンに対応していることを確認します。これは、Momento Console の `Generate API Key` の出力からコピーした HTTP エンドポイントの値です。
 
-**Note**: for production environments, the Momento API key should be saved in a [Fastly Secret Store](https://developer.fastly.com/reference/api/services/resources/secret-store/). However, this is a feature currently restricted to beta users, so this example saves the API key in a [Config Store](https://developer.fastly.com/reference/api/services/resources/config-store/) along with the other values specified in the `secrets.json` file.
+**Note***: 本番環境では、Momento APIキーは[Fastly Secret Store](https://developer.fastly.com/reference/api/services/resources/secret-store/)に保存する必要があります。しかし、これは現在ベータ版ユーザーに制限されている機能なので、この例ではAPIキーを`secrets.json`ファイルで指定された他の値と共に[Config Store](https://developer.fastly.com/reference/api/services/resources/config-store/)に保存します。
 
-Next, you'll want to make sure the contents of your `secrets.json` file match the contents in the `fastly.toml` file. 
+次に、`secrets.json` ファイルの内容が `fastly.toml` ファイルの内容と一致していることを確認します。
 
-Specifically, you'll want to make sure your HTTP endpoint and backend name is provided under the `[local_server]` heading. The local execution environment will use the information supplied under this heading to set up the appropriate backend and config store for your localhost server while you're developing.
+具体的には、HTTP エンドポイントとバックエンド名が `[local_server]` という見出しの下に記述されていることを確認します。ローカルの実行環境では、この見出しの下に提供された情報を使用して、開発中に適切なバックエンドと config ストアを localhost サーバーに設定します。
+
 
 ```
 [local_server]
@@ -108,7 +109,7 @@ Specifically, you'll want to make sure your HTTP endpoint and backend name is pr
       format = "json"
 ```
 
-Finally, you'll want to make sure all four variables in the `secrets.json` file are copied over to the items under the `[setup]` heading. Fastly will use the information supplied under this heading to create and initialize the appropriate backend and config store resources in the execution environment. 
+最後に、`secrets.json` ファイルにある 4 つの変数が、`[setup]` の項目にコピーされていることを確認します。Fastly はこの見出しで提供された情報を使用して、実行環境に適切なバックエンドと設定ストアのリソースを作成し、初期化します。
 
 ```
 [setup]
@@ -138,14 +139,14 @@ Finally, you'll want to make sure all four variables in the `secrets.json` file 
           value = ""<YOUR-MOMENTO-API-KEY>""
 ```
 
-Next, start the development server and navigate to [localhost:7676](http://localhost:7676) to check that it's working.
+次に、開発サーバーを起動し、[localhost:7676](http://localhost:7676)に移動して動作していることを確認します。
 
 ```bash
 fastly compute serve
 ```
 
-The code in this example sets an item in the cache, gets it, deletes it, and returns an HTML response. 
-It uses the [`MomentoFetcher` class](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/fastly-compute/src/index.ts#L98) which provides a small wrapper that adds some error handling to the basic fetch calls to the Momento HTTP API.
+この例のコードでは、キャッシュにアイテムを設定し、それを取得し、削除し、HTML レスポンスを返します。
+これは [`MomentoFetcher` class](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/fastly-compute/src/index.ts#L98) を使用しています。このクラスは、Momento HTTP API の基本的な取得呼び出しにエラー処理を追加する小さなラッパーです。
    
 ```typescript
     const momento = new MomentoFetcher(authToken, httpEndpoint, backend);
@@ -168,24 +169,24 @@ It uses the [`MomentoFetcher` class](https://github.com/momentohq/client-sdk-jav
     });
 ```
 
-What you should see is a simple text response that matches: 
+表示されるのは、一致するシンプルなテキストの応答です。：
 
 ![Fastly example response](@site/static/img/deployed-fastly-response.png)
 
-When you're ready to run the project on Fastly, run this command to build and deploy:
+Fastlyでプロジェクトを実行する準備ができたら、このコマンドを実行してビルドとデプロイを行います：
 
 ```bash
 fastly compute publish
 ```
 
-If you want to see logs from your deployed service, you can enable log tailing from the same directory where the `fastly.toml` lives:
+デプロイしたサービスのログを見たい場合は、`fastly.toml`があるのと同じディレクトリからログの尾行を有効にすることができます：
 
 ```bash
 fastly log-tail
 ```
 
- More information about deploying to Fastly can be [found here](https://developer.fastly.com/learning/compute/#deploy-to-a-fastly-service). And more information about logging and monitoring your Fastly Compute@Edge project can be [found here](https://developer.fastly.com/learning/compute/testing/#live-log-monitoring-in-your-console).
+Fastlyへのデプロイに関する詳細は[こちら](https://developer.fastly.com/learning/compute/#deploy-to-a-fastly-service)を参照してください。また、Fastly Compute@Edgeプロジェクトのログとモニタリングに関する詳細は、[こちら](https://developer.fastly.com/learning/compute/testing/#live-log-monitoring-in-your-console)を参照してください。
 
-## Conclusion
+## 結論
 
-We hope this quick tutorial has given you an idea of how simple and straightforward it is to deploy a Momento-powered application with Fastly Compute@Edge. Feel free, of course, to dive into the [example code](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/fastly-compute) as well. We hope you'll also enjoy the simplicity of Momento Cache, as you don't have to manage and provision any infrastructure to get up and running.
+この簡単なチュートリアルで、Fastly Compute@Edgeを使ってMomentoを搭載したアプリケーションをデプロイすることがいかにシンプルで簡単であるかをご理解いただけたと思います。もちろん、[サンプルコード](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/fastly-compute) もご覧ください。インフラストラクチャを管理したりプロビジョニングしたりする必要がないので、Momento Cacheのシンプルさを楽しんでいただければと思います。
