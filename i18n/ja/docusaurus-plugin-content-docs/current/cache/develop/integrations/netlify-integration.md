@@ -9,7 +9,8 @@ description: Learn to deploy a chat app using Momento Javascript Web SDK to Netl
 
 [Netlify](https://www.netlify.com/)は、モダンなウェブサイトやアプリを構築、デプロイ、スケーリングするための人気のプラットフォームです。先進的なグローバルCDN、Gitに統合されたCI/CD、無料の自動HTTPSサポートなどを提供しています。デプロイプロセスは Git リポジトリと直接統合されており、最初のデプロイはリポジトリの選択と同じくらい簡単です。いったんデプロイされると、サイトやアプリの更新は変更を Git にプッシュすることで自動的に行われます。
 
-このチュートリアルでは、[Javascript SDK](https://github.com/momentohq/client-sdk-javascript) のシンプルなサンプル [Next.js チャットアプリケーション](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/nextjs-chat) を使います。このチュートリアルでは、[Next.jsチャットアプリケーション]() の簡単な例を使います。このチュートリアルが終わるころには、ブラウザベースのリアルタイムチャットアプリケーションが完成し、そのURLで友達をチャットに招待できるようになっていることでしょう。
+このチュートリアルでは、[Javascript SDK](https://github.com/momentohq/client-sdk-javascript) のシンプルなサンプル [Next.js チャットアプリケーション](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/nextjs-chat) を使います。
+このチュートリアルが終わるころには、ブラウザベースのリアルタイムチャットアプリケーションが完成し、そのURLで友達をチャットに招待できるようになっていることでしょう。
 
 ## 前提条件
 
