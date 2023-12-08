@@ -162,6 +162,50 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_SearchAndFetchVectors'} />
 
+### Get Item Batch
+Gets a batch of items from a vector index.
+
+
+| Name      | Type     | Description                     |
+|-----------|----------|---------------------------------|
+| indexName | String   | Name of the vector index.       |
+| ids       | String[] | IDs of the items to retrieve.   |
+
+<details>
+  <summary>Method response object</summary>
+
+* Success
+    * values(): Record<string, VectorIndexItem> - Items for found IDs.
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_GetItemBatch'} />
+
+### Get Item Metadata Batch
+Gets a batch of items' metadata from a vector index.
+
+| Name      | Type     | Description                         |
+|-----------|----------|-------------------------------------|
+| indexName | String   | Name of the vector index.           |
+| ids       | String[] | IDs of item metadata to retrieve.   |
+
+<details>
+  <summary>Method response object</summary>
+
+* Success
+    * values(): Record<string, VectorIndexMetadata> - Metadata for found IDs.
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_GetItemMetadataBatch'} />
+
+
 ### Delete Item Batch
 Deletes a batch of items from a vector index.
 
@@ -169,7 +213,7 @@ Deletes a batch of items from a vector index.
 | Name      | Type     | Description                     |
 |-----------|----------|---------------------------------|
 | indexName | String   | Name of the vector index.       |
-| items     | String[] | IDs of the items to be deleted. |
+| ids       | String[] | IDs of the items to be deleted. |
 
 <details>
   <summary>Method response object</summary>
