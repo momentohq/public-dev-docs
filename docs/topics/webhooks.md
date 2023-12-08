@@ -38,4 +38,4 @@ You can create a Lambda/Step Function backed by API Gateway or use a Cloud Run f
 
 ## API calls for Webhooks
 
-See [API reference page for Webhooks](./develop/api-reference/webhooks.md).
+See [API reference page for Webhooks](./develop/api-reference/webhooks).
