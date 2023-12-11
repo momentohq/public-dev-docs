@@ -3,33 +3,33 @@ sidebar_position: 5
 sidebar_label: Working with Time Series Data
 title: Working with Time Series Data
 description: Learn how to store time series data in Momento Cache
-pagination_next: null
 ---
 
 # 時系列データの保存
 
-時系列データを一時的に保存することで、長期間の保存コストを気にすることなくデータを可視化できます。IoTセンサーのような時系列データの一般的なユースケースについて考えてみましょう。確かに、最近のデータがどのようなものかを見るのは便利ですが、各センサーの値を無期限に保存する必要があるでしょうか？
-多数のセンサーがデータベースにメトリクスを送信すると、ストレージのコストが急上昇します。その代わりにMomentoにデータを保存すれば、Momentoが最も得意とする、スケーリングや長期的なストレージ・コストを心配することなく大量のデータを保存することができます。
+時系列データを一時的に保存することで、長期間の保存コストを気にすることなくデータを可視化することができます。IoTセンサーのような時系列データの一般的なユースケースを考えてみよう。確かに、最近のデータがどのようなものかを見るのは便利ですが、各センサーの値を無期限に保存する必要があるでしょうか？多数のセンサーがデータベースにメトリクスを送信すると、ストレージ・コストが急上昇します。そのデータをMomentoに保存することで、Momentoが最も得意とする、スケーリングや長期的な保存コストを気にすることなく大量のデータを保存することができます。
 
-[lists](./../api-reference/list-collections.md)、[sets](./../api-reference/set-collections.md)、[dictionaries](./../api-reference/dictionary-collections.md)などのMomentoのコレクションデータ型に関連するデータ要素を格納できます。アプリケーションのアクセスパターンとデータスキーマに適したデータ型を選ぶべきです。時系列データの場合は、Momentoの[SortedSet データ型](./../api-reference/sorted-set-collections.md)を使用します。SortedSets`については[こちら](https://www.gomomento.com/blog/were-back-with-another-collection-data-type-sorted-sets)を参照してください。
+[リスト](./../api-reference/list-collections.md)、[セット](./../api-reference/set-collections.md)、[辞書など](./../api-reference/dictionary-collections.md)、Momento のコレクション・データ型に関連するデータ要素を格納できます。アプリケーションのアクセスパターンやデータスキーマに適したデータ型を選択する必要があります。時系列データの場合は、Momento の[SortedSet データ](./../api-reference/sorted-set-collections.md)型を使用します。`SortedSet`については、[こちらのブログで](https://www.gomomento.com/blog/were-back-with-another-collection-data-type-sorted-sets)詳しく説明しています。
 
+### なぜ SortedSets を使うのか？
 
-### なぜSortedSetsを使うのか？
+- 時系列データをタイムスタンプでソートすることで、クライアントアプリケーションはソートされた順序でデータを取得し、表示することが容易になります。
+- Momento SDKの[SortedSetFetchByRankと](./../api-reference/sorted-set-collections.md#sortedsetfetchbyrank) [SortedSetFetchByScoreを](./../api-reference/sorted-set-collections.md#sortedsetfetchbyscore)使用して、クエリ応答を特定の値数または特定の時間内の値に制限します。
 
-- 時系列データをタイムスタンプでソートすることで、クライアントアプリケーションがデータをソートされた順序で取得し、表示することが容易になります。
-- Momento SDKの[SortedSetFetchByRank](./../api-reference/sorted-set-collections.md#sortedsetfetchbyrank)および[SortedSetFetchByScore](./../api-reference/sorted-set-collections.md#sortedsetfetchbyscore)を使用して、クエリ応答を特定の値数または特定のタイムスパン内の値に制限します。
+## 時系列データのSortedSetへの格納
 
-## 時系列データをSortedSetに格納する
-SortedSet にアイテムを挿入するには、Momento SDK の [SortedSetPutElement](./../api-reference/sorted-set-collections.md#sortedsetputelement) メソッドを使用します。
+Momento SDKの[SortedSetPutElement](./../api-reference/sorted-set-collections.md#sortedsetputelement)メソッドを使用して、SortedSetに項目を挿入します。
 
-IoTセンサーデータをMomento Cacheに保存するワークロードを考えてみましょう。
+IoTセンサーのデータをMomento Cacheに格納するワークロードを考えてみましょう。
 
-- 各センサーは独自の SortedSet を持ちます。
-- センサーの SortedSet 内の各 sensor_value は、値とタイムスタンプを含む JSON 文字列としましょう。
-すなわち、`JSON.stringify("value":1, "timestamp": 1686583076)` となります。
-- SortedSet の各項目のスコアは、データポイントのタイムスタンプです。SortedSet は、スコアを使ってセット内のデータをソートします。
+- 各センサーは独自のSortedSetを持っている。
+- センサーのSortedSet内の各sensor_valueは、値とタイムスタンプを含むJSON文字列です。
 
->SortedSetをキャッシュに書き込むコードスニペット
+例：`JSON.stringify("value":1, "timestamp": 1686583076)`
+
+- SortedSet 内の各項目のスコアは、データポイントのタイムスタンプである。SortedSetはスコアを使用してセット内のデータをソートします。
+
+> SortedSet をキャッシュに書き込むコード・スニペット
 
 ```javascript
 const item_value = JSON.stringify({"sensor_value": sensor_value, "timestamp": timestamp})
@@ -37,40 +37,46 @@ const item_value = JSON.stringify({"sensor_value": sensor_value, "timestamp": ti
 const response = await cacheClient.sortedSetPutElement("sensor_data", `${sensor_id}-sensor-data`, item_value, timestamp)
 ```
 
-ソートされたセットから時系列データを取得する：
+並べ替えられたセットから時系列データを取得する：
 
-キャッシュからデータを取得するには、SortedSetFetchByRank を使用する。SortedSet全体を取得したい場合は、startRankとendRankパラメータ値を渡さないでください。
+キャッシュからデータを取得するには、SortedSetFetchByRankを使用します。SortedSet全体を取得したい場合は、startRankとendRankパラメータ値を渡さないでください。
 
->SortedSetFetchByRank で SortedSet 全体を取得するコードスニペット
+> SortedSetFetchByRank で SortedSet 全体を取得するコード・スニペット
 
 ```javascript
 const sensor_data = await cacheClient.sortedSetFetchByRank("sensor_data", `${sensor_id}-sensor-data`)
 ```
 
-SortedSetのサブセットだけを取得したい場合は、次のようにstartRankとendRankパラメータ値を設定できます：
+SortedSetのサブセットのみを取得したい場合は、以下のようにstartRankとendRankパラメータ値を設定します：
 
->SortedSet のサブセットを取得する SortedSetFetchByRank のコードスニペット
+> SortedSetのサブセットを取得するSortedSetFetchByRankのコード・スニペット
 
 ```javascript
 const sensor_data = await cacheClient.sortedSetFetchByRank("sensor_data", `${sensor_id}-sensor-data`, 0, 10)
 ```
 
-特定の数の値ではなく、指定した期間のデータのみを取得したい場合は、[SortedSetFetchByScore](./../api-reference/sorted-set-collections.md#sortedsetfetchbyscore)を使用できます。
+特定の数の値ではなく、指定した期間のデータのみを取得したい場合は、[SortedSetFetchByScoreを](./../api-reference/sorted-set-collections.md#sortedsetfetchbyscore)使用できます。
 
->SortedSetのサブセットを取得するSortedSetFetchByScoreのコードスニペット
+> SortedSet のサブセットを取得する SortedSetFetchByScore のコード・スニペット
 
 ```javascript
 const sensor_data = await cacheClient.sortedSetFetchByScore("sensor_data", `${sensor_id}-sensor-data`, 1686511076, 1686597476)
 ```
 
-## 時系列データに関する考察
+## 時系列データに関する考慮事項
 
-### Time To Live (TTL)の値
+### 生存時間（TTL）値
 
-[TTLの値](./../../learn/how-it-works/expire-data-with-ttl.md)は、ユーザーに時系列データを表示し続ける期間によって異なります。クライアントアプリケーションで時系列データをチャートに表示する場合、チャートの最も古い時刻の値が時系列データのTTLと一致していることを確認してください。
+SortedSet の[CollectionTTL オブジェクトは](/cache/develop/api-reference/collection-ttl)、各センサーの時系列データを保存する期間に応じて設定される。デフォルトでは、SortedSetのTTLは変更されるたびに更新されます。つまり、SortedSetに要素を追加し続ける限り、TTLは増え続けます。
 
-### センサーインデックスセット
+:::caution
 
-複数のセンサーがキャッシュにデータをプッシュしている場合は、すべてのセンサー ID を格納する Set データ型の追加を検討してください。SortedSets からデータをフェッチするときに Sensor ID を渡す必要があります。クライアントアプリケーションは、時系列データをフェッチする前に、このSetからすべてのSensor IDを取得し、Sorted Setsからすべてのセンサーのデータをフェッチすることができます。
+CollectionTTL は、コレクション全体、この場合は SortedSet 全体の TTL を指定するものであり、SortedSet 内の個々の要素の TTL を設定するものでは*ありません*。SortedSetが期限切れにならなければ、SortedSet内の要素は期限切れにならない。
 
-![Set example](./images/time-series-example.png)
+:::
+
+### センサー・インデックス・セット
+
+複数のセンサーがキャッシュにデータをプッシュしている場合は、すべてのセンサーIDを格納するSetデータ型の追加を検討してください。SortedSets からデータをフェッチするときに Sensor ID を渡す必要があります。クライアントアプリケーションは、時系列データをフェッチする前に、このSetからすべてのSensor IDを取得し、Sorted Setsからすべてのセンサーのデータをフェッチすることができます。
+
+![セットの例](./images/time-series-example.png)
