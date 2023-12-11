@@ -53,7 +53,7 @@ const SDKS: Array<SdkInfo> = [
     cacheClientFile: 'src/Momento.Sdk/ICacheClient.cs',
     configObjectFile: 'src/Momento.Sdk/Config/Configuration.cs',
     topicClientFile: 'src/Momento.Sdk/ITopicClient.cs',
-    authClientFile: undefined,
+    authClientFile: 'src/Momento.Sdk/IAuthClient.cs',
     leaderboardClientFile: undefined,
   },
   {

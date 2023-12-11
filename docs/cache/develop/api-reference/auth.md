@@ -18,7 +18,7 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
 
 <img src="/img/momento-auth-tokens.png" width="60%"/>
 
-## GenerateAuthToken API
+## GenerateApiKey API
 
 Generates a new Momento auth token with the specified permissions and expiry.
 
@@ -47,9 +47,9 @@ Tokens to access the Momento control plane APIs can only be generated using the 
 
 :::
 
-<SdkExampleTabs snippetId={'API_GenerateAuthToken'} />
+<SdkExampleTabs snippetId={'API_GenerateApiKey'} />
 
-## RefreshAuthToken API
+## RefreshApiKey API
 
 Refreshes an existing, unexpired Momento auth token.  Produces a new auth token with the same permissions and expiry duration as the original auth token.
 
@@ -71,7 +71,7 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
-<SdkExampleTabs snippetId={'API_RefreshAuthToken'} />
+<SdkExampleTabs snippetId={'API_RefreshApiKey'} />
 
 ## TokenScope objects
 | Name            | Type                                      | Description                                  |
