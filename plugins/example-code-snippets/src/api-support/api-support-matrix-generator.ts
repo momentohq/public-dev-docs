@@ -158,7 +158,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
   {
     groupName: 'Scalars',
     groupDescription: 'A matrix of SDK support for Momento scalar APIs',
-    apis: ['get', 'set', 'setIfNotExists', 'increment'],
+    apis: ['get', 'set', 'delete', 'setIfNotExists', 'increment'],
   },
   {
     groupName: 'Lists',
