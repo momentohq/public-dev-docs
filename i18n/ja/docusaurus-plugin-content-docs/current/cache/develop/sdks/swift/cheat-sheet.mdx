@@ -40,11 +40,15 @@ Use this function to create a new cache in your account.
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_CreateCache'} />
 
-
 ## List the names of existing caches in your account
 A simple list of the names of caches for the account.
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_ListCaches'} />
+
+## Delete a cache
+Use this function to delete a cache from your account.
+
+<SdkExampleCodeBlock language={'swift'} snippetId={'API_DeleteCache'} />
 
 ## Write an item to a cache
 A simple example of doing a set operation. In the CacheClient.set() call, the TTL is optional. If you did pass it in, this would override the default TTL value set with the client connection object.
@@ -55,6 +59,11 @@ A simple example of doing a set operation. In the CacheClient.set() call, the TT
 This is an example of a simple read operation to get an item from a cache.
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_Get'} />
+
+## Delete an item from a cache
+This is an example of deleting an item from a cache.
+
+<SdkExampleCodeBlock language={'swift'} snippetId={'API_Delete'} />
 
 ## Running the code
 
