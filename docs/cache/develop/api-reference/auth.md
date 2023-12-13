@@ -18,9 +18,9 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
 
 <img src="/img/momento-auth-tokens.png" width="60%"/>
 
-## GenerateAuthToken API
+## GenerateApiKey API
 
-Generates a new Momento auth token with the specified permissions and expiry.
+Generates a new Momento API key with the specified permissions and expiry.
 
 | Name            | Type                      | Description                                                                                                                                                                             |
 | --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -31,8 +31,8 @@ Generates a new Momento auth token with the specified permissions and expiry.
   <summary>Method response object</summary>
 
 * Success
-  - `authToken`: string - the new auth token
-  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshauthtoken-api) to refresh a token before it expires
+  - `apiKey`: string - the new API key
+  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshapikey-api) to refresh a token before it expires
   - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
   - `expiresAt`: Timestamp - the timestamp at which the token will expire
 * Error
@@ -47,22 +47,22 @@ Tokens to access the Momento control plane APIs can only be generated using the 
 
 :::
 
-<SdkExampleTabs snippetId={'API_GenerateAuthToken'} />
+<SdkExampleTabs snippetId={'API_GenerateApiKey'} />
 
-## RefreshAuthToken API
+## RefreshApiKey API
 
-Refreshes an existing, unexpired Momento auth token.  Produces a new auth token with the same permissions and expiry duration as the original auth token.
+Refreshes an existing, unexpired Momento API key.  Produces a new API key with the same permissions and expiry duration as the original API key.
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| refreshToken    | String          | The refreshToken for the current auth token, acquired from the original call to `GenerateAuthToken`. |
+| refreshToken    | String          | The refreshToken for the current API key, acquired from the original call to `GenerateApiKey`. |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-  - `authToken`: string - the new auth token
-  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshauthtoken-api) to refresh the token before it expires
+  - `apiKey`: string - the new API key
+  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshapikey-api) to refresh the token before it expires
   - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
   - `expiresAt`: Timestamp - the timestamp at which the token will expire
 * Error
@@ -71,7 +71,7 @@ See [response objects](./response-objects.md) for specific information.
 
 </details>
 
-<SdkExampleTabs snippetId={'API_RefreshAuthToken'} />
+<SdkExampleTabs snippetId={'API_RefreshApiKey'} />
 
 ## TokenScope objects
 | Name            | Type                                      | Description                                  |

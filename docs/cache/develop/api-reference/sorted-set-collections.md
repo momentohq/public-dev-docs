@@ -12,7 +12,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Sorted set collections
 
-A sorted set in Momento Cache is a collection of unique elements with a value (String, Byte[], etc.) and score (signed double 64-bit float) pair. The elements in the item are ordered by the score.
+A sorted set in Momento Cache is a collection of unique elements with a value (String, Byte[], etc.) and score (signed double 64-bit float) pair. The elements in a sorted set are ordered by score.
 
 ![A diagram of luggage as sets, but organized and stacked nicely.](@site/static/img/sorted-sets.jpg)
 
@@ -26,19 +26,19 @@ Momento collection types use a [CollectionTTL](./collection-ttl.md) to specify t
 
 ### SortedSetPutElement
 
-Adds a new or updates an existing [sorted set element](#sortedsetelement) in a sorted set item.
+Adds a new or updates an existing [sorted set element](#sortedsetelement) in a sorted set.
 
-- If the set does not exist, this method creates a new sorted set item with the element passed in.
+- If the set does not exist, this method creates a new sorted set collection with the element passed in.
 
 - If the set exists, the element is added to the sorted set if that **value** doesn't exist. If the value of that element does exist, that element is overwritten.
 
 | Name            | Type               | Description                                   |
 | --------------- | ------------------ | --------------------------------------------- |
 | cacheName       | String             | Name of the cache.                            |
-| setName         | String             | Name of the sorted set item to be altered. |
-| value        | String \| Byte[] | The value of the element to be added to the sorted set by this operation. |
-| score        | number | The score of the element to be added to the sorted set by this operation. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set item. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| setName         | String             | Name of the sorted set collection to be altered. |
+| value           | String \| Byte[]   | The value of the element to be added to the sorted set by this operation. |
+| score           | number             | The score of the element to be added to the sorted set by this operation. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set collection. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
   <summary>Method response object</summary>
@@ -54,18 +54,18 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SortedSetPutElements
 
-Adds new or updates existing [sorted set elements](#sortedsetelement) in a sorted set item.
+Adds new or updates existing [sorted set elements](#sortedsetelement) in a sorted set collection.
 
-- If the set does not exist, this method creates a new sorted set item with the element(s) passed in.
+- If the set does not exist, this method creates a new sorted set collection with the element(s) passed in.
 
 - If the set exists, for each [SortedSetElement](#sortedsetelement) in the array, each element is added to the sorted set if that **value** doesn't exist. If the value of that element does exist, that element is overwritten.
 
 | Name            | Type               | Description                                   |
 | --------------- | ------------------ | --------------------------------------------- |
 | cacheName       | String             | Name of the cache.                            |
-| setName         | String             | Name of the sorted set item to be altered. |
+| setName         | String             | Name of the sorted set collection to be altered. |
 | elements        | [SortedSetElement](#sortedsetelement)[] | Elements to be added to the sorted set by this operation. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set item. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set collection. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
   <summary>Method response object</summary>
@@ -86,7 +86,7 @@ Fetch elements of sorted set, optionally filtered by rank, and return them in as
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
-| setName         | String          | Name of the sorted set item. |
+| setName         | String          | Name of the sorted set collection. |
 | startRank | Optional[integer]   | The inclusive start rank of the results. Default is zero. |
 | endRank | Optional[integer]   | The exclusive end rank of the results. Default is `null`, ie up to and including the element ranked last. |
 | order           | Ascending \| Descending | The order you want the sorted set returned. |
@@ -112,7 +112,7 @@ Fetch elements of sorted set, optionally filtered by score, and return them in a
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
-| setName         | String          | Name of the sorted set item. |
+| setName         | String          | Name of the sorted set collection. |
 | minScore | Optional[double]   | The inclusive low score of the results. Default is `-inf`, ie include through the lowest score. |
 | maxScore | Optional[double]   | The inclusive high score of the results. Default is `+inf`, ie include through the highest score. |
 | order           | Ascending \| Descending | The order you want the sorted set returned. |
@@ -140,7 +140,7 @@ Gets an element's score from the sorted set, indexed by value.
 | Name             | Type                | Description                                   |
 | ---------------- | ------------------- | --------------------------------------------- |
 | cacheName        | String              | Name of the cache.                            |
-| setName          | String              | Name of the sorted set item. |
+| setName          | String              | Name of the sorted set collection. |
 | value           | String \| Bytes | The value to get the score of. |
 
 <details>
@@ -164,7 +164,7 @@ Gets the scores associated with a list of elements from the sorted set, indexed 
 | Name             | Type                | Description                                   |
 | ---------------- | ------------------- | --------------------------------------------- |
 | cacheName        | String              | Name of the cache.                            |
-| setName          | String              | Name of the sorted set item. |
+| setName          | String              | Name of the sorted set collection. |
 | values           | String[] \| Bytes[] | An array of values to get the score of. |
 
 <details>
@@ -191,7 +191,7 @@ Removes an element from a sorted set, indexed by value.
 | Name            | Type             | Description                                   |
 | --------------- | ---------------- | --------------------------------------------- |
 | cacheName       | String           | Name of the cache.                            |
-| setName         | String           | Name of the set item to be altered. |
+| setName         | String           | Name of the set collection to be altered. |
 | value          | String \| Bytes | Value of the element to be removed by this operation. |
 
 <details>
@@ -213,7 +213,7 @@ Removes elements from a sorted set, indexed by values.
 | Name            | Type             | Description                                   |
 | --------------- | ---------------- | --------------------------------------------- |
 | cacheName       | String           | Name of the cache.                            |
-| setName         | String           | Name of the set item to be altered. |
+| setName         | String           | Name of the set collection to be altered. |
 | values          | String[] \| Bytes[] | Values of the elements to be removed by this operation. |
 
 You can remove either one or a specific group of elements.
@@ -237,7 +237,7 @@ What position is the element, in the specified sorted set?
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
-| setName         | String          | Name of the sorted set item to be altered.    |
+| setName         | String          | Name of the sorted set collection to be altered.    |
 | value           | String \| Bytes | Value of the element to retrieve the score of. |
 
 <details>
@@ -272,10 +272,10 @@ Examples:
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
 | cacheName       | String          | Name of the cache.                            |
-| setName         | String          | Name of the sorted set item to be altered. |
+| setName         | String          | Name of the sorted set collection to be altered. |
 | value           | String \| Bytes | Value for the element to be incremented by this operation. |
 | amount          | Number          | The quantity to add to the score. May be positive, negative, or zero. Defaults to 1. |          
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set item. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set collection. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
   <summary>Method response object</summary>
@@ -305,12 +305,12 @@ Example:
 A SortedSetElement can exist by itself or as part of an array of SortedSetElements.
 
 ### SortedSetLength
-Get the number of entries in a sorted set item.
+Get the number of entries in a sorted set collection.
 
 | Name           | Type         | Description                                |
 |----------------| ------------ |--------------------------------------------|
 | cacheName      | String       | Name of the cache.                         |
-| sortedSetName | String       | Name of the sorted set item to be checked. |
+| sortedSetName | String       | Name of the sorted set collection to be checked. |
 
 <details>
   <summary>Method response object</summary>
@@ -327,12 +327,12 @@ See [response objects](./response-objects.md) for specific information.
 <SdkExampleTabs snippetId={'API_SortedSetLength'} />
 
 ### SortedSetLengthByScore
-For an existing sorted set item, it finds all of the values between the specified min and max score and returns the length.
+For an existing sorted set collection, it finds all of the values between the specified min and max score and returns the length.
 
 | Name           | Type         | Description                                |
 |----------------| ------------ |--------------------------------------------|
 | cacheName      | String       | Name of the cache.                         |
-| sortedSetName | String       | Name of the sorted set item to be checked. |
+| sortedSetName | String       | Name of the sorted set collection to be checked. |
 | minScore | Optional[double]   | The inclusive low score of the results. Default is `-inf`, ie include through the lowest score. |
 | maxScore | Optional[double]   | The inclusive high score of the results. Default is `+inf`, ie include through the highest score. |
 
