@@ -162,6 +162,49 @@ vector indexesの全てのリスト
 
 <SdkExampleTabs snippetId={'API_SearchAndFetchVectors'} />
 
+### Get Item Batch
+vector indexから項目を一括で取得します。
+
+
+| Name      | Type     | Description                     |
+|-----------|----------|---------------------------------|
+| indexName | String   | vector indexの名前       |
+| ids       | String[] | 取得するアイテムのID。   |
+
+<details>
+  <summary>Method response object</summary>
+
+* Success
+    * values(): Record<string, VectorIndexItem> - Items for found IDs.
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_GetItemBatch'} />
+
+### Get Item Metadata Batch
+vector indexからアイテムのメタデータを一括で取得します。
+
+| Name      | Type     | Description                         |
+|-----------|----------|-------------------------------------|
+| indexName | String   | vector indexの名前           |
+| ids       | String[] | 取得するアイテムのメタデータのID   |
+
+<details>
+  <summary>Method response object</summary>
+
+* Success
+    * values(): Record<string, VectorIndexMetadata> - Metadata for found IDs.
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_GetItemMetadataBatch'} />
+
 ### Delete Item Batch
 vector indexから項目を一括削除します。
 
