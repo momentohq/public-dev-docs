@@ -64,7 +64,13 @@ const sensor_data = await cacheClient.sortedSetFetchByScore("sensor_data", `${se
 
 ### Time To Live (TTL) Values
 
-Your [TTL value](./../../learn/how-it-works/expire-data-with-ttl) will depend on how long you need to keep the time series data visible for your users. If you're displaying your time series data in a chart on the client application, ensure your earliest time value in the chart is aligned with the TTL for the time series data.
+Your SortedSet's [CollectionTTL object](/cache/develop/api-reference/collection-ttl) will be configured depending on how long you want to keep the time series data for each sensor. By default, a SortedSet's TTL will be refreshed any time it is modified, meaning it will keep growing as long as you continue adding elements to it.
+
+:::caution
+
+The CollectionTTL specifies the TTL for the entire collection, in this case, for the entire SortedSet, *not* for setting the TTL of individual elements within SortedSets. The elements within will not expire if the SortedSet does not expire.
+
+:::
 
 ### Sensor Index Set
 

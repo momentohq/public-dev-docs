@@ -53,7 +53,7 @@ const SDKS: Array<SdkInfo> = [
     cacheClientFile: 'src/Momento.Sdk/ICacheClient.cs',
     configObjectFile: 'src/Momento.Sdk/Config/Configuration.cs',
     topicClientFile: 'src/Momento.Sdk/ITopicClient.cs',
-    authClientFile: undefined,
+    authClientFile: 'src/Momento.Sdk/IAuthClient.cs',
     leaderboardClientFile: undefined,
   },
   {
@@ -158,7 +158,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
   {
     groupName: 'Scalars',
     groupDescription: 'A matrix of SDK support for Momento scalar APIs',
-    apis: ['get', 'set', 'setIfNotExists', 'increment'],
+    apis: ['get', 'set', 'delete', 'setIfNotExists', 'increment'],
   },
   {
     groupName: 'Lists',
