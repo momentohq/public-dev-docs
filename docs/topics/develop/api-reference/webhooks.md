@@ -42,16 +42,15 @@ Webhooks are essential for real-time updates and notifications. Make sure to sec
 
 ### Example
 ```javascript
-const exampleWebhook: Webhook = {
-  id: {
-    cacheName: 'exampleCache',
-    webhookName: 'exampleWebhook',
-  },
-  topicName: 'exampleTopic',
-  destination: new PostUrlWebhookDestination('https://example.com/webhook'),
+const webhookId: WebhookId = {
+  cacheName: 'exampleCache',
+  webhookName: 'exampleWebhook',
 };
 
-const result = await webhookClient.putWebhook(exampleWebhook);
+const result = await webhookClient.putWebhook(webhookId.cacheName, webhookId.webhookName, {
+    destination: new PostUrlWebhookDestination('https://example.com/webhook'),
+    topicName: 'exampleTopic',
+});
 if (result instanceof PutWebhook.Success) {
   console.log('Webhook created successfully. Secret:', result.secret);
 } else {
@@ -128,7 +127,7 @@ const webhookId: WebhookId = {
   webhookName: 'exampleWebhook',
 };
 
-const result = await webhookClient.deleteWebhook(webhookId);
+const result = await webhookClient.deleteWebhook(webhookId.cacheName, webhookId.webhookName);
 if (result instanceof DeleteWebhook.Success) {
   console.log('Webhook deleted successfully');
 } else {
@@ -170,11 +169,53 @@ const webhookId: WebhookId = {
   webhookName: 'exampleWebhook',
 };
 
-const result = await webhookClient.getWebhookSecret(webhookId);
+const result = await webhookClient.getWebhookSecret(webhookId.cacheName, webhookId.webhookName);
 if (result instanceof GetWebhookSecret.Success) {
   console.log('Webhook secret retrieved successfully:', result.secret);
 } else {
   console.error('Error retrieving webhook secret:', result.error.message);
+}
+```
+
+## Rotate Webhook Secret API
+
+Rotates the signing secret used for the webhook. Once the secret is rotated, all new POST requests sent to the webhook endpoint will have a 'momento-signature' header signed with the new secret.
+
+| Name  | Type                           | Description                                                    |
+|-------|--------------------------------|----------------------------------------------------------------|
+| id    | [WebhookId](#webhookid-object) | The unique identifier of the webhook to rotate the secret for. |
+
+<details>
+  <summary>Method response object</summary>
+
+* Success
+  - `secret`: string - the new signing secret for the webhook.
+  - `webhookName`: string - the name of the webhook.
+  - `cacheName`: string - the name of the cache associated with the webhook.
+* Error
+
+See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific information.
+
+</details>
+
+:::note
+
+Secret rotation cannot be reverted, it is important to update all webhooks that are validating requests against a previous secret. 
+
+:::
+
+### Example
+```javascript
+const webhookId: WebhookId = {
+  cacheName: 'exampleCache',
+  webhookName: 'exampleWebhook',
+};
+
+const result = await webhookClient.rotateWebhookSecret(webhookId.cacheName, webhookId.webhookName);
+if (result instanceof RotateWebhookSecret.Success) {
+  console.log('Webhook secret rotated successfully:', result.secret);
+} else {
+  console.error('Error rotating webhook secret:', result.error.message);
 }
 ```
 
@@ -225,6 +266,23 @@ const didRequestComeFromMomento = (req: Request): boolean => {
   const hash = crypto.createHmac("SHA3-256", "the signing secret");
   const hashed = hash.update(req.rawBody).digest('hex');
   return hashed === req.headers['momento-signature'];
+}
+```
+
+Momento also provides utility functions in certain languages to assist with the request validation.
+
+```typescript
+import {WebhookUtils} from '@gomomento/sdk';
+
+const res = WebhookUtils.validateWebhookRequest({
+  body: requestBody,
+  signature,
+  signingSecret,
+});
+if (res === WebhookUtils.RequestValidation.VALID) {
+    // request is valid
+} else {
+    // request is invalid
 }
 ```
 
