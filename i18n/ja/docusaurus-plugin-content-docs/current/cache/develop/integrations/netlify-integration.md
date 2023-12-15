@@ -32,12 +32,11 @@ Netlify のアカウントと、Git プロバイダーのアカウントに Mome
 
 ![Chat cache](/img/console-caches-chat.png)
 
-キャッシュを作成した地域もキャッシュのリストに表示されていることに注意してください。次のステップでMomento認証トークンを生成する際に、同じリージョンを選択する必要があります。[api-keys](https://console.gomomento.com/api-keys)ページに移動し、キャッシュの作成に使用したクラウドプロバイダとリージョンを選択し、`Super User Key` トークンタイプを選択し、`Generate Key` ボタンをクリックします。
-
+キャッシュを作成したリージョンもキャッシュのリストに表示されていることに注意してください。次のステップでMomento API キーを生成する際に、同じリージョンを選択していることを確認する必要があります。[api-keys](https://console.gomomento.com/api-keys) ページに移動し、キャッシュの作成に使用したクラウドプロバイダとリージョンを選択し、`Super User Key` トークンタイプを選択し、`Generate Key` ボタンをクリックします。
 
 ![Generate Key](/img/console-generate-api-key.png)
 
-`API Key`をコピーして安全な場所に保存してください。後でNetlifyのデプロイを設定する際に、チャットアプリで使用する環境変数として追加する必要があります。
+`APIキー`をコピーして安全な場所に保存してください。後でNetlifyのデプロイを設定する際に、チャットアプリで使用する環境変数として追加する必要があります。
 
 ![Generated Key](/img/console-api-key-result.png)
 
