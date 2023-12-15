@@ -55,6 +55,8 @@ export function languageDisplayName(language: ExampleLanguage): string {
       return 'Ruby';
     case ExampleLanguage.ELIXIR:
       return 'Elixir';
+    case ExampleLanguage.SWIFT:
+      return 'Swift';
     case ExampleLanguage.CLI:
       return 'CLI';
     default:

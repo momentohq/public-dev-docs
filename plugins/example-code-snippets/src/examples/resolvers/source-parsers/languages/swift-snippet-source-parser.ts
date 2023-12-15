@@ -8,7 +8,9 @@ import * as path from 'path';
 export class SwiftSnippetSourceParser extends RegexSnippetSourceParser {
   constructor(repoSourceDir: string) {
     const wholeFileExamplesDir = 'Examples/';
-    const codeSnippetFiles: Array<string> = [];
+    const codeSnippetFiles: Array<string> = [
+      'Examples/doc-example-apis/Sources/main.swift',
+    ];
     super({
       wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),
       snippetTypeParseOptions: new Map<
@@ -22,8 +24,8 @@ export class SwiftSnippetSourceParser extends RegexSnippetSourceParser {
               path.join(repoSourceDir, f)
             ),
             startRegex: snippetId =>
-              new RegExp(`^ {2}def example_${snippetId.valueOf()}\\(`),
-            endRegex: () => /^ {2}end/,
+              new RegExp(`^func example_${snippetId.valueOf()}\\(`),
+            endRegex: () => /^}/,
             numLeadingSpacesToStrip: 4,
           },
         ],
