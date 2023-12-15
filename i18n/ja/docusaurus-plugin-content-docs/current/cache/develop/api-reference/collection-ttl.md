@@ -19,7 +19,7 @@ CollectionTtl型は、コレクションに対して書き込み操作を行う�
 
 デフォルトの動作は、書き込み操作が発生するたびにコレクションTTLがリセットされることです。`dictionaryFetch`や`listLength`のような読み取り操作を行う場合は、CollectionTTLオブジェクトを指定することはできません。
 
-Momento Cache での TTL の動作については、[Expire Data with TTL](./../../learn/how--it-works/expire-data-with-ttl.md) を参照してください。
+Momento Cache での TTL の動作については、[Expire Data with TTL](../../learn/how-it-works/expire-data-with-ttl.md) を参照してください。
 
 :::caution
 
