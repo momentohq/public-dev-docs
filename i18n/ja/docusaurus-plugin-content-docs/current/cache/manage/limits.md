@@ -13,12 +13,12 @@ Momento CacheとMomento Topicsは、サービスリソースに関して、自�
 | Momento Cache limits                                                                                               | Value          |
 |--------------------------------------------------------------------------------------------------------------------|----------------|
 | キャッシュあたりのAPIレート（データプレーン）                                                                                   | 100 requests/s |
-| 顧客ごとのAPIレート（コントロールプレーン）｜5リクエスト/秒  |
-| キャッシュあたりのスループット｜1MB/秒          |
-| アイテムの最大サイズ｜1MB           |
-| 最大キャッシュ数（アカウントあたり）｜10             |
-| 生存時間（TTL）｜1日          |
-| [コレクション(CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts)ごとの要素サイズ制限｜128KB          |
+| 顧客ごとのAPIレート（コントロールプレーン）|5リクエスト/秒  |
+| キャッシュあたりのスループット|1MB/秒          |
+| アイテムの最大サイズ|1MB           |
+| 最大キャッシュ数（アカウントあたり）|10             |
+| 生存時間（TTL）|1日          |
+| [コレクション(CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts)ごとの要素サイズ制限|128KB          |
 | [APIキーまたはトークン](./../develop/api-reference/auth.md)ごとのパーミッション (ハードリミット) | 10             |
 
 ## ソフト制限とサポート
