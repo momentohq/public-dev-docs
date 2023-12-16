@@ -18,9 +18,9 @@ auth APIは、[Momento auth tokens](./../authentication/index.mdx) として知�
 
 <img src="/img/momento-auth-tokens.png" width="60%"/>
 
-## GenerateAuthToken API
+## GenerateApiKey API
 
-権限と有効期限を指定することで新しい Momento authトークンを生成します。
+権限と有効期限を指定することで新しい Momento API keyを生成します。
 
 | 名前            | 型                       | 説明                                                                                                                                                                             |
 | --------------- |----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -31,8 +31,8 @@ auth APIは、[Momento auth tokens](./../authentication/index.mdx) として知�
   <summary>Method response object</summary>
 
 * Success
-  - `authToken`: string - 新しいauthトークン
-  - `refreshToken`: string - 有効期限前にトークンを更新するために、[RefreshAuthToken API](#refreshauthtoken)と共に使用できるリフレッシュトークン
+  - `apiKey`: string - 新しいAPI key
+  - `refreshToken`: string - 有効期限前にトークンを更新するために、[RefreshAuthToken API](#refreshapikey-api)と共に使用できるリフレッシュトークン
   - `expiresAt`: Timestamp - トークンが失効するタイムスタンプ
 * Error
 
@@ -46,22 +46,22 @@ Momento のコントロールプレーン API にアクセスするためのト�
 
 :::
 
-<SdkExampleTabs snippetId={'API_GenerateAuthToken'} />
+<SdkExampleTabs snippetId={'API_GenerateApiKey'} />
 
-## RefreshAuthToken API
+## RefreshApiKey API
 
-既存の有効な Momento authトークンを更新します。新しいauthトークンは、元のauthトークンと同じ権限と有効期間を持ちます。
+既存の有効な Momento APIキーを更新します。新しいAPIキーは、元のAPIキーと同じ権限と有効期間を持ちます。
 
 | 名前            | 型            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| refreshToken    | String          | 現在のauthトークンのリフレッシュトークンで、これは `GenerateAuthToken` の元の呼び出しから取得されます。 |
+| refreshToken    | String          | 現在のAPIキーのリフレッシュトークンで、これは `GenerateApiKey` の元の呼び出しから取得されます。 |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
-  - `authToken`: string - 新しいauthトークン
-  - `refreshToken`: string - 有効期限前にトークンを更新するために、[RefreshAuthToken API](#refreshauthtoken) と共に使用できるリフレッシュトークン
+  - `apiKey`: string - 新しいAPIキー
+  - `refreshToken`: string - 有効期限前にトークンを更新するために、[RefreshAuthToken API](#refreshapikey-api) と共に使用できるリフレッシュトークン
   - `expiresAt`: Timestamp - トークンが失効するタイムスタンプ
 * Error
 
@@ -69,7 +69,7 @@ Momento のコントロールプレーン API にアクセスするためのト�
 
 </details>
 
-<SdkExampleTabs snippetId={'API_RefreshAuthToken'} />
+<SdkExampleTabs snippetId={'API_RefreshApiKey'} />
 
 ## TokenScope objects
 | 名前            | 型                                      | 説明                                  |
