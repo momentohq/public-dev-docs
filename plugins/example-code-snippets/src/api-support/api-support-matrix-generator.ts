@@ -113,6 +113,14 @@ const SDKS: Array<SdkInfo> = [
     authClientFile: undefined,
     leaderboardClientFile: undefined,
   },
+  {
+    sdk: Sdk.SWIFT,
+    cacheClientFile: 'Sources/Momento/CacheClient.swift',
+    configObjectFile: 'Sources/Momento/config/CacheConfiguration.swift',
+    topicClientFile: 'Sources/Momento/TopicClient.swift',
+    authClientFile: undefined,
+    leaderboardClientFile: undefined,
+  },
 ];
 
 type Api = string | {displayName: string; functionName: string | RegExp};
