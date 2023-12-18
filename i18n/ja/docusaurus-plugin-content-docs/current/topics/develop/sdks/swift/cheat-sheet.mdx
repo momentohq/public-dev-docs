@@ -30,20 +30,20 @@ export MOMENTO_API_KEY=<your api key here>
 
 **Note**: it is best practice to put the API key into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
 
-## Set up a CacheClient
-This code creates the TopicClient that you will use to call the other methods.
+## Set up a TopicClient
+This code creates the TopicClient that you will use to interact with your pub/sub topic.
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_InstantiateTopicClient'} />
 
 ## Publish a message to a topic
-A simple example of doing a set operation. In the CacheClient.set() call, the TTL is optional. If you did pass it in, this would override the default TTL value set with the client connection object.
+This is an example of publishing a message to a topic called "topic", then catching the return value to check if the publish was successful.
 
-<SdkExampleCodeBlock language={'swift'} snippetId={'API_Publish'} />
+<SdkExampleCodeBlock language={'swift'} snippetId={'API_TopicPublish'} />
 
 ## Subscribe to a topic
-This is an example of a simple read operation to get an item from a cache.
+This is an example of subscribing to a topic called "topic", then catching the return value to check if it was successful. If a subscription was received, a `for try await` loop is used to asynchronously receive and print the messages that are published to this topic.
 
-<SdkExampleCodeBlock language={'swift'} snippetId={'API_Subscribe'} />
+<SdkExampleCodeBlock language={'swift'} snippetId={'API_TopicSubscribe'} />
 
 ## Running the code
 
