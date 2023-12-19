@@ -63,6 +63,10 @@ As a heads up, Momento Topics requires a stateful connection for subscribers, so
 
 See [API reference page for Topics](./develop/api-reference/index.md).
 
+## Language support for Momento Topics
+Learn more about the SDKs available for different programming languages on our [Language Support Page](./develop/language-support/language-support.md).
+
+
 ## Demo
 
 Interested in taking Topics out for a spin? You can try it out for free directly in the [Momento Console](https://console.gomomento.com/topics). Select your region and cache, enter a topic name, and start sending messages!
