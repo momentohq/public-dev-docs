@@ -54,6 +54,11 @@ See the [API reference](./develop/api-reference/index.md) page for documentation
 
 Check out the [Node.js example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/leaderboard.ts) for a runnable program that includes examples of how to call each API.
 
+
+# Language Support for Momento Leaderboards
+Learn more about the SDKs available for different programming languages on our [Language Support Page](./develop/language-support/language-support.md).
+
+
 ## Frequently asked questions about Momento Leaderboards
 
 <details>

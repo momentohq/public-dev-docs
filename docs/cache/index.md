@@ -45,5 +45,8 @@ In the following pages, you can learn about caching in general and how to use Mo
 
 - _Looking for Momento icons for your architecture diagrams?_ Download [Momento_Architecture_Icons.zip](@site/static/img/icons/Momento_Architecture_Icons.zip).
 
+# Language Support for Momento Cache
+Learn more about the SDKs available for different programming languages on our [Language Support Page](./develop/language-support/language-support.md).
+
 Have any questions or comments? We'd love to hear from you! You can chat with a Momento specialist by
 [joining our Discord](https://discord.com/invite/3HkAKjUZGq), or e-mail us at [support@momentohq.com](mailto:support@momentohq.com).
