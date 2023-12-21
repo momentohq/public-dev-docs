@@ -12,6 +12,7 @@ export class JavaSnippetSourceParser extends RegexSnippetSourceParser {
     const codeSnippetFiles: Array<string> = [
       'examples/cache/src/main/java/momento/client/example/doc_examples/DocExamplesJavaAPIs.java',
       'examples/cache-with-aws/src/main/java/momento/client/example/doc_examples/DocExamplesJavaAPIs.java',
+      'examples/token/src/main/java/momento/client/example/doc_examples/DocExamplesJavaAPIs.java',
     ];
     super({
       wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),
