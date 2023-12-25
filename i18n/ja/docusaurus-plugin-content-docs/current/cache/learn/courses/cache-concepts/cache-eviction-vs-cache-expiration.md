@@ -6,26 +6,26 @@ description: Learn about differences between expiring and evicting data from a c
 pagination_next: null
 ---
 
-# Cache Concepts: Cache eviction vs. cache expiration
+# キャッシュの概念： キャッシュの立ち消えとキャッシュの期限切れ
 
-This lesson covers the basic purpose and benefits of a database cache. It then breaks down the concepts of cache eviction and cache expiration and explains how they are handled behind the scenes in Momento Cache.
+このレッスンでは、データベースキャッシュの基本的な目的と利点について説明します。そして、キャッシュエビクションとキャッシュエクスパイアの概念を分解し、Momento Cacheの舞台裏でそれらがどのように処理されるのかを説明します。
 
-## Video
+## 動画
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/76qpwvn262g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-## Transcript
+## トランスクリプト
 
-A database cache has a temporary storage area for frequently accessed data from a database. The purpose of a database cache is to reduce the number of times the database must be accessed in order to retrieve data. Database caches are used to improve the performance of applications that rely on a database for data storage and retrieval. They can help to reduce the load in the database server and improve the scalability and availability of your application.
+データベースキャッシュは、データベースから頻繁にアクセスされるデータを一時的に保存する領域です。データベースキャッシュの目的は、データを取り出すためにデータベースにアクセスする回数を減らすことです。データベースキャッシュは、データの保存と取得をデータベースに依存するアプリケーションのパフォーマンスを向上させるために使用されます。データベース・キャッシュは、データベース・サーバーの負荷を軽減し、アプリケーションのスケーラビリティと可用性を向上させるのに役立ちます。
 
-Now that we've established that, let's talk about cache eviction and cache expiration. These two concepts are related, but they are quite different. Cache eviction is the cache service removing data to make room for other data. This can happen when the cache is full, and there is no more room to store new data.
+さて、キャッシュの立ち消えとキャッシュの有効期限について説明しよう。この2つの概念は関連しているが、まったく異なるものです。キャッシュの立ち消えとは、キャッシュ・サービスがデータを削除して他のデータのためのスペースを確保することです。これは、キャッシュがいっぱいになり、新しいデータを保存する場所がなくなったときに起こります。
 
-Cache eviction policies determine which data gets removed from the cache when that happens. Some example cache eviction policies include least recently used (LRU), least frequently used (LFU), and random eviction. Cache expiration is the process of removing data from the cache because it's no longer considered fresh or up-to-date. This is typically determined by a value called the cache time to live, or TTL. This value is assigned to each piece of data when it is stored in the cache. When the TTL value is reached, the data is considered expired and is removed from the cache by the service.
+キャッシュ消去ポリシーは、キャッシュ消去が発生したときに、どのデータがキャッシュから消去されるかを決定します。キャッシュ消去ポリシーの例としては、LRU（least recently used）、LFU（least frequently used）、ランダム消去などがあります。キャッシュの有効期限は、キャッシュからデータを削除するプロセスです。これは通常、キャッシュの有効期限（TTL）と呼ばれる値によって決定されます。この値は、データがキャッシュに保存されるときに、それぞれのデータに割り当てられます。TTL値に達すると、そのデータは期限切れとみなされ、サービスによってキャッシュから削除されます。
 
-To summarize, cache eviction is the process of removing data from the cache to make room for new data, while cache expiration is deleting data from the cache because it is no longer considered fresh or up-to-date. Both of these concepts are important for ensuring the efficiency and effectiveness of a caching system.
+要約すると、キャッシュの立ち消えとは、新しいデータのためのスペースを確保するためにキャッシュからデータを削除するプロセスであり、キャッシュ・エクスペリエンスとは、もはや新鮮でない、または最新でないとみなされるためにキャッシュからデータを削除することです。この2つの概念は、キャッシュ・システムの効率と有効性を確保するために重要です。
 
-Now that you know these two terms, let's quickly talk about them as they relate to the Momento Cache service. Momento considers cache evictions to be a key indicator of service quality degradation. The service continually monitors this and will add capacity to maintain a buffer for all customers. The service level objective of Momento Cache is to respect the TTL expiry of all cached items and not evict data.
+この2つの用語がわかったところで、Momento Cacheサービスに関連するこれらの用語について簡単に説明します。Momentoは、キャッシュの立ち消えをサービス品質低下の重要な指標と考えています。サービスはこれを継続的に監視し、すべての顧客のためにバッファを維持するために容量を追加します。Momento Cacheのサービスレベルの目標は、すべてのキャッシュアイテムのTTLの有効期限を尊重し、データを退避させないことです。
 
-For cache expiration, Momento Cache requires a time to live value in seconds for every object inserted into the cache. There are two places to set that value. Number one, when you establish the connection to the cache in your call to the SDK, you can specify that value. And number two, when you do a write operation, you can override that value on a per-object basis. If you do not set a TTL value in the write operation, the SDK uses the value from the connection object. By default, the maximum value for TTL is 24 hours.
+キャッシュの有効期限を設定するために、Momento Cacheはキャッシュに挿入されたオブジェクトごとに、秒単位でtime to liveの値を設定する必要があります。この値を設定する場所は2つあります。1つ目は、SDKへのコールでキャッシュへの接続を確立するときに、その値を指定できます。そして2つ目は、書き込み操作を行うときに、オブジェクトごとにその値を上書きすることです。書き込み操作でTTL値を設定しない場合、SDKは接続オブジェクトの値を使用します。デフォルトでは、TTLの最大値は24時間です。
 
-For more information, see the "[Cache eviction vs. cache expiration](./../../how-it-works/cache-eviction-vs-expiration.md)" documentation.
+詳細については、"[Cache eviction vs. cache expiration](./../../how-it-works/cache-eviction-vs-expiration.md)" ドキュメントを参照してください。
