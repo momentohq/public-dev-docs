@@ -5,26 +5,26 @@ title: Cache Concepts | Common caching use cases
 description: Learn about the common use cases for a cache and how to use them in your daily work.
 ---
 
-# Cache Concepts: Common caching use cases
+# Cacheの概念: 一般的なキャッシュの使用例
 
-This lesson spotlights some common use cases for a cache, like caching API responses, database query results, and static assets. It also covers using a cache as a primary datastore - like with session and personalization information where the level of durability a typical database provides is not necessary.
+このレッスンでは、API レスポンスのキャッシュ、データベースのクエリ結果、静的アセットなど、キャッシュの一般的な使用例を紹介します。また、一般的なデータベースが提供するレベルの耐久性が必要ないセッションやパーソナライゼーション情報のように、キャッシュをプライマリデータストアとして使用することも取り上げます。
 
-## Video 
+## 動画
 <iframe width="560" height="315" src="https://www.youtube.com/embed/IlVRBF96Ci0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-## Transcript
-In this module, we'll discuss common use cases for caching and how they might work with caching.
+## トランスクリプト
+このモジュールでは、キャッシングの一般的な使用例と、それらがキャッシングとどのように連携するかについて説明します。
 
-The first common use case is API responses. This is where you cache commonly used API calls to improve application performance and reduce calls to those APIs that generate somewhat static content. For example, consider an e-commerce website that uses an API to a microservice to retrieve product information.
+最初の一般的なユースケースはAPIレスポンスです。これは、アプリケーションのパフォーマンスを向上させ、やや静的なコンテンツを生成するAPIへの呼び出しを減らすために、一般的に使用されるAPIコールをキャッシュする場所です。例えば、商品情報を取得するためにマイクロサービスへのAPIを使用しているeコマースサイトを考えてみましょう。
 
-This API is called every time a user visits a product detail page. To reduce the load on the server and improve the performance of the website, the API response can be cached. So when a user visits the product detail page, the website can check the cache to see if the response has already been stored. If it has, the cached response can be returned immediately without calling the API again.
+このAPIは、ユーザーが商品詳細ページにアクセスするたびに呼び出されます。サーバーの負荷を減らし、ウェブサイトのパフォーマンスを向上させるために、APIのレスポンスをキャッシュすることができる。そのため、ユーザーが商品詳細ページにアクセスすると、ウェブサイトはキャッシュをチェックして、レスポンスがすでに保存されているかどうかを確認することができます。もし保存されていれば、APIを再度呼び出すことなく、キャッシュされたレスポンスを即座に返すことができます。
 
-The second use case is caching database query results. And this one might be one of the most common and important that I see. This is where you cache commonly used data to reduce the load on the database and improve application performance. For example, consider a news website that has a database of articles. When a user visits the home page, the website should present the latest articles. If these articles are in the cache, the customer is served faster and with less overall load and cost on the entire system.
+2つ目のユースケースは、データベースのクエリー結果をキャッシュすることです。そしてこれは、私が目にする中で最も一般的かつ重要なものの1つかもしれません。これは、よく使われるデータをキャッシュしてデータベースの負荷を減らし、アプリケーションのパフォーマンスを向上させるというものです。例えば、記事のデータベースを持つニュースサイトを考えてみましょう。ユーザーがホームページにアクセスすると、ウェブサイトは最新の記事を表示するはずです。これらの記事がキャッシュにあれば、顧客はより速く、システム全体の負荷とコストを抑えてサービスを受けることができます。
 
-The third use case is caching static assets. In this use case, we're discussing caching, image files, data files, configuration files, scripts, and the like. Some of these assets might be cached in a caching server, while others make sense to cache in a user's client. These items don't change often, but they are often used and likely need to be available very quickly to the user.
+3つ目のユースケースは、静的アセットのキャッシュです。このユースケースでは、画像ファイル、データファイル、設定ファイル、スクリプトなどのキャッシュについて議論します。これらのアセットの中には、キャッシュサーバーにキャッシュされるものもあれば、ユーザーのクライアントにキャッシュするのが理にかなっているものもあります。これらのアイテムは頻繁に変更されるわけではありませんが、頻繁に使用され、ユーザーにとって非常に迅速に利用できる必要があります。
 
-Since it is user-facing, it is critical the data is available very fast and can be changed. Many times, data like this is ephemeral; for example, after a user session is over, the data is no longer needed. Therefore a cache is a fantastic place to store exactly this. Set a time to live value, and when the user session times out, their cached data is deleted by the cache on your behalf.
+ユーザーと接するものであるため、データが非常に速く利用可能で、変更可能であることが重要です。多くの場合、このようなデータは刹那的なものです。例えば、ユーザー・セッションが終わると、データはもう必要なくなります。したがって、キャッシュはまさにこれを保存するための素晴らしい場所なのです。time to live値を設定し、ユーザーセッションがタイムアウトすると、キャッシュされたデータはあなたの代わりにキャッシュによって削除されます。
 
-The final scenario is user session and personalization data. This is not strictly caching at all. It's more like a primary data store, but one that doesn't need the level of durability that a typical database provides and can thus benefit from a lower cost and better performance of a cache. This can be web or app usage data, shopping cart info, site preferences, and the like. Some of this data might be static, but most times, it changes quickly as the user navigates through a website or an app.
+最後のシナリオは、ユーザー・セッションとパーソナライゼーション・データです。これは厳密にはキャッシュではありません。どちらかというと一次データストアに近いものだが、一般的なデータベースが提供するレベルの耐久性を必要としないため、キャッシュの低コストと優れたパフォーマンスの恩恵を受けることができます。これは、ウェブやアプリの使用データ、ショッピングカート情報、サイト設定などです。このデータの中には静的なものもあるかもしれないが、ほとんどの場合、ユーザーがウェブサイトやアプリをナビゲートするにつれて素早く変化します。
 
-These four common use cases for caching are just the beginning of how you might cache data to give your users a better experience, lower your own costs, and manage your architecture better.
+キャッシュに関するこれら4つの一般的な使用例は、データをキャッシュしてユーザーにより良い体験を提供し、自社のコストを削減し、アーキテクチャをより良く管理する方法のほんの始まりに過ぎません。
