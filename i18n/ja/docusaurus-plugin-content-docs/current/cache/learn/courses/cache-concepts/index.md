@@ -1,3 +1,4 @@
+
 ---
 sidebar_position: 1
 sidebar_label: Cache Concepts
@@ -6,30 +7,30 @@ pagination_prev: null
 description: This cache concepts course gets you going with what you need to know on the basics of caching data for your application.
 ---
 
-# Course: Cache concepts
+# Course: Cache の概念
 
-This beginner caching course covers such topics as:
+このビギナー・キャッシング・コースでは、以下のようなトピックを扱います：
 
-- What is caching
-- Why it matters
-- Why a serverless service is great for caching
-- How caching works
-- Caching strategies
-- How to employ those strategies
+- キャッシングとはなにか
+- なぜそれが必要か
+- なぜサーバレスがキャッシュに適しているのか
+- どのようにキャッシュは動作するのか
+- キャッシュの戦略
+- それらの戦略を同実装するか
 - Time to live (TTL)
-- Cache eviction vs cache expiration
+- キャッシュの立ち消えとキャッシュの期限切れ
 
-## Video
-This intro video (1:38) explains the information you need to know to get going with caching in your architecture.
+## 動画
+このイントロビデオ（1:38）は、あなたのアーキテクチャでキャッシングを始めるために必要な情報を説明しています。
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/yErvJ2Bv6dY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-## Transcript
+## トランスクリプト
 
-If you have never worked with caching or want a refresher on the basics, you're in the right place. In this course, you'll learn what caching is, why it matters, and why a serverless service is a great choice for caching. I'll also walk through the basics of how caching works and caching strategies and how to employ them in your application architecture.
+キャッシングを扱ったことがない方、基本を再確認したい方に最適です。このコースでは、キャッシングとは何か、なぜ重要なのか、なぜサーバーレスサービスがキャッシングに適しているのかを学びます。また、キャッシングがどのように機能するのか、キャッシング戦略とアプリケーション・アーキテクチャにどのように採用するのかという基本についても説明します。
 
-Let's talk about what is caching. Caching is a technique used in software development to store frequently used data in a temporary storage area to speed up the performance of an application. The storage area might be in-memory, local disk-based storage, or a distributed caching service. The goal of application caching is to reduce the number of times an application has to retrieve data from a slower storage system, such as a database, an API, or a remote service, and to retrieve that data from a cache closer to where the data is needed.
+キャッシュとは何かについて説明しよう。キャッシングとは、ソフトウェア開発において、頻繁に使用されるデータを一時的な記憶領域に保存し、アプリケーションのパフォーマンスを高速化するために使用されるテクニックです。記憶領域は、インメモリであったり、ローカルのディスクベースのストレージであったり、分散キャッシュサービスであったりします。アプリケーション・キャッシングの目的は、アプリケーションがデータベース、API、リモート・サービスなどの低速なストレージ・システムからデータを取得する回数を減らし、データが必要な場所に近いキャッシュからデータを取得することです。
 
-Application caching can be used to store a variety of data, including database query results, API responses, images, and other data. By caching this data, an application can reduce the time it takes to retrieve the data and thus improve the overall experience of the application.
+アプリケーションのキャッシュは、データベースのクエリ結果、APIのレスポンス、画像、その他のデータなど、さまざまなデータを保存するために使用できます。これらのデータをキャッシュすることで、アプリケーションはデータの取得にかかる時間を短縮し、アプリケーションの全体的なエクスペリエンスを向上させることができます。
 
-The choice of caching technology to use depends on the specific needs of the application and a few select criteria, which we will get into in the course. With this knowledge, let's press on to more topics.
+使用するキャッシング・テクノロジーの選択は、アプリケーションの特定のニーズといくつかの選択基準に依存します。この知識をもとに、さらに話を進めていきましょう。

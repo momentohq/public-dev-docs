@@ -10,19 +10,19 @@ description: Information about the Momento Node.js SDK
 
 <img src="/img/nodes.png" width="95%" alt="a picture of abstract shapes as building and nodes of data connecting them at high speed" />
 
-Welcome to the Momento Node.js SDK documentation!
+Momento Node.js SDK ドキュメントへようこそ！
 
-The Momento Node.js SDK is available via the npm package [`@gomomento/sdk`](https://www.npmjs.com/package/@gomomento/sdk).
+Momento Node.js SDKはnpmパッケージから入手できます。 [`@gomomento/sdk`](https://www.npmjs.com/package/@gomomento/sdk).
 
-The source code can be found on GitHub: [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript).
+ソースコードはGitHubで見ることができます： [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript).
 
-## Requirements
+## 必要条件
 
-- Node version [14 or higher](https://nodejs.org/en/download/) is required.
-- A Momento Auth Token is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- Node バージョン [14 or higher](https://nodejs.org/en/download/)
+- Momento Auth Tokenが必要です； トークンはこちらから取得ができます [Momento Web Console](https://console.gomomento.com/).
 
-## Resources
+## リソース
 
 - [Node.js MVI SDK cheat sheet](./cheat-sheet.md)
-- [Node.js SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/README.md): working example projects that illustrate how to use the Node.js SDK
-- COMING SOON: Taking your code to prod: Configuration and Error handling in the Node.js SDK
+- [Node.js SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/README.md): Node.js SDKの使用方法を説明するサンプルプロジェクト
+- COMING SOON: あなたのコードをprod環境へ： Node.js SDKの設定とエラー処理
