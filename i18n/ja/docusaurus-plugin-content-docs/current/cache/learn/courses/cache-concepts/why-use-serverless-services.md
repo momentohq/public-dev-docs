@@ -5,35 +5,35 @@ title: Cache Concepts - Why use serverless managed service?
 description: Learn about the common use cases for a cache and how to use them in your daily work.
 ---
 
-# Cache Concepts: Why use a serverless managed service?
-This lesson dives into five important advantages of using a serverless managed service: cost efficiency, elasticity, reduced operational overhead, faster dev and deployment, and high availability, security, and resiliency.
+# Cacheの概念: なぜサーバーレスのマネージドサービスを使うのか？
+このレッスンでは、サーバーレスのマネージドサービスを利用する5つの重要な利点、すなわちコスト効率、弾力性、運用オーバーヘッドの削減、開発およびデプロイの迅速化、高可用性、セキュリティ、回復力について掘り下げていきます。
 
-## Video
+## 動画
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UJ2lZ8b8txI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-## Transcript
-Whether your application architecture is serverless, server-based (also known as serverful), or as a blend of the two, it's important to understand the advantages of using a serverless managed service.
+## トランスクリプト
+アプリケーション・アーキテクチャがサーバーレスであれ、サーバーベース（サーバーフルとも呼ばれる）であれ、あるいはその2つのブレンドであれ、サーバーレス・マネージド・サービスを利用する利点を理解することは重要です。
 
-We will cover five of these advantages in this lesson: cost efficiency, elasticity, reduced operational overhead, faster development and deployment, and finally, high availability, security, and resiliency.
+このレッスンでは、これらの利点のうち、コスト効率、弾力性、運用上のオーバーヘッドの削減、開発と導入の迅速化、そして最後に高可用性、セキュリティ、回復力の5つを取り上げます。
 
-First up, let's talk about cost efficiency. With a serverless managed service, you usually only pay for the specific resources and services you consume rather than for pre-allocated resources you may or may not use. This can result in significant cost savings compared to traditional serverful infrastructure, as you are not paying for idle capacity.
+まずはコスト効率について。サーバーレスのマネージド・サービスでは、通常、使うかどうかわからないリソースにあらかじめ割り当てられるのではなく、利用する特定のリソースやサービスに対してのみ料金を支払います。これは、従来のサーバーフル・インフラストラクチャと比較して、アイドル状態の容量に対して料金を支払う必要がないため、大幅なコスト削減につながります。
 
-Additionally, serverless managed services abstract away the ongoing need for infrastructure management and provisioning. You don't need to invest in and maintain the underlying infrastructure, reducing costs. This is beneficial for any size business, as you can take advantage of enterprise-level infrastructure and services without investing in expensive hardware or personnel.
+さらに、サーバーレス・マネージド・サービスは、インフラ管理とプロビジョニングの継続的な必要性を抽象化します。基盤となるインフラへの投資やメンテナンスが不要なため、コストを削減できる。高価なハードウェアや人材に投資することなく、エンタープライズ・レベルのインフラやサービスを利用できるため、あらゆる規模のビジネスにとって有益です。
 
-This brings us to the second advantage, elasticity. This refers to the ability of the infrastructure or service to dynamically and automatically adjust its resources to meet the changing needs of your applications. This means that as your usage of the service increases or decreases, your application can automatically take advantage of resources when needed. When you're not using them, you're not being charged for them. This results in a highly efficient use of resources and a lower overall cost.
+これが2つ目の利点である弾力性につながります。これは、アプリケーションのニーズの変化に合わせて、インフラやサービスのリソースを動的かつ自動的に調整する能力のことです。つまり、サービスの使用量が増減しても、アプリケーションは必要なときに自動的にリソースを利用することができます。リソースを使用していないときは、課金されることはありません。その結果、リソースを非常に効率的に利用でき、全体的なコストを抑えることができます。
 
-Next up is reduced operational overhead. With a serverless service, the service provider is responsible for the maintenance and management of the underlying infrastructure, freeing up developers to focus on writing code and adding features to their applications.
+次は、運用上のオーバーヘッドの削減です。サーバーレス・サービスでは、サービス・プロバイダーが基盤となるインフラの保守と管理を担当するため、開発者はコードを書いたり、アプリケーションに機能を追加したりすることに集中できます。
 
-This can significantly reduce the workload for developers, as they no longer need to worry about server management, capacity planning, or infrastructure upgrades. It also reduces the need for specialized infrastructure personnel, as the service provider manages the underlying infrastructure and maintenance.
+これにより、開発者はサーバー管理、キャパシティ・プランニング、インフラ・アップグレードの心配をする必要がなくなり、作業負担が大幅に軽減されます。また、サービス・プロバイダーが基盤となるインフラとメンテナンスを管理するため、インフラ専門の担当者の必要性も削減されます。
 
-This leads me to our fourth key advantage, which is faster development and deployment. With serverless services, developers can take advantage of prebuilt, ready-to-use components, such as database, caching services, and messaging services - reducing the amount of custom code that needs to be written and maintained.
+これが4つ目の重要な利点である、開発とデプロイの迅速化につながります。サーバーレス・サービスを使えば、開発者はデータベース、キャッシュ・サービス、メッセージング・サービスなど、あらかじめ構築されたすぐに使えるコンポーネントを活用できます。
 
-This can significantly speed up the development process and allow organizations to respond quickly to changing business needs and market conditions.
+これにより、開発プロセスを大幅にスピードアップし、変化するビジネスニーズや市場環境に迅速に対応することができます。
 
-In addition, serverless architectures are designed to be highly flexible and modular, allowing for rapid iteration and experimentation. Developers can quickly test and deploy new features and functionality without having to worry about the underlying infrastructure. This can lead to faster time to market for new products and services and a more agile development process.
+さらに、サーバーレスアーキテクチャは柔軟性が高くモジュール化できるように設計されており、迅速な反復と実験が可能です。開発者は、基盤となるインフラを気にすることなく、新機能のテストやデプロイを迅速に行うことができます。これにより、新製品やサービスの市場投入までの時間が短縮され、開発プロセスがより俊敏になります。
 
-Finally, most serverless services are designed to be highly available, secure, and resilient by default. The service provider handles underlying infrastructure failures and replication, which is transparent to the user and their application, ensuring high uptime. Services usually handle securing the system top to bottom, from access and authentication to encryption and everything in between.
+最後に、ほとんどのサーバーレス・サービスは、デフォルトで高い可用性と安全性、回復力を持つように設計されています。サービス・プロバイダーが基盤となるインフラの障害やレプリケーションを処理するため、ユーザーやそのアプリケーションにとっては透過的であり、高いアップタイムを保証してくれます。サービスは通常、アクセスや認証から暗号化、そしてその間にあるすべてのものに至るまで、システムのセキュリティをトップからボトムまで処理します。
 
-In addition, serverless managed services often provide automatic failover and disaster recovery capabilities. Ensuring that the application remains available and responsive even in the event of a hardware failure or other disruptions. This can help organizations to meet their SLAs and ensure a positive user experience. Even in the face of unexpected interruptions.
+さらに、サーバーレス・マネージド・サービスは、多くの場合、自動フェイルオーバーとディザスタリカバリ機能を提供します。ハードウェア障害やその他の障害が発生した場合でも、アプリケーションの可用性と応答性が維持されます。これにより、組織はSLAを満たし、良好なユーザー体験を確保することができる。予期せぬ中断に直面しても同様です。
 
-In summary, employing serverless managed services brings several major benefits to your application development and production cycles that should not be overlooked. You get lower costs, faster development cycles, zero infrastructure management, security, and high availability - all things everyone needs to be successful. One big thing to remember is that serverless services are a positive, whether your application is serverless or not. It's an API call for a key piece of functionality that is battle-ready at a moment's notice.
+まとめると、サーバーレス・マネージド・サービスを採用することで、アプリケーションの開発とプロダクション・サイクルに見過ごせないいくつかの大きなメリットがもたらされます。コストの削減、開発サイクルの短縮、インフラ管理の不要化、セキュリティ、高可用性など、誰もが成功するために必要なものがすべて手に入るのです。覚えておくべきことのひとつは、サーバーレス・サービスは、アプリケーションがサーバーレスであろうとなかろうと、ポジティブなものだということです。それは、重要な機能のAPIコールであり、瞬時に戦闘態勢に入ることができます。
