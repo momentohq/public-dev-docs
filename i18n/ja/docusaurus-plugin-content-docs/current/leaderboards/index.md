@@ -3,35 +3,40 @@ sidebar_position: 1
 sidebar_class_name: sidebar-item-overview
 sidebar_label: Momento Leaderboards
 title: Momento Leaderboards Documentation
-description: Momento の専用Leaderboards API について学ぶ
+description: Learn about Momento's purpose-built Leaderboard API
 pagination_next: null
 ---
 
-## Momento Leaderboardsとは何か?
+## Momento Leaderboardsとは？
 
-Momento Leaderboards は、数千万のアイテムと迅速な取り込み/クエリ/更新をサポートするサーバーレスリーダーボードサービスです。 多くのデータベースは、ソートされたセットや範囲クエリなどの汎用データ構造を介してリーダーボードに近似しますが、Momento Leaderboard は、アプリケーションに迅速かつ簡単に統合できる一流の本格的なサービスです。
+Momento Leaderboardsは、数千万件のアイテムと迅速なingestion/querying/updatesをサポートするサーバーレスのリーダーボードサービスです。多くのデータベースは、ソートされたセットや範囲クエリのような汎用的なデータ構造によってリーダーボードを近似していますが、Momento Leaderboardは、迅速かつ簡単にアプリケーションに統合できるファーストクラスの本格的なサービスです。
 
 :::info
 
-リーダーボード項目には、デフォルトで 7 日間の TTL が設定されます。 永続化 (無制限の TTL) については、[Discord](https://discord.com/invite/3HkAKjUZGq) か[お問い合わせフォーム](https://www.gomomento.com/contact-us) を通じて当社チームにご連絡ください。 またはsupport@momentohq.comに電子メールを送信してください。
+Leaderboard itemsのTTLはデフォルトで7日間です。パーシステンス（TTL無制限）については、[contact form](https://www.gomomento.com/contact-us)、[Discord](https://discord.com/invite/3HkAKjUZGq)、または support@momentohq.com までご連絡ください。
 
 :::
 
+
 ## Momento Leaderboardsを始める
-### ステップ 1: Create your Momento API key and cache
 
-[Momento コンソール](https://console.gomomento.com/tokens) に移動し、指示に従ってメール アドレス、Google アカウント、または GitHub アカウントでログインします。
+### ステップ 1: Momento API key と cacheを作成します
 
-![Momento コンソールのランディング ページの画像](@site/static/img/getting-started/console.png)
+[Momento コンソール](https://console.gomomento.com/tokens)にアクセスし、指示に従ってメールアドレス、Googleアカウント、またはGitHubアカウントでログインします。
 
-[キャッシュの作成] ボタンをクリックし、Momento Leaderboards に使用するクラウド プロバイダーとリージョンを使用してキャッシュを作成します。
-次に、[ステップバイステップの手順](https://docs.momentohq.com/cache/develop/authentication/api-keys) に従って、[Momento コンソール](https://console.gomomento.com)からAPIキーを作成します。
+[Momento コンソールのランディングページの画像](@site/static/img/getting-started/console.png)
 
-### ステップ 2: Momento Leaderboardsを作成
+Create Cache ボタンをクリックし、Momento Leaderboards で使用するクラウドプロバイダーとリージョンを使用してキャッシュを作成します。
+
+[Momentoコンソールのキャッシュ作成フォームの画像](@site/static/img/console-create-cache-form.png)
+
+次に、[ステップバイステップの手順](https://docs.momentohq.com/cache/develop/authentication/api-keys) に従って、[Momento コンソール](https://console.gomomento.com) から API キーを作成します。
+
+### ステップ 2: Momento Leaderboardsの作成
 
 ```javascript
-// Create a new leaderboard client, which you can use to create
-// as many leaderboards as you wish
+// 新しいリーダーボードクライアントを作成します。
+// 好きなだけleaderboardsを作成できます。
 const client = new PreviewLeaderboardClient({
   configuration: LeaderboardConfigurations.Laptop.v1(),
   credentialProvider: CredentialProvider.fromEnvironmentVariable({
@@ -39,24 +44,29 @@ const client = new PreviewLeaderboardClient({
   }),
 });
 
-// Create a new leaderboard with the given cache and leaderboard name
+// 与えられたキャッシュとリーダーボード名で新しいリーダーボードを作成する。
 const leaderboard = client.leaderboard('my-cache', 'my-leaderboard');
 ```
 
-### ステップ 3: 要素のUpsert, fetch, and remove
+### ステップ 3: 要素をUpsert, fetch, そして removeする
 
-利用可能な各リーダーボード API のドキュメントについては、[API リファレンス](./develop/api-reference/index.md) ページを参照してください。
+利用可能な各リーダーボードAPIに関するドキュメントは、[APIリファレンス](./develop/api-reference/index.md)ページを参照してください。
 
-実行可能なプログラムについては、[Node.js の例](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/leaderboard.ts) を確認してください。 各APIを呼び出します。
+各APIの呼び出し方の例を含む実行可能なプログラムについては、[Node.js example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/leaderboard.ts)をチェックしてください。
+
+# Momento Leaderboardsの言語サポート
+[言語サポートページ](./develop/language-support/language-support.md)で、さまざまなプログラミング言語で利用可能なSDKの詳細をご覧ください。
+
 
 ## Momento Leaderboardsに関するよくある質問
 
 <details>
-  <summary>Momento Leaderboardsとソートセットの違いは何ですか??</summary>
-　Momento Leaderboards はメモリ使用量がはるかに効率的で、数千万レコードまで拡張でき、API は特にゲームのユースケースを念頭に置いて構築されています。　
+  <summary>Momento LeaderboardsとSorted Setの違いは何ですか？</summary>
+  Momento Leaderboardsは、より効率的なメモリフットプリントを持ち、数千万レコードのスケールを可能にし、
+  APIは特にゲームのユースケースを念頭に構築されました。
 </details>
 
 <details>
-  <summary>Momento Leaderboardsのアイテムには有効期限がありますか?</summary>
-　Momento Leaderboardsアイテムには、デフォルトで 7 日間の TTL が設定されています。 リーダーボード項目のデフォルト TTL が機能しない場合は、support@momentohq.com に連絡して、制限の削除について相談してください。
+  <summary>Momento Leaderboardsアイテムの有効期限はありますか？</summary>
+  MomentoのLeaderboardsアイテムには、デフォルトで7日間のTTLが設定されています。リーダーボードアイテムのデフォルトのTTLが機能しない場合は、support@momentohq.com、制限の解除についてご相談ください。
 </details>

@@ -6,6 +6,6 @@ description: See which Momento SDKs support the Leaderboards service
 pagination_next: null
 ---
 
-## Current Status of API support in Momento SDKs
+## Momento SDKにおけるAPIサポートの現状
 
 %%%LEADERBOARD_API_SUPPORT_MATRIX%%%

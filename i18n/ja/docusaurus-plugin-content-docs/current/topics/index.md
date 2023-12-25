@@ -64,6 +64,9 @@ Momento Topics は Momento Cache をバックエンドとして使うので、�
 
 [API reference page for Topics](./develop/api-reference/index.md)をご参照ください。
 
+## Momento Topicsの言語サポート
+[言語サポートページ](./develop/language-support/language-support.md)で、さまざまなプログラミング言語で利用可能なSDKの詳細をご覧ください。
+
 ## デモ
 
 Topicsを試してみませんか？[Momento Console](https://console.gomomento.com/topics)で無料でお試しいただけます。地域とキャッシュを選択し、トピック名を入力して、メッセージの送信すれば良いだけです。
