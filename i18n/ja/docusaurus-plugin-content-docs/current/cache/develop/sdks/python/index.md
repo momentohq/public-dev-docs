@@ -8,7 +8,9 @@ description: Momento Python SDK に関する情報です。
 
 # Momento Python SDK
 
-ようこし、Python SDK のドキュメントへ！
+<img src="/img/snake.png" width="90%" alt="a picture of abstract shapes as building and nodes of data connecting them at high speed" />
+
+ようこそ、Python SDK のドキュメントへ！
 
 The Momento Python SDK は [`momento`](https://pypi.org/project/momento/) の pypi パッケージとして利用可能です。
 
