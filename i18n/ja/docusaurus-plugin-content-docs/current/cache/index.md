@@ -17,6 +17,7 @@ Momento Cacheは、世界初の真のサーバーレスキャッシングサー�
 Momento Cacheは、以下のクラウドプロバイダーおよびリージョンでご利用いただけます：
 
 **AWS リージョン**：us-west-2, us-east-1, us-east-2, eu-west-1, ap-south-1, ap-northeast-1
+
 **GCP リージョン**：us-central1
 
 ご希望のプロバイダーやリージョンがリストにない場合は、[お問い合わせ](mailto:support@momentohq.com)までご連絡ください。
