@@ -6,27 +6,28 @@ title: Expiring data with Time to Live (TTL)
 description: Learn about expiring data from a cache using Time to Live (TTL) in Momento Cache
 ---
 
-# Expire data with Time-to-Live (TTL) in Momento Cache
+# Momento CacheのTTL（Time-to-Live）でデータを失効させる。
 
-This document provides an overview of Momento Cache’s time-to-live (TTL) functionality. TTL allows items to expire automatically from the cache after a specified number of seconds.
+このドキュメントでは、Momento Cache の TTL (time-to-live) 機能の概要を説明します。TTL を使用すると、指定した秒数後にキャッシュからアイテムが自動的に失効します。
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/FDmk6RP8-b0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 :::note
 
-Momento Cache handles TTL expiry and does not consume any bandwidth for metering in your monthly transfer cost.
+Momento Cacheは、TTLの有効期限を処理し、毎月の転送コストで測定には加算されません。
 
 :::
 
-## Expire items after a specified number of seconds
-The TTL value is the number of seconds from when Momento Cache writes the item to storage until the item expires from the cache. For example, if you set an item’s TTL value to 900 seconds (15 minutes), the item will expire 15 minutes after insertion into the cache.
+## 指定した秒数後にアイテムを失効させる
+TTL値は、Momento Cacheがアイテムをストレージに書き込んでから、アイテムがキャッシュから失効するまでの秒数です。例えば、アイテムの TTL 値を 900 秒 (15 分) に設定した場合、アイテムはキャッシュに挿入されてから 15 分後に失効します。
 
-## How to set TTL in Momento Cache
+## Momento CacheでTTLを設定する方法
 
-For more robust examples of the code below in multiple languages, please see "[Developing applications with Momento SDKs](./../../develop/index.md)."
+以下のコードを複数の言語で記述した、より堅牢な例については、[Momento SDK を使用したアプリケーションの開発](../../develop/index.md)を参照してください。
 
-There are three locations to set a TTL value:
-1. When creating a CacheClient object in a Momento SDK, you must set a TTL value for the connection. Any future SET operation using that client object will use that TTL value, unless you override the value.
+TTL値を設定する場所は3つあります：
+
+1. Momento SDK で CacheClient オブジェクトを作成するとき、接続に TTL 値を設定する必要があります。その値をオーバーライドしない限り、そのクライアントオブジェクトを使用する以降の SET 操作では、その TTL 値が使用されます。
 
     ```javascript
     const MY_DEFAULT_TTL = 60; // This value is in seconds
@@ -37,47 +38,47 @@ There are three locations to set a TTL value:
    });
     ```
 
-2. In a SET operation, you can set a TTL value just for this operation and it will override the TTL value set in the CacheClient object.
+2. SET 操作では、この操作のためだけに TTL 値を設定でき、CacheClient オブジェクトに設定されている TTL 値が上書きされます。
 
     ```javascript
     await momento.set(CACHE_NAME, 'key', 'my value', 40)
     // The number 40 is the TTL value in seconds for this item to expire and overrides the connection object's value.
     ```
 
-    Optionally, you can omit the TTL value from the SET operation entirely and the item is inserted into the cache using the TTL value from the cache client object.
+    オプションで、SET操作からTTL値を完全に省略することができ、アイテムはキャッシュクライアントオブジェクトのTTL値を使用してキャッシュに挿入されます。
 
     ```javascript
     await momento.set(CACHE_NAME, 'key', 'my value')
     // If you omit the TTL value, this will use the connection object's value.
     ```
 
-3. If you’re using the CLI when you run the command `momento configure`, it writes a configuration file (~/.momento/config) and stores a value you specify for a default TTL in that file. If you write an item with the CLI from that same user and don’t specify a TTL in the SET operation, the CLI will use the value from that configuration file.
+3. CLIを使用している場合、`momento configure`コマンドを実行すると、設定ファイル(~/.momento/config)が書き込まれ、デフォルトのTTLとして指定した値がそのファイルに保存されます。同じユーザーからCLIを使ってアイテムを書き込み、SET操作でTTLを指定しなかった場合、CLIはその設定ファイルの値を使用します。
 
 :::note
 
-Unless you copy the configuration file with your application, that file and its contents are unique to the location where you ran the `momento configure` command.
+設定ファイルをアプリケーションと一緒にコピーしない限り、そのファイルとその内容は `momento configure` コマンドを実行した場所に固有です。
 
 :::
 
-## Frequently asked questions about TTL
+## TTLに関するよくある質問
 
 <details>
-  <summary>Why do caches need Time to Live (TTL)?</summary>
+  <summary>なぜキャッシュにはTTL（Time to Live）が必要なのか？</summary>
 
-Usually, a cache entry is not the definitive source of a piece of data. Rather, a cache entry is a faster, cheaper, and less durable way to store a piece of data, whether it's an individual record from a different database, some aggregated or computed information from multiple records or sources, or even a resource from an external, third-party application. Using a cache helps to improve latency or reduce load on a dependency in our application. In using a cache, we're anticipating that our cache entry will be requested by another client soon.
+通常、キャッシュエントリはデータの一部の決定的なソースではありません。むしろ、キャッシュエントリは、異なるデータベースからの個々のレコード、複数のレコードやソースからの集約または計算された情報、あるいは外部のサードパーティアプリケーションからのリソースなど、データの一部を保存するための、より高速で、安価で、耐久性の低い方法です。キャッシュを使うことで、レイテンシーを改善したり、アプリケーションの依存関係の負荷を軽減したりすることができます。キャッシュを使うということは、キャッシュ・エントリがすぐに別のクライアントからリクエストされることを予期しているということです。
 
-And yet, most caches don't hold onto all of their entries forever. Partly, this is a function of data staleness. The data you have stored in a cache entry may be changed over time, in which case you want a client to retrieve something fresher than the cached entry. If you have strict requirements around data consistency, you may need to directly update or remove a cache entry whenever its underlying data changes. In other situations, you may be fine serving potentially stale data for a time, while still expiring it regularly to ensure some amount of freshness.
+しかし、ほとんどのキャッシュは、すべてのエントリーを永久に保持するわけではありません。部分的には、これはデータの陳腐化を意味します。キャッシュエントリに保存されたデータは、時間の経過とともに変更される可能性があります。データの一貫性に関する要件が厳しい場合は、キャッシュエントリの基礎となるデータが変更されるたびに、キャッシュエントリを直接更新または削除する必要があるかもしれません。その他の状況では、一時的に古くなる可能性のあるデータを提供するのは構わないが、ある程度の鮮度を確保するために定期的に期限切れにする必要があるかもしれません。
 
-A second consideration is simple resource constraints. Caches usually hold their data in RAM, and RAM is a scarce resource. If you never expire entries from your cache, you may find your RAM full when you try to cache new items. Your cache could reject the new entry or, more likely, choose to evict items based on a predetermined eviction algorithm.
+二つ目の考慮点は、単純なリソースの制約にあります。キャッシュは通常RAMにデータを保持しますが、RAMは希少なリソースです。キャッシュのエントリーを一度も失効させないと、新しいアイテムをキャッシュしようとしたときにRAMがいっぱいになってしまうかもしれません。キャッシュは新しいエントリーを拒否するかもしれませんし、もっと可能性が高いのは、あらかじめ決められた退去アルゴリズムに基づいてアイテムを退去させることを選択するかもしれません。
 
-Most caches were built for a pre-cloud world and thus require you to pre-provision specific amounts of memory available for your cache. For these caches, proper TTL management is critical as overfilling your cache can result in availability issues or cache evictions in ways you don't prefer.
+ほとんどのキャッシュは、クラウド以前の世界を想定して構築されているため、キャッシュに利用可能な特定の量のメモリを事前に用意する必要があります。このようなキャッシュでは、TTLを適切に管理することが重要です。キャッシュを満杯にしすぎると、可用性の問題が発生したり、望ましくない方法でキャッシュが消去されたりする可能性があるからです。
 
-In contrast, Momento is designed for the elasticity of the modern cloud. You don't need to pre-provision your cache size -- your Momento cache automatically expands and contracts based on the operations you perform against it. In the normal course of operations, Momento will not evict items based on a lack of available memory.
+対照的に、Momentoは最新のクラウドの弾力性のために設計されています。キャッシュのサイズを事前にプロビジョニングする必要はありません。Momentoキャッシュは、あなたがキャッシュに対して実行する操作に基づいて、自動的に拡張と縮小を行います。通常の運用では、Momentoは利用可能なメモリの不足に基づいてアイテムを削除することはありません。
 
-That being said, you should still use TTL on items in your Momento cache to avoid cache staleness and to reduce costs. Let's see how to use TTL with Momento's SimpleCache.
+とはいえ、Momento キャッシュのアイテムに TTL を使用することで、 キャッシュの陳腐化を防ぎ、コストを削減することができます。それでは、Momento の SimpleCache で TTL を使う方法を見てみましょう。
 </details>
 
 <details>
-  <summary>What's the maximum TTL I can set?</summary>
-By default, the limit you can set the TTL for an item is 24 hours. If you need to have data in the cache beyond that time, please <a href="mailto:support@momentohq.com">contact Momento Support</a>.
+  <summary>設定できる最大TTLは？</summary>
+デフォルトでは、アイテムに設定できるTTLの上限は24時間です。その時間を超えてもキャッシュにデータを保持する必要がある場合は、サポートに連絡してください。 <a href="mailto:support@momentohq.com">Momentoサポートの連絡先</a>.
 </details>
