@@ -33,57 +33,57 @@ Since batch operations are more efficient, the limit cost of these APIs is disco
 
 The below table describes how the number of operations is calculated for all cache APIs.
 
-| API Name                 | Batch API | Operations                                                        |
-| ------------------------ | ----      | ------------                                                      |
-| Set                      |           | 1                                                                 |
-| Get                      |           | 1                                                                 |
-| Delete                   |           | 1                                                                 |
-| Increment                |           | 1                                                                 |
-| Ping                     |           | 1                                                                 |
-| ItemGetType              |           | 1                                                                 |
-| KeyExists                |           | 1                                                                 |
-| KeysExist                | ✅        | Number of keys in request/2                                       |
-| SetIfNotExists           |           | 1                                                                 |
-| UpdateTtl                |           | 1                                                                 |
-| IncreaseTtl              |           | 1                                                                 |
-| DecreaseTtl              |           | 1                                                                 |
-| ItemGetTtl               |           | 1                                                                 |
-| DictionaryFetch          | ✅        | Number of fields in response/2, or 1 if dictionary is not found   |
-| DictionaryGetField       |           | 1                                                                 |
-| DictionaryGetFields      | ✅        | Number of fields in request/2                                     |
-| DictionaryIncrement      |           | 1                                                                 |
-| DictionaryRemoveField    |           | 1                                                                 |
-| DictionaryRemoveFields   | ✅        | Number of fields in request/2                                     |
-| DictionarySetField       |           | 1                                                                 |
-| DictionarySetFields      | ✅        | Number of fields in request/2                                     |
-| DictionaryLength         |           | 1                                                                 |
-| ListFetch                | ✅        | Number of elements in response/2, or 1 if list is not found       |
-| ListConcatenateBack      | ✅        | Number of elements in request/2                                   |
-| ListConcatenateFront     | ✅        | Number of elements in request/2                                   |
-| ListLength               |           | 1                                                                 |
-| ListPopBack              |           | 1                                                                 |
-| ListPopFront             |           | 1                                                                 |
-| ListPushBack             |           | 1                                                                 |
-| ListPushFront            |           | 1                                                                 |
-| ListRemoveValue          |           | 1                                                                 |
-| ListRetain               |           | 1                                                                 |
-| SetAddElement            |           | 1                                                                 |
-| SetAddElements           | ✅        | Number of elements in request/2                                   |
-| SetFetch                 | ✅        | Number of elements in response/2, or 1 if set is not found        |
-| SetRemoveElement         |           | 1                                                                 |
-| SetRemoveElements        | ✅        | Number of elements in request/2                                   |
-| SetContainsElement       |           | 1                                                                 |
-| SetContainsElements      | ✅        | Number of elements in request/2                                   |
-| SetLength                |           | 1                                                                 |
-| SortedSetPutElement      |           | 1                                                                 |
-| SortedSetPutElements     | ✅        | Number of elements in request/2                                   |
-| SortedSetFetchByRank     | ✅        | Number of elements in response/2, or 1 if sorted set is not found |
-| SortedSetFetchByScore    | ✅        | Number of elements in response/2, or 1 if sorted set is not found |
-| SortedSetGetScore        |           | 1                                                                 |
-| SortedSetGetScores       | ✅        | Number of elements in request/2                                   |
-| SortedSetRemoveElement   |           | 1                                                                 |
-| SortedSetRemoveElements  | ✅        | Number of elements in request/2                                   |
-| SortedSetGetRank         |           | 1                                                                 |
-| SortedSetIncrementScore  |           | 1                                                                 |
-| SortedSetLength          |           | 1                                                                 |
-| SortedSetLengthByScore   |           | 1                                                                 |
+| API Name                 | Multi-Element API | Operations                                                        |
+| ------------------------ | ----              | ------------                                                      |
+| Set                      |                   | 1                                                                 |
+| Get                      |                   | 1                                                                 |
+| Delete                   |                   | 1                                                                 |
+| Increment                |                   | 1                                                                 |
+| Ping                     |                   | 1                                                                 |
+| ItemGetType              |                   | 1                                                                 |
+| KeyExists                |                   | 1                                                                 |
+| KeysExist                | ✅                | Number of keys in request/2                                       |
+| SetIfNotExists           |                   | 1                                                                 |
+| UpdateTtl                |                   | 1                                                                 |
+| IncreaseTtl              |                   | 1                                                                 |
+| DecreaseTtl              |                   | 1                                                                 |
+| ItemGetTtl               |                   | 1                                                                 |
+| DictionaryFetch          | ✅                | Number of fields in response/2, or 1 if dictionary is not found   |
+| DictionaryGetField       |                   | 1                                                                 |
+| DictionaryGetFields      | ✅                | Number of fields in request/2                                     |
+| DictionaryIncrement      |                   | 1                                                                 |
+| DictionaryRemoveField    |                   | 1                                                                 |
+| DictionaryRemoveFields   | ✅                | Number of fields in request/2                                     |
+| DictionarySetField       |                   | 1                                                                 |
+| DictionarySetFields      | ✅                | Number of fields in request/2                                     |
+| DictionaryLength         |                   | 1                                                                 |
+| ListFetch                | ✅                | Number of elements in response/2, or 1 if list is not found       |
+| ListConcatenateBack      | ✅                | Number of elements in request/2                                   |
+| ListConcatenateFront     | ✅                | Number of elements in request/2                                   |
+| ListLength               |                   | 1                                                                 |
+| ListPopBack              |                   | 1                                                                 |
+| ListPopFront             |                   | 1                                                                 |
+| ListPushBack             |                   | 1                                                                 |
+| ListPushFront            |                   | 1                                                                 |
+| ListRemoveValue          |                   | 1                                                                 |
+| ListRetain               |                   | 1                                                                 |
+| SetAddElement            |                   | 1                                                                 |
+| SetAddElements           | ✅                | Number of elements in request/2                                   |
+| SetFetch                 | ✅                | Number of elements in response/2, or 1 if set is not found        |
+| SetRemoveElement         |                   | 1                                                                 |
+| SetRemoveElements        | ✅                | Number of elements in request/2                                   |
+| SetContainsElement       |                   | 1                                                                 |
+| SetContainsElements      | ✅                | Number of elements in request/2                                   |
+| SetLength                |                   | 1                                                                 |
+| SortedSetPutElement      |                   | 1                                                                 |
+| SortedSetPutElements     | ✅                | Number of elements in request/2                                   |
+| SortedSetFetchByRank     | ✅                | Number of elements in response/2, or 1 if sorted set is not found |
+| SortedSetFetchByScore    | ✅                | Number of elements in response/2, or 1 if sorted set is not found |
+| SortedSetGetScore        |                   | 1                                                                 |
+| SortedSetGetScores       | ✅                | Number of elements in request/2                                   |
+| SortedSetRemoveElement   |                   | 1                                                                 |
+| SortedSetRemoveElements  | ✅                | Number of elements in request/2                                   |
+| SortedSetGetRank         |                   | 1                                                                 |
+| SortedSetIncrementScore  |                   | 1                                                                 |
+| SortedSetLength          |                   | 1                                                                 |
+| SortedSetLengthByScore   |                   | 1                                                                 |
