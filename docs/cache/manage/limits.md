@@ -42,24 +42,24 @@ The below table describes how the number of operations is calculated for all cac
 | Ping                     |           | 1                                                                 |
 | ItemGetType              |           | 1                                                                 |
 | KeyExists                |           | 1                                                                 |
-| KeysExist                | X         | Number of keys in request/2                                       |
+| KeysExist                | ✅        | Number of keys in request/2                                       |
 | SetIfNotExists           |           | 1                                                                 |
 | UpdateTtl                |           | 1                                                                 |
 | IncreaseTtl              |           | 1                                                                 |
 | DecreaseTtl              |           | 1                                                                 |
 | ItemGetTtl               |           | 1                                                                 |
-| DictionaryFetch          | X         | Number of fields in response/2, or 1 if dictionary is not found   |
+| DictionaryFetch          | ✅        | Number of fields in response/2, or 1 if dictionary is not found   |
 | DictionaryGetField       |           | 1                                                                 |
-| DictionaryGetFields      | X         | Number of fields in request/2                                     |
+| DictionaryGetFields      | ✅        | Number of fields in request/2                                     |
 | DictionaryIncrement      |           | 1                                                                 |
 | DictionaryRemoveField    |           | 1                                                                 |
-| DictionaryRemoveFields   | X         | Number of fields in request/2                                     |
+| DictionaryRemoveFields   | ✅        | Number of fields in request/2                                     |
 | DictionarySetField       |           | 1                                                                 |
-| DictionarySetFields      | X         | Number of fields in request/2                                     |
+| DictionarySetFields      | ✅        | Number of fields in request/2                                     |
 | DictionaryLength         |           | 1                                                                 |
-| ListFetch                | X         | Number of elements in response/2, or 1 if list is not found       |
-| ListConcatenateBack      | X         | Number of elements in request/2                                   |
-| ListConcatenateFront     | X         | Number of elements in request/2                                   |
+| ListFetch                | ✅        | Number of elements in response/2, or 1 if list is not found       |
+| ListConcatenateBack      | ✅        | Number of elements in request/2                                   |
+| ListConcatenateFront     | ✅        | Number of elements in request/2                                   |
 | ListLength               |           | 1                                                                 |
 | ListPopBack              |           | 1                                                                 |
 | ListPopFront             |           | 1                                                                 |
@@ -68,21 +68,21 @@ The below table describes how the number of operations is calculated for all cac
 | ListRemoveValue          |           | 1                                                                 |
 | ListRetain               |           | 1                                                                 |
 | SetAddElement            |           | 1                                                                 |
-| SetAddElements           | X         | Number of elements in request/2                                   |
-| SetFetch                 | X         | Number of elements in response/2, or 1 if set is not found        |
-| SetRemoveElement         | X         | 1                                                                 |
-| SetRemoveElements        | X         | Number of elements in request/2                                   |
+| SetAddElements           | ✅        | Number of elements in request/2                                   |
+| SetFetch                 | ✅        | Number of elements in response/2, or 1 if set is not found        |
+| SetRemoveElement         |           | 1                                                                 |
+| SetRemoveElements        | ✅        | Number of elements in request/2                                   |
 | SetContainsElement       |           | 1                                                                 |
-| SetContainsElements      | X         | Number of elements in request/2                                   |
+| SetContainsElements      | ✅        | Number of elements in request/2                                   |
 | SetLength                |           | 1                                                                 |
 | SortedSetPutElement      |           | 1                                                                 |
-| SortedSetPutElements     | X         | Number of elements in request/2                                   |
-| SortedSetFetchByRank     | X         | Number of elements in response/2, or 1 if sorted set is not found |
-| SortedSetFetchByScore    | X         | Number of elements in response/2, or 1 if sorted set is not found |
+| SortedSetPutElements     | ✅        | Number of elements in request/2                                   |
+| SortedSetFetchByRank     | ✅        | Number of elements in response/2, or 1 if sorted set is not found |
+| SortedSetFetchByScore    | ✅        | Number of elements in response/2, or 1 if sorted set is not found |
 | SortedSetGetScore        |           | 1                                                                 |
-| SortedSetGetScores       | X         | Number of elements in request/2                                   |
+| SortedSetGetScores       | ✅        | Number of elements in request/2                                   |
 | SortedSetRemoveElement   |           | 1                                                                 |
-| SortedSetRemoveElements  | X         | Number of elements in request/2                                   |
+| SortedSetRemoveElements  | ✅        | Number of elements in request/2                                   |
 | SortedSetGetRank         |           | 1                                                                 |
 | SortedSetIncrementScore  |           | 1                                                                 |
 | SortedSetLength          |           | 1                                                                 |
