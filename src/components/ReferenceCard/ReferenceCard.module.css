@@ -1,0 +1,28 @@
+.card {
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  padding: 16px;
+  transition: box-shadow 0.3s ease;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cardContent {
+  text-align: left;
+}
+
+.cardTitle {
+  margin-top: 0;
+  color: #000;
+}
+
+.cardDescription {
+  color: #929C95;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
