@@ -10,7 +10,7 @@ type ReferenceCardProps = {
 const ReferenceCard: React.FC<ReferenceCardProps> = ({ title, description, link }) => {
   return (
     <div className={styles.card}>
-      <a href={link} className={styles.cardLink}>
+      <a href={link} target="_blank" className={styles.cardLink}>
         <div className={styles.cardContent}>
           <h3 className={styles.cardTitle}>{title}</h3>
           <p className={styles.cardDescription}>{description}</p>

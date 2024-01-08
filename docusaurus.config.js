@@ -275,7 +275,8 @@ const config = {
         title: "",
         logo: {
           alt: "Momento Logo",
-          src: "img/logo.svg",
+          src: "img/momento-logo-forest.svg",
+          srcDark: "img/momento-logo-white.svg",
           href: "/",
           target: "_blank",
         },
@@ -304,7 +305,8 @@ const config = {
         style: "dark",
         logo: {
           alt: "Momento Logo",
-          src: "img/footer_logo.svg",
+          src: "img/momento-logo-white.svg",
+          srcDark: "img/momento-logo-forest.svg"
         },
         copyright: `Copyright © 2022 - ${new Date().getFullYear()} Momento, Inc.`,
         links: [
