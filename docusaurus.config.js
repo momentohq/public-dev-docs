@@ -81,11 +81,11 @@ const config = {
           },
           // Redirect limits
           {
-            to: '/cache/manage/limits',
+            to: '/cache/limits',
             from: '/limits',
           },
           {
-            to: '/cache/manage/limits',
+            to: '/cache/limits',
             from: '/docs/limits',
           },
           // Redirect getting started
