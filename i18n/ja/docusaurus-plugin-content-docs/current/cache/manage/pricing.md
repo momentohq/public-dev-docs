@@ -1,60 +1,58 @@
 ---
 sidebar_position: 3
-sidebar_class_name: sidebar-item-pricing
-title: 料金
-description: Momentoキャッシュの料金モデルの単純さを見てみてください
+title: Pricing and free tier
+pagination_prev: null
+description: Explore the simplicity of the pricing model and free tier information for Momento Cache and Momento Topics
 ---
 
-# Momento CacheとMomento Topicsの料金と無料枠
+#
 
-サーバーレスとはあらゆる意味において単純であることであり、それには料金も含まれます！オンデマンドの価格設定では、Momento Cache および Topics は、毎回 1 KB 単位で計測され、$0.50/GB の転送コストがかかります。たったそれだけです！
 
-毎月最初の 5 GB は無料で、使い始めるのにクレジットカードさえ必要ありません。
 
-Momento のサービスには隠れた料金はありません。ストレージ、レプリカ、またはインスタンスのためにお金を払う必要はありません。文字通り、Momento キャッシュに入るまたは出ていくデータ転送のみが課金されます。それ以外は全てその中に含まれています。心配することなくサインアップして、素晴らしい何かを作ってください。
 
-さらに節約、メトリクスの統合、サポートオプションをご希望の場合は、スタンダードとエンタープライズの [ティア価格](https://www.gomomento.com/pricing) をご利用いただけます。
 
-見積りの手助けになるように、以下にいくつかの料金計算のサンプルを載せました。さらなるお手伝いが必要であれば（もしくはちょっと信じられない様であれば）、私たちの[Discord](https://discord.gg/Z7FSXB89)にメッセージを頂けたら、対応いたします。Momento キャッシュに挑戦して、そしてどれくらい料金を削減できるかを見てみてください！
+
+
+
+
+
 
 ### よくある質問
 
 <details open>
-  <summary>Momentoのサービスは本当に$.50/GB のデータ転送の出入りだけなのですか？それ以外にお金がかかるものはありますか？</summary>
+  <summary>Is it really just $.50/GB transferred in and out of Momento services? What else do you charge for?</summary>
 
-| 対象                                   | Momento 料金 |
-| -------------------------------------- | ------------ |
-| メモリ / ストレージ                    | $0/GB        |
-| 複数 AZ レプリケーション料金           | $0/GB        |
-| シングルサインオン & チーム (まもなく) | $0/ユーザー  |
+| Dimension                            | Momento charges |
+| ------------------------------------ | --------------- |
+| Memory / Storage                     | $0/GB           |
+| Multi-AZ replication charges         | $0/GB           |
+| Single sign-on & teams (coming soon) | $0/user         |
 
  </details>
 
 <details>
-<summary>Momento を無料で本番環境のアプリケーションに使うことはできますか？</summary>
-もちろんです！無料枠や低い利用率でも、大規模利用のものと同様に、高速で可用性がありセキュアです。複数AZ レプリケーション、ホットキー保護、そして突発的なリクエストへの自動スケーリングといった高可用性のための機能が全て利用可能です。セキュリティのための全ての機能を無料で使えます。例えば、エンドツーエンド暗号化、リクエスト毎の認証、TLS、<a href="./../develop/authentication">fine-grained auth tokens</a>のようなものです。
+<summary>Can I run a production app for free on Momento Cache and Topics?</summary>
+Absolutely! Our free tier and low usage tiers are just billing. It is the same exact service and features whether you use 40GB/month or 40TB/month. You get all our availability features like multi-AZ replication, hot key protection, and automatic scaling to handle bursts. In the free tier, you even get all our security features for free, such as <a href="./../develop/authentication">fine-grained auth tokens</a>, end-to-end encryption, per-request authentication, and TLS.
 
-お客様の中でよく、低い RPS のワークフローのためにフル装備のクラスターをプロビジョンしているケースを見かけます。HA (高可用性)が欲しい場合、複数ノードが必要です。CICD を利用したければ、同程度のサイズのクラスターを、ステージングや開発環境にさえ設置したくなるでしょう。全てコストとして積み上がります！こうしたマシンは停止してしまって、コストを削減しましょう。Momento で行きましょう！
 
-</details>
-
-<details>
-  <summary>Momentoのサービスを毎月$5.00 で本番環境のアプリケーションに使うことはできますか？</summary>
-もちろんです！もし毎月15 GB のデータ転送の出入りがMomento にあったとすると、毎月最初の5GB 分は無料で、残りの毎月10GB に対して$0.50/GB を支払うことになります。どんなスケールでも、Momento のエンタープライズレベルの可用性、セキュリティ、そしてパフォーマンスがご利用できます。
-
-これは狂気じみたように聞こえるかもしれませんが、私たちが最初に始めたわけではありません。ほかのサーバーレスサービス、例えば DynamoDB、S3、そして他にもたくさんのサービスで同じものを経験できるでしょう。私たちは単にサーバーレスのアイデアをキャッシュにもってきただけなのです。
 
 </details>
 
 <details>
-  <summary>キャッシュに好きなだけデータを保存できるのですか？</summary>
-できます！momento cache は、キャッシュ内のデータ量で課金するのではなく、インバウンドとアウトバウンドのデータ転送に対して課金されます。
-</details>
+  <summary>Can I run a production app for $5.00/month on Momento services?</summary>
+Absolutely! If you are transferring 15 GB of data in/out of Momento Cache each month, you get the first 5GB free each month and pay $0.50/GB for the remaining 10GB each month. Access enterprise-grade availability, security, and performance at any scale with Momento.
 
+
+
+</details>
 
 <details>
-  <summary>スケールするのですか？</summary>
-はい、もちろんです！Momentoのサービスは将来も使い続けられるアプリケーションとして最高の選択肢です。Momento を追加するのは *ものすごく* 素早くできて、そのあとは1RPS だろうが100万RPS だろうが、あとのことは全てバックグラウンドに行われるので皆さんが考える必要がありません。使った分だけ料金を払うだけでよいので、スケール可能なキャッシュを高額な料金を支払うことなく得られます。
+  <summary>Can I really store as much data in my cache(s) as I want?</summary>
+Heck yeah! You are billed for the inbound and outbound data transfer, not the volume of data in your cache.
 </details>
 
-[Momento をはじめてみましょう！](./../getting-started.md)
+<details>
+  <summary>Will it scale?</summary>
+Hell yes! Momento services are the best way to future-proof your application story. You can add Momento Cache *extremely* quickly, and it just fades into the background whether you are doing 1 RPS or 1 million RPS. You just pay for what you use, so you get a scalable cache without spending a lot of cash.
+</details>
+
