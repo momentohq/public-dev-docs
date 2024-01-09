@@ -1,7 +1,6 @@
 ---
 sidebar_position: 3
 sidebar_label: Getting Started
-sidebar_class_name: sidebar-item-getting-started
 title: Getting Started
 pagination_prev: null
 pagination_next: null

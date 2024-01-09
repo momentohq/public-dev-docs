@@ -8,10 +8,6 @@ description: Information about the Momento Python SDK
 
 # Momento Python SDK
 
-<img src="/img/snake.png" width="90%" alt="a picture of abstract shapes as building and nodes of data connecting them at high speed" />
-
-Welcome to the Momento Python SDK documentation!
-
 The Momento Python SDK is available via the pypi package [`momento`](https://pypi.org/project/momento/).
 
 The source code can be found on GitHub: [momentohq/client-sdk-python](https://github.com/momentohq/client-sdk-python).

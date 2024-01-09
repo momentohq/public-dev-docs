@@ -1,6 +1,5 @@
 ---
 sidebar_position: 4
-sidebar_class_name: sidebar-item-limits
 sidebar_label: サービス上限
 title: Momentoキャッシュのサービス上限
 description: MomentoキャッシュとMomentoトピックのサービス上限、デフォルト値、そして変更が必要な時にどのように問い合わせるかを見てみましょう。

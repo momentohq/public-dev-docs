@@ -10,8 +10,6 @@ description: Learn what serverless is in terms of caching and what Momento Cache
 
 Now that we know the key choices you need to make when implementing a caching strategy, let's review some popular caching patterns. For each pattern, we will describe the pattern, the choices the pattern makes on the three questions above, and when you may want to use that pattern.
 
-![An image of a fast moving city as Momento caching strategies](./../../../static/img/common-caching-strategies.jpg)
-
 ## Local browser caching
 
 The first, and perhaps simplest, caching strategy is local browser caching. If you are building a web-based application accessed from a browser, you can use [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to store key-value data in the user's browser. For example, once a user authenticates to your service, you may store some information about the user's ID and profile used to access the service to speed display of your application upon subsequent viewings.
@@ -31,8 +29,6 @@ A second caching strategy is another local strategy. With local backend caching,
 Like local browser caching, this is a **local**, **aside** caching strategy that is likely written at read-time.
 
 The benefits of this strategy are in its ease of use and simplicity. If you have data that is frequently accessed and relatively long-lived, you can quickly cache it on individual server instances without standing up and operating additional infrastructure. This can work well for configuration data or other slow-moving data.
-
-In a way, this is similar to the way we [reuse (or "cache") our Momento SimpleClient within AWS Lambda to enable connection reuse](./../develop/guides/caching-with-aws-lambda#connection-reuse)!.
 
 The downside of this caching strategy is that it is less effective than remote caching methods. Each backend instance will have its own independent cache. If you have a broad set of data to cache, and you only cache it once it has been requested once on that instance, your cache hit rate can be quite low. Further, the cache hit rate gets even lower as your cluster size (and, likely, your overall load) increases! This is particularly troublesome when caching with hyper-ephemeral compute like AWS Lambda where your instances can be created and destroyed regularly. Finally, like with local browser caching, it can be difficult to invalidate expired data on the backend instances if the underlying data changes.
 

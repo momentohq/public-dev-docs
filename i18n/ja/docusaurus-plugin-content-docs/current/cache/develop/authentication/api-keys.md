@@ -7,8 +7,6 @@ description: Learn what Momento API keys are, how to create them, and how they a
 
 # Momento API keys
 
-![a technical illustration of API keys and their use to secure your application.](@site/static/img/api-keys-page.jpg)
-
 APIキーは、*プログラム的な使用を目的とした長寿命の値*です。これらのキーは、統合アプリケーションに特定のキャッシュやトピックへのアクセスを許可します。
 
 :::tip

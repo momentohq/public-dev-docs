@@ -10,8 +10,6 @@ description: Learn what serverless is in terms of caching and what Momento Cache
 
 Serverless is one of the hottest trends in software development, and we're seeing an explosion in "serverless-friendly" services.
 
-![An image of a fast moving city as Momento serverless caching services](./../../../static/img/serverless-caching.jpg)
-
 We believe Momento Cache is the most serverless-friendly cache available. But what does serverless mean, and why is Momento Cache a serverless-friendly cache?
 
 We'll look at two definitions of serverless plus a group of builders that is interested in serverless-like technologies:
@@ -21,8 +19,6 @@ We'll look at two definitions of serverless plus a group of builders that is int
 - [Serverless as compatibility with related architectures](#serverless-as-compatibility-with-related-architectures)
 
 - [Serverless as independent project platform](#serverless-as-independent-project-platform)
-
-Note that this page is focused on the conceptual reasons why Momento Cache fits so well in serverless applications. If you want more practical advice on integrating Momento Cache into your serverless application, check out our page on [using Momento Cache with AWS Lambda](./../develop/guides/caching-with-aws-lambda).
 
 ## Serverless as an operational model
 
@@ -68,11 +64,11 @@ Finally, _serverless developers prefer services that can be provisioned quickly 
 
 Momento is a great addition to serverless applications that use AWS Lambda and other popular serverless services.
 
-First, Momento Cache is [available via HTTPS](./../learn/how-it-works#networking). This simplifies the configuration required to add Momento to your serverless application. You simply add the authentication token to your application and start using your cache. With this HTTPS-based connection pattern, you can still reuse an existing connection within your Lambda function to avoid the overhead of establishing a new connection on each request. Additionally, Memento has a VPC peering option available if you prefer using a VPC for your application.
+First, Momento Cache is available via HTTPS. This simplifies the configuration required to add Momento to your serverless application. You simply add the authentication token to your application and start using your cache. With this HTTPS-based connection pattern, you can still reuse an existing connection within your Lambda function to avoid the overhead of establishing a new connection on each request. Additionally, Memento has a VPC peering option available if you prefer using a VPC for your application.
 
 Second, Momento Cache can scale your cache quickly and achieve a high number of requests per second without pre-provisioning. There are no connection limits to your Momento cache, so a burst of traffic won't lead to availability issues in your application.
 
-Finally, Momento Cache is a dynamic service that can add and remove caches instantly. When you call the [Momento control plane](./../learn/how-it-works#control-plane-simple-efficient-cache-management) to create a new cache, the cache is provisioned instantly and is available by the time your client receives a response. This makes it easy to integrate Momento in branch-specific environments in your CI/CD system or allow each developer to have a unique copy of their application.
+Finally, Momento Cache is a dynamic service that can add and remove caches instantly. When you call the Momento control plane to create a new cache, the cache is provisioned instantly and is available by the time your client receives a response. This makes it easy to integrate Momento in branch-specific environments in your CI/CD system or allow each developer to have a unique copy of their application.
 
 No other caches fit this well with serverless applications. While AWS provides Amazon ElastiCache as a caching option, it must be in a VPC. This can greatly increase the cost and complexity of your serverless application. Further, you must declare your instance size and cluster configuration upfront, regardless of your usage. Finally, provisioning new caches takes minutes, not seconds, as new instances must be launched and configured before you can use them.
 
@@ -105,5 +101,3 @@ In this page, you learned how Momento Cache fits with every conception of server
 If you're ready to get started with Momento Cache, be sure to check out the following materials:
 
 - Quickstart guide to [start caching with Momento](./../getting-started) in less than 5 minutes;
-
-- A practical guide for [integrating Momento with your AWS Lambda functions](./../develop/guides/caching-with-aws-lambda);

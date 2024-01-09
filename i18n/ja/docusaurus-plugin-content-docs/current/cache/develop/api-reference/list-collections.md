@@ -15,8 +15,6 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 <br />
 
-![a technical illustration of a scroll with lists of information. All collected into groups.](@site/static/img/list-collections.jpg)
-
 :::info
 
 Momentoコレクションタイプは、[CollectionTTL](./collection-ttl.md)を使用してTTL動作を指定します。これは、すべての "write" 操作のオプション引数です。

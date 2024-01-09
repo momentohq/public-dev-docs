@@ -10,8 +10,6 @@ description: Information about the Momento .NET SDK
 
 Welcome to the Momento .NET SDK documentation!
 
-<img src="/img/net.jpg" width="90%" alt="a picture of a .net being cast into ocean to catch fish." />
-
 The Momento .NET SDK is available via the nuget package [`Momento.Sdk`](https://www.nuget.org/packages/Momento.Sdk).
 
 The source code can be found on GitHub: [momentohq/client-sdk-dotnet](https://github.com/momentohq/client-sdk-dotnet).

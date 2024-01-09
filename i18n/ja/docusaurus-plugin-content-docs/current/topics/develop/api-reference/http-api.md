@@ -7,8 +7,6 @@ description: サーバーレス・キャッシングやPub/Subサービスにア
 
 # キャッシュとエッジコンピュートサービスのためのHTTP API
 
-<img src="/img/http-api.jpg" width="90%" alt="a picture of abstract shapes as building and nodes of data connecting them at high speed" />
-
 Momentoは、[SDK](/develop)を使用できないアプリケーションのためにHTTP APIインターフェースを提供しています。例えば、[Cloudflare Workers](https://workers.cloudflare.com/)や[Fastly Compute@Edge](https://www.fastly.com/products/edge-compute)などのエッジコンピュートサービスにデプロイする場合、このAPIを使用します。その他のアプリケーションは[Momento's SDK clients](/develop)を使用する必要があります。
 
 クエリは `https://<environment>/cache/{yourCacheName}` エンドポイントにHTTP リクエストを送ることで実行されます。

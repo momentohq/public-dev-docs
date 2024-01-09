@@ -12,8 +12,6 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Momento CacheのためのSet APIについて
 
-![a diagram of luggage as sets, but in any old order and not organized at all.](@site/static/img/sets.jpg)
-
 :::info
 
 Momentoコレクションタイプは、[CollectionTTL](./collection-ttl.md)を使用してTTL動作を指定します。これは、すべての "write" 操作のオプション引数です。

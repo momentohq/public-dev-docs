@@ -8,10 +8,6 @@ description: Information about the Momento Node.js SDK
 
 # Momento Node.js SDK
 
-<img src="/img/nodes.png" width="95%" alt="a picture of abstract shapes as building and nodes of data connecting them at high speed" />
-
-Welcome to the Momento Node.js SDK documentation!
-
 The Momento Node.js SDK is available via the npm package [`@gomomento/sdk`](https://www.npmjs.com/package/@gomomento/sdk).
 
 The source code can be found on GitHub: [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript).

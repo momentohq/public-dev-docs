@@ -8,10 +8,6 @@ description: Information about the Momento Java SDK
 
 # Momento Java SDK
 
-<img src="/img/java.png" width="90%" alt="a picture of abstract shapes with a coffee mug for java." />
-
-Welcome to the Momento Java SDK documentation!
-
 The Momento Java SDK is available via Maven Central: [`software.momento.java:sdk`](https://central.sonatype.com/artifact/software.momento.java/sdk).
 
 The source code can be found on GitHub: [momentohq/client-sdk-java](https://github.com/momentohq/client-sdk-java).

@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 sidebar_label: Cheat Sheet
-sidebar_class_name: sidebar-item-nodejs-cheat-sheet
 title: Momento Vector Index cheat sheet for TypeScript and Node.js
 description: Everything to get you going with coding using Node.js and Momento Vector Index
 ---
@@ -9,7 +8,6 @@ description: Everything to get you going with coding using Node.js and Momento V
 # Cheat Sheet for Node.js with Momento Vector Index
 
 If you need to get going quickly with Node.js and Momento Vector Index, this page contains the basic API calls you'll need.
-
 
 ## Import libraries and instantiate a vector index client
 

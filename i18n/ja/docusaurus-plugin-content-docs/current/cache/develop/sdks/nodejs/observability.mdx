@@ -1,7 +1,6 @@
 ---
 sidebar_position: 3
 sidebar_label: Observability
-sidebar_class_name: sidebar-item-nodejs
 title: Observability for TypeScript and Node.js
 description: Instrument your Momento-enabled Node.js code with Logs, Metrics, and Traces
 ---
@@ -58,7 +57,7 @@ Momentoの場合、具体的にはリクエストの数、持続時間、リク�
 これらのメトリクスを出力する最も簡単な方法は、`ExperimentalMetricsMiddleware`クラスのいずれかを使用することです。これらのクラスはJSON形式でメトリクスを出力します：
 
 ```
-(Momento: _ExperimentalMetricsLoggingMiddleware): 
+(Momento: _ExperimentalMetricsLoggingMiddleware):
 {
   "momento": {
     "numActiveRequestsAtStart": 1,

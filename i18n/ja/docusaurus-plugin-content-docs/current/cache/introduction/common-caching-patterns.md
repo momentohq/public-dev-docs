@@ -7,8 +7,6 @@ description: サーバーレスの文脈でキャッシュとはどういうこ�
 
 # 一般的なキャッシュパターン
 
-![An image of a fast moving city as Momento caching patterns](@site/static/img/common-caching-patterns.jpg)
-
 **キャッシュは高速です。**
 
 インメモリでキーバリューのアクセスに最適化されているので、クライアントでの計測でも 1ミリ秒以下の p99 レスポンスタイムを得られます。とても高速です。そして、これだけ高速なので、、、
