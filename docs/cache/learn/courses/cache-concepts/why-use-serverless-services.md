@@ -6,12 +6,15 @@ description: Learn about the common use cases for a cache and how to use them in
 ---
 
 # Cache Concepts: Why use a serverless managed service?
+
 This lesson dives into five important advantages of using a serverless managed service: cost efficiency, elasticity, reduced operational overhead, faster dev and deployment, and high availability, security, and resiliency.
 
 ## Video
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UJ2lZ8b8txI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Transcript
+
 Whether your application architecture is serverless, server-based (also known as serverful), or as a blend of the two, it's important to understand the advantages of using a serverless managed service.
 
 We will cover five of these advantages in this lesson: cost efficiency, elasticity, reduced operational overhead, faster development and deployment, and finally, high availability, security, and resiliency.

@@ -6,6 +6,7 @@ description: Explore the simplicity of the pricing model and free tier informati
 ---
 
 # Pricing and free tier for Momento Cache and Momento Topics
+
 Serverless is about simplicity in every dimension, including pricing! For on-demand pricing, Momento Cache and Topics costs $0.50/GB transferred, metered in 1 KB increments each time. That's it!
 
 Your first 5 GBs transferred each month are free, and you don't need a credit card to get started.
@@ -17,6 +18,7 @@ For more savings, metrics integration, and support options, we offer [tiered pri
 If you need further assistance (or just can’t believe it), drop a message in our [Discord](https://discord.gg/Z7FSXB89), and we’ll help get it sorted out. Take the Momento Cache challenge: see how much you can save!
 
 ### FAQ's
+
 <details open>
   <summary>Is it really just $.50/GB transferred in and out of Momento services? What else do you charge for?</summary>
 
@@ -25,7 +27,7 @@ If you need further assistance (or just can’t believe it), drop a message in o
 | Memory / Storage                     | $0/GB                     |
 | Multi-AZ replication charges         | $0/GB                     |
 | Single sign-on & teams (coming soon) | $0/user                   |
-  
+
  </details>
 
 <details>

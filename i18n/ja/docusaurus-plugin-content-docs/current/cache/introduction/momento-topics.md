@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 sidebar_label: Momento Topics
-sidebar_class_name: sidebar-item-overview
 title: Momento Topics とは?
 pagination_prev: null
 description: リアルタイムなアプリケーション通信のための、最高に洗練されたサーバーレスのパブ/サブ (パブリッシュ/サブスクライブ) メッセージパターンである Momento Topics について学びましょう。
@@ -10,8 +9,6 @@ description: リアルタイムなアプリケーション通信のための、�
 # Momento Topics とは？
 
 Momento Topics は、最高に洗練されたサーバーレスの pub/sub (パブリッシュ/サブスクライブ) メッセージングパターンで、分散システム間のリアルタイム通信を可能にします。アプリのパブリッシャーから送信されたアイテムを受信するために、アプリが *topics*、つまり専用のチャネルでサブスクライブすることを可能にします。Momento Topics サービスはサーバーレスであるため、インフラストラクチャを作成したり管理したりする必要はなく、pub/subするトピックを作成する必要もありません。あるトピックにアイテムをパブリッシュすると、そのアイテムがまだ存在しない場合はトピックが自動的に作成されます。トピックはMomento Cacheを基盤として利用するため、スケーリング設定も不要です。サービスの[転送されたデータの入出力](../manage/pricing.md)に対してのみ課金されます。
-
-![image](./../../../../../static/img/topics-city.jpg)
 
 ## Momento Topics はどの様に動作するのか？
 

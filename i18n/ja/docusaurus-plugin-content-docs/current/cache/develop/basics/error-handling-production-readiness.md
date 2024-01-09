@@ -1,7 +1,6 @@
 ---
 sidebar_position: 20
 sidebar_label: SDK Error Handling
-sidebar_class_name: "sidebar-item-api-reference"
 title: SDK error handling
 description: Discover how to handle errors when using the Momento SDK.
 pagination_next: null

@@ -1,7 +1,6 @@
 ---
 sidebar_position: 10
 sidebar_label: SDK Configuration Objects
-sidebar_class_name: "sidebar-item-api-reference"
 title: SDK configuration objects
 description: Discover how to use configuration objects to initialize the Momento SDK client.
 pagination_prev: null

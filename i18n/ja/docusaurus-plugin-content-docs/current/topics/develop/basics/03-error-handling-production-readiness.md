@@ -1,7 +1,6 @@
 ---
 sidebar_position: 3
 sidebar_label: SDK のエラーハンドリング
-sidebar_class_name: "sidebar-item-api-reference"
 title: SDK のエラーハンドリング
 description: Momento SDK を使用する際のエラー処理の方法について説明します。
 pagination_next: null

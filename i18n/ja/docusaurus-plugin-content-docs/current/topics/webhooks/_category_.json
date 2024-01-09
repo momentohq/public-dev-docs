@@ -5,6 +5,5 @@
   "collapsed": false,
   "link": {
     "description": "Learn about Webhooks, an event-driven mechanism to listen to Momento Topics"
-  },
-  "className": "sidebar-item-webhooks-overview"
+  }
 }

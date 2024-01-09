@@ -12,9 +12,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Auth API reference
 
-<img src="/img/access-tokens.jpg" width="90%" alt="a technical illustration of a bank vault representing security, authorization, and authentication." />
-
-The auth APIs create and manage API keys and tokens for Momento services. These auth mechanisms can be scoped to have one or more permissions to grant access to one or more caches or topics. 
+The auth APIs create and manage API keys and tokens for Momento services. These auth mechanisms can be scoped to have one or more permissions to grant access to one or more caches or topics.
 
 <img src="/img/momento-auth-tokens.png" width="60%"/>
 
@@ -80,14 +78,14 @@ See [response objects](./response-objects.md) for specific information.
 
 A TokenScope is a list of [permission objects](#permission-objects). The list can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and can contain [up to ten](../../manage/limits) permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
 
-1. A permission object that allows ReadWrite access to all caches for the account 
+1. A permission object that allows ReadWrite access to all caches for the account
 2. A permission object that allows ReadOnly access to cache `foo`
 
 In this case, the token will still allow use of data manipulation APIs (e.g. `set`, `delete`, `DictionarySetFields`, etc.) on cache `foo` because of the first permission.
 
 ## Permission objects
 
-These objects define the specific role with cache or topic information and are then assigned to a [TokenScope](#tokenscope-objects). 
+These objects define the specific role with cache or topic information and are then assigned to a [TokenScope](#tokenscope-objects).
 
 ### CachePermission
 A component of a [TokenScope](#tokenscope-objects) object that defines permissions for a cache.
@@ -163,7 +161,7 @@ Generates a new disposable Momento auth token with the specified permissions and
 Disposable tokens differ from the usual Momento auth token in several key ways:
   - They cannot be generated in the console, they can only be generated programatically. The token that's used for the `generateDisposableToken` API call must be a token with Super User scope generated via the Momento console.
   - They must expire within one hour.
-  - They cannot be refreshed and thus do not come with a refresh token. 
+  - They cannot be refreshed and thus do not come with a refresh token.
   - Permissions are specified using DisposableTokenScope object.
 
 | Name            | Type                      | Description                                                                                                                                                                             |
@@ -196,7 +194,7 @@ The DisposableTokenScope object will accept permissions objects of the type [Cac
 
 ### DisposableTokenCachePermissions
 
-The DisposableTokenCachePermission is an extension of CachePermission, so it has the same fields as CachePermission but also has an additional `item` field so you can define permissions for a cache and the items within the cache. 
+The DisposableTokenCachePermission is an extension of CachePermission, so it has the same fields as CachePermission but also has an additional `item` field so you can define permissions for a cache and the items within the cache.
 
 For example, you can restrict access to only a specific key or a set of keys beginning with some prefix when you set `item` to a string that represents a key or key-prefix. Alternately, if you set `item` to AllCacheItems, you would produce the same set of permissions as a normal CachePermission.
 
@@ -212,7 +210,7 @@ For cache, the value can be the built-in `AllCaches` or a string value containin
 
 For item, the value can be the built-in `AllCacheItems` or a string value containing the key or key prefix of the cache item(s) this permission is for.
 
-#### Example DisposableTokenScope object 
+#### Example DisposableTokenScope object
 
 This is an example of creating a DisposableTokenScope with all three types of permission objects: CachePermission, TopicPermission, and DisposableTokenCachePermission.
 

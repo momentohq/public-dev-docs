@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 sidebar_label: Cheat Sheet
-sidebar_class_name: sidebar-item-python-cheat-sheet
 title: Cheat Sheet for Python + Momento Vector Index
 description: Everything to get you going with coding using Python and Momento Vector Index
 ---
@@ -9,9 +8,6 @@ description: Everything to get you going with coding using Python and Momento Ve
 # Cheat Sheet for Python with Momento Vector Index
 
 If you need to get going quickly with Python and Momento Vector Index, this page contains the basic API calls you'll need.
-
-![An image of a python on a pile of books searching through them like a vector index.](@site/static/img/vector-index/python-mvi-cheat-sheet.jpg)
-
 
 ## Import libraries and instantiate a vector index client
 

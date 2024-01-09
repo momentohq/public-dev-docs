@@ -8,8 +8,6 @@ description: Information about the Momento Swift SDK
 
 # Momento Topics Swift SDK
 
-Welcome to the Momento Swift SDK documentation!
-
 The Momento Swift SDK and source code are available via GitHub: [momentohq/client-sdk-swift](https://github.com/momentohq/client-sdk-swift).
 
 ## Requirements

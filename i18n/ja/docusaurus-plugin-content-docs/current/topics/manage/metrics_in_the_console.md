@@ -1,6 +1,5 @@
 ---
 sidebar_position: 2
-sidebar_class_name: metrics-in-the-console
 sidebar_label: Metrics in the console
 title: Metrics in the console
 pagination_prev: null

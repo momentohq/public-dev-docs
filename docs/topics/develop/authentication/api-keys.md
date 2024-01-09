@@ -7,8 +7,6 @@ description: Learn what Momento API keys are, how to create them, and how they a
 
 # Momento API keys
 
-![a technical illustration of API keys and their use to secure your application.](@site/static/img/api-keys-page.jpg)
-
 API keys are *long-lived values intended for programmatic use*. These keys grant integrating applications access to certain caches and topics.
 
 :::tip
@@ -57,15 +55,15 @@ You can copy the value of the key directly and store it in a secure location or 
 
 ### Step 3: Secure it!
 
-API keys are long-lived and typically grant high levels of access to the holder. With this in mind, be sure to securely store your API key in a location that encrypts the value and prevents plain-text viewing. 
+API keys are long-lived and typically grant high levels of access to the holder. With this in mind, be sure to securely store your API key in a location that encrypts the value and prevents plain-text viewing.
 
-If your application is hosted in the cloud, it is best practice to store your keys in and retrieve from services like [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/), [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/overview), or [GCP Secret Manager](https://cloud.google.com/secret-manager). 
+If your application is hosted in the cloud, it is best practice to store your keys in and retrieve from services like [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/), [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/overview), or [GCP Secret Manager](https://cloud.google.com/secret-manager).
 
 Storage of an API key is specific to your implementation and standard coding practices, but one thing is consistent across all applications - *keep it safe*!
 
 ## Expiration
 
-When creating an API key, you have the option to create one that never expires and one that expires after a certain amount of time. We **do not recommend creating keys that never expire**. This ends up being a security risk if the key were ever to become compromised. 
+When creating an API key, you have the option to create one that never expires and one that expires after a certain amount of time. We **do not recommend creating keys that never expire**. This ends up being a security risk if the key were ever to become compromised.
 
 The Momento console offers several pre-configured options for expiration ranges or you can select your own date. Just remember to create a new API key and rotate it in your application before it expires to prevent outages!
 

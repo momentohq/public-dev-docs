@@ -1,7 +1,6 @@
 ---
 sidebar_position: 4
 sidebar_label: Develop
-sidebar_class_name: "sidebar-item-api-reference"
 title: Developing applications with Momento SDKs
 description: Learn the core concepts for getting started with the Momento SDKs.
 ---
@@ -14,8 +13,6 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 # Momento SDKを使用したアプリケーションの開発
 
 ようこそ！ このページでは、すべてのSDKでMomentoクライアントを設定するために必要な一般的な構成に関する情報を提供します。このページでは、Momento の認証情報 (auth トークンと呼ばれます) の提供方法、クライアントの設定方法、エラー処理と本番環境への対応に関する基本的な情報を説明します。
-
-<img src="/img/city.jpg" width="90%" alt="a technical illustration on a white background depicting the intersection of speed, ease of use, and security." />
 
 ## Topics クライアントの構築
 
