@@ -1,9 +1,10 @@
 ---
 sidebar_position: 4
 sidebar_label: Service Limits
-title: Service limits for Momento Topics
+title: Service Limits for Momento Topics
 pagination_next: null
 description: Explore Momento Topic's service limits, the default values, and how to get them changed if you need.
+hide_title: true
 ---
 
 # Service limits for Momento Topics/Webhooks
@@ -27,7 +28,7 @@ In addition to the topic limits, there are a few additional limits that apply to
 | URL                    | 1024 characters  |
 :::info
 
-Since Topics and Webhooks utilize Momento Cache, all [Cache limits](/cache/manage/limits) apply to them as well.
+Since Topics and Webhooks utilize Momento Cache, all [Cache limits](/cache/limits) apply to them as well.
 
 :::
 

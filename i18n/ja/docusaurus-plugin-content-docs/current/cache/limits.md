@@ -1,9 +1,10 @@
 ---
-sidebar_position: 4
+sidebar_position: 8
 sidebar_label: Service Limits
-title: Service limits
+title: Service Limits
 pagination_next: null
 description: Explore Momento Cache  service limits, the default values, and how to get them changed if you need.
+hide_title: true
 ---
 
 # Momento Cacheのサービス制限
@@ -19,7 +20,7 @@ Momento CacheとMomento Topicsは、サービスリソースに関して、自�
 | 最大キャッシュ数（アカウントあたり）|10             |
 | 生存時間（TTL）|1日          |
 | [コレクション(CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts)ごとの要素サイズ制限|128KB          |
-| [APIキーまたはトークン](./../develop/api-reference/auth.md)ごとのパーミッション (ハードリミット) | 10             |
+| [APIキーまたはトークン](./develop/api-reference/auth.md)ごとのパーミッション (ハードリミット) | 10             |
 
 ## ソフト制限とサポート
 

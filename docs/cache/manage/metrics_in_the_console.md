@@ -1,9 +1,10 @@
 ---
 sidebar_position: 2
-sidebar_label: Metrics in the console
-title: Metrics in the console
+sidebar_label: Metrics in the Console
+title: Metrics in the Console
 pagination_prev: null
 description: Metrics in the console
+hide_title: true
 ---
 
 # Metrics in the console

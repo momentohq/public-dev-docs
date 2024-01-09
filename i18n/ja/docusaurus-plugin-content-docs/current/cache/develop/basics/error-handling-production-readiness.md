@@ -44,4 +44,4 @@ Momento SDKは、あらかじめ用意された設定オブジェクトを使用
 
 <img src="/img/sdk_retry_behavior.png" width="100%" alt="logic diagram depicting SDK retry behavior"/>
 
-Momento SDKは、スロット付きリクエスト([制限超過](./../../manage/limits/))を再試行しません。その他のエラーについては、要求された操作が [idempotent](https://en.wikipedia.org/wiki/Idempotence) でない場合、SDK は再試行しません。例えば、カウンターをインクリメントしているときにエラー応答を受け取った場合、SDKはあなたの代わりにリトライを行いません(これはオーバーカウントになる可能性があるため)。べきでない操作の場合、リトライするかどうかは開発者に選択させた方が安全です。
+Momento SDKは、スロット付きリクエスト([制限超過](./../../limits/))を再試行しません。その他のエラーについては、要求された操作が [idempotent](https://en.wikipedia.org/wiki/Idempotence) でない場合、SDK は再試行しません。例えば、カウンターをインクリメントしているときにエラー応答を受け取った場合、SDKはあなたの代わりにリトライを行いません(これはオーバーカウントになる可能性があるため)。べきでない操作の場合、リトライするかどうかは開発者に選択させた方が安全です。
