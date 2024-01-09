@@ -1,37 +1,37 @@
 ---
 sidebar_position: 4
-sidebar_label: サービス上限
-title: Momentoキャッシュのサービス上限
-description: MomentoキャッシュとMomentoトピックのサービス上限、デフォルト値、そして変更が必要な時にどのように問い合わせるかを見てみましょう。
+sidebar_label: Service Limits
+title: Service Limits for Momento Topics
+pagination_next: null
+description: Explore Momento Topic's service limits, the default values, and how to get them changed if you need.
+hide_title: true
 ---
 
-# Momento キャッシュと Momento トピックスのサービス上限
-
-Momento
-Momento トピックは、サービス リソースに関して、自分自身とその顧客を保護しようとしています。そのため、すべてのアカウント、トピック、キャッシュには、サービス制限、または私たちが「ガードレール」と呼ぶもの (カーブの多い山道のようなもの) があります。このページでは、デフォルトのサービス制限の概要を説明します：
-
-| Momento トピックの上限       | 値                                  |
-| ---------------------------- | ----------------------------------- |
-| トピック毎のサブスクライバー | 100                                 |
-| メッセージサイズ             | 4KiB/パブリッシュされたメッセージ |
-| トピック毎のスループット     | 10 パブリッシュリクエスト/秒       |
-
-トピックの制限に加えて、ウェブフックに適用される追加の制限がいくつかあります。
-
-| Webhookの上限            | 値                                  |
-| ---------------------------- | ----------------------------------- |
-| Webhookの数       | 10                                |
-| Webhookごとのスループット             | 5リクエスト/秒　|
-| リクエストのタイムアウト     | 5 秒       |
-| 名前     | 128 文字       |
-| URL     | 1024 文字       |
+#
 
 
-:::info
-MomentoトピックスはMomentoキャッシュが基盤になっているので、全てのキャッシュ上限がトピックスにも適用されます。
+
+| Momento Topics limits | 値                          |
+| --------------------- | -------------------------- |
+| Subscribers per cache | 100                        |
+| Message size          | 4KiB per published message |
+| キャッシュあたりのスループット       | 10 publish requests/sec    |
+
+
+
+| Webhooks limits        | 値               |
+| ---------------------- | --------------- |
+| Number of Webhooks     | 10              |
+| Throughput per webhook | 5 requests/sec  |
+| Request Timeout        | 5 seconds       |
+| 名称                     | 128 characters  |
+| URL                    | 1024 characters |
+| :::info                |                 |
+
+
+
 :::
 
-## ソフト上限とサポート
+## ソフトリミットとサポート
 
-このページに記載されている上限はソフト上限なので変更が可能です。上限の調整が必要な場合は[Momento Support](mailto:support@momentohq.com)までご連絡ください。
-ログインに使用しているメールアドレス、キャッシュ名、キャッシュが存在しているクラウド＋リージョン (e.g. AWS eu-west-1)そしてどのリストに掲載されているどの上限を引き上げるのかを記載してください。
+このページに記載されている制限は、特に明記されていない限り、変更可能なソフトな制限です。制限の調整が必要な場合は、[Momento サポートまで](mailto:support@momentohq.com)ご連絡ください。その際、ログインメールアドレス、変更するキャッシュの名前、キャッシュのあるクラウド+リージョン（例：AWS eu-west-1）、制限の追加を希望する制限を明記してください。
