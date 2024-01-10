@@ -243,6 +243,10 @@ const config = {
           {
             from: '/develop/sdks/nodejs/topics-cheat-sheet',
             to: '/topics/develop/sdks/nodejs/cheat-sheet'
+          },
+          {
+            from: '/topics/webhooks',
+            to: '/topics/webhooks/overview'
           }
         ],
           // This came in with v1.5.0 of the docs where we split out by service.
