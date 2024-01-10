@@ -103,7 +103,7 @@ app.post('/', (req, res) => {
 
 ## Signing secret
 
-When you create a new webhook in Momento you will be provided a signing secret. This secret value is used to digitally sign event payloads from Momento, allowing you to verify authenticity of a request. You can obtain the secret in either programmatically or via the [Momento console](https://console.gomomento.com);
+When you create a new webhook in Momento you will be provided a signing secret. This secret value is used to digitally sign event payloads from Momento, allowing you to verify authenticity of a request. You can obtain the secret in either programmatically or via the [Momento console](https://console.gomomento.com).
 
 ### Obtaining your signing secret programmatically
 
@@ -129,7 +129,7 @@ The verification information listed above is the minimum required to guarantee a
 
 If a valid webhook event is intercepted by a malicious actor and your endpoint implements sender verification only, you are susceptible to a *replay attack*. A replay attack occurs when a bad actor sends a valid request to your system repeatedly, forcing your system to process the same event multiple times. To prevent these attacks from harming your system, consider also validating the age of the event. Any event that comes in older than your allowed age threshold would be automatically discarded.
 
-You can use the [publish_timestamp](./index#publish_timestamp) property of the event to determine age. As best practice, consider rejecting events *older than 60 seconds*.
+You can use the [publish_timestamp](./overview#publish_timestamp) property of the event to determine age. As best practice, consider rejecting events *older than 60 seconds*.
 
 ### Regularly rotate secrets
 
