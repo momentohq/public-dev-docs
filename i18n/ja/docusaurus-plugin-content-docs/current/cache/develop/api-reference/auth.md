@@ -12,8 +12,6 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Auth API reference
 
-<img src="/img/access-tokens.jpg" width="90%" alt="a technical illustration of a bank vault representing security, authorization, and authentication." />
-
 auth APIは、[Momento auth tokens](./../authentication/index.mdx) として知られる Momento サービスのauthトークンを作成し管理します。トークンは、1つ以上のキャッシュやトピックへのアクセスを許可するために、1つまたは複数の権限を持つように設定することができます。
 
 <img src="/img/momento-auth-tokens.png" width="60%"/>
@@ -76,16 +74,16 @@ Momento のコントロールプレーン API にアクセスするためのト�
 | --------------- |-------------------------------------------| -------------------------------------------- |
 | permissions           | List <[Permission](#permission-objects)\> | 新しいトークンに付与する権限です。|
 
-TokenScope は [permission objects](#permission-objects)のリストです。リストには、[CachePermission](#cachepermission)型または [TopicPermission](#topicpermission)型の権限が含まれ、[最大で十](./../../manage/limits.md)のパーミッションオブジェクトを含むことができます。権限はMomento データプレーンAPI（例えば get、set など）へのアクセスのみを許可します。複数のパーミッションオブジェクトでauthトークンが作成されると、どの一致するパーミッションでもアクセスが許可されます。例えば、次の二つのパーミッションオブジェクトで単一のトークンが作成された場合：
+TokenScope は [permission objects](#permission-objects)のリストです。リストには、[CachePermission](#cachepermission)型または [TopicPermission](#topicpermission)型の権限が含まれ、[最大で十](./../../limits.md)のパーミッションオブジェクトを含むことができます。権限はMomento データプレーンAPI（例えば get、set など）へのアクセスのみを許可します。複数のパーミッションオブジェクトでauthトークンが作成されると、どの一致するパーミッションでもアクセスが許可されます。例えば、次の二つのパーミッションオブジェクトで単一のトークンが作成された場合：
 
-1. アカウントの全てのキャッシュに対して読み書きアクセスを許可するパーミッションオブジェクト 
+1. アカウントの全てのキャッシュに対して読み書きアクセスを許可するパーミッションオブジェクト
 2. キャッシュ `foo` への読み取り専用アクセスを許可するパーミッションオブジェクト
 
 この場合、最初のパーミッションにより、キャッシュ`foo`に対してデータ操作API（例えば `set`、`delete`、`DictionarySetFields`など）の使用を許可するトークンになります。
 
 ## Permission objects
 
-これらのオブジェクトは、キャッシュまたはトピック情報に関する具体的なロールを定義し、その後 [TokenScope](#tokenscope) に割り当てられます。 
+これらのオブジェクトは、キャッシュまたはトピック情報に関する具体的なロールを定義し、その後 [TokenScope](#tokenscope) に割り当てられます。
 
 ### CachePermission
 キャッシュに対する権限を定義する [TokenScope](#tokenscope) オブジェクトの一部分。

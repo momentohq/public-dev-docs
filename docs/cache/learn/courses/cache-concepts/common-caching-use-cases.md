@@ -9,10 +9,12 @@ description: Learn about the common use cases for a cache and how to use them in
 
 This lesson spotlights some common use cases for a cache, like caching API responses, database query results, and static assets. It also covers using a cache as a primary datastore - like with session and personalization information where the level of durability a typical database provides is not necessary.
 
-## Video 
+## Video
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/IlVRBF96Ci0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Transcript
+
 In this module, we'll discuss common use cases for caching and how they might work with caching.
 
 The first common use case is API responses. This is where you cache commonly used API calls to improve application performance and reduce calls to those APIs that generate somewhat static content. For example, consider an e-commerce website that uses an API to a microservice to retrieve product information.

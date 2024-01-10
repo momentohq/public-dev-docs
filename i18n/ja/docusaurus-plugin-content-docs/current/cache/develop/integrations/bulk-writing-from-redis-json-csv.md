@@ -50,7 +50,7 @@ $ ./load.sh -h
 ## 利用ガイド
 
 このセクションでは、Redis から Momento へのデータパイプラインのためのツールセットを使うためのステップバイステップのガイドを提供します。
-このプロセスには3つの鍵となるステップがあります: Redis データベースから JSON lines への展開、JSON lines の検証、そして JSON lines を 
+このプロセスには3つの鍵となるステップがあります: Redis データベースから JSON lines への展開、JSON lines の検証、そして JSON lines を
 Momento へロードするステップです。
 
 ### Redis データベース (RDB) ファイルの取得
@@ -70,10 +70,10 @@ $ ./extract-rdb-and-validate.sh -s 1 -t 1 ./redis
 
 このコマンドは `./redis` にある RDB ファイルを展開し、JSON lines フォーマットへ変換して、現在のディレクトリに書き出します。
 `-s` と `-t` フラグは、それぞれキャッシュする最大 MiB と最大生存期間(TTL) の日数を設定します。
-もし項目が サイズ上限 (1 MiB) または TTL 上限 (24 時間) 等の [Momento のサービス上限](./../../manage/limits.md)を超える場合、
+もし項目が サイズ上限 (1 MiB) または TTL 上限 (24 時間) 等の [Momento のサービス上限](./../../limits.md)を超える場合、
 その項目は処理中にフラグが立ちます。
 
-より詳しい情報については、[サービス上限](./../../manage/limits.md)をご確認下さい。
+より詳しい情報については、[サービス上限](./../../limits.md)をご確認下さい。
 
 ### 出力を検定する
 
@@ -94,7 +94,7 @@ $ ./extract-rdb-and-validate.sh -s 1 -t 1 ./redis
 
 対照的に、`validate-lax` ディレクトリには、以下の様なデータが入っています:
 
-- [Momento の項目の最大サイズ](./../../manage/limits.md)を超えている
+- [Momento の項目の最大サイズ](./../../limits.md)を超えている
 - Momento がサポートしていないデータ型
 
 `validate-lax` には Momento Cache にロードできないデータが含まれていて、人手で確認する必要があります。

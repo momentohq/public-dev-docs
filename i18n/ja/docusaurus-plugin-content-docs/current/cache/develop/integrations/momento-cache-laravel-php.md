@@ -1,6 +1,5 @@
 ---
 sidebar_position: 2
-sidebar_class_name: sidebar-item-laravel
 sidebar_label: Laravel
 title: Laravel + Momento Cacheをセットアップする
 description: この簡単な開発者向けチートシートを使ってLaravelとMomento Cacheを走らせてみよう。

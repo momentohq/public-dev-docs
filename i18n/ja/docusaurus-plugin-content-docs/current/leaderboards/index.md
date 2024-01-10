@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-sidebar_class_name: sidebar-item-overview
 sidebar_label: Momento Leaderboards
 title: Momento Leaderboards Documentation
 description: Learn about Momento's purpose-built Leaderboard API

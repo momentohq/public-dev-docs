@@ -1,12 +1,12 @@
 ---
 sidebar_position: 1
 sidebar_label: Cheat Sheet
-sidebar_class_name: sidebar-item-python-cheat-sheet
 title: Cheat Sheet for Python + Momento Cache
 description: Everything to get you going with coding using Python and Momento Cache
 ---
 
 # Cheat Sheet for Python with Momento Cache
+
 If you need to get going quickly with Python and Momento Cache, this page contains the basic API calls you'll need.
 
 :::tip
@@ -16,6 +16,7 @@ If you combine all of the functions on this page into one python file, you'd hav
 :::
 
 ## Import libraries and connect to return a CacheClient object
+
 This code sets up the class with the necessary imports, the class definition, and the CacheClient instantiation that each of the other functions will need to call.
 
 ```python

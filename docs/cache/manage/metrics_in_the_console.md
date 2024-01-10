@@ -1,13 +1,14 @@
 ---
 sidebar_position: 2
-sidebar_class_name: metrics-in-the-console
-sidebar_label: Metrics in the console
-title: Metrics in the console
+sidebar_label: Metrics in the Console
+title: Metrics in the Console
 pagination_prev: null
 description: Metrics in the console
+hide_title: true
 ---
 
 # Metrics in the console
+
 When developing and operating applications with Momento Cache, you'll want visibility to effectively diagnose bugs and optimize performance. Momento provides an hour of basic service-side metrics to all customers via the Momento console, aimed at facilitating troubleshooting and tuning. If you're an enterprise with critical dependency on Momento Cache, we recommend partnering more closely with the Momento team for support and delivery of detailed historical metrics.
 
 Within the Momento console, you can visit the cache metrics dashboard by selecting the small bar graph icon on the left navigation menu, as shown below.
@@ -17,27 +18,31 @@ Within the Momento console, you can visit the cache metrics dashboard by selecti
 The available metrics cover cache data plane operations only (control plane operations such as creation or deletion of a cache are not included), and for the preceding hour. The metrics presently show an aggregation for all the caches in your Momento account. You can view point data for any given minute by hovering over the bubble for that minute in the line graph. Metrics display typically lags by a minute or two.
 
 ## TPS (transactions per second)
+
 This line graph represents the number of cache data operation requests per second, averaged over each one minute period. You can use this to understand the level of application activity within your caches. If you don't see anything here, you're not using any caches and should check the operational health of your application and the logic within your code!
 
 ![image](/img/metrics_tps.png)
 
 ## Byte count (data volume in/out of your Momento caches)
+
 This line graph represents the number of bytes transferred in or out of your Momento caches summed over the one minute period. The total byte count transferred over the most recent hour is also shown in the top bar. You can use this to understand the level of application activity within your caches. If you don't see anything here, you're not using any caches and should check the operational health of your application and the logic within your code! The information on data transferred can be used to get an estimate of the throughput your applications are driving to your caches, which can tell you what your cost expectations might be for the month. Looking at both the TPS and the byte count metrics can also give you rough information about cache item size.
 
 ![image](/img/metrics_bytecount.png)
 
 ## Errors and successes
+
 This graph tells you about the number of error and success responses from Momento for application requests to your caches. It can be viewed as a percentage or as a raw count of responses for the minute. If you are seeing an elevated level of errors, dig closer into your application logs to better understand the cause. Elevated error rates can be an indicator that your application requests are being throttled by Momento due to encountering a [service limit](./limits).
 
 ![image](/img/metrics_success-error.png)
 
 ## Hits and misses (hit rate)
+
 This graph tells you how well your application is applying caching - you want to see a high rate of hits versus misses. Factors that can affect your hit rate include the TTL chosen for your items and your strategy for populating the cache (you need to write the items into the cache if you expect to find them there next time you make a read). The higher the hit rate you achieve, the greater the benefit you'll see from caching. However, you should balance this against the staleness of the data your application is working with if you are using long TTLs.
 
 ![image](/img/metrics_hit-miss.png)
 
-
 ### FAQ's
+
 <details>
 <summary>How can I get metrics for more than an hour?</summary>
 For production, we recommend partnering with the Momento team for support - this includes publishing of detailed metrics into your observability tooling (presently CloudWatch but more options to come). With delivery of detailed metrics enabled, you can build alarms and dashboards in accordance with your operating standards.

@@ -15,8 +15,6 @@ import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBloc
 
 Momento provides two JavaScript SDKs; [one for Node.js](./../nodejs/index.md) and one for other web applications. The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
 
-<img src="/img/web.jpg" width="90%" alt="a picture of abstract web strung between node.js nodes." />
-
 The Node.js SDK is best suited for server-side use cases. The Momento web SDK, however, allows developers to write JavaScript code that runs in a browser and communicates directly with Momento services. This allows you to avoid the typical overhead of building and operating your own web service to mediate cache or pub/sub calls between the browser and Momento. It also means one less hop for your web traffic, so you can get even better performance out of your browser application. The best of both worlds!
 
 You can also use the web SDK in other non-Node.js JavaScript environments.
@@ -53,7 +51,7 @@ Here's an example import statement for the web SDK:
 
 ## Credentials for Browsers
 
-In order for your browser application to communicate with Momento services, you will need to provide the browser with a Momento auth token. 
+In order for your browser application to communicate with Momento services, you will need to provide the browser with a Momento auth token.
 The recommended practice is to generate a Momento disposable token that has expiring credentials for each browser session. This enables the app to distribute tokens without worrying about your data being compromised.
 
 To create a Momento disposable token for use in the browser, you will generally need a ["token vending machine"](https://www.gomomento.com/blog/introducing-the-momento-token-vending-machine) component. The token vending machine can be a [standalone application](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine) with an HTTP endpoint that a static website can access, or it can be a component embedded into the server side of your web application, as in our [Next.js chat app example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/nextjs-chat/README.md).

@@ -12,8 +12,6 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Auth API リファレンス
 
-<img src="/img/access-tokens.jpg" width="90%" alt="a technical illustration of a bank vault representing security, authorization, and authentication." />
-
 Auth API は、Momento サービスの API キーとトークンを作成および管理します。これらの認証メカニズムは、1つ以上のキャッシュやトピックスへのアクセスを許可するために、1つ以上のパーミッションを持つようにスコープすることができます。
 
 <img src="/img/momento-auth-tokens.png" width="60%"/>
@@ -202,7 +200,7 @@ DisposableTokenScope オブジェクトは、[CachePermission](#cachepermission)
 
 ### DisposableTokenCachePermissions
 
-DisposableTokenCachePermission は CachePermission を拡張したもので、CachePermission と同じフィールドを持ちますが、`item` フィールドが追加されています。 
+DisposableTokenCachePermission は CachePermission を拡張したもので、CachePermission と同じフィールドを持ちますが、`item` フィールドが追加されています。
 
 例えば、キーまたはキープレフィックスを表す文字列に `item` を設定すると、特定のキーまたはプレフィックスで始まるキーのセットのみにアクセスを制限できます。別の方法として、`item` を AllCacheItems に設定すると、通常の CachePermission と同じパーミッションのセットが作成されます。
 

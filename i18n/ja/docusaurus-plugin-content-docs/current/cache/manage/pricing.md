@@ -1,6 +1,5 @@
 ---
 sidebar_position: 3
-sidebar_class_name: sidebar-item-pricing
 title: 料金
 description: Momentoキャッシュの料金モデルの単純さを見てみてください
 ---

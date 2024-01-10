@@ -1,17 +1,23 @@
 ---
 sidebar_position: 1
-sidebar_class_name: sidebar-item-overview
 sidebar_label: Momento Cache
-title: Momento Cache Documentation
+title: Cache
 description: Learn what you need to know to speed up your cloud application with the world's first serverless cache.
 pagination_next: null
+hide_title: true
+keywords:
+  - momento
+  - cache
+  - caching
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
 ---
 
 # What is Momento Cache?
 
 Momento Cache is the world's first truly serverless caching service. It provides instant elasticity, scale-to-zero capability, and blazing-fast performance. Gone are the days where you need to choose, manage, and provision capacity. With Momento Cache, you grab the SDK, you get an end point, input a few lines into your code, and you're off and running.
-
-<img src="/img/dial.jpg" width="90%" alt="a technical illustration on a white background depicting the intersection of speed, ease of use, and security." />
 
 Momento Cache is available in the following cloud providers and Regions:
 
@@ -38,10 +44,6 @@ In the following pages, you can learn about caching in general and how to use Mo
   - [Ruby](./cache/develop/sdks/ruby)
   - [Elixir](./cache/develop/sdks/elixir)
   - [Swift](./cache/develop/sdks/swift)
-
-- _If you want to know more about Momento Cache and how it works_, refer to the reference on [Momento Cache concepts](./learn/how-it-works/index.mdx).
-
-- _For specific guides on integrating with AWS Lambda or other systems_, look to the [guides](./develop/guides/1-caching-with-aws-lambda.md) section.
 
 - _Looking for Momento icons for your architecture diagrams?_ Download [Momento_Architecture_Icons.zip](@site/static/img/icons/Momento_Architecture_Icons.zip).
 

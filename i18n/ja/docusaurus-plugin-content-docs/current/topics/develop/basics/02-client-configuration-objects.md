@@ -1,7 +1,6 @@
 ---
 sidebar_position: 2
 sidebar_label: SDK Configuration Objects
-sidebar_class_name: "sidebar-item-api-reference"
 title: SDK configuration objects
 description: Momento SDK クライアントの初期化に使用される設定オブジェクトの使い方
 ---

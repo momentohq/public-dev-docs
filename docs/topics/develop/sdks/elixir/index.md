@@ -8,9 +8,6 @@ description: Information about the Momento Elixir SDK
 
 # Momento Elixir SDK
 
-Welcome to the Momento Elixir SDK documentation!
-<img src="/img/elixir.jpg" width="90%" alt="a picture of a fantasy dwarf with an water-based elixir." />
-
 The Momento Elixir SDK is available via the hex package [`gomomento`](https://hex.pm/packages/gomomento).
 
 The source code can be found on GitHub: [momentohq/client-sdk-elixir](https://github.com/momentohq/client-sdk-elixir).

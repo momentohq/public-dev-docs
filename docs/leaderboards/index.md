@@ -1,19 +1,24 @@
 ---
 sidebar_position: 1
-sidebar_class_name: sidebar-item-overview
 sidebar_label: Momento Leaderboards
-title: Momento Leaderboards Documentation
+title: Leaderboards
 description: Learn about Momento's purpose-built Leaderboard API
 pagination_next: null
+hide_title: true
+keywords:
+  - momento
+  - leaderboard
+  - gaming
+  - serverless
 ---
 
 ## What is Momento Leaderboards?
 
-Momento Leaderboards is a serverless leaderboard service that supports tens of millions of items and rapid ingestion/querying/updates. While many databases approximate leaderboards via general purpose data structures like sorted set or range queries, Momento Leaderboard is a first-class, full-fledged service that you can quickly and easily integrate with your application. 
+Momento Leaderboards is a serverless leaderboard service that supports tens of millions of items and rapid ingestion/querying/updates. While many databases approximate leaderboards via general purpose data structures like sorted set or range queries, Momento Leaderboard is a first-class, full-fledged service that you can quickly and easily integrate with your application.
 
 :::info
 
-Leaderboard items will have a 7-day TTL by default. For persistence (unlimited TTL), please contact our team through the [contact form](https://www.gomomento.com/contact-us), on [Discord](https://discord.com/invite/3HkAKjUZGq), or by emailing support@momentohq.com. 
+Leaderboard items will have a 7-day TTL by default. For persistence (unlimited TTL), please contact our team through the [contact form](https://www.gomomento.com/contact-us), on [Discord](https://discord.com/invite/3HkAKjUZGq), or by emailing support@momentohq.com.
 
 :::
 
@@ -30,7 +35,7 @@ Click on the Create Cache button and create a cache using the cloud provider and
 
 ![Image of Momento console Create Cache form](@site/static/img/console-create-cache-form.png)
 
-Then follow our [step-by-step instructions](https://docs.momentohq.com/cache/develop/authentication/api-keys) to create an API key via the [Momento console](https://console.gomomento.com). 
+Then follow our [step-by-step instructions](https://docs.momentohq.com/cache/develop/authentication/api-keys) to create an API key via the [Momento console](https://console.gomomento.com).
 
 ### Step 2: Create a Momento Leaderboards
 

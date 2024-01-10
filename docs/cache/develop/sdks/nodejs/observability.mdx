@@ -1,7 +1,6 @@
 ---
 sidebar_position: 3
 sidebar_label: Observability
-sidebar_class_name: sidebar-item-nodejs
 title: Observability for TypeScript and Node.js
 description: Instrument your Momento-enabled Node.js code with Logs, Metrics, and Traces
 ---
@@ -48,12 +47,12 @@ Then you should see log messages from Momento coming through your pino logging e
 ## Metrics
 Metrics are measurements that provide quantitative information about system performance and behavior. They are numerical values captured and recorded over regular intervals, providing statistical data to aid in understanding the trends and patterns in a system.
 
-For Momento, specifically, you might want to capture client-side metrics on the number of requests made, their duration, request or response size, or failure rates. 
+For Momento, specifically, you might want to capture client-side metrics on the number of requests made, their duration, request or response size, or failure rates.
 
 The most straightforward way to emit these metrics is to use one of the `ExperimentalMetricsMiddleware` classes. These classes emit metrics in JSON format:
 
 ```
-(Momento: _ExperimentalMetricsLoggingMiddleware): 
+(Momento: _ExperimentalMetricsLoggingMiddleware):
 {
   "momento": {
     "numActiveRequestsAtStart": 1,

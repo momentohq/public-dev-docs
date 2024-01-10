@@ -1,7 +1,6 @@
 ---
 sidebar_position: 3
 sidebar_label: はじめてみる
-sidebar_class_name: sidebar-item-getting-started
 title: はじめてみる
 pagination_prev: null
 pagination_next: null

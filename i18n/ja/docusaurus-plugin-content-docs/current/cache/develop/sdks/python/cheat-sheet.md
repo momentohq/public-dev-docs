@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 sidebar_label: チートシート
-sidebar_class_name: sidebar-item-python-cheat-sheet
 title: Python + Momento Cache のためのチートシート
 description: Python と Momento Cache を使ってコーディングするための全て
 ---

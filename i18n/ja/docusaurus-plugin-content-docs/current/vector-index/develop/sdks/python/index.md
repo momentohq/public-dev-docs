@@ -8,8 +8,6 @@ description: Information about the Momento Python SDK
 
 # Momento Python SDK
 
-![image of a python](@site/static/img/snake.png)
-
 Momento Python SDK ドキュメントへようこそ！
 
 Momento Python SDK は pypi パッケージ [`momento`](https://pypi.org/project/momento/) から入手できます。
