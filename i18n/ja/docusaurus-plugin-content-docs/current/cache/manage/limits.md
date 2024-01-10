@@ -6,84 +6,85 @@ pagination_next: null
 description: Explore Momento Cache service limits, the default values, and how to get them changed if you need.
 ---
 
-# Momento Cacheのサービス制限
+# Momento Cacheのサービスリミット
 
+Momento Cache は、サービスリソースに関して自社と顧客の保護に努めています。 これを行うために、すべてのアカウント、キャッシュ、トピックにはサービス制限、つまり「ガードレール」と呼ばれるものが設定されており、操作を可能な限りスムーズに適切に実行し続けることができます。 このページでは、デフォルトのサービス制限の概要を説明します。
 
-
-| Momento Cacheの制限                                                                                      | 値                |
-| ----------------------------------------------------------------------------------------------------- | ---------------- |
-| キャッシュあたりのAPIレート（データプレーン）                                                                              | 100 operations/s |
-| 顧客ごとのAPIレート（コントロールプレーン）                                                                               | 5 operations/s   |
-| キャッシュあたりのスループット                                                                                       | 1MB/s            |
-| 最大アイテム・サイズ                                                                                            | 1MB              |
-| 最大キャッシュ数（アカウントあたり）                                                                                    | 10               |
-| ライブ時間 (TTL)                                                                                           | 1日               |
-| 1件あたりの [コレクション (CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts)要素サイズ制限 | 128KB            |
-| パーミッション [APIキーまたはトークン](./../develop/api-reference/auth.md)  (ハードリミット）                                 | 10               |
+| Momento Cache リミット                                                                                               | リミット値          |
+|--------------------------------------------------------------------------------------------------------------------|----------------|
+| キャッシュごとの API レート (data plane)                          | 100 operations/s |
+| 顧客あたりの API レート (control plane)     | 5 operations/s   |
+| キャッシュあたりのスループット                          | 1MB/s          |
+| アイテムの最大サイズ                                | 1MB            |
+| 最大のキャッシュ数 (アカウントごと)             | 10             |
+| Time to live (TTL)    | 1 day          |
+| [collection (CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts) ごとの要素のサイズ制限 | 128KB          |
+| [API キーまたはトークン](./../develop/api-reference/auth.md) ごとのアクセス許可 (ハード制限)   | 10             |
 
 ## ソフトリミットとサポート
 
-このページに記載されている制限は、特に明記されていない限り、変更可能なソフトな制限です。制限の調整が必要な場合は、[Momento サポートまで](mailto:support@momentohq.com)ご連絡ください。その際、ログインメールアドレス、変更するキャッシュの名前、キャッシュのあるクラウド+リージョン（例：AWS eu-west-1）、制限の追加を希望する制限を明記してください。
+このページの制限は、特に指定がない限り変更できるソフト制限です。 制限の調整が必要な場合は、[Momento サポート](mailto:support@momentohq.com) までご連絡ください。 ログインメールアドレス、変更するキャッシュの名前、キャッシュが配置されているクラウド + リージョン (例: AWS eu-west-1)、およびリストのどの制限を増やしたいかを含めてご連絡いただけると幸いです。
 
-##
+## 操作
+
+サービス制限は、1 秒あたりに実行される操作の数に基づいています。 一部のキャッシュデータプレーン API は、1 つのリクエストで複数の操作を実行できます。
+
+複数要素の操作はより効率的であるため、これらの API の制限コストは **2:1 の比率**で割り引かれます。 これは、2 つの要素ごとにリミッターに対する 1 つの操作としてカウントされることを意味します。 たとえば、1 つまたは 2 つの要素を追加する `SetAddElements' リクエストには 1 回の操作が必要ですが、3 つまたは 4 つの要素がある場合は 2 回の操作が必要になります。
+
+次の表は、すべてのキャッシュ API の操作数がどのように計算されるかを示しています。
 
 
-
-
-
-
-
-| API Name                | Multi-Element API | Operations                                                        |
-| ----------------------- | ----------------- | ----------------------------------------------------------------- |
-| Set                     |                   | 1                                                                 |
-| Get                     |                   | 1                                                                 |
-| Delete                  |                   | 1                                                                 |
-| Increment               |                   | 1                                                                 |
-| Ping                    |                   | 1                                                                 |
-| ItemGetType             |                   | 1                                                                 |
-| KeyExists               |                   | 1                                                                 |
-| KeysExist               | ✅                 | Number of keys in request/2                                       |
-| SetIfNotExists          |                   | 1                                                                 |
-| UpdateTtl               |                   | 1                                                                 |
-| IncreaseTtl             |                   | 1                                                                 |
-| DecreaseTtl             |                   | 1                                                                 |
-| ItemGetTtl              |                   | 1                                                                 |
-| DictionaryFetch         | ✅                 | Number of fields in response/2, or 1 if dictionary is not found   |
-| DictionaryGetField      |                   | 1                                                                 |
-| DictionaryGetFields     | ✅                 | Number of fields in request/2                                     |
-| DictionaryIncrement     |                   | 1                                                                 |
-| DictionaryRemoveField   |                   | 1                                                                 |
-| DictionaryRemoveFields  | ✅                 | Number of fields in request/2                                     |
-| DictionarySetField      |                   | 1                                                                 |
-| DictionarySetFields     | ✅                 | Number of fields in request/2                                     |
-| DictionaryLength        |                   | 1                                                                 |
-| ListFetch               | ✅                 | Number of elements in response/2, or 1 if list is not found       |
-| ListConcatenateBack     | ✅                 | Number of elements in request/2                                   |
-| ListConcatenateFront    | ✅                 | Number of elements in request/2                                   |
-| ListLength              |                   | 1                                                                 |
-| ListPopBack             |                   | 1                                                                 |
-| ListPopFront            |                   | 1                                                                 |
-| ListPushBack            |                   | 1                                                                 |
-| ListPushFront           |                   | 1                                                                 |
-| ListRemoveValue         |                   | 1                                                                 |
-| ListRetain              |                   | 1                                                                 |
-| SetAddElement           |                   | 1                                                                 |
-| SetAddElements          | ✅                 | Number of elements in request/2                                   |
-| SetFetch                | ✅                 | Number of elements in response/2, or 1 if set is not found        |
-| SetRemoveElement        |                   | 1                                                                 |
-| SetRemoveElements       | ✅                 | Number of elements in request/2                                   |
-| SetContainsElement      |                   | 1                                                                 |
-| SetContainsElements     | ✅                 | Number of elements in request/2                                   |
-| SetLength               |                   | 1                                                                 |
-| SortedSetPutElement     |                   | 1                                                                 |
-| SortedSetPutElements    | ✅                 | Number of elements in request/2                                   |
-| SortedSetFetchByRank    | ✅                 | Number of elements in response/2, or 1 if sorted set is not found |
-| SortedSetFetchByScore   | ✅                 | Number of elements in response/2, or 1 if sorted set is not found |
-| SortedSetGetScore       |                   | 1                                                                 |
-| SortedSetGetScores      | ✅                 | Number of elements in request/2                                   |
-| SortedSetRemoveElement  |                   | 1                                                                 |
-| SortedSetRemoveElements | ✅                 | Number of elements in request/2                                   |
-| SortedSetGetRank        |                   | 1                                                                 |
-| SortedSetIncrementScore |                   | 1                                                                 |
-| SortedSetLength         |                   | 1                                                                 |
-| SortedSetLengthByScore  |                   | 1                                                                 |
+| API Name                 | Multi-Element API | Operations                                                        |
+| ------------------------ | ----              | ------------                                                      |
+| Set                      |                   | 1                                                                 |
+| Get                      |                   | 1                                                                 |
+| Delete                   |                   | 1                                                                 |
+| Increment                |                   | 1                                                                 |
+| Ping                     |                   | 1                                                                 |
+| ItemGetType              |                   | 1                                                                 |
+| KeyExists                |                   | 1                                                                 |
+| KeysExist                | ✅                | リクエスト内のキーの数/2                                      |
+| SetIfNotExists           |                   | 1                                                                 |
+| UpdateTtl                |                   | 1                                                                 |
+| IncreaseTtl              |                   | 1                                                                 |
+| DecreaseTtl              |                   | 1                                                                 |
+| ItemGetTtl               |                   | 1                                                                 |
+| DictionaryFetch          | ✅                | レスポンスにあるフィールドの数/2、またはdictionaryが見つからない場合は 1   |
+| DictionaryGetField       |                   | 1                                                                 |
+| DictionaryGetFields      | ✅                | リクエストにあるフィールドの数/2                                     |
+| DictionaryIncrement      |                   | 1                                                                 |
+| DictionaryRemoveField    |                   | 1                                                                 |
+| DictionaryRemoveFields   | ✅                | リクエストにあるフィールドの数/2                                      |
+| DictionarySetField       |                   | 1                                                                 |
+| DictionarySetFields      | ✅                | リクエストにあるフィールドの数/2                                      |
+| DictionaryLength         |                   | 1                                                                 |
+| ListFetch                | ✅                | レスポンスにある要素の数/2、またはリストが見つからない場合は 1      |
+| ListConcatenateBack      | ✅                | リクエストにある要素の数/2                                   |
+| ListConcatenateFront     | ✅                | リクエストにある要素の数/2                                   |
+| ListLength               |                   | 1                                                                 |
+| ListPopBack              |                   | 1                                                                 |
+| ListPopFront             |                   | 1                                                                 |
+| ListPushBack             |                   | 1                                                                 |
+| ListPushFront            |                   | 1                                                                 |
+| ListRemoveValue          |                   | 1                                                                 |
+| ListRetain               |                   | 1                                                                 |
+| SetAddElement            |                   | 1                                                                 |
+| SetAddElements           | ✅                | リクエストにある要素の数/2                                   |
+| SetFetch                 | ✅                | レスポンスにある要素の数/2、またはセットが見つからない場合は 1       |
+| SetRemoveElement         |                   | 1                                                                 |
+| SetRemoveElements        | ✅                | リクエストにある要素の数/2                                   |
+| SetContainsElement       |                   | 1                                                                 |
+| SetContainsElements      | ✅                | リクエストにある要素の数/2                                   |
+| SetLength                |                   | 1                                                                 |
+| SortedSetPutElement      |                   | 1                                                                 |
+| SortedSetPutElements     | ✅                | リクエストにある要素の数/2                                   |
+| SortedSetFetchByRank     | ✅                | レスポンス内の要素の数/2、またはソートされたセットが見つからない場合は 1 |
+| SortedSetFetchByScore    | ✅                | レスポンス内の要素の数/2、またはソートされたセットが見つからない場合は 1 |
+| SortedSetGetScore        |                   | 1                                                                 |
+| SortedSetGetScores       | ✅                | リクエストにある要素の数/2                                   |
+| SortedSetRemoveElement   |                   | 1                                                                 |
+| SortedSetRemoveElements  | ✅                | リクエストにある要素の数/2                                   |
+| SortedSetGetRank         |                   | 1                                                                 |
+| SortedSetIncrementScore  |                   | 1                                                                 |
+| SortedSetLength          |                   | 1                                                                 |
+| SortedSetLengthByScore   |                   | 1                                                                 |
