@@ -3,8 +3,8 @@ title: Webhooks
 description: Learn about Webhooks, an event-driven mechanism to listen to Momento Topics
 image: https://assets-global.website-files.com/628fadb065a50abf13a11485/659580dc80a9699d3d1ae72a_webhooks-launch-blog-header.png
 hide_title: true
-sidebar_position: 3
-sidebar_label: Webhooks
+sidebar_position: 1
+sidebar_label: Overview
 pagination_prev: null
 keywords:
   - topics
@@ -74,7 +74,7 @@ Message number for the topic. As messages are published, the `topic_sequence_num
 
 #### token_id
 
-Unique identifier from a [token](./../develop/authentication/tokens.md). When a token is created via the Momento `AuthClient`, you can provide an identifier to be passed along all events published to Momento Topics. [Learn more](https://www.gomomento.com/blog/momento-topics-just-got-more-secure-introducing-embedded-token-identifiers).
+Unique identifier from a [token](./topics/develop/authentication/tokens). When a token is created via the Momento `AuthClient`, you can provide an identifier to be passed along all events published to Momento Topics. [Learn more](https://www.gomomento.com/blog/momento-topics-just-got-more-secure-introducing-embedded-token-identifiers).
 
 #### text
 
@@ -86,9 +86,10 @@ Each request includes two specific headers provided by Momento, enabling integra
 
 #### Momento-Signature
 
-A signature of the request payload, signed with the secret you specified when setting up your webhook, used to verify the integrity and origin of the request. Check out our [dedicated guide](../topics/develop/guides/validating-inbound-webhook-requests) on validating inbound webhook requests.
+A signature of the request payload, signed with the secret you specified when setting up your webhook, used to verify the integrity and origin of the request. Check out our [webhook security page](./security.md) on validating inbound requests.
 
 #### User-Agent
+
 A static header sent by Momento to identify the source of the request, with the format `Momento/1.0 (Webhooks; +https://docs.momentohq.com/topics/webhooks)`.
 
 ## Event delivery
@@ -100,11 +101,11 @@ A failed delivery, which will not be redriven automatically, could be due to one
 * A non-2XX response (e.g., 400, 403, 500, etc.).
 * No response after 5 seconds.
 * A connection error to your endpoint.
-* Rate limit exceeded ([see default limits](./../limits.md)).
+* Rate limit exceeded ([see default limits](./topics/limits)).
 
 ## API calls for Webhooks
 
-Interested in using our SDKs to programmatically setup webhooks? See our [API reference page for Webhooks](./develop/api-reference/webhooks).
+Interested in using our SDKs to programmatically setup webhooks? See our [API reference page for webhooks](./topics/develop/api-reference/webhooks).
 
 ## See More
 
