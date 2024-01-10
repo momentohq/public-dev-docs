@@ -86,7 +86,7 @@ Each request includes two specific headers provided by Momento, enabling integra
 
 #### Momento-Signature
 
-A signature of the request payload, signed with the secret you specified when setting up your webhook, used to verify the integrity and origin of the request.
+A signature of the request payload, signed with the secret you specified when setting up your webhook, used to verify the integrity and origin of the request. Check out our [dedicated guide](../topics/develop/guides/validating-inbound-webhook-requests) on validating inbound webhook requests.
 
 #### User-Agent
 A static header sent by Momento to identify the source of the request, with the format `Momento/1.0 (Webhooks; +https://docs.momentohq.com/topics/webhooks)`.
