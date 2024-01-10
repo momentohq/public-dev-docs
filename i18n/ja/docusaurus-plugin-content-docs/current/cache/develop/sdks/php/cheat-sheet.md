@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 sidebar_label: チートシート
-sidebar_class_name: sidebar-item-php-cheat-sheet
 title: PHP + Momento Cache のためのチートシート
 description: PHP と Momento Cache を使ってコーディングするための全て
 ---

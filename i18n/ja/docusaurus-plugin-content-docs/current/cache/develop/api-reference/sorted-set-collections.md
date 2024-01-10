@@ -14,8 +14,6 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 Momento Cacheのソート済みセットは、値（String、Byte[]など）とスコア（符号付きダブル64ビットfloat）のペアを持つ一意の要素のコレクションです。ソートされたセットの要素は、スコア順に並べられます。
 
-![A diagram of luggage as sets, but organized and stacked nicely.](@site/static/img/sorted-sets.jpg)
-
 :::info
 
 Momento コレクションタイプは、[CollectionTTL](./collection-ttl.md)を使用してTTL動作を指定します。これは、すべての "write" 操作のオプション引数です。
@@ -274,7 +272,7 @@ You can remove either one or a specific group of elements.
 | cacheName       | String          | キャッシュの名前                            |
 | setName         | String          | 変更するソートセットコレクションの名前。 |
 | value           | String \| Bytes | この操作によってインクリメントされる要素の値。 |
-| amount          | Number          | スコアに加算する量。正、負、ゼロのいずれかを指定する。デフォルトは1。 |          
+| amount          | Number          | スコアに加算する量。正、負、ゼロのいずれかを指定する。デフォルトは1。 |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | ソートされたセット・コレクションの TTL。この TTL は、キャッシュ接続クライアントを初期化するときに使用される TTL よりも優先されます。 |
 
 <details>

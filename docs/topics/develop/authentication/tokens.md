@@ -12,9 +12,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Momento tokens for short-lived permissions
 
-![a technical illustration of Momento authentication and access control.](@site/static/img/tokens-page.jpg)
-
-Tokens are short-lived, limited-scope values intended to be used in temporary situations like a user's session. Software lifecycle events like a user login often result in the issuing of a token only valid for the duration of that session. 
+Tokens are short-lived, limited-scope values intended to be used in temporary situations like a user's session. Software lifecycle events like a user login often result in the issuing of a token only valid for the duration of that session.
 
 :::tip
 
@@ -32,11 +30,11 @@ A user with a fully privileged token will be able to perform the following actio
 * Publish and subscribe to any topic in any cache
 * Increment cache values via the increment API in any cache
 
-It's up to you to limit the access of a token based on your system requirements. 
+It's up to you to limit the access of a token based on your system requirements.
 
 ## Creating a token
 
-Unlike our [API keys](./api-keys.md), the only way to create a token is through code. You cannot create them through the Momento console. 
+Unlike our [API keys](./api-keys.md), the only way to create a token is through code. You cannot create them through the Momento console.
 
 Below are some examples to create tokens with different sets of permissions:
 
@@ -46,7 +44,7 @@ For detailed information on creating a token, please refer to the [API reference
 
 ## Expiration
 
-Momento tokens are required to have an expiration time. The **maximum expiration time for a token is 1 hour**. When the token expiration time elapses, you will be required to create a new one. 
+Momento tokens are required to have an expiration time. The **maximum expiration time for a token is 1 hour**. When the token expiration time elapses, you will be required to create a new one.
 
 If you attempt to make a call with an expired token, you will receive a `AUTHENTICATION_ERROR` response indicating the provided credentials could not connect to the service.
 
@@ -67,6 +65,6 @@ These tokens are a great fit for the following use cases:
 
 ## Data restriction
 
-A common use case for a token is to limit access to only a small subset of resources. Not only can you limit capabilities, like providing a token with *read-only* access, but you can also scope it to individual cache items or topics. 
+A common use case for a token is to limit access to only a small subset of resources. Not only can you limit capabilities, like providing a token with *read-only* access, but you can also scope it to individual cache items or topics.
 
 To get a full understanding of what you can do with data restriction, check out our [permissions page](./permissions.md).

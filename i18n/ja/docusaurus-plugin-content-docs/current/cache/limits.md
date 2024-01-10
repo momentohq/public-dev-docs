@@ -1,25 +1,30 @@
 ---
-sidebar_position: 4
+sidebar_position: 8
 sidebar_label: Service Limits
-title: Service limits
+title: Service Limits
 pagination_next: null
+<<<<<<< HEAD:i18n/ja/docusaurus-plugin-content-docs/current/cache/manage/limits.md
 description: Explore Momento Cache service limits, the default values, and how to get them changed if you need.
+=======
+description: Explore Momento Cache  service limits, the default values, and how to get them changed if you need.
+hide_title: true
+>>>>>>> main:i18n/ja/docusaurus-plugin-content-docs/current/cache/limits.md
 ---
 
 # Momento Cacheのサービスリミット
 
 Momento Cache は、サービスリソースに関して自社と顧客の保護に努めています。 これを行うために、すべてのアカウント、キャッシュ、トピックにはサービス制限、つまり「ガードレール」と呼ばれるものが設定されており、操作を可能な限りスムーズに適切に実行し続けることができます。 このページでは、デフォルトのサービス制限の概要を説明します。
 
-| Momento Cache リミット                                                                                               | リミット値          |
+| Momento Cache リミット         | リミット値          |
 |--------------------------------------------------------------------------------------------------------------------|----------------|
-| キャッシュごとの API レート (data plane)                          | 100 operations/s |
-| 顧客あたりの API レート (control plane)     | 5 operations/s   |
-| キャッシュあたりのスループット                          | 1MB/s          |
-| アイテムの最大サイズ                                | 1MB            |
-| 最大のキャッシュ数 (アカウントごと)             | 10             |
-| Time to live (TTL)    | 1 day          |
-| [collection (CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts) ごとの要素のサイズ制限 | 128KB          |
-| [API キーまたはトークン](./../develop/api-reference/auth.md) ごとのアクセス許可 (ハード制限)   | 10             |
+| キャッシュあたりのAPIレート（データプレーン）           | 100 requests/s |
+| 顧客ごとのAPIレート（コントロールプレーン）|5リクエスト/秒  |
+| キャッシュあたりのスループット|1MB/秒          |
+| アイテムの最大サイズ|1MB           |
+| 最大キャッシュ数（アカウントあたり）|10             |
+| 生存時間（TTL）|1日          |
+| [コレクション(CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts)ごとの要素サイズ制限|128KB          |
+| [APIキーまたはトークン](./develop/api-reference/auth.md)ごとのパーミッション (ハードリミット) | 10             |
 
 ## ソフトリミットとサポート
 

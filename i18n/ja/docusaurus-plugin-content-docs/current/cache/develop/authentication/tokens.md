@@ -12,8 +12,6 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # 有効期間の短いアクセス許可用の Momento トークンz
 
-![a technical illustration of Momento authentication and access control.](@site/static/img/tokens-page.jpg)
-
 トークンは、ユーザーのセッションなどの一時的な状況で使用されることを目的とした、有効期間が短く、範囲が限定された値です。 ユーザーログインなどのソフトウェアライフサイクルイベントでは、多くの場合、そのセッションの間のみ有効なトークンが発行されます。
 
 Momento トークンは、*データプレーン* API 操作へのアクセスのみを許可します。 ユーザーは、キャッシュの作成、削除、フラッシュなどの *コントロールプレーン* 操作を実行できません。

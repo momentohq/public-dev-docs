@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 sidebar_label: Cheat Sheet
-sidebar_class_name: sidebar-item-python-cheat-sheet
 title: Cheat Sheet for Python + Momento Vector Index
 description: Everything to get you going with coding using Python and Momento Vector Index
 ---

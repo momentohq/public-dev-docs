@@ -4,7 +4,6 @@
     "collapsible": true,
     "collapsed": true,
     "link": {
-        "description": "Introducing Momento Cache service."
-    },
-    "className": "sidebar-item-walkthrough"
+        "description": "Introducing Momento Cache, an enterprise-ready serverless caching service."
+    }
 }

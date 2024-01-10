@@ -1,0 +1,9 @@
+{
+  "label": "How It Works",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Learn about caching concepts and how Momento implements them."
+  }
+}

@@ -1,7 +1,6 @@
 ---
 sidebar_position: 20
 sidebar_label: SDK Error Handling
-sidebar_class_name: "sidebar-item-api-reference"
 title: SDK error handling
 description: Discover how to handle errors when using the Momento SDK.
 pagination_next: null
@@ -14,13 +13,12 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # SDK Error Handling
 
-<img src="/img/error-handling.jpg" width="90%" alt="a technical illustration of Momento client configuration objects." />
-
 Each of our SDKs has its own page in this documentation; you can navigate to them by clicking `Develop`->`SDKs` in the left navigation menu. On each of these pages, you'll find a link for "Taking your code to prod" which provides best practices for production-ready code in that language.
 
 Momento SDKs are designed to behave well in production environments using the pre-built configuration objects provided, so most users can easily move from proof of concept to production with no changes in operating practices. This page shares some general notes on error handling in Momento SDKs, and why the default behaviors we've chosen are recommended for most customers.
 
 ## Surfacing errors
+
 Errors that occur in calls to `CacheClient` methods (e.g. Get, Set, Increment) are surfaced to developers as part of the return values of the calls, as opposed to throwing exceptions. This makes errors more visible when you're writing your code, and allows your IDE to be more helpful in ensuring you've handled the errors you care about. For more on our philosophy about this, see our blog post on why [Exceptions are bugs](https://www.gomomento.com/blog/exceptions-are-bugs), and send us any feedback you have!
 
 This also helps to ensure your application doesn't crash at runtime. Momento is a cache, so applications usually have an authoritative data source they from which they retrieve data if the cache is unavailable. Therefore, Momento SDKs are designed to avoid throwing exceptions so your app won't crash if you forget to add a try/catch block.
@@ -45,4 +43,4 @@ The general pattern of behavior you can expect from Momento SDKs when it comes t
 
 <img src="/img/sdk_retry_behavior.png" width="100%" alt="logic diagram depicting SDK retry behavior"/>
 
-Momento SDKs do not retry throttled requests ([limits exceeded](./../../manage/limits/)). For other errors, the SDK will not retry if the operation requested is not [idempotent](https://en.wikipedia.org/wiki/Idempotence). For example, if you are incrementing a counter and receive an error response, the SDK will not retry on your behalf (because this could result in over-counting). In the case of non-idempotent operations, it is safer to let the developer choose whether to retry.
+Momento SDKs do not retry throttled requests ([limits exceeded](./../../limits/)). For other errors, the SDK will not retry if the operation requested is not [idempotent](https://en.wikipedia.org/wiki/Idempotence). For example, if you are incrementing a counter and receive an error response, the SDK will not retry on your behalf (because this could result in over-counting). In the case of non-idempotent operations, it is safer to let the developer choose whether to retry.

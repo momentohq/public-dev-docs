@@ -1,15 +1,12 @@
 ---
 sidebar_position: 1
 sidebar_label: Data Types
-sidebar_class_name: sidebar-item-data-types
 title: Supported data types
 description: Learn the core data types in Momento Cache to match up with common types in modern programming languages and information about each.
 ---
 
 # Momento Cacheでサポートされているデータ型
 Momento Cache は、さまざまな最新のプログラミング言語の一般的な型に対応するコアなデータ型のグループを提供します。このページには、コアなデータ型の一覧と、それぞれのデータ型に関する情報があります。
-
-![An image of a fast moving collection of various data types and ideas](@site/static/img/more-data-types.jpg)
 
 ## Momento Cacheのコアなデータ型
 
@@ -26,7 +23,7 @@ Collection data typesは、関連するデータを1つのアイテムにまと�
 
 ```javascript
 "Hoover’s Sour Cream Cookies" = [
-  "1 cup butter (2 sticks), room temperature", 
+  "1 cup butter (2 sticks), room temperature",
   "1 cup granulated sugar",
   "1 cup brown sugar, packed",
   "3 eggs, room temperature",
@@ -48,7 +45,7 @@ dictionary を使う例としては、データをまとめて保存し、フィ
 
 ```javascript
 "truck546" = {
-    "brand" : "Ford", 
+    "brand" : "Ford",
     "model": "F-350",
     "year" : "2020",
     "engine" : "diesel"

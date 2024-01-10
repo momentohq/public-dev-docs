@@ -1,9 +1,10 @@
 ---
-sidebar_position: 4
+sidebar_position: 8
 sidebar_label: Service Limits
-title: Service limits
+title: Service Limits
 pagination_next: null
 description: Explore Momento Cache service limits, the default values, and how to get them changed if you need.
+hide_title: true
 ---
 
 # Service Limits for Momento Cache
@@ -19,7 +20,7 @@ Momento Cache seeks to protect itself and its customers when it comes to service
 | Max cache count (per account)                                                                                      | 10             |
 | Time to live (TTL)                                                                                                 | 1 day          |
 | Per [collection (CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts) element size limit | 128KB          |
-| Permissions per [API key or token](./../develop/api-reference/auth.md)  (hard limit)                               | 10             |
+| Permissions per [API key or token](./develop/api-reference/auth.md)  (hard limit)                               | 10             |
 
 ## Soft limits and support
 

@@ -13,9 +13,6 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 # Dictionary API reference for Momento Cache
 This page details the Momento API methods for the [dictionary collection data type](./../basics/datatypes.md#dictionary-collections).
 
-<img src="/img/dictionary-collections.jpg" width="90%" alt="a technical illustration of stacks of books. some dusty, so not. All collected into groups." />
-
-
 :::info
 
 Momento collection types use a [CollectionTTL](./collection-ttl.md) to specify their TTL behavior. This is an optional argument for all "write" operations.

@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-sidebar_class_name: sidebar-item-redis
 sidebar_label: Redis compatibility clients
 pagination_prev: null
 title: Redis compatibility clients

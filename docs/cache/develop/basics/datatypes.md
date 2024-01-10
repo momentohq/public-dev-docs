@@ -1,32 +1,33 @@
 ---
 sidebar_position: 1
 sidebar_label: Data Types
-sidebar_class_name: sidebar-item-data-types
 title: Supported data types
 description: Learn the core data types in Momento Cache to match up with common types in modern programming languages and information about each.
 ---
 
 # Supported data types in Momento Cache
-Momento Cache provides a group of core data types to match up with common types in various modern programming languages. This page has a list of the core data structures and information about each of them.
 
-![An image of a fast moving collection of various data types and ideas](@site/static/img/more-data-types.jpg)
+Momento Cache provides a group of core data types to match up with common types in various modern programming languages. This page has a list of the core data structures and information about each of them.
 
 ## Core data types of Momento Cache
 
 ### Byte arrays
+
 All data stored is represented as byte arrays. The Momento SDKs provide easy methods you can use to store your data as raw bytes or as portable UTF-8 strings. Those can be in the form of scalar data, such as strings, characters, numbers, and binary data, such as images and Protocol Buffers serialized arrays.
 
 ### Collection data types (CDTs)
+
 Collection Data Types are a grouping of related data into a single item. They are stored as byte array values and each has their own set of API calls in Momento SDKs. For example, DictionaryFetch, ListFetch, and SetFetch.
 
 <img src="/img/collection_data_types.png" alt="Collection data types drawing | Momento Cache" width="80%"/>
 
 #### Lists
+
 A list is a collection of ordered elements, sorted in the sequence each element was inserted.
 
 ```javascript
 "Hoover’s Sour Cream Cookies" = [
-  "1 cup butter (2 sticks), room temperature", 
+  "1 cup butter (2 sticks), room temperature",
   "1 cup granulated sugar",
   "1 cup brown sugar, packed",
   "3 eggs, room temperature",
@@ -42,12 +43,13 @@ A list is a collection of ordered elements, sorted in the sequence each element 
 To learn the API methods, check the [API reference for list collection data types](./../api-reference/list-collections.md).
 
 #### Dictionaries
+
 A dictionary is a collection of unordered elements where each element is a field:value pair.
 
 An example of using a dictionary is when you need to store data together and retrieve field:value pairs by name.
 ```javascript
 "truck546" = {
-    "brand" : "Ford", 
+    "brand" : "Ford",
     "model": "F-350",
     "year" : "2020",
     "engine" : "diesel"

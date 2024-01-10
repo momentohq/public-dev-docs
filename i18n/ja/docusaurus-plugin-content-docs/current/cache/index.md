@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-sidebar_class_name: sidebar-item-overview
 sidebar_label: Momento Cache
 title: Momento Cache Documentation
 description: Learn what you need to know to speed up your cloud application with the world's first serverless cache.
@@ -39,10 +38,6 @@ Momento Cacheは、以下のクラウドプロバイダーおよびリージョ�
   - [Ruby](./cache/develop/sdks/ruby)
   - [Elixir](./cache/develop/sdks/elixir)
   - [Swift](./cache/develop/sdks/swift)
-
-- Momento Cacheとその仕組みについてもっと知りたい場合は、[Momento Cache concepts](./learn/how-it-works/index.mdx)を参照してください。
-
-- AWS Lambda やその他のシステムとの統合に関する具体的なガイドについては、[guides](./develop/guides/1-caching-with-aws-lambda.md) セクションを参照してください。
 
 - アーキテクチャ図用のMomentoのアイコンをお探しですか？[Momento_Architecture_Icons.zip](@site/static/img/icons/Momento_Architecture_Icons.zip)をダウンロードしてください。
 
