@@ -3,12 +3,7 @@ sidebar_position: 8
 sidebar_label: Service Limits
 title: Service Limits
 pagination_next: null
-<<<<<<< HEAD:i18n/ja/docusaurus-plugin-content-docs/current/cache/manage/limits.md
 description: Explore Momento Cache service limits, the default values, and how to get them changed if you need.
-=======
-description: Explore Momento Cache  service limits, the default values, and how to get them changed if you need.
-hide_title: true
->>>>>>> main:i18n/ja/docusaurus-plugin-content-docs/current/cache/limits.md
 ---
 
 # Momento Cacheのサービスリミット
