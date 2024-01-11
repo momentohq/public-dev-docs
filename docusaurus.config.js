@@ -278,10 +278,9 @@ const config = {
         title: "",
         logo: {
           alt: "Momento Logo",
-          src: "img/momento-logo-forest.svg",
-          srcDark: "img/momento-logo-white.svg",
-          href: "/",
-          target: "_blank",
+          src: "img/momento-docs-logo-forest.svg",
+          srcDark: "img/momento-docs-logo-white.svg",
+          href: "/"
         },
         items: [
           {to: '/cache', label: 'Cache', position: 'left'},
