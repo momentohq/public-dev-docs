@@ -32,15 +32,25 @@ jobs:
           SIMPLEEN_TRANSLATOR_ID: ${{ secrets.SIMPLEEN_TRANSLATOR_ID }}
           TARGET_LANG: ja
       - run: git diff
-      - uses: peter-evans/create-pull-request@v5
-        with:
-          add-paths: i18n/ja/docusaurus-plugin-content-docs/current/
-          base: main
-          branch: ja/${{ github.event.pull_request.head.ref }}
-          author: GitHub <noreply@github.com>
-          commit-message: ${{ github.event.pull_request.title }} [ja]
-          title: ${{ github.event.pull_request.title }} [ja]
-          body: |
-            Auto translated PR from #${{ github.event.pull_request.number }}
-            cc: @MomentoBigFun @Yoshiitaka
-          reviewers: poppoerika
+#
+# NOTE: temporarily commenting out the following lines due to unknown issues with the translation tool.
+#       Recent CI runs are failing with lots of "Internal Server Error" messages from Simpleen, for example:
+#       https://github.com/momentohq/public-dev-docs/actions/runs/7481186195/job/20362246899?pr=610#step:6:1
+#
+#       There were some recent commits where the i18n files got modified manually and I'm not sure if that broke something,
+#       but I'm currently unable to get simpleen to do any translation w/o Internal Server Error either when I try to run
+#       it locally, or when it is run in github CI. Example commit that modified the i18n files manually:
+#       https://github.com/momentohq/public-dev-docs/pull/606/files#diff-0383a939d1d10c309302e8ed36896a30028b670076d2f71c4e3a7b6f3330ade2R12
+#
+#      - uses: peter-evans/create-pull-request@v5
+#        with:
+#          add-paths: i18n/ja/docusaurus-plugin-content-docs/current/
+#          base: main
+#          branch: ja/${{ github.event.pull_request.head.ref }}
+#          author: GitHub <noreply@github.com>
+#          commit-message: ${{ github.event.pull_request.title }} [ja]
+#          title: ${{ github.event.pull_request.title }} [ja]
+#          body: |
+#            Auto translated PR from #${{ github.event.pull_request.number }}
+#            cc: @MomentoBigFun @Yoshiitaka
+#          reviewers: poppoerika
