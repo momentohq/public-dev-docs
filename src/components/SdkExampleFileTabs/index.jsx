@@ -11,6 +11,6 @@ import React from 'react';
  * @param snippetId: string
  * @constructor
  */
-export const SdkExampleFileTabs = ({javascript, python, java, go, csharp, php, rust, ruby, elixir, swift, cli}) => {};
+export const SdkExampleFileTabs = ({javascript, python, java, go, csharp, php, rust, ruby, elixir, swift, dart, cli}) => {};
 
 

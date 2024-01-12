@@ -15,6 +15,7 @@ export enum ExampleLanguage {
   RUBY = 'ruby',
   ELIXIR = 'elixir',
   SWIFT = 'swift',
+  DART = 'dart',
   CLI = 'cli',
 }
 
@@ -57,6 +58,8 @@ export function languageDisplayName(language: ExampleLanguage): string {
       return 'Elixir';
     case ExampleLanguage.SWIFT:
       return 'Swift';
+    case ExampleLanguage.DART:
+      return 'Dart';
     case ExampleLanguage.CLI:
       return 'CLI';
     default:

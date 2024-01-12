@@ -180,6 +180,7 @@ CLI の最新バージョンとインストール方法、使い方は [この�
 - [Ruby](./develop/sdks/ruby)
 - [Elixir](./develop/sdks/elixir)
 - [Swift](./develop/sdks/swift)
+- [Dart](./develop/sdks/dart)
 
 ## FAQ
 

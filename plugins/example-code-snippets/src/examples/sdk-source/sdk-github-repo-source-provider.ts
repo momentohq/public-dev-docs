@@ -35,6 +35,8 @@ export function githubRepoNameForSdk(sdk: Sdk): string {
       return 'client-sdk-elixir';
     case Sdk.SWIFT:
       return 'client-sdk-swift';
+    case Sdk.DART:
+      return 'client-sdk-dart';
     case Sdk.CLI:
       return 'momento-cli';
     default:
