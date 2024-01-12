@@ -156,6 +156,10 @@ const config = {
             to: '/cache',
             from: '/docs/guides/caching-with-aws-lambda',
           },
+          {
+            to: '/cache/introduction/what-is-serverless-caching',
+            from: '/cache/develop/guides/caching-with-aws-lambda'
+          },
           // Redirect API-reference
           {
             to: '/cache/develop/api-reference',
