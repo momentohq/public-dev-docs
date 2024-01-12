@@ -1,12 +1,14 @@
 ---
 sidebar_position: 2
-sidebar_label: Metrics in the console
-title: Metrics in the console
+sidebar_label: Metrics in the Console
+title: Metrics in the Console
 pagination_prev: null
 description: Metrics in the console
+hide_title: true
 ---
 
 # Metrics in the console
+
 When developing and operating applications with Momento Cache, you'll want visibility to effectively diagnose bugs and optimize performance. Momento provides an hour of service-side metrics to all customers via the Momento console, aimed at facilitating troubleshooting and tuning. If you're an enterprise with critical dependency on Momento Cache, we recommend partnering more closely with the Momento team for support and delivery of detailed historical metrics.
 
 Within the Momento console, you can visit the cache metrics dashboard by selecting the small bar graph icon on the left navigation menu, as shown below.

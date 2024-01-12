@@ -115,6 +115,7 @@ Searches for items with vectors most similar to a query vector.
 | queryVector    | number[]                        | Vector to search for.                                                                                                                                                    |
 | topK           | number                          | Number of results to return. Defaults to 10.                                                                                                                             |
 | metadataFields | String[] or ALL_VECTOR_METADATA | A list of metadata fields to return with each result, or a value indicating all metadata should be returned. If not provided, no metadata is returned. Defaults to None. |
+| scoreThreshold | number                          | A score threshold to filter results by. The threshold is exclusive. Defaults to no threshold (all results are returned).                                                 |
 
 <details>
   <summary>Method response object</summary>
@@ -143,6 +144,7 @@ Searches for items with vectors most similar to a query vector. Also returns cor
 | queryVector    | number[]                        | Vector to search for.                                                                                                                                                    |
 | topK           | number                          | Number of results to return. Defaults to 10.                                                                                                                             |
 | metadataFields | String[] or ALL_VECTOR_METADATA | A list of metadata fields to return with each result, or a value indicating all metadata should be returned. If not provided, no metadata is returned. Defaults to None. |
+| scoreThreshold | number                          | A score threshold to filter results by. The threshold is exclusive. Defaults to no threshold (all results are returned).                                                 |
 
 <details>
   <summary>Method response object</summary>

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Pricing and free tier
+title: Pricing and Free Tier
 pagination_prev: null
 description: Explore the simplicity of the pricing model and free tier information for Momento Cache and Momento Topics
 ---
