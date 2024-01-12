@@ -243,6 +243,10 @@ const config = {
           {
             from: '/develop/sdks/nodejs/topics-cheat-sheet',
             to: '/topics/develop/sdks/nodejs/cheat-sheet'
+          },
+          {
+            from: '/topics/webhooks',
+            to: '/topics/webhooks/overview'
           }
         ],
           // This came in with v1.5.0 of the docs where we split out by service.
@@ -274,10 +278,9 @@ const config = {
         title: "",
         logo: {
           alt: "Momento Logo",
-          src: "img/momento-logo-forest.svg",
-          srcDark: "img/momento-logo-white.svg",
-          href: "/",
-          target: "_blank",
+          src: "img/momento-docs-logo-forest.svg",
+          srcDark: "img/momento-docs-logo-white.svg",
+          href: "/"
         },
         items: [
           {to: '/cache', label: 'Cache', position: 'left'},
