@@ -8,10 +8,13 @@ description: Learn to add and retrieve files from Momento Cache with hands on co
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Momento Cacheを使ったファイルの追加と取得
-Momento Cache のアイテムはバイト配列なので、[アイテムあたりの上限 1MB](./../../limits)以内であれば、作成したいほとんどのファイルをキャッシュに簡単に保存することができます。
+# Add and retrieve a file with Momento Cache
 
-以下は、ファイルシステムからファイルを読み込み、キャッシュのアイテムに保存し、キャッシュからファイルを読み込み、ファイルシステムに書き込む例です。
+An item in Momento Cache is a byte array, so a cache can easily store most any file you want to create, as long as it is under the [per item limit of 1MB](./../../limits).
+
+Here is an example of reading a file from the filesystem, saving the file to an item in a cache, reading it from the cache, and then writing it to the filesystem.
+  <Tabs>
+    <TabItem value="nodejs" label="Node.js" default>
 
 ```javascript
 const fs = require('fs');
@@ -86,7 +89,9 @@ async function run() {
 run();
 ```
 
-Node.js SDKの使い方については、[Node.jsチートシ](./../sdks/nodejs/cheat-sheet.mdx)ートをご覧ください。
+Check our [Node.js cheat sheet](./../sdks/nodejs/cheat-sheet.mdx) for more on using our Node.js SDK.
+   </TabItem>
+   <TabItem value="py" label="Python">
 
 ```python
 import os
@@ -155,7 +160,7 @@ if __name__ == '__main__':
 
 ```
 
-Python SDKの使い方については、[Pythonチートシ](./../sdks/python/cheat-sheet.md)ートをご覧ください。
+Check our [Python cheat sheet](./../sdks/python/cheat-sheet.md) for more on using our Python SDK.
 
    </TabItem>
 </Tabs>
