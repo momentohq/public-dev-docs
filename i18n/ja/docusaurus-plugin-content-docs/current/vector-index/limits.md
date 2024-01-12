@@ -1,7 +1,7 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 sidebar_label: Service Limits
-title: Service limits
+title: Service Limits
 pagination_next: null
 description: Explore Momento Vector Index service limits, the default values, and how to get them changed if you need.
 ---

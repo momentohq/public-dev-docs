@@ -7,9 +7,7 @@ description: Learn the Webhook API calls you need to know about and how to use t
 
 # Webhook API reference
 
-<img src="/img/topics/webhooks-page.png" width="90%" alt="minified javascript code with the text 'Trigger the hook'" />
-
-Webhooks provide an additional way to consume messages on a topic. When a webhook is created, it gets attached to a topic. When messages are published to this topic, an outbound http call gets POSTed to the webhook callback url. The endpoint that is associated with the webhook must be publicly accessible for Momento to be able to POST requests. To confirm receipt, your api should respond with an empty HTTP 2xx response to the original request. If confirmation is not received within _5 seconds_, we drop the message and mark it as timed out.  
+Webhooks provide an additional way to consume messages on a topic. When a webhook is created, it gets attached to a topic. When messages are published to this topic, an outbound http call gets POSTed to the webhook callback url. The endpoint that is associated with the webhook must be publicly accessible for Momento to be able to POST requests. To confirm receipt, your api should respond with an empty HTTP 2xx response to the original request. If confirmation is not received within _5 seconds_, we drop the message and mark it as timed out.
 
 :::note
 All messages that are sent to the webhook are still available to be received with a subscription to the topic.
@@ -200,7 +198,7 @@ See [response objects](https://docs.momentohq.com/topics/develop/api-reference/r
 
 :::note
 
-Secret rotation cannot be reverted, it is important to update all webhooks that are validating requests against a previous secret. 
+Secret rotation cannot be reverted, it is important to update all webhooks that are validating requests against a previous secret.
 
 :::
 

@@ -8,10 +8,6 @@ description: Information about the Momento Rust SDK
 
 # Momento Rust SDK
 
-<img src="/img/rust.png" width="90%" alt="a picture of abstract shapes as building and nodes of data connecting them at high speed" />
-
-Welcome to the Momento Rust SDK documentation!
-
 The Momento Rust SDK is available via the crates.io package [`momento`](https://crates.io/crates/momento).
 
 The source code can be found on github: [momentohq/client-sdk-rust](https://github.com/momentohq/client-sdk-rust).

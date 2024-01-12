@@ -1,37 +1,39 @@
 ---
 sidebar_position: 4
 sidebar_label: Develop
-sidebar_class_name: "sidebar-item-api-reference"
 title: Developing applications with Momento SDKs
 description: Learn the core concepts for getting started with the Momento SDKs.
 ---
 
-import{ SdkExampleTabs }from "@site/src/components/SdkExampleTabs";// このインポートは、使用されていないように見えても必要です。inject-example-code-snippet// プラグインは、SdkExampleTabs のインスタンスを SdkExampleTabsImplimport{ SdkExampleTabsImpl }from "@site/src/components/SdkExampleTabsImpl" に変換します；
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Momento SDKを使用したアプリケーションの開発
+# Developing applications with Momento SDKs
 
+Welcome! This page provides information about common constructs you will need in order to assemble Momento clients in all of our SDKs. This page covers how to provide your Momento credentials (called auth tokens), how to configure your client, and some basic information about error handling and production readiness.
 
+## Constructing a Topics client
 
-##
+The `TopicClient` is the main object you will use in your code to interact with Momento services. To instantiate one, you need to pass a `CredentialProvider`, a `Configuration`, and a default time to live (TTL) value. The default TTL determines how long items using that `CacheClient` will be stored in the cache before the cache deletes them.
 
+Here is an example of how to construct a `TopicClient`:
 
+<SdkExampleTabs snippetId={'API_InstantiateTopicClient'} />
 
+## Instantiating credential providers using Momento API keys
 
+You need to provide a Momento API key when instantiating a Momento client. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). Once you have a token, provide it to Momento SDKs when you create an instance of `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider` object, either from an environment variable or from a String. Below is an example of how to instantiate `CredentialProvider` from an environment variable:
 
+<SdkExampleTabs snippetId={'API_CredentialProviderFromEnvVar'} />
 
+If you're storing your Momento API key in a secret manager such as [AWS Secret Manager](https://aws.amazon.com/secrets-manager/), [GCP Secret Manager](https://cloud.google.com/secret-manager), or a local config file, you must first retrieve the credentials from there and then instantiate a `CredentialProvider` from a string, like this:
 
-##
+<SdkExampleTabs snippetId={'API_CredentialProviderFromString'} />
 
+For an example of how to retrieve credentials from AWS Secrets Manager, see [Retrieving a Momento auth token from AWS Secrets Manager](./develop/integrations/aws-secrets-manager).
 
+For general information on Momento authentication, see [our auth page](./develop/authentication).
 
-\<SdkExampleTabs{'API_CredentialProviderFromEnvVar'}/>を使用します。
-
-
-
-\<SdkExampleTabsのsnippetId={'API_CredentialProviderFromString'}/>。
-
-AWS Secrets Manager から認証情報を取得する例については、「[AWS Secrets Manager から Momento 認証トークンを取得する](./develop/integrations/aws-secrets-manager)」を参照してください。
-
-Momento 認証に関する一般的な情報は、[認証のページを](./develop/authentication)参照ください。
-
-さらに詳しい情報は、[レスポンスオブジェクトの](./develop/api-reference/response-objects)ページや SDK のドキュメント (左ナビの`Develop ->``SDKs`) を参照してください。
+For more information, see our [Response Objects](./develop/api-reference/response-objects) page, and the docs for the specific SDK that you are using (under `Develop`->`SDKs` in the left nav).

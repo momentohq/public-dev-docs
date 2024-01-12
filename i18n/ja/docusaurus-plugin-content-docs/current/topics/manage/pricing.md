@@ -1,57 +1,58 @@
 ---
 sidebar_position: 3
-title: Pricing and free tier
+title: Pricing and Free Tier
 pagination_prev: null
 description: Explore the simplicity of the pricing model and free tier information for Momento Topics
 ---
 
-#
+# Momento Topicsの価格と無料ティア
 
+サーバーレスは、価格設定を含め、あらゆる面でシンプルであることを重視しています。オンデマンド価格では、Momento CacheとTopicsは転送量1GBあたり0.50ドルで、毎回1KB単位で課金されます。これだけです。
 
+毎月最初の5GBの転送は無料で、クレジットカードも必要ありません。
 
+Momentoのサービスには隠れた料金はありません。ストレージ、レプリケーション、インスタンスにお金を払う必要はありません。文字通り、Momento CacheやTopicsサービスに出入りするデータに対してのみ課金されます。それ以外はすべて含まれています。安心してサインアップして、素晴らしいものを作ってください。
 
+さらにお得な価格設定、メトリクスの統合、サポートオプションについては、[ティア価格](https://www.gomomento.com/pricing) をスタンダート ティアおよびエンタープライズ ティアで提供しています。
 
+さらにサポートが必要な場合（または単に信じられない場合）は、私たちの[Discord](https://discord.gg/Z7FSXB89)にメッセージを送ってください。
 
-
-
-
-
-
-## よくある質問
+## FAQ's
 
 <details open>
-  <summary>Is it really just $.50/GB transferred in and out of Momento services? What else do you charge for?</summary>
+  <summary>Momentoのサービスのイン/アウトは、本当に$.50/GBだけですか？他に料金はかかりますか？</summary>
 
-| Dimension                            | Momento charges |
-| ------------------------------------ | --------------- |
-| Memory / Storage                     | $0/GB           |
-| Multi-AZ replication charges         | $0/GB           |
-| Single sign-on & teams (coming soon) | $0/user         |
+| ディメンション                            | Momentoの料金           |
+|--------------------------------------|---------------------------|
+| Memory / Storage                     | $0/GB                     |
+| Multi-AZ replication charges         | $0/GB                     |
+| Single sign-on & teams (coming soon) | $0/user                   |
 
  </details>
 
 <details>
-<summary>Can I run a production app for free on Topics?</summary>
-Absolutely! Our free tier and low usage tiers are just billing. It is the same exact service and features whether you use 40GB/month or 40TB/month. You get all our availability features like multi-AZ replication, hot key protection, and automatic scaling to handle bursts. In the free tier, you even get all our security features for free, such as <a href="./../develop/authentication">fine-grained auth tokens</a>, end-to-end encryption, per-request authentication, and TLS.
+<summary>Topicsで本番アプリを無料で走らせることはできますか？</summary>
+できます。無料利用枠と低使用量枠は単なる課金です。40GB/月を使用しても、40TB/月を使用しても、まったく同じサービスと機能です。
+マルチAZ レプリケーション、ホットキー保護、バーストを処理するための自動スケーリングなどの可用性機能をすべて利用できます。
+無料枠では、<a href="./../develop/authentication">fine-grained auth toekn</a>やエンドツーエンドの暗号化、リクエスト認証とTLSなど、すべてのセキュリティ機能を無料で利用できます。
 
-
-
+低RPSのワークフローを処理するためにクラスタ全体をプロビジョニングしている顧客をよく見かけます。それらをHAにしたいのであれば、複数のノードが必要だ。CICDを信じているのであれば、同じようなサイズのクラスタをステージング中、そしておそらく開発環境にも持っている可能性が高いです。これは大きな負担だと思います。既存のマシンの電源を切って、環境を守りましょう。そしてMomentoの使用を検討してみてください。
 </details>
 
 <details>
-  <summary>Can I run a production app for $5.00/month on Momento services?</summary>
-Absolutely! If you are transferring 15 GB of data in/out of Momento Cache each month, you get the first 5GB free each month and pay $0.50/GB for the remaining 10GB each month. Access enterprise-grade availability, security, and performance at any scale with Momento.
+  <summary>Momentoのサービスでは、月額5ドルで本番アプリケーションを実行できますか？</summary>
+もちろんです！毎月15GBのデータをMomento Cacheに出し入れする場合、最初の5GBは無料、残りの10GBは毎月$0.50/GBを支払います。エンタープライズ・グレードの可用性、セキュリティ、パフォーマンスを、Momentoならどんな規模でも利用できます。
 
 
-
+おかしな話に聞こえるかもしれませんが、これを実現したのは当社が初めてではないです。Amazon DynamoDBやAmazon S3など、他のサーバーレス・サービスでもこれを体験することができます。
 </details>
 
 <details>
-  <summary>Can I really store as much data in my topic(s) as I want?</summary>
-Heck yeah! You are billed for the inbound and outbound data transfer, not the volume of data in your cache.
+  <summary>自分のTopicsに本当に好きなだけデータを保存できるのか？</summary>
+できます！キャッシュ内のデータ量ではなく、インバウンドとアウトバウンドのデータ転送に対して課金されます。
 </details>
 
 <details>
-  <summary>Will it scale?</summary>
-Hell yes! Momento services are the best way to future-proof your application story. You can add Momento Cache *extremely* quickly, and it just fades into the background whether you are doing 1 RPS or 1 million RPS. You just pay for what you use, so you get a scalable cache without spending a lot of cash.
+  <summary>スケールするのか？</summary>
+そうです！Momentoサービスは、アプリケーションのストーリーを将来にわたって保証する最良の方法です。1RPSでも100万RPSでも、Momento Cacheは非常に素早く追加でき、バックグラウンドに消えていきます。使用した分だけ支払うだけなので、大金を使わずにスケーラブルなキャッシュを手に入れることができるのです。
 </details>

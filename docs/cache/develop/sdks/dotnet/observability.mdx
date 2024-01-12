@@ -1,7 +1,6 @@
 ---
 sidebar_position: 2
 sidebar_label: Observability
-sidebar_class_name: sidebar-item-dotnet
 title: Observability for .NET SDK
 description: Instrument your Momento-enabled .NET code with Logs, Metrics, and Traces
 ---
@@ -17,7 +16,7 @@ import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBloc
 
 Our goal for all of the Momento SDKs is to make sure that developers can direct Momento log output to the same destination that they are using for the rest of their application logs; therefore, we aim to be compatible with all of the popular logging frameworks for a given programming language.
 
-The .NET SDK uses the [`ILoggerFactory` and `ILogger` interfaces](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging?tabs=command-line) so that logs can be written to the desired destination by configuring the appropriate logging providers. 
+The .NET SDK uses the [`ILoggerFactory` and `ILogger` interfaces](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging?tabs=command-line) so that logs can be written to the desired destination by configuring the appropriate logging providers.
 
 As long as your preferred logger implements the `ILogger` interface, you can pass the logger into your Momento configuration objects. You can also use your preferred logger in any custom middleware implementation you write ([example here](https://github.com/momentohq/client-sdk-dotnet/blob/main/src/Momento.Sdk/Config/Middleware/LoggingMiddleware.cs)).
 
@@ -30,12 +29,12 @@ Once configured, you should see log messages in your logging environment that lo
 ## Metrics
 Metrics are measurements that provide quantitative information about system performance and behavior. They are numerical values captured and recorded over regular intervals, providing statistical data to aid in understanding the trends and patterns in a system.
 
-For Momento, specifically, you might want to capture client-side metrics on the number of requests made, their duration, request or response size, or failure rates. 
+For Momento, specifically, you might want to capture client-side metrics on the number of requests made, their duration, request or response size, or failure rates.
 
 The most straightforward way to emit these metrics is to use one of the `ExperimentalMetricsMiddleware` classes. These classes emit metrics in JSON format:
 
 ```
-(Momento: _ExperimentalMetricsLoggingMiddleware): 
+(Momento: _ExperimentalMetricsLoggingMiddleware):
 {
   "momento": {
     "numActiveRequestsAtStart": 1,

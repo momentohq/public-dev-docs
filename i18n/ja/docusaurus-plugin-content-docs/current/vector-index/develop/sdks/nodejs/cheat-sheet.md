@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 sidebar_label: Cheat Sheet
-sidebar_class_name: sidebar-item-nodejs-cheat-sheet
 title: Momento Vector Index cheat sheet for TypeScript and Node.js
 description: Everything to get you going with coding using Node.js and Momento Vector Index
 ---

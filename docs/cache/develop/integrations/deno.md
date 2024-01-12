@@ -9,7 +9,7 @@ description: Learn to deploy a Deno project that uses Momento Cache
 
 In this tutorial, we'll walk through two [examples](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/deno) from our [JavaScript Web SDK](https://github.com/momentohq/client-sdk-javascript). By the end of the exercise, you'll have a Deno project that interacts with Momento Cache through the Web SDK or the HTTP API to get, set, and delete some data.
 
-### Momento Web SDK vs HTTP API
+## Momento Web SDK vs HTTP API
 
 There are a few reasons why you might choose one over the other when interacting with Momento Cache within Deno.
 
@@ -41,7 +41,7 @@ After pressing the `Create` button you'll see the new `worker` cache in the list
 
 ![New cache](/img/console-caches-worker.png)
 
-Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento API Key in the next step. 
+Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento API Key in the next step.
 
 Navigate to the [tokens](https://console.gomomento.com/tokens) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained token that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations, such as creating or deleting a cache. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
 
@@ -83,7 +83,7 @@ First navigate to the deno HTTP API example directory:
 cd client-sdk-javascript/examples/deno/http-api
 ```
 
-Create a `.env` file and provide the name of your Momento Cache, the corresponding fine-grained access token, and the HTTP endpoint associated with your token. 
+Create a `.env` file and provide the name of your Momento Cache, the corresponding fine-grained access token, and the HTTP endpoint associated with your token.
 
 ```
 MOMENTO_API_KEY="<your-api-key>"
@@ -97,9 +97,9 @@ Run the program locally then checkout http://localhost:8000 in your browser to m
 deno task start
 ```
 
-The [example code](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/deno/http-api/index.ts) sets an item in the cache, gets it, deletes it, and returns an HTML response. 
+The [example code](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/deno/http-api/index.ts) sets an item in the cache, gets it, deletes it, and returns an HTML response.
 It uses the [`MomentoFetcher` class](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/deno/http-api/index.ts#L10) which provides a small wrapper that adds some error handling to the basic fetch calls to the Momento HTTP API.
-   
+
 ```typescript
   const momento = new MomentoFetcher(apiKey, endpoint)
 
@@ -154,7 +154,7 @@ Run the program locally then checkout http://localhost:8000 in your browser to m
 deno task start
 ```
 
-The [example code](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/deno/web-sdk/index.ts) instantiates a Momento CacheClient, sets an item in the cache, gets it, deletes it, and returns a basic response. 
+The [example code](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/deno/web-sdk/index.ts) instantiates a Momento CacheClient, sets an item in the cache, gets it, deletes it, and returns a basic response.
 
 ```typescript
   const momento = new CacheClient({
@@ -180,7 +180,7 @@ The [example code](https://github.com/momentohq/client-sdk-javascript/tree/main/
   })
 ```
 
-When you're ready to deploy, you can follow one of Deno's [deployment guides](https://deno.land/manual@v1.36.1/advanced/deploying_deno). Deno Deploy does not yet support npm specifiers so this example can't be deployed there. 
+When you're ready to deploy, you can follow one of Deno's [deployment guides](https://deno.land/manual@v1.36.1/advanced/deploying_deno). Deno Deploy does not yet support npm specifiers so this example can't be deployed there.
 
 ## Conclusion
 

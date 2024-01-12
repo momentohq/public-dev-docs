@@ -8,8 +8,7 @@ description: Learn to add and retrieve files from Momento Cache with hands on co
 import Tabs from '@theme/Tabs';import TabItem from '@theme/TabItem'；
 
 # Momento Cacheを使ったファイルの追加と取得
-
-Momento Cache のアイテムはバイト配列なので、[アイテムあたりの上限が 1MB](./../../manage/limits) 以下であれば、作成したいファイルのほとんどを簡単にキャッシュに保存することができます。
+Momento Cache のアイテムはバイト配列なので、[アイテムあたりの上限 1MB](./../../limits)以内であれば、作成したいほとんどのファイルをキャッシュに簡単に保存することができます。
 
 以下は、ファイルシステムからファイルを読み込み、キャッシュのアイテムに保存し、キャッシュからファイルを読み込み、ファイルシステムに書き込む例です。
 

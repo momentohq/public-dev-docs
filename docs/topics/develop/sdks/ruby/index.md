@@ -8,10 +8,6 @@ description: Information about the Momento Ruby SDK
 
 # Momento Ruby SDK
 
-Welcome to the Momento Ruby SDK documentation!
-
-<img src="/img/ruby.png" width="90%" alt="a picture of a ruby cache on a hillside" />
-
 The Momento Ruby SDK is available via the rubygems package [`momento`](https://rubygems.org/gems/momento).
 
 The source code can be found on GitHub: [momentohq/client-sdk-ruby](https://github.com/momentohq/client-sdk-ruby).

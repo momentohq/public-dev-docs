@@ -1,17 +1,18 @@
 ---
 sidebar_position: 1
 sidebar_label: Cheat Sheet
-sidebar_class_name: sidebar-item-php-cheat-sheet
 title: Cheat Sheet for PHP + Momento Cache
 description: Everything to get you going with coding using PHP and Momento Cache
 ---
 
 # Cheat Sheet for PHP with Momento Cache
+
 If you need to get going quickly with PHP and Momento Cache, this page contains the basic API calls you'll need.
 
 For more info, you can also see [the PHP SDK on GitHub](https://github.com/momentohq/client-sdk-php).
 
 ### Prerequisites
+
 * A Momento API Key is required. You can generate one using [the Momento console](https://console.gomomento.com/).
 * Installation of PHP 8.0 or higher
 * Installation of the [gRPC PHP extension](https://github.com/grpc/grpc/blob/v1.46.3/src/php/README.md).
@@ -32,7 +33,8 @@ Add our repository to your `composer.json` file and our SDK as a dependency:
 Run `composer update` to install the necessary prerequisites.
 
 ## Import libraries and connect to return a CacheClient object
-This code sets up the [example file](https://github.com/momentohq/client-sdk-php/blob/main/examples/example.php)  
+
+This code sets up the [example file](https://github.com/momentohq/client-sdk-php/blob/main/examples/example.php)
 
 ```php
 <?php

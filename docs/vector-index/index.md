@@ -1,9 +1,18 @@
 ---
 sidebar_position: 1
-title: Momento Vector Index
+title: Vector Index
 pagination_next: null
 sidebar_label: Momento Vector Index
-description: <TBD>
+description: The Momento Vector Index
+hide_title: true
+keywords:
+  - momento
+  - vector index
+  - mvi
+  - ai
+  - rag pipeline
+  - serverless
+  - langchain
 ---
 
 import Tabs from '@theme/Tabs';

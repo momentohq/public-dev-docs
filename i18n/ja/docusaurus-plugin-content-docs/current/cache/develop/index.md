@@ -1,7 +1,6 @@
 ---
 sidebar_position: 4
 sidebar_label: Develop
-sidebar_class_name: "sidebar-item-api-reference"
 title: Developing applications with Momento SDKs
 description: Learn the core concepts for getting started with the Momento SDKs.
 ---
@@ -11,8 +10,6 @@ import{ SdkExampleTabs }from "@site/src/components/SdkExampleTabs";// このイ�
 # Momento SDKを使用したアプリケーションの開発
 
 
-
-![a technical illustration on a white background depicting the intersection of speed, ease of use, and security.](@site/static/img/city.jpg)
 
 ## キャッシュクライアントの構築
 

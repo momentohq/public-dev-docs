@@ -1,17 +1,23 @@
 ---
 sidebar_position: 1
 sidebar_label: Momento Topics
-sidebar_class_name: sidebar-item-overview
-title: Momento Topics Documentation
+title: Topics
 pagination_prev: null
 description: Learn about Momento Topics, a high-speed, low-drag serverless pub/sub (publish/subscribe) messaging pattern for real-time application communication.
+hide_title: true
+keywords:
+  - momento
+  - topics
+  - event-driven architecture
+  - eda
+  - websockets
+  - real-time
+  - serverless
 ---
 
 # What is Momento Topics?
 
 Momento Topics is a high-speed, low-drag serverless pub/sub (publish/subscribe) messaging pattern that allows for real-time communication between parts of a distributed system. It enables your apps to subscribe to *topics*, or dedicated channels, to receive items sent by your app’s publishers. As the Momento Topics service is serverless, there is no infrastructure to create or manage and no pub/sub topic to instantiate. When you publish an item to a topic, if it does not exist yet, the topic is created. As Topics utilizes Momento Cache, there is no scaling configuration either. You’re charged just for [the data transferred in and out](./manage/pricing.md) of the service.
-
-![An image of a fast moving city as Momento Topics](@site/static/img/topics-city.jpg)
 
 ## How does Momento Topics work?
 

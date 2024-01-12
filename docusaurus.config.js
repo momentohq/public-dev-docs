@@ -9,8 +9,8 @@ const languageApiSupportMatrixPlugin = require('./plugins/example-code-snippets/
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Momento Documentation",
-  tagline: "A serverless platform for caching, messaging, and vector search.",
+  title: "Momento Docs",
+  tagline: "Explore references, grab sample code, and get to know key concepts for our real-time data platform.",
   url: "https://docs.momentohq.com",
   baseUrl: "/",
   projectName: "momentohq.github.io",
@@ -18,7 +18,7 @@ const config = {
   trailingSlash: false,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
-  favicon: "img/favicon.ico",
+  favicon: "img/favicon.png",
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -81,11 +81,11 @@ const config = {
           },
           // Redirect limits
           {
-            to: '/cache/manage/limits',
+            to: '/cache/limits',
             from: '/limits',
           },
           {
-            to: '/cache/manage/limits',
+            to: '/cache/limits',
             from: '/docs/limits',
           },
           // Redirect getting started
@@ -104,20 +104,20 @@ const config = {
           },
           // Redirect how-it-works
           {
-            to: '/cache/learn/how-it-works/',
+            to: '/cache',
             from: '/how-it-works',
           },
           {
-            to: '/cache/learn/how-it-works/',
+            to: '/cache',
             from: '/docs/how-it-works',
           },
           // Redirect momento-concepts
           {
-            to: '/cache/learn/how-it-works/',
+            to: '/cache',
             from: '/how-it-works/momento-concepts',
           },
           {
-            to: '/cache/learn/how-it-works/',
+            to: '/cache',
             from: '/docs/how-it-works/momento-concepts',
           },
           // Redirect how-it-works/caching-with-serverless
@@ -141,20 +141,19 @@ const config = {
           },
           // Redirect guides
           {
-            to: '/cache/develop/guides/caching-with-aws-lambda',
+            to: '/cache',
             from: '/guides',
           },
           {
-            to: '/cache/develop/guides/caching-with-aws-lambda',
+            to: '/cache',
             from: '/docs/guides',
           },
-          // Redirect guides/caching-with-aws-lambda
           {
-            to: '/cache/develop/guides/caching-with-aws-lambda',
+            to: '/cache',
             from: '/guides/caching-with-aws-lambda',
           },
           {
-            to: '/cache/develop/guides/caching-with-aws-lambda',
+            to: '/cache',
             from: '/docs/guides/caching-with-aws-lambda',
           },
           // Redirect API-reference

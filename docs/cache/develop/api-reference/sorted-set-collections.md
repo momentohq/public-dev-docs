@@ -14,8 +14,6 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 A sorted set in Momento Cache is a collection of unique elements with a value (String, Byte[], etc.) and score (signed double 64-bit float) pair. The elements in a sorted set are ordered by score.
 
-![A diagram of luggage as sets, but organized and stacked nicely.](@site/static/img/sorted-sets.jpg)
-
 :::info
 
 Momento collection types use a [CollectionTTL](./collection-ttl.md) to specify their TTL behavior. This is an optional argument for all "write" operations.
@@ -274,7 +272,7 @@ Examples:
 | cacheName       | String          | Name of the cache.                            |
 | setName         | String          | Name of the sorted set collection to be altered. |
 | value           | String \| Bytes | Value for the element to be incremented by this operation. |
-| amount          | Number          | The quantity to add to the score. May be positive, negative, or zero. Defaults to 1. |          
+| amount          | Number          | The quantity to add to the score. May be positive, negative, or zero. Defaults to 1. |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set collection. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
