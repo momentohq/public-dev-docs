@@ -23,17 +23,18 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "20"
-      - run: |
-          node translate/list.mjs ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | tee /tmp/modified
-      - run: |
-          node translate/translate.mjs $(cat /tmp/modified)
-        env:
-          SIMPLEEN_AUTH_KEY: ${{ secrets.SIMPLEEN_AUTH_KEY }}
-          SIMPLEEN_TRANSLATOR_ID: ${{ secrets.SIMPLEEN_TRANSLATOR_ID }}
-          TARGET_LANG: ja
-      - run: git diff
-#
 # NOTE: temporarily commenting out the following lines due to unknown issues with the translation tool.
+#
+#      - run: |
+#          node translate/list.mjs ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | tee /tmp/modified
+#      - run: |
+#          node translate/translate.mjs $(cat /tmp/modified)
+#        env:
+#          SIMPLEEN_AUTH_KEY: ${{ secrets.SIMPLEEN_AUTH_KEY }}
+#          SIMPLEEN_TRANSLATOR_ID: ${{ secrets.SIMPLEEN_TRANSLATOR_ID }}
+#          TARGET_LANG: ja
+#      - run: git diff
+#
 #       Recent CI runs are failing with lots of "Internal Server Error" messages from Simpleen, for example:
 #       https://github.com/momentohq/public-dev-docs/actions/runs/7481186195/job/20362246899?pr=610#step:6:1
 #
