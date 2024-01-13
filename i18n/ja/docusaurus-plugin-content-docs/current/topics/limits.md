@@ -1,37 +1,37 @@
 ---
 sidebar_position: 4
-sidebar_label: サービス上限
-title: Momentoキャッシュのサービス上限
-description: MomentoキャッシュとMomentoトピックのサービス上限、デフォルト値、そして変更が必要な時にどのように問い合わせるかを見てみましょう。
+sidebar_label: Service Limits
+title: Service Limits for Momento Topics
+pagination_next: null
+description: Explore Momento Topic's service limits, the default values, and how to get them changed if you need.
+hide_title: true
 ---
 
-# Momento キャッシュと Momento トピックスのサービス上限
+# Momentoトピック/ウェブフックのサービス制限
 
-Momento
-Momento トピックは、サービス リソースに関して、自分自身とその顧客を保護しようとしています。そのため、すべてのアカウント、トピック、キャッシュには、サービス制限、または私たちが「ガードレール」と呼ぶもの (カーブの多い山道のようなもの) があります。このページでは、デフォルトのサービス制限の概要を説明します：
+このページの制限は、特に明記されていない限り、変更可能なソフトリミットです。制限の調整が必要な場合は、[Momento Support](mailto:support@momentohq.com) までご連絡ください。その際、ログインメールアドレス、変更するキャッシュの名前、キャッシュがあるクラウドとリージョン（例：AWS eu-west-1）、どのリミットを増やしたいかを明記してください。
 
-| Momento トピックの上限       | 値                                  |
-| ---------------------------- | ----------------------------------- |
-| トピック毎のサブスクライバー | 100                                 |
-| メッセージサイズ             | 4KiB/パブリッシュされたメッセージ |
-| トピック毎のスループット     | 10 パブリッシュリクエスト/秒       |
+| Momento Topics limits | Value                      |
+|-----------------------|----------------------------|
+| Subscribers per cache | 100                        |
+| Message size          | 4KiB per published message |
+| Throughput per cache  | 10 publish requests/sec    |
 
 トピックの制限に加えて、ウェブフックに適用される追加の制限がいくつかあります。
 
-| Webhookの上限            | 値                                  |
-| ---------------------------- | ----------------------------------- |
-| Webhookの数       | 10                                |
-| Webhookごとのスループット             | 5リクエスト/秒　|
-| リクエストのタイムアウト     | 5 秒       |
-| 名前     | 128 文字       |
-| URL     | 1024 文字       |
-
-
+| Webhooks limits        | Value            |
+|------------------------|------------------|
+| Number of Webhooks     | 10               |
+| Throughput per webhook | 5 requests/sec   |
+| Request Timeout        | 5 seconds        |
+| Name                   | 128 characters   |
+| URL                    | 1024 characters  |
 :::info
-MomentoトピックスはMomentoキャッシュが基盤になっているので、全てのキャッシュ上限がトピックスにも適用されます。
+
+トピックとWebhookはMomento Cacheを利用するため、すべての[Cache limits](/cache/limits)が適用されます。
+
 :::
 
-## ソフト上限とサポート
+## ソフトな制限とサポート
 
-このページに記載されている上限はソフト上限なので変更が可能です。上限の調整が必要な場合は[Momento Support](mailto:support@momentohq.com)までご連絡ください。
-ログインに使用しているメールアドレス、キャッシュ名、キャッシュが存在しているクラウド＋リージョン (e.g. AWS eu-west-1)そしてどのリストに掲載されているどの上限を引き上げるのかを記載してください。
+このページの制限は、特に明記されていない限り、変更可能なソフトリミットです。制限の調整が必要な場合は、[Momento Support](mailto:support@momentohq.com) までご連絡ください。その際、ログインメールアドレス、変更するキャッシュの名前、キャッシュがあるクラウドとリージョン（例：AWS eu-west-1）、どのリミットを増やしたいかを明記してください。
