@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
 sidebar_label: Topics Cheat Sheet
-sidebar_class_name: sidebar-item-swift
-title: Topics cheat sheet for Swift
-description: Get started really quickly coding using Swift with Momento Topics
+sidebar_class_name: sidebar-item-dart
+title: Topics cheat sheet for Dart
+description: Get started really quickly coding using Dart with Momento Topics
 ---
 
 import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
@@ -11,13 +11,13 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Cheat Sheet for Swift with Momento Topics
+# Cheat Sheet for Dart with Momento Topics
 
-If you need to get going quickly with Swift and Momento Topics, this page contains the basic API calls you'll need. [Check the Swift SDK examples](https://github.com/momentohq/client-sdk-swift/tree/main/Examples) for complete, working code samples.
+If you need to get going quickly with Dart and Momento Topics, this page contains the basic API calls you'll need. [Check the Dart SDK examples](https://github.com/momentohq/client-sdk-dart/tree/main/example) for complete, working code samples.
 
 ## Install the Momento SDK
 
-The latest version of the Momento Swift SDK is available on GitHub: [momentohq/client-sdk-swift](https://github.com/momentohq/client-sdk-swift).
+The latest version of the Momento Dart SDK is available on GitHub: [momentohq/client-sdk-dart](https://github.com/momentohq/client-sdk-dart).
 
 ## Get your Momento API key
 
@@ -33,21 +33,21 @@ export MOMENTO_API_KEY=<your api key here>
 ## Set up a TopicClient
 This code creates the TopicClient that you will use to interact with your pub/sub topic.
 
-<SdkExampleCodeBlock language={'swift'} snippetId={'API_InstantiateTopicClient'} />
+<SdkExampleCodeBlock language={'dart'} snippetId={'API_InstantiateTopicClient'} />
 
 ## Publish a message to a topic
 This is an example of publishing a message to a topic called "topic", then catching the return value to check if the publish was successful.
 
-<SdkExampleCodeBlock language={'swift'} snippetId={'API_TopicPublish'} />
+<SdkExampleCodeBlock language={'dart'} snippetId={'API_TopicPublish'} />
 
 ## Subscribe to a topic
 This is an example of subscribing to a topic called "topic", then catching the return value to check if it was successful. If a subscription was received, a `for try await` loop is used to asynchronously receive and print the messages that are published to this topic.
 
-<SdkExampleCodeBlock language={'swift'} snippetId={'API_TopicSubscribe'} />
+<SdkExampleCodeBlock language={'dart'} snippetId={'API_TopicSubscribe'} />
 
 ## Running the code
 
-You can find complete, working examples in the [Swift SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-swift/tree/main/examples).
+You can find complete, working examples in the [Dart SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-dart/tree/main/example).
 
 :::info
 Beyond these basic API calls check out the [API reference page](./../../api-reference) for more information on the full assortment of Momento API calls.

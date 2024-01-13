@@ -10,7 +10,7 @@ description: Information about the Momento Dart SDK
 
 Welcome to the Momento Dart SDK documentation!
 
-The Momento Dart SDK and source code are available via GitHub: [momentohq/client-sdk-swift](https://github.com/momentohq/client-sdk-dart).
+The Momento Dart SDK and source code are available via GitHub: [momentohq/client-sdk-dart](https://github.com/momentohq/client-sdk-dart).
 
 ## Requirements
 
@@ -20,7 +20,7 @@ The Momento Dart SDK and source code are available via GitHub: [momentohq/client
 ## Resources
 
 - [Dart SDK cheat sheet](./cheat-sheet.mdx)
-- [Dart SDK examples](https://github.com/momentohq/client-sdk-dart/tree/main/examples): working example projects that illustrate how to use the Dart SDK
+- [Dart SDK examples](https://github.com/momentohq/client-sdk-dart/tree/main/example): working example projects that illustrate how to use the Dart SDK
 - COMING SOON: Observability: Logging and client-side metrics with the Dart SDK
 - COMING SOON: Taking your code to prod: configuration and error handling in the Dart SDK
 
