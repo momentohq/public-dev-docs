@@ -1,18 +1,18 @@
 ---
 sidebar_position: 2
-sidebar_label: レートリミッターの構築
-title:  Momentoを使った分散型レートリミッターの実装
-description: 一元化されたバックエンドソース、Momentoを使用して分散型レートリミッターを実装する方法をご紹介します。
+sidebar_label: Build a Rate-Limiter
+title:  Implement a distributed rate-limiter using Momento
+description: Learn how you can implement a distributed rate-limiter using a centralized backend source, Momento.
 ---
 
 import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
-// inject-example-code-snippetプラグインは、SdkExampleCodeBlockのインスタンスをSdkExampleCodeBlockImplに変換します。
-// プラグインは、SdkExampleCodeBlockのインスタンスをSdkExampleCodeBlockImplに変換します。
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
 import { SdkExampleFileTabs } from "@site/src/components/SdkExampleFileTabs";
-// inject-example-code-snippetプラグインは、SdkExampleCodeBlockのインスタンスをSdkExampleCodeBlockImplに変換します。
-// プラグインは、SdkExampleFileTabsのインスタンスをSdkExampleFileTabsImplに変換します。
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleFileTabs to SdkExampleFileTabsImpl
 import { SdkExampleFileTabsImpl } from "@site/src/components/SdkExampleFileTabsImpl";
 
 # Momentoを使った分散型集中型レートリミッターの構築
@@ -36,18 +36,18 @@ import { SdkExampleFileTabsImpl } from "@site/src/components/SdkExampleFileTabsI
 ## Momentoを使った分散型レートリミッターの構築
 
 分散レートリミッターを作成し、個々のユーザーのトランザクション/分(TPM)を効果的に管理したいとします。
-私たちのアプローチは、Momentoの`increment`と`updateTTL` [API](./../develop/api-reference)を利用する。この方法は効率的であるだけでなく、非常に正確であることが証明されています。
+私たちのアプローチは、Momentoの`increment`と`updateTTL` [API](./../develop/api-reference)を利用すします。この方法は効率的であるだけでなく、非常に正確であることが証明されています。
 
 私たちのレートリミッターの中核をなすのは、ユーザー毎分の粒度に基づいてレート制限を行うことを可能にするキーメカニズムです。キーは、ユーザーまたはエンティティの組み合わせと現在の分を使用して構築されます。このキーは、ユーザーが1分間に行えるトランザクション数を追跡し、制限する上で極めて重要な役割を果たします。
 
 レートリミッターは、各ユーザがリクエストしたときに、各ユーザのユニーク キーの値をインクリメントし、1分間の最初のリクエストのTTL(time-to-live) を60秒に設定します。これは重要です。キーは、与えられた1分間の目的を 果たした後は意味がないので、期限切れにしたいからです。
 
-レートリミッターの流れはこうなります：
+レートリミッターの流れはこうです：
 
-- `user_id-current_minute`の値をインクリメントします。返された値が 1 の場合、その分におけるそのユーザの最初のリクエストであることを示します。Momento の `increment` API はアトミックであることが保証されています。この戻り値が 1 の場合、`updateTTL` API を使用してそのキーの TTL を 60 秒に設定します。
+- user_id-current_minute`の値をインクリメントします。返された値が 1 の場合、その分におけるそのユーザの最初のリクエストであることを示します。Momento の `increment` API はアトミックであることが保証されています。この戻り値が 1 の場合、`updateTTL` API を使用してそのキーの TTL を 60 秒に設定します。
 - もしその値が、レートリミッター用に設定されたTPMの制限値より小さければ、 リクエストを許可し、そうでなければスロットルをかけます。
 
-早速、実装に取りかかましょう。このコードでは、思考プロセスを説明するコメントに注目してください。
+早速、実装に取りかかりましょう。このコードでは、思考プロセスを説明するコメントに注目してください。
 
 <SdkExampleFileTabs javascript={'examples/nodejs/rate-limiter/doc-examples-files/doc-examples.ts'} />
 
@@ -55,4 +55,4 @@ import { SdkExampleFileTabsImpl } from "@site/src/components/SdkExampleFileTabsI
 
 - SDKのサンプルを使ってMomentoのレートリミッターを操作し、競合をシミュレートしたり、レートリミッターにリクエストをスロットルさせたりすることができます。
   - [Typescript](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/rate-limiter )
-- [Read our blog](https://www.gomomento.com/blog/did-you-say-you-want-a-distributed-rate-limiter) ここでは、レートリミッターのさまざまなヒューリスティックを分析し、他のアプローチとも比較しています。
+- [ブログを読む](https://www.gomomento.com/blog/did-you-say-you-want-a-distributed-rate-limiter)では、レートリミッターのさまざまなヒューリスティックを分析し、他のアプローチとも比較しています。
