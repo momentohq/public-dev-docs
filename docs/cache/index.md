@@ -44,6 +44,7 @@ In the following pages, you can learn about caching in general and how to use Mo
   - [Ruby](./cache/develop/sdks/ruby)
   - [Elixir](./cache/develop/sdks/elixir)
   - [Swift](./cache/develop/sdks/swift)
+  - [Dart](./develop/sdks/dart)
 
 - _Looking for Momento icons for your architecture diagrams?_ Download [Momento_Architecture_Icons.zip](@site/static/img/icons/Momento_Architecture_Icons.zip).
 

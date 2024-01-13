@@ -179,6 +179,7 @@ We currently have the following SDK languages available:
 - [Ruby](./develop/sdks/ruby)
 - [Elixir](./develop/sdks/elixir)
 - [Swift](./develop/sdks/swift)
+- [Dart](./develop/sdks/dart)
 
 ## FAQ
 

@@ -121,6 +121,14 @@ const SDKS: Array<SdkInfo> = [
     authClientFile: undefined,
     leaderboardClientFile: undefined,
   },
+  {
+    sdk: Sdk.DART,
+    cacheClientFile: 'lib/src/cache_client.dart',
+    configObjectFile: 'lib/src/config/cache_configuration.dart',
+    topicClientFile: 'lib/src/topic_client.dart',
+    authClientFile: undefined,
+    leaderboardClientFile: undefined,
+  },
 ];
 
 type Api = string | {displayName: string; functionName: string | RegExp};

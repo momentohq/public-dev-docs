@@ -13,6 +13,7 @@ export enum Sdk {
   RUBY = 'ruby',
   ELIXIR = 'elixir',
   SWIFT = 'swift',
+  DART = 'dart',
   CLI = 'cli',
 }
 
@@ -40,6 +41,8 @@ export function sdkDisplayName(sdk: Sdk): string {
       return 'Elixir';
     case Sdk.SWIFT:
       return 'Swift';
+    case Sdk.DART:
+      return 'Dart';
     case Sdk.CLI:
       return 'Cli';
     default:

@@ -13,6 +13,7 @@ import {PhpSnippetSourceParser} from './source-parsers/languages/php-snippet-sou
 import {JavaSnippetSourceParser} from './source-parsers/languages/java-snippet-source-parser';
 import {ElixirSnippetSourceParser} from './source-parsers/languages/elixir-snippet-source-parser';
 import {SwiftSnippetSourceParser} from './source-parsers/languages/swift-snippet-source-parser';
+import {DartSnippetSourceParser} from './source-parsers/languages/dart-snippet-source-parser';
 
 export class SdkRepoSnippetResolver implements SnippetResolver {
   private readonly sourceProvider: SdkSourceProvider =
@@ -92,6 +93,8 @@ export class SdkRepoSnippetResolver implements SnippetResolver {
         return new ElixirSnippetSourceParser(sourceDir);
       case ExampleLanguage.SWIFT:
         return new SwiftSnippetSourceParser(sourceDir);
+      case ExampleLanguage.DART:
+        return new DartSnippetSourceParser(sourceDir);
       case ExampleLanguage.RUST:
         return undefined;
       case ExampleLanguage.RUBY:
@@ -129,6 +132,8 @@ function sdkForLanguage(language: ExampleLanguage): Sdk {
       return Sdk.ELIXIR;
     case ExampleLanguage.SWIFT:
       return Sdk.SWIFT;
+    case ExampleLanguage.DART:
+      return Sdk.DART;
     case ExampleLanguage.CLI:
       return Sdk.CLI;
     default:

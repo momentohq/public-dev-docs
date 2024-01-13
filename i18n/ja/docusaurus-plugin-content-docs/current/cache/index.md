@@ -38,6 +38,7 @@ Momento Cacheは、以下のクラウドプロバイダーおよびリージョ�
   - [Ruby](./cache/develop/sdks/ruby)
   - [Elixir](./cache/develop/sdks/elixir)
   - [Swift](./cache/develop/sdks/swift)
+  - [Dart](./cache/develop/sdks/dart)
 
 - アーキテクチャ図用のMomentoのアイコンをお探しですか？[Momento_Architecture_Icons.zip](@site/static/img/icons/Momento_Architecture_Icons.zip)をダウンロードしてください。
 
