@@ -82,6 +82,17 @@ const SDKS: Array<SdkInfo> = [
     leaderboardClientFile: undefined,
   },
   {
+    sdk: Sdk.KOTLIN,
+    cacheClientFile:
+      'src/commonMain/kotlin/software/momento/kotlin/sdk/CacheClient.kt',
+    configObjectFile:
+      'src/commonMain/kotlin/software/momento/kotlin/sdk/config/Configuration.kt',
+    topicClientFile:
+      'src/commonMain/kotlin/software/momento/kotlin/sdk/TopicClient.kt',
+    authClientFile: undefined,
+    leaderboardClientFile: undefined,
+  },
+  {
     sdk: Sdk.ELIXIR,
     cacheClientFile: 'src/lib/momento/cache_client.ex',
     configObjectFile: 'src/lib/momento/config/configuration.ex',

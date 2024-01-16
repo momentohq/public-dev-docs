@@ -175,6 +175,7 @@ We currently have the following SDK languages available:
 - [Go](./develop/sdks/go)
 - [PHP](./develop/sdks/php)
 - [Java](./develop/sdks/java)
+- [Kotlin](./develop/sdks/kotlin)
 - [Rust](./develop/sdks/rust)
 - [Ruby](./develop/sdks/ruby)
 - [Elixir](./develop/sdks/elixir)
