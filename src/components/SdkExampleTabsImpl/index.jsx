@@ -13,6 +13,7 @@ import React from 'react';
  * @param js
  * @param python
  * @param java
+ * @param kotlin
  * @param go
  * @param csharp
  * @param php
@@ -25,8 +26,8 @@ import React from 'react';
  * @returns {JSX.Element|null}
  * @constructor
  */
-export const SdkExampleTabsImpl = ({js, python, java, go, csharp, php, rust, ruby, elixir, swift, dart, cli}) => {
-  if (js || python || java || go || csharp || php || rust || ruby || elixir || swift || dart || cli) {
+export const SdkExampleTabsImpl = ({js, python, java, kotlin, go, csharp, php, rust, ruby, elixir, swift, dart, cli}) => {
+  if (js || python || java || kotlin || go || csharp || php || rust || ruby || elixir || swift || dart || cli) {
     return (
   <Tabs>
     {js &&
@@ -41,6 +42,10 @@ export const SdkExampleTabsImpl = ({js, python, java, go, csharp, php, rust, rub
       <TabItem value="java" label="Java">
         <CodeBlock language={'java'}>{java}</CodeBlock>
       </TabItem>}
+    {kotlin &&
+        <TabItem value="kotlin" label="Kotlin">
+          <CodeBlock language={'kotlin'}>{kotlin}</CodeBlock>
+        </TabItem>}
     {go &&
       <TabItem value="go" label="Go">
         <CodeBlock language={'go'}>{go}</CodeBlock>

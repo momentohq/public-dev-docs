@@ -5,11 +5,12 @@ import {
 import {ExampleSnippetType} from '../../../examples';
 import * as path from 'path';
 
-export class DartSnippetSourceParser extends RegexSnippetSourceParser {
+export class KotlinSnippetSourceParser extends RegexSnippetSourceParser {
   constructor(repoSourceDir: string) {
-    const wholeFileExamplesDir = 'example/';
+    const wholeFileExamplesDir =
+      'examples/src/main/kotlin/software/momento/example/doc_examples';
     const codeSnippetFiles: Array<string> = [
-      'example/doc_example_apis/bin/doc_example_apis.dart',
+      'examples/src/main/kotlin/software/momento/example/doc_examples/DocExamples.kt',
     ];
     super({
       wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),
@@ -24,9 +25,9 @@ export class DartSnippetSourceParser extends RegexSnippetSourceParser {
               path.join(repoSourceDir, f)
             ),
             startRegex: snippetId =>
-              new RegExp(`^Future<void> example_${snippetId.valueOf()}\\(`),
+              new RegExp(`^suspend fun example_${snippetId.valueOf()}\\(`),
             endRegex: () => /^}/,
-            numLeadingSpacesToStrip: 2,
+            numLeadingSpacesToStrip: 4,
           },
         ],
       ]),

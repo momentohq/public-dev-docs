@@ -25,6 +25,8 @@ export function githubRepoNameForSdk(sdk: Sdk): string {
       return 'client-sdk-go';
     case Sdk.JAVA:
       return 'client-sdk-java';
+    case Sdk.KOTLIN:
+      return 'client-sdk-kotlin';
     case Sdk.PHP:
       return 'client-sdk-php';
     case Sdk.RUST:
