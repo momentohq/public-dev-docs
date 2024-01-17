@@ -233,6 +233,10 @@ const config = {
             from: '/develop/datatypes',
             to: '/cache/develop/basics/datatypes'
           },
+          {
+            from: '/topics/develop/integrations/aws-secrets-manager',
+            to: '/topics/integrations/aws-secrets-manager'
+          },
             //This redirects from the pre v1.5.0 of the docs for the Topics page to the home page for the topics service /topics.
           {
             from: '/introduction/momento-topics',
