@@ -28,7 +28,7 @@ Need an additional region? Contact [Momento support](https://www.gomomento.com/c
 
 The goal of the webhook handler is to process the notification from Momento as quickly and securely as possible with the ultimate destination being AWS EventBridge. By getting the message onto a bus, the possibilities for how to handle that data open up tremendously. The message could be persisted into more durable storage or even propagated to other consumers for further actions.
 
-![Webhook architecture](/static/img/topics/webhook_arch.jpg)
+![Webhook architecture](@site/static/img/topics/webhook_arch.jpg)
 
 ## Installing the handler
 
@@ -49,7 +49,7 @@ To complete step one of setting up the webhook, log into the [Momento console](h
 
 To create the webhook, a few simple details need to be supplied.
 
-![Webhook Creation](/static/img/topics/creating_webhook.jpg)
+![Webhook Creation](@site/static/img/topics/creating_webhook.jpg)
 
 The three fields presented are important for different reasons.
 
@@ -59,11 +59,11 @@ The three fields presented are important for different reasons.
 
 ### Deploying the Lambda function via one-click CloudFormation
 
-Momento has taken care of the heavy lifting when it comes to building a Lambda webhook handler in addition to supplying a CloudFormation stack for deploying the resources. Initiating the deployment is as simple as clicking this button. <a href="https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=momento-webhook-handler&templateURL=https://us-west-2-momento-webhook-bucket.s3.us-west-2.amazonaws.com/template.yaml"><img src="@site/static/img/cloudformation-launch-stack.png" target="_blank" alt="CloudFormation One-Click" /></a>
+Momento has taken care of the heavy lifting when it comes to building a Lambda webhook handler in addition to supplying a CloudFormation stack for deploying the resources. Initiating the deployment is as simple as clicking this button. <a href="https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=momento-webhook-handler&templateURL=https://us-west-2-momento-webhook-bucket.s3.us-west-2.amazonaws.com/template.yaml"><img src="/img/cloudformation-launch-stack.png" target="_blank" alt="CloudFormation One-Click" /></a>
 
 Deploying the stack will require signing into the [AWS Console](https://console.aws.amazon.com/). Once that is completed, the CloudFormation Create Stack Screen should appear.
 
-![CloudFormation Create](/static/img/topics/momento_stack.png)
+![CloudFormation Create](@site/static/img/topics/momento_stack.png)
 
 The stack will take care of the detailed parts of launching the infrastructure, but there are opportunities to customize it.
 
@@ -72,13 +72,13 @@ The stack will take care of the detailed parts of launching the infrastructure, 
     -   _EventBridgeBus_: If using a custom bus, enter the name here. By default, the `default`` bus is used.
     -   _MomentoSecretString_: The secret string that Momento uses to sign the payload and sends as a part of the HTTP Headers in the webhook POST. This secret string is available in the Momento Webhook Console. Copy from the below screen and paste it into this parameter
 
-![Momento Webhook Secret](/static/img/topics/webhook_settings.jpg)
+![Momento Webhook Secret](@site/static/img/topics/webhook_settings.jpg)
 
 ### Update the Momento webhook URL
 
 Upon completion of the deployment, take the Function URL from the CloudFormation output and update the Momento webhook URL in the Momento console like the image one section above. Below is what the CloudFormation Output will look like:
 
-![CloudFormation Output](/static/img/topics/cloudformation_output.jpg)
+![CloudFormation Output](@site/static/img/topics/cloudformation_output.jpg)
 
 ## Verifying the payload
 
