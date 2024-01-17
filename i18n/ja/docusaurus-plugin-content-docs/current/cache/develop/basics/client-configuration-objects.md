@@ -11,15 +11,13 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# SDK Client configuration objects
+# SDKクライアントConfigurationオブジェクト
 
-<img src="/img/client-configurations.jpg" width="90%" alt="a technical illustration of Momento client configuration objects." />
+`Configuration` オブジェクトには、Momento クライアントが Momento サービスに接続するために必要な設定が含まれる。`Configuration` オブジェクトは、タイムアウトや再試行、ロギング、ミドルウェアなどの設定を制御します。
 
-`Configuration` オブジェクトには、Momento クライアントが Momento サービスに接続するために必要な設定が含まれます。`Configuration` オブジェクトは、タイムアウト、再試行、ロギング、ミドルウェアなどの設定を制御します。
+各SDKには、できるだけ早く立ち上げて実行できるように、あらかじめ`Configuration`オブジェクトが含まれています。様々なデプロイ環境に対応するためのチューニングは私たちが行います。(それについてのブログシリーズもあります！[衝撃的なほどシンプル：あなたのために大変な仕事をするキャッシュクライアント](https://www.gomomento.com/blog/shockingly-simple-cache-clients-that-do-the-hard-work-for-you))
 
-各 SDK には `Configuration` オブジェクトがあらかじめ用意されており、可能な限り素早く起動できるようになっています。様々なデプロイ環境に対応するためのチューニングは私たちが行っていますので、お客様はご自身のビジネスに特化したチューニングに専念することができます。(それについてのブログシリーズもあります！[驚くほどシンプル： あなたのために大変な仕事をするキャッシュクライアント](https://jp.gomomento.com/blog/shockingly-simple-cache-clients-that-do-the-hard-work-for-you/)
-
-事前にビルドされた設定には `latest()` バージョンが付属しており、与えられた環境に対して常に最新の推奨設定が提供されます。例えば
+ビルド済みのコンフィギュレーションには `latest()` バージョンが付属しており、与えられた環境に対して常に最新の推奨コンフィギュレーションを提供します。例えば
 
 <SdkExampleTabs snippetId={'API_ConfigurationInRegionDefaultLatest'} />
 
@@ -27,13 +25,13 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 <SdkExampleTabs snippetId={'API_ConfigurationInRegionDefault'} />
 
-custom configuration が必要な場合は、独自の `Configuration` オブジェクトを構築することができます。どのように構築されるかは、各SDKのソースコードの `Configurations` 名前空間にあるサンプルを参照してください。
+カスタムコンフィギュレーションが必要な場合は、独自の `Configuration` オブジェクトを構築することができます。どのように構築するかは、各SDKのソースコードの `Configurations` 名前空間にあるサンプルを参照してください。
 
-これらのconfigurationがほとんどのユースケースのニーズを満たすことを期待していますが、もしこれらのconfigurationに何らかの不足がある場合は、そのSDKのレポでGitHub issueを開いていただくか、`support@momentohq.com`までご連絡ください。あなたのユースケースについてぜひお聞かせください。そうすれば、ビルド済みのコンフィギュレーションを修正したり拡張したりして、より良いサポートを提供できるようになります。
+これらの構成がほとんどのユースケースのニーズを満たすことを期待していますが、もし何か不足している点がありましたら、そのSDKのレポにGitHub issueを開くか、`support@momentohq.com`までご連絡ください。あなたのユースケースについてぜひお聞かせください。そうすれば、ビルド済みのコンフィギュレーションを修正したり拡張したりして、より良いサポートを提供できるようになります。
 
-## Pre-built configurations
+## ビルド済みコンフィギュレーション
 
-以下は、ご興味をお持ちになるかもしれない、あらかじめ構築されたconfigurationの一部です。
+以下は、興味があるかもしれません。あらかじめ構築されたコンフィギュレーションの一部です。
 
 ### Laptop
 
@@ -53,7 +51,7 @@ custom configuration が必要な場合は、独自の `Configuration` オブジ
 
 ### InRegion - Low Latency
 
-`Configurations.InRegion.LowLatency`はp99.9のレイテンシを可能な限り低く保つことを優先する設定です。`InRegion.Default`の設定よりも早くタイムアウトします。キャッシュが利用できない場合に、アプリケーションにとって許容できないほど高いレイテンシが発生しないようにすることが最も重要であり、キャッシュが応答しなかった場合にアプリケーションロジックまたは信頼できるデータソースにより迅速にフォールバックしたい場合は、この設定を使用します。
+`Configurations.InRegion.LowLatency`はp99.9のレイテンシを可能な限り低く保つことを優先する設定です。InRegion.Default`の設定よりも早くタイムアウトします。キャッシュが利用できない場合に、アプリケーションにとって許容できないほど高いレイテンシが発生しないようにすることが最も重要であり、キャッシュが応答しなかった場合にアプリケーションロジックまたは信頼できるデータソースにより迅速にフォールバックしたい場合は、この設定を使用します。
 
 <SdkExampleTabs snippetId={'API_ConfigurationInRegionLowLatency'} />
 
