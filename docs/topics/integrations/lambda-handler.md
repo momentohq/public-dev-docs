@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
-sidebar_label: Momento Topics
-title: Topics
+sidebar_label: Amazon EventBridge
+title: Integrate Momento Topics with Amazon EventBridge
 pagination_prev: null
-description: How to deploy an AWS Lambda that handles the webhook payload published by Momento.  The handler exposes the Function over a URL that when executed puts the Momento webhook payload on a configured AWS EventBridge Bus.
+description: How to deploy an AWS Lambda function that handles the webhook payload published by Momento.  The handler exposes the Function over a URL that when executed puts the Momento webhook payload on a configured AWS EventBridge Bus.
 hide_title: true
 keywords:
     - momento
