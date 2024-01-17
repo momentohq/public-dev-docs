@@ -31,8 +31,6 @@ The source code can be found on GitHub: [momentohq/client-sdk-javascript](https:
 
 - [Momento Node.js cheat sheet](./../nodejs/cheat-sheet.md): this cheat sheet targets the Node.js SDK, but the web SDK APIs are fully compatible.
 - [Web SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/README.md): working example projects that illustrate how to use the web SDK
-- COMING SOON: Taking your code to prod: configuration and error handling in the web SDK
-
 
 ## Using the web SDK for browsers
 

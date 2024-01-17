@@ -19,11 +19,4 @@ The source code can be found on GitHub: [momentohq/client-sdk-ruby](https://gith
 
 ## Resources
 
-- COMING SOON: Ruby SDK Cheat Sheet
 - [Ruby SDK Examples](https://github.com/momentohq/client-sdk-ruby/blob/main/examples/README.md): working example projects that illustrate how to use the Ruby SDK
-- COMING SOON: Observability: Logging and Client-side Metrics with the Ruby SDK
-- COMING SOON: Taking your code to prod: Configuration and Error handling in the Ruby SDK
-
-## Integrations
-
-COMING SOON

@@ -20,5 +20,3 @@ The source code can be found on GitHub: [momentohq/client-sdk-python](https://gi
 ## Resources
 
 - [Python SDK Examples](https://github.com/momentohq/client-sdk-python/blob/main/examples/README.md): working example projects that illustrate how to use the Python SDK
-- COMING SOON: Observability: Logging and Client-side Metrics with the Python SDK
-- COMING SOON: Taking your code to prod: Configuration and Error handling in the Python SDK

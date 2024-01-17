@@ -21,4 +21,3 @@ The source code can be found on GitHub: [momentohq/client-sdk-javascript](https:
 
 - [Node.js MVI SDK cheat sheet](./cheat-sheet.md)
 - [Node.js SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/README.md): working example projects that illustrate how to use the Node.js SDK
-- COMING SOON: Taking your code to prod: Configuration and Error handling in the Node.js SDK
