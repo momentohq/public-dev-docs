@@ -18,6 +18,12 @@ keywords:
 
 Momento [webhooks](https://docs.momentohq.com/topics/webhooks/overview) are a serverless way to connect a topic to a stateless consumer. Below is a guide on how to deploy an AWS Lambda function with a public URL that puts the message onto an Amazon EventBridge bus.
 
+:::info
+This integration supports the the following regions: **us-east-1**, **us-east-2**, **us-west-2**, and **eu-west-1**.
+
+Need an additional region? Contact [Momento support](https://www.gomomento.com/contact-us) to make a request.
+:::info
+
 ## Architecture
 
 The goal of the webhook handler is to process the notification from Momento as quickly and securely as possible with the ultimate destination being AWS EventBridge. By getting the message onto a bus, the possibilities for how to handle that data open up tremendously. The message could be persisted into more durable storage or even propagated to other consumers for further actions.
@@ -53,7 +59,7 @@ The three fields presented are important for different reasons.
 
 ### Deploying the Lambda function via one-click CloudFormation
 
-Momento has taken care of the heavy lifting when it comes to building a Lambda webhook handler in addition to supplying a CloudFormation stack for deploying the resources. Initiating the deployment is as simple as clicking this button. ![CloudFormation One-Click](./cloudformation-launch-stack.png)
+Momento has taken care of the heavy lifting when it comes to building a Lambda webhook handler in addition to supplying a CloudFormation stack for deploying the resources. Initiating the deployment is as simple as clicking this button. <a href="https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=momento-webhook-handler&templateURL=https://us-west-2-momento-webhook-bucket.s3.us-west-2.amazonaws.com/template.yaml"><img src="./cloudformation-launch-stack.png" alt="CloudFormation One-Click" /></a>
 
 Deploying the stack will require signing into the [AWS Console](https://console.aws.amazon.com/). Once that is completed, the CloudFormation Create Stack Screen should appear.
 
