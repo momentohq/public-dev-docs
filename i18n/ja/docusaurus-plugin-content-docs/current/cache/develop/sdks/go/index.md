@@ -3,29 +3,27 @@ sidebar_position: 5
 title: Momento Go SDK
 pagination_prev: null
 sidebar_label: Go
-description: Momento Go SDK に関する情報です。
+description: Information about the Momento Go SDK
 ---
 
 # Momento Go SDK
 
-ようこそ、Momento Go SDK のドキュメントへ！
+Momento Go SDK は GitHub からインストールできます： `github.com/momentohq/client-sdk-go` からインストールできます。
 
-Momento Go SDK は GitHub 経由でインストール可能です: `go get github.com/momentohq/client-sdk-go`.
+ソースコードはGitHubにあります： [momentohq/client-sdk-go](https://github.com/momentohq/client-sdk-go)。
 
-ソースコードは GitHub にあります: [momentohq/client-sdk-go](https://github.com/momentohq/client-sdk-go).
-
-## 必要条件
+## 前提条件
 
 - [Go](https://go.dev/dl/)
-- Momento API Keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
+- MomentoのAPIキーが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
 
-## リソース
+## Resources
 
-- [Go SDK チートシート](./cheat-sheet.mdx)
-- [Go SDK 例](https://github.com/momentohq/client-sdk-go/blob/main/examples/README.md): Go SDK の使い方をお見せするための動作可能なプロジェクト例です。
-- まもなく: オブザーバビリティ: Go SDK を使ったロギングとクライアントサイドのメトリクス
-- まもなく: コードを本番環境へ: Go SDK での設定とエラーハンドリング
+- [Go SDK Cheat Sheet](./cheat-sheet.mdx)
+- [Go SDK Examples](https://github.com/momentohq/client-sdk-go/blob/main/examples/README.md): Go SDKの使い方を説明するサンプルプロジェクト
+- COMING SOON: Observability: Go SDKによるログとクライアントサイドのメトリクス
+- COMING SOON: コードをprodへ： Go SDKの設定とエラー処理
 
-## 連携
+## 実装
 
-- [Redis Compatibility Client for `@go-redis`](https://github.com/momentohq/momento-go-redis-client) - 既存の `go-redis` コードを Momento Cache を使用すれば簡単に置き換わることができます！[Redis Client Compatibility](./../integrations/redis-client-compatibility) ページも参照してください。
+- [Redis Compatibility Client for `@go-redis`](https://github.com/momentohq/momento-go-redis-client) - 既存の `go-redis` コードで Momento Cache を使えるようにするドロップイン置き換えです！[Redis クライアントとの互換性](./../../integrations/redis-client-compatibility.md) も参照してください。
