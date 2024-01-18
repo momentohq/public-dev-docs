@@ -87,4 +87,4 @@ if (publishResponse instanceof TopicPublish.Success) {
 ```
 6. The subscriber to `topic 2` should now be receiving the uppercase messages, and logging the messages to the console!
 
-And that is it! For a more complete example of using Webhooks for event processing, checkout our EventBridge [example](/topics/integrations/lambda-handler), and our [blog post](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app) about using this pattern to create a multi-language chat application.
+And that is it! This Topics pattern allows for clients to be completely agnostic of the downstream consumer, and allows flexibility down the line for consuming messages from the client. For a more complete example of using Webhooks for event processing, checkout our EventBridge [example](/topics/integrations/lambda-handler), and our [blog post](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app) about using this pattern to create a multi-language chat application.
