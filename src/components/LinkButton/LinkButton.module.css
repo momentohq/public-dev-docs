@@ -1,0 +1,7 @@
+.link_button {
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  padding: 16px;
+  transition: box-shadow 0.3s ease;
+  /*width: 25em;*/
+}

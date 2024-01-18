@@ -11,6 +11,7 @@
     "startwithoutgitupdate": "docusaurus start --no-open",
     "prebuild": "./prepare-ts-plugins.sh && ./prepare-sdk-git-repos.sh",
     "build": "docusaurus build",
+    "buildwithoutgitupdate": "docusaurus build",
     "build-windows": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",

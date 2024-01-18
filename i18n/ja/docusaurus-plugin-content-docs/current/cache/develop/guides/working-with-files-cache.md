@@ -89,7 +89,7 @@ async function run() {
 run();
 ```
 
-Node.jsSDKの使い方については、[Node.jsチートシート](./../sdks/nodejs/cheat-sheet.mdx)をご覧ください。
+Node.jsSDKの使い方については、[Node.jsチートシート](/sdks/nodejs/cheat-sheet.mdx)をご覧ください。
    </TabItem>
    <TabItem value="py" label="Python">
 
@@ -160,7 +160,7 @@ if __name__ == '__main__':
 
 ```
 
-Python SDKの使い方については、[Pythonチートシート](./../sdks/python/cheat-sheet.md)をご覧ください。
+Python SDKの使い方については、[Pythonチートシート](/sdks/python/cheat-sheet.md)をご覧ください。
 
    </TabItem>
 </Tabs>

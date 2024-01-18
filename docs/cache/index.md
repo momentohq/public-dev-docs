@@ -33,19 +33,19 @@ In the following pages, you can learn about caching in general and how to use Mo
 - _If you want to quickly get up and running an SDK example with Momento Cache_, check out [Getting Started](./getting-started.md).
 
 - _If you're looking for our open source SDK's_, head to:
-  - [Node.js](./cache/develop/sdks/nodejs)
-  - [JavaScript Web SDK](./cache/develop/sdks/web)
-  - [Python](./cache/develop/sdks/python)
-  - [.NET](./cache/develop/sdks/dotnet)
-  - [Go](./cache/develop/sdks/go)
-  - [PHP](./cache/develop/sdks/php)
-  - [Java](./cache/develop/sdks/java)
-  - [Kotlin](./cache/develop/sdks/kotlin)
-  - [Rust](./cache/develop/sdks/rust)
-  - [Ruby](./cache/develop/sdks/ruby)
-  - [Elixir](./cache/develop/sdks/elixir)
-  - [Swift](./cache/develop/sdks/swift)
-  - [Dart](./develop/sdks/dart)
+  - [Node.js](./sdks/nodejs)
+  - [JavaScript Web SDK](./sdks/web)
+  - [Python](./sdks/python)
+  - [.NET](./sdks/dotnet)
+  - [Go](./sdks/go)
+  - [PHP](./sdks/php)
+  - [Java](./sdks/java)
+  - [Kotlin](./sdks/kotlin)
+  - [Rust](./sdks/rust)
+  - [Ruby](./sdks/ruby)
+  - [Elixir](./sdks/elixir)
+  - [Swift](./sdks/swift)
+  - [Dart](./sdks/dart)
 
 - _Looking for Momento icons for your architecture diagrams?_ Download [Momento_Architecture_Icons.zip](@site/static/img/icons/Momento_Architecture_Icons.zip).
 

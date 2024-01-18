@@ -187,23 +187,23 @@ const config = {
           },
           {
             from: '/develop/guides/cheat-sheets/momento-cache-go-cheat-sheet',
-            to: '/cache/develop/sdks/go/cheat-sheet',
+            to: '/sdks/go/cheat-sheet',
           },
           {
             from: '/develop/guides/cheat-sheets/momento-cache-nodejs-cheat-sheet',
-            to: '/cache/develop/sdks/nodejs/cheat-sheet',
+            to: '/sdks/nodejs/cheat-sheet',
           },
           {
             from: '/develop/guides/cheat-sheets/momento-cache-php-cheat-sheet',
-            to: '/cache/develop/sdks/php/cheat-sheet',
+            to: '/sdks/php/cheat-sheet',
           },
           {
             from: '/develop/guides/cheat-sheets/momento-cache-python-cheat-sheet',
-            to: '/cache/develop/sdks/python/cheat-sheet',
+            to: '/sdks/python/cheat-sheet',
           },
           {
             from: '/develop/sdks-integrations/deploying-javascript-web-sdk',
-            to: '/cache/develop/sdks/web',
+            to: '/sdks/web',
           },
           {
             from: '/develop/api-reference/collections/collectionttl',
@@ -250,7 +250,7 @@ const config = {
             //This redirects users from the pre v1.5.0 docs location of the Node.js topics cheat sheet to the new location under /topics.
           {
             from: '/develop/sdks/nodejs/topics-cheat-sheet',
-            to: '/topics/develop/sdks/nodejs/cheat-sheet'
+            to: '/sdks/nodejs/topics-cheat-sheet'
           },
           {
             from: '/topics/webhooks',
