@@ -1,9 +1,20 @@
 ---
 sidebar_position: 1
-title: Momento Node.js SDK
+title: Momento Node.js SDK | Topics
 pagination_prev: null
 sidebar_label: Node.js
-description: Information about the Momento Node.js SDK
+description: Get started using the Momento Node.js SDK for Topics Today. Discover system requirements, explore our cheat sheets, and learn about cool integrations with one-click installs.
+keywords:
+    - momento
+    - topics
+    - event-driven architecture
+    - eda
+    - websockets
+    - node.js
+    - nodejs
+    - javascript
+    - sdk
+    - typescript
 ---
 
 # Momento Node.js SDK - Topic Client

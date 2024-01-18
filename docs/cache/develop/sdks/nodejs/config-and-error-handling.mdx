@@ -1,8 +1,20 @@
 ---
 sidebar_position: 2
 sidebar_label: Config and Error Handling
-title: Observability for TypeScript and Node.js
-description: Instrument your Momento-enabled Node.js code with Logs, Metrics, and Traces
+title: Manage Momento Configuration and Error Handling in TypeScript and Node.js
+description: Learn how to configure your Momento CacheClient and write production-ready error handling code in TypeScript and Node.js
+keywords:
+  - momento
+  - cache
+  - configuration
+  - error handling
+  - exceptions
+  - sdk
+  - production ready
+  - typescript
+  - node.js
+  - nodejs
+  - javascript
 ---
 
 import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
@@ -10,9 +22,7 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Configuration and Error Handling in the Momento node.js SDK
-
-## Configuration
+# How to Manage Configuration and Error Handling in the Momento Node.js SDK
 
 The code below illustrates the simplest way to construct a `CacheClient`:
 
@@ -26,12 +36,12 @@ and `Lambda` (which is tuned for use in AWS Lambda environments). Here is how yo
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'configuration_ConstructWithLambdaConfig'} />
 
+:::tip
 If you omit the configuration, Momento will use the `Laptop` configuration by default. This configuration has relaxed
 timeouts, suitable for development or in high-latency environments. (It is not recommended for production, server-side use.)
+:::
 
 For more information about `Configuration` objects see [SDK Configuration Objects](/cache/develop/basics/client-configuration-objects.md).
-
-## Error Handling
 
 By default, `CacheClient` errors are surfaced to developers as part of the return values of the calls, as opposed to throwing
 exceptions. This makes errors more visible when you're writing your code, and allows your IDE to be more helpful in ensuring
