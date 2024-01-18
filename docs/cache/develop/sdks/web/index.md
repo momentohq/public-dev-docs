@@ -33,7 +33,6 @@ The source code can be found on GitHub: [momentohq/client-sdk-javascript](https:
 - [Chat app: Next.js](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/nextjs-chat): a dynamic app that allows users to chat in their browser by entering a cache and topic name. The application vends low scope, short-lived auth tokens to the browser which uses them to subscribe to the topic.
 - [Chat app: Vite](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/vite-chat-app): a static version of the chat app that requires a separate API (such as our [Node.js token vending machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine)) to provide auth tokens to browsers.
 - [Web SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/README.md): working example projects that illustrate how to use the web SDK
-- COMING SOON: Taking your code to prod: configuration and error handling in the web SDK
 
 ## Momento web SDK and Momento Topics
 

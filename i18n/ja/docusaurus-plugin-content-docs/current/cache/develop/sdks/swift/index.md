@@ -21,9 +21,3 @@ The Momento Swift SDK and source code are available via GitHub: [momentohq/clien
 
 - [Swift SDK cheat sheet](./cheat-sheet.mdx)
 - [Swift SDK examples](https://github.com/momentohq/client-sdk-swift/tree/main/Examples): working example projects that illustrate how to use the Swift SDK
-- COMING SOON: Observability: Logging and client-side metrics with the Swift SDK
-- COMING SOON: Taking your code to prod: configuration and error handling in the Swift SDK
-
-## Integrations
-
-COMING SOON

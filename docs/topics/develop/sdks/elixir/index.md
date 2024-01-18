@@ -20,9 +20,3 @@ The source code can be found on GitHub: [momentohq/client-sdk-elixir](https://gi
 ## Resources
 
 - [Elixir SDK examples](https://github.com/momentohq/client-sdk-elixir/blob/main/examples/README.md): working example projects that illustrate how to use the Elixir SDK
-- COMING SOON: Observability: Logging and client-side metrics with the Elixir SDK
-- COMING SOON: Taking your code to prod: configuration and error handling in the Elixir SDK
-
-## Integrations
-
-COMING SOON

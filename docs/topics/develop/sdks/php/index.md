@@ -21,8 +21,6 @@ The source code can be found on GitHub: [momentohq/client-sdk-php](https://githu
 ## Resources
 
 - [PHP SDK examples](https://github.com/momentohq/client-sdk-php/blob/main/examples/README.md): working example projects that illustrate how to use the PHP SDK
-- COMING SOON: Observability: logging and client-side metrics with the PHP SDK
-- COMING SOON: Taking your code to prod: configuration and error handling in the PHP SDK
 
 ## Integrations
 
