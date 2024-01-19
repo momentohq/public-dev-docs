@@ -1,7 +1,36 @@
-.link_button {
+.card {
   border: 1px solid #eaeaea;
-  border-radius: 4px;
-  padding: 16px;
+  border-radius: 10px;
+  padding: 4px 15px;
   transition: box-shadow 0.3s ease;
-  /*width: 25em;*/
+  width: fit-content;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+}
+.cardLink:hover {
+  text-decoration: none;
+}
+
+.cardContent {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  gap: .5em;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardDescription {
+  font-weight: 500;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navigationIcon {
+  height: 1em;
 }

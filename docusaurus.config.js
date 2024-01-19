@@ -26,19 +26,19 @@ const config = {
   i18n: {
     defaultLocale: "en",
     locales: ["en", "ja"],
-      localeConfigs: {
-          en: {
-              label: 'English',
-              direction: 'ltr',
-              htmlLang: 'en-US',
-              calendar: 'gregory',
-          },
-          ja: {
-              label: '日本語',
-              htmlLang: 'ja',
-              path: 'ja',
-          },
+    localeConfigs: {
+      en: {
+        label: 'English',
+        direction: 'ltr',
+        htmlLang: 'en-US',
+        calendar: 'gregory',
       },
+      ja: {
+        label: '日本語',
+        htmlLang: 'ja',
+        path: 'ja',
+      },
+    },
   },
 
   presets: [
@@ -50,10 +50,10 @@ const config = {
           sidebarCollapsible: true,
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/momentohq/public-dev-docs/tree/main/",
-	        routeBasePath: '/', // Serve the docs at the site's root
+          routeBasePath: '/', // Serve the docs at the site's root
           remarkPlugins: [exampleSnippetsPlugin, languageApiSupportMatrixPlugin]
         },
-	     blog: false, // Turn off blog functionality
+        blog: false, // Turn off blog functionality
         theme: {
           customCss: require.resolve("./src/css/custom.scss"),
         },
@@ -71,7 +71,7 @@ const config = {
     ],
     [
       require.resolve("@docusaurus/plugin-client-redirects"),
-        {
+      {
         redirects: [
           // Redirect overview
 
@@ -237,17 +237,17 @@ const config = {
             from: '/topics/develop/integrations/aws-secrets-manager',
             to: '/topics/integrations/aws-secrets-manager'
           },
-            //This redirects from the pre v1.5.0 of the docs for the Topics page to the home page for the topics service /topics.
+          //This redirects from the pre v1.5.0 of the docs for the Topics page to the home page for the topics service /topics.
           {
             from: '/introduction/momento-topics',
             to: '/topics'
           },
-            //This redirects from the pre v1.5.0 docs api-reference/topics page to the new /topics/develop/api-reference page.
+          //This redirects from the pre v1.5.0 docs api-reference/topics page to the new /topics/develop/api-reference page.
           {
             from: '/develop/api-reference/topics',
             to: '/topics/develop/api-reference'
           },
-            //This redirects users from the pre v1.5.0 docs location of the Node.js topics cheat sheet to the new location under /topics.
+          //This redirects users from the pre v1.5.0 docs location of the Node.js topics cheat sheet to the new location under /topics.
           {
             from: '/develop/sdks/nodejs/topics-cheat-sheet',
             to: '/sdks/nodejs/topics-cheat-sheet'
@@ -257,8 +257,8 @@ const config = {
             to: '/topics/webhooks/overview'
           }
         ],
-          // This came in with v1.5.0 of the docs where we split out by service.
-          // This function redirects anything coming into /develop, /learn, /manage, or /introduction to /cache/<directory>.
+        // This came in with v1.5.0 of the docs where we split out by service.
+        // This function redirects anything coming into /develop, /learn, /manage, or /introduction to /cache/<directory>.
         createRedirects(existingPath) {
           if (existingPath.includes('/develop') || existingPath.includes('/learn') || existingPath.includes('/manage') || existingPath.includes('/introduction')) {
             return [
@@ -291,10 +291,13 @@ const config = {
           href: "/"
         },
         items: [
-          {to: '/cache', label: 'Cache', position: 'left'},
-          {to: '/topics', label: 'Topics', position: 'left'},
-          {to: '/vector-index', label: 'Vector Index', position: 'left'},
-          {to: '/leaderboards', label: 'Leaderboards', position: 'left'},
+          { to: '/cache', label: 'Cache', position: 'left' },
+          { to: '/topics', label: 'Topics', position: 'left' },
+          { to: '/vector-index', label: 'Vector Index', position: 'left' },
+          { to: '/leaderboards', label: 'Leaderboards', position: 'left' },
+          {
+            to: '/sdks', label: 'SDKs', position: 'right'
+          },
           {
             to: "https://www.gomomento.com/blog",
             label: "Blog",
