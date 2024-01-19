@@ -1,9 +1,29 @@
 ---
 sidebar_position: 9
-title: Momento Rust SDK
 pagination_prev: null
 sidebar_label: Rust
-description: Information about the Momento Rust SDK
+title: Get to know the Momento Rust SDK
+description: The Momento Rust SDK allows you to create server-side applications, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - sdk
+  - sdks
+  - api
+  - examples
+  - resources
+  - getting started
+  - server-side
+  - rust
+  - cargo
 ---
 
 # Momento Rust SDK

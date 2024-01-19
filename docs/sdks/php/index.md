@@ -1,9 +1,30 @@
 ---
 sidebar_position: 7
-title: Momento PHP SDK
 pagination_prev: null
 sidebar_label: PHP
-description: Information about the Momento PHP SDK
+title: Get to know the Momento PHP SDK
+description: The Momento PHP SDK allows you to create server-side applications, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - sdk
+  - sdks
+  - api
+  - examples
+  - resources
+  - getting started
+  - server-side
+  - php
+  - laravel
+  - drupal
 ---
 
 # Momento PHP SDK
@@ -20,7 +41,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-php](https://githu
 
 ## Resources
 
-- [PHP SDK cheat sheet](./cheat-sheet.md)
+- [Getting started with Momento Cache in PHP](./cache)
 - [PHP SDK examples](https://github.com/momentohq/client-sdk-php/blob/main/examples/README.md): working example projects that illustrate how to use the PHP SDK
 
 ## Integrations

@@ -1,9 +1,31 @@
 ---
 sidebar_position: 4
-title: Momento .NET SDK
 pagination_prev: null
 sidebar_label: .NET
-description: Information about the Momento .NET SDK
+title: Get to know the Momento .NET SDK
+description: The Momento .NET SDK allows you to create server-side applications in C#, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - sdk
+  - sdks
+  - api
+  - examples
+  - resources
+  - getting started
+  - server-side
+  - dotnet
+  - csharp
+  - c sharp
+  - c#
 ---
 
 # Momento .NET SDK
@@ -20,7 +42,8 @@ The source code can be found on GitHub: [momentohq/client-sdk-dotnet](https://gi
 
 ## Resources
 
-- [.NET SDK Cheat Sheet](./cheat-sheet.mdx)
+- [Getting started with Momento Cache in .NET](./cache)
+- [Getting started with Momento Topics in .NET](./topics)
 - [.NET SDK Examples](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples/README.md): working example projects that illustrate how to use the .NET SDK
 - [.NET SDK Observability](./observability.mdx): Logging and Client-side Metrics with the .NET SDK
 

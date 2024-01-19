@@ -1,8 +1,31 @@
 ---
 sidebar_position: 1
-sidebar_label: Cheat Sheet
-title: Cheat Sheet for Kotlin
-description: Get started really quickly coding using Kotlin with Momento Cache
+sidebar_label: Cache
+title: Getting started with Momento Cache in Kotlin
+description: Learn the basic building blocks for writing Kotlin code to interact with Momento Cache in your native Android applications, or your JVM server-side applications.
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - sdk
+  - sdks
+  - api
+  - examples
+  - resources
+  - getting started
+  - quick start
+  - android
+  - mobile
+  - kotlin
+  - jvm
+  - java
 ---
 
 import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
@@ -10,18 +33,25 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Cheat Sheet for Kotlin with Momento Cache
+# Getting Started with Momento Cache in Kotlin
 
 If you need to get going quickly with Kotlin and Momento Cache, this page contains the basic API calls you'll need. [Check the Kotlin SDK examples](https://github.com/momentohq/client-sdk-kotlin/tree/main/examples) for complete, working examples including build configuration files.
 
-## Install the Momento client library
+## Install the Momento SDK
+
+The Momento SDK is available on Maven Central: [`software.momento.kotlin/sdk](
+https://central.sonatype.com/artifact/software.momento.kotlin/sdk).
+
+:::tip
+Visit [Maven Central](https://central.sonatype.com/artifact/software.momento.kotlin/sdk) to find the latest available version of the SDK.
+:::
 
 Install the client library in an existing Kotlin project:
 
 ### Gradle
 
 ```kotlin
-implementation("software.momento.kotlin:sdk:0.1.3")
+implementation("software.momento.kotlin:sdk:x.x.x")
 ```
 
 ### Maven
@@ -30,11 +60,11 @@ implementation("software.momento.kotlin:sdk:0.1.3")
 <dependency>
     <groupId>software.momento.kotlin</groupId>
     <artifactId>sdk</artifactId>
-    <version>0.1.3</version>
+    <version>x.x.x</version>
 </dependency>
 ```
 
-## Set up your auth token
+## Set up your API key
 
 You'll need a Momento API key to authenticate with Momento.  You can get one from the [Momento Web Console](https://console.gomomento.com/caches).
 Once you have your token, store it in an environment variable so that the Momento client can consume it:

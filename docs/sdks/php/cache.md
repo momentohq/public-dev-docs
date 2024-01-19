@@ -1,11 +1,33 @@
 ---
 sidebar_position: 1
-sidebar_label: Cheat Sheet
-title: Cheat Sheet for PHP + Momento Cache
-description: Everything to get you going with coding using PHP and Momento Cache
+sidebar_label: Cache
+title: Getting started with Momento Cache in PHP
+description: Learn the basic building blocks for writing PHP code to interact with Momento Cache.
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - sdk
+  - sdks
+  - api
+  - examples
+  - resources
+  - getting started
+  - quick start
+  - server-side
+  - php
+  - laravel
+  - drupal
 ---
 
-# Cheat Sheet for PHP with Momento Cache
+# Getting Started with Momento Cache in PHP
 
 If you need to get going quickly with PHP and Momento Cache, this page contains the basic API calls you'll need.
 

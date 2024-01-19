@@ -1,9 +1,32 @@
 ---
 sidebar_position: 2
-title: Momento JavaScript web SDK
 pagination_prev: null
 sidebar_label: JS Web SDK
-description: Information about the Momento web SDK
+title: Get to know the Momento Web SDK
+description: The Momento Web SDK allows you to create rich browser applications in TypeScript or JavaScript, and take advantage of caching and pub-sub features without the need for server-side infrastructure. Find resources and examples here!
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - sdk
+  - sdks
+  - api
+  - typescript
+  - javascript
+  - nodejs
+  - node.js
+  - examples
+  - resources
+  - getting started
+  - browser
+  - web
 ---
 
 import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
@@ -11,9 +34,9 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Momento web SDK for JavaScript in browsers
+# Momento Web SDK for JavaScript in browsers
 
-Momento provides two JavaScript SDKs; [one for Node.js](/sdks/nodejs) and one for other web applications. The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
+Momento provides two JavaScript SDKs; [one for Node.js](/sdks/nodejs) and one for browsers other web applications (this page). The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
 
 The Node.js SDK is best suited for server-side use cases. The Momento web SDK, however, allows developers to write JavaScript code that runs in a browser and communicates directly with Momento services. This allows you to avoid the typical overhead of building and operating your own web service to mediate cache or pub/sub calls between the browser and Momento. It also means one less hop for your web traffic, so you can get even better performance out of your browser application. The best of both worlds!
 
@@ -29,7 +52,8 @@ The source code can be found on GitHub: [momentohq/client-sdk-javascript](https:
 
 ## Resources
 
-- [Momento Node.js cheat sheet](./../nodejs/cheat-sheet.mdx): this cheat sheet targets the Node.js SDK, but the web SDK APIs are fully compatible.
+- [Getting started with Momento Cache in JavaScript](/sdks/nodejs/cache.mdx): this cheat sheet targets the Node.js SDK, but the web SDK APIs are fully compatible.
+- [Getting started with Momento Topics in JavaScript](/sdks/nodejs/topics.mdx): this cheat sheet targets the Node.js SDK, but the web SDK APIs are fully compatible.
 - [Chat app: Next.js](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/nextjs-chat): a dynamic app that allows users to chat in their browser by entering a cache and topic name. The application vends low scope, short-lived auth tokens to the browser which uses them to subscribe to the topic.
 - [Chat app: Vite](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/vite-chat-app): a static version of the chat app that requires a separate API (such as our [Node.js token vending machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine)) to provide auth tokens to browsers.
 - [Web SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/README.md): working example projects that illustrate how to use the web SDK
@@ -42,7 +66,7 @@ This server-side complexity is eliminated by incorporating Momento Topics with t
 
 ## Using the web SDK for browsers
 
-While the API calls are [identical to the Momento Node.js SDK](./../nodejs/cheat-sheet.mdx), the import/require statement will consume the `@gomomento/sdk-web` package from npm, instead of `@gomomento/sdk` (which is the Node.js SDK).
+While the API calls are [identical to the Momento Node.js SDK](/sdks/nodejs/cache.mdx), the import/require statement will consume the `@gomomento/sdk-web` package from npm, instead of `@gomomento/sdk` (which is the Node.js SDK).
 
 Here's an example import statement for the web SDK:
 

@@ -1,11 +1,32 @@
 ---
 sidebar_position: 1
-sidebar_label: Cheat Sheet
-title: Cheat Sheet for Python + Momento Cache
-description: Everything to get you going with coding using Python and Momento Cache
+sidebar_label: Cache
+title: Getting started with Momento Cache in Python
+description: Learn the basic building blocks for writing Python code to interact with Momento Cache.
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - sdk
+  - sdks
+  - api
+  - examples
+  - resources
+  - getting started
+  - quick start
+  - server-side
+  - python
+  - asyncio
 ---
 
-# Cheat Sheet for Python with Momento Cache
+# Getting Started with Momento Cache in Python
 
 If you need to get going quickly with Python and Momento Cache, this page contains the basic API calls you'll need.
 
@@ -14,6 +35,27 @@ If you need to get going quickly with Python and Momento Cache, this page contai
 If you combine all of the functions on this page into one python file, you'd have a central collection of functions you can import and call from other python code. In addition, if you are using this code in production you might look to replace the print() calls with ones using the logging library (`import logging`) in python. [Click here](@site/static/code/cheat-sheets/MomentoBasics.py) to see the class file with all definitions in it.
 
 :::
+
+## Install the Momento SDK
+
+The Momento Python SDK is available on [pypi as `momento`](https://pypi.org/project/momento/).
+
+To install in your Python application via pip, use:
+
+```bash
+pip install momento
+```
+
+## Set up your API key
+
+You'll need a [Momento API key](/cache/develop/authentication/api-keys) to authenticate with Momento. You can get one, preferably a fine-grained token, from the [Momento Web Console](https://console.gomomento.com/caches).
+Once you have a token, store it in an environment variable so that the Momento client can consume it:
+
+```
+export MOMENTO_API_KEY=<your Momento token here>
+```
+
+**Note**: it is best practice to put the token into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
 
 ## Import libraries and connect to return a CacheClient object
 
@@ -27,7 +69,7 @@ from momento.responses import CacheGet, CacheSet, CreateCache, ListCaches, Cache
 import os
 
 def create_client():
-  momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_AUTH_TOKEN')
+  momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_API_KEY')
   ttl  = timedelta(seconds=int(os.getenv('MOMENTO_TTL_SECONDS', '600')))
   config = {
     'configuration': Configurations.Laptop.v1(),

@@ -1,9 +1,31 @@
 ---
 sidebar_position: 7
-title: Momento Elixir SDK
 pagination_prev: null
 sidebar_label: Elixir
-description: Information about the Momento Elixir SDK
+title: Get to know the Momento Elixir SDK
+description: The Momento Elixir SDK allows you to create server-side applications, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - sdk
+  - sdks
+  - api
+  - examples
+  - resources
+  - getting started
+  - server-side
+  - elixir
+  - phoenix
+  - erlang
+  - beam
 ---
 
 # Momento Elixir SDK
@@ -19,5 +41,5 @@ The source code can be found on GitHub: [momentohq/client-sdk-elixir](https://gi
 
 ## Resources
 
-- [Elixir SDK cheat sheet](./cheat-sheet.mdx)
+- [Getting started with Momento Cache in Elixir](./cache)
 - [Elixir SDK examples](https://github.com/momentohq/client-sdk-elixir/blob/main/examples/README.md): working example projects that illustrate how to use the Elixir SDK

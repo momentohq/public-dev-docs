@@ -1,9 +1,29 @@
 ---
 sidebar_position: 5
-title: Momento Go SDK
 pagination_prev: null
 sidebar_label: Go
-description: Information about the Momento Go SDK
+title: Get to know the Momento Go SDK
+description: The Momento Go SDK allows you to create server-side applications, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - sdk
+  - sdks
+  - api
+  - examples
+  - resources
+  - getting started
+  - server-side
+  - go
+  - golang
 ---
 
 # Momento Go SDK
@@ -19,7 +39,8 @@ The source code can be found on GitHub: [momentohq/client-sdk-go](https://github
 
 ## Resources
 
-- [Go SDK Cheat Sheet](./cheat-sheet.mdx)
+- [Getting started with Momento Cache in Go](./cache)
+- [Getting started with Momento Topics in Go](./topics)
 - [Go SDK Examples](https://github.com/momentohq/client-sdk-go/blob/main/examples/README.md): working example projects that illustrate how to use the Go SDK
 
 ## Integrations

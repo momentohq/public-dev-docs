@@ -1,8 +1,32 @@
 ---
 sidebar_position: 1
-sidebar_label: Cache Cheat Sheet
-title: Cheat sheet for TypeScript and Node.js
-description: Get started really quickly coding using TypeScript and Node.js with Momento Cache
+sidebar_label: Cache
+title: Getting started with Momento Cache in JavaScript
+description: Learn the basic building blocks for writing TypeScript and JavaScript code to interact with Momento Cache.
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - sdk
+  - sdks
+  - api
+  - typescript
+  - javascript
+  - nodejs
+  - node.js
+  - examples
+  - resources
+  - getting started
+  - quick start
+  - web
+  - browser
 ---
 
 import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
@@ -10,17 +34,29 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Cheat sheet for Node.js with Momento Cache
+# Getting Started with Momento Cache in JavaScript
 
-If you need to get going quickly with Node.js + TypeScript and Momento Cache, this page contains the basic API calls you'll need. [Check the Node.js SDK examples](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/cache) for complete, working examples including build configuration files.
+Momento provides two JavaScript SDKs; [one for Node.js](/sdks/nodejs) and [one for browsers other web applications](/sdks/web). The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
 
-## Install the Momento client library
+This page contains the basics that you will need in order to get going quickly with Momento Cache. For more in-depth information and examples, visit the SDK pages linked above.
 
-Install the client library in an existing Node.js project:
+## Install the Momento SDK
+
+To Install the Momento Node.js SDK in an existing Node.js project:
 
 ```cli
 npm install @gomomento/sdk
 ```
+
+OR, to install the Momento Web SDK in an existing browser application project:
+
+```cli
+npm install @gomomento/sdk-web
+```
+
+:::tip
+You only need one of the two libraries; either `@gomomento/sdk` or `@gomomento/sdk-web`, depending on your target platform. You do not need both.
+:::
 
 ## Set up your API key
 

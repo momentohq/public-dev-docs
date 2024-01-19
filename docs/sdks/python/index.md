@@ -1,9 +1,29 @@
 ---
 sidebar_position: 3
-title: Momento Python SDK
 pagination_prev: null
 sidebar_label: Python
-description: Information about the Momento Python SDK
+title: Get to know the Momento Python SDK
+description: The Momento Python SDK allows you to create server-side applications using either synchronous or asyncio APIs, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - sdk
+  - sdks
+  - api
+  - examples
+  - resources
+  - getting started
+  - server-side
+  - python
+  - asyncio
 ---
 
 # Momento Python SDK
@@ -19,7 +39,8 @@ The source code can be found on GitHub: [momentohq/client-sdk-python](https://gi
 
 ## Resources
 
-- [Python SDK Cheat Sheet](./cheat-sheet.md)
+- [Getting started with Momento Cache in Python](./cache)
+- [Getting started with Momento Topics in Python](./topics)
 - [Python SDK Examples](https://github.com/momentohq/client-sdk-python/blob/main/examples/README.md): working example projects that illustrate how to use the Python SDK
 
 ## Integrations
