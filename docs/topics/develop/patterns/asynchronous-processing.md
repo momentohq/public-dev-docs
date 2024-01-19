@@ -1,34 +1,34 @@
 ---
 sidebar_position: 6
-title: Best Practices for Async Process with Momento Topics
+title: Best practices for async processing with Momento Topics
 sidebar_label: Asynchronous Processing
-description: Learn best practices around using Momento Topics and webhooks to process data asynchronously in your event-driven architectures
+description: Learn best practices around using Momento Topics and webhooks to process data asynchronously in your event-driven architectures.
 keywords:
  - topics
  - webhooks
  - eda
  - momento
  - event-driven architecture
- - step functions
+ - Step Functions
 ---
 
 # Use Momento Topics to process data asynchronously
 
-With Momento Topics, you can subscribe to messages on a Topic, as well as publish messages to a new Topic. Webhooks allow you to connect these Topics to stateless consumers, which can then process these events asynchronously. Whether this is aggregating events by `topic_id`, saving each event to a database, or using the payload to trigger a step function, webhooks give you the flexibility to process these events how you want to. 
+With Momento Topics, you can subscribe to messages on a topic, as well as publish messages to a new topic. Webhooks allow you to connect these topics to stateless consumers, which can then process these events asynchronously. Whether this is aggregating events by `topic_id`, saving each event to a database, or using the payload to trigger a Step function, webhooks give you the flexibility to process these events how you want to. 
 
-The key to asynchnously processing these events it to use _multiple_ topics. An inbound topic, which the Webhook listens to, and a single, or multiple, outbound topics which publish the processed data.
+The key to asynchronously processing these events is to use _multiple_ topics. An inbound topic, which the webhook listens to, and a single, or multiple, outbound topics which publish the processed data.
 
 ![Architecture](@site/static/img/topics/patterns/asynchronous-processing.png)
 
-In this diagram, `Topic 1` is the `inbound` Topic, and `Topic 2` is the `outbound` Topic.
+In this diagram, `Topic 1` is the `inbound` topic, and `Topic 2` is the `outbound` topic.
 
 ## Pre-requisites
-1. A public facing endpoint to receive webhook events. This endpoint must accept POST requests and be able to receive inbound calls from Momento. More detail about the structure of this event is [described here.](https://docs.momentohq.com/topics/webhooks/overview#example-event)
+1. A public facing endpoint to receive webhook events. This endpoint must accept POST requests and be able to receive inbound calls from Momento. More detail about the structure of this event is [described here](https://docs.momentohq.com/topics/webhooks/overview#example-event).
 
 ## Getting Started
 1. [Create a cache in the Momento console](https://console.gomomento.com/caches/create)
-2. [Create a webhook](/topics/webhooks/creating-a-webhook) for the cache. Assign the Webhook Destination to the public facing endpoint.
-3. Add code to the Webhook to process the incoming messages. For example, if your webhook is implemented as an AWS Lambda behind an API Gateway, then here is some very simple lambda code that processes the incoming message, converts it to upper case, and then publishes it to the outbound topic:
+2. [Create a webhook](/topics/webhooks/creating-a-webhook) for the cache. Assign the webhook destination to the public facing endpoint.
+3. Add code to the webhook to process the incoming messages. For example, if your webhook is implemented as an AWS Lambda function behind an API Gateway, then here is some very simple code that processes the incoming message, converts it to upper case, and then publishes it to the outbound topic:
 ```typescript
 import {
     APIGatewayProxyEvent,
@@ -77,7 +77,7 @@ const result = await topicClient.subscribe(cacheName, 'topic 2', {
     },
 });
 ```
-5. Begin publishing messages to the Topic that the Webhook is listening to. You can use the [Momento SDK](/topics/develop/api-reference) to publish to the topic.
+5. Begin publishing messages to the topic that the webhook is listening to. You can use the [Momento SDK](/topics/develop/api-reference) to publish to the topic.
 ```typescript
 import {TopicPublish} from '@gomomento/sdk';
 const publishResponse = await topicClient.publish(cacheName, 'topic 1', 'a value');
@@ -89,4 +89,4 @@ if (publishResponse instanceof TopicPublish.Success) {
 ```
 6. The subscriber to `topic 2` should now be receiving the uppercase messages, and logging the messages to the console!
 
-And that is it! This is an extremely basic example of string conversion, but this pattern holds true for more advanced asynchronous processing, such as saving state to a db or publishing messages to a queue. This Topics pattern allows for clients to be completely agnostic of the downstream consumer, if the load for the application outgrows an environment such as API Gateway + Lambda, you can easily replace it with containers or EC2 instances. For a more complete example of using Webhooks for event processing, checkout our EventBridge [example](/topics/integrations/lambda-handler), and our [blog post](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app) about using this pattern to create a multi-language chat application.
+And that is it! This is an extremely basic example of string conversion, but this pattern holds true for more advanced asynchronous processing, such as saving state to a db or publishing messages to a queue. This topics pattern allows for clients to be completely agnostic of the downstream consumer, if the load for the application outgrows an environment such as API Gateway + Lambda function, you can easily replace it with containers or EC2 instances. For a more complete example of using webhooks for event processing, checkout our EventBridge [example](/topics/integrations/lambda-handler), and our [blog post](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app) about using this pattern to create a multi-language chat application.

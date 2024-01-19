@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 2
 sidebar_label: Getting Started
 title: Creating a webhook
 description: Learn how to create a webhook using the Momento Console
@@ -12,7 +12,7 @@ keywords:
   - event-driven architecture
 ---
 
-### Creating the Momento webhook
+# Create your first webhook in Momento
 
 To complete step one of setting up the webhook, log into the [Momento console](https://console.gomomento.com). Navigate to the [cache list](https://console.gomomento.com/caches) on the left navigation bar and select the cache that will publish to the webhook.
 
