@@ -16,9 +16,11 @@ keywords:
 
 With Momento Topics, you can subscribe to messages on a Topic, as well as publish messages to a new Topic. Webhooks allow you to connect these Topics to stateless consumers, which can then process these events asynchronously. Whether this is aggregating events by `topic_id`, saving each event to a database, or using the payload to trigger a step function, webhooks give you the flexibility to process these events how you want to. 
 
-The key to asynchnously processing these events it to use _multiple_ topics. An inbound topic, which the Webhook listens to, and a single, or multiple, outbound topics which publish the processed data. For a more advanced use case, you can even send messages back to the publishing client via Topics.
+The key to asynchnously processing these events it to use _multiple_ topics. An inbound topic, which the Webhook listens to, and a single, or multiple, outbound topics which publish the processed data.
 
 ![Architecture](@site/static/img/topics/patterns/asynchronous-processing.png)
+
+In this diagram, `Topic 1` is the `inbound` Topic, and `Topic 2` is the `outbound` Topic.
 
 ## Pre-requisites
 1. A public facing endpoint to receive webhook events. This endpoint must accept POST requests and be able to receive inbound calls from Momento. More detail about the structure of this event is [described here.](https://docs.momentohq.com/topics/webhooks/overview#example-event)
@@ -62,7 +64,7 @@ export const lambdaHandler = async (
     }
 }
 ```
-4. Add a subscriber to this new `topic 2`
+4. On the client side, add a subscriber to this new `topic 2`
 ```typescript
 const result = await topicClient.subscribe(cacheName, 'topic 2', {
     onError: () => {
@@ -87,4 +89,4 @@ if (publishResponse instanceof TopicPublish.Success) {
 ```
 6. The subscriber to `topic 2` should now be receiving the uppercase messages, and logging the messages to the console!
 
-And that is it! This Topics pattern allows for clients to be completely agnostic of the downstream consumer, and allows flexibility down the line for consuming messages from the client. For a more complete example of using Webhooks for event processing, checkout our EventBridge [example](/topics/integrations/lambda-handler), and our [blog post](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app) about using this pattern to create a multi-language chat application.
+And that is it! This is an extremely basic example of string conversion, but this pattern holds true for more advanced asynchronous processing, such as saving state to a db or publishing messages to a queue. This Topics pattern allows for clients to be completely agnostic of the downstream consumer, if the load for the application outgrows an environment such as API Gateway + Lambda, you can replace it containers or EC2 instances. For a more complete example of using Webhooks for event processing, checkout our EventBridge [example](/topics/integrations/lambda-handler), and our [blog post](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app) about using this pattern to create a multi-language chat application.
