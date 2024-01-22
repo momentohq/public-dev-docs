@@ -11,6 +11,7 @@
     "startwithoutgitupdate": "docusaurus start --no-open",
     "prebuild": "./prepare-ts-plugins.sh && ./prepare-sdk-git-repos.sh",
     "build": "docusaurus build",
+    "buildwithoutgitupdate": "docusaurus build",
     "build-windows": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -35,6 +36,7 @@
     "prism-react-renderer": "^1.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^5.0.1",
     "sass": "^1.68.0"
   },
   "devDependencies": {
