@@ -168,19 +168,19 @@ You can also install the Momento CLI locally (Linux, Windows, Mac) if desired. T
 
 We currently have the following SDK languages available:
 
-- [Node.js](./develop/sdks/nodejs)
-- [JavaScript Web SDK](./develop/sdks/web)
-- [Python](./develop/sdks/python)
-- [.NET](./develop/sdks/dotnet)
-- [Go](./develop/sdks/go)
-- [PHP](./develop/sdks/php)
-- [Java](./develop/sdks/java)
-- [Kotlin](./develop/sdks/kotlin)
-- [Rust](./develop/sdks/rust)
-- [Ruby](./develop/sdks/ruby)
-- [Elixir](./develop/sdks/elixir)
-- [Swift](./develop/sdks/swift)
-- [Dart](./develop/sdks/dart)
+- [Node.js](/sdks/nodejs)
+- [JavaScript Web SDK](/sdks/web)
+- [Python](/sdks/python)
+- [.NET](/sdks/dotnet)
+- [Go](/sdks/go)
+- [PHP](/sdks/php)
+- [Java](/sdks/java)
+- [Kotlin](/sdks/kotlin)
+- [Rust](/sdks/rust)
+- [Ruby](/sdks/ruby)
+- [Elixir](/sdks/elixir)
+- [Swift](/sdks/swift)
+- [Dart](/sdks/dart)
 
 ## FAQ
 
