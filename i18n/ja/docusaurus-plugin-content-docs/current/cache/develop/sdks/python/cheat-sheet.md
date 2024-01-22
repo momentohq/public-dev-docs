@@ -25,7 +25,7 @@ from momento.responses import CacheGet, CacheSet, CreateCache, ListCaches, Cache
 import os
 
 def create_client():
-  momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_AUTH_TOKEN')
+  momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_API_KEY')
   ttl  = timedelta(seconds=int(os.getenv('MOMENTO_TTL_SECONDS', '600')))
   config = {
     'configuration': Configurations.Laptop.v1(),
