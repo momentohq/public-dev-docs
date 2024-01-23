@@ -32,7 +32,7 @@ TTL値を設定する場所は3つあります：
     const MY_DEFAULT_TTL = 60; // This value is in seconds
     const momento = CacheClient.create({
          configuration: Configurations.InRegion.Default.latest(),
-         credentialProvider: CredentialProvider.fromEnvironmentVariable({environmentVariableName: 'MOMENTO_AUTH_TOKEN'}),
+         credentialProvider: CredentialProvider.fromEnvironmentVariable({environmentVariableName: 'MOMENTO_API_KEY'}),
          defaultTtlSeconds: MY_DEFAULT_TTL
    });
     ```

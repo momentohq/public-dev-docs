@@ -169,18 +169,18 @@ CLI の最新バージョンとインストール方法、使い方は [この�
 
 現在、以下のSDK言語が利用可能です：
 
-- [Node.js](./develop/sdks/nodejs)
-- [JavaScript Web SDK](./develop/sdks/web)
-- [Python](./develop/sdks/python)
-- [.NET](./develop/sdks/dotnet)
-- [Go](./develop/sdks/go)
-- [PHP](./develop/sdks/php)
-- [Java](./develop/sdks/java)
-- [Rust](./develop/sdks/rust)
-- [Ruby](./develop/sdks/ruby)
-- [Elixir](./develop/sdks/elixir)
-- [Swift](./develop/sdks/swift)
-- [Dart](./develop/sdks/dart)
+- [Node.js](/sdks/nodejs)
+- [JavaScript Web SDK](/sdks/web)
+- [Python](/sdks/python)
+- [.NET](/sdks/dotnet)
+- [Go](/sdks/go)
+- [PHP](/sdks/php)
+- [Java](/sdks/java)
+- [Rust](/sdks/rust)
+- [Ruby](/sdks/ruby)
+- [Elixir](/sdks/elixir)
+- [Swift](/sdks/swift)
+- [Dart](/sdks/dart)
 
 ## FAQ
 

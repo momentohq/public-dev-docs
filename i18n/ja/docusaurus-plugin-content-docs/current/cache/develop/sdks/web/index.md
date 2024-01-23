@@ -3,7 +3,7 @@ sidebar_position: 2
 title: Momento JavaScript web SDK
 pagination_prev: null
 sidebar_label: JS Web SDK
-description: Momento web SDK に関する情報です。
+description: Information about the Momento web SDK
 ---
 
 import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
@@ -11,61 +11,64 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Momento web SDK for JavaScript をブラウザ上で
+# ブラウザでJavaScriptを使用するためのMomentoウェブSDK
 
-Momento は 2つの JavaScript SDK を提供しています。[1つは Node.js 用](./nodejs)で、もう一つがウェブアプリケーション用です。2つの SDK は同一の API を持っているので、`import` ステートメントを除けばコードは同じに見えると思いますが、裏側では異なる JavaScript 実行環境に対してパフォーマンス最適化や互換性を求めて構築されています。
+Momentoは2つのJavaScript SDKを提供しています。[1つはNode.js用](/cache/develop/sdks/nodejs)、もう1つはその他のWebアプリケーション用です。2つのSDKは同じAPIを持っているので、`import`ステートメントを除いてコードは同じように見えますが、異なるJavaScript実行環境において最適なパフォーマンスと互換性を保つように作られています。
 
-Node.js SDK はサーバーサイドのユースケースに最適です。一方、Momento web SDK はブラウザ上で実行され Momento のサービスと直接通信する JavaScript コードを書くことを可能にしてくれます。これによってブラウザと Momento の間でキャッシュやパブ/サブの呼出しを仲介するウェブサービスを自身で構築したり運用する典型的なオーバーヘッドを回避することができます。これはまた、ウェブトラフィックにおいて1ホップ減らせることを意味するので、ブラウザアプリケーションはより良いパフォーマンスさえも得られます。両方の意味でお得です！
+Node.js SDKはサーバーサイドでの使用に最適です。しかし、Momento Web SDKでは、開発者はブラウザで実行され、Momentoサービスと直接通信するJavaScriptコードを記述することができます。これにより、ブラウザとMomento間のキャッシュやPub/Subコールを仲介するために、独自のウェブサービスを構築・運用する一般的なオーバーヘッドを回避することができます。また、ウェブトラフィックのホップが1つ減るので、ブラウザアプリケーションのパフォーマンスをさらに向上させることができます。両方の長所を兼ね備えています！
 
-また、web SDK は Node.js 以外の JavaScript 環境でも利用可能です。
+また、Node.js以外のJavaScript環境でもWeb SDKを使用できます。
 
-Momento web SDK は [`@gomomento/sdk-web`](https://www.npmjs.com/package/@gomomento/sdk-web) で npm パッケージとして利用可能です。
+Momento web SDKはnpmパッケージ[`@gomento/sdk-web`](https://www.npmjs.com/package/@gomento/sdk-web)から利用できます。
 
-ソースコードは GitHub 上の [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript) にあります。
+ソースコードはGitHubにあります： [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript)。
 
-## 必要条件
+## 前提条件
 
-- Momento 認証トークンは必要です。[Momento Web コンソール](https://console.gomomento.com/)で取得可能です。
+- MomentoのAPIキーが必要です。[Momentoウェブコンソール](https://console.gomomento.com/)から取得できます。
 
 ## リソース
 
-- [Momento Node.js チートシート](./nodejs/cheat-sheet): このチートシートは Node.js SDK をターゲットにしていますが、web SDK API は完全に互換性があります。
-- [チャットアプリの例](https://github.com/momentohq/example-chat-app): web SDK を使って作られた完全機能のチャットアプリケーションです！
-  ![チャットスクリーンショット](@site/static/img/web-sdk-chat-app.png)
-- [Web SDK の例](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/README.md): web SDK をどの様に使うかを示した動作可能なプロジェクトの例です。
-- まもなく: コードを本番環境に持っていく: web SDK での設定とエラーハンドリング
+- [Momento Node.js cheat sheet](/cache/develop/sdks/nodejs/cheat-sheet.mdx): このチート・シートはNode.js SDKを対象としていますが、Web SDK APIは完全に互換性があります。
+- [Chat app: Next.js](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/nextjs-chat): は、キャッシュとトピック名を入力することで、ユーザーがブラウザ上でチャットを行うことを可能にするダイナミック・アプリです。このアプリケーションは、トピックを購読するために使用されるブラウザに、スコープが低く寿命の短い認証トークンを提供します。
+- [Chat app: Vite](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/vite-chat-app): チャットアプリの静的バージョンは、ブラウザに認証トークンを提供するために別のAPI（私たちの[Node.jsトークン自動販売機](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine)など）を必要とします。
+- [Web SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/README.md): ウェブSDKの使い方を説明するサンプルプロジェクト
+- COMING SOON: コードをプロダクションに持ち込む：ウェブSDKにおけるコンフィギュレーションとエラー処理
 
 ## Momento web SDK と Momento Topics
 
-Momento Topics を使えばブラウザ内でのパブリッシャーとサブスクライバーの通信をとても簡素化してくれます。伝統的には、ウェブサイトに埋め込まれたチャットアプリケーションの開発者を例とすると、ブラウザのためのクライアントコードだけでなく、全ての通信をルーティングするためのサーバーサイドのコードも開発する必要があります。
+Momento Topicsは、ブラウザでのパブリッシャーとサブスクライバーの通信を大幅に簡素化します。従来、この開発者の例は、ウェブサイトに組み込まれたチャット・アプリケーションです。ブラウザ用のクライアント・コードだけでなく、すべての通信をルーティングするためのサーバ・サイド・コードも構築することになります。
 
-Momento Topics を Momento web SDK 使って組み込むことでサーバーサイドの複雑さを取り除くことができます。開発者はブラウザから直接 Momento Topics をサブスクライブすることができます。トピックにメッセージがパブリッシュされれば、Momento が全ての通信の面倒をみてくれて、WebSocket のためのサーバーサイドのインフラを作る必要性をなくしてくれます。
+Momento Web SDKにMomento Topicsを組み込むことで、このサーバーサイドの複雑さが解消されます。開発者はブラウザから直接 Momento Topics を購読できます。そして、Momento は、トピックにメッセージが発行されたときのすべての通信を処理し、WebSocket 用のカスタムサーバーサイドインフラストラクチャを不要にします！
 
-## ブラウザで web SDK を使う
+## ブラウザ用ウェブSDKの使用
 
-API 呼出しは [Momento Node.js SDK と同一](./nodejs/cheat-sheet)ですが、, import/require ステートメントは Node.js SDK の `@gomomento/sdk` の代わりに `@gomomento/sdk-web` パッケージを npm から使います。
+APIコールは[Momento Node.js SDKと同じ](./../nodejs/cheat-sheet.mdx)ですが、import/require文は(Node.js SDKである)`@gomento/sdk`の代わりに、npmから`@gomento/sdk-web`パッケージを消費します。
 
-こちらが、web SDK の import ステートメントの例です:
+以下は、ウェブSDKのインポート文の例です：
 
 `import {CacheClient} from ‘@gomomento/sdk-web’;`
 
-## ブラウザのための認証情報
+## ブラウザ用認証情報
 
-ブラウザアプリケーションが Momento サービスと通信するために、Momento 認証トークンをブラウザに渡す必要があります。推奨としては、Momento 認証トークンをブラウザセッション毎に期限切れになるようにすると良いです。こうすることで、データが危険に晒されることを心配せずに、アプリケーションでトークンを配布可能にします。
+ブラウザアプリケーションが Momento サービスと通信するためには、ブラウザに Momento 認証トークンを提供する必要があります。
+推奨される方法は、ブラウザセッションごとに有効期限付きのMomento使い捨てトークンを生成することです。これにより、データが漏洩する心配なく、アプリがトークンを配布できるようになります。
 
-ブラウザで利用するための Momento 認証トークンを作成するためには、一般的には Node.js SDK の様な他の Momento SDK を使ったウェブアプリケーションを立てることになります。まず、Momento `AuthClient` を生成する必要があります:
+ブラウザで使用するMomento使い捨てトークンを作成するには、一般的に["トークン自動販売機"](https://www.gomomento.com/blog/introducing-the-momento-token-vending-machine)コンポーネントが必要です。トークン自動販売機は、静的なウェブサイトがアクセスできるHTTPエンドポイントを持つ[スタンドアロンアプリケーション](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine)にすることもできますし、[Next.jsチャットアプリの例](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/nextjs-chat/README.md)のように、ウェブアプリケーションのサーバーサイドに埋め込むこともできます。
+
+いずれの場合も、Node.js SDK を使用して Momento `AuthClient` をインスタンス化し、[Momento Console](https://console.gomomento.com/) 経由で生成された Super User スコープの API キーを提供することになります：
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_InstantiateAuthClient'} />
 
-そうしたら、`generateAuthToken` API を使って、ブラウザに提供するトークンを作成します:
+次に、`generateDisposableToken` API を使用して使い捨てトークンを作成し、ブラウザに送信します。これらのトークンはデフォルトでは短命で、1時間以内に失効しなければなりません。
 
-<SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateAuthToken'} />
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateDisposableToken'} />
 
-他にも、認可のための `TokenScope` や、期限切れのトークンをどうやってリフレッシュするか、などを含めた Momento 認証トークンに関する情報は、[Momento 認証トークンを使う](./../authentication)をご覧下さい。
+DisposableTokenScope` や認可のためのパーミッションオブジェクトなど、Momento トークンの詳細については [Auth API リファレンス](../../api-reference/auth.md#generatedisposabletoken-api) を参照してください。
 
-## よくある質問
+## FAQ
 
 <details>
   <summary>ブラウザからのトラフィックは暗号化されていますか？</summary>
-Momento サービスの全てのトラフィックと同様に、web SDK は経路上は全て暗号化されています。加えると、SDK は TLS 1.2+ 暗号化を利用しています。
+Momentoサービスのすべてのトラフィックと同様に、Web SDKはワイヤ上で完全に暗号化されています。さらに、SDKはTLS 1.2+暗号化を使用しています。
 </details>

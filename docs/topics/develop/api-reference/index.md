@@ -13,6 +13,12 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 # Using the Momento Topics API
 Momento Topics is a messaging pattern enabling real-time communication between parts of a distributed application. It enables you to publish (produce) values to a topic and subscribe (consume) from a topic. This page details the Momento API methods for interacting with Momento Topics.
 
+## TopicClient
+
+Momento Topics API calls are made using a `TopicClient` object.
+
+<SdkExampleTabs snippetId={'API_InstantiateTopicClient'} />
+
 ## Topics methods
 
 ### Subscribe
@@ -47,15 +53,6 @@ Publishes a message to a topic.
 | topicName       | String          | Name of the topic to publish the value to.    |
 | value           | String / bytes  | Value to publish to the topic.                |
 
-<Tabs>
-  <TabItem value="golang" label="Go" default>
-    This is <a href="https://github.com/momentohq/client-sdk-go/blob/main/examples/pubsub-example/main.go#L95">example code</a>.
-  </TabItem>
-  <TabItem value="nodejs" label="Node.js" default>
-    Coming soon.
-  </TabItem>
-</Tabs>
-
 <details>
   <summary>Method response object</summary>
 
@@ -67,12 +64,6 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 <SdkExampleTabs snippetId={'API_TopicPublish'} />
-
-## TopicClient
-
-Instead of the CacheClient, as used in most Momento Cache API calls, for Topics you use a TopicClient object.
-
-<SdkExampleTabs snippetId={'API_InstantiateTopicClient'} />
 
 ## Example apps using Momento Topics APIs
 
