@@ -327,11 +327,11 @@ const config = {
             title: "Sites",
             items: [
               {
-                label: 'Documentation Home',
+                label: 'Dev docs',
                 to: '/',
               },
               {
-                label: 'Momento Home',
+                label: 'Momento',
                 to: 'https://www.gomomento.com/',
               },
             ],
