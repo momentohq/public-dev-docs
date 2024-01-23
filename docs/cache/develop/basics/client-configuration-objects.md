@@ -41,7 +41,7 @@ Here are some of the pre-built configurations that you might be interested in.
 
 ### Browser
 
-`Configurations.Browser` is a configuration unique to our [web SDK](./../sdks/web). It has relaxed timeout settings since latencies can be highly variable in individual users' browsers.
+`Configurations.Browser` is a configuration unique to our [web SDK](/sdks/web). It has relaxed timeout settings since latencies can be highly variable in individual users' browsers.
 
 ### InRegion - Default
 
@@ -59,4 +59,4 @@ Here are some of the pre-built configurations that you might be interested in.
 
 `Configurations.Lambda` is a configuration that is available in some SDKs, and is optimized for the AWS Lambda environment. It has configuration settings designed to pre-warm the client on Lambda function cold starts, and to ensure the connection is re-established proactively if a Lambda function remains idle long enough for the connection to time out.
 
-<SdkExampleTabs snippetId={'API_ConfigurationLambda'} />
+<SdkExampleTabs snippetId={'API_ConfigurationLambdaLatest'} />
