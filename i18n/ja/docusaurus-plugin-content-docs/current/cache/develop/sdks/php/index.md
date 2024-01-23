@@ -3,32 +3,30 @@ sidebar_position: 7
 title: Momento PHP SDK
 pagination_prev: null
 sidebar_label: PHP
-description: Momento PHP SDK に関する情報です。
+description: Information about the Momento PHP SDK
 ---
 
 # Momento PHP SDK
 
-ようこそ、Momento PHP SDK のドキュメントへ！
+Momento PHP SDK は Packagist パッケージ [`momentohq/client-sdk-php`](https://packagist.org/packages/momentohq/client-sdk-php) から入手できます。
 
-Momento PHP SDK は [`momentohq/client-sdk-php`](https://packagist.org/packages/momentohq/client-sdk-php) の Packagist パッケージとして利用可能です。
+ソースコードはGitHubにあります： [momentohq/client-sdk-php](https://github.com/momentohq/client-sdk-php)。
 
-ソースコードは GitHub にあります: [momentohq/client-sdk-php](https://github.com/momentohq/client-sdk-php)
+## 前提条件
 
-## 必要条件
-
-- Momento API Keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
-- PHP 8.0 以上。
-- grpc PHP 拡張モジュール。[gRPC ドキュメント](https://github.com/grpc/grpc/blob/v1.54.0/src/php/README.md) の拡張モジュールインストールに関するセクションもご覧下さい。
+- MomentoのAPIキーが必要です。[Momentoウェブコンソール](https://console.gomomento.com/)から取得できます。
+- 最低 PHP 8.0 以上
+- grpc PHP 拡張モジュール。拡張モジュールのインストールについては [gRPC docs](https://github.com/grpc/grpc/blob/v1.54.0/src/php/README.md) を参照ください。
 
 ## リソース
 
-- [PHP SDK チートシート](./cheat-sheet.md)
-- [PHP SDK 例](https://github.com/momentohq/client-sdk-php/blob/main/examples/README.md): PHP SDK の使い方をお見せするための動作可能なプロジェクト例です。
-- まもなく: オブザーバビリティ: PHP SDK を使ったロギングとクライアントサイドのメトリクス
-- まもなく: コードを本番環境へ: PHP SDK での設定とエラーハンドリング
+- [PHP SDK cheat sheet](./cheat-sheet.md)
+- [PHP SDK examples](https://github.com/momentohq/client-sdk-php/blob/main/examples/README.md): PHP SDK の使い方を説明するサンプルプロジェクト
+- COMING SOON: オブザーバビリティ: PHP SDK によるロギングとクライアント側のメトリクス
+- COMING SOON: あなたのコードをprodへ：PHP SDKの設定とエラー処理
 
-## 連携
+## Integrations
 
-- [Laravel Cache](https://github.com/momentohq/laravel-cache) - 既存の Laravel アプリケーションのコードを置き換えるだけで Momento Cache を利用可能に！[Laravel 連携](./../../integrations/momento-cache-laravel-php.md)のページもご覧下さい。
-- [Laravel アプリ例](https://github.com/momentohq/laravel-example) - Momento Laravel Cache 連携を使った、動作可能なLaravel アプリケーションの例です。
-- [PSR-16 Cache API](https://github.com/momentohq/client-sdk-php/blob/main/README-PSR16.md) - Momento Cache を使った PHP PSR-16 キャッシュ仕様の実装です。
+- [Laravel Cache](https://github.com/momentohq/laravel-cache) - は、既存のLaravelアプリケーションでMomento Cacheを使用するためのドロップイン置き換えです！[Laravelインテグレーション](./../../integrations/momento-cache-laravel-php.md) ページも参照してください。
+- [Laravel Example App](https://github.com/momentohq/laravel-example) - Momento Laravelキャッシュ統合を使用した、完全に動作するLaravelサンプルアプリケーションです。
+- [PSR-16 Cache API](https://github.com/momentohq/client-sdk-php/blob/main/README-PSR16.md) - PHPのPSR-16キャッシュ仕様の実装で、Momento Cacheによってバックアップされています。
