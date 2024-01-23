@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
-sidebar_label: チートシート
-title: Elixir のためのチートシート
-description: Momento Cache を Elixir を使ってすぐにコードを書き始めましょう
+sidebar_label: Cheat Sheet
+title: Cheat Sheet for Elixir
+description: Get started really quickly coding using Elixir with Momento Cache
 ---
 
 import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
@@ -10,53 +10,53 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Momento Cache を Elixir で使うためのチートシート
+# ElixirとMomentoキャッシュのチートシート
 
-このページでは、Momento Cache を Go で素早く使ってみたい方のために必要となる基礎的な API 呼出しを解説しています。このコードのファイル全体は[Elixir SDK のページをご確認下さい](https://github.com/momentohq/client-sdk-elixir/tree/main/examples)。
+ElixirとMomento Cacheをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。完全で実用的な例については、[Elixir SDK examples](https://github.com/momentohq/client-sdk-elixir/tree/main/examples) を確認してください。
 
-## Momento SDK をインストール
+## Momento SDKのインストール
 
-最新バージョンの Momento Elixir SDK は [Hex](https://hex.pm/packages/gomomento) から利用可能です。
+Momento Elixir SDKの最新バージョンは[Hex](https://hex.pm/packages/gomomento)にあります。
 
-## 認証トークンを設定
+## 認証トークンを設定する
 
-Momento で認証するためには Momento 認証トークンが必要になります。[Momento ウェブコンソール](https://console.gomomento.com/caches)から取得可能です。
-トークンを取得したら、環境変数に格納して Momento クライアントから使えるようにします:
+Momentoで認証するには、Momento認証トークンが必要です。 Momento Web Console](https://console.gomomento.com/caches)から取得できます。
+トークンを取得したら、Momento クライアントが利用できるように環境変数に保存します：
 
 ```
 export MOMENTO_AUTH_TOKEN=<your Momento token here>
 ```
 
-## CacheClient を設定
-このコードで、それぞれの他の関数が呼び出す必要のある CacheClient struct を生成します。
+## CacheClient のセットアップ
+このコードは、他の各関数が必要とする CacheClient 構造を作成します。
 
 <SdkExampleCodeBlock language={'elixir'} file={'cheat_sheet.exs'} />
 
-## Momento Cache に新しいキャッシュを作成する
-この関数を使ってアカウント内に新しいキャッシュを作成します。
+## Momento Cacheに新しいキャッシュを作成する
+この機能を使用して、アカウントに新しいキャッシュを作成します。
 
 <SdkExampleCodeBlock language={'elixir'} snippetId={'API_CreateCache'} />
 
-## アカウント内の既存のキャッシュをリストする
-アカウント内のキャッシュの名前をシンプルにリストします。
+
+## あなたのアカウントにある既存のキャッシュの名前をリストアップします。
+アカウントのキャッシュ名の単純なリスト
 
 <SdkExampleCodeBlock language={'elixir'} snippetId={'API_ListCaches'} />
 
-## 項目をキャッシュに書き込む
-書込み操作を行うシンプルな例です。client.set 呼出しでは、TTL はオプショナルです。もし TTL を渡すと、クライアント接続オブジェクトに設定されたデフォルトの TTL 値が上書きされます。
+## キャッシュに項目を書き込む
+セット操作の単純な例。CacheClient.set() 呼び出しでは、TTL はオプションです。これを渡すと、クライアント接続オブジェクトで設定された既定の TTL 値がオーバーライドされます。
 
 <SdkExampleCodeBlock language={'elixir'} snippetId={'API_Set'} />
 
-## キャッシュから項目を読み出す
-これは、キャッシュから項目を取得するためのシンプルな読み出し操作です。
+## キャッシュからアイテムを読み込む
+これは、キャッシュから項目を取得する単純な読み取り操作の例です。
 
 <SdkExampleCodeBlock language={'elixir'} snippetId={'API_Get'} />
 
-## コードを実行する
+## コードの実行
 
-You can find complete, working examples in the [Elixir SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-elixir/tree/main/examples).
-実行可能な完成された例は [Elixir SDK GitHub レポジトリの examples ディレクトリ](https://github.com/momentohq/client-sdk-elixir/tree/main/examples)をご覧下さい。
+[Elixir SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-elixir/tree/main/examples)に完全なサンプルがあります。
 
 :::info
-これらの API 呼出し以上のものは、[API リファレンスページ](./../../api-reference)で Momento API 呼出しの全種類の詳しい情報をご確認下さい。
+これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](./../../api-reference/index.mdx)をチェックしてください。
 :::

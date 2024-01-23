@@ -8,6 +8,7 @@ export enum Sdk {
   PYTHON = 'python',
   GO = 'go',
   JAVA = 'java',
+  KOTLIN = 'kotlin',
   PHP = 'php',
   RUST = 'rust',
   RUBY = 'ruby',
@@ -31,6 +32,8 @@ export function sdkDisplayName(sdk: Sdk): string {
       return 'Go';
     case Sdk.JAVA:
       return 'Java';
+    case Sdk.KOTLIN:
+      return 'Kotlin';
     case Sdk.PHP:
       return 'PHP';
     case Sdk.RUST:

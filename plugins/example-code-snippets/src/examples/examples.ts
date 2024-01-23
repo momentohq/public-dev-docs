@@ -10,6 +10,7 @@ export enum ExampleLanguage {
   PYTHON = 'python',
   GO = 'go',
   JAVA = 'java',
+  KOTLIN = 'kotlin',
   PHP = 'php',
   RUST = 'rust',
   RUBY = 'ruby',
@@ -48,6 +49,8 @@ export function languageDisplayName(language: ExampleLanguage): string {
       return 'Go';
     case ExampleLanguage.JAVA:
       return 'Java';
+    case ExampleLanguage.KOTLIN:
+      return 'Kotlin';
     case ExampleLanguage.PHP:
       return 'PHP';
     case ExampleLanguage.RUST:

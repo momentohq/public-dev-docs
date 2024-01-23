@@ -40,6 +40,7 @@ In the following pages, you can learn about caching in general and how to use Mo
   - [Go](./cache/develop/sdks/go)
   - [PHP](./cache/develop/sdks/php)
   - [Java](./cache/develop/sdks/java)
+  - [Kotlin](./cache/develop/sdks/kotlin)
   - [Rust](./cache/develop/sdks/rust)
   - [Ruby](./cache/develop/sdks/ruby)
   - [Elixir](./cache/develop/sdks/elixir)
