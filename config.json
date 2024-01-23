@@ -5,11 +5,11 @@
   "stop_urls": [],
   "selectors": {
     "lvl0": {
-      "selector": "h1",
+      "selector": ".container h1",
       "global": true,
       "default_value": "Documentation"
     },
-    "lvl1": "h2",
-    "text": "p, li"
+    "lvl1": ".container h2",
+    "text": ".container p, .container li"
   }
 }
