@@ -24,7 +24,7 @@ Request signing is a security measure used in software systems to verify the aut
 
 ### Verifying signatures with the Momento SDK
 
-The Momento [Node.js SDK](./../develop/sdks/nodejs) includes native support for verifying signatures. This is the recommended approach to verify signatures. To verify, provide the raw request body, the signature, and your signing secret.
+The Momento [Node.js SDK](/sdks/nodejs) includes native support for verifying signatures. This is the recommended approach to verify signatures. To verify, provide the raw request body, the signature, and your signing secret.
 
 ```javascript
 import express from 'express';

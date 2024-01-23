@@ -8,22 +8,20 @@ description: Information about the Momento Swift SDK
 
 # Momento Swift SDK
 
-Welcome to the Momento Swift SDK documentation!
+Momento Swift SDKとソースコードはGitHubから入手できます： [momentohq/client-sdk-swift](https://github.com/momentohq/client-sdk-swift)。
 
-The Momento Swift SDK and source code are available via GitHub: [momentohq/client-sdk-swift](https://github.com/momentohq/client-sdk-swift).
+## 前提条件
 
-## Requirements
+- [Swift version 5](https://www.swift.org/install/) 以上。
+- MomentoのAPIキーが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
 
-- [Swift version 5](https://www.swift.org/install/) or higher is required.
-- A Momento API key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
-
-## Resources
+## リソース
 
 - [Swift SDK cheat sheet](./cheat-sheet.mdx)
-- [Swift SDK examples](https://github.com/momentohq/client-sdk-swift/tree/main/Examples): working example projects that illustrate how to use the Swift SDK
-- COMING SOON: Observability: Logging and client-side metrics with the Swift SDK
-- COMING SOON: Taking your code to prod: configuration and error handling in the Swift SDK
+- [Swift SDK examples](https://github.com/momentohq/client-sdk-swift/tree/main/Examples): Swift SDKの使い方を説明するサンプルプロジェクト
+- COMING SOON: オブサーバビリティ: Swift SDKでのロギングとクライアント側のメトリクス
+- COMING SOON: あなたのコードをprodへ：Swift SDKの設定とエラー処理
 
-## Integrations
+## 実装
 
 COMING SOON
