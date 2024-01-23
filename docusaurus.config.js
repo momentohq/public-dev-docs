@@ -388,10 +388,10 @@ const config = {
         darkTheme: darkCodeTheme,
       },
       algolia: {
-        appId: 'your appId',
-        apiKey: 'your search apiKey',
-        indexName: 'momento_docs',
-        contextualSearch: true,
+        appId: 'KKA2C34L90',
+        apiKey: 'd22ff3783e6e14f7feb6dd24bb7165f7',
+        indexName: 'momento_docs2',
+        contextualSearch: false,
       },
       docs: {
         sidebar: {

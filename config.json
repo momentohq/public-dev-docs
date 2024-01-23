@@ -1,16 +1,15 @@
 {
-  "index_name": "momento_docs",
-  "start_urls": [
-    "https://docs.momentohq.com/"
-  ],
+  "index_name": "momento_docs2",
+  "sitemap_urls": ["https://docs.momentohq.com/sitemap.xml"],
+  "start_urls": [],
   "stop_urls": [],
   "selectors": {
-    "lvl0": "h1",
+    "lvl0": {
+      "selector": "h1",
+      "global": true,
+      "default_value": "Documentation"
+    },
     "lvl1": "h2",
-    "lvl2": "h3",
-    "lvl3": "h4",
-    "lvl4": "h5",
-    "lvl5": "h6",
     "text": "p, li"
   }
 }
