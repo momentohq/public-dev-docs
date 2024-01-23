@@ -387,6 +387,12 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      algolia: {
+        appId: 'KKA2C34L90',
+        apiKey: 'd22ff3783e6e14f7feb6dd24bb7165f7',
+        indexName: 'momento_docs2',
+        contextualSearch: false,
+      },
       docs: {
         sidebar: {
           autoCollapseCategories: false,
