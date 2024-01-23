@@ -34,7 +34,7 @@ The goal of the webhook handler is to process the notification from Momento as q
 
 Before starting the process, follow the steps below to complete the deployment.
 
-1.  [Create the Momento webhook](#creating-the-momento-webhook)
+1.  [Create the Momento webhook](/topics/webhooks/creating-a-webhook). _Set the Webhook Destination to a dummy value like https://none.com as it will be updated once the CloudFormation is deployed_.
 2.  Set up an AWS account with the ability to run CloudFormation. The CloudFormation template performs the following tasks:
     -   Deploy a Lambda function
     -   Create the IAM Role for the function
@@ -42,20 +42,6 @@ Before starting the process, follow the steps below to complete the deployment.
     -   Create an SQS queue which serves as the Dead-Letter Queue (DLQ)
     -   (Optional) The `default` Event Bus will be used but if an alternate is desired, that needs to be created ahead of time.
 3.  Update the Momento webhook with the CloudFormation output containing the Lambda Function URL
-
-### Creating the Momento webhook
-
-To complete step one of setting up the webhook, log into the [Momento console](https://console.gomomento.com). Navigate to the [cache list](https://console.gomomento.com/caches) on the left navigation bar and select the cache that will publish to the webhook.
-
-To create the webhook, a few simple details need to be supplied.
-
-![Webhook Creation](@site/static/img/topics/creating_webhook.jpg)
-
-The three fields presented are important for different reasons.
-
--   **Webhook Name**: Human-readable name for the webhook.
--   **Topic Name**: Topic that will trigger the webhook when published.
--   **Webhook Destination**: Endpoint URL of the webhook to POST to. _At this point, set it to a dummy value like https://none.com as it will be updated once the CloudFormation is deployed_.
 
 ### Deploying the Lambda function via one-click CloudFormation
 
