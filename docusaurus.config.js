@@ -392,6 +392,7 @@ const config = {
         apiKey: 'd22ff3783e6e14f7feb6dd24bb7165f7',
         indexName: 'momento_docs2',
         contextualSearch: false,
+        searchPagePath: false,
       },
       docs: {
         sidebar: {
