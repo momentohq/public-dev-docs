@@ -3,30 +3,28 @@ sidebar_position: 4
 title: Momento .NET SDK
 pagination_prev: null
 sidebar_label: .NET
-description: Momento .NET SDK に関する情報です。
+description: Information about the Momento .NET SDK
 ---
 
 # Momento .NET SDK
 
-ようこそ、Momento .NET SDK のドキュメントへ！
+Momento .NET SDKはnugetパッケージ[`Momento.Sdk`](https://www.nuget.org/packages/Momento.Sdk)から入手できます。
 
-Momento .NET SDK は [`Momento.Sdk`](https://www.nuget.org/packages/Momento.Sdk) の nuget パッケージとして利用可能です。
+ソースコードはGitHubにあります： [momentohq/client-sdk-dotnet](https://github.com/momentohq/client-sdk-dotnet)。
 
-ソースコードは GitHub にあります: [momentohq/client-sdk-dotnet](https://github.com/momentohq/client-sdk-dotnet)
+## 前提条件
 
-## 必要条件
-
-- [`dotnet` ランタイムとコマンドラインツール](https://dotnet.microsoft.com/en-us/download); インストールが完了したら、`dotnet` コマンドが PATH 内にあることになります。
-- Momento API Keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
-- 多くの場合、.NET 開発をサポートしている IDE、例えば [Microsoft Visual Studio](https://visualstudio.microsoft.com/vs)、[JetBrains Rider](https://www.jetbrains.com/rider/)、または [Microsoft Visual Studio Code](https://code.visualstudio.com/)等を使った方がいいでしょう。
+- [`dotnet`ランタイムとコマンドラインツール](https://dotnet.microsoft.com/en-us/download); インストールしたら、PATHに`dotnet`コマンドがあるはずです。
+- Momento API Keyが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
+- Microsoft Visual Studio](https://visualstudio.microsoft.com/vs)、[JetBrains Rider](https://www.jetbrains.com/rider/)、[Microsoft Visual Studio Code](https://code.visualstudio.com/)などの.NET開発をサポートするIDEが必要です。
 
 ## リソース
 
 - [.NET SDK Cheat Sheet](./cheat-sheet.mdx)
-- [.NET SDK 例](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples/README.md): .NET SDK の使い方をお見せするための動作可能なプロジェクト例です。
-- [.NET SDK Observability](./observability.mdx): .NET SDK を使ったロギングとクライアントサイドのメトリクス
-- まもなく: コードを本番環境へ: .NET SDK での設定とエラーハンドリング
+- [.NET SDK Examples](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples/README.md): .NET SDKの使用方法を説明するサンプルプロジェクト
+- [.NET SDK Observability](./observability.mdx): .NET SDKによるロギングとクライアント側メトリクス
+- COMING SOON: あなたのコードをprodへ： .NET SDKの設定とエラー処理
 
-## 連携
+## 実装
 
-- [Microsoft.Extensions.Caching](https://github.com/chrisoverzero/Momento.Extensions.Caching) - 既存の `Microsoft.Extensions.Caching` を使ったコードを置き換えるだけで Momento Cache を利用可能に！
+- [Microsoft.Extensions.Caching](https://github.com/chrisoverzero/Momento.Extensions.Caching) - ドロップイン置き換えは既存の `Microsoft.Extensions.Caching` コードで Momento Cache を使用することができます！

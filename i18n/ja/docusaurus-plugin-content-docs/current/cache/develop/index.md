@@ -12,21 +12,19 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Momento SDKを使用したアプリケーションの開発
 
-ようこそ！ このページでは、MomentoのすべてのSDKでMomentoクライアントを設定するために必要な一般的な構成に関する情報を提供します。このページでは、Momentoの認証情報（APIキーと呼ばれます）の提供方法、クライアントの設定方法、エラー処理と本番環境への準備に関する基本的な情報について説明します。
+ようこそ このページでは、すべてのSDKでMomentoクライアントをアセンブルするために必要な一般的な構成に関する情報を提供します。このページでは、Momento の認証情報 (API キーと呼ばれる) の提供方法、クライアントの設定方法、エラー処理と本番環境への対応に関する基本的な情報を説明します。
 
-## キャッシュクライアントの構築
+## キャッシュ・クライアントの構築
 
-`CacheClient` は、Momento サービスとやり取りする際に使用するメインのオブジェクトです。
-インスタンスを作成するには、`CredentialProvider` と `Configuration`、そしてデフォルトの TTL (time to live) 値を渡す必要があります。デフォルトの TTL は、その `CacheClient` を使用しているアイテムがキャッシュから削除されるまでの保存期間を決定します。`Set` オペレーションを実行する場合、そのオペレーション固有の TTL 値をオーバーライドすることができます。
-詳細は [Momento Cache における Time-to-Live (TTL) によるデータの有効期限](./learn/how-it-works/expire-data-with-ttl) を参照してください。
+`CacheClient` は、Momento サービスとやり取りする際に使用するメインのオブジェクトです。インスタンスを作成するには、`CredentialProvider` と `Configuration`、そしてデフォルトの TTL (time to live) 値を渡す必要があります。デフォルトの TTL は、その `CacheClient` を使用しているアイテムがキャッシュから削除されるまでの保存期間を決定します。Set` オペレーションを実行する場合、そのオペレーション固有の TTL 値をオーバーライドすることができます。詳細は [Momento Cache における Time-to-Live (TTL) によるデータの有効期限](./learn/how-it-works/expire-data-with-ttl) を参照してください。
 
 以下に `CacheClient` の作成例を示します：
 
 <SdkExampleTabs snippetId={'API_InstantiateCacheClient'} />
 
-## Momento API キーを使用してクレデンシャルプロバイダをインスタンス化する
+## Momento API キーを使用してクレデンシャル・プロバイダをインスタンス化する
 
-Momentoクライアントをインスタンス化する際に、Momento APIキーを提供する必要があります。まだ持っていない場合は、[Momento Web Console](https://console.gomomento.com/) から取得できます。トークンを取得したら、`CredentialProvider` のインスタンスを作成する際に Momento SDK にトークンを渡します。環境変数または文字列から `CredentialProvider` オブジェクトを作成するための便利なファクトリメソッドが用意されている。以下は、環境変数から `CredentialProvider` のインスタンスを生成する方法の例である：
+Momentoクライアントをインスタンス化する際に、Momento APIキーを提供する必要があります。まだ持っていない場合は、[Momento Web Console](https://console.gomomento.com/) から取得できます。トークンを取得したら、`CredentialProvider` のインスタンスを作成する際に Momento SDK にトークンを渡す。環境変数または文字列から `CredentialProvider` オブジェクトを作成するための便利なファクトリメソッドが用意されています。以下は、環境変数から `CredentialProvider` のインスタンスを生成する方法の例です：
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromEnvVar'} />
 
@@ -36,6 +34,6 @@ Momentoの認証トークンを[AWS Secret Manager](https://aws.amazon.com/secre
 
 AWS Secrets Manager から認証情報を取得する例については、[Retrieving a Momento auth token from AWS Secrets Manager](./develop/integrations/aws-secrets-manager) を参照してください。
 
-Momento 認証に関する一般的な情報は、[認証ページ](./develop/authentication) を参照してください。
+Momento 認証に関する一般的な情報は、[認証のページ](./develop/authentication) を参照してください。
 
-さらに詳しい情報は、[レスポンスオブジェクト](./develop/api-reference/response-objects) ページや、使用している SDK のドキュメント (左ナビの `Develop`->`SDKs`) を参照してください。
+詳細については、[レスポンスオブジェクト](./develop/api-reference/response-objects)のページや、使用しているSDKのドキュメント(左ナビの `Develop`->`SDKs` の下)を参照してください。

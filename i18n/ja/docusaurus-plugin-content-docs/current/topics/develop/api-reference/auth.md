@@ -171,11 +171,8 @@ const TopicsPermissions = {
 
 </details>
 
-<details>
-<summary>書き込み専用またはパブリッシュ専用のパーミッションを持つことは可能ですか？</summary>
+:::tip
 
-We do not support 'write only' or 'publish only' permissions. If this is something you need, please [contact us](mailto:support@momentohq.com) and let's discuss your needs.
+ここで答えられない質問があれば、[私たちのDiscordサーバー](https://discord.gg/2c24SK6W)に飛び、サポートチャンネルで専門家に質問してください。
 
-"書き込み専用"や"パブリッシュ専用"のパーミッションはサポートしていません。これが必要な場合は、[お問い合わせください](mailto:support@momentohq.com)、あなたのニーズについて話し合いましょう。
-
-</details>
+:::
