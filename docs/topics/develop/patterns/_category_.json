@@ -1,0 +1,9 @@
+{
+  "label": "Patterns",
+  "position": 8,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Best practices on how to use Momento Topics and Webhooks in your architecture!"
+  }
+}

@@ -41,7 +41,7 @@ Here are some of the pre-built configurations that you might be interested in.
 
 ### Browser
 
-`Configurations.Browser` is a configuration unique to our [web SDK](./../sdks/web). It has relaxed timeout settings since latencies can be highly variable in individual users' browsers.
+`Configurations.Browser` is a configuration unique to our [web SDK](/sdks/web). It has relaxed timeout settings since latencies can be highly variable in individual users' browsers.
 
 ### InRegion - Default
 
