@@ -84,6 +84,27 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_ListIndexes'} />
 
+### Count Items
+Counts the number of items in a vector index.
+
+
+| Name      | Type            | Description                     |
+|-----------|-----------------|---------------------------------|
+| indexName | String          | Name of the vector index.       |
+
+<details>
+  <summary>Method response object</summary>
+
+* Success
+    * itemCount(): number
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_CountItems'} />
+
 ### Upsert Item Batch
 Upserts a batch of items into a vector index.
 
