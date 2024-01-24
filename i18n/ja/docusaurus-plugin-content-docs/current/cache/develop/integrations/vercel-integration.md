@@ -60,7 +60,7 @@ Vercelにログイン後、`Overview`ページに移動し、`Create a New Proje
 選択したディレクトリの横にNext.jsのアイコンがあることに注目してください。Vercelはディレクトリの中身を調べ、私たちのプロジェクトがNext.jsを使っていることを検出します。
 この自動検出のおかげで、`Build and Output Settings`セクションはそのままにしておくことができます。プロジェクトに適したデフォルト値が選択されます。
 
-このアプリケーションで使用するために、先ほどMomento authトークンを生成して保存したことを思い出してください。ビルド設定の下にある `Environment Variables` セクションを使用して、`MOMENTO_AUTH_TOKEN` を名前、生成したトークンを値として環境変数を追加します。次に、`NEXT_PUBLIC_MOMENTO_CACHE_NAME`をキー、`chat`を値とする2つ目の環境変数を追加して、アプリを先ほど作成したキャッシュに向けます。
+このアプリケーションで使用するために、先ほどMomento authトークンを生成して保存したことを思い出してください。ビルド設定の下にある `Environment Variables` セクションを使用して、`MOMENTO_API_KEY` を名前、生成したトークンを値として環境変数を追加します。次に、`NEXT_PUBLIC_MOMENTO_CACHE_NAME`をキー、`chat`を値とする2つ目の環境変数を追加して、アプリを先ほど作成したキャッシュに向けます。
 
 ![Vercel environment variables](/img/vercel-environment-variables.png)
 
