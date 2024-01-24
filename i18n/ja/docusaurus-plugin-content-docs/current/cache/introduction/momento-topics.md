@@ -32,11 +32,11 @@ Momento Topics は Momento Cache をバックエンドとして使うので、�
 
 ### ブラウザから接続
 
-[Web SDK](./../develop/sdks/web/index.md)を使用すると、ブラウザでTopicのパブリッシュとサブスクライブの両方を行うことができます。Topic にデータを公開すると、すべてのサブスクライバーがそのデータを受信します。つまり、サーバー側のコードを作成することなく、ブラウザ同士で接続できます。
+[Web SDK](././sdks/web/index.md)を使用すると、ブラウザでTopicのパブリッシュとサブスクライブの両方を行うことができます。Topic にデータを公開すると、すべてのサブスクライバーがそのデータを受信します。つまり、サーバー側のコードを作成することなく、ブラウザ同士で接続できます。
 
 ### サーバから接続
 
-また、バックエンドのサービスでTopicsをパブリッシュしたりサブスクライブしたりすることもできます。データの送受信には、[Node.js](./../develop/sdks/nodejs/index.md)、[Python](./../develop/sdks/python/index.md)、または[Go](./../develop/sdks/go/index.md) SDKを使用できます。その他のSDKのサポートは近日公開予定です。
+また、バックエンドのサービスでTopicsをパブリッシュしたりサブスクライブしたりすることもできます。データの送受信には、[Node.js](/sdks/nodejs/index.md)、[Python](/sdks/python/index.md)、または[Go](././sdks/go/index.md) SDKを使用できます。その他のSDKのサポートは近日公開予定です。
 
 :::note
 
