@@ -3,29 +3,27 @@ sidebar_position: 8
 title: Momento Ruby SDK
 pagination_prev: null
 sidebar_label: Ruby
-description: Momento Ruby SDK に関する情報です。
+description: Information about the Momento Ruby SDK
 ---
 
 # Momento Ruby SDK
 
-ようこそ、Momento Ruby SDK のドキュメントへ！
+Momento Ruby SDK は rubygems パッケージ [`momento`](https://rubygems.org/gems/momento) から入手できます。
 
-Momento Ruby SDK は [`momento`](https://rubygems.org/gems/momento) の rubygems パッケージとして利用可能です。
+ソースコードはGitHubにあります： [momentohq/client-sdk-ruby](https://github.com/momentohq/client-sdk-ruby)。
 
-ソースコードは GitHub にあります: [momentohq/client-sdk-ruby](https://github.com/momentohq/client-sdk-ruby)。
+## 前提条件
 
-## 必要条件
-
-- Momento API Keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
-- Ruby 2.7 以上。
+- Momento API Keyが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
+- Ruby 2.7 以降。
 
 ## リソース
 
-- まもなく: Ruby SDK チートシート
-- [Ruby SDK 例](https://github.com/momentohq/client-sdk-ruby/blob/main/examples/README.md): Ruby SDK の使い方をお見せするための動作可能なプロジェクト例です。
-- まもなく: オブザーバビリティ: Ruby SDK を使ったロギングとクライアントサイドのメトリクス
-- まもなく: コードを本番環境へ: Ruby SDK での設定とエラーハンドリング
+- COMING SOON: Ruby SDK チートシート
+- [Ruby SDK Examples](https://github.com/momentohq/client-sdk-ruby/blob/main/examples/README.md): Ruby SDKの使い方を説明するサンプルプロジェクト
+- COMING SOON: オブザーバビリティ: Ruby SDKによるロギングとクライアント側メトリクス
+- COMING SOON: あなたのコードをprodへ： Ruby SDKの設定とエラー処理
 
-## 連携
+## 実装
 
-まもなく！
+COMING SOON
