@@ -83,7 +83,7 @@ MOMENTO_CACHE_NAME = "worker"
 exampleディレクトリの`.dev.vars`ファイルにMomentoの認証トークンを記載します。これはシークレットトークンなので、環境変数として保存せず、Cloudflareのシークレットとして保存します。
 
 ```.vars
-MOMENTO_AUTH_TOKEN="<your token here>"
+MOMENTO_API_KEY="<your token here>"
 ```
 
 開発サーバーを起動します：
@@ -107,14 +107,14 @@ npm run start
 ```
 デプロイされた例は [こちら](https://momento-cloudflare-worker-http.pratik-37c.workers.dev) にあります。
 
-この例を自分の Cloudflare workers にデプロイしたい場合は、Cloudflare アカウントのシークレットとして `MOMENTO_AUTH_TOKEN` を追加してください：
+この例を自分の Cloudflare workers にデプロイしたい場合は、Cloudflare アカウントのシークレットとして `MOMENTO_API_KEY` を追加してください：
 
 ```shell
 
-npx wrangler secret put MOMENTO_AUTH_TOKEN
+npx wrangler secret put MOMENTO_API_KEY
 > Enter a secret value: **************************
 > 🌀 Creating the secret for the Worker "momento-cloudflare-worker-http"
-> ✨ Success! Uploaded secret MOMENTO_AUTH_TOKEN
+> ✨ Success! Uploaded secret MOMENTO_API_KEY
 ```
 
 次に `npm run deploy` を実行します。Cloudflareアカウントにデプロイする前に、Cloudflareへのログインを求められます。
@@ -158,7 +158,7 @@ MOMENTO_CACHE_NAME = "worker"
 exampleディレクトリの`.dev.vars`ファイルにMomentoの認証トークンを記載します。これはシークレットトークンなので、環境変数として保存せず、Cloudflareのシークレットとして保存します。
 
 ```.vars
-MOMENTO_AUTH_TOKEN="<your token here>"
+MOMENTO_API_KEY="<your token here>"
 ```
 
 開発サーバーを起動します：
@@ -181,14 +181,14 @@ npm run start
 
 デプロイされた例は [こちら](https://momento-cloudflare-worker-web.pratik-37c.workers.dev/) にあります。
 
-この例を自分の Cloudflare workersにデプロイしたい場合は、Cloudflare アカウントのシークレットとして `MOMENTO_AUTH_TOKEN` を追加してください：
+この例を自分の Cloudflare workersにデプロイしたい場合は、Cloudflare アカウントのシークレットとして `MOMENTO_API_KEY` を追加してください：
 
 ```shell
 
-npx wrangler secret put MOMENTO_AUTH_TOKEN
+npx wrangler secret put MOMENTO_API_KEY
 > Enter a secret value: **************************
 > 🌀 Creating the secret for the Worker "momento-cloudflare-worker-http"
-> ✨ Success! Uploaded secret MOMENTO_AUTH_TOKEN
+> ✨ Success! Uploaded secret MOMENTO_API_KEY
 ```
 
 次に `npm run deploy` を実行します。Cloudflareアカウントにデプロイする前に、Cloudflareへのログインを求められます。

@@ -27,18 +27,18 @@ Momento Cacheは、以下のクラウドプロバイダーおよびリージョ�
 - Momento Cacheを使ったSDKのサンプルを素早く立ち上げて実行したい場合は、[Getting Started](./getting-started.md)をチェックしてください。
 
 - オープンソースのSDKをお探しなら、こちらをご確認ください。：
-  - [Node.js](./cache/develop/sdks/nodejs)
-  - [JavaScript Web SDK](./cache/develop/sdks/web)
-  - [Python](./cache/develop/sdks/python)
-  - [.NET](./cache/develop/sdks/dotnet)
-  - [Go](./cache/develop/sdks/go)
-  - [PHP](./cache/develop/sdks/php)
-  - [Java](./cache/develop/sdks/java)
-  - [Rust](./cache/develop/sdks/rust)
-  - [Ruby](./cache/develop/sdks/ruby)
-  - [Elixir](./cache/develop/sdks/elixir)
-  - [Swift](./cache/develop/sdks/swift)
-  - [Dart](./cache/develop/sdks/dart)
+  - [Node.js](/sdks/nodejs)
+  - [JavaScript Web SDK](/sdks/web)
+  - [Python](/sdks/python)
+  - [.NET](/sdks/dotnet)
+  - [Go](/sdks/go)
+  - [PHP](/sdks/php)
+  - [Java](/sdks/java)
+  - [Rust](/sdks/rust)
+  - [Ruby](/sdks/ruby)
+  - [Elixir](/sdks/elixir)
+  - [Swift](/sdks/swift)
+  - [Dart](/sdks/dart)
 
 - アーキテクチャ図用のMomentoのアイコンをお探しですか？[Momento_Architecture_Icons.zip](@site/static/img/icons/Momento_Architecture_Icons.zip)をダウンロードしてください。
 

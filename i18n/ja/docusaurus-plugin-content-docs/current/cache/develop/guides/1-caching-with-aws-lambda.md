@@ -123,7 +123,7 @@ AWS Lambda でのシークレットの管理について少し理解したとこ
 
 これにより、新しいシークレットを作成するための Secrets Manager ウィザードが開きます。
 
-**Secret type** では、"**Other type of secret**"を選択します。次に、シークレットキーとして"**MOMENTO_AUTH_TOKEN**"を入力し、認証トークンをシークレット値として貼り付けます。
+**Secret type** では、"**Other type of secret**"を選択します。次に、シークレットキーとして"**MOMENTO_API_KEY**"を入力し、認証トークンをシークレット値として貼り付けます。
 
 デフォルトの暗号化キーを使用することができます。**Next** ボタンをクリックしてウィザードを続行します。
 
@@ -217,13 +217,13 @@ const getMomentoAuthToken = async () => {
     })
     .promise();
 
-  return JSON.parse(response.SecretString).MOMENTO_AUTH_TOKEN;
+  return JSON.parse(response.SecretString).MOMENTO_API_KEY;
 };
 ```
 
 **"&lt;yourSecretName>"** の部分を、Secrets Manager コンソールで使用したシークレットの名前で置き換えてください。
 
-このコードは、AWS Secrets Manager にアクセスするためのクライアントを作成します。その後、Secrets Manager サービスで `GetSecretValue` アクションを呼び出します。最後に、レスポンスを解析して構成された MOMENTO_AUTH_TOKEN の値を返します。
+このコードは、AWS Secrets Manager にアクセスするためのクライアントを作成します。その後、Secrets Manager サービスで `GetSecretValue` アクションを呼び出します。最後に、レスポンスを解析して構成された MOMENTO_API_KEY の値を返します。
 
 これにより、外部ネットワーク呼び出しが行われるため、Lambda コードを最適化する必要があります。特定の Lambda 関数インスタンス内で SimpleCache オブジェクトを一度だけ構築するようにする必要があります [接続の再利用で説明済み](#heading=h.rkchdfjttru6)。したがって、特定の関数インスタンス内で Momento の認証トークンを1回だけ取得する必要があります。
 
