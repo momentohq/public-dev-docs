@@ -98,6 +98,7 @@ Counts the number of items in a vector index.
 * Success
     * itemCount(): number
 * Error
+    * An index that does not exist will return a NOT_FOUND error code. This is distinct from an index with no items, for which the request will succeed with a count of 0.
 
 See [response objects](./response-objects.md) for specific information.
 
