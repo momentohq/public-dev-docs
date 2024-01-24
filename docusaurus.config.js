@@ -327,11 +327,11 @@ const config = {
             title: "Sites",
             items: [
               {
-                label: 'Documentation Home',
+                label: 'Dev docs',
                 to: '/',
               },
               {
-                label: 'Momento Home',
+                label: 'Momento',
                 to: 'https://www.gomomento.com/',
               },
             ],
@@ -386,6 +386,13 @@ const config = {
         additionalLanguages: ["java", "kotlin", "rust", "csharp", "php", "elixir", "swift", "dart"],
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      algolia: {
+        appId: 'KKA2C34L90',
+        apiKey: 'd22ff3783e6e14f7feb6dd24bb7165f7',
+        indexName: 'momento_docs2',
+        contextualSearch: false,
+        searchPagePath: false,
       },
       docs: {
         sidebar: {
