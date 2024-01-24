@@ -1,21 +1,23 @@
 ---
 sidebar_position: 1
-sidebar_label: チートシート
-title: Python + Momento Cache のためのチートシート
-description: Python と Momento Cache を使ってコーディングするための全て
+sidebar_label: Cheat Sheet
+title: Cheat Sheet for Python + Momento Cache
+description: Everything to get you going with coding using Python and Momento Cache
 ---
 
-# Momento Cache を Python で使うためのチートシート
-このページでは、Momento Cache を Python で素早く使ってみたい方のために必要となる基礎的な API 呼出しを解説しています。
+# PythonとMomentoキャッシュのチートシート
+
+PythonとMomento Cacheをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。
 
 :::tip
 
-もしこのページにある全ての関数を1つの python ファイルにまとめた場合、それが他の python コードからインポートして呼び出すことができる関数の集合として使うことができます。加えて、もしこのコードを本番環境で利用する場合には、print() 呼出しを python のロギングライブラリ (`import logging`) に置き換えることになるでしょう。[こちらをクリックして](@site/static/code/cheat-sheets/MomentoBasics.py)全ての関数を持ったクラスファイルもご確認下さい。
+このページのすべての関数を1つのpythonファイルにまとめると、他のpythonコードからインポートして呼び出すことができる関数の中心的なコレクションを持つことができます。さらに、このコードを本番で使用する場合、print() 呼び出しを python の logging ライブラリ (`import logging`) を使用したものに置き換えることができます。[ここをクリックしてください](@site/static/code/cheat-sheets/MomentoBasics.py)。
 
 :::
 
-## ライブラリをインポートして、CacheClient オブジェクトを返却して接続する
-このコードで、必要なインポート、そしてそれぞれの他の関数が呼び出す必要のある CacheClient を生成して、メイン関数をセットアップします。
+## ライブラリをインポートして接続し、CacheClient オブジェクトを返します
+
+このコードでは、必要なインポート、クラス定義、および他の各関数が呼び出す必要のある CacheClient インスタンス化を使用してクラスを設定します。
 
 ```python
 from datetime import timedelta
@@ -35,8 +37,8 @@ def create_client():
   return CacheClient.create(**config)
 ```
 
-## Momento Cache に新しいキャッシュを作成する
-この関数を使ってアカウント内に新しいキャッシュを作成します。
+## Momento Cacheに新しいキャッシュを作成する
+この機能を使用して、アカウントに新しいキャッシュを作成します。
 ```python
 def create_cache(client, cache_name: str) -> None:
   resp = client.create_cache(cache_name)
@@ -49,8 +51,8 @@ def create_cache(client, cache_name: str) -> None:
         print(f"Unreachable with {error.message}")
 ```
 
-## アカウント内の既存のキャッシュをリストする
-この例では、上で作った client 関数を使ってクライアントオブジェクトを使い、このアカウントにある全てのキャッシュをリストするために使っています。
+## アカウントに存在するキャッシュのリストを取得する
+この例では、上記のclient関数を使ってclientオブジェクトを取得し、それを使ってこのアカウントのすべてのキャッシュをリストアップします。
 ```python
 def list_caches(client) -> None:
     print("Listing caches:")
@@ -65,8 +67,8 @@ def list_caches(client) -> None:
             print("Unreachable")
     print("")
 ```
-## 項目をキャッシュに書き込む
-書込み操作を行うシンプルな例です。client.set 呼出しでは、TTL はオプショナルです。もし TTL を渡すと、クライアント接続オブジェクトに設定されたデフォルトの TTL 値が上書きされます。
+## キャッシュに項目を書き込む
+セット操作の簡単な例。client.set呼び出しでは、TTLはオプションです。TTLを渡すと、クライアント接続オブジェクトで設定されたデフォルトのTTL値が上書きされます。
 ```python
 def set(client, cache_name, key, value, ttl=None):
   resp = client.set(cache_name, key, value, ttl)
@@ -79,8 +81,8 @@ def set(client, cache_name, key, value, ttl=None):
         print("Unreachable")
 ```
 
-## キャッシュから項目を読み出す
-これは、キャッシュから項目を取得するためのシンプルな読み出し操作です。
+## キャッシュからアイテムを読み込む
+これは、キャッシュから項目を取得する単純な読み取り操作の例です。
 ```python
 def get(client, cache_name, key):
   resp = client.get(cache_name, key)
@@ -93,8 +95,8 @@ def get(client, cache_name, key):
         print("Unreachable")
 ```
 
-## キャッシュ内の項目の値を増加する
-キーに対する値を増加させる例です。正または負の整数を渡すことができます。
+## キャッシュ内の項目の値をインクリメントします
+キーの値をインクリメントする例。正または負の整数を渡すことができます。
 ```python
 def incr(client, cache_name, key, value:int = 1):
   resp = client.increment(cache_name, key, value)
@@ -108,8 +110,8 @@ def incr(client, cache_name, key, value:int = 1):
 ```
 
 :::info
-これらの API 呼出し以上のものは、[API リファレンスページ](./../../api-reference/index.mdx)で Momento API 呼出しの全種類の詳しい情報をご確認下さい。
+これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](./../../api-reference/index.mdx)をチェックしてください。
 :::
 
-## 利用に関する覚書
-これらの関数では、まず CacheClient オブジェクトを返す `create_client()` を呼び出します。そしてそのオブジェクトを後続の関数に渡します。この方法では、Momento への複数の呼出しに対して CacheClient を再利用するので、より効率の良い呼出しになります。[こちらクリックして](@site/static/code/cheat-sheets/MomentoBasics.py)全ての関数を持ったクラスファイルもご確認下さい。
+## 使用上の注意事項
+これらの関数では、CacheClient オブジェクトを返す関数 `create_client()` を呼び出します。その後、そのオブジェクトを後続の関数に渡します。こうすることで、Momento への複数の呼び出しで CacheClient を再利用するため、呼び出しがより効率的になります。[ここをクリック](@site/static/code/cheat-sheets/MomentoBasics.py)すると、すべての定義が含まれたファイルを見ることができます。
