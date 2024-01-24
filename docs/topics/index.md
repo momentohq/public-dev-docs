@@ -39,13 +39,25 @@ You can think of Topics almost like a managed WebSocket service that handles cha
 
 ![A diagram showing service-to-service, service-to-browser, and browser-to-browser connectivity with Topics](@site/static/img/topics-connections.png)
 
-### Connect from browsers
+### Connect from browsers and mobile apps
 
-You can both publish and subscribe to Topics in a browser using our [Web SDK](./develop/sdks/web/index.md). When publishing data to a Topic, all subscribers will receive the data, meaning you can connect browsers together without building server-side code!
+You can both publish and subscribe to Topics in a browser, or on iOS or Android devices using our front-end SDKs. When publishing data to a Topic, all subscribers will receive the data, meaning you can connect browsers together without building any server-side infrastructure!
+
+* [Momento Web SDK](/sdks/web/index.md) (for JavaScript browser apps)
+* [Momento Swift SDK](/sdks/swift/index.md) (for native iOS apps)
+* [Momento Kotlin SDK](/sdks/kotlin/index.md) (for native Android apps)
+* [Momento Dart SDK](/sdks/dart/index.md) (for Flutter apps)
 
 ### Connect from servers
 
-You can also publish and subscribe to Topics in your backend services. You can use the [Node.js](./develop/sdks/nodejs/index.md), [Python](./develop/sdks/python/index.md), or [Go](./develop/sdks/go/index.md) SDKs to send and receive data. Support for our other SDKs is coming soon!
+You can also publish and subscribe to Topics in your backend services. Here are SDKs that support server-side development:
+
+* [Momento Node.js SDK](/sdks/nodejs/index.md)
+* [Momento Go SDK](/sdks/go/index.md)
+* [Momento Java SDK](/sdks/java/index.md)
+* [Momento Kotlin SDK](/sdks/kotlin/index.md)
+* [Momento Python SDK](/sdks/python/index.md)
+* [Momento .NET SDK](/sdks/dotnet/index.md)
 
 :::note
 
