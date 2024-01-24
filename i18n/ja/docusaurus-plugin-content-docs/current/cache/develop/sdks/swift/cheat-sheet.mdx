@@ -10,64 +10,64 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Cheat Sheet for Swift with Momento Cache
+# SwiftとMomentoキャッシュのチートシート
 
-If you need to get going quickly with Swift and Momento Cache, this page contains the basic API calls you'll need. [Check the Swift SDK examples](https://github.com/momentohq/client-sdk-swift/tree/main/Examples) for complete, working code samples.
+SwiftとMomento Cacheをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。完全で動作するコードサンプルについては、[Swift SDK のサンプル](https://github.com/momentohq/client-sdk-swift/tree/main/Examples) を確認してください。
 
-## Install the Momento SDK
+## Momento SDKをインストールする
 
-The latest version of the Momento Swift SDK is available on GitHub: [momentohq/client-sdk-swift](https://github.com/momentohq/client-sdk-swift).
+Momento Swift SDKの最新バージョンはGitHubで入手可能です： [momentohq/client-sdk-swift](https://github.com/momentohq/client-sdk-swift)。
 
-## Get your Momento API key
+## Momento APIキーを取得する
 
-You'll need a Momento API key. You can get one from the [Momento Web Console](https://console.gomomento.com/).
-Once you have your token, store it in an environment variable so that the Momento client can consume it:
+Momento APIキーが必要です。Momento Web Console](https://console.gomomento.com/)から取得できます。
+トークンを取得したら、Momentoクライアントが利用できるように環境変数に保存します：
 
 ```
 export MOMENTO_API_KEY=<your api key here>
 ```
 
-**Note**: it is best practice to put the API key into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
+**Note**: セキュリティ強化のためには、APIキーを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに入れるのがベストプラクティスですが、ここではデモのためにAPIキーを使っています。
 
-## Set up a CacheClient
-This code creates the CacheClient that you will use to call the other methods.
+## CacheClient のセットアップ
+このコードは、他のメソッドの呼び出しに使用する CacheClient を作成します。
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_InstantiateCacheClient'} />
 
-## Create a new cache in Momento Cache
-Use this function to create a new cache in your account.
+## Momento Cacheに新しいキャッシュを作成する
+この機能を使用して、アカウントに新しいキャッシュを作成します。
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_CreateCache'} />
 
-## List the names of existing caches in your account
-A simple list of the names of caches for the account.
+## あなたのアカウントにある既存のキャッシュの名前をリストアップします
+アカウントのキャッシュ名の単純なリスト。
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_ListCaches'} />
 
-## Delete a cache
-Use this function to delete a cache from your account.
+## キャッシュの削除
+この機能を使用して、アカウントからキャッシュを削除します。
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_DeleteCache'} />
 
-## Write an item to a cache
-A simple example of doing a set operation. In the CacheClient.set() call, the TTL is optional. If you did pass it in, this would override the default TTL value set with the client connection object.
+## キャッシュに項目を書き込む
+セット操作の単純な例。CacheClient.set() 呼び出しでは、TTL はオプションです。これを渡すと、クライアント接続オブジェクトで設定された既定の TTL 値がオーバーライドされます。
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_Set'} />
 
-## Read an item from a cache
-This is an example of a simple read operation to get an item from a cache.
+## キャッシュからアイテムを読み込む
+これは、キャッシュから項目を取得する単純な読み取り操作の例です。
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_Get'} />
 
-## Delete an item from a cache
-This is an example of deleting an item from a cache.
+## キャッシュから項目を削除する
+これはキャッシュから項目を削除する例です。
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_Delete'} />
 
-## Running the code
+## コードの実行
 
-You can find complete, working examples in the [Swift SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-swift/tree/main/examples).
+[Swift SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-swift/tree/main/examples)で、完全な、動作するサンプルを見つけることができます。
 
 :::info
-Beyond these basic API calls check out the [API reference page](/cache/develop/api-reference/index.mdx) for more information on the full assortment of Momento API calls.
+これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](/cache/develop/api-reference/index.mdx)をチェックしてください。
 :::

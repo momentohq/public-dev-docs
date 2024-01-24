@@ -75,6 +75,7 @@ h4 {
   --ifm-link-color: #00a070;
   --ifm-font-family-monospace: "Manrope";
   --ifm-font-family-base: "Manrope";
+  --footer-text: #ffffff;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -87,6 +88,7 @@ h4 {
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --footer-text: #25392b;
 }
 
 @media (min-width: 997px) {
@@ -229,10 +231,10 @@ code span {
   }
 
   .footer__copyright {
-    font-size: 12px;
+    font-size: .9rem;
     font-weight: 400;
-    color: white;
-    margin-top: 16px;
+    color: var(--footer-text);
+    margin-top: 4px;
   }
 
   .footer__col {
@@ -245,19 +247,13 @@ code span {
   }
 
   .footer__title {
-    font-weight: 600;
-    font-size: 14px;
-    color: #929c95;
+    margin-bottom: 4px;
+    color: var(--footer-text);
   }
 
   .footer__link-item {
-    color: white;
-    font-weight: 500;
-    font-size: 18px;
-
-    &:hover {
-      color: white;
-    }
+    color: var(--footer-text);
+    font-size: .9rem;
   }
 }
 
