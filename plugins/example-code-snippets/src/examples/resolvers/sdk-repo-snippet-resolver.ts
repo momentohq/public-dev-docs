@@ -14,6 +14,7 @@ import {JavaSnippetSourceParser} from './source-parsers/languages/java-snippet-s
 import {ElixirSnippetSourceParser} from './source-parsers/languages/elixir-snippet-source-parser';
 import {SwiftSnippetSourceParser} from './source-parsers/languages/swift-snippet-source-parser';
 import {DartSnippetSourceParser} from './source-parsers/languages/dart-snippet-source-parser';
+import {KotlinSnippetSourceParser} from './source-parsers/languages/kotlin-snippet-source-parser';
 
 export class SdkRepoSnippetResolver implements SnippetResolver {
   private readonly sourceProvider: SdkSourceProvider =
@@ -87,6 +88,8 @@ export class SdkRepoSnippetResolver implements SnippetResolver {
         return new GolangSnippetSourceParser(sourceDir);
       case ExampleLanguage.JAVA:
         return new JavaSnippetSourceParser(sourceDir);
+      case ExampleLanguage.KOTLIN:
+        return new KotlinSnippetSourceParser(sourceDir);
       case ExampleLanguage.PHP:
         return new PhpSnippetSourceParser(sourceDir);
       case ExampleLanguage.ELIXIR:
@@ -122,6 +125,8 @@ function sdkForLanguage(language: ExampleLanguage): Sdk {
       return Sdk.GO;
     case ExampleLanguage.JAVA:
       return Sdk.JAVA;
+    case ExampleLanguage.KOTLIN:
+      return Sdk.KOTLIN;
     case ExampleLanguage.PHP:
       return Sdk.PHP;
     case ExampleLanguage.RUST:

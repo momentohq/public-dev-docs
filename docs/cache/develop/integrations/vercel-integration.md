@@ -57,7 +57,7 @@ The next screen allows you to configure your deployment. Because we are deployin
 
 Notice the Next.js icon next to the selected directory. Vercel has examined the contents of the directory and detected that our project is using Next.js. Because of this auto-detection, we can simply leave the `Build and Output Settings` section alone. It will select default values appropriate to our project. 
 
-Recall that we generated and saved a Momento auth token earlier for use with this application. Use the `Environment Variables` section below the build settings to add an environment variable with `MOMENTO_AUTH_TOKEN` as the name and the token you generated as the value. Next, add a second environment variable with `NEXT_PUBLIC_MOMENTO_CACHE_NAME` as the key and `chat` as the value to point your app to the cache you created earlier.
+Recall that we generated and saved a Momento auth token earlier for use with this application. Use the `Environment Variables` section below the build settings to add an environment variable with `MOMENTO_API_KEY` as the name and the token you generated as the value. Next, add a second environment variable with `NEXT_PUBLIC_MOMENTO_CACHE_NAME` as the key and `chat` as the value to point your app to the cache you created earlier.
 
 ![Vercel environment variables](/img/vercel-environment-variables.png)
 

@@ -9,7 +9,7 @@ export class DartSnippetSourceParser extends RegexSnippetSourceParser {
   constructor(repoSourceDir: string) {
     const wholeFileExamplesDir = 'example/';
     const codeSnippetFiles: Array<string> = [
-      'example/doc_example_apis/doc_example_apis.dart',
+      'example/doc_example_apis/bin/doc_example_apis.dart',
     ];
     super({
       wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),

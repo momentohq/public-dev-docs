@@ -68,6 +68,7 @@ function replaceValueWithExampleTabs(literal: unist.Literal): void {
   js={\`${snippetForLanguage(ExampleLanguage.JAVASCRIPT, snippetId)}\`}
   python={\`${snippetForLanguage(ExampleLanguage.PYTHON, snippetId)}\`}
   java={\`${snippetForLanguage(ExampleLanguage.JAVA, snippetId)}\`}
+  kotlin={\`${snippetForLanguage(ExampleLanguage.KOTLIN, snippetId)}\`}
   go={\`${snippetForLanguage(ExampleLanguage.GO, snippetId)}\`}
   csharp={\`${snippetForLanguage(ExampleLanguage.CSHARP, snippetId)}\`}
   php={\`${snippetForLanguage(ExampleLanguage.PHP, snippetId)}\`}
@@ -87,6 +88,7 @@ function replaceValueWithExampleFileTabs(literal: unist.Literal): void {
     js={\`${fileTabContentsForLanguage(value, ExampleLanguage.JAVASCRIPT)}\`}
     python={\`${fileTabContentsForLanguage(value, ExampleLanguage.PYTHON)}\`}
     java={\`${fileTabContentsForLanguage(value, ExampleLanguage.JAVA)}\`}
+    kotlin={\`${fileTabContentsForLanguage(value, ExampleLanguage.KOTLIN)}\`}
     go={\`${fileTabContentsForLanguage(value, ExampleLanguage.GO)}\`}
     csharp={\`${fileTabContentsForLanguage(value, ExampleLanguage.CSHARP)}\`}
     php={\`${fileTabContentsForLanguage(value, ExampleLanguage.PHP)}\`}
