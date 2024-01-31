@@ -1,0 +1,91 @@
+---
+sidebar_position: 2
+sidebar_label: Topics
+title: Getting started with Momento Topics in JavaScript
+description: Learn the basic building blocks for writing TypeScript and JavaScript code to interact with Momento Topics.
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - sdk
+  - sdks
+  - api
+  - typescript
+  - javascript
+  - nodejs
+  - node.js
+  - examples
+  - resources
+  - getting started
+  - quick start
+  - web
+  - browser
+---
+
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
+
+# JavaScriptでMomento Topicsを始めよう
+
+Momentoは2つのJavaScript SDKを提供しています。[1つはNode.js用](/sdks/nodejs)、[1つはブラウザその他のWebアプリケーション用](/sdks/web)です。2つのSDKは同じAPIを持っているので、あなたのコードは `import` ステートメントを除いて同じように見えますが、異なるJavaScriptランタイム環境で最適なパフォーマンスと互換性を実現するように作られています。
+
+このページでは、Momento トピックをすぐに使い始めるために必要な基本的なことを説明します。より詳細な情報や例については、上記のリンク先の SDK ページを参照してください。
+
+## Momento SDK インストール
+
+既存のNode.jsプロジェクトにMomento Node.js SDKをインストールするには：
+
+```cli
+npm install @gomomento/sdk
+```
+
+または、既存のブラウザアプリケーションプロジェクトに Momento Web SDK をインストールします：
+
+```cli
+npm install @gomomento/sdk-web
+```
+
+:::tip
+`gomento/sdk`または`@gomento/sdk-web`のどちらか片方だけが必要です。両方は必要ありません。
+:::
+
+## API キーの設定
+
+Momentoで認証するには[Momento API key](/cache/develop/authentication/api-keys)が必要です。できれば、[Momento Web Console](https://console.gomomento.com/caches) から取得できます。
+トークンを取得したら、Momento クライアントが利用できるように環境変数に保存します：
+
+```
+export MOMENTO_API_KEY=<your Momento token here>
+```
+
+**Note**: セキュリティ強化のためには、トークンを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに格納するのがベストプラクティスですが、ここではデモのために使用しています。
+
+## ライブラリのインポートと TopicClient オブジェクトの作成
+このコードでは、メイン関数を設定し、必要なインポートを取り込み、pub/sub トピックとの対話に使用する TopicClient をインスタンス化します。
+
+<SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/topics/doc-example-files/cheat-sheet-main.ts'} />
+
+## トピックへのメッセージのサブスクライブとパブリッシュ
+この例では、"test-cache" という名前の Momento Cache にある "test-topic" というトピックを購読し、購読が成功したらそのトピックにメッセージを公開します。
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_TopicSubscribe'}>
+
+## コードを実行する
+
+[JavaScript SDKのgithubリポジトリにあるexamplesディレクトリ](https://github.com/momentohq/client-sdk-javascript/blob/main/examples)にサンプルがあります。
+
+:::info
+これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](/cache/develop/api-reference)を参照してください。
+
+[より高度な呼び出し](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/advanced.ts) のコードを見るには、このリンクをたどってください。
+
+:::

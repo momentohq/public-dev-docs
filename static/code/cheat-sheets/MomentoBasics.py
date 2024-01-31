@@ -10,7 +10,7 @@ cache_name = "default_cache"
 # It gets values from environment variables, but you could get them from
 # a programatic encrypted data manager like AWS Secrets Manager.
 def create_client():
-  momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_AUTH_TOKEN')
+  momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_API_KEY')
   ttl  = timedelta(seconds=int(os.getenv('MOMENTO_TTL_SECONDS', '600')))
   config = {
     'configuration': Configurations.Laptop.v1(),
