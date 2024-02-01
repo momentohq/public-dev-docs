@@ -257,8 +257,8 @@ const config = {
             to: '/topics/webhooks/overview'
           },
           {
-            from: 'topics/develop/patterns/asynchronous-processing',
-            to: 'topics/patterns/running-background-tasks'
+            from: '/topics/develop/patterns/asynchronous-processing',
+            to: '/topics/patterns/running-background-tasks'
           }
         ],
         // This came in with v1.5.0 of the docs where we split out by service.
