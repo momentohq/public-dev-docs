@@ -20,7 +20,9 @@ To interact with Momento Vector Indexes, you must use a VectorIndexClient.
 
 <SdkExampleTabs snippetId={'API_InstantiateVectorClient'} />
 
-## Vector Index methods
+## Control APIs
+
+These API methods are used to manage and control indexes.
 
 ### Create Index
 Creates a vector index.
@@ -83,6 +85,10 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 <SdkExampleTabs snippetId={'API_ListIndexes'} />
+
+## Data APIs
+
+These API methods are used to directly interact with data in an index.
 
 ### Count Items
 Counts the number of items in a vector index.
