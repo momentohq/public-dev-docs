@@ -26,7 +26,7 @@ Here we demo the entire API reference for filter expressions. Broadly we group t
 - [Comparison expressions](#comparison-expressions): Directly compare a field's value and a specified value.
 - [Logical expressions](#logical-expressions): Combine or modify filter expressions.
 
-For this example we will use a hypothetical dataset of movies (think [IMDB](www.imdb.com)) with the following schema:
+For this example we will use a hypothetical dataset of movies (think [IMDB](https://www.imdb.com)) with the following schema:
 
 | Field | Type | Description |
 |-------|------|-------------|
