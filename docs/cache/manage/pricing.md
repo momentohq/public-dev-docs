@@ -34,7 +34,7 @@ If you need further assistance (or just can’t believe it), drop a message in o
 <summary>Can I run a production app for free on Momento Cache and Topics?</summary>
 Absolutely! Our free tier and low usage tiers are just billing. It is the same exact service and features whether you use 40GB/month or 40TB/month. You get all our availability features like multi-AZ replication, hot key protection, and automatic scaling to handle bursts. In the free tier, you even get all our security features for free, such as <a href="./../develop/authentication">fine-grained auth tokens</a>, end-to-end encryption, per-request authentication, and TLS.
 
-We frequently find customers provisioning an entire cluster to handle low operations per second (OPS) workflows. If you want them to be HA, you need multiple nodes. If you believe in CICD, you likely have a similarly sized cluster in staging—and maybe even in dev. That adds up! Turn off those machines—and save the environment. Go Momento!
+We frequently find customers provisioning an entire cluster to handle low-request per second (RPS) workflows. If you want them to be HA, you need multiple nodes. If you believe in CICD, you likely have a similarly sized cluster in staging—and maybe even in dev. That adds up! Turn off those machines—and save the environment. Go Momento!
 </details>
 
 <details>
@@ -52,7 +52,7 @@ Heck yeah! You are billed for the inbound and outbound data transfer, not the vo
 
 <details>
   <summary>Will it scale?</summary>
-Hell yes! Momento services are the best way to future-proof your application story. You can add Momento Cache *extremely* quickly, and it just fades into the background whether you are doing 1 OPS or 1 million OPS. You just pay for what you use, so you get a scalable cache without spending a lot of cash.
+Hell yes! Momento services are the best way to future-proof your application story. You can add Momento Cache *extremely* quickly, and it just fades into the background whether you are doing 1 operation per second (ops/s) or 1 million ops/s. You just pay for what you use, so you get a scalable cache without spending a lot of cash.
 </details>
 
 [Give Momento Cache a Try!](./../getting-started.md)
