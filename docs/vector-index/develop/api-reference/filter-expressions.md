@@ -26,7 +26,16 @@ Here we demo the entire API reference for filter expressions. Broadly we group t
 - [Comparison expressions](#comparison-expressions): Directly compare a field's value and a specified value.
 - [Logical expressions](#logical-expressions): Combine or modify filter expressions.
 
-See below for the full API reference.
+For this example we will use a hypothetical dataset of movies (think [IMDB](https://www.imdb.com)) with the following schema:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| movie_title | string | The title of the movie. |
+| year | int | The year the movie was released. |
+| gross_revenue_millions | float | The gross revenue of the movie in millions of dollars. |
+| in_theaters | boolean | Whether the movie is currently in theaters. |
+| actors | string[] | The list of actors in the movie. |
+| directors | string[] | The list of directors of the movie. |
 
 <SdkExampleTabs snippetId={'API_FilterExpressionOverview'} />
 
