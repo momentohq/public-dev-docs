@@ -201,7 +201,7 @@ Gets a batch of items from a vector index.
 | Name      | Type     | Description                     |
 |-----------|----------|---------------------------------|
 | indexName | String   | Name of the vector index.       |
-| ids       | String[] | IDs of the items to retrieve.   |
+| filter    | String[] | IDs of the items to retrieve.   |
 
 <details>
   <summary>Method response object</summary>
@@ -222,7 +222,7 @@ Gets a batch of items' metadata from a vector index.
 | Name      | Type     | Description                         |
 |-----------|----------|-------------------------------------|
 | indexName | String   | Name of the vector index.           |
-| ids       | String[] | IDs of item metadata to retrieve.   |
+| filter    | String[] | IDs of item metadata to retrieve.   |
 
 <details>
   <summary>Method response object</summary>
@@ -245,7 +245,7 @@ Deletes a batch of items from a vector index.
 | Name      | Type     | Description                     |
 |-----------|----------|---------------------------------|
 | indexName | String   | Name of the vector index.       |
-| ids       | String[] | IDs of the items to be deleted. |
+| filter    | String[] | IDs of the items to be deleted. |
 
 <details>
   <summary>Method response object</summary>
