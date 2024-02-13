@@ -9,7 +9,7 @@ description: Discover the HTTP API for edge computing services to access pub/sub
 
 Momento provides an HTTP API interface for your applications that can’t use our [SDKs](./../) or for ones that prefer to use things like curl or fetch. For example, when deploying to edge compute services like [Cloudflare Workers](https://workers.cloudflare.com/), [Fastly Compute@Edge](https://www.fastly.com/products/edge-compute), etm. this API is for you. Be aware that most other applications should likely use [Momento’s SDK clients](./../).
 
-You can also view the Open API Specification in our [public workspace in Postman](https://www.postman.com/gomomento/workspace/http-api/api/662743a0-471a-41a1-b446-5db596164a00/definition/4765b18e-ba84-4802-9795-ecce9c408062?view=documentation).
+You can also view the Open API Specification in our [public workspace in Postman](https://www.postman.com/gomomento/workspace/momento-http-api/api/662743a0-471a-41a1-b446-5db596164a00/definition/4765b18e-ba84-4802-9795-ecce9c408062?view=documentation).
 
 :::note
 
