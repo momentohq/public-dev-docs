@@ -1,0 +1,81 @@
+---
+sidebar_position: 3
+sidebar_label: Observability
+title: Observability for TypeScript and Node.js
+description: Instrument your Momento-enabled Node.js code with Logs, Metrics, and Traces
+---
+
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
+
+# Node.js の Momento によるオブザーバビリティ
+
+## ロギング
+
+すべての Momento SDK のゴールは、開発者が Momento のログ出力を、アプリケーションのログで使用しているのと同じ宛先に向けることができるようにすることです。
+
+node.js で利用できるロギングライブラリはたくさんあります。人気のあるものをいくつか紹介します：
+
+- [Pino](https://github.com/pinojs/pino)
+- [Winston](https://github.com/winstonjs/winston)
+- [Bunyan](https://github.com/trentm/node-bunyan)
+- [Morgan](https://github.com/expressjs/morgan)
+
+Momento がこれらのライブラリ (そしてそれ以上に) と互換性があることを保証するために、私たちは軽量なロギングファサードを提供しています。これを使うには、 `MomentoLoggerFactory` インターフェイスと `MomentoLogger` インターフェイスを実装するだけです：
+
+<SdkExampleCodeBlock language={'javascript'} file={'packages/core/src/config/logging/momento-logger.ts'} />
+
+ユーザの実装は、選択したロギングライブラリの薄いラッパーになるでしょう。私たちは、[`pino`](https://github.com/pinojs/pino)ロガーを使用し動作する実装例を提供しています： [https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/doc-example-files/pino-logger.ts](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/observability/pino-logger.ts)。
+
+`MomentoLoggerFactory` と `MomentoLogger` を定義したら、最後に Momento クライアントを設定します：
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'observability_CreateCacheClientWithPinoLogger'} />
+
+そうすると、Momento からのログメッセージが pino のロギング環境を通して表示されるはずです。この場合、以下のようなログメッセージが表示されるはずです：
+
+```
+[1685649962168] INFO (CacheClient/4386 on mycomputer.local): Creating Momento CacheClient
+[1685649962168] INFO (ControlClient/4386 on mycomputer.local): Creating cache: test-cache
+```
+
+## メトリクス
+メトリクスとは、システムのパフォーマンスや動作に関する定量的な情報を提供する測定値のことです。一定の間隔で取得・記録される数値であり、システムの傾向やパターンを理解するのに役立つ統計データを提供します。
+
+特に Momento については、リクエストの数、時間、リクエストやレスポンスのサイズ、失敗率などのメトリクスを取得したいと思うかもしれません。Node.js SDK では、Momento の gRPC 呼び出しと応答をインターセプトするミドルウェアを使用して、これらをキャプチャします。以下は、OpenTelemetry と Prometheus を使用して、リクエストの種類によってファセットされたリクエスト数をキャプチャする例です：
+
+まず初めにアプリケーション側でメトリクスの設定します：
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'observability_setupMetrics'} />
+
+次に、メトリックを取得するミドルウェアを実装します：
+
+<SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/observability/example-metric-middleware.ts'} />
+
+Momento `CacheClient` を作成し、ミドルウェアを追加すると、リクエストごとにメトリックがインクリメントされます：
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_InstantiateCacheClientWithMiddleware'} />
+
+以下は、Momento に対して行われた get リクエストと set リクエストのグラフを表示する Grafana UI の例です：
+![image](./images/grafana_screenshot.png)
+
+## トレース
+トレースは、アプリケーション内のプロセスの詳細なタイムラインを提供し、特定のリクエストや操作に関係する異なるコンポーネントやサービス間の関係を示します。これにより、開発者はこれらの操作のシーケンスと期間を分析し、システム内のデータの流れをより深く理解することができます。
+
+Momento Node.js SDK は、Momento サーバーとの通信に内部的に gRPC を使用しています。OpenTelemetry は、すべての gRPC 呼び出しをトレースで自動計測する機能を提供します。メトリクスのように、トレースを生成するためにミドルウェアのコードを追加する必要はありません。以下は、これらのコールのトレースを自動的に生成し、Zipkin にエクスポートする例です：
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'observability_setupTracing'} />
+
+これは Momento を組み込んだコードの前に実行する必要があります。
+
+以下は Zipkin UI でキャッシュの作成、取得、セットのトレースを表示した例です：
+![image](./images/zipkin_screenshot.png)
+
+アプリケーションのパフォーマンスがトレース生成によって影響を受けるのであれば、生成されるトレース数を削減するために、サンプリングを検討すべきです。OpenTelemetry でこれを行うには、2つの環境変数を設定します：
+
+```cli
+export OTEL_TRACES_SAMPLER="traceidratio"
+export OTEL_TRACES_SAMPLER_ARG="0.1"
+```
+これらを設定することで、トレースの10％のみが作成されるようになります。

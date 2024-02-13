@@ -1,0 +1,69 @@
+---
+sidebar_position: 1
+sidebar_label: Cache Cheat Sheet
+title: Cheat sheet for TypeScript and Node.js
+description: Get started really quickly coding using TypeScript and Node.js with Momento Cache
+---
+
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
+
+# Momento Cacheを使ったNode.jsのチートシート
+
+Node.js + TypeScriptとMomento Cacheをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。[Node.js SDK の例](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/cache) には、ビルド設定ファイルを含む完全なサンプルがあります。
+
+## Momentoクライアント・ライブラリをインストールする
+
+既存のNode.jsプロジェクトにクライアント・ライブラリをインストールします：
+
+```cli
+npm install @gomomento/sdk
+```
+
+## APIキーの設定
+
+Momentoで認証するには、Momento APIキーが必要です。 Momento Web Console](https://console.gomomento.com/caches)から取得できます。
+APIキーを取得したら、Momentoクライアントが利用できるように環境変数に保存してください：
+
+```
+export MOMENTO_API_KEY=<your Momento API key here>
+```
+
+**Note**: セキュリティ強化のためには、APIキーを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに入れるのがベストプラクティスだが、ここではデモのためにAPIキーを使っています。
+
+## ライブラリをインポートし、CacheClient オブジェクトを作成します
+このコードでは、メイン関数を設定し、必要なインポートを取り込み、キャッシュとの対話に使用する CacheClient をインスタンス化します。
+
+<SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/cache/doc-example-files/cheat-sheet-main.ts'} />
+
+## Momento Cacheに新しいキャッシュを作成する
+この機能を使用して、アカウントに新しいキャッシュを作成します。
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_CreateCache'} />
+
+## あなたのアカウントにある既存のキャッシュの名前をリストアップします
+アカウントのキャッシュ名の単純なリスト。
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_ListCaches'} />
+
+## キャッシュに項目を書き込む
+セット操作の簡単な例。client.set呼び出しでは、TTLはオプションです。TTLを渡すと、クライアント接続オブジェクトで設定されたデフォルトのTTL値が上書きされます。
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_Set'} />
+
+## キャッシュからアイテムを読み込む
+これは、キャッシュから項目を取得する単純な読み取り操作の例です。
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_Get'} />
+
+## コードの実行
+
+[JavaScript SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-javascript/blob/main/examples)に完全な動作例があります。
+
+:::info
+これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](./../../api-reference/index.mdx)をチェックしてください。
+
+[より高度なコール](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/advanced.ts)用の同じタイプのコードを見るには、このリンクをたどってください。
+:::
