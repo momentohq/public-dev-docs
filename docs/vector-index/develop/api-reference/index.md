@@ -245,7 +245,7 @@ Deletes a batch of items from a vector index.
 | Name      | Type     | Description                     |
 |-----------|----------|---------------------------------|
 | indexName | String   | Name of the vector index.       |
-| filter    | String[] | IDs of the items to be deleted. |
+| filter    | [VectorFilterExpression](./filter-expressions.md) \| String[] | A filter to match the items to be deleted or the item IDs to be deleted. |
 
 <details>
   <summary>Method response object</summary>
