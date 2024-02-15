@@ -28,18 +28,18 @@ keywords:
 
 # Momento Java SDK
 
-The Momento Java SDK is available via Maven Central: [`software.momento.java:sdk`](https://central.sonatype.com/artifact/software.momento.java/sdk).
+Momento Java SDK は Maven Central から入手できます: [`software.momento.java:sdk`](https://central.sonatype.com/artifact/software.momento.java/sdk).
 
-The source code can be found on GitHub: [momentohq/client-sdk-java](https://github.com/momentohq/client-sdk-java).
+ソースコードはGitHubにあります： [momentohq/client-sdk-java](https://github.com/momentohq/client-sdk-java)
 
-## Requirements
+## 必要条件
 
-- A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
-- At least the java 8 run time installed
-- mvn or gradle for downloading the sdk
+- Momento API Keyが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
+- 少なくともjava 8のランタイムがインストールされている
+- sdkをダウンロードするためのmvnまたはgradle
 
 ## Resources
 
 - [Getting started with Momento Cache in Java](./cache)
 - [Getting started with Momento Topics in Java](./topics)
-- [Java SDK Examples](https://github.com/momentohq/client-sdk-java/blob/main/examples/README.md): working example projects that illustrate how to use the Java SDK
+- [Java SDK Examples](https://github.com/momentohq/client-sdk-java/blob/main/examples/README.md): Java SDKの使い方を説明するサンプルプロジェクト
