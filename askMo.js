@@ -1,3 +1,11 @@
+// Load marked script dynamically
+function loadExternalScript(scriptSrc, callback) {
+    const script = document.createElement('script');
+    script.src = scriptSrc;
+    script.onload = callback;
+    document.head.appendChild(script);
+}
+
 window.setPopupPosition = function () {
     const buttonPosition = document.querySelector('.ask-mo-button').getBoundingClientRect();
     const popup = document.getElementById("popup");
@@ -35,10 +43,11 @@ function closePopup() {
 }
 
 function submitPopup() {
+    loadExternalScript('https://cdnjs.cloudflare.com/ajax/libs/marked/2.0.1/marked.min.js');
     const inputValue = document.getElementById('popupInput').value;
     const responseElement = document.getElementById('apiResponse');
 
-    responseElement.innerHTML += '<b>You:</b> ' + inputValue + '<br />';
+    responseElement.innerHTML += '<b>You:</b> ' + '<br />' + inputValue + '<br />';
 
     responseElement.innerHTML += '<div id="loadingSpinner" class="loader-container">' +
         '<b>Mo:</b>' +
@@ -60,15 +69,13 @@ function submitPopup() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log('API Response:', data.output);
             const output = data.output;
-
-            document.getElementById('loadingSpinner').outerHTML = '<b>Mo:</b> ' + JSON.stringify(output) + '<br />';
+            const htmlOutput = marked(output);
+            document.getElementById('loadingSpinner').outerHTML = '<b>Mo:</b> ' + htmlOutput + '<br />';
             document.getElementById('popupInput').value = "";
         })
         .catch(error => {
             console.error('API Error:', error);
-
             document.getElementById('loadingSpinner').outerHTML = '<b>Mo:</b> Error: ' + error.message + '<br />';
         })
         .finally(() => {
