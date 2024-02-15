@@ -36,56 +36,56 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Getting Started with Momento Topics in Dart
+# DartでMomento Topicsを始める
 
-If you need to get going quickly with Dart and Momento Topics, this page contains the basic API calls you'll need. [Check the Dart SDK examples](https://github.com/momentohq/client-sdk-dart/tree/main/example) for complete, working code samples.
+DartとMomentoトピックをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。[Dart SDK のサンプル](https://github.com/momentohq/client-sdk-dart/tree/main/example) を参照してください。
 
 ## Install the Momento SDK
 
-The Momento Dart SDK is available on [pub.dev as `momento`](https://pub.dev/packages/momento).
+Momento Dart SDKは[pub.dev as `momento`](https://pub.dev/packages/momento)で入手可能です。
 
-To install in your Dart program, use:
+Dartプログラムにインストールするには、以下を使用します：
 
 ```bash
 dart pub add momento
 ```
 
-To install in your Flutter program, use:
+Flutterプログラムにインストールするには、次のようにします：
 
 ```bash
 flutter pub add momento
 ```
 
-## Get your Momento API key
+## Momento APIキーを取得する
 
-You'll need a Momento API key. You can get one from the [Momento Web Console](https://console.gomomento.com/).
-Once you have your token, store it in an environment variable so that the Momento client can consume it:
+Momento APIキーが必要です。Momento Web Console](https://console.gomomento.com/)から取得できます。
+トークンを取得したら、Momentoクライアントが利用できるように環境変数に保存します：
 
 ```
 export MOMENTO_API_KEY=<your api key here>
 ```
 
-**Note**: it is best practice to put the API key into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
+**Note**: セキュリティ強化のためには、APIキーを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに入れるのがベストプラクティスだが、ここではデモのためにAPIキーを使っている。
 
-## Set up a TopicClient
-This code creates the TopicClient that you will use to interact with your pub/sub topic.
+## TopicClientのセットアップ
+このコードでは、パブ/サブ・トピックとの対話に使用する TopicClient を作成します。
 
 <SdkExampleCodeBlock language={'dart'} snippetId={'API_InstantiateTopicClient'} />
 
-## Publish a message to a topic
-This is an example of publishing a message to a topic called "topic", then catching the return value to check if the publish was successful.
+## トピックにメッセージを公開する
+これは、"topic "というトピックにメッセージを発行し、その返り値をキャッチして発行が成功したかどうかをチェックする例です。
 
 <SdkExampleCodeBlock language={'dart'} snippetId={'API_TopicPublish'} />
 
-## Subscribe to a topic
-This is an example of subscribing to a topic called "topic", then catching the return value to check if it was successful. If a subscription was received, an `await for` loop is used to asynchronously receive and print the messages that are published to this topic.
+## トピックを購読する
+これは、"topic "というトピックを購読し、それが成功したかどうかをチェックするために返り値をキャッチする例である。サブスクリプションを受信した場合、`await for` ループを使用して、このトピックに発行されたメッセージを非同期に受信し、表示します。
 
 <SdkExampleCodeBlock language={'dart'} snippetId={'API_TopicSubscribe'} />
 
-## Running the code
+## コードの実行
 
-You can find complete, working examples in the [Dart SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-dart/tree/main/example).
+[Dart SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-dart/tree/main/example)に、完全なサンプルがあります。
 
 :::info
-Beyond these basic API calls check out the [API reference page](/develop/api-reference) for more information on the full assortment of Momento API calls.
+これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](/develop/api-reference)を参照してください。
 :::
