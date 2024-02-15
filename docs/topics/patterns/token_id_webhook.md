@@ -352,7 +352,7 @@ async function getSecret(secretName: string): Promise<string> {
 
 By integrating Momento Topics, webhooks, and disposable tokens, you can create secure and stateless asynchronous systems. This convention can be applied to a variety of use-cases such as:
 
-- Multi-language [chat application](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app): `token-id` can be used to securely identify users sending messages.
+- Multi-language [chat application](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app)
 - Live commenting system
 - Online polls
 
