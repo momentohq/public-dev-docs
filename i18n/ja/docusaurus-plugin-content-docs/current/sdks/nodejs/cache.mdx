@@ -34,72 +34,72 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Getting Started with Momento Cache in JavaScript
+# JavaScript で Momento キャッシュを始める
 
-Momento provides two JavaScript SDKs; [one for Node.js](/sdks/nodejs) and [one for browsers other web applications](/sdks/web). The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
+Momento は 2 つの JavaScript SDK を提供します。 [Node.js 用に 1 つ](/sdks/nodejs) と [ブラウザーその他の Web アプリケーション用に 1 つ](/sdks/web)。 2 つの SDK は同一の API を備えているため、「import」ステートメントを除いてコードは同じに見えますが、内部では、異なる JavaScript ランタイム環境で最適なパフォーマンスと互換性を実現するように構築されています。
 
-This page contains the basics that you will need in order to get going quickly with Momento Cache. For more in-depth information and examples, visit the SDK pages linked above.
+このページには、Momento Cache をすぐに使い始めるために必要な基本が含まれています。さらに詳しい情報と例については、上にリンクされている SDK ページを参照してください。
 
-## Install the Momento SDK
+## Momento SDKをインストールする
 
-To Install the Momento Node.js SDK in an existing Node.js project:
+既存の Node.js プロジェクトに Momento Node.js SDK をインストールするには:
 
 ```cli
 npm install @gomomento/sdk
 ```
 
-OR, to install the Momento Web SDK in an existing browser application project:
+または、既存のブラウザ アプリケーション プロジェクトに Momento Web SDK をインストールするには:
 
 ```cli
 npm install @gomomento/sdk-web
 ```
 
 :::tip
-You only need one of the two libraries; either `@gomomento/sdk` or `@gomomento/sdk-web`, depending on your target platform. You do not need both.
+2 つのライブラリのうち 1 つだけが必要です。ターゲット プラットフォームに応じて、`@gomomento/sdk` または `@gomomento/sdk-web` のいずれかです。両方は必要ありません。
 :::
 
-## Set up your API key
+## API キーを設定する
 
-You'll need a Momento API key to authenticate with Momento.  You can get one from the [Momento Web Console](https://console.gomomento.com/caches).
-Once you have your API key, store it in an environment variable so that the Momento client can consume it:
+Momento で認証するには、Momento API キーが必要です。 [Momento Web コンソール](https://console.gomomento.com/caches) から入手できます。
+API キーを取得したら、Momento クライアントがそれを使用できるように環境変数に保存します。
 
 ```
 export MOMENTO_API_KEY=<your Momento API key here>
 ```
 
-**Note**: it is best practice to put the API key into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
+**Note**: セキュリティを強化するには、API キーを環境変数ではなく AWS Secret Manager や GCP Secret Manager などに置くのがベスト プラクティスですが、ここではデモ目的で使用しています。
 
-## Import libraries and create a CacheClient object
-This code sets up the main function, pulls in the necessary imports, and instantiates the CacheClient that will be used to interact with your cache.
+## ライブラリをインポートして CacheClient オブジェクトを作成する
+このコードは main 関数を設定し、必要なインポートを取得し、キャッシュとの対話に使用される CacheClient をインスタンス化します。
 
 <SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/cache/doc-example-files/cheat-sheet-main.ts'} />
 
-## Create a new cache in Momento Cache
-Use this function to create a new cache in your account.
+## Momento Cache に新しいキャッシュを作成します
+この機能を使用して、アカウントに新しいキャッシュを作成します。
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_CreateCache'} />
 
-## List the names of existing caches in your account
-A simple list of the names of caches for the account.
+## アカウント内の既存のキャッシュの名前をリストします
+アカウントのキャッシュ名の単純なリスト。
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_ListCaches'} />
 
-## Write an item to a cache
-A simple example of doing a set operation. In the client.set call, the TTL is optional. If you did pass it in, this would override the default TTL value set with the client connection object.
+## アイテムをキャッシュに書き込む
+集合演算を実行する簡単な例。 client.set 呼び出しでは、TTL はオプションです。これを渡した場合、クライアント接続オブジェクトで設定されたデフォルトの TTL 値がオーバーライドされます。
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_Set'} />
 
-## Read an item from a cache
-This is an example of a simple read operation to get an item from a cache.
+## キャッシュからアイテムを読み取る
+これは、キャッシュから項目を取得する単純な読み取り操作の例です。
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_Get'} />
 
-## Running the code
+## コードを実行する
 
-You can find complete, working examples in the [JavaScript SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-javascript/blob/main/examples).
+完全に動作するサンプルは、[JavaScript SDK GitHub リポジトリのサンプル ディレクトリ](https://github.com/momentohq/client-sdk-javascript/blob/main/examples) にあります。
 
 :::info
-Beyond these basic API calls check out the [API reference page](/cache/develop/api-reference/index.mdx) for more information on the full assortment of Momento API calls.
+これらの基本的な API 呼び出し以外にも、Momento API 呼び出しの全種類の詳細については、[API リファレンス ページ](/cache/develop/api-reference/index.mdx) を確認してください。
 
-Follow this link to see this same type of code but for [more advanced calls](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/advanced.ts).
+このリンクをクリックすると、これと同じタイプのコードが表示されますが、[より高度な呼び出し](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/advanced.ts) が含まれています。
 :::
