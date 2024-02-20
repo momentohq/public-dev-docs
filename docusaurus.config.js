@@ -204,6 +204,10 @@ const config = {
             to: '/sdks/php/cache',
           },
           {
+            from: '/develop/sdks/php/cheat-sheet',
+            to: '/sdks/php/cache',
+          },
+          {
             from: '/develop/guides/cheat-sheets/momento-cache-python-cheat-sheet',
             to: '/sdks/python/cache',
           },
