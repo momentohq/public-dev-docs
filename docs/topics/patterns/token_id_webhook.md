@@ -1,8 +1,8 @@
 ---
 sidebar_position: 6
-title: Leverage Momento Topics, webhooks, and disposable tokens in your event-driven architectures
+title: Leverage Momento Topics, webhooks, and tokens in your event-driven architectures
 sidebar_label: Identifying unique resources
-description: Learn best practices around using Momento Topics, webhooks, and disposable tokens to process unique resources in your event-driven architectures.
+description: Learn best practices around using Momento Topics, webhooks, and tokens to process unique resources in your event-driven architectures.
 keywords:
  - topics
  - webhooks
@@ -11,18 +11,18 @@ keywords:
  - event-driven architecture
 ---
 
-# Leverage Momento Topics, webhooks, and disposable tokens in your event-driven architectures
+# Leverage Momento Topics, webhooks, and tokens in your event-driven architectures
 
-Leveraging Momento Topics, webhooks, and disposable tokens enables secure and efficient data processing within event-driven systems. With Momento Topics, you can subscribe to messages on a topic and publish messages to a new topic. Webhooks serve as HTTP callbacks triggered in response to messages published to these topics, acting as stateless consumers. Disposable Tokens are designed to provide short-lived session tokens for users and services interacting with a system. By embedding unique identifiers (token_id) in each token, they ensure secure and traceable access to resources.
+With Momento [Topics](../index.md), you can subscribe to messages on a topic and publish messages to a new topic. [Webhooks](../webhooks/overview.mdx) serve as HTTP callbacks triggered in response to messages published to these topics, acting as stateless consumers. [Tokens](../../cache/develop/authentication/tokens.md) are designed to provide short-lived session tokens for users and services interacting with a system. By embedding unique identifiers (`token_id`) in each token, they ensure secure and traceable access to resources.
 
-The key here is that you can use Topics to facilitate real-time communication between users by granting them short-lived disposable tokens. These tokens can be embedded with user information (token_id), which, when messages are published, can be leveraged to access shared resources like Momento caches via webhook callbacks. For instance, you can personalize user experiences by accessing their information stored in a Momento cache by identifying the user through the token_id. Embedding information provides two significant advantages:
+The key here is that you can use Topics to facilitate real-time communication between users by granting them short-lived tokens. These tokens can be embedded with user information (`token_id`), which, when messages are published, can be leveraged to access shared resources like Momento caches via webhook callbacks. For instance, you can personalize user experiences by accessing their information stored in a Momento cache by identifying the user through the `token_id`. Embedding information provides two significant advantages:
 - It enhances security and prevents a user from spoofing their identity.
 - It reduces data transfer costs as the user information is embedded with the token itself.
 
 ![Architecture](@site/static/img/topics/patterns/token-id-webhook.png)
 
 ## Pre-requisites
-1. A public facing endpoint to receive webhook events. This endpoint must accept POST requests and be able to receive inbound calls from Momento. More detail about the structure of this event is [described here](https://docs.momentohq.com/topics/webhooks/overview#example-event).
+1. A public facing endpoint to receive webhook events. This endpoint must accept POST requests and be able to receive inbound calls from Momento. More detail about the structure of this event is [described here](../webhooks/overview#example-event).
 
 ## Getting Started
 1. [Create a cache in the Momento console](https://console.gomomento.com/caches/create)
@@ -111,7 +111,7 @@ export class MomentoWebhookStack extends cdk.Stack {
 ```
 
 4. Add code to the webhook to process incoming messages. Below is sample code for the webhook lambda handler that extracts
-a user's `token-id` from the webhook payload, and access resources stored in Momento cache. It also verifies that the webhook caller
+a user's `token_id` from the webhook payload, and access resources stored in Momento cache. It also verifies that the webhook caller
 is indeed Momento through the signing secret.
 
 ```typescript
@@ -231,7 +231,7 @@ async function getCacheClient(): Promise<CacheClient> {
 }
 ```
 
-5. Finally, below has sample code for generating the disposable token and publishing user messages on a Topic. In a real-world,
+5. Finally, below has sample code for generating the token and publishing user messages on a topic. In a real-world,
 these would ideally live in separate micro-services.
 
 ```typescript
@@ -350,12 +350,12 @@ async function getSecret(secretName: string): Promise<string> {
 ```
 ### Conclusion
 
-By integrating Momento Topics, webhooks, and disposable tokens, you can create secure and stateless asynchronous systems. This convention can be applied to a variety of use-cases such as:
+By integrating Momento Topics, webhooks, and tokens, you can create secure and stateless asynchronous systems. This convention can be applied to a variety of use-cases such as:
 
 - Multi-language [chat application](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app)
 - Live commenting system
 - Online polls
 
-`token-id` can be used to securely identify users sending messages in all the above use-cases.
+`token_id` can be used to securely identify users sending messages in all the above use-cases.
 
-- Event-driven systems: Each ephemeral unique event flowing through different states in an asynchronous system can embed an `event-id` as the `token-id`.
+- Event-driven systems: Each ephemeral unique event flowing through different states in an asynchronous system can embed an `event_id` as the `token_id`.
