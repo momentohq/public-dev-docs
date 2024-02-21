@@ -21,12 +21,9 @@ The key here is that you can use Topics to facilitate real-time communication be
 
 ![Architecture](@site/static/img/topics/patterns/token-id-webhook.png)
 
-## Pre-requisites
-1. A public-facing endpoint to receive webhook events. This endpoint must accept POST requests and be able to receive inbound calls from Momento. More detail about the structure of this event is [described here](../webhooks/overview#example-event).
-
 ## Getting Started
 1. [Create a cache in the Momento console](https://console.gomomento.com/caches/create)
-2. [Create a webhook](/topics/webhooks/creating-a-webhook) for the cache. Assign the webhook destination to the public facing endpoint.
+2. [Create a webhook](/topics/webhooks/creating-a-webhook) for the cache. Assign the webhook destination to a public facing endpoint. This endpoint must accept POST requests and be able to receive inbound calls from Momento. More detail about the structure of this event is [described here](../webhooks/overview#example-event).
 3. Create your infrastructure. For example, below is sample code that creates a lambda function URL for our webhook endpoint. It also stores
 your Momento auth token in AWS secrets manager.
 
