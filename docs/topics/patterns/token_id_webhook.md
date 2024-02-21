@@ -13,7 +13,7 @@ keywords:
 
 # Leverage Momento Topics, webhooks, and tokens in your event-driven architectures
 
-With [Momento Topics](../), you can subscribe to messages on a topic and publish messages to a different topic. [Webhooks](../webhooks/overview) serve as HTTP callbacks triggered in response to messages published to these topics, acting as stateless consumers. [Tokens](../../cache/develop/authentication/tokens.md) are designed to provide short-lived session tokens for users and services interacting with a system. By embedding unique identifiers (`token_id`) in each token, they ensure secure and traceable access to resources.
+With [Momento Topics](../), you can subscribe to messages on a topic and publish messages to a different topic. [Webhooks](../webhooks/overview) serve as HTTP callbacks triggered in response to messages published to these topics, acting as stateless consumers. [Tokens](../../cache/develop/authentication/tokens) are designed to provide short-lived session tokens for users and services interacting with a system. By embedding unique identifiers (`token_id`) in each token, they ensure secure and traceable access to resources.
 
 The key here is that you can use Topics to facilitate real-time communication between users by granting them short-lived tokens. These tokens can be embedded with user information (`token_id`), which, when messages are published, can be leveraged to access shared resources like Momento caches via webhook callbacks. For instance, you can personalize user experiences by accessing their information stored in a Momento cache by identifying the user through the `token_id`. Embedding information provides two significant advantages:
 - It enhances security and prevents a user from spoofing their identity.
