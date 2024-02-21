@@ -342,8 +342,8 @@ async function getSecret(secretName: string): Promise<string> {
 
 ```
 
-### See More
-- By integrating Momento Topics, webhooks, and tokens, you can create secure and stateless asynchronous systems. This convention can be applied to a variety of use-cases such as multi-language chat app, online polling, and event-driven systems.
+## See More
+- By integrating Momento topics, webhooks, and tokens, you can create secure and stateless asynchronous systems. This convention can be applied to a variety of use-cases such as multi-language chat app, online polling, and event-driven systems.
 
 ```mdx-code-block
 import ReferenceCard from '@site/src/components/ReferenceCard';
