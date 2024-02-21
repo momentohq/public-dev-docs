@@ -14,7 +14,7 @@ keywords:
 
 # Use Momento Topics to process data asynchronously
 
-With [Momento Topics](../index.md), you can subscribe to messages on a topic, as well as publish messages to a different topic. [Webhooks](../webhooks/overview) allow you to connect these topics to stateless consumers, which can then process these events asynchronously. Whether this is aggregating events by `topic_id`, saving each event to a database, or using the payload to trigger a Step function workflow, webhooks give you the flexibility to process these events how you want to. 
+With [Momento Topics](../), you can subscribe to messages on a topic, as well as publish messages to a different topic. [Webhooks](../webhooks/overview) allow you to connect these topics to stateless consumers, which can then process these events asynchronously. Whether this is aggregating events by `topic_id`, saving each event to a database, or using the payload to trigger a Step function workflow, webhooks give you the flexibility to process these events how you want to. 
 
 The key to asynchronously processing these events is to use _multiple_ topics. An inbound topic, which the webhook listens to, and a single, or multiple, outbound topics which publish the processed data.
 
