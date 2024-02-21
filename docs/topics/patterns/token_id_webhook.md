@@ -13,7 +13,7 @@ keywords:
 
 # Leverage Momento Topics, webhooks, and tokens in your event-driven architectures
 
-With Momento [Topics](../index.md), you can subscribe to messages on a topic and publish messages to a new topic. [Webhooks](../webhooks/overview.mdx) serve as HTTP callbacks triggered in response to messages published to these topics, acting as stateless consumers. [Tokens](../../cache/develop/authentication/tokens.md) are designed to provide short-lived session tokens for users and services interacting with a system. By embedding unique identifiers (`token_id`) in each token, they ensure secure and traceable access to resources.
+With [Momento Topics](../index.md), you can subscribe to messages on a topic and publish messages to a different topic. [Webhooks](../webhooks/overview) serve as HTTP callbacks triggered in response to messages published to these topics, acting as stateless consumers. [Tokens](../../cache/develop/authentication/tokens.md) are designed to provide short-lived session tokens for users and services interacting with a system. By embedding unique identifiers (`token_id`) in each token, they ensure secure and traceable access to resources.
 
 The key here is that you can use Topics to facilitate real-time communication between users by granting them short-lived tokens. These tokens can be embedded with user information (`token_id`), which, when messages are published, can be leveraged to access shared resources like Momento caches via webhook callbacks. For instance, you can personalize user experiences by accessing their information stored in a Momento cache by identifying the user through the `token_id`. Embedding information provides two significant advantages:
 - It enhances security and prevents a user from spoofing their identity.
@@ -22,7 +22,7 @@ The key here is that you can use Topics to facilitate real-time communication be
 ![Architecture](@site/static/img/topics/patterns/token-id-webhook.png)
 
 ## Pre-requisites
-1. A public facing endpoint to receive webhook events. This endpoint must accept POST requests and be able to receive inbound calls from Momento. More detail about the structure of this event is [described here](../webhooks/overview#example-event).
+1. A public-facing endpoint to receive webhook events. This endpoint must accept POST requests and be able to receive inbound calls from Momento. More detail about the structure of this event is [described here](../webhooks/overview#example-event).
 
 ## Getting Started
 1. [Create a cache in the Momento console](https://console.gomomento.com/caches/create)
@@ -110,14 +110,12 @@ export class MomentoWebhookStack extends cdk.Stack {
 
 ```
 
-4. Add code to the webhook to process incoming messages. Below is sample code for the webhook lambda handler that extracts
-a user's `token_id` from the webhook payload, and access resources stored in Momento cache. It also verifies that the webhook caller
-is indeed Momento through the signing secret.
+4. Add code to the webhook to process incoming messages. Below is sample code for the webhook lambda handler that extracts a user's `token_id` from the webhook payload, and access resources stored in Momento cache. It also verifies that the webhook caller is indeed Momento through the signing secret.
 
 ```typescript
 
 import {GetSecretValueCommand, SecretsManagerClient} from '@aws-sdk/client-secrets-manager';
-import {CacheClient, CacheGet, CacheListPushFront, Configurations, CredentialProvider} from '@gomomento/sdk';
+import {CacheClient, CacheGet, CacheListPushFront, Configurations, CredentialProvider, WebhookUtils} from '@gomomento/sdk';
 import * as crypto from "crypto";
 
 const _secretsClient = new SecretsManagerClient({});
@@ -136,13 +134,19 @@ export const handler = async (event: any) => {
     }
 
     const secretString = await getSecret(secretStringSecretName);
-    const authorized = verifySignature(event.headers['momento-signature'], secretString, event.body);
-    if (!authorized) {
+    const authorized = WebhookUtils.validateWebhookRequest(
+        { 
+            signature: event.headers['momento-signature'],
+            signingSecret: secretString, 
+            body: event.body
+        }
+    );
+    
+    if (authorized !== WebhookUtils.RequestValidation.VALID ) {
       return {
         statusCode: 403,
         headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
         },
         body: '{"message": "Access Denied!"}',
       };
@@ -171,8 +175,7 @@ export const handler = async (event: any) => {
     return {
       statusCode: 200,
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json'
       },
       body: '{}',
     };
@@ -200,16 +203,6 @@ async function getSecret(secretName: string): Promise<string> {
   }
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return _cachedSecrets.get(secretName)!;
-}
-
-function verifySignature(signature: string, secret: string, body: string) {
-  if (process.env.THE_SIGNING_SECRET === undefined) {
-    throw new Error("Missing required env var 'THE_SIGNING_SECRET");
-  }
-
-  const hash = crypto.createHmac("SHA3-256", secret);
-  const hashed = hash.update(body).digest('hex');
-  return hashed === signature;
 }
 
 async function getCacheClient(): Promise<CacheClient> {
@@ -348,14 +341,31 @@ async function getSecret(secretName: string): Promise<string> {
 }
 
 ```
-### Conclusion
 
-By integrating Momento Topics, webhooks, and tokens, you can create secure and stateless asynchronous systems. This convention can be applied to a variety of use-cases such as:
+### See More
+- By integrating Momento Topics, webhooks, and tokens, you can create secure and stateless asynchronous systems. This convention can be applied to a variety of use-cases such as multi-language chat app, online polling, and event-driven systems.
 
-- Multi-language [chat application](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app)
-- Live commenting system
-- Online polls
+```mdx-code-block
+import ReferenceCard from '@site/src/components/ReferenceCard';
 
-`token_id` can be used to securely identify users sending messages in all the above use-cases.
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '20px',
+  marginBottom: '20px' // Add margin bottom to the container if needed
+}}>
 
-- Event-driven systems: Each ephemeral unique event flowing through different states in an asynchronous system can embed an `event_id` as the `token_id`.
+  <ReferenceCard
+    title="Multi-language chat app"
+    link="https://github.com/momentohq/moderated-chat/"
+    description="Explore the source code of our live-translation chat app using webhooks."
+    />
+  <ReferenceCard
+    title="Use webhooks with API Gateway + Lambda"
+    link="https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app"
+    description="Learn how to integrate Momento webhooks with Amazon API Gateway and Lambda functions"
+    />
+
+</div>
+```
