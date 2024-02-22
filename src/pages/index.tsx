@@ -48,8 +48,8 @@ export default function Home(): JSX.Element {
                 <ul className={styles.columnList}>
                   <li><a href="/cache/getting-started">Getting started</a></li>
                   <li><a href="/cache/develop/api-reference">API reference</a></li>
+                  <li><a href="/cache/develop/integrations/redis-client-compatibility">Drop-in replacements for Redis</a></li>
                   <li><a href="/cache/develop/guides/working-with-files-cache">How to cache files</a></li>
-                  <li><a href="/cache/how-to/rate-limiter">Build a rate-limiter</a></li>
                 </ul>
               </div>
               <div>
@@ -73,18 +73,11 @@ export default function Home(): JSX.Element {
                 <ul className={styles.columnList}>
                   <li><a href="/sdks">Available SDKs</a></li>
                   <li><a href="/cache/develop/authentication">Authentication and access control</a></li>
+                  <li><a href="/cache/develop/basics/error-handling-production-readiness">Properly handling errors in Momento</a></li>
                   <li>
                     <a href="https://aws.amazon.com/marketplace/pp/prodview-ndqotnrhhjyvo" target="_blank">
                       <div className={styles.openInNew}>
                         <span>Momento on AWS Marketplace</span>
-                        <IoOpenOutline />
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://console.gomomento.com" target="_blank">
-                      <div className={styles.openInNew}>
-                        <span>Try it out in the browser</span>
                         <IoOpenOutline />
                       </div>
                     </a>
@@ -96,7 +89,7 @@ export default function Home(): JSX.Element {
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Overview</h2>
             <p>
-              Momento simplifies cloud architecture and automates resource management so developers can build from zero to global scale with no distractions.
+              Momento simplifies cloud architecture and automates resource management so developers can build from zero to global scale without distractions.
               With our flagship <b>Cache</b> and <b>Topics</b> services, Momento provides developers the building blocks they need to focus on the thing that matters
               most: <i>your business problem</i>.
             </p>
@@ -111,7 +104,8 @@ export default function Home(): JSX.Element {
                 <h2 className={styles.subsectionTitle}>We go where you go</h2>
                 <p>
                   Momento works hard to provide developers with SDKs in as many programming languages possible. We have clients for all types of projects: browsers, Android
-                  development, iOS apps, and 10+ server-side languages.
+                  development, iOS apps, and 10+ server-side languages. Looking for tuned clients for your production environment or Lambda function? Our SDKs have
+                  <a href="/cache/develop/basics/client-configuration-objects#pre-built-configurations"> optimized configurations</a> for anywhere development takes you.
                 </p>
               </div>
               <div className={styles.subsectionGraphic}>
@@ -144,17 +138,17 @@ export default function Home(): JSX.Element {
                   variation="dense"
                 />
                 <ReferenceCard
-                  title="Leaderboards"
-                  link="./leaderboards"
-                  description="Durable and ready for massive scale"
-                  icon="/img/leaderboards/momento-leaderboards-2d.svg"
-                  variation="dense"
-                />
-                <ReferenceCard
                   title="Vector Index"
                   link="./vector-index"
                   description="Scale-to-zero vector index for search"
                   icon="/img/vector-index/momento-vector-index-brand-icon.svg"
+                  variation="dense"
+                />
+                <ReferenceCard
+                  title="Leaderboards"
+                  link="./leaderboards"
+                  description="Durable and ready for massive scale"
+                  icon="/img/leaderboards/momento-leaderboards-2d.svg"
                   variation="dense"
                 />
               </div>
