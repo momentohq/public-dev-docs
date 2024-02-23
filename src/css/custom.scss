@@ -76,6 +76,7 @@ h4 {
   --ifm-font-family-monospace: "Manrope";
   --ifm-font-family-base: "Manrope";
   --footer-text: #ffffff;
+  --container-background-color: #ffffff;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -89,6 +90,7 @@ h4 {
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --footer-text: #25392b;
+  --container-background-color: var(--ifm-background-color);
 }
 
 @media (min-width: 997px) {
@@ -434,7 +436,7 @@ code span {
 .popup-input {
   border-radius: 6px;
   border-color: #f1f1f1;
-  background-color: var(--ifm-color-emphasis-0);
+  background-color: var(--container-background-color);
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
@@ -456,7 +458,7 @@ code span {
 }
 
 .api-response {
-  background-color: var(--ifm-color-emphasis-0);
+  background-color: var(--container-background-color);
   border-radius: 8px;
   margin-top: 1px;
   margin-bottom: 10px;

@@ -14,6 +14,9 @@
 .contentContainer {
   width: 100%;
   max-width: 1175px;
+  background-color: var(--container-background-color);
+  padding: 1.5em;
+  border-radius: 50px;
 }
 
 .products {
@@ -28,6 +31,13 @@
   margin-top: 1.5em;
 }
 
+.headerBackground {
+  position: absolute;
+  top: -32px;
+  left: 0;
+  width: 100%;
+  z-index: -10;
+}
 
 .headerSection {
   padding: 0rem 1rem 1rem;
@@ -108,6 +118,7 @@
   .content {
     padding-top: 1em;
   }
+
   .header {
     font-size: 42px;
   }
@@ -128,7 +139,7 @@
   .subsectionDetail {
     flex-basis: 100%;
   }
-  
+
   .subsectionGraphic {
     visibility: collapse;
     flex-basis: 0%;
@@ -136,6 +147,17 @@
 
   .products {
     justify-content: center;
+  }
+
+  .headerBackground {
+    max-width: unset;
+    width: 900px;
+  }
+
+  .contentContainer {
+    width: 90%;
+    padding: 1em 0em;
+    border-radius: 20px;
   }
 }
 
