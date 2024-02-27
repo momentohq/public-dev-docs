@@ -10,28 +10,28 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Observability with Momento in .NET
+# .NETのMomentoによる観測可能性
 
-## Logging
+## ロギング
 
-Our goal for all of the Momento SDKs is to make sure that developers can direct Momento log output to the same destination that they are using for the rest of their application logs; therefore, we aim to be compatible with all of the popular logging frameworks for a given programming language.
+すべてのMomento SDKの目標は、開発者がMomentoのログ出力を、アプリケーションのログの残りの部分に使用しているのと同じ宛先に向けることができるようにすることです。したがって、特定のプログラミング言語の一般的なロギングフレームワークのすべてと互換性があることを目指しています。
 
-The .NET SDK uses the [`ILoggerFactory` and `ILogger` interfaces](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging?tabs=command-line) so that logs can be written to the desired destination by configuring the appropriate logging providers.
+.NET SDKは[`ILoggerFactory`インターフェースと`ILogger`インターフェース](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging?tabs=command-line)を使用しているので、適切なロギングプロバイダーを設定することで、ログを希望する宛先に書き込むことができます。
 
-As long as your preferred logger implements the `ILogger` interface, you can pass the logger into your Momento configuration objects. You can also use your preferred logger in any custom middleware implementation you write ([example here](https://github.com/momentohq/client-sdk-dotnet/blob/main/src/Momento.Sdk/Config/Middleware/LoggingMiddleware.cs)).
+好みのロガーが `ILogger` インターフェイスを実装していれば、 Momento の設定オブジェクトにロガーを渡すことができます。また、あなたが書いたカスタムミドルウェアの実装 ([例はこちら](https://github.com/momentohq/client-sdk-dotnet/blob/main/src/Momento.Sdk/Config/Middleware/LoggingMiddleware.cs)) でも、お好みのロガーを使うことができます。
 
-Once configured, you should see log messages in your logging environment that look like this:
+設定が完了すると、ロギング環境に以下のようなログメッセージが表示されるはずです：
 ```
 [1685649962168] INFO (CacheClient/4386 on mycomputer.local): Creating Momento CacheClient
 [1685649962168] INFO (ControlClient/4386 on mycomputer.local): Creating cache: test-cache
 ```
 
-## Metrics
-Metrics are measurements that provide quantitative information about system performance and behavior. They are numerical values captured and recorded over regular intervals, providing statistical data to aid in understanding the trends and patterns in a system.
+## メトリクス
+メトリクスとは、システムのパフォーマンスや動作に関する定量的な情報を提供する測定値のことである。一定の間隔で取得・記録される数値であり、システムの傾向やパターンを理解するのに役立つ統計データを提供する。
 
-For Momento, specifically, you might want to capture client-side metrics on the number of requests made, their duration, request or response size, or failure rates.
+特にMomentoの場合、リクエストの数、時間、リクエストやレスポンスのサイズ、失敗率など、クライアント側のメトリクスを取得したい場合があります。
 
-The most straightforward way to emit these metrics is to use one of the `ExperimentalMetricsMiddleware` classes. These classes emit metrics in JSON format:
+これらのメトリクスを出力する最も簡単な方法は、`ExperimentalMetricsMiddleware`クラスのいずれかを使用することです。これらのクラスはJSON形式でメトリクスを出力します：
 
 ```
 (Momento: _ExperimentalMetricsLoggingMiddleware):
@@ -52,12 +52,12 @@ The most straightforward way to emit these metrics is to use one of the `Experim
 }
 ```
 
-The metrics format is currently considered experimental; in a future release, once the format is considered stable, this class will be renamed to remove the `Experimental` prefix. The two middleware classes available are:
+将来のリリースでは、このフォーマットが安定したとみなされた時点で、このクラスは `Experimental` という接頭辞を取り除いた名前に変更される予定です。利用可能なミドルウェア・クラスは2つあります：
 
-- [`ExperimentalMetricsLoggingMiddleware`](https://github.com/momentohq/client-sdk-dotnet/blob/main/src/Momento.Sdk/Config/Middleware/ExperimentalMetricsLoggingMiddleware.cs): will emit metrics to your chosen logger. WARNING: depending on your request volume, this middleware will produce a high volume of log output. If you are writing logs directly to local disk, be aware of disk usage and make sure you have log rotation / compression enabled via a tool such as `logrotate`.
-- [`ExperimentalMetricsCsvMiddleware`](https://github.com/momentohq/client-sdk-dotnet/blob/main/src/Momento.Sdk/Config/Middleware/ExperimentalMetricsCsvMiddleware.cs): will emit metrics to a CSV file. WARNING: enabling this middleware may have minor performance implications, so enable with caution. Depending on your request volume, the CSV file size may grow quickly, and neither sampling nor file compression / rotation are included at this time.
+- [ExperimentalMetricsLoggingMiddleware`](https://github.com/momentohq/client-sdk-dotnet/blob/main/src/Momento.Sdk/Config/Middleware/ExperimentalMetricsLoggingMiddleware.cs)：選択したロガーにメトリクスを出力します。警告: リクエスト量に応じて、このミドルウェアは大量のログを出力します。ローカルディスクに直接ログを書き込む場合は、ディスクの使用量に注意し、`logrotate`のようなツールでログのローテーション/圧縮を有効にしてください。
+- [ExperimentalMetricsCsvMiddleware`](https://github.com/momentohq/client-sdk-dotnet/blob/main/src/Momento.Sdk/Config/Middleware/ExperimentalMetricsCsvMiddleware.cs)：メトリクスをCSVファイルに出力します。警告: このミドルウェアを有効にすると、ちょっとしたパフォーマンス上の影響があるかもしれません。リクエスト量によっては、CSVファイルのサイズがすぐに大きくなる可能性があります。
 
-Log files and CSVs can be analyzed or shared with Momento to diagnose performance issues. You may also direct your logs to an AWS CloudWatch Log Group and create a CloudWatch dashboard to monitor your Momento requests; [an example of launching a Momento metrics dashboard](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/lambda-examples/cloudwatch-metrics) and optional example application is available in the Node.js SDK. The example Node.js Lambda and Fargate applications utilize the `ExperimentalMetricsLoggingMiddleware` class and CloudWatch metric filters to populate a dashboard like the one shown below, but you can deploy just the CloudWatch dashboard and populate the graphs with your own .NET application.
+ログファイルやCSVを分析したり、Momentoと共有することで、パフォーマンスの問題を診断することができます。また、ログを AWS CloudWatch Log Group に転送し、CloudWatch ダッシュボードを作成して Momento リクエストを監視することもできます。[Momento メトリクスダッシュボードの起動例](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/lambda-examples/cloudwatch-metrics) とオプションのサンプルアプリケーションは、Node.js SDK で利用できます。Node.jsのLambdaとFargateアプリケーションの例では、`ExperimentalMetricsLoggingMiddleware`クラスとCloudWatchメトリックフィルターを利用して、下図のようなダッシュボードを生成していますが、CloudWatchダッシュボードだけをデプロイして、独自の.NETアプリケーションでグラフを生成することもできます。
 
 ![An image of a CloudWatch dashboard with nine graphs populated by Momento metrics](@site/static/img/cloudwatch-dashboard.png)
 
