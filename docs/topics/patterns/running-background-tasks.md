@@ -1,7 +1,7 @@
 ---
 sidebar_position: 6
 title: Best practices for async processing with Momento Topics
-sidebar_label: Asynchronous Processing
+sidebar_label: Running background tasks
 description: Learn best practices around using Momento Topics and webhooks to process data asynchronously in your event-driven architectures.
 keywords:
  - topics
