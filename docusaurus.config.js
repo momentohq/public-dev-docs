@@ -19,6 +19,12 @@ const config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.png",
+  scripts: [
+    {
+      src: '/askMo.js',
+    },
+  ],
+
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -255,6 +261,10 @@ const config = {
           {
             from: '/topics/webhooks',
             to: '/topics/webhooks/overview'
+          },
+          {
+            from: '/topics/develop/patterns/asynchronous-processing',
+            to: '/topics/patterns/running-background-tasks'
           }
         ],
         // This came in with v1.5.0 of the docs where we split out by service.
@@ -277,129 +287,143 @@ const config = {
     './plugins/example-code-snippets/dist/example-code-snippets-post-build'
   ],
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      /** colorMode: {
-        disableSwitch: true,
-      }, **/
-      navbar: {
-        title: "",
-        logo: {
-          alt: "Momento Logo",
-          src: "img/momento-docs-logo-forest.svg",
-          srcDark: "img/momento-docs-logo-white.svg",
-          href: "/"
-        },
-        items: [
-          { to: '/cache', label: 'Cache', position: 'left' },
-          { to: '/topics', label: 'Topics', position: 'left' },
-          { to: '/vector-index', label: 'Vector Index', position: 'left' },
-          { to: '/leaderboards', label: 'Leaderboards', position: 'left' },
-          {
-            to: '/sdks', label: 'SDKs', position: 'right'
+  /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+      ({
+        /** colorMode: {
+         disableSwitch: true,
+         }, **/
+        navbar: {
+          title: "",
+          logo: {
+            alt: "Momento Logo",
+            src: "img/momento-docs-logo-forest.svg",
+            srcDark: "img/momento-docs-logo-white.svg",
+            href: "/"
           },
-          {
-            to: "https://www.gomomento.com/blog",
-            label: "Blog",
-            position: "right",
-          },
-          {
-            to: "https://github.com/momentohq/",
-            label: "Github",
-            position: "right",
-          },
-          {
-            type: 'localeDropdown',
-            position: 'right',
-          },
-        ],
-      },
-      footer: {
-        style: "dark",
-        logo: {
-          alt: "Momento Logo",
-          src: "img/momento-logo-white.svg",
-          srcDark: "img/momento-logo-forest.svg"
-        },
-        copyright: `Copyright © 2022 - ${new Date().getFullYear()} Momento, Inc.`,
-        links: [
-          {
-            title: "Sites",
-            items: [
-              {
-                label: 'Dev docs',
-                to: '/',
-              },
-              {
-                label: 'Momento',
-                to: 'https://www.gomomento.com/',
-              },
-            ],
-          },
-          {
-            title: "Community",
-            items: [
-              {
-                label: "Discord",
-                to: "https://discord.gg/3HkAKjUZGq",
-              },
-              {
-                label: "Twitter",
-                to: "https://twitter.com/momentohq",
-              },
-            ],
-          },
-          {
-            title: "More",
-            items: [
-              {
-                label: "Contact us",
-                to: "https://www.gomomento.com/contact-us",
-              },
-              {
-                label: "Blog",
-                to: "https://www.gomomento.com/blog",
-              },
-              {
-                label: "Github",
-                to: "https://github.com/momentohq",
-              },
-            ],
-          },
-          /** Commenting this out for now as it is messing with the formatting and with the menu it may not be needed anyhow.
+          items: [
+            { to: '/cache', label: 'Cache', position: 'left'},
+            { to: '/topics', label: 'Topics', position: 'left'},
+            { to: '/vector-index', label: 'Vector Index', position: 'left'},
+            { to: '/leaderboards', label: 'Leaderboards', position: 'left'},
             {
-            title: "Language",
-            items: [
-              {
-                label: "English",
-                to: "https://docs.momentohq.com/",
-              },
-              {
-                label: "日本語",
-                to: "https://docs.momentohq.com/ja/",
-              },
-            ],
-          }, **/
-        ],
-      },
-      prism: {
-        additionalLanguages: ["java", "kotlin", "rust", "csharp", "php", "elixir", "swift", "dart"],
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-      algolia: {
-        appId: 'KKA2C34L90',
-        apiKey: 'd22ff3783e6e14f7feb6dd24bb7165f7',
-        indexName: 'momento_docs2',
-        contextualSearch: false,
-        searchPagePath: false,
-      },
-      docs: {
-        sidebar: {
-          autoCollapseCategories: false,
+              to: '/sdks', label: 'SDKs', position: 'right'
+            },
+            {
+              to: "https://www.gomomento.com/blog",
+              label: "Blog",
+              position: "right",
+            },
+            {
+              to: "https://github.com/momentohq/",
+              label: "Github",
+              position: "right",
+            },
+            {
+              type: 'localeDropdown',
+              position: 'right',
+            },
+            {
+              type: 'html',
+              position: 'right',
+              value: `
+              <div id="popup" class="popup">
+              <div id="apiResponse" class="api-response"></div>
+              <input type="text" id="popupInput" name="popupInput" class="popup-input" placeholder="Ask Mo Something..." onkeydown="handleKeyPress(event)">
+              <div class="button-container">
+                  <button class="submit-button" onclick="submitPopup()">Submit</button>
+                  <button class="close-button" onclick="closePopup()">Close</button>
+              </div>
+              </div>
+              <button class="ask-mo-button" onclick="askMoFunction()">Ask Mo!</button>
+            `,
+            },
+          ],
         },
-      },
-    }),
+        footer: {
+          style: "dark",
+          logo: {
+            alt: "Momento Logo",
+            src: "img/momento-logo-white.svg",
+            srcDark: "img/momento-logo-forest.svg"
+          },
+          copyright: `Copyright © 2022 - ${new Date().getFullYear()} Momento, Inc.`,
+          links: [
+            {
+              title: "Sites",
+              items: [
+                {
+                  label: 'Dev docs',
+                  to: '/',
+                },
+                {
+                  label: 'Momento',
+                  to: 'https://www.gomomento.com/',
+                },
+              ],
+            },
+            {
+              title: "Community",
+              items: [
+                {
+                  label: "Discord",
+                  to: "https://discord.gg/3HkAKjUZGq",
+                },
+                {
+                  label: "Twitter",
+                  to: "https://twitter.com/momentohq",
+                },
+              ],
+            },
+            {
+              title: "More",
+              items: [
+                {
+                  label: "Contact us",
+                  to: "https://www.gomomento.com/contact-us",
+                },
+                {
+                  label: "Blog",
+                  to: "https://www.gomomento.com/blog",
+                },
+                {
+                  label: "Github",
+                  to: "https://github.com/momentohq",
+                },
+              ],
+            },
+            /** Commenting this out for now as it is messing with the formatting and with the menu it may not be needed anyhow.
+             {
+             title: "Language",
+             items: [
+             {
+             label: "English",
+             to: "https://docs.momentohq.com/",
+             },
+             {
+             label: "日本語",
+             to: "https://docs.momentohq.com/ja/",
+             },
+             ],
+             }, **/
+          ],
+        },
+        prism: {
+          additionalLanguages: ["java", "kotlin", "rust", "csharp", "php", "elixir", "swift", "dart"],
+          theme: lightCodeTheme,
+          darkTheme: darkCodeTheme,
+        },
+        algolia: {
+          appId: '3P10N8HW6D',
+          apiKey: 'e88c1f69b2ea7498886f4275530f9233',
+          indexName: 'momentohq',
+          contextualSearch:  false,
+        },
+        docs: {
+          sidebar: {
+            autoCollapseCategories: false,
+          },
+        },
+      }),
 };
 
 module.exports = config;
