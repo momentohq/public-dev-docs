@@ -1,23 +1,171 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
+.content {
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  overflow-x: clip;
+  display: flex;
+  justify-content: center;
   position: relative;
-  overflow: hidden;
+  z-index: 1;
+  padding: 3rem 0 4rem;
+  flex: 1;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+.contentContainer {
+  width: 100%;
+  max-width: 1175px;
+  background-color: var(--container-background-color);
+  padding: 1.5em;
+  border-radius: 50px;
+}
+
+.products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+.productWrapper {
+  margin-top: 1.5em;
+}
+
+.headerBackground {
+  position: absolute;
+  top: -32px;
+  left: 0;
+  width: 100%;
+  z-index: -10;
+  opacity: .4;
+}
+
+.headerSection {
+  padding: 0rem 1rem 1rem;
+}
+
+.headerDescription {
+  padding: 1rem 0rem;
+  font-size: 1.2rem;
+  max-width: 630px;
+}
+
+.section {
+  margin: 1.5em 2em 0;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  margin-bottom: .75em;
+}
+
+.subsectionTitle {
+  margin: .5em 0 1em;
+}
+
+.subsectionDetail {
+  flex-basis: 60%;
+}
+
+.subsectionGraphic {
+  flex-basis: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  font-size: 60px;
+}
+
+.rotatingHeader {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+
+}
+
+.desktopOnly {
+  margin: 0 2em;
+  visibility: visible;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.columnList {
+  list-style-type: none;
+  margin: 0;
+  padding: .5em 0;
+}
+
+.openInNew {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+}
+
+.sectionBreak {
+  width: 95%;
+  margin: 2em auto;
+  border: none;
+  background-color: var(--ifm-color-primary);
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding-top: 1em;
+  }
+
+  .header {
+    font-size: 42px;
+  }
+
+  .headerSection {
+    padding-bottom: 0;
+  }
+
+  .desktopOnly {
+    visibility: collapse;
+    height: 0;
+  }
+
+  .section {
+    margin: 0 1em;
+  }
+
+  .subsectionDetail {
+    flex-basis: 100%;
+  }
+
+  .subsectionGraphic {
+    visibility: collapse;
+    flex-basis: 0%;
+  }
+
+  .products {
+    justify-content: center;
+  }
+
+  .headerBackground {
+    max-width: unset;
+    width: 900px;
+  }
+
+  .contentContainer {
+    width: 90%;
+    padding: 1em 0em;
+    border-radius: 20px;
   }
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.fadeOut {
+  opacity: 0;
+}
+
+.fadeIn {
+  opacity: 1;
 }
