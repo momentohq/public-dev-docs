@@ -31,30 +31,30 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Getting Started with Momento Cache in Go
+# GoでMomentoキャッシュを始める
 
-If you need to get going quickly with Go and Momento Cache, this page contains the basic API calls you'll need. [Check the Go SDK examples](https://github.com/momentohq/client-sdk-go/tree/main/examples) for additional complete, working examples.
+GoとMomento Cacheをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。[Go SDK のサンプル](https://github.com/momentohq/client-sdk-go/tree/main/examples) を参照してください。
 
-## Install the Momento SDK
+## Momento SDKをインストールする
 
-After you have [created your Go project](https://go.dev/doc/code#Command), install the Momento Go SDK.
+[Goプロジェクトを作成](https://go.dev/doc/code#Command)したら、Momento Go SDKをインストールします。
 ```cli
 go get github.com/momentohq/client-sdk-go
 ```
 
-## Set up your API key
+## APIキーの設定
 
-You'll need a [Momento API key](/cache/develop/authentication/api-keys.md) to authenticate with Momento.  You can get one from the [Momento Web Console](https://console.gomomento.com/caches).
-Once you have your token, store it in an environment variable so that the Momento client can consume it:
+Momentoで認証するには[Momento API key](/cache/develop/authentication/api-keys.md)が必要です。 Momento Web Console](https://console.gomomento.com/caches)から取得できます。
+トークンを取得したら、Momento クライアントが利用できるように環境変数に保存します：
 
 ```
 export MOMENTO_AUTH_TOKEN=<your Momento token here>
 ```
 
-**Note**: it is best practice to put the token into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
+**Note**: セキュリティ強化のためには、トークンを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに格納するのがベストプラクティスだが、ここではデモのために使用しています。
 
-## Import libraries and create a CacheClient object
-First, pull in the necessary imports and set up the main function.
+## ライブラリをインポートし、CacheClient オブジェクトを作成します。
+まず、必要なインポートを取り込み、メイン機能を設定する。
 
 ```go
 package main
@@ -78,39 +78,39 @@ func main() {
 }
 ```
 
-Then instantiate the CacheClient object that will be used to interact with Momento Cache.
+次に、Momento Cache とのやりとりに使用する CacheClient オブジェクトをインスタンス化します。
 
 <SdkExampleCodeBlock language={'go'} snippetId={'API_InstantiateCacheClient'} />
 
-## Create a new cache in Momento Cache
-Use this function to create a new cache in your account.
+## Momento Cacheに新しいキャッシュを作成する。
+この機能を使用して、アカウントに新しいキャッシュを作成します。
 
 <SdkExampleCodeBlock language={'go'} snippetId={'API_CreateCache'} />
 
-## List the names of existing caches in your account
-A simple list of the names of caches for the account.
+## あなたのアカウントにある既存のキャッシュの名前をリストアップします
+アカウントのキャッシュ名の単純なリスト。
 
 <SdkExampleCodeBlock language={'go'} snippetId={'API_ListCaches'} />
 
-## Write an item to a cache
-A simple example of doing a set operation. In the client.set call, the TTL is optional. If you did pass it in, this would override the default TTL value set with the client connection object.
+## キャッシュに項目を書き込む
+セット操作の簡単な例。client.set呼び出しでは、TTLはオプションです。TTLを渡すと、クライアント接続オブジェクトで設定されたデフォルトのTTL値が上書きされます。
 
 <SdkExampleCodeBlock language={'go'} snippetId={'API_Set'} />
 
-## Read an item from a cache
-This is an example of a simple read operation to get an item from a cache.
+## キャッシュからアイテムを読み込む
+これは、キャッシュから項目を取得する単純な読み取り操作の例である。
 
 <SdkExampleCodeBlock language={'go'} snippetId={'API_Get'} />
 
-## Running the code
-Use the `go run` command to execute the code.
+## コードの実行
+コードを実行するには、`go run`コマンドを使用する。
 
 ```cli
 go run main.go
 ```
 
 :::info
-For more code examples, check out the [Momento Go SDK repo](https://github.com/momentohq/client-sdk-go/tree/main/examples).
+その他のコード例については、[Momento Go SDK repo](https://github.com/momentohq/client-sdk-go/tree/main/examples)をチェックしてください。
 
-Beyond these basic API calls check out the [API reference page](/cache/develop/api-reference/index.mdx) for more information on the full assortment of Momento API calls.
+これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](/cache/develop/api-reference/index.mdx)をチェックしてください。
 :::
