@@ -97,6 +97,35 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_SetFetch'} />
 
+### SetSample
+
+Gets a random sampling of elements from a set item in a cache.
+
+| Name      | Type   | Description                                     |
+|-----------|--------|-------------------------------------------------|
+| cacheName | String | Name of the cache.                              |
+| setName   | String | The name of the set item to sample.             |
+| limit     | Number | The maximum number of elements to be retrieved. |
+
+<details>
+  <summary>Method response object</summary>
+
+The response object for SetSample returns three possible options, a cache hit, miss, or an error.
+
+* Hit
+  * valueSetBytes(): Bytes[]
+  * valueSetString(): String[]
+  * toString(): String
+* Miss
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetSample'} />
+
+
 ### SetRemoveElement
 Removes a single element from an existing set item. If the set is emptied as a result, the item is deleted.
 
