@@ -64,9 +64,9 @@ Finally, _serverless developers prefer services that can be provisioned quickly 
 
 Momento is a great addition to serverless applications that use AWS Lambda and other popular serverless services.
 
-First, Momento Cache is available via HTTPS. This simplifies the configuration required to add Momento to your serverless application. You simply add the authentication token to your application and start using your cache. With this HTTPS-based connection pattern, you can still reuse an existing connection within your Lambda function to avoid the overhead of establishing a new connection on each request. Additionally, Memento has a VPC peering option available if you prefer using a VPC for your application.
+First, Momento Cache is available via HTTPS. This simplifies the configuration required to add Momento to your serverless application. You simply add the authentication token to your application and start using your cache. With this HTTPS-based connection pattern, you can still reuse an existing connection within your Lambda function to avoid the overhead of establishing a new connection on each request. Additionally, Momento has a VPC peering option available if you prefer using a VPC for your application.
 
-Second, Momento Cache can scale your cache quickly and achieve a high number of requests per second without pre-provisioning. There are no connection limits to your Momento cache, so a burst of traffic won't lead to availability issues in your application.
+Second, Momento Cache can scale your cache quickly and achieve a high number of operations per second without pre-provisioning. There are no connection limits to your Momento cache, so a burst of traffic won't lead to availability issues in your application.
 
 Finally, Momento Cache is a dynamic service that can add and remove caches instantly. When you call the Momento control plane to create a new cache, the cache is provisioned instantly and is available by the time your client receives a response. This makes it easy to integrate Momento in branch-specific environments in your CI/CD system or allow each developer to have a unique copy of their application.
 
