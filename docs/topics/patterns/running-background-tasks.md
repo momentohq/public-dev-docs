@@ -14,7 +14,7 @@ keywords:
 
 # Use Momento Topics to process data asynchronously
 
-With Momento Topics, you can subscribe to messages on a topic, as well as publish messages to a new topic. Webhooks allow you to connect these topics to stateless consumers, which can then process these events asynchronously. Whether this is aggregating events by `topic_id`, saving each event to a database, or using the payload to trigger a Step function, webhooks give you the flexibility to process these events how you want to. 
+With [Momento Topics](../), you can subscribe to messages on a topic, as well as publish messages to a different topic. [Webhooks](../webhooks/overview) allow you to connect these topics to stateless consumers, which can then process these events asynchronously. Whether this is aggregating events by `topic_id`, saving each event to a database, or using the payload to trigger a Step function workflow, webhooks give you the flexibility to process these events how you want to. 
 
 The key to asynchronously processing these events is to use _multiple_ topics. An inbound topic, which the webhook listens to, and a single, or multiple, outbound topics which publish the processed data.
 
@@ -23,7 +23,7 @@ The key to asynchronously processing these events is to use _multiple_ topics. A
 In this diagram, `Topic 1` is the `inbound` topic, and `Topic 2` is the `outbound` topic.
 
 ## Pre-requisites
-1. A public facing endpoint to receive webhook events. This endpoint must accept POST requests and be able to receive inbound calls from Momento. More detail about the structure of this event is [described here](https://docs.momentohq.com/topics/webhooks/overview#example-event).
+1. A public-facing endpoint to receive webhook events. This endpoint must accept POST requests and be able to receive inbound calls from Momento. More detail about the structure of this event is [described here](../webhooks/overview#example-event).
 
 ## Getting Started
 1. [Create a cache in the Momento console](https://console.gomomento.com/caches/create)
