@@ -64,6 +64,7 @@ The Momento Web SDK allows you to create rich browser applications in TypeScript
   gap: '10px'
 }}>
   <LinkButton text="Overview" link="/sdks/web"/>
+  <LinkButton text="Style Guide" link="/sdks/nodejs/style-guide.html"/>
   <LinkButton text="Cache" link="/sdks/nodejs/cache.html"/>
   <LinkButton text="Topics" link="/sdks/nodejs/topics.html"/>
   <LinkButton text="Vector Index" link="/sdks/nodejs/vector-index.html"/>
@@ -148,6 +149,7 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   gap: '10px'
 }}>
   <LinkButton text="Overview" link="/sdks/nodejs"/>
+  <LinkButton text="Style Guide" link="/sdks/nodejs/style-guide.html"/>
   <LinkButton text="Cache" link="/sdks/nodejs/cache.html"/>
   <LinkButton text="Topics" link="/sdks/nodejs/topics.html"/>
   <LinkButton text="Vector Index" link="/sdks/nodejs/vector-index.html"/>
