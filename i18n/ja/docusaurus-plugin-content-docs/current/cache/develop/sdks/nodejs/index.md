@@ -3,30 +3,29 @@ sidebar_position: 1
 title: Momento Node.js SDK
 pagination_prev: null
 sidebar_label: Node.js
-description: Momento Node.js SDK に関する情報です。
+description: Information about the Momento Node.js SDK
 ---
 
 # Momento Node.js SDK
 
-ようこそ、Momento Node.js SDK のドキュメントへ！
+Momento Node.js SDKはnpmパッケージ[`@gomento/sdk`](https://www.npmjs.com/package/@gomento/sdk)から入手できます。
 
-Momento Node.js SDK は [`@gomomento/sdk`](https://www.npmjs.com/package/@gomomento/sdk) の npm パッケージとして利用可能です。
+ソースコードはGitHubにあります： [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript)。
 
-ソースコードは GitHub にあります: [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript)
+## 前提条件
 
-## 必要条件
-
-- Node のバージョンは [14以上](https://nodejs.org/en/download/) が必要です。
-- Momento API Keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
+- ノードのバージョン[14以上](https://nodejs.org/en/download/)が必要。
+- Momento API Keyが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
 
 ## リソース
 
-- [Node.js SDK Cache チートシート](./cheat-sheet.mdx)
-- [Node.js SDK 例](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/README.md): Node.js SDK の使い方をお見せするための動作可能なプロジェクト例です。
-- まもなく: オブザーバビリティ: Node.js SDK を使ったロギングとクライアントサイドのメトリクス
-- まもなく: コードを本番環境へ: Node.js SDK での設定とエラーハンドリング
+- [Node.js SDK Cache Cheat Sheet](./cheat-sheet.mdx)
+- [Node.js SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/README.md): Node.js SDKの使用方法を説明するサンプルプロジェクト
+- [Node.js Token Vending Machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine): は、[Momento Web SDK](https://github.com/momentohq/client-sdk-javascript/tree/main/packages/client-sdk-web)に対して記述されたアプリケーションを実行するブラウザで使用できる、一時的な、制限されたスコープのMomento Authトークンを提供します
+- [Node.js SDK Observability](./observability.mdx): Node.js SDKによるロギングとクライアント側メトリクス
+- COMING SOON: あなたのコードをprodへ： Node.js SDKの設定とエラー処理
 
-## 連携
+## 実装方法
 
-- [`@redis/client` のための Redis 互換クライアント](https://github.com/momentohq/momento-node-redis-client) - 既存の `@redis/client` を使ったコードを置き換えるだけで Momento Cache を利用可能に！こちらの [Redis クライアント互換性](./../integrations/redis-client-compatibility) ページもご覧下さい。
-- [`ioredis` のための Redis 互換クライアント](https://github.com/momentohq/momento-node-ioredis-client) - 既存の `ioredis` を使ったコードを置き換えるだけで Momento Cache を利用可能に！こちらの [Redis クライアント互換性](./../integrations/redis-client-compatibility) ページもご覧下さい。
+- [Redis Compatibility Client for `@redis/client`](https://github.com/momentohq/momento-node-redis-client) - は、既存の `@redis/client` コードで Momento Cache を使用するためのドロップイン置き換えです！Redisクライアントの互換性](./../../integrations/redis-client-compatibility.md) ページも参照してください。
+- [Redis Compatibility Client for `ioredis`](https://github.com/momentohq/momento-node-ioredis-client) - は、Momento Cache を既存の `ioredis` コードで使えるようにするドロップイン置き換えです！Redisクライアントの互換性](./../../integrations/redis-client-compatibility.md) ページも参照してください。
