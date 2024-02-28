@@ -225,6 +225,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
       'setAddElement',
       'setAddElements',
       'setFetch',
+      'setSample',
       'setLength',
       'setPop',
       'setRemoveElement',
