@@ -9,7 +9,7 @@ description: Discover the HTTP API for edge computing services to access serverl
 
 Momentoは、私たちの[SDK](./../)を使用できないアプリケーションや、curlやfetchのようなものを使用したいアプリケーションのためにHTTP APIインターフェイスを提供します。例えば、[Cloudflare Workers](https://workers.cloudflare.com/)、[Fastly Compute@Edge](https://www.fastly.com/products/edge-compute)などのエッジコンピュートサービスにデプロイする場合、このAPIはあなたのためにあります。その他のアプリケーションは、[Momento's SDK clients](./../) を使用する必要があります。
 
-私たちの[Postmanの公開ワークスペース](https://www.postman.com/gomomento/workspace/http-api/api/662743a0-471a-41a1-b446-5db596164a00/definition/4765b18e-ba84-4802-9795-ecce9c408062?view=documentation)でもOpen API Specificationを見ることができます。
+私たちの[Postmanの公開ワークスペース](https://www.postman.com/gomomento/workspace/momento-http-api/api/662743a0-471a-41a1-b446-5db596164a00/definition/4765b18e-ba84-4802-9795-ecce9c408062?view=documentation)でもOpen API Specificationを見ることができます。
 
 :::note
 
