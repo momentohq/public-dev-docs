@@ -30,16 +30,16 @@ keywords:
 
 # Momento Elixir SDK
 
-The Momento Elixir SDK is available via the hex package [`gomomento`](https://hex.pm/packages/gomomento).
+Momento Elixir SDKはhexパッケージ[`gomento`](https://hex.pm/packages/gomomento)から入手できます。
 
-The source code can be found on GitHub: [momentohq/client-sdk-elixir](https://github.com/momentohq/client-sdk-elixir).
+ソースコードはGitHubにあります： [momentohq/client-sdk-elixir](https://github.com/momentohq/client-sdk-elixir)。
 
-## Requirements
+## 必要条件
 
-- [Elixir version 1.14](https://elixir-lang.org/install.html) or higher is required.
-- A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- [Elixir version 1.14](https://elixir-lang.org/install.html)以上が必要です。
+- Momento API Keyが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
 
-## Resources
+## リソース
 
 - [Getting started with Momento Cache in Elixir](./cache)
-- [Elixir SDK examples](https://github.com/momentohq/client-sdk-elixir/blob/main/examples/README.md): working example projects that illustrate how to use the Elixir SDK
+- [Elixir SDK examples](https://github.com/momentohq/client-sdk-elixir/blob/main/examples/README.md): Elixir SDKの使い方を説明するサンプルプロジェクト
