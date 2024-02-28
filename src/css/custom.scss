@@ -76,6 +76,7 @@ h4 {
   --ifm-font-family-monospace: "Manrope";
   --ifm-font-family-base: "Manrope";
   --footer-text: #ffffff;
+  --container-background-color: #ffffff;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -89,6 +90,7 @@ h4 {
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --footer-text: #25392b;
+  --container-background-color: var(--ifm-background-color);
 }
 
 @media (min-width: 997px) {
@@ -122,8 +124,15 @@ code span {
   .navbar__logo {
     flex: 0 0 auto;
     height: 1.5rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0rem;
+    margin: .5rem .5rem 0 .5rem;
+  }
+
+  .navbar {
+    padding-left: 16px !important;
+  }
+
+  .ask-mo-button {
+    visibility: hidden;
   }
 }
 
@@ -155,7 +164,7 @@ code span {
   border: none !important;
 }
 
-.theme-doc-sidebar-container > div {
+.theme-doc-sidebar-container>div {
   padding: 80px 16px 0 16px;
   width: 323px;
 }
@@ -209,6 +218,7 @@ code span {
 
 .footer {
   background: var(--ifm-color-primary);
+  padding: 2em var(--ifm-footer-padding-horizontal) 1em;
 
   .container {
     display: flex;
@@ -261,7 +271,7 @@ code span {
   display: flex;
   align-items: center;
 
-  > *:first-child {
+  >*:first-child {
     a::before {
       content: url("/img/icons/home.svg") !important;
     }
@@ -399,6 +409,7 @@ code span {
   svg {
     color: var(--ifm-link-color);
   }
+
   span {
     svg {
       color: var(--ifm-link-color);
@@ -411,26 +422,28 @@ code span {
   align-items: center;
   justify-content: center;
   position: absolute;
-  background-color: #00C88C;
-  padding: 20px;
+  background-color: #c2b2a9;
   border: 1px solid #ccc;
   border-radius: 8px;
   max-height: 500px;
   left: 10px;
 }
 
+.controls {
+  padding: 0px 10px 10px 10px;
+}
+
 .popup-input {
   border-radius: 6px;
   border-color: #f1f1f1;
-  background-color: #f1f1f1;
+  background-color: var(--container-background-color);
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
-  margin-bottom: 10px;
 }
 
 .ask-mo-button {
-  background-color: #25C2A0FF;
+  background-color: var(--ifm-color-primary);
   color: #ffffff;
   padding: 8px 16px;
   border: none;
@@ -441,14 +454,14 @@ code span {
 }
 
 .ask-mo-button:hover {
-  background-color: #00A070FF;
+  background-color: var(--ifm-color-primary-darkest);
 }
 
 .api-response {
-  background-color: #00C88C;
+  background-color: var(--container-background-color);
   border-radius: 8px;
   margin-top: 1px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   height: 350px;
   overflow-y: auto;
   border: 0.5px solid #ffffff;
@@ -456,28 +469,33 @@ code span {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.submit-button{
-  background-color: #45a049;
+.submit-button {
+  background-color: var(--ifm-color-primary);
   color: #ffffff;
-  padding: 8px 16px;
+  padding: .5em 1em;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin: 0 5px;
+}
+
+.close-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .close-button {
-    background-color: #b91825;
-    color: #ffffff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 5px;
+  background-color: transparent;
+  color: darkslategray;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: medium;
 }
 
 .submit-button:hover {
-  background-color: #3c8c40;
+  background-color: var(--ifm-color-primary-darkest);
 }
 
 .submit-button:disabled {
@@ -485,13 +503,11 @@ code span {
   cursor: not-allowed;
 }
 
-.close-button:hover {
-    background-color: #ad1523;
-}
-
-.button-container {
+.input-container {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  gap: .3em;
+
 }
 
 .spinner-container {
@@ -527,10 +543,12 @@ code span {
     transform: scale(0.8);
     opacity: 0.7;
   }
+
   50% {
     transform: scale(1.2);
     opacity: 1;
   }
+
   100% {
     transform: scale(0.8);
     opacity: 0.7;
