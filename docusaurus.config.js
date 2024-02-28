@@ -331,13 +331,18 @@ const config = {
               position: 'right',
               value: `
               <div id="popup" class="popup">
-              <div id="apiResponse" class="api-response"></div>
-              <input type="text" id="popupInput" name="popupInput" class="popup-input" placeholder="Ask Mo Something..." onkeydown="handleKeyPress(event)">
-              <div class="button-container">
-                  <button class="submit-button" onclick="submitPopup()">Submit</button>
-                  <button class="close-button" onclick="closePopup()">Close</button>
+                <div class="close-container">
+                  <button class="close-button" onclick="closePopup()">X</button>
+                </div>
+                <div class="controls">
+                  <div id="apiResponse" class="api-response"></div>
+                  <div class="input-container">
+                    <input type="text" id="popupInput" name="popupInput" class="popup-input" placeholder="Ask Mo something..." onkeydown="handleKeyPress(event)">
+                    <button class="submit-button" onclick="submitPopup()">Submit</button>
+                  </div>
+                </div>
               </div>
-              </div>
+
               <button class="ask-mo-button" onclick="askMoFunction()">Ask Mo!</button>
             `,
             },
