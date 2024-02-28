@@ -28,15 +28,15 @@ keywords:
 
 # Momento Swift SDK for iOS
 
-The Momento Swift SDK and source code are available via GitHub: [momentohq/client-sdk-swift](https://github.com/momentohq/client-sdk-swift).
+Momento Swift SDKとソースコードはGitHubから入手できます： [momentohq/client-sdk-swift](https://github.com/momentohq/client-sdk-swift)。
 
-## Requirements
+## 必要条件
 
-- [Swift version 5](https://www.swift.org/install/) or higher is required.
-- A Momento API key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- [Swift・バージョン5](https://www.swift.org/install/)以上が必要。
+- MomentoのAPIキーが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
 
-## Resources
+## リソース
 
 - [Getting started with Momento Cache in Swift](./cache.mdx)
 - [Getting started with Momento Topics in Swift](./topics.mdx)
-- [Swift SDK examples](https://github.com/momentohq/client-sdk-swift/tree/main/Examples): working example projects that illustrate how to use the Swift SDK
+- [Swift SDK examples](https://github.com/momentohq/client-sdk-swift/tree/main/Examples): Swift SDKの使い方を説明するサンプルプロジェクト
