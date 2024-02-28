@@ -32,19 +32,18 @@ keywords:
 
 # Momento Dart SDK
 
-Welcome to the Momento Dart SDK documentation!
+Momento Dart SDK ドキュメントへようこそ！
+Momento Dart SDKとソースコードはGitHubから入手できます： [momentohq/client-sdk-dart](https://github.com/momentohq/client-sdk-dart)
 
-The Momento Dart SDK and source code are available via GitHub: [momentohq/client-sdk-dart](https://github.com/momentohq/client-sdk-dart).
+Dartパッケージは[pub.dev as `momento`](https://pub.dev/packages/momento)に公開されます。
 
-Dart packages are published to [pub.dev as `momento`](https://pub.dev/packages/momento). 
+## 必要条件
 
-## Requirements
+- [Dartバージョン3](https://dart.dev/get-dart)以上が必要です。
+- MomentoのAPIキーが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
 
-- [Dart version 3](https://dart.dev/get-dart) or higher is required.
-- A Momento API key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
-
-## Resources
+## リソース
 
 - [Getting started with Momento Cache in Dart](./cache.mdx)
 - [Getting started with Momento Topics in Dart](./topics.mdx)
-- [Dart SDK examples](https://github.com/momentohq/client-sdk-dart/tree/main/example): working example projects that illustrate how to use the Dart SDK
+- [Dart SDK examples](https://github.com/momentohq/client-sdk-dart/tree/main/example): Dart SDKの使用方法を説明するサンプルプロジェクト
