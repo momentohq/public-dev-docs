@@ -46,15 +46,15 @@ import { LinkButton } from "@site/src/components/LinkButton";
 
 # Momento SDKs
 
-Write code to interact with Momento Cache and Momento Topics in your favorite programming language, regardless of whether you are building a web, mobile, or server application!
+Web アプリケーション、モバイル アプリケーション、サーバー アプリケーションのいずれを構築しているかに関係なく、お気に入りのプログラミング言語で Momento Cache および Momento Topics と対話するコードを記述します！
 
 ## Client-Side SDKs
 
-Momento client-side SDKs allow you to interact with Momento Cache and Momento Topics directly from your web or mobile application; no server-side infrastructure required! Create chat applications and other messaging features that allow your clients to communicate with one another with only a few lines of code!
+MomentoクライアントサイドSDKを使用すると、Webアプリケーションやモバイルアプリケーションから直接Momento CacheやMomento Topicsを操作できます！わずか数行のコードで、クライアント同士が通信できるチャットアプリケーションやその他のメッセージング機能を作成できます！
 
 ### Web SDK (Browser)
 
-The Momento Web SDK allows you to create rich browser applications in TypeScript or JavaScript.
+Momento Web SDKを使用すると、TypeScriptまたはJavaScriptでリッチなブラウザ・アプリケーションを作成できます。
 
 ```mdx-code-block
 <div style={{
@@ -76,7 +76,7 @@ The Momento Web SDK allows you to create rich browser applications in TypeScript
 
 ### Swift SDK (iOS)
 
-Build native iOS applications using the Momento Swift SDK.
+Momento Swift SDKを使用してネイティブiOSアプリケーションを構築します。
 
 ```mdx-code-block
 <div style={{
@@ -96,7 +96,7 @@ Build native iOS applications using the Momento Swift SDK.
 
 ### Kotlin SDK (Android)
 
-Build native Android applications using the Momento Kotlin SDK.
+Momento Kotlin SDKを使用してネイティブAndroidアプリケーションを構築します。
 
 ```mdx-code-block
 <div style={{
@@ -116,7 +116,7 @@ Build native Android applications using the Momento Kotlin SDK.
 
 ### Dart SDK (Flutter)
 
-Use Momento Cache and Topics in your Flutter applications, allowing you to target browser, iOS, and Android with a single code base.
+FlutterアプリケーションでMomento CacheとTopicsを使えば、単一のコードベースでブラウザ、iOS、Androidをターゲットにできる。
 
 ```mdx-code-block
 <div style={{
@@ -136,7 +136,7 @@ Use Momento Cache and Topics in your Flutter applications, allowing you to targe
 
 ## Server-Side SDKs
 
-Momento server-side SDKs allow you to take advantage of Momento's low-latency Cache and Topics services from your back-end application. The Momento clients are tuned to provide the best possible performance and throughput while requiring far fewer TCP connections than many other cache client libraries.
+MomentoサーバーサイドSDKを使用すると、バックエンドアプリケーションからMomentoの低レイテンシーキャッシュとトピックサービスを利用できます。Momentoクライアントは、可能な限り最高のパフォーマンスとスループットを提供するように調整されており、他の多くのキャッシュクライアントライブラリよりもはるかに少ないTCP接続で済みます。
 
 ### Node.js SDK
 
