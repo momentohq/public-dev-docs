@@ -215,7 +215,7 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetIfNotExists
 
-Associates the provided value to a cache item with a given key.
+Associates the provided value to a cache item with a given key if the key does not already exist in the cache.
 
 | Name       | Type   | Description                                   |
 | ---------- | ------ | --------------------------------------------- |
@@ -238,6 +238,166 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 <SdkExampleTabs snippetId={'API_SetIfNotExists'} />
+
+### SetIfAbsent
+
+Associates the provided value to a cache item with a given key if the key does not already exist in the cache.
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | Name of the cache.                            |
+| key        | String \| Bytes | The key to be set. |
+| value      | String \| Bytes | The value to be stored.                       |
+| ttlSeconds | Duration    | Time to Live for the item in Cache.           |
+
+<details>
+
+<summary>Method response object</summary>
+
+
+* Stored
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfAbsent'} />
+
+### SetIfPresent
+
+Associates the provided value to a cache item with a given key if the key already exists in the cache.
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | Name of the cache.                            |
+| key        | String \| Bytes | The key to be set. |
+| value      | String \| Bytes | The value to be stored.                       |
+| ttlSeconds | Duration    | Time to Live for the item in Cache.           |
+
+<details>
+
+<summary>Method response object</summary>
+
+
+* Stored
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfPresent'} />
+
+### SetIfEqual
+
+Associates the provided value to a cache item with a given key if the key already exists in the cache and the value in the cache is equal to the supplied value.
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | Name of the cache.                            |
+| key        | String \| Bytes | The key to be set. |
+| value      | String \| Bytes | The value to be stored.                       |
+| equal   | String \| Bytes | The value to compare with.                    |
+| ttlSeconds | Duration    | Time to Live for the item in Cache.           |
+
+<details>
+
+<summary>Method response object</summary>
+
+
+* Stored
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfEqual'} />
+
+### SetIfNotEqual
+
+Associates the provided value to a cache item with a given key if the key does not already exist in the cache or the value in the cache is not equal to the supplied value.
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | Name of the cache.                            |
+| key        | String \| Bytes | The key to be set. |
+| value      | String \| Bytes | The value to be stored.                       |
+| notEqual   | String \| Bytes | The value to compare with.                    |
+| ttlSeconds | Duration    | Time to Live for the item in Cache.           |
+
+<details>
+
+<summary>Method response object</summary>
+
+
+* Stored
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfNotEqual'} />
+
+### SetIfPresentAndNotEqual
+
+Associates the provided value to a cache item with a given key if the key already exists in the cache and the value in the cache is not equal to the supplied value.
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | Name of the cache.                            |
+| key        | String \| Bytes | The key to be set. |
+| value      | String \| Bytes | The value to be stored.                       |
+| notEqual   | String \| Bytes | The value to compare with.                    |
+| ttlSeconds | Duration    | Time to Live for the item in Cache.           |
+
+<details>
+
+<summary>Method response object</summary>
+
+
+* Stored
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfPresentAndNotEqual'} />
+
+### SetIfAbsentOrEqual
+
+Associates the provided value to a cache item with a given key if the key does not already exist in the cache or the value in the cache is equal to the supplied value.
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | Name of the cache.                            |
+| key        | String \| Bytes | The key to be set. |
+| value      | String \| Bytes | The value to be stored.                       |
+| equal   | String \| Bytes | The value to compare with.                    |
+| ttlSeconds | Duration    | Time to Live for the item in Cache.           |
+
+<details>
+
+<summary>Method response object</summary>
+
+
+* Stored
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfAbsentOrEqual'} />
 
 ## Time to Live APIs
 
