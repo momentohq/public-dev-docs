@@ -293,7 +293,7 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetIfEqual
 
-Associates the provided value to a cache item with a given key if the key already exists in the cache and the value in the cache is equal to the supplied value.
+Associates the provided value to a cache item with a given key if the key already exists in the cache and the value in the cache is equal to the value supplied for `equal`.
 
 | Name       | Type   | Description                                   |
 | ---------- | ------ | --------------------------------------------- |
@@ -320,7 +320,7 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetIfNotEqual
 
-Associates the provided value to a cache item with a given key if the key does not already exist in the cache or the value in the cache is not equal to the supplied value.
+Associates the provided value to a cache item with a given key if the key does not already exist in the cache or the value in the cache is not equal to the value supplied for `notEqual`.
 
 | Name       | Type   | Description                                   |
 | ---------- | ------ | --------------------------------------------- |
@@ -347,7 +347,7 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetIfPresentAndNotEqual
 
-Associates the provided value to a cache item with a given key if the key already exists in the cache and the value in the cache is not equal to the supplied value.
+Associates the provided value to a cache item with a given key if the key already exists in the cache and the value in the cache is not equal to the value supplied for `notEqual`.
 
 | Name       | Type   | Description                                   |
 | ---------- | ------ | --------------------------------------------- |
@@ -374,7 +374,7 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetIfAbsentOrEqual
 
-Associates the provided value to a cache item with a given key if the key does not already exist in the cache or the value in the cache is equal to the supplied value.
+Associates the provided value to a cache item with a given key if the key does not already exist in the cache or the value in the cache is equal to the value supplied for `equal`.
 
 | Name       | Type   | Description                                   |
 | ---------- | ------ | --------------------------------------------- |
