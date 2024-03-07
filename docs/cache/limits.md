@@ -91,5 +91,5 @@ The below table describes how the number of operations is calculated for all cac
 
 :::note
 
-To further reduce the number of operations charged against your account, look into setting the [read concern](./learn/how-it-works/read-concern) header to `express`
+To further reduce the number of operations charged against your account, look into setting the [read concern](./learn/how-it-works/read-concern) header to `Express`, which will result in read calls to incur fewer operations against Momento
 :::
