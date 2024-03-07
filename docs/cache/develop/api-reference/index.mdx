@@ -96,12 +96,16 @@ Sets multiple key-value pairs in a cache with a given Time To Live (TTL) seconds
 | items      | { String/[]Byte :  String/[]Byte } | The mapping of keys to values that should be stored |
 | ttlSeconds | int    | Time to Live for the items in Cache.           |
 
+<details>
+
 <summary>Method response object</summary>
 
 * Success
 - `results()`: CacheSet.Response[]
 
 * Error
+
+</details>
 
 ### Get
 
@@ -123,6 +127,8 @@ Get the cache values stored for the given keys.
 | cacheName | String | Name of the cache.                            |
 | keys       | String[] / Bytes[] | The list of keys for which to retrieve values. |
 
+<details>
+
 <summary>Method response object</summary>
 
 * Success
@@ -130,6 +136,8 @@ Get the cache values stored for the given keys.
 - `results()`: CacheGet.Response[]
 
 * Error
+
+</details>
 
 ### Delete
 
