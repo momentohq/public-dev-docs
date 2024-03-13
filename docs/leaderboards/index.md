@@ -35,7 +35,7 @@ Momento Leaderboards has a much more efficient memory footprint, allowing us to 
 
 ### Step 1: Create your Momento API key and cache
 
-Go to the [Momento console](https://console.gomomento.com/tokens) and follow the instructions to log in with your email address, Google account, or GitHub account.
+Go to the [Momento console](https://console.gomomento.com) and follow the instructions to log in with your email address, Google account, or GitHub account.
 
 ![Image of Momento console landing page](@site/static/img/getting-started/console.png)
 
@@ -63,13 +63,13 @@ const leaderboard = client.leaderboard('my-cache', 'my-leaderboard');
 
 ### Step 3: Upsert, fetch, and remove elements
 
-See the [API reference](./develop/api-reference/index.md) page for documentation on each available leaderboard API.
+See the [API reference](./api-reference/index.md) page for documentation on each available leaderboard API.
 
 Check out the [Node.js example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/leaderboard.ts) for a runnable program that includes examples of how to call each API.
 
 
 # Language Support for Momento Leaderboards
-Learn more about the SDKs available for different programming languages on our [Language Support Page](./develop/language-support/language-support.md).
+Learn more about the SDKs available for different programming languages on our [Language Support Page](./language-support/language-support.md).
 
 
 ## Frequently asked questions about Momento Leaderboards
