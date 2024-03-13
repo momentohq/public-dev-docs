@@ -55,7 +55,7 @@ const leaderboard = client.leaderboard('my-cache', 'my-leaderboard');
 
 ### Step 3: 要素のアップサート、フェッチ、削除
 
-利用可能な各リーダーボードAPIのドキュメントについては、[APIリファレンス](./api-reference/index.md)ページを参照してください。
+利用可能な各リーダーボードAPIのドキュメントについては、[APIリファレンス](./api-reference/index)ページを参照してください。
 
 各APIの呼び出し方の例を含む実行可能なプログラムについては、[Node.js example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/leaderboard.ts)をチェックしてください。
 
