@@ -12,7 +12,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Read Concern とは何ですか?
 
-By default, a Momento Cache follows an eventual consistency model. That is, if you write a value from the cache, and then quickly read it back within a small fraction of a second, there is a slim, but possible chance that the response will not reflect the most recently updated value. Momento clients provide a configuration option `ReadConcern`, which can be used to tune this behavior. The `ReadConcern` configuration can be modified to tune the level of consistency and responsiveness that your system requires. It can be modified accordingly:
+デフォルトでは、Momentoキャッシュは最終一貫性モデルに従います。つまり、キャッシュから値を書き込んだ後、わずかな秒数でそれを読み返した場合、 レスポンスに直近に更新された値が反映されない可能性があります。Momento クライアントには `ReadConcern` という設定オプションが用意されており、これを使用してこの動作を調整することができます。`ReadConcern` 設定は、システムが必要とする一貫性と応答性のレベルを調整するために変更することができます。適宜変更して活用してください：
 
 
 | Read Concern | Operation Count Multiplier           | Default |
