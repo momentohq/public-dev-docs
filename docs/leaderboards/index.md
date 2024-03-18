@@ -63,7 +63,7 @@ const leaderboard = client.leaderboard('my-cache', 'my-leaderboard');
 
 ### Step 3: Upsert, fetch, and remove elements
 
-See the [API reference](./api-reference/index.md) page for documentation on each available leaderboard API.
+See the [API reference](/leaderboards/api-reference/index.mdx) page for documentation on each available leaderboard API.
 
 Check out the [Node.js example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/leaderboard.ts) for a runnable program that includes examples of how to call each API.
 
