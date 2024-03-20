@@ -3,7 +3,7 @@ sidebar_position: 4
 pagination_prev: null
 sidebar_label: Unreal (C++)
 title: Get to know the Momento Unreal 
-description: The Momento Unreal allows you to create server-side applications in Unity, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
+description: The Momento Unreal allows you to create server-side applications with Unreal Engine, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
 keywords:
   - momento
   - cache
