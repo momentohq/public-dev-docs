@@ -23,6 +23,14 @@
   justify-content: center;
 }
 
+.imageCardContent {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .cardDescription {
   font-weight: 500;
 }
@@ -31,6 +39,7 @@
   width: 50px;
   height: 50px;
   display: inline-block;
+  margin-right: 10px; /* Adjust margin as needed for spacing */
 }
 
 .card:hover {

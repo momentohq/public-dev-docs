@@ -180,7 +180,7 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   flexWrap: 'wrap',
   gap: '10px'
 }}>
-  <LinkButton text="Overview" link="/sdks/dotnet"/>
+  <LinkButton text="Overview" link="/sdks/dotnet" imgSrc="/img/momento-sdk-icons/dotnet.svg" altText=".NET SDK"/>
   <LinkButton text="Cache" link="/sdks/dotnet/cache.html"/>
   <LinkButton text="Topics" link="/sdks/dotnet/topics.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-dotnet/tree/main/examples" openInNewTab="true" />
@@ -224,7 +224,7 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   flexWrap: 'wrap',
   gap: '10px'
 }}>
-  <LinkButton text="Overview" link="/sdks/python"/>
+  <LinkButton text="Overview" link="/sdks/python" imgSrc="/img/momento-sdk-icons/python.svg" altText="Python SDK"/>
   <LinkButton text="Cache" link="/sdks/python/cache.html"/>
   <LinkButton text="Topics" link="/sdks/python/topics.html"/>
   <LinkButton text="Vector Index" link="/sdks/python/vector-index.html"/>
