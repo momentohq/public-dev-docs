@@ -30,7 +30,7 @@ keywords:
   - unity
 ---
 
-# Momento Unity 
+# Momento Unity (C#)
 The [Momento Unity Demo](https://github.com/momentohq/momento-unity-demo) uses the Momento .NET SDK available via the nuget package [`Momento.Sdk`](https://www.nuget.org/packages/Momento.Sdk).
 
 Momento Unity Example can be found on Github: [momentohq/momento-unity-demo](https://github.com/momentohq/momento-unity-demo)
@@ -41,4 +41,4 @@ Momento Unity Example can be found on Github: [momentohq/momento-unity-demo](htt
 3. **Momento API Key:** You can get one from the [Momento Web Console](https://console.gomomento.com/).
 
 ## Resources
-- [Getting Started With Unity Demo with Momento](https://github.com/momentohq/momento-unity-demo)
+- [Momento Unity Demo on GitHub](https://github.com/momentohq/momento-unity-demo)
