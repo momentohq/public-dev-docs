@@ -1,10 +1,11 @@
+import React, { useEffect } from 'react';
+import styles from './HubSpot.module.css';
+
 declare global {
     interface Window {
         hbspt: any;
     }
 }
-import React, { useEffect } from 'react';
-import styles from './HubSpot.module.css';
 
 type HubSpotFormProps = {
     portalId: string;
