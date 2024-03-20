@@ -28,7 +28,7 @@ export const LinkButton: React.FC<LinkButtonProps> = ({text, link, imgSrc, altTe
                 <a href={link} target={openInNewTab ? "_blank" : "_self"} className={styles.cardLink}>
                     <div className={styles.imageCardContent}>
                         <img src={imgSrc} alt={altText} className={styles.image}/>
-                        <div className={styles.cardDescription}>{text}</div>
+                        {/*<div className={styles.cardDescription}>{text}</div>*/}
                     </div>
                 </a>
             </div>
