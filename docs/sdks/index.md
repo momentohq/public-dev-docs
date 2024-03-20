@@ -80,8 +80,8 @@ Momento client-side SDKs allow you to interact with Momento Cache and Momento To
   flexWrap: 'wrap',
   gap: '10px'
 }}>
-  <LinkButton text="Unity SDK" link="/sdks/web" imgSrc="/img/momento-sdk-icons/unity-sdk.svg" altText="Unity"/>
-  <LinkButton text="Unreal" link="/sdks/web" imgSrc="/img/momento-sdk-icons/Unreal.svg" altText="Unreal"/>
+  <LinkButton text="Unity SDK" link="/sdks/unity" imgSrc="/img/momento-sdk-icons/unity-sdk.svg" altText="Unity"/>
+  <LinkButton text="Unreal" link="/sdks/unreal" imgSrc="/img/momento-sdk-icons/Unreal.svg" altText="Unreal"/>
   <LinkButton text="Web SDK" link="/sdks/web" imgSrc="/img/momento-sdk-icons/web-sdk.svg" altText="Web Icon"/>
   <LinkButton text="Swift SDK" link="/sdks/swift" imgSrc="/img/momento-sdk-icons/ios.svg" altText="iOS Icon"/>
   <LinkButton text="Kotlin SDK" link="/sdks/kotlin" imgSrc="/img/momento-sdk-icons/android.svg" altText="Android Icon"/>
