@@ -55,7 +55,16 @@ Write code to interact with Momento Cache and Momento Topics in your favorite pr
   flexWrap: 'wrap',
   gap: '10px'
 }}>
-  <LinkButton text="Node.js" link="/sdks/nodejs" imageSrc="/img/momento-sdk-icons/nodejs.svg"/>
+  <LinkButton text="Node.js" link="/sdks/nodejs" imgSrc="/img/momento-sdk-icons/nodejs.svg" altText="Node.js Icon"/>
+  <LinkButton text=".NET" link="/sdks/dotnet" imgSrc="/img/momento-sdk-icons/dotnet.svg" altText=".NET Icon"/>
+  <LinkButton text="Python" link="/sdks/python" imgSrc="/img/momento-sdk-icons/python.svg" altText="Python Icon"/>
+  <LinkButton text="Java" link="/sdks/java" imgSrc="/img/momento-sdk-icons/java.svg" altText="Java Icon"/>
+  <LinkButton text="Kotlin" link="/sdks/kotlin" imgSrc="/img/momento-sdk-icons/kotlin.svg" altText="Kotlin Icon"/>
+  <LinkButton text="Go" link="/sdks/go" imgSrc="/img/momento-sdk-icons/go.svg" altText="Go Icon"/>
+  <LinkButton text="PHP" link="/sdks/php" imgSrc="/img/momento-sdk-icons/php.svg" altText="PHP Icon"/>
+  <LinkButton text="Elixir" link="/sdks/exlixir" imgSrc="/img/momento-sdk-icons/elixer.svg" altText="Elixir Icon"/>
+  <LinkButton text="Rust" link="/sdks/rust" imgSrc="/img/momento-sdk-icons/rust.svg" altText="Rust Icon"/>
+  <LinkButton text="Ruby" link="/sdks/ruby" imgSrc="/img/momento-sdk-icons/ruby.svg" altText="Ruby Icon"/>
 </div>
 ```
 
@@ -63,6 +72,24 @@ Write code to interact with Momento Cache and Momento Topics in your favorite pr
 ## Client-Side SDKs
 
 Momento client-side SDKs allow you to interact with Momento Cache and Momento Topics directly from your web or mobile application; no server-side infrastructure required! Create chat applications and other messaging features that allow your clients to communicate with one another with only a few lines of code!
+
+```mdx-code-block
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '10px'
+}}>
+  <LinkButton text="Unity SDK" link="/sdks/web" imgSrc="/img/momento-sdk-icons/unity-sdk.svg" altText="Unity"/>
+  <LinkButton text="Unreal" link="/sdks/web" imgSrc="/img/momento-sdk-icons/Unreal.svg" altText="Unreal"/>
+  <LinkButton text="Web SDK" link="/sdks/web" imgSrc="/img/momento-sdk-icons/web-sdk.svg" altText="Web Icon"/>
+  <LinkButton text="Swift SDK" link="/sdks/swift" imgSrc="/img/momento-sdk-icons/ios.svg" altText="iOS Icon"/>
+  <LinkButton text="Kotlin SDK" link="/sdks/kotlin" imgSrc="/img/momento-sdk-icons/android.svg" altText="Android Icon"/>
+   <LinkButton text="Dart SDK" link="/sdks/dart" imgSrc="/img/momento-sdk-icons/flutter-dart.svg" altText="Flutter Icon"/>
+  
+
+</div>
+```
 
 ### Web SDK (Browser)
 
@@ -180,7 +207,7 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   flexWrap: 'wrap',
   gap: '10px'
 }}>
-  <LinkButton text="Overview" link="/sdks/dotnet" imgSrc="/img/momento-sdk-icons/dotnet.svg" altText=".NET SDK"/>
+  <LinkButton text="Overview" link="/sdks/dotnet"/>
   <LinkButton text="Cache" link="/sdks/dotnet/cache.html"/>
   <LinkButton text="Topics" link="/sdks/dotnet/topics.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-dotnet/tree/main/examples" openInNewTab="true" />
@@ -224,7 +251,7 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   flexWrap: 'wrap',
   gap: '10px'
 }}>
-  <LinkButton text="Overview" link="/sdks/python" imgSrc="/img/momento-sdk-icons/python.svg" altText="Python SDK"/>
+  <LinkButton text="Overview" link="/sdks/python"/>
   <LinkButton text="Cache" link="/sdks/python/cache.html"/>
   <LinkButton text="Topics" link="/sdks/python/topics.html"/>
   <LinkButton text="Vector Index" link="/sdks/python/vector-index.html"/>
