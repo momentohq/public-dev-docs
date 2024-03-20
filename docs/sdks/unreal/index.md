@@ -2,8 +2,8 @@
 sidebar_position: 4
 pagination_prev: null
 sidebar_label: Unreal (C++)
-title: Get to know the Momento Unreal 
-description: The Momento Unreal allows you to create server-side applications with Unreal Engine, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
+title: Get to know the Momento SDK for Unreal 
+description: The Momento SDK for Unreal allows you to create server-side applications with Unreal Engine, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
 keywords:
   - momento
   - cache
@@ -30,7 +30,7 @@ keywords:
   - unreal
 ---
 
-# Momento Unreal (C++)
-The Momento Unreal SDK is not currently available, but we are actively working on its development to support Unreal Engine in the future. If you're keen on leveraging Momento with Unreal Engine, kindly complete the form provided below to express your interest.
+# Momento SDK for Unreal (C++)
+The Momento SDK for Unreal is not currently available, but we are actively working on its development to support Unreal Engine in the future. If you're keen on leveraging Momento with Unreal Engine, kindly complete the form provided below to express your interest.
 
 

@@ -2,8 +2,8 @@
 sidebar_position: 4
 pagination_prev: null
 sidebar_label: Unity (C#)
-title: Get to know the Momento Unity 
-description: The Momento Unity allows you to create server-side applications in Unity, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
+title: Get to know the Momento SDK for Unity 
+description: The Momento SDK for Unity allows you to create server-side applications in Unity, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
 keywords:
   - momento
   - cache
@@ -30,7 +30,7 @@ keywords:
   - unity
 ---
 
-# Momento Unity (C#)
+# Momento SDK for Unity (C#)
 The [Momento Unity Demo](https://github.com/momentohq/momento-unity-demo) uses the Momento .NET SDK available via the nuget package [`Momento.Sdk`](https://www.nuget.org/packages/Momento.Sdk).
 
 Momento Unity Example can be found on Github: [momentohq/momento-unity-demo](https://github.com/momentohq/momento-unity-demo)
