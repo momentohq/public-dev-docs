@@ -13,10 +13,6 @@ type LinkButtonProps = {
 
 export const LinkButton: React.FC<LinkButtonProps> = ({ text, link, imgSrc, altText, openInNewTab = false, isAlpha = false }) => {
     const isImageLink = imgSrc && altText;
-    if (altText === "Unreal") {
-        console.log("altText", altText);
-        console.log('isAlpha', isAlpha);
-    }
     return (
         !isImageLink ? (
             <div className={styles.card}>
