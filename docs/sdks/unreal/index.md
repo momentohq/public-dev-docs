@@ -30,7 +30,7 @@ keywords:
   - unreal
 ---
 
-import { HubSpotForm } from "@site/src/components/HubSpot";
+import { HubSpotForm } from "@site/src/components/HubSpotForm";
 
 # Momento SDK for Unreal (C++)
 
