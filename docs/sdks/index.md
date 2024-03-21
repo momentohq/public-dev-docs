@@ -62,7 +62,7 @@ Write code to interact with Momento Cache and Momento Topics in your favorite pr
   <LinkButton text="Kotlin" link="/sdks/kotlin" imgSrc="/img/momento-sdk-icons/kotlin.svg" altText="Kotlin Icon"/>
   <LinkButton text="Go" link="/sdks/go" imgSrc="/img/momento-sdk-icons/go.svg" altText="Go Icon"/>
   <LinkButton text="PHP" link="/sdks/php" imgSrc="/img/momento-sdk-icons/php.svg" altText="PHP Icon"/>
-  <LinkButton text="Elixir" link="/sdks/exlixir" imgSrc="/img/momento-sdk-icons/elixer.svg" altText="Elixir Icon"/>
+  <LinkButton text="Elixir" link="/sdks/elixir" imgSrc="/img/momento-sdk-icons/elixer.svg" altText="Elixir Icon"/>
   <LinkButton text="Rust" link="/sdks/rust" imgSrc="/img/momento-sdk-icons/rust.svg" altText="Rust Icon"/>
   <LinkButton text="Ruby" link="/sdks/ruby" imgSrc="/img/momento-sdk-icons/ruby.svg" altText="Ruby Icon"/>
 </div>
