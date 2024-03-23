@@ -32,5 +32,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: `${{ github.event.pull_request.title }} [ja]`,
-              body: `Changed Files:\n${{ steps.files.outputs.list }} cc: @MomentoBigFun @Yoshiitaka`
+              body: `Changed Files:\n${{ github.event.pull_request.dff_url }} cc: @MomentoBigFun @Yoshiitaka`
             })
