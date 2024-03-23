@@ -20,7 +20,9 @@ To interact with Momento Vector Indexes, you must use a VectorIndexClient.
 
 <SdkExampleTabs snippetId={'API_InstantiateVectorClient'} />
 
-## Vector Index methods
+## Control APIs
+
+These API methods are used to manage and control indexes.
 
 ### Create Index
 Creates a vector index.
@@ -84,6 +86,10 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_ListIndexes'} />
 
+## Data APIs
+
+These API methods are used to directly interact with data in an index.
+
 ### Count Items
 Counts the number of items in a vector index.
 
@@ -138,6 +144,7 @@ Searches for items with vectors most similar to a query vector.
 | topK           | number                          | Number of results to return. Defaults to 10.                                                                                                                             |
 | metadataFields | String[] or ALL_VECTOR_METADATA | A list of metadata fields to return with each result, or a value indicating all metadata should be returned. If not provided, no metadata is returned. Defaults to None. |
 | scoreThreshold | number                          | A score threshold to filter results by. The threshold is exclusive. Defaults to no threshold (all results are returned).                                                 |
+| filter         | [VectorFilterExpression](filter-expressions.md)          | A filter expression to filter results by. Defaults to no filter.                                                                                                         |
 
 <details>
   <summary>Method response object</summary>
@@ -167,6 +174,7 @@ Searches for items with vectors most similar to a query vector. Also returns cor
 | topK           | number                          | Number of results to return. Defaults to 10.                                                                                                                             |
 | metadataFields | String[] or ALL_VECTOR_METADATA | A list of metadata fields to return with each result, or a value indicating all metadata should be returned. If not provided, no metadata is returned. Defaults to None. |
 | scoreThreshold | number                          | A score threshold to filter results by. The threshold is exclusive. Defaults to no threshold (all results are returned).                                                 |
+| filter         | [VectorFilterExpression](./filter-expressions.md)          | A filter expression to filter results by. Defaults to no filter.                                                                                                         |
 
 <details>
   <summary>Method response object</summary>
@@ -193,7 +201,7 @@ Gets a batch of items from a vector index.
 | Name      | Type     | Description                     |
 |-----------|----------|---------------------------------|
 | indexName | String   | Name of the vector index.       |
-| ids       | String[] | IDs of the items to retrieve.   |
+| filter    | String[] | IDs of the items to retrieve.   |
 
 <details>
   <summary>Method response object</summary>
@@ -214,7 +222,7 @@ Gets a batch of items' metadata from a vector index.
 | Name      | Type     | Description                         |
 |-----------|----------|-------------------------------------|
 | indexName | String   | Name of the vector index.           |
-| ids       | String[] | IDs of item metadata to retrieve.   |
+| filter    | String[] | IDs of item metadata to retrieve.   |
 
 <details>
   <summary>Method response object</summary>
@@ -237,7 +245,7 @@ Deletes a batch of items from a vector index.
 | Name      | Type     | Description                     |
 |-----------|----------|---------------------------------|
 | indexName | String   | Name of the vector index.       |
-| ids       | String[] | IDs of the items to be deleted. |
+| filter    | [VectorFilterExpression](./filter-expressions.md) \| String[] | A filter to match the items to be deleted or the item IDs to be deleted. |
 
 <details>
   <summary>Method response object</summary>
