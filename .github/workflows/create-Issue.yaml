@@ -3,7 +3,7 @@ name: Create Issue for Pull Request
 on:
   pull_request:
     branches:
-      - change-translation-wf
+      - main
     paths:
       - "docs/**/*.md"
       - "docs/**/*.mdx"
