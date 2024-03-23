@@ -14,6 +14,10 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 The auth APIs create and manage API keys and tokens for Momento services. These auth mechanisms can be scoped to have one or more permissions to grant access to one or more caches or topics.
 
+The auth APIs create and manage API keys and tokens for Momento services. These auth mechanisms can be scoped to have one or more permissions to grant access to one or more caches or topics.
+
+The auth APIs create and manage API keys and tokens for Momento services. These auth mechanisms can be scoped to have one or more permissions to grant access to one or more caches or topics.
+
 <img src="/img/momento-auth-tokens.png" width="60%"/>
 
 ## GenerateAuthToken API
