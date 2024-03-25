@@ -19,21 +19,21 @@ keywords:
 
 Momento Cache is the world's first truly serverless caching service. It provides instant elasticity, scale-to-zero capability, and blazing-fast performance. Gone are the days where you need to choose, manage, and provision capacity. With Momento Cache, you grab the SDK, you get an end point, input a few lines into your code, and you're off and running.
 
-import FancyBox from '@site/src/components/FancyBox';
+import Card from '@site/src/components/Card';
 
 <div className="card-wrapper">
-  <FancyBox to="./cache/getting-started" title="Getting Started" description="Quickly get up and running with an SDK example." />
-  <FancyBox to="./sdks" title="SDKs" description="Explore our open source SDKs." />
-  <FancyBox to="./cache/develop" title="Develop" description="Develop with Momento!" />
-  <FancyBox to="./cache/develop/language-support" title="API Matrix" description="Check out our language support matrix!" />
+  <Card to="./cache/getting-started" title="Getting Started" description="Quickly get up and running with an SDK example." />
+  <Card to="./sdks" title="SDKs" description="Explore our open source SDKs." />
+  <Card to="./cache/develop" title="Develop" description="Develop with Momento!" />
+  <Card to="./cache/develop/language-support" title="API Matrix" description="Check out our language support matrix!" />
 </div>
 
 # Concepts
 
 <div className="card-wrapper">
-  <FancyBox to="./cache/introduction/what-is-serverless-caching" title="Serverless Caching" description="How Momento shines in the serverless ecosystem. Whether its caching or messaging, we've got your back when it comes to infrastructure management." />
-  <FancyBox to="./cache/introduction/common-caching-strategies" title="Caching strategies" description="Leverage Momento to cache where and how you'd like!" />
-  <FancyBox to="./cache/develop/basics/client-configuration-objects" title="Configurations" description="Wherever you go, we have hand-crafted configurations tailored for your environment!" />
-  <FancyBox to="./cache/manage/pricing" title="We scale to zero!" description="No minimum payment, no underutilized resources. Pay for what you use." />
+  <Card to="./cache/introduction/what-is-serverless-caching" title="Serverless Caching" description="How Momento shines in the serverless ecosystem. Whether its caching or messaging, we've got your back when it comes to infrastructure management." />
+  <Card to="./cache/introduction/common-caching-strategies" title="Caching strategies" description="Leverage Momento to cache where and how you'd like!" />
+  <Card to="./cache/develop/basics/client-configuration-objects" title="Configurations" description="Wherever you go, we have hand-crafted configurations tailored for your environment!" />
+  <Card to="./cache/manage/pricing" title="We scale to zero!" description="No minimum payment, no underutilized resources. Pay for what you use." />
 </div>
 
