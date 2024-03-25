@@ -1,7 +1,7 @@
 ---
 sidebar_position: 8
-sidebar_label: Service Limits
-title: Service Limits
+sidebar_label: Limits & Availability
+title: Limits & Availability
 pagination_next: null
 description: Explore Momento Cache service limits, the default values, and how to get them changed if you need.
 hide_title: true
@@ -21,6 +21,21 @@ Momento Cache seeks to protect itself and its customers when it comes to service
 | Time to live (TTL)                                                                                                 | 1 day          |
 | Per [collection (CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts) element size limit | 128KB          |
 | Permissions per [API key or token](./develop/api-reference/auth.md)  (hard limit)                               | 10             |
+
+# Region Availability
+
+If your prefered provider or Region are not listed, [contact us](mailto:support@momentohq.com) and let's talk.
+
+## Region Availability (AWS)
+
+| Region Name          | Region         |
+|----------------------|----------------|
+| US East (N.Virginia) | us-east-1      |
+| US East (Ohio)       | us-east-2      |
+| US West (Oregon)     | us-west-2      |
+| Europe (Ireland)     | eu-west-1      |
+| Asia (Mumbai)        | ap-south-1     |
+| Asia (Tokyo)         | ap-northeast-1 |
 
 ## Soft limits and support
 
