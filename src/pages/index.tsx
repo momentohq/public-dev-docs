@@ -3,6 +3,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { IoOpenOutline } from "react-icons/io5";
 import ReferenceCard from '@site/src/components/ReferenceCard';
+import Translate from '@docusaurus/Translate';
 
 import styles from './index.module.css';
 
@@ -47,7 +48,7 @@ export default function Home(): JSX.Element {
               <div>
                 <h2>Cache</h2>
                 <ul className={styles.columnList}>
-                  <li><a href="/cache/getting-started">Getting started</a></li>
+                  <li><a href="/cache/getting-started"><Translate id="gettingStarted">Getting started</Translate></a></li>
                   <li><a href="/cache/develop/api-reference">API reference</a></li>
                   <li><a href="/cache/develop/integrations/redis-client-compatibility">Drop-in replacements for Redis</a></li>
                   <li><a href="/cache/develop/guides/working-with-files-cache">How to cache files</a></li>
