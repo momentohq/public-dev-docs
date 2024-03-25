@@ -172,6 +172,32 @@ Use Momento Cache and Topics in your Flutter applications, allowing you to targe
 </div>
 ```
 
+### Unity (C#)
+
+```mdx-code-block
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '10px'
+}}>
+  <LinkButton text="Overview" link="/sdks/unity"/>
+</div>
+```
+
+### Unreal (C++)
+
+```mdx-code-block
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '10px'
+}}>
+  <LinkButton text="Overview" link="/sdks/unreal"/>
+</div>
+```
+
 ## Server-Side SDKs
 
 Momento server-side SDKs allow you to take advantage of Momento's low-latency Cache and Topics services from your back-end application. The Momento clients are tuned to provide the best possible performance and throughput while requiring far fewer TCP connections than many other cache client libraries.
@@ -211,32 +237,6 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-dotnet/tree/main/examples" openInNewTab="true" />
   <LinkButton text="Packages" link="https://www.nuget.org/packages/Momento.Sdk" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-dotnet" openInNewTab="true" />
-</div>
-```
-
-### Unity (C#)
-
-```mdx-code-block
-<div style={{
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  gap: '10px'
-}}>
-  <LinkButton text="Overview" link="/sdks/unity"/>
-</div>
-```
-
-### Unreal (C++)
-
-```mdx-code-block
-<div style={{
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  gap: '10px'
-}}>
-  <LinkButton text="Overview" link="/sdks/unreal"/>
 </div>
 ```
 
