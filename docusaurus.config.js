@@ -302,9 +302,11 @@ const config = {
   themeConfig:
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
-        /** colorMode: {
-         disableSwitch: true,
-         }, **/
+        colorMode: {
+          disableSwitch: true,
+          defaultMode: 'dark', // This ensures the site uses dark mode by default
+          respectPrefersColorScheme: false, // Optional: set to false to not automatically switch to the user's system theme preference
+        },
         navbar: {
           title: "",
           logo: {
@@ -362,7 +364,7 @@ const config = {
           logo: {
             alt: "Momento Logo",
             src: "img/momento-logo-white.svg",
-            srcDark: "img/momento-logo-forest.svg"
+            srcDark: "img/momento-logo-white.svg"
           },
           copyright: `Copyright © 2022 - ${new Date().getFullYear()} Momento, Inc.`,
           links: [
