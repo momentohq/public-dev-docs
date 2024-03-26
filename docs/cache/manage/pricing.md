@@ -55,4 +55,4 @@ Heck yeah! You are billed for the inbound and outbound data transfer, not the vo
 Hell yes! Momento services are the best way to future-proof your application story. You can add Momento Cache *extremely* quickly, and it just fades into the background whether you are doing 1 operation per second (ops/s) or 1 million ops/s. You just pay for what you use, so you get a scalable cache without spending a lot of cash.
 </details>
 
-[Give Momento Cache a Try!](./../getting-started)
+[Give Momento Cache a Try!](./../getting-started.mdx)
