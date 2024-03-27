@@ -61,4 +61,4 @@ Momentoのサービスには隠れた料金がありません。ストレージ�
 そうです！Momentoサービスは、アプリケーションのストーリーを将来にわたって保証する最良の方法です。1RPSでも100万RPSでも、Momento Cacheは非常に素早く追加でき、バックグラウンドに消えていきます。使用した分だけ支払うだけなので、大金を使わずにスケーラブルなキャッシュを手に入れることができます。
 </details>
 
-[Give Momento Cache a Try!](./../getting-started.md)
+[Give Momento Cache a Try!](./../getting-started.mdx)
