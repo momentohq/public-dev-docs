@@ -105,6 +105,41 @@ h4 {
   }
 }
 
+html, body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(50deg, #0E2515, #25392b);
+  color: #E0E0E0;
+  background-attachment: fixed;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.navbar {
+  background-image: linear-gradient(50deg, #0E2515, #25392b);
+  backdrop-filter: blur(5px);
+  z-index: 100;
+}
+
+.footer {
+  background-image: linear-gradient(50deg, #0E2515, #25392b) !important;
+  color: #E0E0E0 !important;
+  padding: 2rem 0 !important;
+}
+
+.footer__link-item, .footer__title, .footer__copyright {
+  color: #E0E0E0 !important;
+}
+
+.footer__link-item:hover {
+  color: #FFFFFF !important;
+}
+
+.footer__logo img {
+  filter: invert(100%)!important;
+}
+
 code span {
   // Need this to force no ligatures in code examples. It was throwing some users off.
   // Find better font for source code. Im fan of FiraCode but would want to use w/
@@ -427,8 +462,8 @@ code span {
   border-radius: 8px;
   max-height: 500px;
   left: 10px;
+  transform: translateX(-50%);
 }
-
 .controls {
   padding: 0px 10px 10px 10px;
 }
@@ -559,34 +594,39 @@ code span {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 20px; /* Adjusts space between boxes */
+  gap: 20px;
 }
+
 
 .card {
   flex: 1;
-  min-width: 280px; /* Minimum width of a box, adjust as needed */
-  max-width: 48%; /* Maximum width of a box in the flex container, adjust for padding and margins */
-  margin: 10px; /* Adjust if more space is needed */
+  min-width: 280px;
+  max-width: 48%;
+  margin: 10px;
   padding: 20px;
-  border: 1px solid #ddd;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: #E0E0E0; /* Soft white color for text */
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.card h3, .card p {
+  color: #FFFFFF;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
 }
 
 .card-link {
   text-decoration: none;
   color: inherit;
-}
-
-.card h3 {
-  margin-bottom: 10px;
 }
 
 .card p {
