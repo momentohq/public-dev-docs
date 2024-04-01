@@ -1,0 +1,55 @@
+---
+sidebar_position: 10
+title: Instant Messaging Pattern
+sidebar_label: Instant messaging
+description: Learn best practices for building instant messaging with Momento Cache and Topics.
+keywords:
+ - topics
+ - development patterns
+ - momento
+ - chat
+ - instant messaging
+ - enterprise patterns
+---
+
+# Use Momento Cache and Topics to build instant messaging
+
+Instant messaging is a must-have feature in many applications. Communicating seamlessly in one-to-one, one-to-many, and many-to-many conversations is often thought of as a necessary component of an application. With Momento Cache and Topics, you can build instant messaging into your application without any backend infrastructure. Using the [Momento web SDK](../../sdks/web), you can access your cache data and publish and subscribe to messages directly in your browser.
+
+## Architecture
+
+Building instant messaging on Momento can be done entirely client-side, meaning in your user interface. Browsers, iPhone apps, and Android apps, all have the capability to access server-side resources in Momento directly.
+
+![Diagram of client applications communicating directly via Momento](@site/static/img/topics/patterns/instant-messaging-architecture.png)
+
+In the diagram above, messages are being loaded from a [sorted set](../../cache/develop/basics/datatypes#sorted-sets) when a new user joins the chat. Users subscribe to a chatroom-specific topic to recieve messages in real-time while they are active in the chat. As messages are sent, they are added directly to the sorted set by the sender.
+
+## Components
+
+Instant messaging is separated into two parts:
+
+* Message storage
+* Delivery
+
+These core components allow users to join your chat at any time and view the message history and enable them to receive new messages in real time.
+
+### Message storage
+
+Most instant messaging platforms store messages to allow users to view the conversation history if messages were sent prior to their arrival. Part of the startup tasks when entering a chat room is loading said history and displaying it on screen. This can easily be done with Momento in two ways: with a **sorted set** or a **list** cache item. Naturally, each comes with their own tradeoffs.
+
+#### Sorted sets
+
+Typically used for things like [leaderboards](https://www.gomomento.com/blog/build-on-momento-tips-and-tricks-for-a-lightning-fast-game-leaderboard), a sorted set is a collection data type that stores multiple value/score elements. In each element, the value is a `string` and the score is an `integer`. Specifically with instant messaging, you can store the time the message was sent as the score and a stringified JSON object as the value. Storing the message timestamp as the score will automatically allow you to sort messages by time since sorted sets do that by default.
+
+*Note - to store the time as the score, you must get an integer representation of the time. Store either ticks or time in milliseconds since the Unix epoch.*
+
+Sorted sets have a [rich set of features](../../cache/develop/api-reference/sorted-set-collections) that allow you to slice and dice messages in many different ways. Consider the following use cases:
+
+* Paging messages N at a time
+* Retrieving messages in a certain time frame
+* Displaying messages in reverse order
+* Getting all messages ever sent
+
+Based on the parameters you use in your fetch command, you can easily satisfy any of the use cases above.
+
+A significant point to remember - **messages must be unique in sorted sets**! This means when saving the message to the sorted set, you should include some sort of message identifier in your JSON
