@@ -269,7 +269,16 @@ const config = {
           {
             from: '/topics/develop/patterns/asynchronous-processing',
             to: '/topics/patterns/running-background-tasks'
-          }
+          },
+          //Adds redirects from the removed leaderboards 'Develop' folder
+          {
+            from: '/leaderboards/develop/api-reference',
+            to: '/leaderboards/api-reference'
+          },
+          {
+            from: '/leaderboards/develop/language-support',
+            to: '/leaderboards/language-support'
+          },
         ],
         // This came in with v1.5.0 of the docs where we split out by service.
         // This function redirects anything coming into /develop, /learn, /manage, or /introduction to /cache/<directory>.

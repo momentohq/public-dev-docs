@@ -31,44 +31,44 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Getting Started with Momento Topics in Swift
+# SwiftでMomento Topicsを始める
 
-If you need to get going quickly with Swift and Momento Topics, this page contains the basic API calls you'll need. [Check the Swift SDK examples](https://github.com/momentohq/client-sdk-swift/tree/main/Examples) for complete, working code samples.
+SwiftとMomentoトピックをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。完全で動作するコードサンプルについては、[Swift SDK のサンプルを確認する](https://github.com/momentohq/client-sdk-swift/tree/main/Examples)をご覧ください。
 
-## Install the Momento SDK
+## Momento SDKをインストールする
 
-The latest version of the Momento Swift SDK is available on GitHub: [momentohq/client-sdk-swift](https://github.com/momentohq/client-sdk-swift).
+Momento Swift SDKの最新バージョンはGitHubで入手可能です： [momentohq/client-sdk-swift](https://github.com/momentohq/client-sdk-swift)。
 
-## Get your Momento API key
+## Momento APIキーを取得する
 
-You'll need a Momento API key. You can get one from the [Momento Web Console](https://console.gomomento.com/).
-Once you have your token, store it in an environment variable so that the Momento client can consume it:
+Momento APIキーが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
+トークンを取得したら、Momentoクライアントが利用できるように環境変数に保存します：
 
 ```
 export MOMENTO_API_KEY=<your api key here>
 ```
 
-**Note**: it is best practice to put the API key into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
+**Note**: セキュリティ強化のためには、APIキーを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに入れるのがベストプラクティスだが、ここではデモのためにAPIキーを使っています。
 
-## Set up a TopicClient
-This code creates the TopicClient that you will use to interact with your pub/sub topic.
+## TopicClientのセットアップ
+このコードでは、パブ/サブ・トピックとの対話に使用する TopicClient を作成します。
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_InstantiateTopicClient'} />
 
-## Publish a message to a topic
-This is an example of publishing a message to a topic called "topic", then catching the return value to check if the publish was successful.
+## トピックにメッセージを公開する
+これは、"topic "というトピックにメッセージを発行し、その返り値をキャッチして発行が成功したかどうかをチェックする例です。
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_TopicPublish'} />
 
-## Subscribe to a topic
-This is an example of subscribing to a topic called "topic". When messages are published to this topic, the code here receives and prints them asynchronously.
+## トピックを購読する
+これは、"topic "というトピックを購読する例である。このトピックにメッセージがパブリッシュされると、ここのコードはそれを非同期に受信して表示します。
 
 <SdkExampleCodeBlock language={'swift'} snippetId={'API_TopicSubscribe'} />
 
-## Running the code
+## コードの実行
 
-You can find complete, working examples in the [Swift SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-swift/tree/main/examples).
+[Swift SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-swift/tree/main/examples)で、完全な、動作するサンプルを見つけることができます。
 
 :::info
-Beyond these basic API calls check out the [API reference page](/develop/api-reference) for more information on the full assortment of Momento API calls.
+これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](/develop/api-reference)を参照してください。
 :::
