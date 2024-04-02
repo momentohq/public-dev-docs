@@ -60,10 +60,10 @@ Write code to interact with Momento Cache and Momento Topics in your favorite pr
   <LinkButton text="Python" link="/sdks/python" imgSrc="/img/momento-sdk-icons/python.svg" altText="Python Icon"/>
   <LinkButton text="Java" link="/sdks/java" imgSrc="/img/momento-sdk-icons/java.svg" altText="Java Icon"/>
   <LinkButton text="Kotlin" link="/sdks/kotlin" imgSrc="/img/momento-sdk-icons/kotlin.svg" altText="Kotlin Icon"/>
-  <LinkButton text="Go" link="/sdks/go" imgSrc="/img/momento-sdk-icons/go.svg" altText="Go Icon"/>
+  <LinkButton text="Go" link="/sdks/go" imgSrc="/img/momento-sdk-icons/go-blue.svg" altText="Go Icon"/>
   <LinkButton text="PHP" link="/sdks/php" imgSrc="/img/momento-sdk-icons/php.svg" altText="PHP Icon"/>
   <LinkButton text="Elixir" link="/sdks/elixir" imgSrc="/img/momento-sdk-icons/elixer.svg" altText="Elixir Icon"/>
-  <LinkButton text="Rust" link="/sdks/rust" imgSrc="/img/momento-sdk-icons/rust.svg" altText="Rust Icon"/>
+  <LinkButton text="Rust" link="/sdks/rust" imgSrc="/img/momento-sdk-icons/rust-white.svg" altText="Rust Icon"/>
   <LinkButton text="Ruby" link="/sdks/ruby" imgSrc="/img/momento-sdk-icons/ruby.svg" altText="Ruby Icon"/>
 </div>
 ```
@@ -80,9 +80,9 @@ Momento client-side SDKs allow you to interact with Momento Cache and Momento To
   flexWrap: 'wrap',
   gap: '10px'
 }}>
-  <LinkButton text="Unity SDK" link="/sdks/unity" imgSrc="/img/momento-sdk-icons/unity-sdk.svg" altText="Unity"/>
-  <LinkButton text="Unreal" link="/sdks/unreal" imgSrc="/img/momento-sdk-icons/unreal.svg" altText="Unreal" isAlpha={true}/>
-  <LinkButton text="Web SDK" link="/sdks/web" imgSrc="/img/momento-sdk-icons/web-sdk.svg" altText="Web Icon"/>
+  <LinkButton text="Unity SDK" link="/sdks/unity" imgSrc="/img/momento-sdk-icons/unity-white.svg" altText="Unity"/>
+  <LinkButton text="Unreal" link="/sdks/unreal" imgSrc="/img/momento-sdk-icons/unreal-white.svg" altText="Unreal" isAlpha={true}/>
+  <LinkButton text="Web SDK" link="/sdks/web" imgSrc="/img/momento-sdk-icons/web-sdk-white.svg" altText="Web Icon"/>
   <LinkButton text="Swift SDK" link="/sdks/swift" imgSrc="/img/momento-sdk-icons/ios.svg" altText="iOS Icon"/>
   <LinkButton text="Kotlin SDK" link="/sdks/kotlin" imgSrc="/img/momento-sdk-icons/android.svg" altText="Android Icon"/>
   <LinkButton text="Dart SDK" link="/sdks/dart" imgSrc="/img/momento-sdk-icons/flutter-dart.svg" altText="Flutter Icon"/>
