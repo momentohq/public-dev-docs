@@ -1,19 +1,27 @@
 ---
-sidebar_position: 10
-title: Read-aside API Caching
-sidebar_label: Read-aside API Caching
-description: Learn best practices around using Momento Cache to cache results from an external API
+title: Caching API calls to WolframAlpha using Momento Cache
+sidebar_label: Caching WolframAlpa API calls
+description: Learn how to use Momento Cache to boost performance of applications using the WolframAlpha API
+keywords:
+ - cache
+ - momento
+ - read-aside
+ - wolframalpha
+ - api caching
+ - api
 ---
 
 # Use Momento Cache to cache results from an API
 
-Remote calls to an API can be slow and expensive. Depending on the access pattern, it can be desirable to cache results in a cache to improve your application's latency and availability.
+Remote calls to an API can be slow and expensive. Depending on the access pattern, it can be desirable to store results in a cache to improve your application's latency and availability.
 
 With [Momento Cache](../), you can easily cache results from an API in a highly-available and scalable remote cache.
 
 ## Getting Started
 
 In this example we will build an application that can give us a string description of the current weather of the given place. We will use WolframAlpha API in this example to show you how we can cache the results of an API.
+
+Weather data is relatively static over short periods, making it an ideal candidate for caching. Additionally WolframAlpha API can be slow to respond due to its computational model. You can expect latency of around 700ms for WolframAlpha API versus the latency of less than 5ms for Momento GET API.
 
 1. [Create a cache in the Momento console](https://console.gomomento.com/caches/create)
 2. [Obtain an API Key (AppId) from WolframAlpha](https://developer.wolframalpha.com)
@@ -59,8 +67,8 @@ export class WolframWeatherDescriptionClient
   }
 }
 ```
-4. Since the weather is unlikely to change that frequently for a particular city, and since a call to a remote API can be expensive, we can cache the results using [Momento Javascript SDK](../../sdks).
-For code reusability, we use the Decorator Pattern to wrap `CachingWeatherDescriptionClient` around an abstract `WeatherDescriptionClient` that we have created in an earlier step. Note that this requires no code-change to the existing `WolframWeatherDescriptionClient`.
+4. Recall that this scenario is well-suited for caching. We can cache the results using [Momento Javascript SDK](../../sdks).
+For code reusability, we use [the Decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern) to wrap `CachingWeatherDescriptionClient` around an abstract `WeatherDescriptionClient` that we have created in an earlier step. Note that this requires no code-change to the existing `WolframWeatherDescriptionClient`.
 ```typescript
 import {CacheClient, CacheGet} from '@gomomento/sdk';
 
@@ -81,13 +89,14 @@ export class CachingWeatherDescriptionClient
   implements WeatherDescriptionClient
 {
   delegate: WeatherDescriptionClient;
-  momentoCacheClient: CacheClient;
+  momentoCacheClient: IMomentoCache;
+
   constructor(
     delegate: WeatherDescriptionClient,
     momentoCacheClient: CacheClient
   ) {
     this.delegate = delegate;
-    this.momentoCacheClient = momentoCacheClient;
+    this.momentoCacheClient = momentoCacheClient.cache(CACHE_NAME);
   }
 
   // With our Momento Cache, we need to establish a keyspace to make sure
@@ -98,48 +107,41 @@ export class CachingWeatherDescriptionClient
     return cityName;
   }
 
-  async populateCacheWithResult(city: City, result: string) {
-    await this.momentoCacheClient.set(CACHE_NAME, this.cacheKey(city), result, {
+  // Asynchronously stores the result into cache to not impact
+  // the critical path of the application.
+  // For a more comprehensive error handling you may add
+  // .then() method to Promise<CacheSet.Response>.
+  populateCacheWithResult(city: City, result: string) {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    this.momentoCacheClient.set(this.cacheKey(city), result, {
       ttl: WEATHER_CACHE_TTL_SECONDS,
     });
   }
 
   async getWeatherDescription(city: City): Promise<string> {
-    const getResponse = await this.momentoCacheClient.get(
-      CACHE_NAME,
-      this.cacheKey(city)
-    );
+    const getResponse = await this.momentoCacheClient.get(this.cacheKey(city));
 
-    if (getResponse instanceof CacheGet.Hit) {
-      // If the weather is in the Cache, return the result from the Cache.
-      return getResponse.valueString();
-    } else if (getResponse instanceof CacheGet.Miss) {
+    const weatherDescription = getResponse.value();
+    if (!weatherDescription) {
       // If the weather is not in the Cache, call actual client,
       // and populate the Cache.
       const response = await this.delegate.getWeatherDescription(city);
-      await this.populateCacheWithResult(city, response);
+      this.populateCacheWithResult(city, response);
       return response;
-    } else if (getResponse instanceof CacheGet.Error) {
-      // If there is an error, simply fallback to calling the actual client.
-      return await this.delegate.getWeatherDescription(city);
-    } else {
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      throw new Error(`unrecognized getResponse ${getResponse}`);
     }
+
+    return weatherDescription;
   }
 }
 ```
 5. By using the Decorator Pattern, we can easily compose `CachingWeatherDescriptionClient` and `WolframWeatherDescriptionClient` together to create a new client that does read-side caching, i.e. if a result is the cache, return the result, otherwise fallback to retrieving the result from the remote API.
 This is an example code that leverages Momento Cache to cache results of WolframAlpha API into a remote cache:
 ```typescript
-import {CacheClient, Configurations, CredentialProvider} from '@gomomento/sdk';
+import {CacheClient, CredentialProvider} from '@gomomento/sdk';
 
 async function main() {
   const momentoClient = await CacheClient.create({
-    configuration: Configurations.Laptop.v1(),
-    credentialProvider: CredentialProvider.fromEnvironmentVariable({
-      environmentVariableName: 'MOMENTO_API_KEY',
-    }),
+    credentialProvider: CredentialProvider.fromEnvVar('MOMENTO_API_KEY'),
     defaultTtlSeconds: 60,
   });
   const wolframWeatherClient = new WolframWeatherDescriptionClient();
@@ -163,3 +165,29 @@ That is it! This is a simple example of how to cache an API result. Here's a few
 1. You can further leverage the Decorator pattern to add more functionality without modifying the existing code. For example you can add a Decorator for metrics/logging so that you get instrumentation on error rates and cache hit rates.
 2. TTL (how long items get to live in a cache) can be adjusted on a per-item basis to fit your use-case. For example, in our earlier code, we could've made the TTLs different for different cities.
 3. You can cache more than just Strings into Momento Cache. In our earlier example we cache strings but Momento Cache can also accept byte arrays. This allows you to cache an arbitrary object in your application, provided that you implement your own custom serialization/deserialization.
+
+## See More
+```mdx-code-block
+import ReferenceCard from '@site/src/components/ReferenceCard';
+
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '20px',
+  marginBottom: '20px' // Add margin bottom to the container if needed
+}}>
+
+  <ReferenceCard
+    title="6 common caching strategies "
+    link="https://www.gomomento.com/blog/6-common-caching-design-patterns-to-execute-your-caching-strategy"
+    description="Learn more about other types of caching strategies"
+    />
+  <ReferenceCard
+    title="Using Momento to cache chatbot calls"
+    link="https://www.gomomento.com/resources/case-studies/cydas-people-takes-momento-cache-to-prod-for-their-chatgpt-ai-powered-chatbot-in-just-two-hours"
+    description="See how CYDAS used Momento to cache calls to LangChain to build a chatbot"
+    />
+
+</div>
+```
