@@ -34,64 +34,64 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Momento Web SDK for JavaScript in browsers
+# ブラウザでJavaScriptを使用するためのMomento Web SDK
 
-Momento provides two JavaScript SDKs; [one for Node.js](/sdks/nodejs) and one for browsers other web applications (this page). The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
+Momentoは2つのJavaScript SDKを提供しています; [1つはNode.js用](/sdks/nodejs)、もう1つはブラウザの他のWebアプリケーション用(このページ)です。2つのSDKは同じAPIを持っているので、`import`ステートメントを除いてコードは同じように見えますが、異なるJavaScript実行環境において最適なパフォーマンスと互換性を保つように作られています。
 
-The Node.js SDK is best suited for server-side use cases. The Momento web SDK, however, allows developers to write JavaScript code that runs in a browser and communicates directly with Momento services. This allows you to avoid the typical overhead of building and operating your own web service to mediate cache or pub/sub calls between the browser and Momento. It also means one less hop for your web traffic, so you can get even better performance out of your browser application. The best of both worlds!
+Node.js SDKはサーバーサイドでの使用に最適です。しかし、Momento Web SDKでは、開発者はブラウザで実行され、Momentoサービスと直接通信するJavaScriptコードを記述することができます。これにより、ブラウザとMomento間のキャッシュやPub/Subコールを仲介するために、独自のウェブサービスを構築・運用する一般的なオーバーヘッドを回避することができます。また、ウェブトラフィックのホップが1つ減るので、ブラウザアプリケーションのパフォーマンスをさらに向上させることができます。両方の長所を兼ね備えています！
 
-You can also use the web SDK in other non-Node.js JavaScript environments.
+また、Node.js以外のJavaScript環境でもWeb SDKを使用できます。
 
-The Momento web SDK is available via the npm package [`@gomomento/sdk-web`](https://www.npmjs.com/package/@gomomento/sdk-web).
+Momento web SDKはnpmパッケージ[`@gomento/sdk-web`](https://www.npmjs.com/package/@gomento/sdk-web)から利用できます。
 
-The source code can be found on GitHub: [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript).
+ソースコードはGitHubにあります： [momentohq/client-sdk-javascript](https://github.com/momentohq/client-sdk-javascript)。
 
-## Requirements
+## 必要条件
 
-- A Momento API key is required; you can get one from the [Momento web console](https://console.gomomento.com/).
+- MomentoのAPIキーが必要です。[Momentoウェブコンソール](https://console.gomomento.com/)から取得できます。
 
 ## Resources
 
-- [Getting started with Momento Cache in JavaScript](/sdks/nodejs/cache.mdx): this cheat sheet targets the Node.js SDK, but the web SDK APIs are fully compatible.
-- [Getting started with Momento Topics in JavaScript](/sdks/nodejs/topics.mdx): this cheat sheet targets the Node.js SDK, but the web SDK APIs are fully compatible.
-- [Chat app: Next.js](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/nextjs-chat): a dynamic app that allows users to chat in their browser by entering a cache and topic name. The application vends low scope, short-lived auth tokens to the browser which uses them to subscribe to the topic.
-- [Chat app: Vite](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/vite-chat-app): a static version of the chat app that requires a separate API (such as our [Node.js token vending machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine)) to provide auth tokens to browsers.
-- [Web SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/README.md): working example projects that illustrate how to use the web SDK
+- [Getting started with Momento Cache in JavaScript](/sdks/nodejs/cache.mdx): このチート・シートはNode.js SDKを対象としていますが、Web SDK APIは完全に互換性があります。
+- [Getting started with Momento Topics in JavaScript](/sdks/nodejs/topics.mdx): このチート・シートはNode.js SDKを対象としていますが、Web SDK APIは完全に互換性があります。
+- [Chat app: Next.js](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/nextjs-chat): は、キャッシュとトピック名を入力することで、ユーザーがブラウザ上でチャットを行うことを可能にするダイナミック・アプリである。このアプリケーションは、トピックを購読するために使用されるブラウザに、スコープが低く寿命の短い認証トークンを提供します。
+- [Chat app: Vite](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/vite-chat-app): チャットアプリの静的バージョンは、ブラウザに認証トークンを提供するために別のAPI（私たちの[Node.jsトークン自動販売機](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine)など）を必要とします。
+- [Web SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/README.md): ウェブSDKの使い方を説明するサンプルプロジェクト
 
-## Momento web SDK and Momento Topics
+## Momento web SDKとMomentoトピックス
 
-Momento Topics significantly simplifies publisher-subscriber communication in a browser. Traditionally, developers example of this is a chat application embedded in a website; you are not only building the client code for the browser, but the server-side code for routing all the communications.
+Momento Topicsは、ブラウザでのパブリッシャーとサブスクライバーの通信を大幅に簡素化します。従来、この開発者の例は、ウェブサイトに組み込まれたチャット・アプリケーションです。ブラウザ用のクライアント・コードだけでなく、すべての通信をルーティングするためのサーバ・サイド・コードも構築することになります。
 
-This server-side complexity is eliminated by incorporating Momento Topics with the Momento web SDK. Developers can subscribe to Momento Topics directly from the browser. Momento then takes care of all communication when messages are published to the topic, eliminating the need for custom server-side infrastructure for WebSockets!
+Momento Web SDKにMomento Topicsを組み込むことで、このサーバーサイドの複雑さが解消されます。開発者はブラウザから直接 Momento Topics を購読できます。そして、Momento は、トピックにメッセージが発行されたときのすべての通信を処理し、WebSocket 用のカスタムサーバーサイドインフラストラクチャを不要にします！
 
-## Using the web SDK for browsers
+## ブラウザ用ウェブSDKの使用
 
-While the API calls are [identical to the Momento Node.js SDK](/sdks/nodejs/cache.mdx), the import/require statement will consume the `@gomomento/sdk-web` package from npm, instead of `@gomomento/sdk` (which is the Node.js SDK).
+APIコールは[Momento Node.js SDK](/sdks/nodejs/cache.mdx)と同じですが、import/require文は(Node.js SDKである)`@gomento/sdk`の代わりに、npmから`@gomento/sdk-web`パッケージを消費します。
 
-Here's an example import statement for the web SDK:
+以下は、ウェブSDKのインポート文の例です：
 
 `import {CacheClient} from ‘@gomomento/sdk-web’;`
 
-## Credentials for Browsers
+## ブラウザ用認証情報
 
-In order for your browser application to communicate with Momento services, you will need to provide the browser with a Momento auth token.
-The recommended practice is to generate a Momento disposable token that has expiring credentials for each browser session. This enables the app to distribute tokens without worrying about your data being compromised.
+ブラウザアプリケーションが Momento サービスと通信するためには、ブラウザに Momento 認証トークンを提供する必要があります。
+推奨される方法は、ブラウザセッションごとに有効期限付きのMomento使い捨てトークンを生成することです。これにより、データが漏えいする心配なく、トークンを配布することができます。
 
-To create a Momento disposable token for use in the browser, you will generally need a ["token vending machine"](https://www.gomomento.com/blog/introducing-the-momento-token-vending-machine) component. The token vending machine can be a [standalone application](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine) with an HTTP endpoint that a static website can access, or it can be a component embedded into the server side of your web application, as in our [Next.js chat app example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/nextjs-chat/README.md).
+ブラウザで使用するMomento使い捨てトークンを作成するには、一般的に["トークン自動販売機"](https://www.gomomento.com/blog/introducing-the-momento-token-vending-machine)コンポーネントが必要です。トークン自動販売機は、静的なウェブサイトがアクセスできるHTTPエンドポイントを持つ[スタンドアロンアプリケーション](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine)にすることもできますし、[Next.jsチャットアプリの例](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/nextjs-chat/README.md)のように、ウェブアプリケーションのサーバーサイドに埋め込むこともできます。
 
-In either case, you will likely use the Node.js SDK to instantiate a Momento `AuthClient` and provide it an API key with Super User scope generated via the [Momento Console](https://console.gomomento.com/):
+いずれの場合も、Node.js SDK を使用して Momento `AuthClient` をインスタンス化し、[Momento Console](https://console.gomomento.com/) 経由で生成された Super User スコープの API キーを提供することになるでしょう：
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_InstantiateAuthClient'} />
 
-Then you will use the `generateDisposableToken` API to create a disposable token that you can vend to the browser. These tokens are short-lived by default and they must expire within one hour.
+次に、`generateDisposableToken` API を使用して使い捨てトークンを作成し、ブラウザに送信します。これらのトークンはデフォルトでは短命で、1時間以内に失効しなければなりません。
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateDisposableToken'} />
 
-For more information on Momento tokens, including `DisposableTokenScope` and permission objects for authorization, see [Auth API Reference](/cache/develop/api-reference/auth.md#generatedisposabletoken-api).
+`DisposableTokenScope` や認可のためのパーミッションオブジェクトなど、Momento トークンの詳細については、[Auth API リファレンス](/cache/develop/api-reference/auth.md#generatedisposabletoken-api) を参照してください。
 
 ## FAQ
 
 <details>
-  <summary>Is the traffic from the browser encrypted?</summary>
-As with all traffic with Momento services, the web SDK is fully encrypted on the wire. In addition, the SDK uses TLS 1.2+ encryption.
+  <summary>ブラウザからのトラフィックは暗号化されていますか？</summary>
+Momentoサービスのすべてのトラフィックと同様に、Web SDKはワイヤ上で完全に暗号化されています。さらに、SDKはTLS 1.2+暗号化を使用しています。
 </details>
