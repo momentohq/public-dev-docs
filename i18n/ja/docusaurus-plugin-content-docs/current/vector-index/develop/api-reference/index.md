@@ -71,7 +71,7 @@ Momento Vector Indexes を操作するには、VectorIndexClient を使用する
 すべてのベクトル・インデックスを一覧表示します。
 
 <details>
-  <summary></summary>メソッド・レスポンス・オブジェクト</summary>
+  <summary>メソッド・レスポンス・オブジェクト</summary>
 
 * Success
     * getIndexes(): VectorIndexInfo[]
