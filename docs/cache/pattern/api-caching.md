@@ -134,7 +134,7 @@ export class CachingWeatherDescriptionClient
   }
 }
 ```
-5. By using the Decorator Pattern, we can easily compose `CachingWeatherDescriptionClient` and `WolframWeatherDescriptionClient` together to create a new client that does read-aside caching, i.e. if a result is the cache, return the result, otherwise fallback to retrieving the result from the remote API.
+5. By using the Decorator Pattern, we can easily compose `CachingWeatherDescriptionClient` and `WolframWeatherDescriptionClient` together to create a new client that does read-aside caching, i.e. if a result is in the cache, return the result, otherwise fallback to retrieving the result from the remote API.
 This is an example code that leverages Momento Cache to cache results of the WolframAlpha API into a remote cache:
 ```typescript
 import {CacheClient, CredentialProvider} from '@gomomento/sdk';
