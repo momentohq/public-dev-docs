@@ -14,13 +14,13 @@ import TabItem from '@theme/TabItem';
 
 SDKを使ってMomento Cacheを使い始めたいとお考えなら、このサイトをご覧ください。
 
-ソフトウェアをインストールすることなく、Momento Cacheの使い心地をすぐに試したい場合は、こちらをご覧ください(#try-our-cli-and-an-sdk-in-your browser)。[ブラウザからはこちら](#try-our-cli-and-an-sdk-in-your-browser)。
+ソフトウェアをインストールすることなく、Momento Cacheの使い心地をすぐに試したい場合は、こちらをご覧ください(#try-our-cli-and-an-sdk-in-your browser)。[ブラウザで試す場合はこちら](#try-our-cli-and-an-sdk-in-your-browser)。
 
-## Step 1: APIキーの作成
+## Step 1: APIキーを作成する
 
 [ステップバイステップの説明](./develop/authentication/api-keys.md)に従って、[Momentoコンソール](https://console.gomomento.com)からAPIキーを作成してください。キーを取得したら、ここに戻ってきてください。
 
-## Step 2: キーの保存
+## Step 2: キーの格納
 
 作成したAPIキーを保存できる場所は複数あります。この単純な例では環境変数に保存しますが、ベストプラクティスはAWS Secrets ManagerやGCP Secret Managerのような安全な場所に保存することです。
 
@@ -45,7 +45,7 @@ export MOMENTO_API_KEY=<your key here>
 export MOMENTO_TTL_SECONDS=300
 ```
 
-このコードをtest.jsにコピーします。
+このコードをtest.jsにコピーする。
 
 ```javascript
 // Declare the Momento SDK library
@@ -138,7 +138,7 @@ async function run() {
 run();
 ```
 
-コードを実行します
+Run code
 
 ```cli
 node test.js
