@@ -279,6 +279,67 @@ const config = {
             from: '/leaderboards/develop/language-support',
             to: '/leaderboards/language-support'
           },
+          // we moved all of the SDKs to the top level
+          {
+            from: '/develop/sdks/dart',
+            to: '/sdks/dart'
+          },
+          {
+            from: '/develop/sdks/dotnet',
+            to: '/sdks/dotnet'
+          },
+          {
+            from: '/develop/sdks/elixir',
+            to: '/sdks/elixir'
+          },
+          {
+            from: '/develop/sdks/go',
+            to: '/sdks/go'
+          },
+          {
+            from: '/develop/sdks/java',
+            to: '/sdks/java'
+          },
+          {
+            from: '/develop/sdks/kotlin',
+            to: '/sdks/kotlin'
+          },
+          {
+            from: '/develop/sdks/nodejs',
+            to: '/sdks/nodejs'
+          },
+          {
+            from: '/develop/sdks/php',
+            to: '/sdks/php'
+          },
+          {
+            from: '/develop/sdks/python',
+            to: '/sdks/python'
+          },
+          {
+            from: '/develop/sdks/ruby',
+            to: '/sdks/ruby'
+          },
+          {
+            from: '/develop/sdks/rust',
+            to: '/sdks/rust'
+          },
+          {
+            from: '/develop/sdks/swift',
+            to: '/sdks/swift'
+          },
+          {
+            from: '/develop/sdks/ruby',
+            to: '/sdks/ruby'
+          },
+          {
+            from: '/develop/sdks/rust',
+            to: '/sdks/rust'
+          },
+          {
+            from: '/develop/sdks/swift',
+            to: '/sdks/swift'
+          },
         ],
         // This came in with v1.5.0 of the docs where we split out by service.
         // This function redirects anything coming into /develop, /learn, /manage, or /introduction to /cache/<directory>.
@@ -302,11 +363,9 @@ const config = {
   themeConfig:
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
-        colorMode: {
-          disableSwitch: true,
-          defaultMode: 'dark', // This ensures the site uses dark mode by default
-          respectPrefersColorScheme: false, // Optional: set to false to not automatically switch to the user's system theme preference
-        },
+        /** colorMode: {
+         disableSwitch: true,
+         }, **/
         navbar: {
           title: "",
           logo: {
@@ -364,7 +423,7 @@ const config = {
           logo: {
             alt: "Momento Logo",
             src: "img/momento-logo-white.svg",
-            srcDark: "img/momento-logo-white.svg"
+            srcDark: "img/momento-logo-forest.svg"
           },
           copyright: `Copyright © 2022 - ${new Date().getFullYear()} Momento, Inc.`,
           links: [
