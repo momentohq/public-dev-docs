@@ -86,6 +86,29 @@ cacheの全データをフラッシュします。
 
 <SdkExampleTabs snippetId={'API_Set'} />
 
+### SetBatch
+
+複数のキーと値のペアを、指定されたTTL（Time To Live）秒数でキャッシュに設定します。キーの値がすでに存在する場合は、新しい値に置き換えられます。
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | キャッシュの名前                       |
+| items      | { String/[]Byte :  String/[]Byte } | 格納されるべきキーと値のマッピング |
+| ttlSeconds | int    | キャッシュにあるアイテムのために生きる時間           |
+
+<SdkExampleTabs snippetId={'API_SetBatch'} />
+
+<details>
+
+<summary>メソッド・レスポンス・オブジェクト</summary>
+
+* Success
+- `results()`: CacheSet.Response[]
+
+* Error
+
+</details>
+
 ### Get
 
 指定されたkeyに対して格納されているcache値を取得します。
@@ -96,6 +119,29 @@ cacheの全データをフラッシュします。
 | key       | []Byte | 値を取得するために指定するkeyです。|
 
 <SdkExampleTabs snippetId={'API_Get'} />
+
+### GetBatch
+
+指定したキーに対応するキャッシュ値を取得します。
+
+| Name      | Type   | Description                                   |
+| --------- | ------ | --------------------------------------------- |
+| cacheName | String | キャッシュの名前                            |
+| keys       | String[] / Bytes[] | 値を取得するキーのリスト |
+
+<SdkExampleTabs snippetId={'API_GetBatch'} />
+
+<details>
+
+<summary>メソッド・レスポンス・オブジェクト</summary>
+
+* Success
+- `values()`: Record&lt;string, string&gt;
+- `results()`: CacheGet.Response[]
+
+* Error
+
+</details>
 
 ### Delete
 
