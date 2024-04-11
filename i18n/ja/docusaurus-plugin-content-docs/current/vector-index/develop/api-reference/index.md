@@ -144,7 +144,7 @@ Momento Vector Indexes を操作するには、VectorIndexClient を使用する
 | topK           | number                          | 返す結果の数。デフォルトは10                                                                                                                             |
 | metadataFields | String[] or ALL_VECTOR_METADATA | 各結果とともに返すメタデータ・フィールドのリスト、またはすべてのメタデータを返すことを示す値。指定しない場合は、メタデータは返されません。デフォルトは None。 |
 | scoreThreshold | number                          | 結果をフィルタリングするスコアのしきい値。閾値は排他的です。デフォルトはしきい値なし (すべての結果が返される)。                                                 |
-| filter         | [VectorFilterExpression](filter-expressions.md)          | 結果をフィルターするためのフィルター式。デフォルトはフィルタなし。                                                                                                         |
+| filter         | [VectorFilterExpression](./filter-expressions.md)          | 結果をフィルターするためのフィルター式。デフォルトはフィルタなし。                                                                                                         |
 
 <details>
   <summary>メソッド・レスポンス・オブジェクト</summary>
