@@ -144,7 +144,7 @@ vector indexesの全てのリスト
 | queryVector    | number[]                        | 検索するベクトル                                                                                                                                                    |
 | topK           | number                          | 返す結果の数。デフォルトは10。                                                                                                                             |
 | metadataFields | String[] or ALL_VECTOR_METADATA | 各結果とともに返すメタデータ・フィールドのリスト、またはすべてのメタデータを返すことを示す値です。指定しない場合は、メタデータは返されません。デフォルトは None |
-| filter         | [VectorFilterExpression](filter-expressions.md)          | 結果をフィルターするためのフィルター式。デフォルトはフィルタなし                                                                                                        |
+| filter         | [VectorFilterExpression](./filter-expressions.md)          | 結果をフィルターするためのフィルター式。デフォルトはフィルタなし                                                                                                        |
 
 <details>
   <summary>Method response object</summary>
