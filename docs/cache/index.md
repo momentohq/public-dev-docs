@@ -19,38 +19,21 @@ keywords:
 
 Momento Cache is the world's first truly serverless caching service. It provides instant elasticity, scale-to-zero capability, and blazing-fast performance. Gone are the days where you need to choose, manage, and provision capacity. With Momento Cache, you grab the SDK, you get an end point, input a few lines into your code, and you're off and running.
 
-Momento Cache is available in the following cloud providers and Regions:
+import Card from '@site/src/components/Card';
 
-**AWS Regions**: us-west-2, us-east-1, us-east-2, eu-west-1, ap-south-1, ap-northeast-1
+<div className="card-wrapper">
+  <Card to="./cache/getting-started" title="Getting Started" description="Quickly get up and running with an SDK example." />
+  <Card to="./sdks" title="SDKs" description="Explore our open source SDKs." />
+  <Card to="./cache/develop" title="Develop" description="Develop with Momento!" />
+  <Card to="./cache/develop/language-support" title="API Matrix" description="Check out our language support matrix!" />
+</div>
 
-**GCP Regions**: us-central1
+# Concepts
 
-If your prefered provider or Region are not listed, [contact us](mailto:support@momentohq.com) and let's talk.
+<div className="card-wrapper">
+  <Card to="./cache/introduction/what-is-serverless-caching" title="Serverless Caching" description="How Momento shines in the serverless ecosystem. Whether its caching or messaging, we've got your back when it comes to infrastructure management." />
+  <Card to="./cache/introduction/common-caching-strategies" title="Caching strategies" description="Leverage Momento to cache where and how you'd like!" />
+  <Card to="./cache/develop/basics/client-configuration-objects" title="Configurations" description="Wherever you go, we have hand-crafted configurations tailored for your environment!" />
+  <Card to="./cache/manage/pricing" title="We scale to zero!" description="No minimum payment, no underutilized resources. Pay for what you use." />
+</div>
 
-## Learn about caching and Momento Cache
-In the following pages, you can learn about caching in general and how to use Momento Cache specifically.
-
-- _If you want to quickly get up and running an SDK example with Momento Cache_, check out [Getting Started](./getting-started.md).
-
-- _If you're looking for our open source SDK's_, head to:
-  - [Node.js](./sdks/nodejs)
-  - [JavaScript Web SDK](./sdks/web)
-  - [Python](./sdks/python)
-  - [.NET](./sdks/dotnet)
-  - [Go](./sdks/go)
-  - [PHP](./sdks/php)
-  - [Java](./sdks/java)
-  - [Kotlin](./sdks/kotlin)
-  - [Rust](./sdks/rust)
-  - [Ruby](./sdks/ruby)
-  - [Elixir](./sdks/elixir)
-  - [Swift](./sdks/swift)
-  - [Dart](./sdks/dart)
-
-- _Looking for Momento icons for your architecture diagrams?_ Download [Momento_Architecture_Icons.zip](@site/static/img/icons/Momento_Architecture_Icons.zip).
-
-# Language Support for Momento Cache
-Learn more about the SDKs available for different programming languages on our [Language Support Page](./develop/language-support/language-support.md).
-
-Have any questions or comments? We'd love to hear from you! You can chat with a Momento specialist by
-[joining our Discord](https://discord.com/invite/3HkAKjUZGq), or e-mail us at [support@momentohq.com](mailto:support@momentohq.com).

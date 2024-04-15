@@ -269,7 +269,16 @@ const config = {
           {
             from: '/topics/develop/patterns/asynchronous-processing',
             to: '/topics/patterns/running-background-tasks'
-          }
+          },
+          //Adds redirects from the removed leaderboards 'Develop' folder
+          {
+            from: '/leaderboards/develop/api-reference',
+            to: '/leaderboards/api-reference'
+          },
+          {
+            from: '/leaderboards/develop/language-support',
+            to: '/leaderboards/language-support'
+          },
         ],
         // This came in with v1.5.0 of the docs where we split out by service.
         // This function redirects anything coming into /develop, /learn, /manage, or /introduction to /cache/<directory>.
@@ -293,9 +302,11 @@ const config = {
   themeConfig:
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
-        /** colorMode: {
-         disableSwitch: true,
-         }, **/
+        colorMode: {
+          disableSwitch: true,
+          defaultMode: 'dark', // This ensures the site uses dark mode by default
+          respectPrefersColorScheme: false, // Optional: set to false to not automatically switch to the user's system theme preference
+        },
         navbar: {
           title: "",
           logo: {
@@ -353,7 +364,7 @@ const config = {
           logo: {
             alt: "Momento Logo",
             src: "img/momento-logo-white.svg",
-            srcDark: "img/momento-logo-forest.svg"
+            srcDark: "img/momento-logo-white.svg"
           },
           copyright: `Copyright © 2022 - ${new Date().getFullYear()} Momento, Inc.`,
           links: [
