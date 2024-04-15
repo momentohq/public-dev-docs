@@ -151,7 +151,7 @@ const TopicsPermissions = {
 
 :::tip
 
-ここで答えられていない質問がある場合は、[私たちのDiscordサーバー](https://discord.gg/2c24SK6W)に参加し、サポートチャンネルで専門家に質問してください
+ここで答えられていない質問がある場合は、[私たちのDiscordサーバー](https://discord.gg/3HkAKjUZGq)に参加し、サポートチャンネルで専門家に質問してください
 
 :::
 
@@ -173,6 +173,6 @@ const TopicsPermissions = {
 
 :::tip
 
-ここで答えられない質問があれば、[私たちのDiscordサーバー](https://discord.gg/2c24SK6W)に飛び、サポートチャンネルで専門家に質問してください。
+ここで答えられない質問があれば、[私たちのDiscordサーバー](https://discord.gg/3HkAKjUZGq)に飛び、サポートチャンネルで専門家に質問してください。
 
 :::
