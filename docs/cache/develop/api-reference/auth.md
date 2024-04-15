@@ -268,6 +268,6 @@ Access tokens generated with the [GenerateAuthToken](#generateauthtoken-api) API
 
 :::tip
 
-If you have any questions not answered here, please jump on [our Discord server](https://discord.gg/2c24SK6W) and ask our experts in the support channel.
+If you have any questions not answered here, please jump on [our Discord server](https://discord.gg/3HkAKjUZGq) and ask our experts in the support channel.
 
 :::
