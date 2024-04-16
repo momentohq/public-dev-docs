@@ -26,40 +26,40 @@ keywords:
   - asyncio
 ---
 
-# Getting Started with Momento Cache in Python
+# PythonでMomento Cacheを始める
 
-If you need to get going quickly with Python and Momento Cache, this page contains the basic API calls you'll need.
+PythonとMomento Cacheをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。
 
 :::tip
 
-If you combine all of the functions on this page into one python file, you'd have a central collection of functions you can import and call from other python code. In addition, if you are using this code in production you might look to replace the print() calls with ones using the logging library (`import logging`) in python. [Click here](@site/static/code/cheat-sheets/MomentoBasics.py) to see the class file with all definitions in it.
+このページのすべての関数を1つのpythonファイルにまとめると、他のpythonコードからインポートして呼び出すことができる関数の中心的なコレクションを持つことができます。さらに、このコードを本番で使用する場合、print() 呼び出しを python の logging ライブラリ (`import logging`) を使用したものに置き換えることができます。[ここをクリックしてください](@site/static/code/cheat-sheets/MomentoBasics.py)。
 
 :::
 
-## Install the Momento SDK
+## Momento SDKをインストールする
 
-The Momento Python SDK is available on [pypi as `momento`](https://pypi.org/project/momento/).
+Momento Python SDK は [pypi as `momento`](https://pypi.org/project/momento/) から入手できます。
 
-To install in your Python application via pip, use:
+Pythonアプリケーションにpip経由でインストールするには、次のようにします：
 
 ```bash
 pip install momento
 ```
 
-## Set up your API key
+## APIキーの設定
 
-You'll need a [Momento API key](/cache/develop/authentication/api-keys) to authenticate with Momento. You can get one, preferably a fine-grained token, from the [Momento Web Console](https://console.gomomento.com/caches).
-Once you have a token, store it in an environment variable so that the Momento client can consume it:
+Momentoで認証するには[Momento API key](/cache/develop/authentication/api-keys)が必要です。できれば、[Momento Web Console](https://console.gomomento.com/caches) から取得できます。
+トークンを取得したら、Momento クライアントが利用できるように環境変数に保存します：
 
 ```
 export MOMENTO_API_KEY=<your Momento token here>
 ```
 
-**Note**: it is best practice to put the token into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
+**Note**: セキュリティ強化のためには、トークンを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに格納するのがベストプラクティスだが、ここではデモのために使用しています。
 
-## Import libraries and connect to return a CacheClient object
+## ライブラリをインポートして接続し、CacheClient オブジェクトを返します
 
-This code sets up the class with the necessary imports, the class definition, and the CacheClient instantiation that each of the other functions will need to call.
+このコードでは、必要なインポート、クラス定義、および他の各関数が呼び出す必要のある CacheClient インスタンス化を使用してクラスを設定します。
 
 ```python
 from datetime import timedelta
@@ -79,8 +79,8 @@ def create_client():
   return CacheClient.create(**config)
 ```
 
-## Create a new cache in Momento Cache
-Use this function to create a new cache in your account.
+## Momento Cacheに新しいキャッシュを作成する。
+この機能を使用して、アカウントに新しいキャッシュを作成します。
 ```python
 def create_cache(client, cache_name: str) -> None:
   resp = client.create_cache(cache_name)
@@ -93,8 +93,8 @@ def create_cache(client, cache_name: str) -> None:
         print(f"Unreachable with {error.message}")
 ```
 
-## Get list of existing caches in your account
-In this example, we use the client function above to get a client object and then use it to list all of the caches for this account.
+## アカウントに存在するキャッシュのリストを取得する
+この例では、上記のclient関数を使ってclientオブジェクトを取得し、それを使ってこのアカウントのすべてのキャッシュをリストアップします。
 ```python
 def list_caches(client) -> None:
     print("Listing caches:")
@@ -109,8 +109,8 @@ def list_caches(client) -> None:
             print("Unreachable")
     print("")
 ```
-## Write an item to a cache
-A simple example of doing a set operation. In the client.set call, the TTL it optional. If you did pass it in, this would override the default TTL value set with the client connection object.
+## キャッシュに項目を書き込む
+セット操作の簡単な例。client.set呼び出しでは、TTLはオプションです。TTLを渡すと、クライアント接続オブジェクトで設定されたデフォルトのTTL値が上書きされます。
 ```python
 def set(client, cache_name, key, value, ttl=None):
   resp = client.set(cache_name, key, value, ttl)
@@ -123,8 +123,8 @@ def set(client, cache_name, key, value, ttl=None):
         print("Unreachable")
 ```
 
-## Read an item from a cache
-This is an example of a simple read operation to get an item from a cache.
+## キャッシュからアイテムを読み込む
+これは、キャッシュから項目を取得する単純な読み取り操作の例です。
 ```python
 def get(client, cache_name, key):
   resp = client.get(cache_name, key)
@@ -137,8 +137,8 @@ def get(client, cache_name, key):
         print("Unreachable")
 ```
 
-## Increment the value of an item in a cache
-An example of incrementing a value in a key. You can pass in a positive or negative integer.
+## キャッシュ内の項目の値をインクリメントする
+キーの値をインクリメントする例。正または負の整数を渡すことができる。
 ```python
 def incr(client, cache_name, key, value:int = 1):
   resp = client.increment(cache_name, key, value)
@@ -152,8 +152,8 @@ def incr(client, cache_name, key, value:int = 1):
 ```
 
 :::info
-Beyond these basic API calls check out the [API reference page](/cache/develop/api-reference/index.mdx) for more information on the full assortment of Momento API calls.
+これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](/cache/develop/api-reference/index.mdx)をチェックしてください。
 :::
 
-## Notes of usage
-For any of these functions, call the `create_client()` function which returns a CacheClient object. Then pass that object into subsequent functions. This way, calls are more efficient as they reuse the CacheClient for multiple calls to Momento. [Click here](@site/static/code/cheat-sheets/MomentoBasics.py) to see a file with all definitions in it.
+## 使用上の注意
+これらの関数では、CacheClient オブジェクトを返す関数 `create_client()` を呼び出します。その後、そのオブジェクトを後続の関数に渡します。こうすることで、Momento への複数の呼び出しで CacheClient を再利用するため、呼び出しがより効率的になります。[ここをクリック](@site/static/code/cheat-sheets/MomentoBasics.py)すると、すべての定義が含まれたファイルを見ることができます。

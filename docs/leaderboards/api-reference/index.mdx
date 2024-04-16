@@ -1,0 +1,468 @@
+---
+sidebar_position: 2
+sidebar_label: API Reference
+title: Leaderboards API reference
+description: Learn how to interact programmatically with the Momento Leaderboards API.
+hide_table_of_contents: false
+---
+
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
+# Using Momento Leaderboards
+
+Momento Leaderboards is a first-class service with purpose-built APIs that supports leaderboards with tens of millions of items and rapid ingestion/querying/updates.
+ 
+
+## Leaderboard Client Methods
+
+---
+
+<div class='row'>
+
+<div class='col col--6'>
+
+### Create Leaderboard Client
+
+To create and interact with leaderboards, you must first create a LeaderboardClient.
+
+#### Parameters
+---
+
+**configuration** - *LeaderboardConfiguration* 
+
+* Options for configuring your leaderboard client. For more information, see [SDK Configuration Objects](/cache/develop/basics/client-configuration-objects).
+
+---
+
+**credentialProvider** - *CredentialProvider*
+
+* See [Instantiating CredentialProviders](/cache/develop#instantiating-credential-providers-using-momento-api-keys) for more information on using your Momento API key
+
+---
+
+#### Optional Parameters
+---
+
+#### Returns
+---
+
+PreviewLeaderboardClient object capable of creating new leaderboards and interacting with existing ones.
+
+</div>
+
+<div class='col col--6'>
+
+<SdkExampleTabs snippetId={'API_InstantiateLeaderboardClient'} />
+
+</div>
+
+</div> 
+
+---
+
+<div class='row'>
+
+<div class='col col--6'>
+
+### Create a Leaderboard
+
+Use a LeaderboardClient to create a leaderboard by specifying a cache and leaderboard name.
+
+#### Parameters
+---
+
+**cacheName** - *string* 
+
+* Which cache to create the leaderboard in
+
+---
+
+**leaderboardName** - *string*
+
+* What to name the leaderboard
+
+---
+
+#### Optional Parameters
+---
+
+#### Returns
+---
+
+Leaderboard object or [Error](/leaderboards/api-reference/response-objects#error)
+
+</div>
+
+<div class='col col--6'>
+
+<SdkExampleTabs snippetId={'API_CreateLeaderboard'} />
+
+</div>
+
+</div>
+
+---
+
+
+
+## Leaderboard Methods
+
+---
+
+<div class='row'>
+
+<div class='col col--6'>
+
+### Upsert elements
+
+Inserts elements if they do not already exist in the leaderboard. Updates elements if they do already exist in the leaderboard. There are no partial failures; an upsert call will either succeed or fail.
+
+<details>
+  <summary>Upsert is implemented as a batched operation, so for large leaderboards, you can upsert in batches of up to 8192 elements. </summary>
+
+<SdkExampleTabs snippetId={'API_LeaderboardUpsertPagination'} />
+
+</details>
+
+#### Parameters
+---
+
+**elements** - *Dictionary* 
+
+* Dictionary of (id, score) pairs to upsert.
+
+  * id: integer
+  * score: double
+
+* The id can be a player identifier, session identifier, browser identifier or any other kind of identifier you want to use for this scoreboard. The full unsigned 64 bit range is allowed here, between 0 and 2^63-1 inclusive. 
+
+* An id can only appear in a leaderboard one time, meaning you can't have two scores for one player unless that player has two ids!
+
+---
+
+#### Optional Parameters
+---
+
+#### Returns
+---
+
+One of the following:
+
+* [LeaderboardUpsert.Success](/leaderboards/api-reference/response-objects#success) 
+* [LeaderboardUpsert.Error](/leaderboards/api-reference/response-objects#error)
+
+</div>
+
+<div class='col col--6'>
+
+<SdkExampleTabs snippetId={'API_LeaderboardUpsert'} />
+
+</div>
+
+</div>
+
+---
+
+<div class='row'>
+
+<div class='col col--6'>
+
+### Fetch elements by score
+
+Fetches elements that fall within the specified min and max scores. 
+
+Elements with the same score will be returned in alphanumerical order based on their ID (e.g. IDs of elements with the same score would be returned in the order `[1, 10, 123, 2, 234, ...]` rather than `[1, 2, 10, 123, 234, ...]`).
+
+<details>
+  <summary>FetchByScore is implemented as a batch operation, so for large leaderboards, you can fetch in batches of up to 8192 elements.</summary>
+
+You can page through multiple elements that fall within the requested score range using the `offset` parameter until you receive an empty list, which indicates the end of the requested elements. 
+
+<SdkExampleTabs snippetId={'API_LeaderboardFetchByScorePagination'} />
+
+</details>
+
+#### Parameters
+---
+
+#### Optional Parameters
+---
+
+**minScore** - *double* 
+
+* Inclusive lower bound for the score range. Defaults to `-inf`.
+
+---
+
+**maxScore** - *double*
+
+* Exclusive upper bound for the score range. Defaults to `+inf`. 
+
+---
+
+**order** - *LeaderboardOrder enum*
+
+* Enum values: Ascending, Descending
+
+* The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank. 
+
+---
+
+**offset** - *integer*
+
+* The number of elements to skip before returning the first element. Defaults to 0. 
+
+* Note: this is not the score of the first element to return, but the number of elements of the result set to skip before returning the first element.
+
+---
+
+**count** - *integer*
+
+* The maximum number of elements to return. Defaults to 8192, which is the maximum that can be fetched per request.
+
+---
+
+#### Returns
+---
+
+One of the following:
+
+* [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#leaderboardfetchsuccess) 
+* [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
+
+</div>
+
+<div class='col col--6'>
+
+<SdkExampleTabs snippetId={'API_LeaderboardFetchByScore'} />
+
+</div>
+
+</div>
+
+---
+
+<div class='row'>
+
+<div class='col col--6'>
+
+### Fetch elements by rank
+
+Fetches elements that fall within the specified min and max ranks.
+
+<details>
+  <summary>For large leaderboards, you will need to fetch in batches of up to 8192 elements.</summary>
+
+<SdkExampleTabs snippetId={'API_LeaderboardFetchByRankPagination'} />
+
+</details>
+
+#### Parameters
+---
+
+**startRank** - *integer* 
+
+* Inclusive lower bound for the rank range. Defaults to 0.
+
+---
+
+**endRank** - *integer* 
+
+* Exclusive upper bound for the rank range. Defaults to `startRank` + 8192.
+
+---
+
+#### Optional Parameters
+---
+
+**order** - *LeaderboardOrder enum*
+
+* Enum values: Ascending, Descending
+
+* The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.
+
+---
+
+#### Returns
+---
+
+One of the following:
+
+* [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#leaderboardfetchsuccess) 
+* [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
+
+</div>
+
+<div class='col col--6'>
+
+<SdkExampleTabs snippetId={'API_LeaderboardFetchByRank'} />
+
+</div>
+
+</div>
+
+---
+
+<div class='row'>
+
+<div class='col col--6'>
+
+## Fetch elements by ID
+
+Fetches elements given a list of element IDs. 
+
+#### Parameters
+---
+
+**ids** - *List* 
+
+* List of integers representing the ids of the elements to fetch.
+
+---
+
+#### Optional Parameters
+---
+
+**order** - *LeaderboardOrder enum*
+
+* Enum values: Ascending, Descending
+
+* The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.
+
+---
+
+#### Returns
+---
+
+One of the following:
+
+* [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#leaderboardfetchsuccess) 
+* [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
+
+</div>
+
+<div class='col col--6'>
+
+<SdkExampleTabs snippetId={'API_LeaderboardGetRank'} />
+
+</div>
+
+</div>
+
+---
+
+<div class='row'>
+
+<div class='col col--6'>
+
+### Get leaderboard length
+
+Gets the number of entries in the leaderboard. The leaderboard name is inferred from the `Leaderboard` object.
+
+#### Parameters
+---
+
+#### Optional Parameters
+---
+
+#### Returns
+---
+
+One of the following:
+
+* [LeaderboardLength.Success](/leaderboards/api-reference/response-objects#leaderboardlengthsuccess) 
+* [LeaderboardLength.Error](/leaderboards/api-reference/response-objects#error)
+
+</div>
+
+<div class='col col--6'>
+
+<SdkExampleTabs snippetId={'API_LeaderboardLength'} />
+
+</div>
+
+</div>
+
+---
+
+<div class='row'>
+
+<div class='col col--6'>
+
+### Remove elements
+
+Removes elements with the specified IDs.
+
+<details>
+  <summary>For large leaderboards, you will need to remove in batches of up to 8192 elements.</summary>
+
+<SdkExampleTabs snippetId={'API_LeaderboardRemoveElementsPagination'} />
+
+</details>
+
+#### Parameters
+---
+
+**ids** - *List* 
+
+* A list of ids for the elements you want to remove.  
+
+---
+
+#### Optional Parameters
+---
+
+#### Returns
+---
+One of the following:
+
+* [LeaderboardRemoveElements.Success](/leaderboards/api-reference/response-objects#success) 
+* [LeaderboardRemoveElements.Error](/leaderboards/api-reference/response-objects#error)
+
+</div>
+
+<div class='col col--6'>
+
+<SdkExampleTabs snippetId={'API_LeaderboardRemoveElements'} />
+
+</div>
+
+</div>
+
+---
+
+<div class='row'>
+
+<div class='col col--6'>
+
+### Delete leaderboard
+
+Deletes the leaderboard. The leaderboard name is inferred from the `Leaderboard` object.
+
+#### Parameters
+---
+
+#### Optional Parameters
+---
+
+#### Returns
+---
+One of the following:
+
+* [LeaderboardDelete.Success](/leaderboards/api-reference/response-objects#success) 
+* [LeaderboardDelete.Error](/leaderboards/api-reference/response-objects#error)
+
+</div>
+
+<div class='col col--6'>
+
+<SdkExampleTabs snippetId={'API_LeaderboardDelete'} />
+
+</div>
+
+</div>
+
+---
