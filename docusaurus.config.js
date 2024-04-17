@@ -6,7 +6,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 const exampleSnippetsPlugin = require('./plugins/example-code-snippets/dist/inject-example-code-snippets');
 const languageApiSupportMatrixPlugin = require('./plugins/example-code-snippets/dist/language-api-support-matrix');
-const path = require("node:path");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
