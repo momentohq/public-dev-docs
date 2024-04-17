@@ -139,13 +139,6 @@ export default function Home(): JSX.Element {
                   variation="dense"
                 />
                 <ReferenceCard
-                  title="Vector Index"
-                  link="./vector-index"
-                  description="Scale-to-zero vector index for search"
-                  icon="/img/vector-index/momento-vector-index-brand-icon.svg"
-                  variation="dense"
-                />
-                <ReferenceCard
                   title="Leaderboards"
                   link="./leaderboards"
                   description="Durable and ready for massive scale"
