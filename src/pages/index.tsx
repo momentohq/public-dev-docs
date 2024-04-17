@@ -39,7 +39,7 @@ export default function Home(): JSX.Element {
     <Layout
       description="Description will go into a meta tag in <head />">
       <main className={styles.content}>
-        <img className={styles.headerBackground} src="/img/acorn-grid-background.svg" />
+        <img className={styles.headerBackground} src="/img/acorn-grid-background.svg"  alt={"acorn-grid"}/>
         <div className={styles.contentContainer}>
           <RotatingHeader />
           <div className={styles.desktopOnly}>

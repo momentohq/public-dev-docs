@@ -6,6 +6,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 const exampleSnippetsPlugin = require('./plugins/example-code-snippets/dist/inject-example-code-snippets');
 const languageApiSupportMatrixPlugin = require('./plugins/example-code-snippets/dist/language-api-support-matrix');
+const path = require("node:path");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -76,7 +77,6 @@ const config = {
       {
         redirects: [
           // Redirect overview
-
           {
             to: '/cache',
             from: '/docs/overview',
@@ -336,10 +336,18 @@ const config = {
             from: '/develop/sdks/swift',
             to: '/sdks/swift'
           },
+          {
+            from: ['/vector-index', '/vector-index/*'],
+            to: '/'
+          }
         ],
         // This came in with v1.5.0 of the docs where we split out by service.
         // This function redirects anything coming into /develop, /learn, /manage, or /introduction to /cache/<directory>.
         createRedirects(existingPath) {
+          if ( existingPath.startsWith("/vector-index") ) {
+            return [existingPath.replace("/", "/vector-index")];
+          }
+
           if (existingPath.includes('/develop') || existingPath.includes('/learn') || existingPath.includes('/manage') || existingPath.includes('/introduction')) {
             return [
               existingPath.replace('/cache/develop', '/develop'),
