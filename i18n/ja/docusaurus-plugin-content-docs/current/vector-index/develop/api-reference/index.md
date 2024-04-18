@@ -21,8 +21,7 @@ Momento Vector Indexes を操作するには、VectorIndexClient を使用する
 <SdkExampleTabs snippetId={'API_InstantiateVectorClient'} />
 
 ## Control APIs
-
-これらのAPIメソッドは、インデックスの管理と制御に使用されます。
+これらのAPIメソッドは、インデックスの管理と制御に使用される。
 
 ### Index の作成
 ベクトルインデックスを作成します。
@@ -30,10 +29,8 @@ Momento Vector Indexes を操作するには、VectorIndexClient を使用する
 | Name             | Type   | Description                                                                                                                                            |
 |------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | indexName        | String | ベクトルのインデックス名                                                                                                                             |
-| numDimensions    | String | ベクトルあたりの次元数
-|
-| similarityMetric | String | ベクトル間の距離を定量化するために使用されるメトリック。cosine similarity, inner product, euclidean similarity のいずれかを指定する。デフォルトは cosine similarity。 |
-
+| numDimensions    | String | ベクトルあたりの次元数                                                                                                                  |
+| similarityMetric | String | ベクトル間の距離を定量化するために使用されるメトリック。cosine similarity, inner product, euclidean similarity のいずれか。デフォルトは cosine similarity。 |
 
 <details>
   <summary>メソッド・レスポンス・オブジェクト</summary>
@@ -67,7 +64,8 @@ Momento Vector Indexes を操作するには、VectorIndexClient を使用する
 
 <SdkExampleTabs snippetId={'API_DeleteIndex'} />
 
-### Indexes のリスト出力
+### Indexes の一覧出力
+
 すべてのベクトル・インデックスを一覧表示します。
 
 <details>
@@ -97,7 +95,7 @@ Momento Vector Indexes を操作するには、VectorIndexClient を使用する
 
 | Name      | Type            | Description                     |
 |-----------|-----------------|---------------------------------|
-| indexName | String          | ベクトルのインデックス名       |
+| indexName | String          | ベクトルのインデックス名      |
 
 <details>
   <summary>メソッド・レスポンス・オブジェクト</summary>
@@ -126,10 +124,11 @@ Momento Vector Indexes を操作するには、VectorIndexClient を使用する
   <summary>メソッド・レスポンス・オブジェクト</summary>
 
 * Success
+    * itemCount(): number
 * Error
+    * 存在しないインデックスはNOT_FOUNDエラーコードを返します。これはアイテムがないインデックスとは異なり、リクエストは0カウントで成功します。
 
 詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
-
 </details>
 
 <SdkExampleTabs snippetId={'API_UpsertItemBatch'} />
@@ -140,13 +139,12 @@ Momento Vector Indexes を操作するには、VectorIndexClient を使用する
 
 | Name           | Type                            | Description                                                                                                                                                              |
 |----------------|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| indexName      | String                          | vector indexの名前                                                                                                                                                |
-| queryVector    | number[]                        | 検索するベクトル                                                                                                                                                    |
+| indexName      | String                          | ベクトルのインデックス名                                                                                                                                               |
+| queryVector    | number[]                        | 検索するベクトル                                                                                                                                              |
 | topK           | number                          | 返す結果の数。デフォルトは10                                                                                                                             |
-| metadataFields | String[] or ALL_VECTOR_METADATA | 各結果とともに返すメタデータ・フィールドのリスト、またはすべてのメタデータを返すことを示す値です。指定しない場合は、メタデータは返されません。デフォルトは None |
-| filter         | [VectorFilterExpression](./filter-expressions.md)          | 結果をフィルターするためのフィルター式。デフォルトはフィルタなし                                                                                                        |
-
-
+| metadataFields | String[] or ALL_VECTOR_METADATA | 各結果とともに返すメタデータ・フィールドのリスト、またはすべてのメタデータを返すことを示す値。指定しない場合は、メタデータは返されません。デフォルトは None。 |
+| scoreThreshold | number                          | 結果をフィルタリングするスコアのしきい値。閾値は排他的です。デフォルトはしきい値なし (すべての結果が返される)。                                                 |
+| filter         | [VectorFilterExpression](./filter-expressions.md)          | 結果をフィルターするためのフィルター式。デフォルトはフィルタなし。                                                                                                         |
 <details>
   <summary>メソッド・レスポンス・オブジェクト</summary>
 
@@ -165,16 +163,16 @@ Momento Vector Indexes を操作するには、VectorIndexClient を使用する
 <SdkExampleTabs snippetId={'API_Search'} />
 
 ### ベクターの検索と取得
-クエリのベクトルに最も近いベクトルを持つアイテムを検索します。検索ヒットしたベクトルに対応するベクトルも返します。
-
+クエリのベクトルに最も近いベクトルを持つアイテムを検索します。検索ヒットしたベクトルに対応するベクトルも返す。
 
 | Name           | Type                            | Description                                                                                                                                                              |
 |----------------|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| indexName      | String                          | vector indexの名前                                                                                                                                                |
+| indexName      | String                          | ベクトルのインデックス名                                                                                                                                              |
 | queryVector    | number[]                        | 検索するベクトル                                                                                                                                                    |
 | topK           | number                          | 返す結果の数。デフォルトは10。                                                                                                                             |
-| metadataFields | String[] or ALL_VECTOR_METADATA | 各結果とともに返すメタデータ・フィールドのリスト、またはすべてのメタデータを返すことを示す値です。指定しない場合は、メタデータは返されません。デフォルトは None |
-| filter         | [VectorFilterExpression](./filter-expressions.md)          | 結果をフィルターするためのフィルター式。デフォルトはフィルタなし                                                                                                        |                                                                                                    |
+| metadataFields | String[] or ALL_VECTOR_METADATA | 各結果とともに返すメタデータ・フィールドのリスト、またはすべてのメタデータを返すことを示す値。指定しない場合は、メタデータは返されない。デフォルトは None。 |
+| scoreThreshold | number                          | 結果をフィルタリングするスコアのしきい値。閾値は排他的。デフォルトはしきい値なし (すべての結果が返される)。                                                |
+| filter         | [VectorFilterExpression](./filter-expressions.md)          | 結果をフィルターするためのフィルター式。デフォルトはフィルタなし                                                                                                       |
 
 <details>
   <summary>メソッド・レスポンス・オブジェクト</summary>
@@ -194,15 +192,14 @@ Momento Vector Indexes を操作するには、VectorIndexClient を使用する
 
 <SdkExampleTabs snippetId={'API_SearchAndFetchVectors'} />
 
-### アイテムのバッチゲット
+### Item のバッチ一括取得
 ベクトルインデックスから項目を一括で取得します。
 
 
 | Name      | Type     | Description                     |
 |-----------|----------|---------------------------------|
 | indexName | String   | ベクトルのインデックス名      |
-| filter    | String[] | 取得するアイテムのID   |
-
+| filter    | String[] | 取得するアイテムのID  |
 <details>
   <summary>メソッド・レスポンス・オブジェクト</summary>
 
@@ -216,14 +213,12 @@ Momento Vector Indexes を操作するには、VectorIndexClient を使用する
 
 <SdkExampleTabs snippetId={'API_GetItemBatch'} />
 
-### アイテムメタデータのバッチゲット
+### Item メタデータ一括取得
 ベクトルインデックスからアイテムのメタデータを一括で取得します。
 
 | Name      | Type     | Description                         |
 |-----------|----------|-------------------------------------|
-| indexName | String   | ベクトルのインデックス名          |
-| filter    | String[] | 取得するアイテムのメタデータのID   |
-
+| indexName | String   | ベクトルのインデックス名         |
 <details>
   <summary>メソッド・レスポンス・オブジェクト</summary>
 
@@ -237,16 +232,14 @@ Momento Vector Indexes を操作するには、VectorIndexClient を使用する
 
 <SdkExampleTabs snippetId={'API_GetItemMetadataBatch'} />
 
-
-### アイテムの一括削除
+### Item の一括削除
 ベクトル・インデックスから項目を一括削除します。
 
 
 | Name      | Type     | Description                     |
 |-----------|----------|---------------------------------|
 | indexName | String   | ベクトルのインデックス名      |
-| filter    | [VectorFilterExpression](./filter-expressions.md) \| String[] | 削除するアイテムまたはアイテムIDにマッチするフィルタ |
-
+| filter    | [VectorFilterExpression](./filter-expressions.md) \| String[] | 削除するアイテムまたはアイテムIDにマッチするフィルタ|
 <details>
   <summary>メソッド・レスポンス・オブジェクト</summary>
 
