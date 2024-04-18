@@ -295,5 +295,5 @@ provided `postUrl`.
 
 </details>
 
-If you have any questions not answered here, please reach out on [our Discord server](https://discord.gg/2c24SK6W) and
+If you have any questions not answered here, please reach out on [our Discord server](https://discord.gg/3HkAKjUZGq) and
 ask our experts in the support channel.

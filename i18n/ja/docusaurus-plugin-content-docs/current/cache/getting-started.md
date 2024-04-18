@@ -1,30 +1,30 @@
 ---
 sidebar_position: 3
-sidebar_label: はじめてみる
-title: はじめてみる
+sidebar_label: Getting Started
+title: Getting Started
 pagination_prev: null
 pagination_next: null
-description: SDK を選んで、Momento Cache と Momento Topics をすぐに使い始めてみましょう。
+description: Jump in and get started quickly using Momento Cache with your SDK of choice.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Momento Cache をはじめてみる
+# Momento Cacheを使い始める
 
-もし Momento Cache を SDK から使ってみる方法をお探しでしたら、ここはあなたにうってつけの場所です。
+SDKを使ってMomento Cacheを使い始めたいとお考えなら、このサイトをご覧ください。
 
-もし何もインストールせずに Momento Cache の体験を手早くしてみたい場合には、こちらから[ブラウザ内で](#cli-と-sdk-をブラウザで試してみる)試してみることもできます。
+ソフトウェアをインストールすることなく、Momento Cacheの使い心地をすぐに試したい場合は、こちらをご覧ください(#try-our-cli-and-an-sdk-in-your browser)。[ブラウザで試す場合はこちら](#try-our-cli-and-an-sdk-in-your-browser)。
 
-## ステップ 1: APIキーを作成する
+## Step 1: APIキーを作成する
 
-[ステップバイステップの手順](https://docs.momentohq.com/cache/develop/authentication/api-keys)に従って、[Momentoコンソール](https://console.gomomento.com/)からAPIキーを作成してください。キーを取得したら、ここに戻ってきてください。
+[ステップバイステップの説明](./develop/authentication/api-keys.md)に従って、[Momentoコンソール](https://console.gomomento.com)からAPIキーを作成してください。キーを取得したら、ここに戻ってきてください。
 
-## ステップ 2: 保存する
+## Step 2: キーの格納
 
-作成したAPIキーを保存できる場所は複数あります。この単純な例では環境変数に保存するが、ベストプラクティスはAWS Secrets ManagerやGCP Secret Managerのような安全な場所に保存することです。
+作成したAPIキーを保存できる場所は複数あります。この単純な例では環境変数に保存しますが、ベストプラクティスはAWS Secrets ManagerやGCP Secret Managerのような安全な場所に保存することです。
 
-## ステップ 3: SDKを取得し、キャッシュを作成し、データを読み書きする。
+## Step 3: SDKを取得し、キャッシュを作成し、データを読み書きする
 
 <Tabs>
    <TabItem value="node" label="Node.js" default>
@@ -36,7 +36,7 @@ npm install @gomomento/sdk
 npm install dotenv
 ```
 
-**.env file の作成**
+**Create a .env file**
 
 ディレクトリに.envファイルを作成し、Momento APIキーとデフォルトで使用するTTL（秒）を格納します。
 
@@ -162,10 +162,9 @@ Cache hit:  12345
 
 ## Momento CLI のインストール
 
-必要であれば、Momento CLIをローカル（Linux、Windows、Mac）にインストールすることもできます。
-CLI の最新バージョンとインストール方法、使い方は [このリポジトリ](https://github.com/momentohq/momento-cli) にあります。
+必要であれば、Momento CLIをローカル（Linux、Windows、Mac）にインストールすることもできます。CLI の最新バージョンとインストール方法、使い方は [このリポジトリ](https://github.com/momentohq/momento-cli) にあります。
 
-## 全ての Momento SDKs
+## すべてのMomento SDK
 
 現在、以下のSDK言語が利用可能です：
 
@@ -176,6 +175,7 @@ CLI の最新バージョンとインストール方法、使い方は [この�
 - [Go](/sdks/go)
 - [PHP](/sdks/php)
 - [Java](/sdks/java)
+- [Kotlin](/sdks/kotlin)
 - [Rust](/sdks/rust)
 - [Ruby](/sdks/ruby)
 - [Elixir](/sdks/elixir)
@@ -188,4 +188,3 @@ CLI の最新バージョンとインストール方法、使い方は [この�
   <summary>Momentoは私のクラウドアカウントにリソースを展開しますか？</summary>
 いいえ、そんなことはありません。Momento Cacheは完全に管理されたAPIベースのサーバーレスサービスで、アプリケーションコード内から呼び出すことができます。
 </details>
-
