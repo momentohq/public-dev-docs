@@ -25,34 +25,34 @@ keywords:
   - browser
 ---
 
-# Getting Started with Momento Vector Index in Python
+# PythonでMomento Vector Indexを始める
 
-If you need to get going quickly with Python and Momento Vector Index, this page contains the basic API calls you'll need.
+PythonとMomento Vector Indexをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。
 
 ## Install the Momento SDK
 
-The Momento Python SDK is available on [pypi as `momento`](https://pypi.org/project/momento/).
+Momento Python SDK は [pypi as `momento`](https://pypi.org/project/momento/) から入手できます。
 
-To install in your Python application via pip, use:
+Pythonアプリケーションにpip経由でインストールするには、次のようにする：
 
 ```bash
 pip install momento
 ```
 
-## Set up your API key
+## APIキーの設定
 
-You'll need a [Momento API key](/cache/develop/authentication/api-keys) to authenticate with Momento. You can get one, preferably a fine-grained token, from the [Momento Web Console](https://console.gomomento.com/caches).
-Once you have a token, store it in an environment variable so that the Momento client can consume it:
+Momentoで認証するには[Momento API key](/cache/develop/authentication/api-keys)が必要です。できれば、[Momento Web Console](https://console.gomomento.com/caches) から取得できます。
+トークンを取得したら、それを環境変数に保存し、Momentoクライアントがそれを使用できるようにします：
 
 ```
 export MOMENTO_API_KEY=<your Momento token here>
 ```
 
-**Note**: it is best practice to put the token into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
+**Note**:セキュリティ強化のためには、トークンを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに格納するのがベストプラクティスだが、ここではデモのために使用している。
 
-## Import libraries and instantiate a vector index client
+## ライブラリをインポートし、ベクトルインデックスクライアントをインスタンス化する
 
-This code sets up the class with the necessary imports, the class definition, and the `PreviewVectorIndexClient` instantiation that each of the other functions will need to call.
+このコードでは、必要なインポート、クラス定義、そして他の各関数が呼び出す必要のある `PreviewVectorIndexClient` のインスタンスをセットアップします。
 
 ```python
 from momento import (
@@ -81,11 +81,11 @@ client = PreviewVectorIndexClient(
   )
 ```
 
-The following examples assume that you have already instantiated a `PreviewVectorIndexClient` as shown above.
+以下の例では、すでに `PreviewVectorIndexClient` をインスタンス化しているものとする。
 
-## Create a new index in Momento Vector Index
+## Momento Vector Indexに新しいインデックスを作成する
 
-Use this snippet to create a new index in your account. The `similarity_metric` parameter is optional and defaults to `SimilarityMetric.COSINE_SIMILARITY`.
+このスニペットを使用して、アカウントに新しいインデックスを作成します。similarity_metric`パラメータはオプションで、デフォルトは `SimilarityMetric.COSINE_SIMILARITY` です。
 
 ```python
 index_name = "my_index"
@@ -102,9 +102,9 @@ elif isinstance(create_index_response, CreateIndex.Error):
     print(f"Error while creating index: {create_index_response.message}")
 ```
 
-## Get list of existing indexes in your account
+## アカウントに存在するインデックスのリストを取得する
 
-In this example, we list the indexes in your account.
+この例では、アカウント内のインデックスをリストします。
 
 ```python
 list_indexes_response = client.list_indexes()
@@ -115,9 +115,9 @@ elif isinstance(list_indexes_response, ListIndexes.Error):
     print(f"Error while listing indexes: {list_indexes_response.message}")
 ```
 
-## Write a batch of items to the index
+## インデックスに項目を一括して書き込む
 
-A simple example of doing an `upsert_item_batch` operation. This operation will insert the items if they don't exist, or replace them if they do.
+`upsert_item_batch`操作の簡単な例です。この操作はアイテムが存在しなければ挿入し、存在すれば置き換えます。
 
 ```python
 index_name = "my_index"
@@ -138,11 +138,11 @@ elif isinstance(upsert_response, UpsertItemBatch.Error):
     print(f"Error while adding items to index {index_name!r}: {upsert_response.message}")
 ```
 
-## Searching the index
+## インデックスの検索
 
-This is an example of a search operation to get the top-k items from the index matching the `query_vector`. The `metadata_fields` parameter is optional and can be used to specify which metadata fields to return in the response.
+これは `query_vector` にマッチするインデックスから上位 k 個のアイテムを取得する検索操作の例です。metadata_fields` パラメータはオプションであり、レスポンスで返すメタデータフィールドを指定するために使用します。
 
-Here we use a `query_vector` of `[1.0, 2.0]` and ask for the top 2 results.
+ここでは `[1.0, 2.0]` の `query_vector` を使い、上位2つの結果を求めています。
 
 
 ```python
@@ -158,9 +158,9 @@ elif isinstance(search_response, Search.Error):
     print(f"Error while searching on index {index_name}: {search_response.message}")
 ```
 
-## Deleting items from the index
+## インデックスから項目を削除する
 
-An example of deleting the items from an index using `delete_item_batch`.
+`delete_item_batch` を使用してインデックスから項目を削除する例です。
 
 ```python
 index_name = "my_index"
@@ -175,7 +175,7 @@ elif isinstance(delete_response, DeleteItemBatch.Error):
 
 ## Deleting an index
 
-An example of deleting an index using `delete_index`.
+`delete_index`を使用してインデックスを削除する例。
 
 ```python
 index_name = "my_index"
