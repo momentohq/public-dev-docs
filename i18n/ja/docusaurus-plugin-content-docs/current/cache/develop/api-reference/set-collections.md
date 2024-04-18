@@ -96,6 +96,34 @@ SetFetch のレスポンスオブジェクトは、キャッシュヒット、�
 
 <SdkExampleTabs snippetId={'API_SetFetch'} />
 
+### SetSample
+
+キャッシュ内のセット項目から要素のランダムサンプリングを取得します。
+
+| Name      | Type   | Description                                     |
+|-----------|--------|-------------------------------------------------|
+| cacheName | String | キャッシュの名前                         |
+| setName   | String | サンプリングするセット項目の名前             |
+| limit     | Number | 取得する要素の最大数 |
+
+<details>
+  <summary>メソッド・レスポンス・オブジェクト</summary>
+
+SetSampleのレスポンス・オブジェクトは、キャッシュ・ヒット、ミス、エラーの3つの可能なオプションを返します。
+
+* Hit
+  * valueSetBytes(): Bytes[]
+  * valueSetString(): String[]
+  * toString(): String
+* Miss
+* Error
+
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetSample'} />
+
 ### SetRemoveElement
 既存のセット項目から単一の要素を削除します。
 
