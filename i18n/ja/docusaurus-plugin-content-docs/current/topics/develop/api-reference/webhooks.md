@@ -284,4 +284,4 @@ WebhookのURLが公開されており、有効であることを確認してく�
 
 </details>
 
-ここにない質問は、[Discordサーバー](https://discord.gg/2c24SK6W)までご連絡ください。サポートチャンネルで専門家にお尋ねください。
+ここにない質問は、[Discordサーバー](https://discord.gg/3HkAKjUZGq)までご連絡ください。サポートチャンネルで専門家にお尋ねください。
