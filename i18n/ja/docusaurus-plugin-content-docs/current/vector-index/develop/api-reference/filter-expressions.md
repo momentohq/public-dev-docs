@@ -48,7 +48,6 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 ### Equals
 フィールドの値が与えられた値と完全に一致するかどうかをテストする。
-
 | Name | Type | Description |
 |------|------|-------------|
 | field | string | 比較するフィールドの名前 |
@@ -56,9 +55,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 
 :::tip
-
 not equals`を表現するには、[not](#not)式と[equals](#equals)式を連結します。
-
 :::
 
 ### Greater than
@@ -79,7 +76,6 @@ not equals`を表現するには、[not](#not)式と[equals](#equals)式を連�
 
 ### Less than
 フィールドの値が指定した値より小さいかどうかをテストする
-
 | Name | Type | Description |
 |------|------|-------------|
 | field | string | 比較するフィールドの名前 |
@@ -95,7 +91,6 @@ not equals`を表現するには、[not](#not)式と[equals](#equals)式を連�
 
 ### List contains
 フィールドの値のリストに指定された値が含まれているかどうかをテストする
-
 | Name | Type | Description |
 |------|------|-------------|
 | field | string | 値のリストを含むフィールドの名前 |
@@ -103,7 +98,6 @@ not equals`を表現するには、[not](#not)式と[equals](#equals)式を連�
 
 ### Id in set
 アイテムのidが指定されたidの集合の中にあるかどうかをテストする。
-
 | Name | Type | Description |
 |------|------|-------------|
 | ids | string[] | インクルードをテストするIDのセット |
@@ -118,7 +112,6 @@ not equals`を表現するには、[not](#not)式と[equals](#equals)式を連�
 |------|------|-------------|
 | firstExpression | VectorFilterExpression |最初に評価する式 |
 | secondExpression | VectorFilterExpression | 評価する2番目の式 |
-
 ### Or
 2つのフィルター式を組み合わせ、どちらか一方または両方を満たす項目を返します。
 
@@ -126,7 +119,6 @@ not equals`を表現するには、[not](#not)式と[equals](#equals)式を連�
 |------|------|-------------|
 | firstExpression | VectorFilterExpression | 最初に評価する式 |
 | secondExpression | VectorFilterExpression | 評価する2番目の式 |
-
 ### Not
 フィルター式の結果を否定する。
 
