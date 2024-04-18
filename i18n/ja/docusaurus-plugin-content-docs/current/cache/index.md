@@ -24,7 +24,7 @@ Momento Cacheは、以下のクラウドプロバイダーおよびリージョ�
 ## CacheとMomento Cacheについて学ぶ
 次のページでは、一般的なキャッシュと、Momento Cacheの具体的な使い方について説明します。
 
-- Momento Cacheを使ったSDKのサンプルを素早く立ち上げて実行したい場合は、[Getting Started](./getting-started.md)をチェックしてください。
+- Momento Cacheを使ったSDKのサンプルを素早く立ち上げて実行したい場合は、[Getting Started](./getting-started)をチェックしてください。
 
 - オープンソースのSDKをお探しなら、こちらをご確認ください。：
   - [Node.js](/sdks/nodejs)
