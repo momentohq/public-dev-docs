@@ -379,6 +379,7 @@ const config = {
             { to: '/topics', label: 'Topics', position: 'left'},
             { to: '/vector-index', label: 'Vector Index', position: 'left'},
             { to: '/leaderboards', label: 'Leaderboards', position: 'left'},
+            { to: '/cloud-linter', label: 'Cloud Linter', position: 'left'},
             {
               to: '/sdks', label: 'SDKs', position: 'right'
             },
