@@ -277,6 +277,6 @@ const tokenResponse = await authClient.generateDisposableToken(
 
 :::tip
 
-ここで答えられない質問があれば、[私たちのDiscordサーバー](https://discord.gg/2c24SK6W)に飛び、サポートチャンネルで私たちに質問してください。
+ここで答えられない質問があれば、[私たちのDiscordサーバー](https://discord.gg/3HkAKjUZGq)に飛び、サポートチャンネルで私たちに質問してください。
 
 :::
