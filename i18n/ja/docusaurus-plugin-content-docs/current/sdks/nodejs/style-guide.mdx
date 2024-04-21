@@ -26,53 +26,53 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Momento Node.js Style Guide
+# Momento Node.js スタイルガイド
 
-When writing Momento Node.js code, you can choose between two different styles: the pattern matching style, or the simplified style. This guide will help you understand the differences between the two styles, so that you can choose which one will work best for your project.
+Momento Node.jsのコードを記述する際には、パターンマッチングスタイルと簡易スタイルの2つの異なるスタイルを選択することができます。このガイドでは、2つのスタイルの違いを理解し、プロジェクトに最適なスタイルを選択できるようにします。
 
-## Pattern matching style
+## パターンマッチングスタイル
 
-If you're not familiar with pattern matching, it is a mechanism that has become increasingly popular in modern programming languages. It allows you to match a value against a pattern to determine the type of the value, and then extract its properties. It's very useful when making network requests, where the type of the response can vary a great deal depending on whether the request was successful or not, because it gives you a way to write exhaustive, type-safe code that handles all possible response types.
+パターン・マッチに馴染みがない人もいるかもしれないが、これは最近のプログラミング言語でますます普及しているメカニズムです。パターンと値をマッチさせて値の型を決定し、そのプロパティを抽出します。リクエストの成否によってレスポンスの型が大きく変わるようなネットワーク・リクエストをするときに、可能性のあるレスポンスの型をすべて処理する網羅的で型安全なコードを書くことができるので、非常に便利です。
 
-For example, when you issue a Momento `get` request (or any other cache read request), the response can be one of three types:
+例えば、Momento の `get` リクエスト (または他のキャッシュ読み込みリクエスト) を発行すると、レスポンスは3つのタイプのうちの1つになります：
 
-* `Hit` - the key was found in the cache, and the value was returned
-* `Miss` - the key was not found in the cache, so no value was returned
-* `Error` - an error occurred while trying to read the value from the cache
+* `Hit` - キーがキャッシュで見つかり、値が返された
+* `Miss` - キーがキャッシュに見つからなかったため、値が返されなかった
+* `Error` - キャッシュから値を読み込もうとしてエラーが発生した
 
-As you can imagine, a type-safe model of these different cases will expose very different properties depending on which type of response you recieve:
-* A `Hit` response will have a `value` property - and it is guaranteed not to be `undefined`, so you don't have to write any `if` statements to handle the `undefined` case.
-* A `Miss` response will have no properties because no value was returned.
-* An `Error` response will have an `errorCode` property, indicating what type of error occurred.
+ご想像の通り、このような異なるケースを型安全にモデル化した場合、どのタイプのレスポンスを受け取るかで、公開されるプロパティは大きく異なります：
+*`Hit` レスポンスには `value` プロパティがあり、それは `undefined` でないことが保証されているので、`undefined` のケースを処理するために `if` ステートメントを書く必要はありません
+* 値が返されなかったので、`Miss` 応答はプロパティを持ちません。
+* `Error` レスポンスには `errorCode` プロパティがあり、どのようなエラーが発生したかを示します。
 
-Using pattern matching, you can write code like this:
+パターン・マッチを使えば、次のようなコードを書くことができます：
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'configuration_ErrorHandlingHitMiss'} />
 
-In each branch of the `if` statement, the TypeScript compiler is smart enough to recognize that it now knows the exact type of the `result` object, so it will give you access to the correct properties based on which type it is. Because of this, you can catch many types of errors at compile time rather than finding out about them at run time. It also gives you a safer way to interact with the error objects than a normal try/catch block would.
+if`文の各分岐で、TypeScriptコンパイラーは賢いので、`result`オブジェクトの正確な型を知っていることを認識し、どの型であるかに基づいて正しいプロパティにアクセスできるようにします。このため、実行時にエラーを発見するのではなく、コンパイル時に多くの種類のエラーを発見することができます。また、通常の try/catch ブロックよりも安全にエラーオブジェクトを扱うことができます。
 
-If your primary goal is to write thorough, production-ready code with exhaustive handling of each different type of response you might receive for a request, then this pattern matching style is the way to go.
+もしあなたの第一の目的が、リクエストに対して受け取る可能性のあるさまざまなタイプのレスポンスを徹底的に処理した、徹底的で本番に使えるコードを書くことであるなら、このパターンマッチングのスタイルが適しています。
 
-However, it can be more verbose and take longer to write than code you might be used to writing against other client libraries. If you prefer something more succinct, you might want to consider the simplified style.
+しかし、他のクライアント・ライブラリに対して書き慣れているコードに比べると、冗長になり、記述に時間がかかることがあります。もっと簡潔なものをお望みなら、簡略化されたスタイルをご検討ください。
 
-## Simplified style
+## シンプルなスタイル
 
-With the simplified style, you won't be doing any pattern matching or type checking. Instead, you will simply call the `.value()` method on the response object. For the case of a `Hit`, you will get the value back; otherwise you will get back an `undefined`.
+簡略化されたスタイルでは、パターンマッチや型チェックは行いません。その代わりに、レスポンスオブジェクトの `.value()` メソッドを呼び出すだけです。Hit`の場合は値が返され、そうでない場合は `undefined` が返されます。
 
-When using the simplified style you will probably want to enable the `withThrowOnErrors` setting. By default, Momento always returns errors as part of the return value, as opposed to throwing them. But when using the simplified code style, if you call `.value()` on a response and you get back `undefined`, you won't be able to tell if the response was a `Miss` or an `Error`. By enabling `withThrowOnErrors`, you can tell the Momento client that you prefer for it to actually throw the errors when they occur.
+簡略化されたスタイルを使用する場合、おそらく `withThrowOnErrors` 設定を有効にしたくなるでしょう。デフォルトでは、Momento はエラーをスローするのではなく、常に返り値の一部として返します。しかし、簡略化されたコードスタイルを使用している場合、レスポンスに対して `.value()` を呼び出して `undefined` を返した場合、そのレスポンスが `Miss` なのか `Error` なのかを判別することができません。withThrowOnErrors` を有効にすることで、Momento クライアントにエラーが発生したときにエラーを投げるように指示することができます。
 
-Here's how to enable `withThrowOnErrors`:
+`withThrowOnErrors`を有効にする方法は以下の通り：
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'configuration_ConstructWithThrowOnErrorsConfig'} />
 
-For more information on this topic, see the [Configuration and Error Handling](./config-and-error-handling) page.
+このトピックの詳細については、[コンフィギュレーションとエラー処理](./config-and-error-handling.mdx)ページを参照してください。
 
-Once you've enabled `withThrowOnErrors`, you can write code like this:
+`withThrowOnErrors`を有効にすると、次のようなコードを書くことができます：
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'configuration_SimplifiedGet'} />
 
-And if an error occurs, it will be thrown as an exception. You can catch the exception and handle it with a normal try/catch block, like this:
+また、エラーが発生した場合は例外としてスローされます。例外をキャッチし、通常のtry/catchブロックで処理することができます：
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'configuration_ErrorHandlingExceptionErrorCode'} />
 
-The simplified style probably looks and feels more familiar to you compared to other Node.js client libraries you might have used in the past. It's also more succinct and faster to write than the pattern matching style. If you prefer to write code that is more concise, and you don't mind the trade-off of not having exhaustive type checking, then this style may be the right fit for you!
+単純化されたスタイルは、おそらくあなたが過去に使用したことがあるかもしれない他のNode.jsクライアント・ライブラリと比較して、より見慣れたものに見え、感じるでしょう。また、パターン・マッチ・スタイルよりも簡潔で速く書くことができます。より簡潔なコードを書くことを好み、網羅的な型チェックができないというトレードオフを気にしないのであれば、このスタイルはあなたに合っているかもしれません！
