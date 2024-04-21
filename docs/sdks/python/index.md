@@ -39,8 +39,8 @@ The source code can be found on GitHub: [momentohq/client-sdk-python](https://gi
 
 ## Resources
 
-- [Getting started with Momento Cache in Python](./cache)
-- [Getting started with Momento Topics in Python](./topics)
+- [Getting started with Momento Cache in Python](./cache.md)
+- [Getting started with Momento Topics in Python](./topics.mdx)
 - [Python SDK Examples](https://github.com/momentohq/client-sdk-python/blob/main/examples/README.md): working example projects that illustrate how to use the Python SDK
 
 ## Integrations

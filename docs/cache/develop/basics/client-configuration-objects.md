@@ -13,7 +13,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # SDK Client configuration objects
 
-`Configuration` objects contain the settings necessary for how a Momento client should connect to Momento services. The `Configuration` object controls settings such as timeouts, retries, logging, middleware, and more.
+`Configuration` objects contain the settings necessary for how a Momento client should connect to Momento services. The `Configuration` object controls settings such as timeouts, retries, logging, middleware, [read concern](../../learn/how-it-works/read-concern), and more.
 
 Each SDK contains pre-built `Configuration` objects to help get you up and running as quickly as possible. We did the hard work of tuning for various deployment environments so you can focus on the things unique to your business. (We even have a blog series about it! [Shockingly simple: Cache clients that do the hard work for you](https://www.gomomento.com/blog/shockingly-simple-cache-clients-that-do-the-hard-work-for-you))
 
