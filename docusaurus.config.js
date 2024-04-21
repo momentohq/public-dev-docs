@@ -381,6 +381,7 @@ const config = {
             { to: '/cache', label: 'Cache', position: 'left'},
             { to: '/topics', label: 'Topics', position: 'left'},
             { to: '/leaderboards', label: 'Leaderboards', position: 'left'},
+            { to: '/cloud-linter', label: 'Cloud Linter', position: 'left'},
             {
               to: '/sdks', label: 'SDKs', position: 'right'
             },
