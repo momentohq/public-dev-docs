@@ -17,9 +17,9 @@ Momento Topicsは、サーバーレスでリアルタイムコミュニケーシ
 [Unity 2022 LTS release](https://unity.com/releases/lts)をダウンロードしてください。このチュートリアルを書くにあたり、特にUnity 2022.3.9f1を使用しましたが、どのUnity 2022 LTSリリースでも動作するはずです。
 
 ### Momento
-Unityのダウンロードとインストールを待つ間、[Momentoコンソール](https://console.gomomento.com)を使ってMomento側の設定を行うことができます。
+Unityのダウンロードとインストールを待つ間、オプションで[Momento console](https://console.gomomento.com)を使ってMomento側の設定を行うことができます。注意: このステップは、独自の API Auth Token を設定する場合にのみ必要です。このチュートリアルの残りの部分では、メインの [Momento Moderated Chat](https://github.com/momentohq/moderated-chat/) アプリケーションの一部として既にデプロイされている [Token Vending Machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine) を利用するので、このステップは必要ありません。ただし、[Unity demo repository](https://github.com/momentohq/momento-unity-demo)には、独自のMomento Topicを利用できる2つのUnityシーンが含まれています。詳しくは、以下の[Example Scenes](#example-scenes)を参照してください。
 
-1. メールアドレスを入力するか、既存の Google または GitHub アカウントをリンクすることで、コンソールでアカウントを作成できます。
+1. [Momentoコンソール](https://console.gomomento.com)で、メールアドレスを入力するか、既存のGoogleまたはGitHubアカウントをリンクすることでアカウントを作成できます。
 2. コンソールにログインしたら、ページの右上にある `Create Cache` ボタンをクリックします：
 [キャッシュ作成ボタン](/img/console-create-cache.png)
 3. `Unity-Topics-Cache`というキャッシュを作成します。キャッシュはクラウドプロバイダー、AWSまたはGCPのいずれかを選択し、任意のリージョンに作成できます。
@@ -27,7 +27,7 @@ Unityのダウンロードとインストールを待つ間、[Momentoコンソ�
 [チャットキャッシュ](/img/unity/Unity-Topics-Cache.png)
 5. [API Key](https://console.gomomento.com/tokens)ページに移動し、キャッシュの作成に使用したクラウドプロバイダーとリージョンを選択し、`Super User API Key` トークンタイプを選択し、`Generate API Key` ボタンをクリックします。
 ![Generate token](/img/console-generate-api-key.png)
-6. `API Key`をコピーして安全な場所に保存してください。後でUnityチャットアプリケーションを設定するために使用する必要があります。
+6. `APIキー`をコピーして安全な場所に保存してください。後でUnityチャットアプリケーションを設定する際に使用できます。
 ![Generated token](/img/console-api-key-result.png)
 
 ## Unityプロジェクトのセットアップ
@@ -41,14 +41,13 @@ Unityのダウンロードとインストールを待つ間、[Momentoコンソ�
 3. 既存のUnityプロジェクトを "Open"をクリックして開きます：
 [新しいUnityプロジェクト](/img/unity/hub-new-project.png)
 4. クローンしたフォルダを選択します。
-5. 5. Unity 2022.3.9f1以外のバージョンを使用している場合、Unityにプロジェクトのエディタバージョンを適切に変更させる必要があるかもしれません。
-6. 6.Unityプロジェクトがロードされたら、`Scenes/MomentTopicsDemo.unity`シーンファイルを開きます。
-
+5. Unity 2022.3.9f1以外のバージョンを使用している場合、Unityにプロジェクトのエディタバージョンを適切に変更させる必要があるかもしれません。
+6. Unityプロジェクトがロードされたら、`MomentoTopicsDemo-ModeratedChat.unity`シーンファイルを開きます。プロジェクトには、様々なレベルの機能を示すいくつかのシーンファイルがあります。Moderated Chat シーンは、メインの[Momento Moderated Chat](https://github.com/momentohq/moderated-chat/)アプリケーションのUnityクライアントを提供します。[How to use webhooks and Momento Topics to build a multi-language chat app](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app)のブログ記事も参照してください。
 このチュートリアルの残りは、サンプルリポジトリを利用します。
 
 ### UnityにMomento .NET SDKを追加する
 プロジェクトを開けたら
-1. 最新の[MomentoSdkUnityリリース.zipファイル](https://github.com/momentohq/client-sdk-dotnet/releases)をダウンロードします。例えば、[v1.23.0 リリース](https://github.com/momentohq/client-sdk-dotnet/releases/tag/v1.23.0) の場合、[MomentoSdkUnity-1.23.0.zip](https://github.com/momentohq/client-sdk-dotnet/releases/download/v1.23.0/MomentoSdkUnity-1.23.0.zip) をダウンロードします。この.zipファイルには、UnityのHTTP/2互換性の制限のためにgRPC-Webを利用するMomento .NET SDKの特別なバージョンが含まれています。必要な DLL の依存関係も zip ファイルに含まれています。
+1. 最新の[MomentoSdkUnityリリース.zipファイル](https://github.com/momentohq/client-sdk-dotnet/releases)をダウンロードします。例えば、[v1.31.1 リリース](https://github.com/momentohq/client-sdk-dotnet/releases/tag/v1.31.1) の場合は、[MomentoSdkUnity-1.31.1.zip](https://github.com/momentohq/client-sdk-dotnet/releases/download/v1.31.1/MomentoSdkUnity-1.31.1.zip) をダウンロードします。この.zipファイルには、UnityのHTTP/2互換性の制限のためにgRPC-Webを利用するMomento .NET SDKの特別なバージョンが含まれています。必要な DLL の依存関係も zip に含まれています。
 4. フォルダ `Assets/MomentoSdkUnity` 内に解凍します。
 
 ## MomentoトピックでUnityチャットアプリケーションを構築する
@@ -57,7 +56,7 @@ Unityのダウンロードとインストールを待つ間、[Momentoコンソ�
 このチュートリアルでは、クローンされたリポジトリにある既存のサンプルコードを利用し、以下の2つのセクションでUIとC#コードがどのようにセットアップされているかの概要を説明します。
 
 ### ユーザーインターフェースの理解
-私たちのサンプルプロジェクトでは、ユーザーインターフェイスはすでに2つの別々の[Unity UI Canvas](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/UICanvas.html)要素にビルドアウトされています。1つはユーザーに名前を選択させるためのもので、もう1つは実際のテキストチャットのためのものです。
+私たちのサンプルプロジェクトでは、ユーザーインターフェイスはすでに3つの別々の[Unity UI Canvas](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/UICanvas.html)要素にビルドアウトされています。1つはユーザーに名前を選択させるためのもの、1つは実際のチャットUIのためのもの、そして1つはユーザーにエラーを伝えるためのものです。
 
 以下に示すように、NameCanvasには[TextMeshPro](https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/)入力フィールドと「Start」ボタンが含まれています。
 
@@ -65,25 +64,27 @@ Unityのダウンロードとインストールを待つ間、[Momentoコンソ�
 
 ユーザーが名前を入力した後、Enterキーを押すか、"Start "ボタンをクリックすると、チャットアプリケーションが起動します。そうすると、C# スクリプトは NameCanvas を非表示にし、MessagingCanvas を表示します。
 
-MessagingCanvas には [Scroll View](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/UIInteractionComponents.html#scroll-rect-scroll-view) があり、チャットメッセージングウィンドウをスクロールできるようにします。適切な [UI 要素の位置決め](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/UIBasicLayout.html) により、チャットメッセージエリアが上方向に成長し、最新のメッセージが常に下に表示されるようにすることができます。
+MessagingCanvasはまた、Unityのモデレートチャットクライアントを完成させるためにいくつかの追加機能を持っています：
+- UIの右上にあるドロップダウンセレクトメニューで、様々な言語の翻訳を切り替えることができます。
+- チャットアプリケーションをロードしている時に表示されるビューの中央のローディングサークルアニメーション
+- サードパーティの[UnityStandaloneFileBrowser](https://github.com/gkngkc/UnityStandaloneFileBrowser)を利用して、ユーザーがチャットメッセージで送信するためにコンピュータから画像をロードできるようにする右下の画像ボタン。
 
-![MessagingCanvas](/img/unity/MessagingCanvas.png)
+### Example Scenes
+サンプルコードでは、Momento SDKとUnityを統合する様々な方法を紹介する4つのUnityシーン例を提供しています。最初の2つは、環境変数 `MOMENTO_AUTH_TOKEN` が設定されていることを確認するか、認証トークンをコピーして `Assets/Scripts/TopicsTest.cs` (または `Assets/Scripts/TopicsTestCoroutine.cs`) に貼り付け、`ReadAuthToken()` 関数の `ADD_YOUR_TOKEN_HERE` を置き換える必要があります (認証トークンをコードにハードコードすることは推奨されませんが、必要に応じてテスト目的で使用できます)。
+- `MomentoTopicsDemo.unity` (using `TopicsTest.cs`): `Task.Run()` を利用して、バックグラウンドのスレッドで Momento Topic のサブスクリプションを実行します。これは上記のアプローチです。このコードは、[Momento .NET SDK Topic Example](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample) に基づいています。
+- `MomentoTopicsDemo-Coroutine.unity`（`TopicsTestCoroutine.cs`を使用）：メインスレッドでサブスクリプションを非同期に実行するためにUnity Coroutinesを利用する以外は、前のシーンと同じです。
+- `MomentoTopicsDemo-TokenVendingMachine.unity` (using `TopicsTestTokenVendingMachine.cs`): 例の [Momento Token Vending Machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine) を利用して、一時的な制限付きスコープの Momento 認証トークンを取得します。(2) トピックメッセージに埋め込まれた `tokenId` を利用することで、特定のメッセージを送信したクライアント/ユーザ名をより安全に知ることができます。TokenVendingMachineを別途明示的にセットアップし、`TopicsTestTokenVendingMachine.cs`で指定した `tokenVendingMachineURL` 変数でそのURLを指定する必要があることに注意してください。
+- `MomentoTopicsDemo-ModeratedChat.unity` (いくつかのヘルパースクリプトと共に `ModeratedChat.cs` を使用): 公開されている Momento モデレートチャットデモのバックエンド (https://github.com/momentohq/moderated-chat/tree/main と https://chat.gomomento.com/ を参照) を利用して、公開チャットデモに接続します。これはチャットのクライアントなので、C#コードのほとんどはすでに存在するJavascriptの[フロントエンドウェブクライアント](https://github.com/momentohq/moderated-chat/tree/main/frontend)を踏襲しています。
 
-MessagingCanvasには絵文字ボタンもあり、利用可能な絵文字を表示したり、チャットに絵文字を追加することができます：
+### (optional) Momento APIキーの追加
+上記の[サンプルシーン](#example-scenes)で述べたように、状況によってはUnityプロジェクトで認証トークンを設定する必要があります。ここでは例として `Assets/Scripts/TopicsTest.cs` を使用します。
 
-[デモビデオ](/img/unity/emojis.png)
+まず最初に、C#スクリプトに[Momento Prerequisite](#momento)ステップで作成したAPIキーを知らせる必要があります。[Momento .NET SDKトピックの例](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample)に従い、環境変数からAPIキーを取得するか、コードにAPIキーをハードコードします(コードにAPIキーをハードコードすることは推奨されませんが、必要に応じてテスト目的で使用することができます。[トークン自動販売機](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine)を使用する別の方法は、上記の[シーンの例](#example-scenes)で説明されています)：
+- Windowsで環境変数を設定するには、Windowsのスタートボタンをクリックし、"environment "を検索して、"Edit the system environment variables "をクリックします。次に "Environment Variables "をクリックし、`MOMENTO_API_KEY`環境変数が設定されていることを確認します。新しく作成した環境変数を認識させるためにUnityを再起動する必要があるかもしれません。
+- C# スクリプトで API キーをハードコードするには、API キーをコピーして `Assets/Scripts/TopicsTest.cs` に貼り付け、`ReadAuthToken()` 関数の `ADD_YOUR_TOKEN_HERE` を置き換えます。
 
-絵文字の挿入を処理するには、ヘルパーC#スクリプト `EmojiHelper.cs` を使用する。
+APIキーが適切に設定されたら、Unity Editorの "Play "ボタンをクリックしてテストすることができます！
 
-### MomentoトピックをサブスクライブするC#スクリプトを理解する
-このサンプルコードでは、[Momento .NET SDK Topic Example](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample) に基づいている `Assets/TopicsTest.cs` でマジックが起こります。
+## 結論
 
-最初に行う必要があるのは、[Momento Prerequisite](#momento) ステップで作成したAPI Keyを C# スクリプトに知らせることです。[Momento .NET SDK Topic Example](https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample)に従って、環境変数からAPI keyを取得するか、コードにハードコーディングします（コードにAPI Keyをハードコーディングすることは推奨されませんが、必要に応じてテスト目的で使用することはできます）：
-- Windowsで環境変数を設定するには、Windowsのスタートボタンをクリックし、"environment "を検索して、"Edit the system environment variables "をクリックします。次に "Environment Variables "をクリックし、`MOMENTO_API_KEY`環境変数が設定されていることを確認してください。新しく作成した環境変数を認識させるためにUnityを再起動する必要があるかもしれません。
-- C# スクリプトでAPI key をハードコードするには、API KEYをコピーして `Assets/TopicsTest.cs` に貼り付け、`ReadAuthToken()` 関数の `ADD_YOUR_TOKEN_HERE` を置き換えます。
-
-API Keyが適切に設定されたら、Unity Editorの "Play "ボタンをクリックしてテストすることができます！
-
-## まとめ
-
-結論から言うと、MomentoとUnityを統合するには、最新の[MomentoSdkUnityリリース.zipファイル](https://github.com/momentohq/client-sdk-dotnet/releases)をダウンロードし、Unityの`Assets`フォルダ内の任意の場所に解凍するだけです。このチュートリアルでは、さらに一歩踏み込んで、Momentoトピックに接続し、簡単にメッセージを公開したり、メッセージを購読できるシンプルなチャットユーザーインターフェイスの設定方法を紹介します。
+結論から言うと、MomentoとUnityを統合するには、最新の[MomentoSdkUnityリリース.zipファイル](https://github.com/momentohq/client-sdk-dotnet/releases)をダウンロードし、Unityの`Assets`フォルダ内の任意の場所に解凍するだけです。このチュートリアルでは、さらに一歩踏み込んで、Momentoトピックに接続して、簡単にメッセージを公開したり、メッセージを購読したりできるシンプルなチャット・ユーザー・インターフェースのセットアップ方法を紹介します。具体的には、公開されているモデレートチャットアプリケーション https://chat.gomomento.com/ の Unity クライアントをデモしました。
