@@ -41,8 +41,8 @@ Momento Node.js SDKはnpmパッケージ[`@gomento/sdk`](https://www.npmjs.com/p
 
 ## リソース
 
-- [Getting started with Momento Cache in JavaScript](/sdks/nodejs/cache.mdx)
-- [Getting started with Momento Topics in JavaScript](/sdks/nodejs/topics.mdx)
+- [Getting started with Momento Cache in JavaScript](./cache.mdx)
+- [Getting started with Momento Topics in JavaScript](./topics.mdx)
 - [Node.js SDK Configuration and Error Handling](./config-and-error-handling.mdx): コードを本番に持ち込む
 - [Node.js SDK Style Guide](./style-guide.mdx): Momentoとの対話に使用できる2つの異なるコードスタイルについて学ぶ
 - [Node.js SDK Observability](./observability.mdx): Node.js SDKによるロギングとクライアント側メトリクス
