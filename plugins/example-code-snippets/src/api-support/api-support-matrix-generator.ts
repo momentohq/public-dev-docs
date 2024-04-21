@@ -118,7 +118,7 @@ const SDKS: Array<SdkInfo> = [
   },
   {
     sdk: Sdk.RUBY,
-    cacheClientFile: 'lib/momento/simple_cache_client.rb',
+    cacheClientFile: 'lib/momento/cache_client.rb',
     configObjectFile: undefined,
     topicClientFile: undefined,
     authClientFile: undefined,
@@ -337,9 +337,6 @@ export class ApiSupportMatrixGenerator {
       case '%%%CACHE_API_SUPPORT_MATRIX%%%': {
         return this.generateCacheMatrixNodes();
       }
-      case '%%%VECTOR_INDEX_API_SUPPORT_MATRIX%%%': {
-        return this.generateVectorIndexMatrixNodes();
-      }
       case '%%%LEADERBOARD_API_SUPPORT_MATRIX%%%': {
         return this.generateLeaderboardMatrixNodes();
       }
@@ -501,10 +498,6 @@ export class ApiSupportMatrixGenerator {
     );
     nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
     return nodes;
-  }
-
-  generateVectorIndexMatrixNodes(): Array<Heading | Paragraph | Table> {
-    return [];
   }
 
   generateLeaderboardMatrixNodes(): Array<Heading | Paragraph | Table> {
