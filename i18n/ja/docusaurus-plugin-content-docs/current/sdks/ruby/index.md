@@ -29,15 +29,15 @@ keywords:
 
 # Momento Ruby SDK
 
-The Momento Ruby SDK is available via the rubygems package [`momento`](https://rubygems.org/gems/momento).
+Momento Ruby SDK は rubygems パッケージ [`momento`](https://rubygems.org/gems/momento) から入手できます。
 
-The source code can be found on GitHub: [momentohq/client-sdk-ruby](https://github.com/momentohq/client-sdk-ruby).
+ソースコードはGitHubにあります： [momentohq/client-sdk-ruby](https://github.com/momentohq/client-sdk-ruby)。
 
-## Requirements
+## 必要条件
 
-- A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
-- Ruby 2.7 or later.
+- Momento API Keyが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
+- Ruby 2.7以降
 
-## Resources
+## リソース
 
-- [Ruby SDK Examples](https://github.com/momentohq/client-sdk-ruby/blob/main/examples/README.md): working example projects that illustrate how to use the Ruby SDK
+- [Ruby SDK Examples](https://github.com/momentohq/client-sdk-ruby/blob/main/examples/README.md): Ruby SDKの使い方を説明するサンプルプロジェクト
