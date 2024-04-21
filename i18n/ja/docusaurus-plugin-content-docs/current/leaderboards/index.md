@@ -27,7 +27,7 @@ Momento Leaderboardsは、数千万件のアイテムと迅速なインジェス
 
 ### Step 1: Momento API キーとキャッシュを作成します。
 
-Momentoコンソール](https://console.gomomento.com/tokens)にアクセスし、指示に従ってメールアドレス、Googleアカウント、またはGitHubアカウントでログインします。
+[Momentoコンソール](https://console.gomomento.com/tokens)にアクセスし、指示に従ってメールアドレス、Googleアカウント、またはGitHubアカウントでログインします。
 
 ![Image of Momento console landing page](@site/static/img/getting-started/console.png)
 
@@ -35,7 +35,7 @@ Momentoコンソール](https://console.gomomento.com/tokens)にアクセスし�
 
 ![Image of Momento console Create Cache form](@site/static/img/console-create-cache-form.png)
 
-次に、[ステップバイステップの手順](https://docs.momentohq.com/cache/develop/authentication/api-keys)に従って、[Momentoコンソール](https://console.gomomento.com)からAPIキーを作成します。
+次に、[ステップバイステップの手順](https://docs.momentohq.com/cache/authentication/api-keys)に従って、[Momentoコンソール](https://console.gomomento.com)からAPIキーを作成します。
 
 ### Step 2: Momento Leaderboards の作成
 
@@ -55,13 +55,13 @@ const leaderboard = client.leaderboard('my-cache', 'my-leaderboard');
 
 ### Step 3: 要素のアップサート、フェッチ、削除
 
-利用可能な各リーダーボードAPIのドキュメントについては、[APIリファレンス](./develop/api-reference/index.md)ページを参照してください。
+利用可能な各リーダーボードAPIのドキュメントについては、[APIリファレンス](/leaderboards/api-reference/index.mdx)ページを参照してください。
 
 各APIの呼び出し方の例を含む実行可能なプログラムについては、[Node.js example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/leaderboard.ts)をチェックしてください。
 
 
 # Momento Leaderboards の言語サポート
-言語サポートページ](./develop/language-support/language-support.md)で、さまざまなプログラミング言語で利用可能なSDKの詳細をご覧ください。
+[言語サポートページ](./language-support/language-support.md)で、さまざまなプログラミング言語で利用可能なSDKの詳細をご覧ください。
 
 
 ## Momento Leaderboardsに関するよくある質問
