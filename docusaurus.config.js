@@ -19,11 +19,7 @@ const config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.png",
-  scripts: [
-    {
-      src: '/askMo.js',
-    },
-  ],
+  scripts: [],
 
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -80,7 +76,6 @@ const config = {
       {
         redirects: [
           // Redirect overview
-
           {
             to: '/cache',
             from: '/docs/overview',
@@ -340,10 +335,18 @@ const config = {
             from: '/develop/sdks/swift',
             to: '/sdks/swift'
           },
+          {
+            from: ['/vector-index', '/vector-index/*'],
+            to: '/'
+          }
         ],
         // This came in with v1.5.0 of the docs where we split out by service.
         // This function redirects anything coming into /develop, /learn, /manage, or /introduction to /cache/<directory>.
         createRedirects(existingPath) {
+          if ( existingPath.startsWith("/vector-index") ) {
+            return [existingPath.replace("/", "/vector-index")];
+          }
+
           if (existingPath.includes('/develop') || existingPath.includes('/learn') || existingPath.includes('/manage') || existingPath.includes('/introduction')) {
             return [
               existingPath.replace('/cache/develop', '/develop'),
@@ -377,7 +380,6 @@ const config = {
           items: [
             { to: '/cache', label: 'Cache', position: 'left'},
             { to: '/topics', label: 'Topics', position: 'left'},
-            { to: '/vector-index', label: 'Vector Index', position: 'left'},
             { to: '/leaderboards', label: 'Leaderboards', position: 'left'},
             {
               to: '/sdks', label: 'SDKs', position: 'right'
@@ -395,26 +397,6 @@ const config = {
             {
               type: 'localeDropdown',
               position: 'right',
-            },
-            {
-              type: 'html',
-              position: 'right',
-              value: `
-              <div id="popup" class="popup">
-                <div class="close-container">
-                  <button class="close-button" onclick="closePopup()">X</button>
-                </div>
-                <div class="controls">
-                  <div id="apiResponse" class="api-response"></div>
-                  <div class="input-container">
-                    <input type="text" id="popupInput" name="popupInput" class="popup-input" placeholder="Ask Mo something..." onkeydown="handleKeyPress(event)">
-                    <button class="submit-button" onclick="submitPopup()">Submit</button>
-                  </div>
-                </div>
-              </div>
-
-              <button class="ask-mo-button" onclick="askMoFunction()">Ask Mo!</button>
-            `,
             },
           ],
         },
