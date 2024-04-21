@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 sidebar_label: Config and Error Handling
 title: Manage Momento Configuration and Error Handling in TypeScript and Node.js
 description: Learn how to configure your Momento CacheClient and write production-ready error handling code in TypeScript and Node.js
@@ -22,42 +22,41 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# How to Manage Configuration and Error Handling in the Momento Node.js SDK
+# Momento Node.js SDKで設定とエラー処理を管理する方法
 
-The code below illustrates the simplest way to construct a `CacheClient`:
+以下のコードは `CacheClient` を作成する最も簡単な方法を示している：
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'configuration_ConstructWithNoConfig'} />
 
-However, you may pass in a `Configuration` object to customize the behavior.
+しかし、`Configuration`オブジェクトを渡して、動作をカスタマイズすることもできる。
 
-Momento provides several pre-built configurations in the `Configurations` module, such as `InRegion` (which is configured
-with timeouts and connection counts that are appropriate for server-side connectivity from within the same AWS region),
-and `Lambda` (which is tuned for use in AWS Lambda environments). Here is how you can specify the `Lambda` configuration:
+Momento は `Configurations` モジュールに、`InRegion` (同じ AWS リージョン内からのサーバーサイド接続に適したタイムアウトと接続カウントを設定したもの)
+(同じ AWS リージョン内からのサーバーサイドの接続に適したタイムアウトと接続カウントで構成されています)、
+や `Lambda` (AWS Lambda 環境で使用するためにチューニングされている) などがあります。以下は `Lambda` の設定方法です：
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'configuration_ConstructWithLambdaConfig'} />
 
 :::tip
-If you omit the configuration, Momento will use the `Laptop` configuration by default. This configuration has relaxed
-timeouts, suitable for development or in high-latency environments. (It is not recommended for production, server-side use.)
+この設定を省略すると、Momento はデフォルトで `Laptop` 設定を使用します。この設定はタイムアウトが緩やかで
+タイムアウトが緩やかで、開発や遅延の大きい環境に適しています。(サーバーサイドでの使用はお勧めしません)。
 :::
 
-For more information about `Configuration` objects see [SDK Configuration Objects](/cache/develop/basics/client-configuration-objects.md).
+Configurationオブジェクトの詳細については、[SDK Configuration Objects](/cache/develop/basics/client-configuration-objects.md)を参照してください。
 
-By default, `CacheClient` errors are surfaced to developers as part of the return values of the calls, as opposed to throwing
-exceptions. This makes errors more visible when you're writing your code, and allows your IDE to be more helpful in ensuring
-you've handled the errors you care about.
+デフォルトでは、`CacheClient` のエラーは、例外をスローするのではなく、呼び出しの返り値の一部として開発者に表示されます。
+例外をスローするのではなく、呼び出しの戻り値の一部として開発者に表示されます。これにより、コードを書いているときにエラーがより見やすくなり、IDE がより役立つようになります。
 
-Here's an example of how to check for errors on a `get` call:
+以下は `get` 呼び出しのエラーをチェックする方法の例です：
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'configuration_ErrorHandlingHitMiss'} />
 
-However, if you prefer for exceptions to be thrown, you can configure the `CacheClient` to do so:
+ただし、例外を発生させたい場合は、`CacheClient` を設定して例外を発生させることができます：
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'configuration_ConstructWithThrowOnErrorsConfig'} />
 
-With this configuration setting, any errors that occur will result in an instance of `SdkError` being thrown. You may
-catch it and use its `.errorCode()` method to determine the specific error that occurred:
+この設定では、エラーが発生すると `SdkError` のインスタンスがスローされます。これをキャッチして
+.errorCode()`メソッドを使用して、発生したエラーを特定できます：
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'configuration_ErrorHandlingExceptionErrorCode'} />
 
-For more information about error handling in Momento see [SDK Error Handling](/cache/develop/basics/error-handling-production-readiness.md).
+Momentoのエラー処理については、[SDK Error Handling](/cache/develop/basics/error-handling-production-readiness.md)を参照してください。
