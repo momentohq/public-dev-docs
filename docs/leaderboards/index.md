@@ -12,7 +12,7 @@ keywords:
   - serverless
 ---
 
-## What is Momento Leaderboards?
+# What is Momento Leaderboards?
 
 Momento Leaderboards is a serverless leaderboard service that supports tens of millions of items and rapid ingestion/querying/updates. While many databases approximate leaderboards via general purpose data structures like sorted set or range queries, Momento Leaderboard is a first-class, full-fledged service that you can quickly and easily integrate with your application.
 
@@ -22,12 +22,20 @@ Leaderboard items will have a 7-day TTL by default. For persistence (unlimited T
 
 :::
 
+:::info
+
+What's the difference between Momento Leaderboards and a Sorted Set?
+
+Momento Leaderboards has a much more efficient memory footprint, allowing us to scale to tens of millions of records, and the APIs were built with gaming use cases specifically in mind.
+
+:::
+
 
 ## Getting Started with Momento Leaderboards
 
 ### Step 1: Create your Momento API key and cache
 
-Go to the [Momento console](https://console.gomomento.com/tokens) and follow the instructions to log in with your email address, Google account, or GitHub account.
+Go to the [Momento console](https://console.gomomento.com) and follow the instructions to log in with your email address, Google account, or GitHub account.
 
 ![Image of Momento console landing page](@site/static/img/getting-started/console.png)
 
@@ -55,21 +63,16 @@ const leaderboard = client.leaderboard('my-cache', 'my-leaderboard');
 
 ### Step 3: Upsert, fetch, and remove elements
 
-See the [API reference](./develop/api-reference/index.md) page for documentation on each available leaderboard API.
+See the [API reference](/leaderboards/api-reference/index.mdx) page for documentation on each available leaderboard API.
 
 Check out the [Node.js example](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/cache/leaderboard.ts) for a runnable program that includes examples of how to call each API.
 
 
 # Language Support for Momento Leaderboards
-Learn more about the SDKs available for different programming languages on our [Language Support Page](./develop/language-support/language-support.md).
+Learn more about the SDKs available for different programming languages on our [Language Support Page](./language-support/language-support.md).
 
 
 ## Frequently asked questions about Momento Leaderboards
-
-<details>
-  <summary>What's the difference between Momento Leaderboards and a Sorted Set?</summary>
-  Momento Leaderboards has a much more efficient memory footprint, allowing us to scale to tens of millions of records, and the APIs were built with gaming use cases specifically in mind.
-</details>
 
 <details>
   <summary>Do Momento Leaderboards items expire?</summary>
