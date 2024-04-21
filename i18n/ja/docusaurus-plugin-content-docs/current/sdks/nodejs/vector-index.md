@@ -28,45 +28,46 @@ keywords:
   - browser
 ---
 
-# Getting Started with Momento Vector Index in JavaScript
+# JavaScriptでMomento Vector Indexを始める
 
-Momento provides two JavaScript SDKs; [one for Node.js](/sdks/nodejs) and [one for browsers other web applications](/sdks/web). The two SDKs have identical APIs, so your code will look the same except for `import` statements, but under the hood they are built for optimal performance and compatibility in different JavaScript runtime environments.
+Momentoは2つのJavaScript SDKを提供しています。[1つはNode.js用](/sdks/nodejs)、[1つはブラウザその他のWebアプリケーション用](/sdks/web)です。2つのSDKは同じAPIを持っているため、`import`文以外は同じコードに見えますが、異なるJavaScript実行環境において最適なパフォーマンスと互換性を保つように作られています。
 
-This page contains the basics that you will need in order to get going quickly with Momento Vector Index. For more in-depth information and examples, visit the SDK pages linked above.
+このページには、Momento Vector Indexをすぐに使い始めるために必要な基本的な情報が記載されています。より詳細な情報や例については、上記のSDKページをご覧ください。
 
 
-## Install the Momento SDK
+## Momento SDKをインストールする
 
-To Install the Momento Node.js SDK in an existing Node.js project:
+既存のNode.jsプロジェクトにMomento Node.js SDKをインストールするには：
 
 ```cli
 npm install @gomomento/sdk
 ```
 
-OR, to install the Momento Web SDK in an existing browser application project:
+または、既存のブラウザ アプリケーション プロジェクトに Momento Web SDK をインストールします：
 
 ```cli
 npm install @gomomento/sdk-web
 ```
 
 :::tip
-You only need one of the two libraries; either `@gomomento/sdk` or `@gomomento/sdk-web`, depending on your target platform. You do not need both.
+`gomento/sdk`または`@gomento/sdk-web`のどちらか片方だけが必要です。両方は必要ありません。
 :::
 
-## Set up your API key
+## APIキーの設定
 
-You'll need a [Momento API key](/cache/develop/authentication/api-keys) to authenticate with Momento. You can get one, preferably a fine-grained token, from the [Momento Web Console](https://console.gomomento.com/caches).
-Once you have a token, store it in an environment variable so that the Momento client can consume it:
+Momentoで認証するには[Momento API key](/cache/develop/authentication/api-keys)が必要です。できれば、[Momento Web Console](https://console.gomomento.com/caches) から取得できます。
+トークンを取得したら、それを環境変数に保存し、Momentoクライアントがそれを使用できるようにします：
+
 
 ```
 export MOMENTO_API_KEY=<your Momento token here>
 ```
 
-**Note**: it is best practice to put the token into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
+**Note**: セキュリティ強化のためには、トークンを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに格納するのがベストプラクティスだが、ここではデモのために使用しています。
 
-## Import libraries and instantiate a vector index client
+## ライブラリをインポートし、ベクトルインデックスクライアントをインスタンス化する。
 
-This code sets up the class with the necessary imports, the class definition, and the `PreviewVectorIndexClient` instantiation that each of the other functions will need to call.
+このコードでは、必要なインポート、クラス定義、そして他の各関数が呼び出す必要のある `PreviewVectorIndexClient` のインスタンスをセットアップします。
 
 ```typescript
 import {CredentialProvider, PreviewVectorIndexClient, VectorIndexConfigurations} from "@gomomento/sdk";
@@ -81,11 +82,11 @@ const client = new PreviewVectorIndexClient({
 
 ```
 
-The following examples assume that you have already instantiated a `PreviewVectorIndexClient` as shown above.
+以下の例では、すでに `PreviewVectorIndexClient` をインスタンス化しているものとしています。
 
-## Create a new index in Momento Vector Index
+## Momento Vector Indexに新しいインデックスを作成する。
 
-Use this snippet to create a new index in your account. The `similarityMetric` parameter is optional and defaults to `VectorSimilarityMetric.COSINE_SIMILARITY`.
+このスニペットを使用して、アカウントに新しいインデックスを作成します。similarityMetric`パラメータはオプションで、デフォルトは `VectorSimilarityMetric.COSINE_SIMILARITY` です。
 
 ```typescript
 const indexName = "my-index";
@@ -101,9 +102,9 @@ if (createResponse instanceof CreateVectorIndex.Success) {
 }
 ```
 
-## Get list of existing indexes in your account
+## アカウントに存在するインデックスのリストを取得する
 
-In this example, we list the indexes in your account.
+この例では、アカウント内のインデックスをリストします。
 
 ```typescript
 const listResponse = await client.listIndexes();
@@ -114,9 +115,9 @@ if (listResponse instanceof ListVectorIndexes.Success) {
 }
 ```
 
-## Write a batch of items to the index
+## インデックスに項目を一括して書き込む
 
-A simple example of doing an `upsertItemBatch` operation. This operation will insert the items if they don't exist, or replace them if they do.
+upsertItemBatch`操作を行う簡単な例です。この操作はアイテムが存在しなければ挿入し、存在すれば置き換えます。
 
 ```typescript
 const indexName = "my-index";
@@ -139,11 +140,11 @@ if (upsertResponse instanceof VectorUpsertItemBatch.Success) {
 }
 ```
 
-## Searching the index
+## インデックスの検索
 
-This is an example of a search operation to get the top-k items from the index matching the `queryVector`. The `metadataFields` parameter is optional and can be used to specify which metadata fields to return in the response.
+これは `queryVector` にマッチするインデックスから上位 k 個のアイテムを取得する検索操作の例です。`metadataFields` パラメータはオプションであり、レスポンスで返すメタデータフィールドを指定することができます。
 
-Here we use a `queryVector` of `[1.0, 2.0]` and ask for the top 2 results.
+ここでは `[1.0, 2.0]` の `queryVector` を使い、上位2つの結果を求めています。
 
 
 ```typescript
@@ -160,9 +161,9 @@ if (searchResponse instanceof VectorSearch.Success) {
 }
 ```
 
-## Deleting items from the index
+## インデックスから項目を削除する
 
-An example of deleting the items from an index using `deleteItemBatch`.
+deleteItemBatch` を使用してインデックスから項目を削除する例です。
 
 ```typescript
 const indexName = "my-index";
@@ -179,9 +180,9 @@ if (deleteResponse instanceof VectorDeleteItemBatch.Success) {
 }
 ```
 
-## Deleting an index
+## インデックスの削除
 
-An example of deleting an index using `deleteIndex`.
+`deleteIndex`を使用してインデックスを削除する例。
 
 ```typescript
 const indexName = "my-index";

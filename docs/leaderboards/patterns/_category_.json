@@ -1,0 +1,9 @@
+{
+  "label": "Patterns",
+  "position": 4,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Best practices on how to use Momento Leaderboards in your architecture!"
+  }
+}
