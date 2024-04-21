@@ -1,10 +1,3 @@
----
-sidebar_position: 11
-sidebar_label: Filter expressions
-title: Filter expression API reference for Momento Vector Index
-description: Learn how to interact with the filter expressions in the Momento API for Vector Indexes.
----
-
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl

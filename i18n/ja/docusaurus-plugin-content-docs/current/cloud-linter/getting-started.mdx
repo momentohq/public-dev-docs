@@ -1,0 +1,32 @@
+---
+sidebar_position: 2
+sidebar_label: Getting Started
+title: Getting Started
+pagination_next: null
+description: Explore Cloud Linter and see what insights it can provide you about your cloud environment.
+hide_title: true
+---
+
+# はじめに
+
+まだインストールしていない場合は、momento cliをインストールしてください。インストールと使い方は[このリポジトリ](https://github.com/momentohq/momento-cli)にあります。
+
+cliをインストールしたら、`cloud-linter`コマンドを使ってAWS環境に対してlinterを実行する。AWS_PROFILE環境変数を使用して、使用するAWSアカウントを指定してください。
+
+<div>
+    <video width="100%" height="100%" playsInline autoPlay muted loop>
+        <source src="/linter_preview.mp4" type="video/mp4" />
+    </video>
+</div>
+
+カレントディレクトリに `linter_results.json.gz` ファイルが生成されます。
+
+![PrivateLink Diagram](/img/cloud-linter/linter_gz_file.png)
+
+その後、[console](https://console.gomomento.com/cloud-linter)を使って、これらの結果をMomentoにアップロードすることができます。
+
+<div>
+    <video width="100%" height="100%" playsInline autoPlay muted loop>
+        <source src="/cloud_linter_demo.mp4" type="video/mp4" />
+    </video>
+</div>
