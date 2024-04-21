@@ -118,7 +118,7 @@ const SDKS: Array<SdkInfo> = [
   },
   {
     sdk: Sdk.RUBY,
-    cacheClientFile: 'lib/momento/simple_cache_client.rb',
+    cacheClientFile: 'lib/momento/cache_client.rb',
     configObjectFile: undefined,
     topicClientFile: undefined,
     authClientFile: undefined,
