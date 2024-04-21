@@ -102,13 +102,8 @@ SetFetch のレスポンスオブジェクトは、キャッシュヒット、�
 
 | Name      | Type   | Description                                     |
 |-----------|--------|-------------------------------------------------|
-<<<<<<< HEAD
-| cacheName | String | キャッシュの名前                         |
-| setName   | String | サンプリングするセット項目の名前             |
-=======
 | cacheName | String | キャッシュの名前                          |
 | setName   | String | サンプリングするセット項目の名前          |
->>>>>>> main
 | limit     | Number | 取得する要素の最大数 |
 
 <details>
