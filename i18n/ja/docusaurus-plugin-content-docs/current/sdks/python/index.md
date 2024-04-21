@@ -39,8 +39,8 @@ Momento Python SDK は pypi パッケージ [`momento`](https://pypi.org/project
 
 ## リソース
 
-- [Getting started with Momento Cache in Python](./cache)
-- [Getting started with Momento Topics in Python](./topics)
+- [Getting started with Momento Cache in Python](./cache.md)
+- [Getting started with Momento Topics in Python](./topics.mdx)
 - [Python SDK Examples](https://github.com/momentohq/client-sdk-python/blob/main/examples/README.md): Python SDKの使い方を説明するサンプルプロジェクト
 
 ## インテグレーション
