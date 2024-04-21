@@ -28,14 +28,14 @@ keywords:
 
 # Momento Rust SDK
 
-The Momento Rust SDK is available via the crates.io package [`momento`](https://crates.io/crates/momento).
+Momento Rust SDK は crates.io パッケージ [`momento`](https://crates.io/crates/momento) から入手できる。
 
-The source code can be found on github: [momentohq/client-sdk-rust](https://github.com/momentohq/client-sdk-rust).
+ソースコードはgithubにあります： [momentohq/client-sdk-rust](https://github.com/momentohq/client-sdk-rust)。
 
-## Requirements
+## 必要条件
 
-- A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- Momento API Keyが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
 
-## Resources
+## リソース
 
-- [Rust SDK Examples](https://github.com/momentohq/client-sdk-rust/blob/main/example/README.md): working example projects that illustrate how to use the Rust SDK
+- [Rust SDK Examples](https://github.com/momentohq/client-sdk-rust/blob/main/example/README.md): Rust SDKの使い方を説明するサンプルプロジェクト
