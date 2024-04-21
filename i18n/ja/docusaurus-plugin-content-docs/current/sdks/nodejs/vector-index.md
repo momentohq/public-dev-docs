@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 5
 sidebar_label: Vector Index
 title: Getting started with Momento Vector Index in JavaScript
 description: Learn the basic building blocks for writing TypeScript and JavaScript code to interact with Momento Vector Index.
