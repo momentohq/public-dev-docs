@@ -88,3 +88,8 @@ Momento Cache は、サービスリソースに関して自社と顧客の保護
 | SortedSetIncrementScore  |                   | 1                                                                 |
 | SortedSetLength          |                   | 1                                                                 |
 | SortedSetLengthByScore   |                   | 1                                                                 |
+
+:::note
+
+アカウントに課金される操作の回数をさらに減らすには、[read concern](./learn/how-it-works/read-concern) ヘッダーを `Express` に設定することを検討してください。こうすることで、課金される操作回数をデフォルト値の0.8倍に減らすことができ、頻繁にアクセスされるキーの待ち時間を減らすことができる。
+:::
