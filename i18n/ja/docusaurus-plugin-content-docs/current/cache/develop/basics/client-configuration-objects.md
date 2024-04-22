@@ -13,7 +13,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # SDKクライアントConfigurationオブジェクト
 
-`Configuration` オブジェクトには、Momento クライアントが Momento サービスに接続するために必要な設定が含まれる。`Configuration` オブジェクトは、タイムアウトや再試行、ロギング、ミドルウェアなどの設定を制御します。
+`Configuration` オブジェクトには、Momento クライアントが Momento サービスに接続するために必要な設定が含まれます。`Configuration` オブジェクトは、タイムアウト、再試行、ロギング、ミドルウェア、[read concern] (../../learn/how--it-works/read-concern) などの設定を制御します。
 
 各SDKには、できるだけ早く立ち上げて実行できるように、あらかじめ`Configuration`オブジェクトが含まれています。様々なデプロイ環境に対応するためのチューニングは私たちが行います。(それについてのブログシリーズもあります！[衝撃的なほどシンプル：あなたのために大変な仕事をするキャッシュクライアント](https://www.gomomento.com/blog/shockingly-simple-cache-clients-that-do-the-hard-work-for-you))
 
