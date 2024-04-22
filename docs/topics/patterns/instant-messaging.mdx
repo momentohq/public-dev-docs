@@ -12,6 +12,9 @@ keywords:
  - enterprise patterns
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Use Momento Cache and Topics to build instant messaging
 
 Instant messaging is a must-have feature in many applications. Communicating seamlessly in one-to-one, one-to-many, and many-to-many conversations is often thought of as a necessary component of an application. With Momento Cache and Topics, you can build instant messaging into your application without any backend infrastructure. Using the [Momento web SDK](../../sdks/web), you can access your cache data and publish and subscribe to messages directly in your browser.
@@ -39,7 +42,7 @@ Most instant messaging platforms store messages to allow users to view the conve
 
 #### Sorted sets
 
-Typically used for things like [leaderboards](https://www.gomomento.com/blog/build-on-momento-tips-and-tricks-for-a-lightning-fast-game-leaderboard), a sorted set is a collection data type that stores multiple value/score elements. In each element, the value is a `string` and the score is an `integer`. Specifically with instant messaging, you can store the time the message was sent as the score and a stringified JSON object as the value. Storing the message timestamp as the score will automatically allow you to sort messages by time since sorted sets do that by default.
+Typically used for things like [leaderboards](https://www.gomomento.com/blog/build-on-momento-tips-and-tricks-for-a-lightning-fast-game-leaderboard), a [sorted set](../../cache/develop/basics/datatypes#sorted-sets) is a collection data type that stores multiple value/score elements. In each element, the value is a `string` and the score is an `integer`. Specifically with instant messaging, you can store the time the message was sent as the score and a stringified JSON object as the value. Storing the message timestamp as the score will automatically allow you to sort messages by time since sorted sets do that by default.
 
 *Note - to store the time as the score, you must get an integer representation of the time. Store either ticks or time in milliseconds since the Unix epoch.*
 
@@ -52,4 +55,290 @@ Sorted sets have a [rich set of features](../../cache/develop/api-reference/sort
 
 Based on the parameters you use in your fetch command, you can easily satisfy any of the use cases above.
 
-A significant point to remember - **messages must be unique in sorted sets**! This means when saving the message to the sorted set, you should include some sort of message identifier in your JSON
+A significant point to remember - **messages must be unique in sorted sets**! This means when saving the message to the sorted set, you should include some sort of message identifier or timestamp in your JSON.
+
+#### List
+
+A [list](../../cache/develop/basics/datatypes#lists) is a collection data type that stores an ordered array of elements. You can push elements to either the front or back of a list and you can add multiple entries at one time. A list is a great data type for instant messaging because it can store messages in the order they were sent. When users join an instant messaging session, you can quickly fetch the entire chat history with a single [listFetch API call](../../cache/develop/api-reference/list-collections#listfetch).
+
+Elements in a list do not need to be unique. You can push the same message into a list over and over again and it will be added every time. Lists are a good choice for instant messaging for the following use cases:
+
+* Paging messages N at a time
+* Adding multiple messages at once
+* Maintaining a chat history of fixed length, i.e. the last 100 messages
+
+When using a list, you have more array manipulation functions than with a sorted set, allowing you to automatically truncate message history if it gets too long or remove specific elements for things like content moderation.
+
+### Delivery
+
+Technically, message storage is not a necessary component for instant messaging. In theory you could have a messaging system that only showed the messages that were sent while a user is connected. Messages could be stored in memory in the client and you'd be done. That said, message delivery is a mandatory part of instant messaging. Getting the message from the sender to all recipients with minimal latency is the core of this pattern. To do this, we can use [Momento Topics](https://www.gomomento.com/platform/topics).
+
+Momento Topics is a low-latency pub/sub service that can connect clients together, client to server, and server to client. Think WebSockets but *way better*. When you publish a message to a topic, Momento will deliver it to all subscribers of the topic, providing fan-out capability or 1 to 1, depending on your use case.
+
+For instant messaging, the sender will *publish* a message to a topic. The recipients of the message, be it one or many depending on your use case, will be *subscribers*. Momento Topics will deliver the published message to the subscribers in real-time, providing for the instant messaging experience we're looking for!
+
+:::tip
+Since topics are dynamic and are not defined resources in your infrastructure, the recommended way to build instant messaging is to *use the chat room or session identifier as the topic name*. This provides flexible and dedicated topics for chat use cases.
+:::
+
+#### Publishing a message
+
+To publish a message, all you need is a single command:
+
+<Tabs>
+  <TabItem value="node" label="Node.js">
+    ```javascript
+    await topics.publish('message-namespace', sessionId, 'Hello world!');
+    ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  topics.publish("message-namespace", sessionId, "Hello world!")
+  ```
+  </TabItem>
+  <TabItem value="go" label="Go">
+  ```go
+  _, err := topics.Publish(ctx, &momento.TopicPublishRequest{
+    CacheName: momento.String("message-namespace"),
+    TopicName: sessionId,
+    Value: momento.String("Hello world!")
+  })
+  ```
+  </TabItem>
+  <TabItem value="java" label="Java">
+  ```java
+  final TopicPublishResponse response =
+    topics.publish("message-namespace", sessionId, "Hello world!").join();
+  ```
+  </TabItem>
+  <TabItem value="dotnet" label=".NET">
+  ```csharp
+    var response = await topics.PublishAsync("message-namespace", sessionId, "Hello world!");
+  ```
+  </TabItem>
+</Tabs>
+
+#### Subscribing to a topic
+
+Subscribing for messages tells Momento whenever something is published to a specific topic, deliver it here and run a specific event handler function. You can subscribe 1 or thousands (or more!) of clients to an individual topic.
+
+<Tabs>
+  <TabItem value="node" label="Node.js">
+  ```javascript
+  const subscription = await topics.subscribe('message-namespace', sessionId, {
+    onItem: (data) => processMessage(data.value(), data.tokenId())
+  })
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  with TopicClient(TopicConfigurations.Default.v1(), _AUTH_PROVIDER) as client:
+    subscription = client.subscribe("cache", "my_topic")
+    match subscription:
+      case TopicSubscribe.Error():
+        raise Exception("Subscription error: ", subscription.message)
+      case TopicSubscribe.Subscription():
+        for item in subscription:
+          match item:
+            case TopicSubscriptionItem.Text():
+              print(item.value)
+            case TopicSubscriptionItem.Binary():
+              print(item.value!r)
+  ```
+  </TabItem>
+  <TabItem value="go" label="Go">
+  ```go
+  subscription, err := topicClient.Subscribe(ctx, &momento.TopicSubscribeRequest{
+		CacheName: cacheName,
+		TopicName: topicName,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	// Receive and print messages in a goroutine
+	go func() { pollForMessages(ctx, subscription) }()
+  time.Sleep(time.Second)
+
+  func pollForMessages(ctx context.Context, subscription momento.TopicSubscription) {
+    for {
+      item, err := subscription.Item(ctx)
+      if err != nil {
+        panic(err)
+      }
+      switch message := item.(type) {
+      case momento.String:
+        fmt.Printf("received message as string: '%v'\n", message)
+      case momento.Bytes:
+        fmt.Printf("received message as bytes: '%v'\n", message)
+      }
+    }
+  }
+  ```
+  </TabItem>
+  <TabItem value="java" label="Java">
+  ```java
+  final TopicSubscribeResponse subscribeResponse =
+    topicClient
+      .subscribe(
+        TopicExample.CACHE_NAME,
+        TOPIC_NAME,
+        new ISubscriptionCallbacks() {
+          @Override
+          public void onItem(TopicMessage message) {
+            logger.info("Received message on topic {}: {}", TOPIC_NAME, message.toString());
+          }
+
+          @Override
+          public void onError(Throwable error) {
+            logger.error("Subscription to topic {} failed with error", TOPIC_NAME, error);
+          }
+        }).join();
+  ```
+  </TabItem>
+  <TabItem value="dotnet" label=".NET">
+  ```csharp
+  var subscriptionTask = Task.Run(async () =>
+  {
+    var subscribeResponse = await topicClient.SubscribeAsync(cacheName, TopicName);
+    switch (subscribeResponse)
+    {
+      case TopicSubscribeResponse.Subscription subscription:
+        try {
+          var cancellableSubscription = subscription.WithCancellation(cts.Token);
+          await foreach (var message in cancellableSubscription) {
+            switch (message)
+            {
+              case TopicMessage.Binary:
+                Logger.LogInformation("Received binary message from topic: {binaryData}", Convert.ToBase64String(binary.Value));
+                break;
+              case TopicMessage.Text text:
+                Logger.LogInformation("Received string message from topic: {message}", text.Value);
+                break;
+              case TopicMessage.Error error:
+                Logger.LogInformation("Received error message from topic: {error}", error.Message);
+                cts.Cancel();
+                break;
+            }
+          }
+        } finally {
+          subscription.Dispose();
+        }
+
+        break;
+      case TopicSubscribeResponse.Error error:
+        Logger.LogInformation("Error subscribing to a topic: {error}", error.Message);
+        cts.Cancel();
+        break;
+    }
+  });
+  ```
+  </TabItem>
+</Tabs>
+
+## Security
+
+Momento provides a [robust authorization mechanism](../develop/authentication/tokens) that limits consumers to specific resources and actions. When building an instant messaging feature, it is incredibly important to take scope into consideration so users do not intercept messages they shouldn't have access to.
+
+The pattern described above uses both cache and topic resources. Following the best practice recommended above by making our chat room the topic name, we can create policies in a couple of different ways.
+
+### Client-side only
+
+It's entirely possible to build instant messaging completely on the client side, meaning directly in the browser or mobile application. Momento Topics allows you to build your application without any additional server-side code. The policy below would be used in your clients.
+
+```json
+{
+  "permissions": [
+    {
+      "role": "readwrite",
+      "cache": "instant-messaging",
+      "item": {
+        "key": "{chatid}"
+      }
+    },
+    {
+      "role": "publishsubscribe",
+      "cache": "instant-messaging",
+      "topic": "{chatid}"
+    }
+  ]
+}
+```
+
+The above policy grants read and write permissions to a specific cache item. The item could be either a sorted set or a list, based on our implementation. The policy does not change based on the data type.
+
+It also grants publish and subscribe permissions to a single topic. Consumers will be able to publish messages to and recieve messages the one topic. Attempting to subscribe to any other topic will result in an authorization error.
+
+Note that both the cache item and topic share the same value. This is the recommended practice and the data from the cache item will not interfere with the messages being published to the topic.
+
+:::info
+The tradeoff for a client-side only approach is trust in your front-end. Since this opens write permissions to the client, you must be careful with how you expose the code. Allowing end users to do write operations requires trust in their usage, because you will not be able to do moderation. This also takes a distributed approach to storing data instead of centralizing storage in server-side code.
+
+If that is tolerable for your application, it results in unrivaled time-to-market and minimal complexity in your application.
+:::
+
+### Server-side and client-side
+
+If you centralize writes in your server-side code, the pattern changes slightly. Raw message input would be submitted through one topic and be picked up by the server code. Any transformations or moderation would be performed before sending it back down to the verified topic. Below is an example of the policy that would be used on the client side following this pattern.
+
+```json
+{
+  "permissions": [
+    {
+      "role": "read",
+      "cache": "instant-messaging",
+      "item": {
+        "key": "{chatid}"
+      }
+    },
+    {
+      "role": "publishonly",
+      "cache": "instant-messaging",
+      "topic": "{chatid}-raw"
+    },
+    {
+      "role": "subscribeonly",
+      "cache": "instant-messaging",
+      "topic": "{chatid}"
+    }
+  ]
+}
+```
+
+The policy above grants read-only access to the cache item storing the conversation. The write is done server-side after moderation and transformation is complete.
+
+It also grants publish access to the `{chatid}-raw` topic. The server code subscribes to this topic, does the moderation, and publishes the final message to the `{chatid}` topic, which the client has subscribe access to.
+
+## Learn more
+
+Momento enables fast, secure development of instant messaging in any application. To learn more about Cache and Topics or to get a quick-start on your project, check out some additional resources below.
+
+
+```mdx-code-block
+import ReferenceCard from '@site/src/components/ReferenceCard';
+
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '20px',
+  marginBottom: '20px'
+}}>
+
+  <ReferenceCard
+    title="More about instant messaging"
+    link="https://www.gomomento.com/solutions/use-cases/chat"
+    description="Learn more about how to build instant messaging on Momento"
+    />
+  <ReferenceCard
+    title="How to build a multi-language chat app"
+    link="https://www.gomomento.com/blog/how-to-develop-a-chat-app-with-built-in-moderation"
+    description="Walk through an app that automatically translates messages to other languages"
+    />
+  <ReferenceCard
+    title="In-game chat case study"
+    link="https://www.gomomento.com/resources/case-studies/momento-enables-zigzagame-to-go-fully-serverless-and-save-money-in-the-process"
+    description="See how ZigZaGame used Momento to power their in-game chat"
+    />
+</div>
+```
