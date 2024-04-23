@@ -79,7 +79,6 @@ Momento Web SDKを使用すると、TypeScriptまたはJavaScriptでリッチな
   <LinkButton text="Style Guide" link="/sdks/nodejs/style-guide.html"/>
   <LinkButton text="Cache" link="/sdks/nodejs/cache.html"/>
   <LinkButton text="Topics" link="/sdks/nodejs/topics.html"/>
-  <LinkButton text="Vector Index" link="/sdks/nodejs/vector-index.html"/>
   <LinkButton text="API Tokens" link="/sdks/web#credentials-for-browsers"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web" openInNewTab="true"/>
   <LinkButton text="Packages" link="https://www.npmjs.com/package/@gomomento/sdk-web" openInNewTab="true" />
@@ -189,7 +188,6 @@ MomentoサーバーサイドSDKを使用すると、バックエンドアプリ�
   <LinkButton text="Style Guide" link="/sdks/nodejs/style-guide.html"/>
   <LinkButton text="Cache" link="/sdks/nodejs/cache.html"/>
   <LinkButton text="Topics" link="/sdks/nodejs/topics.html"/>
-  <LinkButton text="Vector Index" link="/sdks/nodejs/vector-index.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-nodejs/tree/main/examples/nodejs" openInNewTab="true" />
   <LinkButton text="Packages" link="https://www.npmjs.com/package/@gomomento/sdk" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-javascript" openInNewTab="true" />
@@ -226,7 +224,6 @@ MomentoサーバーサイドSDKを使用すると、バックエンドアプリ�
   <LinkButton text="Overview" link="/sdks/python"/>
   <LinkButton text="Cache" link="/sdks/python/cache.html"/>
   <LinkButton text="Topics" link="/sdks/python/topics.html"/>
-  <LinkButton text="Vector Index" link="/sdks/python/vector-index.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-python/tree/main/examples" openInNewTab="true" />
   <LinkButton text="Packages" link="https://pypi.org/project/momento/" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-python" openInNewTab="true" />
