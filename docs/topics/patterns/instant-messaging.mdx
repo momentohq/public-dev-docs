@@ -19,6 +19,10 @@ import TabItem from '@theme/TabItem';
 
 Instant messaging is a must-have feature in many applications. Communicating seamlessly in one-to-one, one-to-many, and many-to-many conversations is often thought of as a necessary component of an application. With Momento Cache and Topics, you can build instant messaging into your application without any backend infrastructure. Using the [Momento web SDK](../../sdks/web), you can access your cache data and publish and subscribe to messages directly in your browser.
 
+:::info
+This pattern uses **Momento Cache** to store historical messages and **Momento Topics** to facilitate real-time communication between instant messaging participants.
+:::
+
 ## Architecture
 
 Building instant messaging on Momento can be done entirely client-side, meaning in your user interface. Browsers, iPhone apps, and Android apps all have the capability to access resources in Momento directly.
@@ -42,10 +46,10 @@ Most instant messaging platforms store messages to allow users to view the conve
 
 #### Sorted sets
 
-Typically used for things like [leaderboards](https://www.gomomento.com/blog/build-on-momento-tips-and-tricks-for-a-lightning-fast-game-leaderboard), a [sorted set](../../cache/develop/basics/datatypes#sorted-sets) is a collection data type that stores multiple value/score elements. In each element, the value is a `string` and the score is an `integer`. Specifically with instant messaging, you can store the time the message was sent as the *score* and a stringified JSON object as the *value*. Storing the message timestamp as the score will automatically allow you to sort messages by time since sorted sets do that by default.
+Typically used for things like [leaderboards](https://www.gomomento.com/blog/build-on-momento-tips-and-tricks-for-a-lightning-fast-game-leaderboard), a [sorted set](../../cache/develop/basics/datatypes#sorted-sets) is a collection data type that stores multiple value/score elements. In each element, the value is a `string` and the score is a `floating point`. Specifically with instant messaging, you can store the time the message was sent as the *score* and a stringified JSON object as the *value*. Storing the message timestamp as the score will automatically allow you to sort messages by time since sorted sets do that by default.
 
 :::tip
-To store the time as the score, you must use an integer representation of the time. Store either ticks or time in milliseconds since the Unix epoch.
+To store the time as the score, you must use an integer representation of the time. Store either ticks or time in [milliseconds since the Unix epoch](https://www.epochconverter.com/).
 :::
 
 Sorted sets have a [rich set of features](../../cache/develop/api-reference/sorted-set-collections) that allow you to access messages in many different ways. Consider the following use cases:
