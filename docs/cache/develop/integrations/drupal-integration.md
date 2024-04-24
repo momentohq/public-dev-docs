@@ -7,6 +7,16 @@ pagination_next: null
 ---
 
 # Integrating Momento Cache with Drupal
+# METHOD 1: (Recommended)
+You can integrate Momento with your Drupal installation, enhancing caching capabilities seamlessly. This integration offers a cache backend tailored for Drupal caching operations, leveraging Momento's serverless caching solution. By adopting Momento, you eliminate the necessity of managing and maintaining your cache servers.
+
+To begin utilizing this integration, follow these simple steps:
+
+1. Download the Momento module from [here](https://www.drupal.org/project/momento).
+2. Follow the provided instructions in [README](https://git.drupalcode.org/project/momento/-/blob/1.0.x/README.md?ref_type=heads) to configure the Momento module according to your requirements.
+
+
+# METHOD 2: 
 
 [Drupal](https://www.drupal.org) is a free and open-source content management framework built in PHP and is considered to be among the most stable, secure, and flexible content management solutions available. By default, Drupal uses a database—typically MySQL, MariaDB, or PostgreSQL—to cache the results of relatively expensive calculations. However, there is a problem with this approach: databases are, relatively speaking, slow. As a site’s need for scalability and performance increases, so do the advantages provided by a dedicated caching solution. 
 
@@ -55,6 +65,4 @@ You may also optionally provide the path to a log file (make sure it's writable 
 `$settings['momento_cache']['logfile'] = '<YOUR_LOG_FILE_PATH>';`
 
 **Please be aware** that this file will grow quickly over time, so if you choose to enable it long-term, you should probably use logrotate or some similar utility to keep it from growing out of control. If you choose not to specify a logfile, errors will still be logged to Drupal's dblog in the `momento_cache` type category.
-
-
 
