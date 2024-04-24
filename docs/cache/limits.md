@@ -36,6 +36,7 @@ If your prefered provider or Region are not listed, [contact us](mailto:support@
 | Europe (Ireland)     | eu-west-1      |
 | Asia (Mumbai)        | ap-south-1     |
 | Asia (Tokyo)         | ap-northeast-1 |
+| Asia (Singapore)     | ap-southeast-1 |
 
 ## Soft limits and support
 
