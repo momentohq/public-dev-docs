@@ -34,6 +34,7 @@ If your prefered provider or Region are not listed, [contact us](mailto:support@
 | US East (Ohio)       | us-east-2      |
 | US West (Oregon)     | us-west-2      |
 | Europe (Ireland)     | eu-west-1      |
+| Europe (Frankfurt)   | eu-central-1   |
 | Asia (Mumbai)        | ap-south-1     |
 | Asia (Tokyo)         | ap-northeast-1 |
 | Asia (Singapore)     | ap-southeast-1 |
