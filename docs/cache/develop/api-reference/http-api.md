@@ -25,17 +25,16 @@ For each connection, you will need a Momento auth token generated via the [Momen
 
 To access the Momento HTTP API, use one of the following endpoints in the region of your API token and cache.
 
-|   | AWS Region     | Endpoints                                                    |
-|---|----------------|--------------------------------------------------------------|
-| 1 | us-west-2      | https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com    |
-| 2 | us-east-1      | https://api.cache.cell-us-east-1-1.prod.a.momentohq.com      |
-| 3 | us-east-2      | https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com    |
-| 4 | ap-northeast-1 | https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com |
-| 5 | eu-west-1      | https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com    |
-| 6 | ap-south-1     | https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com   |
-
-
-If you do not see a Region you require, let’s discuss. Please contact [Support](mailto:support@momentohq.com).
+| AWS Region     | Endpoints                                                    |
+|----------------|--------------------------------------------------------------|
+| us-west-2      | https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com    |
+| us-east-1      | https://api.cache.cell-us-east-1-1.prod.a.momentohq.com      |
+| us-east-2      | https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com    |
+| ap-northeast-1 | https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com |
+| ap-southeast-1 | https://api.cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com|
+| eu-west-1      | https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com    |
+| eu-central-1   | https://api.cache.cell-1-eu-central-1-1.prod.a.momentohq.com |
+| ap-south-1     | https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com   |
 
 ## Get Value
 

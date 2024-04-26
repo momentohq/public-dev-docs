@@ -1,0 +1,42 @@
+---
+displayed_sidebar: topLevelSidebar
+sidebar_label: Quotas and Limits
+title: Momento auth service quotas
+pagination_next: null
+description: Examine the service quotas in place with Momento auth and discover the default and tunable values for your workload based on your support plan.
+hide_title: true
+slug: /auth/limits
+---
+# Authorization quotas in your Momento account
+
+:::info
+Service quotas are directly affected by the support plan on your account. Both <ins>soft and hard limits</ins> are increasable for the Pro tier and Enterprise plans. If you would like to request an increase, please [contact sales](https://www.gomomento.com/contact-us).
+:::
+
+<table className="customTable">
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Entity</th>
+      <th>Default</th>
+      <th>Basic support</th>
+      <th>Pro support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className="highlightRow">
+      <td colspan="5"><strong>Hard limits</strong></td>
+    </tr>
+    <tr>
+      <td>Time to live (TTL)</td>
+      <td>token</td>
+      <td colspan="3">1 hour</td>
+    </tr>
+    <tr>
+      <td>Policy statements</td>
+      <td>token</td>
+      <td colspan="3">20</td>
+    </tr>
+  </tbody>
+</table>
+
