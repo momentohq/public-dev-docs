@@ -21,6 +21,23 @@ Momento Cache は、サービスリソースに関して自社と顧客の保護
 | [コレクション(CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts)ごとの要素サイズ制限|128KB          |
 | [APIキーまたはトークン](./develop/api-reference/auth.md)ごとのパーミッション (ハードリミット) | 10             |
 
+# Region Availability
+
+ご希望のプロバイダーや地域がリストにない場合は、[お問い合わせ](mailto:support@momentohq.com)までご連絡ください。
+
+## Region Availability (AWS)
+
+| Region Name          | Region         |
+|----------------------|----------------|
+| US East (N.Virginia) | us-east-1      |
+| US East (Ohio)       | us-east-2      |
+| US West (Oregon)     | us-west-2      |
+| Europe (Ireland)     | eu-west-1      |
+| Europe (Frankfurt)   | eu-central-1   |
+| Asia (Mumbai)        | ap-south-1     |
+| Asia (Tokyo)         | ap-northeast-1 |
+| Asia (Singapore)     | ap-southeast-1 |
+
 ## ソフトリミットとサポート
 
 このページの制限は、特に指定がない限り変更できるソフト制限です。 制限の調整が必要な場合は、[Momento サポート](mailto:support@momentohq.com) までご連絡ください。 ログインメールアドレス、変更するキャッシュの名前、キャッシュが配置されているクラウド + リージョン (例: AWS eu-west-1)、およびリストのどの制限を増やしたいかを含めてご連絡いただけると幸いです。
