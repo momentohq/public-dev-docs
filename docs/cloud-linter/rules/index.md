@@ -14,3 +14,4 @@ Cloud Linter rules are grouped by resource type to help you understand their pur
 ## DynamoDB
 
 - [dynamodb-infrequent-access](./rules/dynamodb-infrequent-access)
+- [dynamodb-delete-protection](./rules/dynamodb-delete-protection)

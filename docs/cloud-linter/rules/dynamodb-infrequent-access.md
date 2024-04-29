@@ -2,7 +2,6 @@
 
 Apply a pricing model better suited for infrequently-accessed data.
 
-Details
 DynamoDB introduced the Standard-IA table class in 2021. The Standard-IA table class offers a lower price point for data storage, in exchange for higher costs to access that data. For some workloads, applying this pricing model can reduce costs by up to 60%.
 
 Per DynamoDB documentation, the table class can be changed twice in a 30-day period. Selecting either the Standard or Standard-IA table class has no effect on table performance, availability, reliability, or durability.
