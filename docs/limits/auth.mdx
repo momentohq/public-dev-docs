@@ -7,11 +7,13 @@ description: Examine the service quotas in place with Momento auth and discover 
 hide_title: true
 slug: /auth/limits
 ---
-# Authorization quotas in your Momento account
+# Momento authorization service quotas
 
 :::info
 Service quotas are directly affected by the support plan on your account. Both <ins>soft and hard limits</ins> are increasable for the Pro tier and Enterprise plans. If you would like to request an increase, please [contact sales](https://www.gomomento.com/contact-us).
 :::
+
+## Limits
 
 <table className="customTable">
   <thead>
@@ -25,6 +27,16 @@ Service quotas are directly affected by the support plan on your account. Both <
   </thead>
   <tbody>
     <tr className="highlightRow">
+      <td colspan="5"><strong>Soft limits</strong></td>
+    </tr>
+    <tr>
+      <td>Namespace count</td>
+      <td>region</td>
+      <td>3</td>
+      <td>30</td>
+      <td>300</td>
+    </tr>
+    <tr className="highlightRow">
       <td colspan="5"><strong>Hard limits</strong></td>
     </tr>
     <tr>
@@ -36,6 +48,11 @@ Service quotas are directly affected by the support plan on your account. Both <
       <td>Policy statements</td>
       <td>token</td>
       <td colspan="3">20</td>
+    </tr>
+    <tr>
+      <td>Operations per second</td>
+      <td>account</td>
+      <td colspan="3">5</td>
     </tr>
   </tbody>
 </table>

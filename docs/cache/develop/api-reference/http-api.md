@@ -23,7 +23,7 @@ For each connection, you will need a Momento auth token generated via the [Momen
 
 ## Regions
 
-To access the Momento HTTP API, use one of the following endpoints in the region of your API token and cache.
+To access the Momento HTTP API, use one of the following endpoints in the region of your API token and cache. If you do not see a region you require, let’s discuss. Please [contact support](mailto:support@momentohq.com).
 
 | AWS Region     | Endpoints                                                    |
 |----------------|--------------------------------------------------------------|

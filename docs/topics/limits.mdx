@@ -7,11 +7,13 @@ description: Examine the namespace, webhook, and message-level quotas in place w
 hide_title: true
 slug: /topics/limits
 ---
-# Namespace, message, and webhook quotas in Momento Topics
+# Momento Topics service quotas
 
 :::info
 Service quotas are directly affected by the support plan on your account. Both <ins>soft and hard limits</ins> are increasable for the Pro tier and Enterprise plans. If you would like to request an increase, please [contact sales](https://www.gomomento.com/contact-us).
 :::
+
+## Limits
 
 <table className="customTable">
   <thead>
@@ -55,6 +57,13 @@ Service quotas are directly affected by the support plan on your account. Both <
       <td>500</td>
       <td>5,000</td>
     </tr>
+    <tr>
+      <td>Namespace count</td>
+      <td>region</td>
+      <td>3</td>
+      <td>30</td>
+      <td>300</td>
+    </tr>
     <tr className="highlightRow">
       <td colspan="5"><strong>Hard limits</strong></td>
     </tr>
@@ -68,6 +77,11 @@ Service quotas are directly affected by the support plan on your account. Both <
       <td>webhook</td>
       <td colspan="3">5 seconds</td>
     </tr>
+    <tr>
+      <td>Operations per second</td>
+      <td>account</td>
+      <td colspan="3">5</td>
+    </tr>
   </tbody>
 </table>
 
@@ -75,15 +89,18 @@ Service quotas are directly affected by the support plan on your account. Both <
 
 Each message published to Momento Topics counts as a single operation. Every message delivered counts as an additional operation. A topic with 9 subscribers would result in 10 operations for every message published: one for the publish and one for each subscription.
 
-<table class="customTable">
-  <thead>
-    <tr>
-      <th>API Name</th>
-      <th>Operations</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>Publish</td><td>1</td></tr>
-    <tr><td>Subscribe</td><td>1</td></tr>
-  </tbody>
-</table>
+Messages are billed in 1 KB chunks. A .5 KB published message will be charged 1 operation. However, a 1.4 KB message will be charged 2 operations.
+
+## Examples
+
+**Message broadcast**
+
+A .1 KB message is published to a topic that has 9 subscribers.
+
+> *1 message published + 9 subscribers = 10 operations*
+
+**Large direct message**
+
+A 4 KB message is published to a topic that has a single subscriber.
+
+> *(4 KB / 1 KB chunk) x 1 subscriber = 4 operations*

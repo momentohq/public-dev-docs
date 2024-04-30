@@ -19,7 +19,7 @@ keywords:
 
 # Available regions
 
-Momento is a region-based service with availability all over the world.
+Momento is a region-based service with availability all over the world. If you do not see a region you require, let’s discuss. Please [contact support](mailto:support@momentohq.com).
 
 
 | Region Name          | Region         |

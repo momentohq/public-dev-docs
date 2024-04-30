@@ -63,11 +63,6 @@ const sidebars = {
       items: [
         {
           type: 'link',
-          label: 'Account',
-          href: '/account/limits'
-        },
-        {
-          type: 'link',
           label: 'Auth',
           href: '/auth/limits'
         },
