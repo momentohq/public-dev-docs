@@ -1,0 +1,59 @@
+---
+sidebar_position: 6
+sidebar_label: Compression
+title: Using compression in your Momento Node.js code
+description: "Learn how to compress your data when using the Momento Node.js SDK"
+keywords:
+  - momento
+  - cache
+  - configuration
+  - sdk
+  - production ready
+  - typescript
+  - node.js
+  - nodejs
+  - javascript
+  - compression
+  - zstd
+---
+
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
+
+# Using compression in the Momento Node.js SDK
+
+The `get`/`set` and `getBatch`/`setBatch` cache methods in the Momento Node.js SDK support [ZSTD](https://facebook.github.io/zstd/) compression. If your data is compressible, enabling compression can significantly decrease the amount of data sent to Momento at the cost of increased CPU usage.
+
+## Enabling compression
+
+To avoid adding extra dependencies, the Momento Node.js SDK does not include compression by default. To add it, you'll need to install the `sdk-nodejs-compression` dependency:
+
+```cli
+npm install @gomomento/sdk-nodejs-compression
+```
+
+Once that is installed, you can enable compression by adding a compression strategy to the cache client configuration:
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_ConfigurationWithCompression'} />
+
+If you want to be able to compress data, but don't want the SDK to automatically decompress it, you can also configure that:
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_ConfigurationWithCompressionNoAutomatic'} />
+
+## Compressing your data
+
+With the dependency installed and the client configured, you can specify `compress: true` when calling set or setBatch to compress that value:
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_SetWithCompression'} />
+
+If automatic decompression is enabled, you won't need to change your get or getBatch calls. You can specify `decompress: true` or `decompress: false` if you want to override the automatic decompression setting:
+
+<SdkExampleCodeBlock language={'javascript'} snippetId={'API_GetNoDecompress'} />
+
+Uncompressed data will be unaffected by the compression configuration.
+
+## More Examples
+
+You can find a complete example of a client getting and setting compressed data in the [JavaScript SDK GitHub repository.](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/nodejs/compression)
