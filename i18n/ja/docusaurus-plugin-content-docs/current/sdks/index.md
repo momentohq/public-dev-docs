@@ -1,4 +1,5 @@
 ---
+displayed_sidebar: topLevelSidebar
 title: Find the Right Momento SDK for your Language and Use Case 
 description: Momento provides SDKs for a wide variety of languages and target platforms. Find the right SDK for your use case!
 pagination_next: null
