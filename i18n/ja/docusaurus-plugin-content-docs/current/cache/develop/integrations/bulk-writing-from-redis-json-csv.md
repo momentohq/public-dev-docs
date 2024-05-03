@@ -1,42 +1,30 @@
 ---
 sidebar_position: 5
-sidebar_label: データをまとめて書き込む
-title: Redis、CSV、JSON、等から Momento Cache へ効率的にまとめて書き込む
-description: 溜まったデータを Momento Cache へスムーズにマイグレーションする方法を学びましょう。
-pagination_next: null
+sidebar_label: Bulk data writing
+title: Bulk data writing Redis, CSV, and JSON into Momento Cache
+description: Learn to migrate heaps of data into Momento Cache smoothly.
 ---
 
-# Redis、CSV、JSON、等から Momento Cache へ効率的にまとめて書き込む
+# Redis、CSV、JSONなどからMomento Cacheへの効率的な一括書き込み
 
-もし既存のデータソースから大量のデータを Momento Cache へマイグレーションする必要がある場合は、このドキュメントがうってつけの場所です。
-ここでは Redis をデータソースとしたパイプラインを提案していますが、設計上は他のデータソース、例えば CSV、JSON、Parquet、そして Memcache 等に
-拡張可能です。
+既存のソースから大量のデータをMomentoキャッシュに移行する必要がある場合、あなたは正しい場所にいます。ここで提案するパイプラインはRedisデータソースをサポートしていますが、CSV、JSON、Parquet、Memcacheなど他のデータソースにも拡張可能です。
+Momentoは、抽出、検証、ロードを個別に、または合理化されたパイプラインを介して簡素化するバルク・ロード・ツールキットを提供します。
+![diagram](/img/bulk-writing-diagram.svg)
+上の図では、パイプラインがまずデータソースを共通のフォーマットである[JSON行(JSON-L)](https://jsonlines.org/)に正規化(抽出)するのがわかります。次に、Momento と互換性のないデータを特定するためのチェックが行われます。最後に、有効なデータがキャッシュにロードされます。
+私たちはデータソースを追加するための貢献を奨励し、歓迎します。[Discord](https://discord.com/invite/3HkAKjUZGq)またはメール[Momento support](mailto:support@momentohq.com)で、特定のデータソースのサポートをリクエストすることもできます。
 
-Momento はまとめてロードするためのツールキットを提供しており、それを使えば、個別に、もしくはパイプラインでデータを展開、検証し、ロードする処理を
-簡素化することができます。
 
-![diagram](@site/static/img/bulk-writing-diagram.svg)
-
-上の図で、パイプラインはデータソースを共通のフォーマット、[JSON lines (JSON-L)](https://jsonlines.org/) にデータを正規化(展開)していることが
-わかります。次に、Momento と互換性のないデータを特定するためのチェック処理を実行します。最後に、正当なデータをキャッシュにロードします。
-
-私たちは、他のデータソースを追加してくれる皆さんの貢献を心待ちにしています。または、特定のデータソースのサポートを、[Discord](https://discord.com/invite/3HkAKjUZGq)
-又は　[Momento support](mailto:support@momentohq.com)　へのメールでリクエストすることもできます。
-
-## ツールセットのワークフローを設定する
-
+## ツールセット・ワークフローの設定
 ### 前提条件
 
-Redis データベースから読み出すためにツールセットを使うには、Java 8 以上のバージョンがインストールされていることを確認してください。
-Windows をご利用の方は、bash をインストールするか、もしくは Windows Subsystem for Linux (WSL) の Linux を利用する必要があります。
+Redisデータベースを読み込むためのツールセットを使用するには、Java 8またはそれ以上のバージョンがインストールされていることを確認してください。Windowsユーザーの場合は、さらにbashをインストールするか、Windows Subsystem for Linux（WSL）を使用してLinuxバージョンを実行する必要があります。
 
-### インストールステップ
+### インストール手順
 
-1. 最新版を[ダウンロードするために、リリースページ](https://github.com/momentohq/momento-bulk-writer/releases)へ行きます。
-2. Linux、OSX、または Windows のランタイムから選択します。
-3. リリースを解凍し、お好みのディレクトリへ untar します。
-
-Linux での例は以下の様になります:
+1. 最新リリースをダウンロードするには、[リリースのページ](https://github.com/momentohq/momento-bulk-writer/releases)に移動
+2. ランタイムはLinux、OSX、Windowsから選択可能
+3. リリースを解凍し、任意のディレクトリに解凍
+以下はLinuxの例です：
 
 ```cli
 $ wget https://github.com/momentohq/momento-bulk-writer/releases/download/${version}/momento-bulk-writer-linux-x86.tgz
@@ -47,86 +35,62 @@ $ ./validate.sh -h
 $ ./load.sh -h
 ```
 
-## 利用ガイド
+## 使用ガイド
 
-このセクションでは、Redis から Momento へのデータパイプラインのためのツールセットを使うためのステップバイステップのガイドを提供します。
-このプロセスには3つの鍵となるステップがあります: Redis データベースから JSON lines への展開、JSON lines の検証、そして JSON lines を
-Momento へロードするステップです。
+このセクションでは、RedisからMomentoへのデータパイプラインのためのツールセットを使用するためのステップバイステップのガイドを提供します。このプロセスには、Redis データベースを JSON 行に抽出し、JSON 行を検証し、最後に JSON 行を Momento にロードするという 3 つの重要なステップがあります。
 
-### Redis データベース (RDB) ファイルの取得
+### Redisデータベース（RDB）ファイルの取得
 
-まず始めに、RDB ファイルを取得するために、[Amazon ElastiCache でバックアップを取るか](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-manual.html)、
-[既存の Redis インスタンス上で BGSAVE を実行する](https://redis.io/commands/bgsave/)必要があります。
+まず、[Amazon ElastiCacheのバックアップ](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-manual.html)か[既存のRedisインスタンスでBGSAVEを実行](https://redis.io/commands/bgsave/)してRDBファイルを取得する必要があります。
 
-### Redis データベースファイルを展開し検証する
+### Redisデータベースファイルの抽出と検証
 
-RDB ファイルを `./redis` ディレクトリに配置して、出力を現在のディレクトリ上に書き込みたい場合、
-`extract-rdb-and-validate.sh` スクリプトを以下の様に実行します:
-
+`./redis`にRDBファイルのディレクトリがあり、その出力をカレントディレクトリに書き出したい場合は、以下のように`extract-rdb-and-validate.sh`スクリプトを使用します：
 
 ```cli
 $ ./extract-rdb-and-validate.sh -s 1 -t 1 ./redis
 ```
 
-このコマンドは `./redis` にある RDB ファイルを展開し、JSON lines フォーマットへ変換して、現在のディレクトリに書き出します。
-`-s` と `-t` フラグは、それぞれキャッシュする最大 MiB と最大生存期間(TTL) の日数を設定します。
-もし項目が サイズ上限 (1 MiB) または TTL 上限 (24 時間) 等の [Momento のサービス上限](./../../limits)を超える場合、
-その項目は処理中にフラグが立ちます。
+このコマンドは `./redis` にあるRDBファイルをJSON行の形式に展開し、その出力をカレントディレクトリに書き出します。`s` フラグと `-t` フラグはそれぞれ、キャッシュ内のアイテムの最大サイズを MiB 単位で、最大有効期限 (TTL) を日数単位で設定します。アイテムが [Momento のサービス制限](./../../limits)、アイテムのサイズ (5 MB)、または TTL (24 時間) を超えた場合、そのアイテムはプロセスによってフラグが立てられます。
+詳しくは[サービス制限](./../../制限)をご覧ください。
 
-より詳しい情報については、[サービス上限](./../../limits)をご確認下さい。
+### 出力の検査
 
-### 出力を検定する
+カレントディレクトリには、いくつかの出力ファイルとディレクトリが含まれているはずです。重要な新しいディレクトリは `validate-strict` と `validate-lax` です。`validate-strict`にはRedisとMomento間の不一致のデータが含まれ、`validate-lax`にはより少ない基準のデータが含まれ、完全にサポートされていないデータのみをキャッチします。また、データ検証プロセスの詳細な検証レポートもあります。
+レポートの詳細をいくつか紹介します：
 
-現在のディレクトリには、いくつかのファイルとディレクトリが生成されいてるはずです。重要なディレクトリは、
-`validate-strict` と `validate-lax` になります。 `validate-strict` には Redis と Momento 間での不一致のあるデータが含まれ、
-`validate-lax` には条件を満たさない、完全にサポート不可なデータが含まれます。他にも、データ検証プロセスの詳細なレポートもあります。
+`validate-strict`ディレクトリには、ソースデータ (Redis) と Momento Cache の間にミスマッチがあった場合のデータが格納されます：
+- 最大アイテムサイズを超える
+- TTLが最大TTLより大きい
+- TTL がない (Momento Cache では必須)
+- Momento Cache がサポートしていない型
+これは、どのデータにTTLが欠けているかを把握し、どのTTLを適用すべきかを理解するのに役立ちます。特に、アプリケーション・ロジックのバグが原因である可能性のあるデータの異常値を特定するのに役立ちます。
+対照的に、`validate-lax`ディレクトリには、以下に該当するデータが存在する場合のみデータが出力されます：
+- Momentoの[最大アイテムサイズ](./../../制限)を超える
+- Momento でサポートされていない型である。
+`validate-lax`ディレクトリには、Momento Cacheへの読み込みがサポートされていないデータが含まれているため、手動で確認する必要がある。例えば、TTL が Momento の最大値よりも大きいもの、TTL が不足しているもの、既に期限切れのものなどは、対処してから Momento に読み込むことができます。
 
-レポートのいくつかの詳細です:
-`validate-strict` ディレクトリには、ソースデータ (Redis) と Momento Cache の間の不一致のデータがありますが、その条件としては以下の様なものです:
+### Momento Cacheにデータをロードする
 
-- 項目の最大サイズを超過している
-- 最大 TTL より長い TTL が設定されている
-- TTL の設定が欠けている (Momento Cache では必須)
-- Momento Cache でサポートされていない型が使われている
-
-これはどのデータに TTL が欠けていて、どんな TTL を設定するかを理解するのに役立ちます。お客様の中には、アプリケーションロジックのバグによって起こっているかもしれない、
-彼らのデータの中の外れ値を探し出すのに役立った方もいます。
-
-対照的に、`validate-lax` ディレクトリには、以下の様なデータが入っています:
-
-- [Momento の項目の最大サイズ](./../../limits)を超えている
-- Momento がサポートしていないデータ型
-
-`validate-lax` には Momento Cache にロードできないデータが含まれていて、人手で確認する必要があります。
-例えば、Momento の最大 TTL より長い TTLの項目、TTL が欠けている項目、または既に TTL が過ぎているもので、
-何らかの処置をすることで Momento にロードできるようになる可能性があります。
-
-### Momento Cache にデータをロードする
-
-最後に、検証済のデータをロードスクリプトを利用して Momento に読み込みます。以下の様に実行してください:
-
+最後に、ロードスクリプトを使用して、検証済みのデータをMomentoにロードします。サンプルは以下です
 
 ```cli
 $ ./load.sh -a $AUTH_TOKEN -c $CACHE -t 1 -n 10 ./validate-lax/valid.jsonl
 ```
 
-このコマンドは `./validate-lax/valid.jsonl` にあるデータを、デフォルトで1日の TTL を付け、`$AUTH_TOKEN` に設定した Momento の認証トークを使いながら、
-`$CACHE` に指定したキャッシュにロードしてくれます。`-n` フラグで Momento に行うリクエストの並列数を指定できます。
+このコマンドは `./validate-lax/valid.jsonl` にあるデータを、Momento の認証トークン `$AUTH_TOKEN` を使って、デフォルトの TTL を 1 日としてキャッシュ `$CACHE` にロードする。`n` フラグは Momento への同時リクエスト数を設定します。
 
-### Momento Cache のデータを検証する
+### Momento Cacheのデータを検証する
 
-必要であれば、Momento Cache の中にあるデータがディスク上のデータと一致するかを verify コマンドを使って検証することができます。
-これはサニティーチェックで、期限切れの項目がほぼないので成功するはずです。
+オプションで、verify サブコマンドを使用して、Momento Cache 内のデータがディスク上のデータと一致していることを確認できます。これはサニティ・チェックであり、すでに有効期限が切れている項目を除いて成功するはずです。
 
 ```cli
 $ ./bin/MomentoEtl verify -a $AUTH_TOKEN -c $CACHE -n 10 ./validate-lax/valid.jsonl
 ```
 
-このツールはディスク上の項目とキャッシュ内の差分を表示してくれます。もし正しく処理を実行していたら、エラーは何も出力されないはずです。
+このツールは、ディスク上のアイテムとキャッシュ内のアイテムの違いを表示します。もし私たちが正しいことをしたのなら、エラー出力はないはずです。
 
-### EC2 インスタンスから実行する
+### EC2インスタンスからの実行
 
-このツールセットは、64GB のディスクを付けた、AWS の同一リージョン内の m6a.2xlarge EC2 インスタンス上でテストしています。
-最適なレートを決めるために、最初にたくさんの並列リクエスト数でパフォーマンスを確認しました。
-
-この強力なツールセットを使って、Momento Cache へデータをまとめて書き込む便利な機能を楽しんでみて下さい。
+このツールセットは、AWSの64GBのディスク容量を持つリージョン内のm6a.2xlarge EC2インスタンスでテストされた。まず、最適なレートを決定するために、同時リクエストのスイープを実行しました。
+この強力なツールセットと、Momento Cacheへのデータ一括書き込みの利便性をお楽しみください。
