@@ -257,7 +257,7 @@ cacheの全データをフラッシュします。
 
 ### SetIfNotExists
 
-指定された値を、指定されたkeyを持つcacheのアイテムに関連付けます。
+指定された値が、指定されたキーを持つキャッシュ・アイテムに関連付けられます。
 
 | 名前       | 型   | 説明                                   |
 | ---------- | ------ | --------------------------------------------- |
@@ -278,6 +278,166 @@ cacheの全データをフラッシュします。
 </details>
 
 <SdkExampleTabs snippetId={'API_SetIfNotExists'} />
+
+### SetIfAbsent
+
+キーがキャッシュにまだ存在しない場合は、指定されたキーを使用して、指定された値をキャッシュ項目に関連付けます。
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | キャッシュの名前                           |
+| key        | String \| Bytes | 設定されるキー |
+| value      | String \| Bytes | 保存する値                      |
+| ttlSeconds | Duration    | キャッシュ内のアイテムの生存時間         |
+
+<details>
+
+<summary>Method response object</summary>
+
+
+* Stored
+* NotStored
+* Error
+
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfAbsent'} />
+
+### SetIfPresent
+
+指定されたキーが既にキャッシュに存在する場合は、指定された値を指定されたキーのキャッシュ項目に関連付けます。
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | キャッシュの名前                           |
+| key        | String \| Bytes | 設定されるキー |
+| value      | String \| Bytes | 保存する値                     |
+| ttlSeconds | Duration    | キャッシュ内のアイテムの生存時間         |
+
+<details>
+
+<summary>Method response object</summary>
+
+
+* Stored
+* NotStored
+* Error
+
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfPresent'} />
+
+### SetIfEqual
+
+指定されたキーが既にキャッシュ内に存在し、キャッシュ内の値が `equal` で指定された値と等しい場合に、指定された値を指定されたキーのキャッシュアイテムに関連付ける。
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | キャッシュの名前                           |
+| key        | String \| Bytes | 設定されるキー |
+| value      | String \| Bytes | 保存する値                       |
+| equal   | String \| Bytes | 比較する値                    |
+| ttlSeconds | Duration    | キャッシュ内のアイテムの生存時間           |
+
+<details>
+
+<summary>Method response object</summary>
+
+
+* Stored
+* NotStored
+* Error
+
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfEqual'} />
+
+### SetIfNotEqual
+
+指定したキーがキャッシュ内に存在しないか、キャッシュ内の値が `notEqual` で指定した値と等しくない場合に、指定した値を指定したキーのキャッシュアイテムに関連付ける。
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | キャッシュの名前                            |
+| key        | String \| Bytes | 設定されるキー |
+| value      | String \| Bytes | 保存する値                      |
+| notEqual   | String \| Bytes | 比較する値                    |
+| ttlSeconds | Duration    | キャッシュ内のアイテムの生存時間           |
+
+<details>
+
+<summary>Method response object</summary>
+
+
+* Stored
+* NotStored
+* Error
+
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfNotEqual'} />
+
+### SetIfPresentAndNotEqual
+
+指定されたキーが既にキャッシュ内に存在し、キャッシュ内の値が `notEqual` で指定された値と等しくない場合に、指定された値を指定されたキーのキャッシュアイテムに関連付ける。
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | キャッシュの名前                           |
+| key        | String \| Bytes | 設定されるキー |
+| value      | String \| Bytes | 保存する値                       |
+| notEqual   | String \| Bytes | 比較する値                    |
+| ttlSeconds | Duration    | キャッシュ内のアイテムの生存時間           |
+
+<details>
+
+<summary>Method response object</summary>
+
+
+* Stored
+* NotStored
+* Error
+
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfPresentAndNotEqual'} />
+
+### SetIfAbsentOrEqual
+
+指定したキーがキャッシュ内に存在しないか、キャッシュ内の値が `equal` で指定した値と等しい場合に、指定した値を指定したキーのキャッシュアイテムに関連付ける。
+
+| Name       | Type   | Description                                   |
+| ---------- | ------ | --------------------------------------------- |
+| cacheName  | String | キャッシュの名前                            |
+| key        | String \| Bytes | 設定されるキー |
+| value      | String \| Bytes | 保存する値                      |
+| equal   | String \| Bytes | 比較する値                    |
+| ttlSeconds | Duration    | キャッシュ内のアイテムの生存時間           |
+
+<details>
+
+<summary>Method response object</summary>
+
+
+* Stored
+* NotStored
+* Error
+
+詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfAbsentOrEqual'} />
 
 ## 生存時間(TTL)API
 
