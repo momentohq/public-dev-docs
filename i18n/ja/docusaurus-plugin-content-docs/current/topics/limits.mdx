@@ -10,7 +10,7 @@ slug: /topics/limits
 # Momento Topics service quotas
 
 :::info
-Service quotas are directly affected by the support plan on your account. Both <ins>soft and hard limits</ins> are increasable for the Pro tier and Enterprise plans. If you would like to request an increase, please [contact sales](https://www.gomomento.com/contact-us).
+サービスクォータは、アカウントのサポートプランに直接影響されます。<ins>ソフトリミットとハードリミット</ins>の両方は、プロティアプランとエンタープライズプランで増やすことができます。上限緩和をご希望の場合は、[営業担当までご連絡ください](https://www.gomomento.com/contact-us).
 :::
 
 ## Limits
@@ -32,9 +32,9 @@ Service quotas are directly affected by the support plan on your account. Both <
     <tr>
       <td>Operations per second</td>
       <td>namespace</td>
-      <td>10</td>
       <td>100</td>
       <td>1,000</td>
+      <td>10,000</td>
     </tr>
     <tr>
       <td>Concurrent connections</td>
@@ -87,20 +87,20 @@ Service quotas are directly affected by the support plan on your account. Both <
 
 ## Operations
 
-Each message published to Momento Topics counts as a single operation. Every message delivered counts as an additional operation. A topic with 9 subscribers would result in 10 operations for every message published: one for the publish and one for each subscription.
+Momento Topicsに公開された各メッセージは、1つの操作としてカウントされます。配信されたメッセージは、すべて追加の操作としてカウントされます。購読者が 9 人いるトピックでは、メッセージが公開されるたびに 10 回の操作が行われることになります。
 
-Messages are billed in 1 KB chunks. A .5 KB published message will be charged 1 operation. However, a 1.4 KB message will be charged 2 operations.
+メッセージは1KB単位で課金されます。0.5KBの公開メッセージは1オペレーション課金されます。ただし、1.4 KBのメッセージには2オペレーションが課金されます。
 
 ## Examples
 
 **Message broadcast**
 
-A .1 KB message is published to a topic that has 9 subscribers.
+9人の購読者がいるトピックに、1KBのメッセージが公開される。
 
-> *1 message published + 9 subscribers = 10 operations*
+> *1メッセージ公開＋9購読者＝10オペレーション*。
 
 **Large direct message**
 
-A 4 KB message is published to a topic that has a single subscriber.
+4 KBのメッセージは、サブスクライバが1人のトピックに発行される。
 
-> *(4 KB / 1 KB chunk) x 1 subscriber = 4 operations*
+> *(4KB÷1KBチャンク）×1加入者＝4オペレーション*。
