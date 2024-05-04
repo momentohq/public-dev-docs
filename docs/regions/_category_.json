@@ -1,0 +1,9 @@
+{
+  "label": "Regions",
+  "position": 7,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "View the available regions for the Momento Platform"
+  }
+}
