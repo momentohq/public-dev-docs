@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 20
 title: Best practices for async processing with Momento Topics
 sidebar_label: Running background tasks
 description: Learn best practices around using Momento Topics and webhooks to process data asynchronously in your event-driven architectures.
@@ -14,7 +14,7 @@ keywords:
 
 # Use Momento Topics to process data asynchronously
 
-With [Momento Topics](../), you can subscribe to messages on a topic, as well as publish messages to a different topic. [Webhooks](../webhooks/overview) allow you to connect these topics to stateless consumers, which can then process these events asynchronously. Whether this is aggregating events by `topic_id`, saving each event to a database, or using the payload to trigger a Step function workflow, webhooks give you the flexibility to process these events how you want to. 
+With [Momento Topics](../), you can subscribe to messages on a topic, as well as publish messages to a different topic. [Webhooks](../webhooks/overview) allow you to connect these topics to stateless consumers, which can then process these events asynchronously. Whether this is aggregating events by `topic_id`, saving each event to a database, or using the payload to trigger a Step function workflow, webhooks give you the flexibility to process these events how you want to.
 
 The key to asynchronously processing these events is to use _multiple_ topics. An inbound topic, which the webhook listens to, and a single, or multiple, outbound topics which publish the processed data.
 
@@ -32,7 +32,7 @@ In this diagram, `Topic 1` is the `inbound` topic, and `Topic 2` is the `outboun
 ```typescript
 import {
     APIGatewayProxyEvent,
-    APIGatewayProxyResult 
+    APIGatewayProxyResult
 } from "aws-lambda/trigger/api-gateway-proxy";
 
 import {TopicClient, CredentialProvider} from '@gomomento/sdk';
@@ -54,7 +54,7 @@ const momento = new TopicClient({
 
 export const lambdaHandler = async (
     event: APIGatewayProxyEvent
-): Promise<APIGatewayProxyResult> => {  
+): Promise<APIGatewayProxyResult> => {
     const webhookEvent: WebhookEvent = JSON.parse(event.body);
     // simply take the current message, uppercase it, and publish to a new topic
     await momento.publish(webhookEvent.cache, "topic 2", webhookEvent.text.toUpperCase());

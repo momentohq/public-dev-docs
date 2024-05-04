@@ -386,9 +386,7 @@ const config = {
               to: '/sdks', label: 'SDKs', position: 'right'
             },
             {
-              to: "https://www.gomomento.com/blog",
-              label: "Blog",
-              position: "right",
+              to:  '/regions', label: 'Regions', position: 'right'
             },
             {
               to: "https://github.com/momentohq/",

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 30
 title: Leverage Momento Topics, webhooks, and tokens in your event-driven architectures
 sidebar_label: Identifying unique resources
 description: Learn best practices around using Momento Topics, webhooks, and tokens to process unique resources in your event-driven architectures.
@@ -132,13 +132,13 @@ export const handler = async (event: any) => {
 
     const secretString = await getSecret(secretStringSecretName);
     const authorized = WebhookUtils.validateWebhookRequest(
-        { 
+        {
             signature: event.headers['momento-signature'],
-            signingSecret: secretString, 
+            signingSecret: secretString,
             body: event.body
         }
     );
-    
+
     if (authorized !== WebhookUtils.RequestValidation.VALID ) {
       return {
         statusCode: 403,
