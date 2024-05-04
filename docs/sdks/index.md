@@ -1,5 +1,6 @@
 ---
-title: Find the Right Momento SDK for your Language and Use Case 
+displayed_sidebar: topLevelSidebar
+title: Find the right Momento SDK for your language and use case
 description: Momento provides SDKs for a wide variety of languages and target platforms. Find the right SDK for your use case!
 pagination_next: null
 hide_title: true
@@ -306,7 +307,7 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   <LinkButton text="Topics" link="/sdks/go/topics.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-go/blob/main/examples/README.md" openInNewTab="true" />
   <LinkButton text="Packages" link="https://github.com/momentohq/client-sdk-go/releases" openInNewTab="true" />
-  <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-go" openInNewTab="true" />  
+  <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-go" openInNewTab="true" />
 </div>
 ```
 
