@@ -1,0 +1,100 @@
+---
+sidebar_label: Quotas and Limits
+sidebar_position: 5
+title: Momento Leaderboards service quotas
+pagination_next: null
+description: Examine the namespace and item-level quotas in place with Momento Leaderboards and discover the default and tunable values for your workload based on your support plan.
+hide_title: true
+---
+
+# Momento Leaderboards service quotas
+
+:::info
+Service quotas are directly affected by the support plan on your account. Both <ins>soft and hard limits</ins> are increasable for the Pro tier and Enterprise plans. If you would like to request an increase, please [contact sales](https://www.gomomento.com/contact-us).
+:::
+
+## Limits
+
+<table className="customTable">
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Entity</th>
+      <th>Default</th>
+      <th>Basic support</th>
+      <th>Pro support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className="highlightRow">
+      <td colspan="5"><strong>Soft limits</strong></td>
+    </tr>
+    <tr>
+      <td>Operations per second</td>
+      <td>namespace</td>
+      <td>100</td>
+      <td>1,000</td>
+      <td>10,000</td>
+    </tr>
+    <tr>
+      <td>Hot storage</td>
+      <td>namespace</td>
+      <td>100 MB</td>
+      <td>1 GB</td>
+      <td>10 GB</td>
+    </tr>
+    <tr>
+      <td>Namespace count</td>
+      <td>region</td>
+      <td>3</td>
+      <td>30</td>
+      <td>300</td>
+    </tr>
+    <tr className="highlightRow">
+      <td colspan="5"><strong>Hard limits</strong></td>
+    </tr>
+    <tr>
+      <td>Time to live (TTL)</td>
+      <td>item</td>
+      <td colspan="3">7 days</td>
+    </tr>
+    <tr>
+      <td>Item size</td>
+      <td>item</td>
+      <td colspan="3">50 MB</td>
+    </tr>
+    <tr>
+      <td>Entry size</td>
+      <td>entry</td>
+      <td colspan="3">128 KB</td>
+    </tr>
+    <tr>
+      <td>Operations per second</td>
+      <td>region</td>
+      <td colspan="3">5</td>
+    </tr>
+  </tbody>
+</table>
+
+## Operations
+
+Certain cache APIs can perform multiple operations in a single request. Multi-element operations are more efficient, so the cost of these APIs is discounted at a **2:1 ratio**. This means every two elements will count as one operation towards the limiter.
+
+As an example, an `Upsert` request adding one or two elements costs *one operation*, but with three or four elements it costs *two operations*, and so on. All the APIs listed below perform multiple operations and are subject to reduced cost. All unlisted APIs cost one operation.
+
+<table class="customTable">
+  <thead>
+    <tr>
+      <th>API Name</th>
+      <th>Operations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>FetchByRank</td><td>Number of elements in response / 2, or 1 if leaderboard is not found</td></tr>
+    <tr><td>FetchByScore</td><td>Number of elements in response / 2, or 1 if leaderboard is not found</td></tr>
+    <tr><td>GetRank</td><td>Number of elements in response / 2, or 1 if leaderboard is not found</td></tr>
+    <tr><td>RemoveElements</td><td>Number of elements in response / 2</td></tr>
+    <tr><td>Upsert</td><td>Number of elements in request / 2</td></tr>
+  </tbody>
+</table>
+
