@@ -10,12 +10,12 @@ keywords:
   - serverless
 ---
 
-# How to map numeric leaderboard IDs to arbitrary strings
+# 数値リーダーボードIDを任意の文字列にマッピングする方法
 
-Momento Leaderboards elements are uniquely identified by an unsigned 64-bit number that can represent a player identifier, session identifier, browser identifier or any other kind of identifier you want to use. An id can only appear in a leaderboard one time, meaning you can't have two scores for one player unless that player has two ids!
+Momento Leaderboardsの要素は、プレイヤー識別子、セッション識別子、ブラウザ識別子、またはその他の使用したい識別子を表すことができる符号なし64ビット番号によって一意に識別されます。つまり、プレイヤーが2つのIDを持っていない限り、1人のプレイヤーに対して2つのスコアを持つことはできません！
 
-In some cases, you may want to associate that ID with some other information, such as a player's name, for a more human-friendly leaderboard display.
-You can use a dictionary to convert between the string and ID representations as shown below.
+場合によっては、そのIDを他の情報、たとえば選手の名前などと関連付けて、より人間にわかりやすいリーダーボード表示にしたいこともあるでしょう。
+以下のように、辞書を使って文字列とIDを変換することができます。
 
 ```typescript
 import {
@@ -117,7 +117,8 @@ main()
   });
 ```
 
-When the example runs, you'll see a leaderboard printed out like this:
+例題が実行されると、このようにリーダーボードが出力されます：
+
 ```
 ------------Top 5 Leaderboard-------------
 ------------------------------------------

@@ -12,13 +12,21 @@ keywords:
   - serverless
 ---
 
-## Momento Leaderboardsとは？
+# Momento Leaderboardsとは？
 
 Momento Leaderboardsは、数千万件のアイテムと迅速なインジェスト/クエリ/アップデートをサポートするサーバーレスのリーダーボード・サービスです。多くのデータベースは、ソートされたセットや範囲クエリのような汎用的なデータ構造によってリーダーボードを近似していますが、Momento Leaderboardは、迅速かつ簡単にアプリケーションに統合できるファーストクラスの本格的なサービスです。
 
 :::info
 
 リーダーボードアイテムのTTLはデフォルトで7日間です。パーシステンス（TTL無制限）については、[contact form](https://www.gomomento.com/contact-us)、[Discord](https://discord.com/invite/3HkAKjUZGq)、または support@momentohq.com までご連絡ください。
+
+:::
+
+:::info
+
+Momento LeaderboardsとSorted Setの違いは何ですか？
+
+Momento Leaderboardsは、より効率的なメモリフットプリントを持っており、数千万レコードまで拡張することができます。
 
 :::
 
@@ -31,7 +39,7 @@ Momento Leaderboardsは、数千万件のアイテムと迅速なインジェス
 
 ![Image of Momento console landing page](@site/static/img/getting-started/console.png)
 
-キャッシュを作成]ボタンをクリックし、Momentoリーダーボードに使用するクラウドプロバイダーとリージョンを使用してキャッシュを作成します。
+[キャッシュを作成]ボタンをクリックし、Momentoリーダーボードに使用するクラウドプロバイダーとリージョンを使用してキャッシュを作成します。
 
 ![Image of Momento console Create Cache form](@site/static/img/console-create-cache-form.png)
 
@@ -65,11 +73,6 @@ const leaderboard = client.leaderboard('my-cache', 'my-leaderboard');
 
 
 ## Momento Leaderboardsに関するよくある質問
-
-<details>
-  <summary>Momento LeaderboardsとSorted Setの違いは何ですか？</summary>
-  Momento Leaderboardsは、より効率的なメモリフットプリントを持ち、数千万レコードのスケールを可能にし、APIは特にゲームのユースケースを念頭に構築されました。
-</details>
 
 <details>
   <summary>Momento Leaderboardsアイテムの有効期限はありますか？</summary>
