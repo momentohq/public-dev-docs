@@ -373,5 +373,9 @@
   "welcomeToTheMomentoDeveloperDocs": {
     "message": "Momento 開発者向けドキュメントへようこそ。当社の製品を最大限に活用するために必要なリソースをご覧ください。",
     "description": "Welcome to the Momento developer docs. Discover all the resources you need to help you get the most out of our products."
+  },
+  "publishMessagesToSlack": {
+    "message": "Slackにメッセージを公開する",
+    "description": "Publish messages to Slack"
   }
 }
