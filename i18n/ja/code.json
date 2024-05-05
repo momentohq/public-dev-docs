@@ -261,5 +261,121 @@
   "theme.tags.tagsPageTitle": {
     "message": "タグ",
     "description": "The title of the tag list page"
+  },
+  "gettingStarted": {
+    "message": "はじめに",
+    "description": "Getting started"
+  },
+  "apiReference": {
+    "message": "API リファレンス",
+    "description": "API reference"
+  },
+  "dropInReplacementsForRedis": {
+    "message": "Redisをドロップインで置き換え",
+    "description": "Drop-in replacements for Redis"
+  },
+  "howToCacheFiles": {
+    "message": "ファイルをキャッシュする方法",
+    "description": "How to cache files"
+  },
+  "aboutOurServerlessEventBus": {
+    "message": "サーバーレスイベントバスについて",
+    "description": "About our serverless event bus"
+  },
+  "integrateWithAmazonEventBridge": {
+    "message": "Amazon EventBridgeとの統合",
+    "description": "Integrate with Amazon EventBridge"
+  },
+  "webhooksOverview": {
+    "message": "Webhooksの概要",
+    "description": "Webhooks overview"
+  },
+  "forDevelopers": {
+    "message": "開発者向け",
+    "description": "For developers"
+  },
+  "availableSDKs": {
+    "message": "利用可能なSDK",
+    "description": "Available SDKs"
+  },
+  "authenticationAndAccessControl": {
+    "message": "認証とアクセスコントロール",
+    "description": "Authentication and access control"
+  },
+  "properlyHandlingErrorsInMomento": {
+    "message": "Momentoでの適切なエラー処理",
+    "description": "Properly handling errors in Momento"
+  },
+  "momentoOnAWSMarketplace": {
+    "message": "AWSマーケットプレイスでのMomento",
+    "description": "Momento on AWS Marketplace"
+  },
+  "Overview": {
+    "message": "概要",
+    "description": "Overview"
+  },
+  "momentoSimplifiesCloudArchitecture": {
+    "message": "Momentoはクラウドアーキテクチャを簡素化し、リソース管理を自動化します。当社の主力製品である",
+    "description": "Momento simplifies cloud architecture"
+  },
+  "and": {
+    "message": "と",
+    "description": "and"
+  },
+  "servicesMomentoProvidesDevelopers": {
+    "message": "Momentoは、開発者が最も重要なことに集中するために必要なビルディングブロックを提供します。",
+    "description": "services, Momento provides developers"
+  },
+  "yourBusinessProblem": {
+    "message": "ビジネス上の問題",
+    "description": "your business problem"
+  },
+  "ItsAbout": {
+    "message": "それは",
+    "description": "It's about"
+  },
+  "developerProductivity": {
+    "message": "開発者の生産性",
+    "description": "developer productivity"
+  },
+  "weWantYouToMoveAsFastAsPossible": {
+    "message": "私たちは、お客様に可能な限り速く動いていただきたいと考えています。データベースが毎秒数百万のトランザクションを処理する場合でも、数万人の購読者にメッセージを発行する場合でも、Momentoはインフラストラクチャを管理し、スケーリングイベントに取り組み、シンプルなAPIコールを提供します。",
+    "description": "We want you to move as fast as possible"
+  },
+  "weGoWhereYouGo": {
+    "message": "あなたが行くところに私たちも行く",
+    "description": "We go where you go"
+  },
+  "momentoWorksHardToProvideDevelopers": {
+    "message": "Momentoは、可能な限り多くのプログラミング言語でSDKを開発者に提供できるよう努力しています。ブラウザ、Android開発、iOSアプリ、10以上のサーバーサイド言語など、あらゆるタイプのプロジェクトに対応したクライアントを用意しています。本番環境やLambda関数用にチューニングされたクライアントをお探しですか？弊社のSDKには",
+    "description": "Momento works hard to provide developers with SDKs"
+  },
+  "optimizedConfigurations": {
+    "message": "最適化された構成",
+    "description": "optimized configurations"
+  },
+  "forAnywhereDevelopmentTakesYou": {
+    "message": "と開発でどこへでも行けます。",
+    "description": "for anywhere development takes you."
+  },
+  "simplifyYourCloudArchitecture": {
+    "message": "クラウドアーキテクチャの簡素化",
+    "description": "Simplify your cloud architecture"
+  },
+  "buildingRobust": {
+    "message": "クラウドで堅牢かつ耐障害性の高いシステムを大規模に構築するのは難しいです。私たちは知っています。Momentoの専門知識を活用して、インフラストラクチャをお任せください。高度なネットワーキング、積極的なロードバランシングとスケーリング設定、複雑なWebSocketアーキテクチャとはおさらばです。Momento CacheとTopicsがあれば、日々が改善されます。",
+    "description": "Building robust, fault-tolerant systems at scale in the cloud is tough"
+  },
+  "browseOurProducts": {
+    "message": "商品一覧",
+    "description": "Browse our products"
+  },
+  "welcomeToTheMomentoDeveloperDocs": {
+    "message": "Momento 開発者向けドキュメントへようこそ。当社の製品を最大限に活用するために必要なリソースをご覧ください。",
+    "description": "Welcome to the Momento developer docs. Discover all the resources you need to help you get the most out of our products."
+  },
+  "publishMessagesToSlack": {
+    "message": "Slackにメッセージを公開する",
+    "description": "Publish messages to Slack"
   }
 }
