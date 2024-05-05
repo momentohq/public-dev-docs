@@ -1,6 +1,6 @@
 ---
 displayed_sidebar: topLevelSidebar
-title: Find the Right Momento SDK for your Language and Use Case 
+title: Find the right Momento SDK for your language and use case
 description: Momento provides SDKs for a wide variety of languages and target platforms. Find the right SDK for your use case!
 pagination_next: null
 hide_title: true
@@ -46,9 +46,33 @@ keywords:
 import { LinkButton } from "@site/src/components/LinkButton";
 
 # Momento SDKs
+
+Web、モバイル、またはサーバーアプリケーションを構築しているかどうかに関係なく、お気に入りのプログラミング言語で Momento Cache および Momento Topics と対話するコードを作成します。
+
+```mdx-code-block
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '10px'
+}}>
+  <LinkButton text="Node.js" link="/sdks/nodejs" imgSrc="/img/momento-sdk-icons/nodejs.svg" altText="Node.js Icon"/>
+  <LinkButton text=".NET" link="/sdks/dotnet" imgSrc="/img/momento-sdk-icons/dotnet.svg" altText=".NET Icon"/>
+  <LinkButton text="Python" link="/sdks/python" imgSrc="/img/momento-sdk-icons/python.svg" altText="Python Icon"/>
+  <LinkButton text="Java" link="/sdks/java" imgSrc="/img/momento-sdk-icons/java.svg" altText="Java Icon"/>
+  <LinkButton text="Kotlin" link="/sdks/kotlin" imgSrc="/img/momento-sdk-icons/kotlin.svg" altText="Kotlin Icon"/>
+  <LinkButton text="Go" link="/sdks/go" imgSrc="/img/momento-sdk-icons/go.svg" altText="Go Icon"/>
+  <LinkButton text="PHP" link="/sdks/php" imgSrc="/img/momento-sdk-icons/php.svg" altText="PHP Icon"/>
+  <LinkButton text="Elixir" link="/sdks/elixir" imgSrc="/img/momento-sdk-icons/elixer.svg" altText="Elixir Icon"/>
+  <LinkButton text="Rust" link="/sdks/rust" imgSrc="/img/momento-sdk-icons/rust.svg" altText="Rust Icon"/>
+  <LinkButton text="Ruby" link="/sdks/ruby" imgSrc="/img/momento-sdk-icons/ruby.svg" altText="Ruby Icon"/>
+</div>
+```
+
+
 ## Client-Side SDKs
 
-MomentoクライアントサイドSDKを使用すると、Webアプリケーションやモバイルアプリケーションから直接Momento CacheやMomento Topicsを操作できます！わずか数行のコードで、クライアント同士が通信できるチャットアプリケーションやその他のメッセージング機能を作成できます！
+Momento Client-side SDK を使用すると、Web またはモバイルアプリケーションから直接 Momento Cacheおよび Momento Topicsと対話できるようになります。 サーバー側のインフラストラクチャは必要ありません。 わずか数行のコードでクライアントが相互に通信できるチャットアプリケーションやその他のメッセージング機能を作成します。
 
 ```mdx-code-block
 <div style={{
@@ -65,9 +89,10 @@ MomentoクライアントサイドSDKを使用すると、Webアプリケーシ�
   <LinkButton text="Dart SDK" link="/sdks/dart" imgSrc="/img/momento-sdk-icons/flutter-dart.svg" altText="Flutter Icon"/>
 </div>
 ```
+
 ### Web SDK (Browser)
 
-Momento Web SDKを使用すると、TypeScriptまたはJavaScriptでリッチなブラウザ・アプリケーションを作成できます。
+Momento Web SDK を使用すると、TypeScript または JavaScript でリッチブラウザアプリケーションを作成できます。
 
 ```mdx-code-block
 <div style={{
@@ -89,7 +114,7 @@ Momento Web SDKを使用すると、TypeScriptまたはJavaScriptでリッチな
 
 ### Swift SDK (iOS)
 
-Momento Swift SDKを使用してネイティブiOSアプリケーションを構築します。
+Momento Swift SDK を使用してネイティブ iOS アプリケーションを構築します。
 
 ```mdx-code-block
 <div style={{
@@ -109,7 +134,7 @@ Momento Swift SDKを使用してネイティブiOSアプリケーションを構
 
 ### Kotlin SDK (Android)
 
-Momento Kotlin SDKを使用してネイティブAndroidアプリケーションを構築します。
+Momento Kotlin SDK を使用してネイティブ Android アプリケーションを構築します。
 
 ```mdx-code-block
 <div style={{
@@ -128,7 +153,8 @@ Momento Kotlin SDKを使用してネイティブAndroidアプリケーション�
 ```
 
 ### Dart SDK (Flutter)
-FlutterアプリケーションでMomento CacheとTopicsを使えば、単一のコードベースでブラウザ、iOS、Androidをターゲットにできる。
+
+Flutter アプリケーションで Momento Cache と Topics を使用すると、単一のコードベースでブラウザ、iOS、Android をターゲットにできます。
 
 ```mdx-code-block
 <div style={{
@@ -174,7 +200,7 @@ FlutterアプリケーションでMomento CacheとTopicsを使えば、単一の
 
 ## Server-Side SDKs
 
-MomentoサーバーサイドSDKを使用すると、バックエンドアプリケーションからMomentoの低レイテンシーキャッシュとトピックサービスを利用できます。Momentoクライアントは、可能な限り最高のパフォーマンスとスループットを提供するように調整されており、他の多くのキャッシュクライアントライブラリよりもはるかに少ないTCP接続で済みます。
+Momento Server-Side SDK を使用すると、バックエンド アプリケーションから Momento の低遅延キャッシュおよびトピックサービスを利用できるようになります。 Momento クライアントは、他の多くのキャッシュクライアントライブラリよりもはるかに少ない TCP 接続を必要としながら、可能な限り最高のパフォーマンスとスループットを提供するように調整されています。
 
 ### Node.js SDK
 
@@ -281,7 +307,7 @@ MomentoサーバーサイドSDKを使用すると、バックエンドアプリ�
   <LinkButton text="Topics" link="/sdks/go/topics.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-go/blob/main/examples/README.md" openInNewTab="true" />
   <LinkButton text="Packages" link="https://github.com/momentohq/client-sdk-go/releases" openInNewTab="true" />
-  <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-go" openInNewTab="true" />  
+  <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-go" openInNewTab="true" />
 </div>
 ```
 
