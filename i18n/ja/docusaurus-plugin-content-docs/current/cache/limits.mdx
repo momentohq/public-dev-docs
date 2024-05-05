@@ -1,95 +1,116 @@
 ---
+sidebar_label: Quotas and Limits
 sidebar_position: 8
-sidebar_label: Service Limits
-title: Service Limits
+title: Momento Cache service quotas
 pagination_next: null
-description: Explore Momento Cache service limits, the default values, and how to get them changed if you need.
+description: Examine the namespace and item-level quotas in place with Momento Cache and discover the default and tunable values for your workload based on your support plan.
+hide_title: true
 ---
 
-# Momento Cacheのサービスリミット
+# Momento Cacheサービスのクォータ
 
-Momento Cache は、サービスリソースに関して自社と顧客の保護に努めています。 これを行うために、すべてのアカウント、キャッシュ、トピックにはサービス制限、つまり「ガードレール」と呼ばれるものが設定されており、操作を可能な限りスムーズに適切に実行し続けることができます。 このページでは、デフォルトのサービス制限の概要を説明します。
-
-| Momento Cache リミット         | リミット値          |
-|--------------------------------------------------------------------------------------------------------------------|----------------|
-| キャッシュあたりのAPIレート（データプレーン）           | 100 requests/s |
-| 顧客ごとのAPIレート（コントロールプレーン）|5リクエスト/秒  |
-| キャッシュあたりのスループット|1MB/秒          |
-| アイテムの最大サイズ|1MB           |
-| 最大キャッシュ数（アカウントあたり）|10             |
-| 生存時間（TTL）|1日          |
-| [コレクション(CDT)](https://docs.momentohq.com/develop/datatypes#collection-data-types-cdts)ごとの要素サイズ制限|128KB          |
-| [APIキーまたはトークン](./develop/api-reference/auth.md)ごとのパーミッション (ハードリミット) | 10             |
-
-## ソフトリミットとサポート
-
-このページの制限は、特に指定がない限り変更できるソフト制限です。 制限の調整が必要な場合は、[Momento サポート](mailto:support@momentohq.com) までご連絡ください。 ログインメールアドレス、変更するキャッシュの名前、キャッシュが配置されているクラウド + リージョン (例: AWS eu-west-1)、およびリストのどの制限を増やしたいかを含めてご連絡いただけると幸いです。
-
-## 操作
-
-サービス制限は、1 秒あたりに実行される操作の数に基づいています。 一部のキャッシュデータプレーン API は、1 つのリクエストで複数の操作を実行できます。
-
-複数要素の操作はより効率的であるため、これらの API の制限コストは **2:1 の比率**で割り引かれます。 これは、2 つの要素ごとにリミッターに対する 1 つの操作としてカウントされることを意味します。 たとえば、1 つまたは 2 つの要素を追加する `SetAddElements' リクエストには 1 回の操作が必要ですが、3 つまたは 4 つの要素がある場合は 2 回の操作が必要になります。
-
-次の表は、すべてのキャッシュ API の操作数がどのように計算されるかを示しています。
-
-
-| API Name                 | Multi-Element API | Operations                                                        |
-| ------------------------ | ----              | ------------                                                      |
-| Set                      |                   | 1                                                                 |
-| Get                      |                   | 1                                                                 |
-| Delete                   |                   | 1                                                                 |
-| Increment                |                   | 1                                                                 |
-| Ping                     |                   | 1                                                                 |
-| ItemGetType              |                   | 1                                                                 |
-| KeyExists                |                   | 1                                                                 |
-| KeysExist                | ✅                | リクエスト内のキーの数/2                                      |
-| SetIfNotExists           |                   | 1                                                                 |
-| UpdateTtl                |                   | 1                                                                 |
-| IncreaseTtl              |                   | 1                                                                 |
-| DecreaseTtl              |                   | 1                                                                 |
-| ItemGetTtl               |                   | 1                                                                 |
-| DictionaryFetch          | ✅                | レスポンスにあるフィールドの数/2、またはdictionaryが見つからない場合は 1   |
-| DictionaryGetField       |                   | 1                                                                 |
-| DictionaryGetFields      | ✅                | リクエストにあるフィールドの数/2                                     |
-| DictionaryIncrement      |                   | 1                                                                 |
-| DictionaryRemoveField    |                   | 1                                                                 |
-| DictionaryRemoveFields   | ✅                | リクエストにあるフィールドの数/2                                      |
-| DictionarySetField       |                   | 1                                                                 |
-| DictionarySetFields      | ✅                | リクエストにあるフィールドの数/2                                      |
-| DictionaryLength         |                   | 1                                                                 |
-| ListFetch                | ✅                | レスポンスにある要素の数/2、またはリストが見つからない場合は 1      |
-| ListConcatenateBack      | ✅                | リクエストにある要素の数/2                                   |
-| ListConcatenateFront     | ✅                | リクエストにある要素の数/2                                   |
-| ListLength               |                   | 1                                                                 |
-| ListPopBack              |                   | 1                                                                 |
-| ListPopFront             |                   | 1                                                                 |
-| ListPushBack             |                   | 1                                                                 |
-| ListPushFront            |                   | 1                                                                 |
-| ListRemoveValue          |                   | 1                                                                 |
-| ListRetain               |                   | 1                                                                 |
-| SetAddElement            |                   | 1                                                                 |
-| SetAddElements           | ✅                | リクエストにある要素の数/2                                   |
-| SetFetch                 | ✅                | レスポンスにある要素の数/2、またはセットが見つからない場合は 1       |
-| SetRemoveElement         |                   | 1                                                                 |
-| SetRemoveElements        | ✅                | リクエストにある要素の数/2                                   |
-| SetContainsElement       |                   | 1                                                                 |
-| SetContainsElements      | ✅                | リクエストにある要素の数/2                                   |
-| SetLength                |                   | 1                                                                 |
-| SortedSetPutElement      |                   | 1                                                                 |
-| SortedSetPutElements     | ✅                | リクエストにある要素の数/2                                   |
-| SortedSetFetchByRank     | ✅                | レスポンス内の要素の数/2、またはソートされたセットが見つからない場合は 1 |
-| SortedSetFetchByScore    | ✅                | レスポンス内の要素の数/2、またはソートされたセットが見つからない場合は 1 |
-| SortedSetGetScore        |                   | 1                                                                 |
-| SortedSetGetScores       | ✅                | リクエストにある要素の数/2                                   |
-| SortedSetRemoveElement   |                   | 1                                                                 |
-| SortedSetRemoveElements  | ✅                | リクエストにある要素の数/2                                   |
-| SortedSetGetRank         |                   | 1                                                                 |
-| SortedSetIncrementScore  |                   | 1                                                                 |
-| SortedSetLength          |                   | 1                                                                 |
-| SortedSetLengthByScore   |                   | 1                                                                 |
-
-:::note
-
-アカウントに課金される操作の回数をさらに減らすには、[read concern](./learn/how-it-works/read-concern) ヘッダーを `Express` に設定することを検討してください。こうすることで、課金される操作回数をデフォルト値の0.8倍に減らすことができ、頻繁にアクセスされるキーの待ち時間を減らすことができる。
+:::info
+サービスクォータは、アカウントのサポートプランに直接影響されます。<ins>ソフトリミット</ins>とハードリミット</ins>の両方は、プロティアプランとエンタープライズプランで増やすことができます。増額をご希望の場合は、[営業担当までご連絡ください](https://www.gomomento.com/contact-us).
 :::
+
+## リミット
+
+<table className="customTable">
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Entity</th>
+      <th>Default</th>
+      <th>Basic support</th>
+      <th>Pro support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className="highlightRow">
+      <td colspan="5"><strong>Soft limits</strong></td>
+    </tr>
+    <tr>
+      <td>Operations per second</td>
+      <td>namespace</td>
+      <td>100</td>
+      <td>1,000</td>
+      <td>10,000</td>
+    </tr>
+    <tr>
+      <td>Hot storage</td>
+      <td>namespace</td>
+      <td>100 MB</td>
+      <td>1 GB</td>
+      <td>10 GB</td>
+    </tr>
+    <tr>
+      <td>Namespace count</td>
+      <td>region</td>
+      <td>3</td>
+      <td>30</td>
+      <td>300</td>
+    </tr>
+    <tr className="highlightRow">
+      <td colspan="5"><strong>Hard limits</strong></td>
+    </tr>
+    <tr>
+      <td>Time to live (TTL)</td>
+      <td>item</td>
+      <td colspan="3">24 hours</td>
+    </tr>
+    <tr>
+      <td>Item size</td>
+      <td>item</td>
+      <td colspan="3">5 MB</td>
+    </tr>
+    <tr>
+      <td>Collection element size</td>
+      <td><a href="../cache/develop/basics/datatypes#collection-data-types-cdts" target="_blank">element</a></td>
+      <td colspan="3">128 KB</td>
+    </tr>
+    <tr>
+      <td>Operations per second</td>
+      <td>region</td>
+      <td colspan="3">5</td>
+    </tr>
+  </tbody>
+</table>
+
+## オペレーション
+
+特定のキャッシュAPIは、1つのリクエストで複数の操作を実行できます。複数要素の操作はより効率的であるため、これらのAPIのコストは**2:1の比率**で割り引かれます。つまり、2つの要素ごとに1つの操作としてリミッターにカウントされます。
+
+:::tip
+アカウントに対して課金される操作の数をさらに減らすには、[read concern](./learn/how-it-works/read-concern) ヘッダーを `Express` に設定することを検討してください。こうすることで、課金される操作回数をデフォルト値の0.8倍に減らすことができ、頻繁にアクセスされるキーの待ち時間を減らすことができます。
+:::
+
+例として、1つまたは2つの要素を追加する `SetAddElements` リクエストには *1つの操作* がかかりますが、3つまたは4つの要素では *2つの操作* がかかります。以下に挙げるすべてのAPIは複数の操作を実行し、コスト削減の対象となります。リストにないAPIはすべて1操作のコストです。
+
+<table class="customTable">
+  <thead>
+    <tr>
+      <th>API Name</th>
+      <th>Operations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>DictionaryFetch</td><td>Number of fields in response / 2, or 1 if dictionary is not found</td></tr>
+    <tr><td>DictionaryGetFields</td><td>Number of fields in request / 2</td></tr>
+    <tr><td>DictionaryRemoveFields</td><td>Number of fields in request / 2</td></tr>
+    <tr><td>DictionarySetFields</td><td>Number of fields in request / 2</td></tr>
+    <tr><td>KeysExist</td><td>Number of keys in request / 2</td></tr>
+    <tr><td>ListConcatenateBack</td><td>Number of elements in request / 2</td></tr>
+    <tr><td>ListConcatenateFront</td><td>Number of elements in request / 2</td></tr>
+    <tr><td>ListFetch</td><td>Number of elements in response / 2, or 1 if list is not found</td></tr>
+    <tr><td>SetAddElements</td><td>Number of elements in request / 2</td></tr>
+    <tr><td>SetContainsElements</td><td>Number of elements in request / 2</td></tr>
+    <tr><td>SetFetch</td><td>Number of elements in response / 2, or 1 if set is not found</td></tr>
+    <tr><td>SetRemoveElements</td><td>Number of elements in request/2</td></tr>
+    <tr><td>SortedSetFetchByRank</td><td>Number of elements in response / 2, or 1 if sorted set is not found</td></tr>
+    <tr><td>SortedSetFetchByScore</td><td>Number of elements in response / 2, or 1 if sorted set is not found</td></tr>
+    <tr><td>SortedSetGetScores</td><td>Number of elements in request / 2</td></tr>
+    <tr><td>SortedSetPutElements</td><td>Number of elements in request / 2</td></tr>
+    <tr><td>SortedSetRemoveElements</td><td>Number of elements in request / 2</td></tr>
+  </tbody>
+</table>
+
