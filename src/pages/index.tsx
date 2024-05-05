@@ -30,7 +30,7 @@ function RotatingHeader() {
         {actions[index]}
       </h1>
       <h1 className={styles.header}>the Momento Platform</h1>
-      <p className={styles.headerDescription}>Welcome to the Momento developer docs. Discover all the resources you need to help you get the most out of our products.</p>
+      <p className={styles.headerDescription}><Translate id="welcomeToTheMomentoDeveloperDocs">Welcome to the Momento developer docs. Discover all the resources you need to help you get the most out of our products.</Translate></p>
     </div>
   );
 }
@@ -49,21 +49,22 @@ export default function Home(): JSX.Element {
                 <h2>Cache</h2>
                 <ul className={styles.columnList}>
                   <li><a href="/cache/getting-started"><Translate id="gettingStarted">Getting started</Translate></a></li>
-                  <li><a href="/cache/develop/api-reference">API reference</a></li>
-                  <li><a href="/cache/develop/integrations/redis-client-compatibility">Drop-in replacements for Redis</a></li>
-                  <li><a href="/cache/develop/guides/working-with-files-cache">How to cache files</a></li>
+                  <li><a href="/cache/develop/api-reference"><Translate id="apiReference">API reference</Translate></a></li>
+                  <li><a href="/cache/develop/integrations/redis-client-compatibility"><Translate id="dropInReplacementsForRedis">Drop-in replacements for Redis</Translate></a></li>
+                  <li><a href="/cache/develop/guides/working-with-files-cache"><Translate id="howToCacheFiles">How to cache files</Translate></a></li>
                 </ul>
               </div>
               <div>
                 <h2>Topics</h2>
                 <ul className={styles.columnList}>
-                  <li><a href="/topics">About our serverless event bus</a></li>
-                  <li><a href="/cache/develop/guides/working-with-files-cache">Integrate with Amazon EventBridge</a></li>
-                  <li><a href="/topics/webhooks">Webhooks overview</a></li>
+                  <li><a href="/topics"><Translate id="aboutOurServerlessEventBus">About our serverless event bus</Translate></a></li>
+                  <li><a href="/cache/develop/guides/working-with-files-cache"><Translate id="integrateWithAmazonEventBridge">Integrate with Amazon EventBridge</Translate></a></li>
+                  <li><a href="/topics/webhooks"><Translate id="webhooksOverview">Webhooks overview</Translate></a></li>
                   <li>
+                  
                     <a href="https://www.gomomento.com/blog/how-to-create-a-slack-workflow-with-webhooks-in-momento-topics" target='_blank'>
                       <div className={styles.openInNew}>
-                        <span>Publish messages to Slack</span>
+                      <span><Translate id="publishMessagesToSlack">Publish messages to Slack</Translate></span>
                         <IoOpenOutline />
                       </div>
                     </a>
@@ -71,15 +72,15 @@ export default function Home(): JSX.Element {
                 </ul>
               </div>
               <div>
-                <h2>For developers</h2>
+              <h2><Translate id="forDevelopers">For developers</Translate></h2>
                 <ul className={styles.columnList}>
-                  <li><a href="/sdks">Available SDKs</a></li>
-                  <li><a href="/cache/develop/authentication">Authentication and access control</a></li>
-                  <li><a href="/cache/develop/basics/error-handling-production-readiness">Properly handling errors in Momento</a></li>
+                  <li><a href="/sdks"><Translate id="availableSDKs">Available SDKs</Translate></a></li>
+                  <li><a href="/cache/develop/authentication"><Translate id="authenticationAndAccessControl">Authentication and access control</Translate></a></li>
+                  <li><a href="/cache/develop/basics/error-handling-production-readiness"><Translate id="properlyHandlingErrorsInMomento">Properly handling errors in Momento</Translate></a></li>
                   <li>
                     <a href="https://aws.amazon.com/marketplace/pp/prodview-ndqotnrhhjyvo" target="_blank">
                       <div className={styles.openInNew}>
-                        <span>Momento on AWS Marketplace</span>
+                        <span><Translate id="momentoOnAWSMarketplace">Momento on AWS Marketplace</Translate></span>
                         <IoOpenOutline />
                       </div>
                     </a>
@@ -89,40 +90,40 @@ export default function Home(): JSX.Element {
             </div>
           </div>
           <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Overview</h2>
+            <h2 className={styles.sectionTitle}><Translate id="Overview">Overview</Translate></h2>
             <p>
-              Momento simplifies cloud architecture and automates resource management so developers can build from zero to global scale without distractions.
-              With our flagship <b>Cache</b> and <b>Topics</b> services, Momento provides developers the building blocks they need to focus on the thing that matters
-              most: <i>your business problem</i>.
+            <Translate id="momentoSimplifiesCloudArchitecture">Momento simplifies cloud architecture and automates resource management so developers can build from zero to global scale without distractions.
+              With our flagship </Translate><b>Cache</b> <Translate id="and">and</Translate> <b>Topics</b> <Translate id="servicesMomentoProvidesDevelopers">services, Momento provides developers the building blocks they need to focus on the thing that matters
+              most: </Translate><i><Translate id="yourBusinessProblem">your business problem</Translate></i>.
             </p>
             <div className={styles.columns}>
               <div className={styles.subsectionDetail}>
-                <h2 className={styles.subsectionTitle}>It's about <i>developer productivity</i></h2>
+                <h2 className={styles.subsectionTitle}><Translate id="ItsAbout">It's about </Translate><i><Translate id="developerProductivity">developer productivity</Translate></i></h2>
                 <p>
-                  We want you to move as fast as possible. Whether your database is pushing millions of transactions per second or you're publishing messages to tens of
-                  thousands of subscribers, Momento is with you managing the infrastructure, tackling scaling events, and providing you with simple API calls.
+                <Translate id="weWantYouToMoveAsFastAsPossible">We want you to move as fast as possible. Whether your database is pushing millions of transactions per second or you're publishing messages to tens of
+                  thousands of subscribers, Momento is with you managing the infrastructure, tackling scaling events, and providing you with simple API calls.</Translate>
                 </p>
 
-                <h2 className={styles.subsectionTitle}>We go where you go</h2>
+                <h2 className={styles.subsectionTitle}><Translate id="weGoWhereYouGo">We go where you go</Translate></h2>
                 <p>
-                  Momento works hard to provide developers with SDKs in as many programming languages possible. We have clients for all types of projects: browsers, Android
-                  development, iOS apps, and 10+ server-side languages. Looking for tuned clients for your production environment or Lambda function? Our SDKs have
-                  <a href="/cache/develop/basics/client-configuration-objects#pre-built-configurations"> optimized configurations</a> for anywhere development takes you.
+                <Translate id="momentoWorksHardToProvideDevelopers">Momento works hard to provide developers with SDKs in as many programming languages possible. We have clients for all types of projects: browsers, Android
+                  development, iOS apps, and 10+ server-side languages. Looking for tuned clients for your production environment or Lambda function? Our SDKs have</Translate>
+                  <a href="/cache/develop/basics/client-configuration-objects#pre-built-configurations"><Translate id="optimizedConfigurations">optimized configurations</Translate></a> <Translate id="forAnywhereDevelopmentTakesYou">for anywhere development takes you.</Translate>
                 </p>
               </div>
               <div className={styles.subsectionGraphic}>
                 <img src="/img/landing-page-detail-graphic.png" width={300} />
               </div>
             </div>
-            <h2 className={styles.subsectionTitle}>Simplify your cloud architecture</h2>
+            <h2 className={styles.subsectionTitle}><Translate id="simplifyYourCloudArchitecture">Simplify your cloud architecture</Translate></h2>
             <p>
-              Building robust, fault-tolerant systems at scale in the cloud is tough. We know. Lean on Momento's expertise to handle the infrastructure for you. Say
+            <Translate id="buildingRobust">Building robust, fault-tolerant systems at scale in the cloud is tough. We know. Lean on Momento's expertise to handle the infrastructure for you. Say
               goodbye to advanced networking, aggressive load balancing and scaling configurations, and complex WebSocket architectures. With Momento Cache and Topics,
-              it's all managed for you - and getting better every day.
+              it's all managed for you - and getting better every day.</Translate>
             </p>
           </div>
           <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Browse our products</h2>
+            <h2 className={styles.sectionTitle}><Translate id="browseOurProducts">Browse our products</Translate></h2>
             <div className={styles.productWrapper}>
               <div className={styles.products}>
                 <ReferenceCard
