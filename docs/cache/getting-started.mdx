@@ -1,0 +1,107 @@
+---
+sidebar_position: 3
+sidebar_label: Getting Started
+title: Getting Started
+pagination_prev: null
+pagination_next: null
+description: Jump in and get started quickly using Momento Cache with your SDK of choice.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Getting started with Momento Cache
+
+If you're looking to jump in and get started with Momento Cache, you've come to the right place.
+
+## Pre-requisites
+
+Follow our [step-by-step instructions](./develop/authentication/api-keys) to create an API key via the [Momento console](https://console.gomomento.com). Come back here when you have your key.
+
+## Using the [Momento console](https://console.gomomento.com)
+
+<div>
+    <video width="100%" height="100%" playsInline autoPlay muted loop>
+        <source src="/console-demo.mp4" type="video/mp4" />
+    </video>
+</div>
+
+## Using the Momento CLI
+
+You can also install the Momento CLI locally (Linux, Windows, Mac) if desired. The latest version of the CLI and instructions for installation and usage is available in [this repo](https://github.com/momentohq/momento-cli).
+
+<div>
+    <video width="100%" height="100%" playsInline autoPlay muted loop>
+        <source src="/Momento_getting_started.mp4" type="video/mp4" />
+    </video>
+</div>
+
+## Using the [Momento SDKs](../sdks)
+
+<details>
+    <summary>SDK Installation and Example</summary>
+There are multiple places you can store the API key you created. For this simple example, we'll store it in an environment variable, but the best practice is to store it in a secure location like AWS Secrets Manager.
+
+<Tabs>
+   <TabItem value="node" label="Node.js" default>
+
+Install the Momento SDK in your project directory
+
+```cli
+npm install @gomomento/sdk
+```
+
+Copy this code to a file `test.js`
+
+```typescript
+const { CacheGet, CacheSet, Configurations, CacheClient, CredentialProvider } = require('@gomomento/sdk');
+
+const CACHE_NAME = 'demo';
+
+// A simple function that calls all functions in order. You probably want more error handling.
+async function run() {
+  const cacheClient = await CacheClient.create({
+       configuration: Configurations.Laptop.v1(),
+       credentialProvider: CredentialProvider.fromEnvironmentVariable({
+           environmentVariableName: 'MOMENTO_API_KEY',
+        }),
+       defaultTtlSeconds: 600,
+   });
+  await client.createCache(CACHE_NAME);
+  // set cache key
+  const key = "key";
+  const data = 12345;
+  const setResponse = await client.set(cacheName, key, data);
+  if (setResponse instanceof CacheSet.Success) {
+      console.log('Key stored successfully!');
+  }
+  const readResponse = await client.get(cacheName, key);
+  if (readResponse instanceof CacheGet.Hit) {
+      console.log('Cache hit: ', readResponse.valueString());
+  } else if (readResponse instanceof CacheGet.Miss) {
+      console.log('Cache miss');
+  }
+}
+
+run();
+```
+
+Run code
+
+```cli
+MOMENTO_API_KEY='your_key_here' node test.js
+```
+
+The output should look something like this:
+
+```cli
+[2023-05-21T00:56:37.819Z] INFO (Momento: CacheClient): Creating Momento CacheClient
+[2023-05-21T00:56:37.831Z] INFO (Momento: ControlClient): Creating cache: demo
+Cache created.
+Key stored successfully!
+Cache hit:  12345
+```
+
+   </TabItem>
+</Tabs>
+</details>

@@ -19,11 +19,7 @@ const config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.png",
-  scripts: [
-    {
-      src: '/askMo.js',
-    },
-  ],
+  scripts: [],
 
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -80,7 +76,6 @@ const config = {
       {
         redirects: [
           // Redirect overview
-
           {
             to: '/cache',
             from: '/docs/overview',
@@ -269,11 +264,89 @@ const config = {
           {
             from: '/topics/develop/patterns/asynchronous-processing',
             to: '/topics/patterns/running-background-tasks'
+          },
+          //Adds redirects from the removed leaderboards 'Develop' folder
+          {
+            from: '/leaderboards/develop/api-reference',
+            to: '/leaderboards/api-reference'
+          },
+          {
+            from: '/leaderboards/develop/language-support',
+            to: '/leaderboards/language-support'
+          },
+          // we moved all of the SDKs to the top level
+          {
+            from: '/develop/sdks/dart',
+            to: '/sdks/dart'
+          },
+          {
+            from: '/develop/sdks/dotnet',
+            to: '/sdks/dotnet'
+          },
+          {
+            from: '/develop/sdks/elixir',
+            to: '/sdks/elixir'
+          },
+          {
+            from: '/develop/sdks/go',
+            to: '/sdks/go'
+          },
+          {
+            from: '/develop/sdks/java',
+            to: '/sdks/java'
+          },
+          {
+            from: '/develop/sdks/kotlin',
+            to: '/sdks/kotlin'
+          },
+          {
+            from: '/develop/sdks/nodejs',
+            to: '/sdks/nodejs'
+          },
+          {
+            from: '/develop/sdks/php',
+            to: '/sdks/php'
+          },
+          {
+            from: '/develop/sdks/python',
+            to: '/sdks/python'
+          },
+          {
+            from: '/develop/sdks/ruby',
+            to: '/sdks/ruby'
+          },
+          {
+            from: '/develop/sdks/rust',
+            to: '/sdks/rust'
+          },
+          {
+            from: '/develop/sdks/swift',
+            to: '/sdks/swift'
+          },
+          {
+            from: '/develop/sdks/ruby',
+            to: '/sdks/ruby'
+          },
+          {
+            from: '/develop/sdks/rust',
+            to: '/sdks/rust'
+          },
+          {
+            from: '/develop/sdks/swift',
+            to: '/sdks/swift'
+          },
+          {
+            from: ['/vector-index', '/vector-index/*'],
+            to: '/'
           }
         ],
         // This came in with v1.5.0 of the docs where we split out by service.
         // This function redirects anything coming into /develop, /learn, /manage, or /introduction to /cache/<directory>.
         createRedirects(existingPath) {
+          if ( existingPath.startsWith("/vector-index") ) {
+            return [existingPath.replace("/", "/vector-index")];
+          }
+
           if (existingPath.includes('/develop') || existingPath.includes('/learn') || existingPath.includes('/manage') || existingPath.includes('/introduction')) {
             return [
               existingPath.replace('/cache/develop', '/develop'),
@@ -307,15 +380,13 @@ const config = {
           items: [
             { to: '/cache', label: 'Cache', position: 'left'},
             { to: '/topics', label: 'Topics', position: 'left'},
-            { to: '/vector-index', label: 'Vector Index', position: 'left'},
             { to: '/leaderboards', label: 'Leaderboards', position: 'left'},
+            { to: '/cloud-linter', label: 'Cloud Linter', position: 'left'},
             {
               to: '/sdks', label: 'SDKs', position: 'right'
             },
             {
-              to: "https://www.gomomento.com/blog",
-              label: "Blog",
-              position: "right",
+              to:  '/regions', label: 'Regions', position: 'right'
             },
             {
               to: "https://github.com/momentohq/",
@@ -325,26 +396,6 @@ const config = {
             {
               type: 'localeDropdown',
               position: 'right',
-            },
-            {
-              type: 'html',
-              position: 'right',
-              value: `
-              <div id="popup" class="popup">
-                <div class="close-container">
-                  <button class="close-button" onclick="closePopup()">X</button>
-                </div>
-                <div class="controls">
-                  <div id="apiResponse" class="api-response"></div>
-                  <div class="input-container">
-                    <input type="text" id="popupInput" name="popupInput" class="popup-input" placeholder="Ask Mo something..." onkeydown="handleKeyPress(event)">
-                    <button class="submit-button" onclick="submitPopup()">Submit</button>
-                  </div>
-                </div>
-              </div>
-
-              <button class="ask-mo-button" onclick="askMoFunction()">Ask Mo!</button>
-            `,
             },
           ],
         },

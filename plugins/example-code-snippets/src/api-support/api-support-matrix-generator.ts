@@ -26,7 +26,7 @@ const SDKS: Array<SdkInfo> = [
     sdk: Sdk.NODEJS,
     cacheClientFile: [
       'packages/client-sdk-nodejs/src/cache-client.ts',
-      'packages/core/src/clients/ICacheClient.ts',
+      'packages/core/src/internal/clients/cache/AbstractCacheClient.ts',
     ],
     configObjectFile: 'packages/client-sdk-nodejs/src/config/configuration.ts',
     topicClientFile: 'packages/core/src/clients/ITopicClient.ts',
@@ -112,13 +112,13 @@ const SDKS: Array<SdkInfo> = [
     sdk: Sdk.RUST,
     cacheClientFile: 'src/simple_cache_client.rs',
     configObjectFile: undefined,
-    topicClientFile: 'src/preview/topics.rs',
+    topicClientFile: 'src/topics/topic_client.rs',
     authClientFile: undefined,
     leaderboardClientFile: undefined,
   },
   {
     sdk: Sdk.RUBY,
-    cacheClientFile: 'lib/momento/simple_cache_client.rb',
+    cacheClientFile: 'lib/momento/cache_client.rb',
     configObjectFile: undefined,
     topicClientFile: undefined,
     authClientFile: undefined,
@@ -170,12 +170,14 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
     groupName: 'Global',
     groupDescription: 'A matrix of SDK support for Momento global APIs',
     apis: [
-      'ping',
+      'createCache',
+      'listCaches',
       'flushCache',
+      'deleteCache',
+      'ping',
       'keysExist',
       'keyExists',
       'itemGetType',
-      'delete',
       'updateTtl',
       'increaseTtl',
       'decreaseTtl',
@@ -334,9 +336,6 @@ export class ApiSupportMatrixGenerator {
       }
       case '%%%CACHE_API_SUPPORT_MATRIX%%%': {
         return this.generateCacheMatrixNodes();
-      }
-      case '%%%VECTOR_INDEX_API_SUPPORT_MATRIX%%%': {
-        return this.generateVectorIndexMatrixNodes();
       }
       case '%%%LEADERBOARD_API_SUPPORT_MATRIX%%%': {
         return this.generateLeaderboardMatrixNodes();
@@ -499,10 +498,6 @@ export class ApiSupportMatrixGenerator {
     );
     nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
     return nodes;
-  }
-
-  generateVectorIndexMatrixNodes(): Array<Heading | Paragraph | Table> {
-    return [];
   }
 
   generateLeaderboardMatrixNodes(): Array<Heading | Paragraph | Table> {

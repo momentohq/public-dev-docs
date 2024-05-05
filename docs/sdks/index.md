@@ -1,5 +1,6 @@
 ---
-title: Find the Right Momento SDK for your Language and Use Case 
+displayed_sidebar: topLevelSidebar
+title: Find the right Momento SDK for your language and use case
 description: Momento provides SDKs for a wide variety of languages and target platforms. Find the right SDK for your use case!
 pagination_next: null
 hide_title: true
@@ -48,9 +49,46 @@ import { LinkButton } from "@site/src/components/LinkButton";
 
 Write code to interact with Momento Cache and Momento Topics in your favorite programming language, regardless of whether you are building a web, mobile, or server application!
 
+```mdx-code-block
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '10px'
+}}>
+  <LinkButton text="Node.js" link="/sdks/nodejs" imgSrc="/img/momento-sdk-icons/nodejs.svg" altText="Node.js Icon"/>
+  <LinkButton text=".NET" link="/sdks/dotnet" imgSrc="/img/momento-sdk-icons/dotnet.svg" altText=".NET Icon"/>
+  <LinkButton text="Python" link="/sdks/python" imgSrc="/img/momento-sdk-icons/python.svg" altText="Python Icon"/>
+  <LinkButton text="Java" link="/sdks/java" imgSrc="/img/momento-sdk-icons/java.svg" altText="Java Icon"/>
+  <LinkButton text="Kotlin" link="/sdks/kotlin" imgSrc="/img/momento-sdk-icons/kotlin.svg" altText="Kotlin Icon"/>
+  <LinkButton text="Go" link="/sdks/go" imgSrc="/img/momento-sdk-icons/go.svg" altText="Go Icon"/>
+  <LinkButton text="PHP" link="/sdks/php" imgSrc="/img/momento-sdk-icons/php.svg" altText="PHP Icon"/>
+  <LinkButton text="Elixir" link="/sdks/elixir" imgSrc="/img/momento-sdk-icons/elixer.svg" altText="Elixir Icon"/>
+  <LinkButton text="Rust" link="/sdks/rust" imgSrc="/img/momento-sdk-icons/rust.svg" altText="Rust Icon"/>
+  <LinkButton text="Ruby" link="/sdks/ruby" imgSrc="/img/momento-sdk-icons/ruby.svg" altText="Ruby Icon"/>
+</div>
+```
+
+
 ## Client-Side SDKs
 
 Momento client-side SDKs allow you to interact with Momento Cache and Momento Topics directly from your web or mobile application; no server-side infrastructure required! Create chat applications and other messaging features that allow your clients to communicate with one another with only a few lines of code!
+
+```mdx-code-block
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '10px'
+}}>
+  <LinkButton text="Unity SDK" link="/sdks/unity" imgSrc="/img/momento-sdk-icons/unity-sdk.svg" altText="Unity"/>
+  <LinkButton text="Unreal" link="/sdks/unreal" imgSrc="/img/momento-sdk-icons/unreal.svg" altText="Unreal" isAlpha={true}/>
+  <LinkButton text="Web SDK" link="/sdks/web" imgSrc="/img/momento-sdk-icons/web-sdk.svg" altText="Web Icon"/>
+  <LinkButton text="Swift SDK" link="/sdks/swift" imgSrc="/img/momento-sdk-icons/ios.svg" altText="iOS Icon"/>
+  <LinkButton text="Kotlin SDK" link="/sdks/kotlin" imgSrc="/img/momento-sdk-icons/android.svg" altText="Android Icon"/>
+  <LinkButton text="Dart SDK" link="/sdks/dart" imgSrc="/img/momento-sdk-icons/flutter-dart.svg" altText="Flutter Icon"/>
+</div>
+```
 
 ### Web SDK (Browser)
 
@@ -67,7 +105,6 @@ The Momento Web SDK allows you to create rich browser applications in TypeScript
   <LinkButton text="Style Guide" link="/sdks/nodejs/style-guide.html"/>
   <LinkButton text="Cache" link="/sdks/nodejs/cache.html"/>
   <LinkButton text="Topics" link="/sdks/nodejs/topics.html"/>
-  <LinkButton text="Vector Index" link="/sdks/nodejs/vector-index.html"/>
   <LinkButton text="API Tokens" link="/sdks/web#credentials-for-browsers"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web" openInNewTab="true"/>
   <LinkButton text="Packages" link="https://www.npmjs.com/package/@gomomento/sdk-web" openInNewTab="true" />
@@ -135,6 +172,32 @@ Use Momento Cache and Topics in your Flutter applications, allowing you to targe
 </div>
 ```
 
+### Unity (C#)
+
+```mdx-code-block
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '10px'
+}}>
+  <LinkButton text="Overview" link="/sdks/unity"/>
+</div>
+```
+
+### Unreal (C++)
+
+```mdx-code-block
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '10px'
+}}>
+  <LinkButton text="Overview" link="/sdks/unreal"/>
+</div>
+```
+
 ## Server-Side SDKs
 
 Momento server-side SDKs allow you to take advantage of Momento's low-latency Cache and Topics services from your back-end application. The Momento clients are tuned to provide the best possible performance and throughput while requiring far fewer TCP connections than many other cache client libraries.
@@ -152,7 +215,6 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   <LinkButton text="Style Guide" link="/sdks/nodejs/style-guide.html"/>
   <LinkButton text="Cache" link="/sdks/nodejs/cache.html"/>
   <LinkButton text="Topics" link="/sdks/nodejs/topics.html"/>
-  <LinkButton text="Vector Index" link="/sdks/nodejs/vector-index.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-nodejs/tree/main/examples/nodejs" openInNewTab="true" />
   <LinkButton text="Packages" link="https://www.npmjs.com/package/@gomomento/sdk" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-javascript" openInNewTab="true" />
@@ -189,7 +251,6 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   <LinkButton text="Overview" link="/sdks/python"/>
   <LinkButton text="Cache" link="/sdks/python/cache.html"/>
   <LinkButton text="Topics" link="/sdks/python/topics.html"/>
-  <LinkButton text="Vector Index" link="/sdks/python/vector-index.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-python/tree/main/examples" openInNewTab="true" />
   <LinkButton text="Packages" link="https://pypi.org/project/momento/" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-python" openInNewTab="true" />
@@ -246,7 +307,7 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   <LinkButton text="Topics" link="/sdks/go/topics.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-go/blob/main/examples/README.md" openInNewTab="true" />
   <LinkButton text="Packages" link="https://github.com/momentohq/client-sdk-go/releases" openInNewTab="true" />
-  <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-go" openInNewTab="true" />  
+  <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-go" openInNewTab="true" />
 </div>
 ```
 

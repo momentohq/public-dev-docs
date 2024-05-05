@@ -74,7 +74,7 @@ Momento のコントロールプレーン API にアクセスするためのト�
 | --------------- |-------------------------------------------| -------------------------------------------- |
 | permissions           | List <[Permission](#permission-objects)\> | 新しいトークンに付与する権限です。|
 
-TokenScope は [permission objects](#permission-objects)のリストです。リストには、[CachePermission](#cachepermission)型または [TopicPermission](#topicpermission)型の権限が含まれ、[最大で十](./../../limits.md)のパーミッションオブジェクトを含むことができます。権限はMomento データプレーンAPI（例えば get、set など）へのアクセスのみを許可します。複数のパーミッションオブジェクトでauthトークンが作成されると、どの一致するパーミッションでもアクセスが許可されます。例えば、次の二つのパーミッションオブジェクトで単一のトークンが作成された場合：
+TokenScope は [permission objects](#permission-objects)のリストです。リストには、[CachePermission](#cachepermission)型または [TopicPermission](#topicpermission)型の権限が含まれ、[最大で十](./../../limits)のパーミッションオブジェクトを含むことができます。権限はMomento データプレーンAPI（例えば get、set など）へのアクセスのみを許可します。複数のパーミッションオブジェクトでauthトークンが作成されると、どの一致するパーミッションでもアクセスが許可されます。例えば、次の二つのパーミッションオブジェクトで単一のトークンが作成された場合：
 
 1. アカウントの全てのキャッシュに対して読み書きアクセスを許可するパーミッションオブジェクト
 2. キャッシュ `foo` への読み取り専用アクセスを許可するパーミッションオブジェクト
@@ -151,7 +151,7 @@ const TopicsPermissions = {
 
 :::tip
 
-ここで答えられていない質問がある場合は、[私たちのDiscordサーバー](https://discord.gg/2c24SK6W)に参加し、サポートチャンネルで専門家に質問してください
+ここで答えられていない質問がある場合は、[私たちのDiscordサーバー](https://discord.gg/3HkAKjUZGq)に参加し、サポートチャンネルで専門家に質問してください
 
 :::
 
@@ -173,6 +173,6 @@ const TopicsPermissions = {
 
 :::tip
 
-ここで答えがでない質問があれば、[私たちのDiscordサーバー](https://discord.gg/2c24SK6W)に参加してび、サポートチャンネルで専門家に質問してください。
+ここで答えがでない質問があれば、[私たちのDiscordサーバー](https://discord.gg/3HkAKjUZGq)に参加してび、サポートチャンネルで専門家に質問してください。
 
 :::

@@ -1,0 +1,33 @@
+---
+sidebar_position: 2
+sidebar_label: Getting Started
+title: Getting Started
+pagination_next: null
+description: Explore Cloud Linter and see what insights it can provide you about your cloud environment.
+hide_title: true
+---
+
+# Getting Started
+Run the Cloud Linter and obtain automated analysis results in six easy steps!
+
+1. Install the [Momento CLI](https://github.com/momentohq/momento-cli#installation). _Note: You do not need a Momento auth token to run the cloud linter command._
+1. Configure [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) in your terminal.
+1. Run the command `momento preview cloud-linter`.
+1. [optional] Inspect raw output in `linter_results.json.gz`, located in the current working directory.
+1. Upload `linter_results.json.gz` in the [Momento Console](https://console.gomomento.com/cloud-linter).
+1. Automated analysis results will then become available after a short period.
+
+
+### Demonstration of CLI (video)
+<div>
+    <video width="100%" height="100%" playsInline autoPlay muted loop>
+        <source src="/linter_preview.mp4" type="video/mp4" />
+    </video>
+</div>
+
+### Demonstration of Web Console (video)
+<div>
+    <video width="100%" height="100%" playsInline autoPlay muted loop>
+        <source src="/cloud_linter_demo.mp4" type="video/mp4" />
+    </video>
+</div>

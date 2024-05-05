@@ -40,7 +40,7 @@ export default function Home(): JSX.Element {
     <Layout
       description="Description will go into a meta tag in <head />">
       <main className={styles.content}>
-        <img className={styles.headerBackground} src="/img/acorn-grid-background.svg" />
+        <img className={styles.headerBackground} src="/img/acorn-grid-background.svg"  alt={"acorn-grid"}/>
         <div className={styles.contentContainer}>
           <RotatingHeader />
           <div className={styles.desktopOnly}>
@@ -137,13 +137,6 @@ export default function Home(): JSX.Element {
                   link="./topics"
                   description="Event bus with webhook support"
                   icon="/img/topics/momento-topics-brand-icons.svg"
-                  variation="dense"
-                />
-                <ReferenceCard
-                  title="Vector Index"
-                  link="./vector-index"
-                  description="Scale-to-zero vector index for search"
-                  icon="/img/vector-index/momento-vector-index-brand-icon.svg"
                   variation="dense"
                 />
                 <ReferenceCard
