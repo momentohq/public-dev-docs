@@ -23,19 +23,18 @@ Momentoは、私たちの[SDK](./../)を使用できないアプリケーショ�
 
 ## リージョン
 
-Momento HTTP API にアクセスするには、API トークンとキャッシュの領域で以下のエンドポイントのいずれかを使用します。
+Momento HTTP API にアクセスするには、API トークンとキャッシュのリージョンで以下のエンドポイントのいずれかを使用します。ご希望の地域がない場合は、[サポートまでご連絡ください](mailto:support@momentohq.com)。
 
-|   | AWS Region     | Endpoints                                                    |
-|---|----------------|--------------------------------------------------------------|
-| 1 | us-west-2      | https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com    |
-| 2 | us-east-1      | https://api.cache.cell-us-east-1-1.prod.a.momentohq.com      |
-| 3 | us-east-2      | https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com    |
-| 4 | ap-northeast-1 | https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com |
-| 5 | eu-west-1      | https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com    |
-| 6 | ap-south-1     | https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com   |
-
-
-ご希望のリージョンがない場合は、ご相談ください。[サポート](mailto:support@momentohq.com)までご連絡ください。
+| AWS Region     | Endpoints                                                    |
+|----------------|--------------------------------------------------------------|
+| us-west-2      | https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com    |
+| us-east-1      | https://api.cache.cell-us-east-1-1.prod.a.momentohq.com      |
+| us-east-2      | https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com    |
+| ap-northeast-1 | https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com |
+| ap-southeast-1 | https://api.cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com|
+| eu-west-1      | https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com    |
+| eu-central-1   | https://api.cache.cell-1-eu-central-1-1.prod.a.momentohq.com |
+| ap-south-1     | https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com   |
 
 ## Publish
 

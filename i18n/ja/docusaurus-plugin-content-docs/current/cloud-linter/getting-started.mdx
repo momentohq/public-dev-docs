@@ -8,10 +8,12 @@ hide_title: true
 ---
 
 # はじめに
-
-まだインストールしていない場合は、momento cliをインストールしてください。インストールと使い方は[このリポジトリ](https://github.com/momentohq/momento-cli)にあります。
-
-cliをインストールしたら、`cloud-linter`コマンドを使ってAWS環境に対してlinterを実行する。AWS_PROFILE環境変数を使用して、使用するAWSアカウントを指定してください。
+1. [Momento CLI](https://github.com/momentohq/momento-cli#installation)をインストールします。注意: クラウドリンターコマンドを実行するためにMomento認証トークンは必要ありません。
+2. ターミナルで[AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)を設定します。
+3. コマンド `momento preview cloud-linter` を実行します。
+4. [オプション] 現在の作業ディレクトリにある `linter_results.json.gz` の生の出力を確認する。
+5. [Momento Console](https://console.gomomento.com/cloud-linter)で `linter_results.json.gz` をアップロードします。
+6. しばらくすると自動解析結果が表示されます。
 
 <div>
     <video width="100%" height="100%" playsInline autoPlay muted loop>
@@ -19,11 +21,7 @@ cliをインストールしたら、`cloud-linter`コマンドを使ってAWS環
     </video>
 </div>
 
-カレントディレクトリに `linter_results.json.gz` ファイルが生成されます。
-
-![PrivateLink Diagram](/img/cloud-linter/linter_gz_file.png)
-
-その後、[console](https://console.gomomento.com/cloud-linter)を使って、これらの結果をMomentoにアップロードすることができます。
+### Demonstration of Web Console (video)
 
 <div>
     <video width="100%" height="100%" playsInline autoPlay muted loop>
