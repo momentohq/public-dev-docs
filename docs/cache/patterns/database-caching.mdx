@@ -23,7 +23,7 @@ There are multiple ways to use a cache in conjunction with a database. The 2 mai
 
 
 :::info
-With any caching pattern, it is important to tune the [TTL (Time to Live)](../learn/how-it-works/cache-eviction-vs-expiration.md) for cached items. The TTL determines how long the data will be stored in the cache before it is evicted. Setting an appropriate TTL can help you ensure that the data in the cache is up-to-date. Picking a TTL that is too short can result in frequent cache misses, while a TTL that is too long can result in stale data being served. Determing what the TTL should be is dependent on your application, data being cached, and how that data is used.
+With any caching pattern, it is important to tune the [TTL (Time to Live)](../learn/how-it-works/cache-eviction-vs-expiration) for cached items. The TTL determines how long the data will be stored in the cache before it is evicted. Setting an appropriate TTL can help you ensure that the data in the cache is up-to-date. Picking a TTL that is too short can result in frequent cache misses, while a TTL that is too long can result in stale data being served. Determing what the TTL should be is dependent on your application, data being cached, and how that data is used.
 :::
 
 ## Read-aside caching
