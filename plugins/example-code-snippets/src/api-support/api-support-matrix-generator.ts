@@ -110,8 +110,8 @@ const SDKS: Array<SdkInfo> = [
   },
   {
     sdk: Sdk.RUST,
-    cacheClientFile: 'src/simple_cache_client.rs',
-    configObjectFile: undefined,
+    cacheClientFile: 'src/cache_client.rs',
+    configObjectFile: 'src/cache/config/configuration.rs',
     topicClientFile: 'src/topics/topic_client.rs',
     authClientFile: undefined,
     leaderboardClientFile: undefined,
@@ -119,7 +119,7 @@ const SDKS: Array<SdkInfo> = [
   {
     sdk: Sdk.RUBY,
     cacheClientFile: 'lib/momento/cache_client.rb',
-    configObjectFile: undefined,
+    configObjectFile: 'lib/momento/config/configuration.rb',
     topicClientFile: undefined,
     authClientFile: undefined,
     leaderboardClientFile: undefined,
