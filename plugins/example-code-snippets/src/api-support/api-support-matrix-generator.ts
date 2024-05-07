@@ -110,7 +110,7 @@ const SDKS: Array<SdkInfo> = [
   },
   {
     sdk: Sdk.RUST,
-    cacheClientFile: 'src/cache_client.rs',
+    cacheClientFile: 'src/cache/cache_client.rs',
     configObjectFile: 'src/cache/config/configuration.rs',
     topicClientFile: 'src/topics/topic_client.rs',
     authClientFile: undefined,

@@ -24,6 +24,8 @@ keywords:
 
 Operating cloud infrastructure at enterprise scale is a challenge in governance and compliance. Automated tools such as Cloud Linter empower a platform team to conduct large-scale audits or a product team to self-assess their architecture. For smaller development teams, it provides instant access to a tremendous pool of accumulated expertise.
 
+![Image of Momento console landing page](@site/static/img/cloud-linter/cloud-linter-diagram.png)
+
 ## How does it work?
 Cloud Linter is modeled after a code linter, in the sense that nothing it detects is necessarily wrong, just questionable and potentially costly. It incorporates learnings from the Momento team's collective decades of experience operating global-scale infrastructure, as well as our visibility into design patterns and workload data from across the tech industry.
 
@@ -33,3 +35,32 @@ Cloud Linter favors cost optimization as the clearest metric for demonstrating i
 
 ## What's next?
 Cloud Linter is a living project. New rules and support for more resource types will be added frequently, so check back here often for the latest updates!
+
+## Disclaimer
+Please note that Cloud Linter is designed solely for the purpose of calling specific control plane APIs listed below. Cloud Linter does not perform any resource-intensive operations on production services' CPU and memory.
+
+Cloud Linter is intended to interact with the following AWS services via their respective control plane APIs:
+- Amazon DynamoDB
+- Amazon ElastiCache
+- Amazon CloudWatch
+
+The usage of the software is limited to the following API calls and transactions per second (TPS):
+
+Elasticache:
+- DescribeCacheClusters: 10 TPS
+- DescribeServerlessCaches: 10 TPS
+
+DynamoDB:
+- ListTables: 10 TPS
+- DescribeTable: 10 TPS
+- DescribeTimeToLive: 1 TPS
+
+CloudWatch:
+- GetMetricData: 20 TPS
+
+Cloud Linter is designed to always stay within these specified limits. It's crafted with careful consideration to avoid generating any traffic to these APIs that could lead to AWS throttling or disrupt the normal operations of your AWS resources.
+Please note that while the average running time typically spans 15 minutes, this can vary significantly based on the volume of data being processed. Therefore, the process may extend up to 1 hour in some cases.
+
+For further details regarding the usage and limitations of Cloud Linter, please refer to the documentation available at: https://docs.momentohq.com/cloud-linter
+
+Cloud Linter complies with Momento's Terms of Services. For further information regarding Momento's terms of services, please refer to the Terms of Services page at: https://www.gomomento.com/terms-of-service
