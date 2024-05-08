@@ -300,7 +300,8 @@ const WEBHOOK_API_GROUPS: Array<ApiGroup> = [
 const AUTH_API_GROUPS: Array<ApiGroup> = [
   {
     groupName: 'Auth',
-    groupDescription: 'A matrix of SDK support for Momento API Key and auth token APIs',
+    groupDescription:
+      'A matrix of SDK support for Momento API Key and auth token APIs',
     apis: ['generateApiKey', 'refreshApiKey', 'generateDisposableToken'],
   },
 ];
