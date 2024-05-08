@@ -10,9 +10,11 @@ hide_title: true
 # Required Permissions
 Cloud Linter is intended to be run with READ only permissions. Specifically you will need following permissions from CloudWatch, ElastiCache, and DynamoDB:
 * elasticache:DescribeCacheClusters
+* elasticache:DescribeServerlessCaches
 * cloudwatch:GetMetricData
 * dynamodb:ListTables
 * dynamodb:DescribeTable
+* dynamodb:DescribeTimeToLive
 
 # Getting Started
 Run the Cloud Linter and obtain automated analysis results in six easy steps!
