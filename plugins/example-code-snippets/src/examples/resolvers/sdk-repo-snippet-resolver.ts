@@ -15,6 +15,7 @@ import {ElixirSnippetSourceParser} from './source-parsers/languages/elixir-snipp
 import {SwiftSnippetSourceParser} from './source-parsers/languages/swift-snippet-source-parser';
 import {DartSnippetSourceParser} from './source-parsers/languages/dart-snippet-source-parser';
 import {KotlinSnippetSourceParser} from './source-parsers/languages/kotlin-snippet-source-parser';
+import {RustSnippetSourceParser} from './source-parsers/languages/rust-snippet-source-parser';
 
 export class SdkRepoSnippetResolver implements SnippetResolver {
   private readonly sourceProvider: SdkSourceProvider =
@@ -99,7 +100,7 @@ export class SdkRepoSnippetResolver implements SnippetResolver {
       case ExampleLanguage.DART:
         return new DartSnippetSourceParser(sourceDir);
       case ExampleLanguage.RUST:
-        return undefined;
+        return new RustSnippetSourceParser(sourceDir);
       case ExampleLanguage.RUBY:
         return undefined;
       case ExampleLanguage.CLI:
