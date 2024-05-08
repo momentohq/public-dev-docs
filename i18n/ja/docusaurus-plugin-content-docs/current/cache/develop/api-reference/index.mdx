@@ -514,7 +514,7 @@ TTLを減少させる場合のみ、keyのTTL秒数を指定された値に減�
 
 これらのAPIは、Momentoの認証トークンやアクセスを管理するために使用されます。
 
-### GenerateAuthToken
+### GenerateApiKey
 
 指定した権限と有効期限を持つ新しいMomento認証トークンを生成します。
 
@@ -528,7 +528,7 @@ TTLを減少させる場合のみ、keyのTTL秒数を指定された値に減�
 
 * Success
 - `authToken`: string - the new auth token
-- `refreshToken`: string - a refresh token that can be used with the `RefreshAuthToken` API to refresh the token before it expires
+- `refreshToken`: string - a refresh token that can be used with the `RefreshApiKey` API to refresh the token before it expires
 - `expiresAt`: Timestamp - the timestamp at which the token will expire
 * Error
 
@@ -536,22 +536,22 @@ TTLを減少させる場合のみ、keyのTTL秒数を指定された値に減�
 
 </details>
 
-<SdkExampleTabs snippetId={'API_GenerateAuthToken'} />
+<SdkExampleTabs snippetId={'API_GenerateApiKey'} />
 
-### RefreshAuthToken
+### RefreshApiKey
 
 既存の有効期限内のMomento認証トークンを更新します。元のトークンと同じ権限と有効期限を持つ 新しいトークンを生成します。
 
 | 名前            | 型            | 説明                                   |
 | --------------- | --------------- | --------------------------------------------- |
-| refreshToken    | String          | 最初の`GenerateAuthToken`の呼び出しから取得した、現在の認証トー クンのrefreshTokenを指定。 |
+| refreshToken    | String          | 最初の`GenerateApiKey`の呼び出しから取得した、現在の認証トー クンのrefreshTokenを指定。 |
 
 <details>
 <summary>メソッドのレスポンスオブジェクト</summary>
 
 * Success
 - `authToken`: string - the new auth token
-- `refreshToken`: string - a refresh token that can be used with the `RefreshAuthToken` API to refresh the token before it expires
+- `refreshToken`: string - a refresh token that can be used with the `RefreshApiKey` API to refresh the token before it expires
 - `expiresAt`: Timestamp - the timestamp at which the token will expire
 * Error
 
@@ -559,7 +559,7 @@ TTLを減少させる場合のみ、keyのTTL秒数を指定された値に減�
 
 </details>
 
-<SdkExampleTabs snippetId={'API_RefreshAuthToken'} />
+<SdkExampleTabs snippetId={'API_RefreshApiKey'} />
 
 ### コレクションデータ型
 
