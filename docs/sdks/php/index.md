@@ -42,7 +42,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-php](https://githu
 
 ## Resources
 
-- [Getting started with Momento Cache in PHP](./cache)
+- [Getting started with Momento Cache in PHP](/sdks/php/cache)
 - [PHP SDK examples](https://github.com/momentohq/client-sdk-php/blob/main/examples/README.md): working example projects that illustrate how to use the PHP SDK
 
 ## Integrations
