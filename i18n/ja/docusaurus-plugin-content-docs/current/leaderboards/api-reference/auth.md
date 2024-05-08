@@ -16,7 +16,7 @@ Auth API は、Momento サービスの API キーとトークンを作成およ�
 
 <img src="/img/momento-auth-tokens.png" width="60%"/>
 
-## GenerateAuthToken API
+## GenerateApiKey API
 
 指定した権限と有効期限を持つ新しい Momento Auth トークンを生成します。
 
@@ -30,7 +30,7 @@ Auth API は、Momento サービスの API キーとトークンを作成およ�
 
 * Success
   - `authToken`: string - 新しいAuthトークン
-  - `refreshToken`: string - [RefreshAuthToken API](#refreshauthtoken-api) を使って、トークンの有効期限が切れる前にリフレッシュするためのトークン
+  - `refreshToken`: string - [RefreshApiKey API](#refreshapikey-api) を使って、トークンの有効期限が切れる前にリフレッシュするためのトークン
   - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
   - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
 * Error
@@ -45,22 +45,22 @@ MomentoコントロールプレーンAPIにアクセスするためのトーク�
 
 :::
 
-<SdkExampleTabs snippetId={'API_GenerateAuthToken'} />
+<SdkExampleTabs snippetId={'API_GenerateApiKey'} />
 
-## RefreshAuthToken API
+## RefreshApiKey API
 
 既存の有効期限が切れていない Momento Authトークンをリフレッシュします。 元のトークンと同じ権限と有効期限を持つ新しいトークンを生成します。
 
-| 名前            | タイプ            | 説明                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| refreshToken    | String          | `GenerateAuthToken` をコールした際に取得した、現在のAuthトークンの refreshToken。 |
+| 名前            | タイプ            | 説明                                                       |
+| --------------- | --------------- |----------------------------------------------------------|
+| refreshToken    | String          | `GenerateApiKey` をコールした際に取得した、現在のAuthトークンの refreshToken。 |
 
 <details>
   <summary>Method response object</summary>
 
 * Success
   - `authToken`: string - 新しいAuthトークン
-  - `refreshToken`: string - [RefreshAuthToken API](#refreshauthtoken-api)で使用するリフレッシュトークン。
+  - `refreshToken`: string - [RefreshApiKey API](#refreshapikey-api)で使用するリフレッシュトークン。
   - `endpoint`: string - Momentoクライアントがリクエストを行う際に使用する HTTP エンドポイント。
   - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
 * Error
@@ -69,7 +69,7 @@ MomentoコントロールプレーンAPIにアクセスするためのトーク�
 
 </details>
 
-<SdkExampleTabs snippetId={'API_RefreshAuthToken'} />
+<SdkExampleTabs snippetId={'API_RefreshApiKey'} />
 
 ## TokenScope objects
 | 名前            | タイプ                                      | 説明                                  |
@@ -271,7 +271,7 @@ const tokenResponse = await authClient.generateDisposableToken(
 <details>
 <summary>これらのトークンは、MomentoのコントロールプレーンAPIへのアクセスを制御しますか？</summary>
 
-[GenerateAuthToken](#generateauthtoken-api)APIで生成されたアクセストークンは、MomentoのデータプレーンAPIへのアクセスのみを制御します。Momento のコントロールプレーン API にアクセスするためのトークンは、[Momento console](https://console.gomomento.com/) を使用して生成する必要があります。
+[GenerateApiKey](#generateauthtoken-api)APIで生成されたアクセストークンは、MomentoのデータプレーンAPIへのアクセスのみを制御します。Momento のコントロールプレーン API にアクセスするためのトークンは、[Momento console](https://console.gomomento.com/) を使用して生成する必要があります。
 
 </details>
 

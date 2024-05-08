@@ -30,7 +30,7 @@ auth APIは、[Momento auth tokens](./../authentication/index.mdx) として知�
 
 * Success
   - `apiKey`: string - 新しいAPI key
-  - `refreshToken`: string - 有効期限前にトークンを更新するために、[RefreshAuthToken API](#refreshapikey-api)と共に使用できるリフレッシュトークン
+  - `refreshToken`: string - 有効期限前にトークンを更新するために、[RefreshApiKey API](#refreshapikey-api)と共に使用できるリフレッシュトークン
   - `expiresAt`: Timestamp - トークンが失効するタイムスタンプ
 * Error
 
@@ -59,7 +59,7 @@ Momento のコントロールプレーン API にアクセスするためのト�
 
 * Success
   - `apiKey`: string - 新しいAPIキー
-  - `refreshToken`: string - 有効期限前にトークンを更新するために、[RefreshAuthToken API](#refreshapikey-api) と共に使用できるリフレッシュトークン
+  - `refreshToken`: string - 有効期限前にトークンを更新するために、[RefreshApiKey API](#refreshapikey-api) と共に使用できるリフレッシュトークン
   - `expiresAt`: Timestamp - トークンが失効するタイムスタンプ
 * Error
 
@@ -167,7 +167,7 @@ const TopicsPermissions = {
 <details>
 <summary>これらのトークンは、Momento コントロールプレーン API へのアクセスを制御しますか？</summary>
 
-[GenerateAuthToken](#generateauthtoken) API で生成されたアクセストークンは、Momento のデータプレーンAPIへのアクセスだけを制御します。Momento のコントロールプレーンAPIへのアクセスのためのトークンは、[Momento console](https://console.gomomento.com/) を使用して生成する必要があります。
+[GenerateApiKey](#generateapikey) API で生成されたアクセストークンは、Momento のデータプレーンAPIへのアクセスだけを制御します。Momento のコントロールプレーンAPIへのアクセスのためのトークンは、[Momento console](https://console.gomomento.com/) を使用して生成する必要があります。
 
 </details>
 

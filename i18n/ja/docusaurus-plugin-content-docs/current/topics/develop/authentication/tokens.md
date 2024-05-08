@@ -31,7 +31,7 @@ Momento トークンは、*データプレーン*にのみアクセスできま�
 
 以下は、さまざまな権限でトークンを作成する例です：
 
-<SdkExampleTabs snippetId={'API_GenerateAuthToken'} />
+<SdkExampleTabs snippetId={'API_GenerateApiKey'} />
 
 トークン作成の詳細については、[APIリファレンスページ](./../api-reference/auth.md)を参照してください。
 

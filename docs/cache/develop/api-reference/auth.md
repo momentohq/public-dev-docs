@@ -30,7 +30,7 @@ Generates a new Momento API key with the specified permissions and expiry.
 
 * Success
   - `apiKey`: string - the new API key
-  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshapikey-api) to refresh a token before it expires
+  - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey-api) to refresh a token before it expires
   - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
   - `expiresAt`: Timestamp - the timestamp at which the token will expire
 * Error
@@ -60,7 +60,7 @@ Refreshes an existing, unexpired Momento API key.  Produces a new API key with t
 
 * Success
   - `apiKey`: string - the new API key
-  - `refreshToken`: string - a refresh token that can be used with the [RefreshAuthToken API](#refreshapikey-api) to refresh the token before it expires
+  - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey-api) to refresh the token before it expires
   - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
   - `expiresAt`: Timestamp - the timestamp at which the token will expire
 * Error
@@ -262,7 +262,7 @@ No. We only support the managed roles listed above for each permission.
 <details>
 <summary>Do these tokens control access to the Momento control plane APIs?</summary>
 
-Access tokens generated with the [GenerateAuthToken](#generateauthtoken-api) API only control access to the Momento data plane APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
+Access tokens generated with the [GenerateApiKey](#generateapikey-api) API only control access to the Momento data plane APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
 
 </details>
 
