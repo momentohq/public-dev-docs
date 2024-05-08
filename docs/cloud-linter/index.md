@@ -24,17 +24,15 @@ keywords:
 
 Operating cloud infrastructure at enterprise scale is a challenge in governance and compliance. Automated tools such as Cloud Linter empower a platform team to conduct large-scale audits or a product team to self-assess their architecture. For smaller development teams, it provides instant access to a tremendous pool of accumulated expertise.
 
-![Image of Momento console landing page](@site/static/img/cloud-linter/cloud-linter-diagram.png)
+![Cloud Linter Diagram](@site/static/img/cloud-linter/cloud-linter-diagram.png)
 
 ## How does it work?
 Cloud Linter is modeled after a code linter, in the sense that nothing it detects is necessarily wrong, just questionable and potentially costly. It incorporates learnings from the Momento team's collective decades of experience operating global-scale infrastructure, as well as our visibility into design patterns and workload data from across the tech industry.
 
-The [rules](./rules/index.md) that Cloud Linter applies to your configuration and usage data are designed to surface the most actionable insights. Heuristics are biased towards reducing false positives (ie, bad recommendations), at the risk of missing some edge-case opportunities. We encourage you to further explore the documentation for each rule in order to understand and apply the underlying principles more broadly.
-
-Cloud Linter favors cost optimization as the clearest metric for demonstrating impact. However, we recognize that the ultimate goal is to deliver a world-class experience to customers. Hence, some rules may offer suggestions that improve other crucial metrics, such as availability and scalability, even if that would increase cost.
+The analysis that Cloud Linter applies to your configuration and usage data are designed to surface the most actionable insights. Heuristics are biased towards reducing false positives (ie, bad recommendations), at the risk of missing some edge-case opportunities. While Cloud Linter favors cost optimization as the clearest metric for demonstrating impact, it may offer suggestions that improve other crucial metrics, such as availability and scalability, even if that would increase cost.
 
 ## What's next?
-Cloud Linter is a living project. New rules and support for more resource types will be added frequently, so check back here often for the latest updates!
+Cloud Linter is a living project. Support for more resource types will be added frequently, so check back here often for the latest updates!
 
 ## Disclaimer
 Please note that Cloud Linter is designed solely for the purpose of calling specific control plane APIs listed below. Cloud Linter does not perform any resource-intensive operations on production services' CPU and memory.
@@ -61,6 +59,4 @@ CloudWatch:
 Cloud Linter is designed to always stay within these specified limits. It's crafted with careful consideration to avoid generating any traffic to these APIs that could lead to AWS throttling or disrupt the normal operations of your AWS resources.
 Please note that while the average running time typically spans 15 minutes, this can vary significantly based on the volume of data being processed. Therefore, the process may extend up to 1 hour in some cases.
 
-For further details regarding the usage and limitations of Cloud Linter, please refer to the documentation available at: https://docs.momentohq.com/cloud-linter
-
-Cloud Linter complies with Momento's Terms of Services. For further information regarding Momento's terms of services, please refer to the Terms of Services page at: https://www.gomomento.com/terms-of-service
+Cloud Linter complies with Momento's Terms of Service. For further information, please refer to our [Terms of Service](https://www.gomomento.com/terms-of-service) page. 
