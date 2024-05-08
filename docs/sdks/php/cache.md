@@ -37,7 +37,8 @@ For more info, you can also see [the PHP SDK on GitHub](https://github.com/momen
 
 * A Momento API Key is required. You can generate one using [the Momento console](https://console.gomomento.com/).
 * Installation of PHP 8.0 or higher
-* Installation of the [gRPC PHP extension](https://github.com/grpc/grpc/blob/v1.46.3/src/php/README.md).
+* Installation of the [gRPC PHP extension](https://github.com/grpc/grpc/blob/master/src/php/README.md).
+* Installation of the [protobuf C extension](https://developers.google.com/google-ads/api/docs/client-libs/php/protobuf#c_implementation)
 * Installation of [Composer](https://getcomposer.org/doc/00-intro.md)  - A common library and dependency manager for PHP.
 
 ### Configure composer to get the PHP SDK
@@ -47,7 +48,7 @@ Add our repository to your `composer.json` file and our SDK as a dependency:
 ```json
 {
   "require": {
-    "momentohq/client-sdk-php": "1.0.0"
+    "momentohq/client-sdk-php": "1.7.1"
   }
 }
 ```
