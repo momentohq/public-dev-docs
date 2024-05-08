@@ -10,6 +10,7 @@ export class PythonSnippetSourceParser extends RegexSnippetSourceParser {
     const wholeFileExamplesDir = 'examples/py310/doc-example-files';
     const codeSnippetFiles: Array<string> = [
       'examples/py310/doc-examples-python-apis.py',
+      'examples/py310/patterns.py',
     ];
     super({
       wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),

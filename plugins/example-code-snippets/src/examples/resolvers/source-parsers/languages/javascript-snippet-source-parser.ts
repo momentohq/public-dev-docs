@@ -16,6 +16,7 @@ export class JavascriptSnippetSourceParser extends RegexSnippetSourceParser {
       'examples/nodejs/aws/doc-example-files/doc-examples-js-aws-secrets.ts',
       'examples/nodejs/cache/doc-example-files/collection-ttl.ts',
       'examples/nodejs/cache/doc-example-files/config-and-error-handling.ts',
+      'examples/nodejs/cache/doc-example-files/patterns.ts',
     ];
     super({
       wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),
