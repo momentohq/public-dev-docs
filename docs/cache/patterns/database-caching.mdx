@@ -1,0 +1,99 @@
+---
+sidebar_position: 10
+title: Database Caching Pattern
+sidebar_label: Database Caching
+description: Learn best practices using Momento cache with your database
+keywords:
+ - development patterns
+ - momento
+ - cache
+ - database
+ - enterprise patterns
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ReferenceCard from '@site/src/components/ReferenceCard';
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
+# Use Momento Cache to speed up your database
+
+Using a cache alongside your database can significantly improve the performance and availability of your application. By storing frequently accessed data in a cache, you can reduce the load on the database, leading to faster response times, higher availability, and lower costs.
+
+There are multiple ways to use a cache in conjunction with a database. The 2 main patterns are `read-aside` and `write-through` caching. In this guide, we will explore these patterns and how to implement them using Momento Cache.
+
+
+:::info
+With any caching pattern, it is important to tune the [TTL (Time to Live)](../learn/how-it-works/cache-eviction-vs-expiration) for cached items. The TTL determines how long the data will be stored in the cache before it is evicted. Setting an appropriate TTL can help you ensure the data in the cache is up-to-date. Picking a TTL that is too short can result in [frequent cache misses](https://www.gomomento.com/blog/the-biggest-miss-in-your-cache-hit-rate), while a TTL that is too long can result in stale data being served. Determining the appropriate TTL should be is dependent on your application, data being cached, and how that data is used.
+:::
+
+## Read-aside caching
+
+Read-aside caching is a pattern where the application first checks the cache for the data it needs. If the data is not found in the cache, the application fetches the data from the database and stores it in the cache for future use. This pattern is useful for read-heavy applications where the same data is accessed frequently.
+
+### Advantages of read-aside caching
+
+* **Faster reads**: Assuming a high cache hit rate, most requests won't need to hit the database, resulting in faster reads.
+* **Higher availability**: Read-aside caching reduces the load on the database, which can help improve the availability of the application.
+
+![Diagram of read-aside caching with Momento](@site/static/img/cache/patterns/read-aside-caching.png)
+
+### Read-aside caching with Momento
+
+Momento makes it easy to implement read-aside caching in your application. You can use the `get` API to fetch data from the cache and the `set` API to save data in the cache.
+
+<SdkExampleTabs snippetId={'patterns_ReadAsideCaching'} />
+
+### Disadvantages of read-aside caching
+
+* **Cache misses**: If data is not properly set in the cache, then high cache misses would result in an extra api call, which could slow down the application.
+* **Stale data**: If the data in the database is updated frequently, the cache may contain stale data. This can be mitigated by setting an appropriate TTL for the cached items.
+
+## Write-through caching
+
+Write-through caching is a pattern where the application writes data to the cache and the database at the same time. This pattern is useful for write-heavy applications where the same data is written frequently. It is often used in conjunction with read-aside caching. Since the data is written to the cache and the database at the same time, the cache is always up-to-date with the database, resulting in a higher cache hit rate, faster reads, and lower latency.
+
+### Advantages of write-through caching
+
+* **Higher cache hit rates**: Since the cache is kept up to date with the database, most requests to the cache should result in a cache hit.
+* **Lower latency**: Higher cache hit rates means less calls to the database, resulting in lower latency.
+
+![Diagram of write-through caching with Momento](@site/static/img/cache/patterns/write-through-caching.png)
+
+### Write-through caching with Momento
+
+Here is an example of how you can implement write-through caching with Momento:
+
+<SdkExampleTabs snippetId={'patterns_WriteThroughCaching'} />
+
+### Disadvantages of write-through caching
+
+* **Infrequently accessed data**: If data is written to the cache that is infrequently accessed, it can result in unnecessary resources needed for the cache, and increased costs. This can be mitigated by using a heuristic to determine which data should be cached.
+* **Performance overhead**: Since every write operation needs to be performed twice (once in the cache and once in the persistent storage), there is additional overhead compared to other caching patterns. This can lead to increased latency and reduced throughput for write operations, especially if the underlying storage is relatively slow or experiences high load.
+* **Potential for consistency issues**: While write-through caching aims to maintain consistency between the cache and persistent storage, there is still a possibility of consistency issues arising due to factors such as network failures, storage system failures, or race conditions. Proper error handling and retry mechanisms need to be implemented to mitigate these risks.
+
+## Learn more
+
+To learn more about Momento or to get a quick-start on your project, check out some additional resources below.
+
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '20px',
+  marginBottom: '20px'
+}}>
+  <ReferenceCard
+    title="More about caching patterns"
+    link="https://docs.momentohq.com/cache/introduction/common-caching-patterns"
+    description="Learn more about common caching patterns and how to use them in your application"
+    />
+  <ReferenceCard
+    title="Caching Strategies"
+    link="https://docs.momentohq.com/cache/introduction/common-caching-strategies"
+    description="Different levels and layers of caching used throughout your application"
+    />
+</div>
