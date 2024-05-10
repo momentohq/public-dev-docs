@@ -16,7 +16,7 @@ Momento Node.js SDK は [`@gomomento/sdk`](https://www.npmjs.com/package/@gomome
 
 ## 必要条件
 
-- Node のバージョンは [14以上](https://nodejs.org/en/download/) が必要です。
+- Node のバージョンは [16以上](https://nodejs.org/en/download/) が必要です。
 - Momento api keyが必要です。[Momento ウェブコンソール](https://console.gomomento.com/)から取得可能です。
 
 ## リソース
