@@ -24,6 +24,8 @@ keywords:
 
 クラウドインフラストラクチャを企業規模で運用することは、ガバナンスとコンプライアンスの課題です。Cloud Linterのような自動化ツールは、プラットフォームチームが大規模な監査を実施したり、製品チームがアーキテクチャを自己評価したりするのに役立ちます。小規模な開発チームにとっては、蓄積された専門知識の膨大なプールに即座にアクセスできます。
 
+![Image of Momento console landing page](@site/static/img/cloud-linter/cloud-linter-diagram.png)
+
 ## How does it work?
 Cloud Linterは、コード・リンターをモデルにしており、検出されるものは必ずしも間違っているわけではなく、疑わしいもの、コストがかかる可能性のあるものだけです。Momentoチームの数十年にわたるグローバル・スケールのインフラ運用の経験や、技術業界全体のデザイン・パターンやワークロード・データの可視性から得られた学習が組み込まれています。
 
@@ -33,3 +35,33 @@ Cloud Linterは、インパクトを示す最も明確な指標として、コ�
 
 ## What's next?
 Cloud Linterは生きているプロジェクトです。新しいルールや、より多くのリソースタイプのサポートが頻繁に追加されますので、最新のアップデートのために頻繁にここをチェックしてください！
+
+
+## 免責事項
+Cloud Linterは以下の特定のコントロールプレーンAPIを呼び出すためだけに設計されていることに注意してください。Cloud Linterは本番サービスのCPUやメモリに対してリソースを大量に消費するような操作は行いません。
+
+Cloud Linterは、それぞれのコントロールプレーンAPIを介して以下のAWSサービスと相互作用することを意図しています：
+- Amazon DynamoDB
+- Amazon ElastiCache
+- Amazon CloudWatch
+
+ソフトウェアの使用は、以下のAPIコールと1秒あたりのトランザクション（TPS）に制限されています：
+
+Elasticache:
+- DescribeCacheClusters: 10 TPS
+- DescribeServerlessCaches: 10 TPS
+
+DynamoDB:
+- ListTables: 10 TPS
+- DescribeTable: 10 TPS
+- DescribeTimeToLive: 1 TPS
+
+CloudWatch:
+- GetMetricData: 20 TPS
+
+Cloud Linterは常にこれらの指定された制限内に収まるように設計されています。AWSのスロットリングやAWSリソースの正常な運用に支障をきたすようなAPIへのトラフィックを発生させないよう、細心の注意を払って作られています。
+平均実行時間は通常15分ですが、これは処理されるデータ量によって大きく変わる可能性があることに注意してください。そのため、場合によっては1時間程度かかることもあります。
+
+クラウドリンターの使用方法と制限の詳細については、https://docs.momentohq.com/cloud-linter のドキュメントを参照してください。
+
+Cloud LinterはMomentoのサービス利用規約に準拠しています。Momentoのサービス規約の詳細については、以下のサービス規約のページを参照してください： https://www.gomomento.com/terms-of-service
