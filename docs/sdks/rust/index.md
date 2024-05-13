@@ -1,9 +1,9 @@
 ---
-sidebar_position: 9
+sidebar_position: 6
 pagination_prev: null
 sidebar_label: Rust
-title: Get to know the Momento Rust SDK
-description: The Momento Rust SDK allows you to create server-side applications, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
+title: Get to know The Momento Rust SDK
+description: The Momento Rust SDK allows you to take advantage of caching and pub-sub features without the need for server-side infrastructure. Find resources and examples here!
 keywords:
   - momento
   - cache
@@ -21,21 +21,24 @@ keywords:
   - examples
   - resources
   - getting started
-  - server-side
   - rust
-  - cargo
+  - tokio
 ---
 
 # Momento Rust SDK
 
-The Momento Rust SDK is available via the crates.io package [`momento`](https://crates.io/crates/momento).
+The Momento Rust SDK is available via crates.io: [`momento`](https://crates.io/crates/momento).
 
-The source code can be found on github: [momentohq/client-sdk-rust](https://github.com/momentohq/client-sdk-rust).
+The source code can be found on GitHub: [momentohq/client-sdk-rust](https://github.com/momentohq/client-sdk-rust).
 
 ## Requirements
 
 - A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A modern `cargo` tool chain is required; we love [rustup](https://rustup.rs/)!
 
 ## Resources
 
+- [Getting started with Momento Cache in Rust](./cache.mdx)
+- [Getting started with Momento Topics in Rust](./topics.mdx)
+- [Asynchronous APIs, Result Types, Configuration, and Error Handling](./config-and-error-handling.mdx)
 - [Rust SDK Examples](https://github.com/momentohq/client-sdk-rust/blob/main/example/README.md): working example projects that illustrate how to use the Rust SDK
