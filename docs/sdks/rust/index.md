@@ -27,7 +27,7 @@ keywords:
 
 # Momento Rust SDK
 
-The Momento Rust SDK is available via `crates.io`: [`momento`](https://crates.io/crates/momento).
+The Momento Rust SDK is available via crates.io: [`momento`](https://crates.io/crates/momento).
 
 The source code can be found on GitHub: [momentohq/client-sdk-rust](https://github.com/momentohq/client-sdk-rust).
 
