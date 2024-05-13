@@ -59,7 +59,7 @@ MomentoコントロールプレーンAPIにアクセスするためのトーク�
   <summary>Method response object</summary>
 
 * Success
-  - `authToken`: string - 新しいAuthトークン
+  - `apiKey`: string - 新しいAuthトークン
   - `refreshToken`: string - [RefreshApiKey API](#refreshapikey-api)で使用するリフレッシュトークン。
   - `endpoint`: string - Momentoクライアントがリクエストを行う際に使用する HTTP エンドポイント。
   - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
