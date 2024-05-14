@@ -6,6 +6,14 @@ pagination_next: null
 description: Explore Cloud Linter and see what insights it can provide you about your cloud environment.
 hide_title: true
 ---
+# 必要なパーミッション
+Cloud LinterはREADのみの権限で実行することを想定しています。具体的には、CloudWatch、ElastiCache、DynamoDBの以下のパーミッションが必要です：
+* elasticache:DescribeCacheClusters
+* elasticache:DescribeServerlessCaches
+* cloudwatch:GetMetricData
+* dynamodb:ListTables
+* dynamodb:DescribeTable
+* dynamodb:DescribeTimeToLive
 
 # はじめに
 1. [Momento CLI](https://github.com/momentohq/momento-cli#installation)をインストールします。注意: クラウドリンターコマンドを実行するためにMomento認証トークンは必要ありません。
@@ -13,7 +21,7 @@ hide_title: true
 3. コマンド `momento preview cloud-linter` を実行します。
 4. [オプション] 現在の作業ディレクトリにある `linter_results.json.gz` の生の出力を確認する。
 5. [Momento Console](https://console.gomomento.com/cloud-linter)で `linter_results.json.gz` をアップロードします。
-6. しばらくすると自動解析結果が表示されます。
+6. Momentoはその結果を分析し、お客様に合わせたコスト削減のご提案をいたします。
 
 <div>
     <video width="100%" height="100%" playsInline autoPlay muted loop>
@@ -21,10 +29,5 @@ hide_title: true
     </video>
 </div>
 
-### Demonstration of Web Console (video)
-
-<div>
-    <video width="100%" height="100%" playsInline autoPlay muted loop>
-        <source src="/cloud_linter_demo.mp4" type="video/mp4" />
-    </video>
-</div>
+### Web Console
+![Cloud Linter](@site/static/img/cloud-linter/cloud-linter-console.png)
