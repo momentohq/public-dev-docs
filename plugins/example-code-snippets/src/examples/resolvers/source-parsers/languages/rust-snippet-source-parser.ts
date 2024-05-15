@@ -9,7 +9,7 @@ export class RustSnippetSourceParser extends RegexSnippetSourceParser {
   constructor(repoSourceDir: string) {
     const wholeFileExamplesDir = '.';
     const codeSnippetFiles: Array<string> = [
-      'example/src/bin/docs_examples.rs',
+      'example/src/docs_examples/docs_examples.rs',
     ];
     super({
       wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),
