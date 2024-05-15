@@ -24,11 +24,11 @@ Momentoのcacheを使用したLaravelアプリの例をご覧になりたい方�
 ## Laravelプロジェクトのセットアップ
 
 ### 条件
-* MomentoのAPI Keyが必要です。 [Momento CLI](https://github.com/momentohq/momento-cli)を使用して作成することができます。
+* Momento API Keyが必要です。Momento Console](https://console.gomomento.com/)を使って生成できます。
 * PHP 8.0以降のインストール
 * Laravel 9.x以降のインストール
-* [gRPC PHPエクステンション](https://github.com/grpc/grpc/blob/v1.46.3/src/php/README.md)のインストール
-* [Composer](https://getcomposer.org/doc/00-intro.md)のインストール - PHPの共通ライブラリおよび依存関係管理ツール
+* [gRPC PHP 拡張](https://github.com/grpc/grpc/blob/master/src/php/README.md) のインストール
+* [protobuf C拡張](https://developers.google.com/google-ads/api/docs/client-libs/php/protobuf#c_implementation)のインストール
 
 ### Laravel + Momentoのパッケージの設定
 
