@@ -37,8 +37,9 @@ PHPとMomento Cacheをすぐに使い始める必要がある場合、このペ�
 
 * Momento API Keyが必要です。[Momentoコンソール](https://console.gomomento.com/)を使って生成できます。
 * PHP 8.0以上のインストール
-* [gRPC PHP extension](https://github.com/grpc/grpc/blob/v1.46.3/src/php/README.md)のインストール。
-* [Composer](https://getcomposer.org/doc/00-intro.md)のインストール - PHP用の共通ライブラリと依存性マネージャ。
+* [gRPC PHP 拡張](https://github.com/grpc/grpc/blob/master/src/php/README.md) のインストール
+* [protobuf C拡張](https://developers.google.com/google-ads/api/docs/client-libs/php/protobuf#c_implementation)のインストール
+* [Composer](https://getcomposer.org/doc/00-intro.md)のインストール - PHP用の共通ライブラリと依存性マネージャ
 
 ### PHP SDKを取得するためにcomposerを設定する
 
@@ -47,7 +48,7 @@ PHPとMomento Cacheをすぐに使い始める必要がある場合、このペ�
 ```json
 {
   "require": {
-    "momentohq/client-sdk-php": "1.0.0"
+    "momentohq/client-sdk-php": "1.7.1"
   }
 }
 ```
