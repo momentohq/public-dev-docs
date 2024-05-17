@@ -50,8 +50,8 @@ For TTL commands, the update was not applied and no change was made to the exist
 
 ## Stored
 
-For setIfNotExists commands, the key did not exist and the value was set.
+For setIf* commands, the key did not exist and the value was set.
 
 ## NotStored
 
-For setIfNotExists commands, the key existed and no value was set.
+For setIf* commands, the key existed and no value was set.

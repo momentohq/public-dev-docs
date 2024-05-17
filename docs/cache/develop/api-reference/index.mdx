@@ -259,32 +259,6 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_KeysExist'} />
 
-### SetIfNotExists
-
-Associates the provided value to a cache item with a given key if the key does not already exist in the cache.
-
-| Name       | Type   | Description                                   |
-| ---------- | ------ | --------------------------------------------- |
-| cacheName  | String | Name of the cache.                            |
-| key        | String \| Bytes | The key to be set. |
-| value      | String \| Bytes | The value to be stored.                       |
-| ttlSeconds | Duration    | Time to Live for the item in Cache.           |
-
-<details>
-
-<summary>Method response object</summary>
-
-
-* Stored
-* NotStored
-* Error
-
-See [response objects](./response-objects.md) for specific information.
-
-</details>
-
-<SdkExampleTabs snippetId={'API_SetIfNotExists'} />
-
 ### SetIfAbsent
 
 Associates the provided value to a cache item with a given key if the key does not already exist in the cache.
