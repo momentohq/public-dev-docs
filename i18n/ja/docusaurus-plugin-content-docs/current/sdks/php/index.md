@@ -37,11 +37,12 @@ Momento PHP SDK は Packagist パッケージ [`momentohq/client-sdk-php`](https
 
 - MomentoのAPIキーが必要です。[Momentoウェブコンソール](https://console.gomomento.com/)から取得できます。
 - 最低PHP 8.0以上
-- grpc PHP 拡張モジュール。拡張モジュールのインストールについては [gRPC docs](https://github.com/grpc/grpc/blob/v1.54.0/src/php/README.md) を参照ください。
+- - grpc PHP 拡張モジュール。拡張モジュールのインストールについては [gRPC docs](https://github.com/grpc/grpc/blob/master/src/php/README.md) を参照ください
+- protobuf C 拡張モジュール。インストール手順については [protobuf C extension docs](https://developers.google.com/google-ads/api/docs/client-libs/php/protobuf#c_implementation) を参照ください
 
 ## リソース
 
-- [Getting started with Momento Cache in PHP](./cache)
+- [Getting started with Momento Cache in PHP](/sdks/php/cache)
 - [PHP SDK examples](https://github.com/momentohq/client-sdk-php/blob/main/examples/README.md): PHP SDK の使い方を説明するサンプルプロジェクト
 
 ## インテグレーション
