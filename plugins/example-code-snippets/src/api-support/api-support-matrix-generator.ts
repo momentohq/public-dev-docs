@@ -191,7 +191,6 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
       'get',
       'set',
       'delete',
-      'setIfNotExists',
       'setIfAbsent',
       'setIfPresent',
       'setIfEqual',
