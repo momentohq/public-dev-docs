@@ -39,7 +39,7 @@ KotlinとMomento Cacheをすぐに使い始める必要がある場合、この�
 
 ## Momento SDKをインストールする
 
-Momento SDKはMaven Centralで入手できます: [`software.momento.kotlin/sdk](
+Momento SDKはMaven Centralで入手できます: [`software.momento.kotlin/sdk`](
 https://central.sonatype.com/artifact/software.momento.kotlin/sdk)にあります。
 
 :::tip
@@ -67,34 +67,39 @@ implementation("software.momento.kotlin:sdk:x.x.x")
 ## APIキーの設定
 
 Momentoで認証するには、Momento APIキーが必要です。 Momento Web Console](https://console.gomomento.com/caches)から取得できます。
-トークンを取得したら、Momento クライアントが利用できるように環境変数に保存します：
+APIキーを取得したら、Momento クライアントが利用できるように環境変数に保存します：
 
 ```
 export MOMENTO_API_KEY=<your Momento API key here>
 ```
 
-## ライブラリをインポートして接続し、CacheClient オブジェクトを返します
+## ライブラリをインポートして接続し、CacheClient オブジェクトの初期化
+
 このコードでは、メイン関数、必要なインポート、および他の各関数が呼び出す必要のある CacheClient インスタンス化を設定します。
 
 <SdkExampleCodeBlock language={'kotlin'} file={'CheatSheet.kt'} />
 
 ## Momento Cacheに新しいキャッシュを作成する
+
 この機能を使用して、アカウントに新しいキャッシュを作成します。
 
 <SdkExampleCodeBlock language={'kotlin'} snippetId={'API_CreateCache'} />
 
 
 ## あなたのアカウントにある既存のキャッシュの名前をリストアップします。
+
 アカウントのキャッシュ名の単純なリスト
 
 <SdkExampleCodeBlock language={'kotlin'} snippetId={'API_ListCaches'} />
 
 ## キャッシュに項目を書き込む
+
 セット操作の簡単な例。client.set呼び出しでは、TTLはオプションです。TTLを渡すと、クライアント接続オブジェクトで設定されたデフォルトのTTL値が上書きされます。
 
 <SdkExampleCodeBlock language={'kotlin'} snippetId={'API_Set'} />
 
 ## キャッシュからアイテムを読み込む
+
 これは、キャッシュから項目を取得する単純な読み取り操作の例です。
 
 <SdkExampleCodeBlock language={'kotlin'} snippetId={'API_Get'} />
