@@ -1,0 +1,98 @@
+---
+sidebar_position: 10
+title: Database Caching Pattern
+sidebar_label: Database Caching
+description: Learn best practices using Momento cache with your database
+keywords:
+ - development patterns
+ - momento
+ - cache
+ - database
+ - enterprise patterns
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ReferenceCard from '@site/src/components/ReferenceCard';
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
+# Momento Cacheを使ってデータベースを高速化する
+
+データベースと一緒にキャッシュを使用することで、アプリケーションのパフォーマンスと可用性を大幅に向上させることができます。頻繁にアクセスされるデータをキャッシュに保存することで、データベースへの負荷を軽減し、応答時間の短縮、可用性の向上、コストの削減につながります。
+
+キャッシュをデータベースと組み合わせて使う方法は複数ある。主なパターンは `read-aside` と `write-through` キャッシュの 2 つです。このガイドでは、これらのパターンと Momento Cache を使った実装方法を説明します。
+
+:::info
+どのようなキャッシュパターンでも、キャッシュアイテムの[TTL（Time to Live）](../learn/how-it-works/cache-eviction-vs-expiration)を調整することが重要です。TTLは、データがキャッシュから削除されるまでの保存期間を決定します。適切なTTLを設定することで、キャッシュ内のデータを最新の状態に保つことができます。短すぎるTTLを選ぶと[頻繁なキャッシュ・ミス](https://www.gomomento.com/blog/the-biggest-miss-in-your-cache-hit-rate)を引き起こす可能性があり、長すぎるTTLを選ぶと古いデータが提供される可能性があります。適切なTTLを決定することは、アプリケーション、キャッシュされるデータ、そしてそのデータがどのように使用されるかに依存します。
+:::
+
+## リード・アサイド・キャッシング
+
+リード・アサイド・キャッシングとは、アプリケーションがまずキャッシュに必要なデータがあるかどうかをチェックするパターンです。キャッシュにデータが見つからない場合、アプリケーションはデータベースからデータをフェッチし、将来の使用のためにキャッシュに保存します。このパターンは、同じデータが頻繁にアクセスされる、読み込みの多いアプリケーションに便利です。
+
+### リード・アサイド・キャッシングの利点
+
+* **Faster reads**: キャッシュのヒット率が高いと仮定すると、ほとんどのリクエストはデータベースをヒットする必要がなく、結果として読み込みが速くなります。
+* **Higher availability**: リード・アサイド・キャッシングはデータベースへの負荷を軽減し、アプリケーションの可用性を向上させることができます。
+
+![Diagram of read-aside caching with Momento](@site/static/img/cache/patterns/read-aside-caching.png)
+
+### Momentoによるリード・アサイド・キャッシング
+
+Momento を使うと、アプリケーションにリードアサイドキャッシュを簡単に実装できます。キャッシュからデータを取得するには `get` API を、キャッシュにデータを保存するには `set` API を使用します。
+
+<SdkExampleTabs snippetId={'patterns_ReadAsideCaching'} />
+
+### リード・アサイド・キャッシングの欠点
+
+* **Cache misses**: もしデータがキャッシュに適切にセットされていなければ、キャッシュミスが多発し、余計なapiコールが発生することになり、アプリケーションが遅くなる可能性があります。
+* **Stale data**: データベースのデータが頻繁に更新される場合、キャッシュに古いデータが含まれる可能性があります。これは、キャッシュ項目に適切なTTLを設定することで軽減できます。
+
+## ライトスルー・キャッシング
+
+ライトスルー・キャッシングは、アプリケーションがキャッシュとデータベースに同時にデータを書き込むパターンです。このパターンは、同じデータが頻繁に書き込まれる、書き込みの多いアプリケーションに便利です。リード・アサイド・キャッシングと併用されることが多くあります。データはキャッシュとデータベースに同時に書き込まれるため、キャッシュは常にデータベースと最新の状態に保たれ、キャッシュのヒット率が高くなり、読み込みが速くなり、レイテンシが低くなります。
+
+### ライトスルー・キャッシングの利点
+
+* **Higher cache hit rates**: キャッシュはデータベースとともに最新の状態に保たれているので、キャッシュへのリクエストのほとんどはキャッシュヒットになるはずです。
+* **Lower latency**: キャッシュのヒット率が高いということは、データベースへの呼び出しが少ないということであり、結果としてレイテンシが低くなります。
+
+![Diagram of write-through caching with Momento](@site/static/img/cache/patterns/write-through-caching.png)
+
+### Momentoによるライトスルー・キャッシング
+
+Momentoでライトスルーキャッシングを実装する例を示します：
+
+<SdkExampleTabs snippetId={'patterns_WriteThroughCaching'} />
+
+### ライトスルー・キャッシングの欠点
+
+* **Infrequently accessed data**: アクセス頻度の低いデータがキャッシュに書き込まれると、キャッシュに必要なリソースが不要になり、コストが増大する可能性があります。これは、どのデータをキャッシュすべきかをヒューリスティックに判断することで軽減できます。
+* **Performance overhead**: すべての書き込み操作は2回（キャッシュで1回、永続ストレージで1回）実行される必要があるため、他のキャッシュパターンと比べてオーバーヘッドが増えます。これは、特に基礎となるストレージが比較的低速であったり、高負荷であったりする場合に、書き込み操作のレイテンシの増加やスループットの低下につながる可能性があります。
+* **Potential for consistency issues**: ライトスルー・キャッシングはキャッシュと永続ストレージ間の一貫性を維持することを目的としているが、ネットワーク障害、ストレージ・システム障害、競合状態などの要因によって一貫性の問題が発生する可能性は依然としてあります。このようなリスクを軽減するために、適切なエラー処理と再試行のメカニズムを実装する必要があります。
+
+## さらに詳しく
+
+Momentoについてもっと知りたい方、プロジェクトを素早くスタートさせたい方は、以下の追加リソースをご覧ください。
+
+<div style={{
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  gap: '20px',
+  marginBottom: '20px'
+}}>
+  <ReferenceCard
+    title="More about caching patterns"
+    link="https://docs.momentohq.com/cache/introduction/common-caching-patterns"
+    description="Learn more about common caching patterns and how to use them in your application"
+    />
+  <ReferenceCard
+    title="Caching Strategies"
+    link="https://docs.momentohq.com/cache/introduction/common-caching-strategies"
+    description="Different levels and layers of caching used throughout your application"
+    />
+</div>
