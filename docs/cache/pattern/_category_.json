@@ -1,9 +1,0 @@
-{
-  "label": "Patterns",
-  "position": 3,
-  "collapsible": true,
-  "collapsed": true,
-  "link": {
-    "description": "Best practices on how to use Momento Cache in your architecture!"
-  }
-}
