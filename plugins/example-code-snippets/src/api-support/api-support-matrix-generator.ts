@@ -70,7 +70,10 @@ const SDKS: Array<SdkInfo> = [
     configObjectFile: 'config/config.go',
     topicClientFile: 'momento/topic_client.go',
     authClientFile: undefined,
-    leaderboardClientFile: undefined,
+    leaderboardClientFile: [
+      'momento/leaderboard.go',
+      'momento/leaderboard_client.go',
+    ],
   },
   {
     sdk: Sdk.JAVA,
