@@ -1,6 +1,7 @@
 ---
-title: Caching API calls to WolframAlpha using Momento Cache
-sidebar_label: Caching the WolframAlpha API calls
+sidebar_position: 2
+title: API Caching Pattern
+sidebar_label: API Caching
 description: Learn how to use Momento Cache to boost performance of applications using the WolframAlpha API
 keywords:
  - cache
