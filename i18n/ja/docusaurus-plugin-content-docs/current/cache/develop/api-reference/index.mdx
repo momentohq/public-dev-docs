@@ -255,30 +255,6 @@ cacheの全データをフラッシュします。
 
 <SdkExampleTabs snippetId={'API_KeysExist'} />
 
-### SetIfNotExists
-
-指定された値が、指定されたキーを持つキャッシュ・アイテムに関連付けられます。
-
-| 名前       | 型   | 説明                                   |
-| ---------- | ------ | --------------------------------------------- |
-| cacheName  | String | cacheの名前。                           |
-| key        | String \| Bytes | 設定されるkey。 |
-| value      | String \| Bytes | 格納される値。                      |
-| ttlSeconds | Duration    | cacheにあるアイテムの生存時間 (TTL)。          |
-
-<details>
-<summary>メソッドのレスポンスオブジェクト</summary>
-
-* Stored
-* NotStored
-* Error
-
-具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
-
-</details>
-
-<SdkExampleTabs snippetId={'API_SetIfNotExists'} />
-
 ### SetIfAbsent
 
 キーがキャッシュにまだ存在しない場合は、指定されたキーを使用して、指定された値をキャッシュ項目に関連付けます。
