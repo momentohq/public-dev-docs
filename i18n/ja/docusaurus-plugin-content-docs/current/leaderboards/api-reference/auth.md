@@ -99,7 +99,7 @@ TokenScopeは、[パーミッションオブジェクト](#permission-objects)�
 ロールの場合、`CacheRole.ReadOnly` を使用すると、CacheSelector で定義されたキャッシュ上のすべての読み取りデータプレーン API (`get`、`DictionaryGetField` など) にアクセスできるようになります。
 `CacheRole.ReadWrite` を使用すると、CacheSelector で定義されたキャッシュ上のすべての読み取りデータプレーン API および書き込みデータプレーン API にアクセスできるようになります。
 `CacheRole.WriteOnly` を使用すると、CacheSelector で定義されたキャッシュのすべての書き込みデータプレーン API にアクセスできるようになります。
-`CacheRole.WriteOnly` は、`SetIfNotExists` のような条件付きの書き込みを意味する API や、`ListPushBack` が新しい長さを返すなど、コレクションの更新状態に関する情報を返す API には使用できません。カスタムロールはサポートされていません。
+`CacheRole.WriteOnly` は、`SetIf*` のような条件付きの書き込みを意味する API や、`ListPushBack` が新しい長さを返すなど、コレクションの更新状態に関する情報を返す API には使用できません。カスタムロールはサポートされていません。
 
 キャッシュの場合、値は組み込みの `AllCaches` か、このパーミッションのキャッシュ名を含む文字列となります。
 
@@ -213,7 +213,7 @@ DisposableTokenCachePermission は CachePermission を拡張したもので、Ca
 ロールの場合、`CacheRole.ReadOnly` を使用すると、CacheSelector で定義されたキャッシュ上のすべての読み取りデータプレーン API (`get`、`DictionaryGetField` など) にアクセスできるようになります。
 `CacheRole.ReadWrite` を使用すると、CacheSelector で定義されたキャッシュ上のすべての読み取りデータプレーン API および書き込みデータプレーン API にアクセスできるようになります。
 `CacheRole.WriteOnly` を使用すると、CacheSelector で定義されたキャッシュのすべての書き込みデータプレーン API にアクセスできるようになります。
-`CacheRole.WriteOnly` は、`SetIfNotExists` のような条件付きの書き込みを意味する API や、`ListPushBack` が新しい長さを返すなど、コレクションの更新状態に関する情報を返す API には使用できません。カスタムロールはサポートされていません。
+`CacheRole.WriteOnly` は、`SetIf*` のような条件付きの書き込みを意味する API や、`ListPushBack` が新しい長さを返すなど、コレクションの更新状態に関する情報を返す API には使用できません。カスタムロールはサポートされていません。
 
 キャッシュの場合、値は組み込みの `AllCaches` か、このパーミッションのキャッシュ名を含む文字列となります。
 
