@@ -18,12 +18,6 @@ keywords:
 
 Momento [webhooks](https://docs.momentohq.com/topics/webhooks/overview) are a serverless way to connect a topic to a stateless consumer. Below is a guide on how to deploy an AWS Lambda function with a public URL that puts the message onto an Amazon EventBridge bus.
 
-:::info
-This integration supports the the following regions: **us-east-1**, **us-east-2**, **us-west-2**, and **eu-west-1**.
-
-Need an additional region? Contact [Momento support](https://www.gomomento.com/contact-us) to make a request.
-:::info
-
 ## Architecture
 
 The goal of the webhook handler is to process the notification from Momento as quickly and securely as possible with the ultimate destination being AWS EventBridge. By getting the message onto a bus, the possibilities for how to handle that data open up tremendously. The message could be persisted into more durable storage or even propagated to other consumers for further actions.

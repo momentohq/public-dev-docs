@@ -113,9 +113,9 @@ const SDKS: Array<SdkInfo> = [
   },
   {
     sdk: Sdk.RUST,
-    cacheClientFile: 'src/cache/cache_client.rs',
-    configObjectFile: 'src/cache/config/configuration.rs',
-    topicClientFile: 'src/topics/topic_client.rs',
+    cacheClientFile: 'sdk/src/cache/cache_client.rs',
+    configObjectFile: 'sdk/src/cache/config/configuration.rs',
+    topicClientFile: 'sdk/src/topics/topic_client.rs',
     authClientFile: undefined,
     leaderboardClientFile: undefined,
   },
