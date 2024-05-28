@@ -261,6 +261,11 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetIfAbsent
 
+:::warning
+Do NOT use compare-and-set (CAS) APIs such as `SetIfAbsent` with scalar or non-CAS APIs such as `Set`. Doing so will result
+in undefined consistency behaviors. Use `SetIfPresent` instead with `SetIfAbsent`.
+:::
+
 Associates the provided value to a cache item with a given key if the key does not already exist in the cache.
 
 | Name       | Type   | Description                                   |
@@ -286,6 +291,11 @@ See [response objects](./response-objects.md) for specific information.
 <SdkExampleTabs snippetId={'API_SetIfAbsent'} />
 
 ### SetIfPresent
+
+:::warning
+Do NOT use compare-and-set (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set`. Doing so will result
+in undefined consistency behaviors. Use `SetIfAbsent` instead with `SetIfPresent`.
+:::
 
 Associates the provided value to a cache item with a given key if the key already exists in the cache.
 
