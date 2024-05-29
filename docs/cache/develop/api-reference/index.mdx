@@ -261,6 +261,12 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetIfAbsent
 
+:::warning
+Do NOT use check-and-set (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetIfAbsent` instead with `SetIfPresent`.
+:::
+
+
 Associates the provided value to a cache item with a given key if the key does not already exist in the cache.
 
 | Name       | Type   | Description                                   |
@@ -287,6 +293,11 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetIfPresent
 
+:::warning
+Do NOT use check-and-set (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetIfAbsent` instead with `SetIfPresent`.
+:::
+
 Associates the provided value to a cache item with a given key if the key already exists in the cache.
 
 | Name       | Type   | Description                                   |
@@ -312,6 +323,11 @@ See [response objects](./response-objects.md) for specific information.
 <SdkExampleTabs snippetId={'API_SetIfPresent'} />
 
 ### SetIfEqual
+
+:::warning
+Do NOT use check-and-set (CAS) APIs such as `SetIfEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetIfNotEqual` instead with `SetIfEqual`.
+:::
 
 Associates the provided value to a cache item with a given key if the key already exists in the cache and the value in the cache is equal to the value supplied for `equal`.
 
@@ -340,6 +356,11 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetIfNotEqual
 
+:::warning
+Do NOT use check-and-set (CAS) APIs such as `SetIfNotEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetIfEqual` instead with `SetIfNotEqual`.
+:::
+
 Associates the provided value to a cache item with a given key if the key does not already exist in the cache or the value in the cache is not equal to the value supplied for `notEqual`.
 
 | Name       | Type   | Description                                   |
@@ -367,6 +388,11 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetIfPresentAndNotEqual
 
+:::warning
+Do NOT use check-and-set (CAS) APIs such as `SetIfPresentAndNotEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetIfAbsentOrEqual` instead with `SetIfPresentAndNotEqual`.
+:::
+
 Associates the provided value to a cache item with a given key if the key already exists in the cache and the value in the cache is not equal to the value supplied for `notEqual`.
 
 | Name       | Type   | Description                                   |
@@ -393,6 +419,11 @@ See [response objects](./response-objects.md) for specific information.
 <SdkExampleTabs snippetId={'API_SetIfPresentAndNotEqual'} />
 
 ### SetIfAbsentOrEqual
+
+:::warning
+Do NOT use check-and-set (CAS) APIs such as `SetIfAbsentOrEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetIfPresentAndNotEqual` instead with `SetIfAbsentOrEqual`.
+:::
 
 Associates the provided value to a cache item with a given key if the key does not already exist in the cache or the value in the cache is equal to the value supplied for `equal`.
 
