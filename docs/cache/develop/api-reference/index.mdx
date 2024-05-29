@@ -262,7 +262,7 @@ See [response objects](./response-objects.md) for specific information.
 ### SetIfAbsent
 
 :::warning
-Do NOT use compare-and-swap (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Do NOT use check-and-set (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set` or `Delete`.
 Doing so will result in undefined consistency behaviors. Use `SetIfAbsent` instead with `SetIfPresent`.
 :::
 
@@ -294,7 +294,7 @@ See [response objects](./response-objects.md) for specific information.
 ### SetIfPresent
 
 :::warning
-Do NOT use compare-and-swap (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Do NOT use check-and-set (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set` or `Delete`.
 Doing so will result in undefined consistency behaviors. Use `SetIfAbsent` instead with `SetIfPresent`.
 :::
 
@@ -325,7 +325,7 @@ See [response objects](./response-objects.md) for specific information.
 ### SetIfEqual
 
 :::warning
-Do NOT use compare-and-swap (CAS) APIs such as `SetIfEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Do NOT use check-and-set (CAS) APIs such as `SetIfEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
 Doing so will result in undefined consistency behaviors. Use `SetIfNotEqual` instead with `SetIfEqual`.
 :::
 
@@ -357,7 +357,7 @@ See [response objects](./response-objects.md) for specific information.
 ### SetIfNotEqual
 
 :::warning
-Do NOT use compare-and-swap (CAS) APIs such as `SetIfNotEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Do NOT use check-and-set (CAS) APIs such as `SetIfNotEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
 Doing so will result in undefined consistency behaviors. Use `SetIfEqual` instead with `SetIfNotEqual`.
 :::
 
@@ -389,7 +389,7 @@ See [response objects](./response-objects.md) for specific information.
 ### SetIfPresentAndNotEqual
 
 :::warning
-Do NOT use compare-and-set (CAS) APIs such as `SetIfPresentAndNotEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Do NOT use check-and-set (CAS) APIs such as `SetIfPresentAndNotEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
 Doing so will result in undefined consistency behaviors. Use `SetIfAbsentOrEqual` instead with `SetIfPresentAndNotEqual`.
 :::
 
@@ -421,7 +421,7 @@ See [response objects](./response-objects.md) for specific information.
 ### SetIfAbsentOrEqual
 
 :::warning
-Do NOT use compare-and-set (CAS) APIs such as `SetIfAbsentOrEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Do NOT use check-and-set (CAS) APIs such as `SetIfAbsentOrEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
 Doing so will result in undefined consistency behaviors. Use `SetIfPresentAndNotEqual` instead with `SetIfAbsentOrEqual`.
 :::
 
