@@ -262,9 +262,10 @@ See [response objects](./response-objects.md) for specific information.
 ### SetIfAbsent
 
 :::warning
-Do NOT use compare-and-set (CAS) APIs such as `SetIfAbsent` with scalar or non-CAS APIs such as `Set`. Doing so will result
-in undefined consistency behaviors. Use `SetIfPresent` instead with `SetIfAbsent`.
+Do NOT use compare-and-set (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetIfAbsent` instead with `SetIfPresent`.
 :::
+
 
 Associates the provided value to a cache item with a given key if the key does not already exist in the cache.
 
@@ -293,8 +294,8 @@ See [response objects](./response-objects.md) for specific information.
 ### SetIfPresent
 
 :::warning
-Do NOT use compare-and-set (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set`. Doing so will result
-in undefined consistency behaviors. Use `SetIfAbsent` instead with `SetIfPresent`.
+Do NOT use compare-and-set (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetIfAbsent` instead with `SetIfPresent`.
 :::
 
 Associates the provided value to a cache item with a given key if the key already exists in the cache.
@@ -323,6 +324,11 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetIfEqual
 
+:::warning
+Do NOT use compare-and-set (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetIfAbsent` instead with `SetIfPresent`.
+:::
+
 Associates the provided value to a cache item with a given key if the key already exists in the cache and the value in the cache is equal to the value supplied for `equal`.
 
 | Name       | Type   | Description                                   |
@@ -349,6 +355,11 @@ See [response objects](./response-objects.md) for specific information.
 <SdkExampleTabs snippetId={'API_SetIfEqual'} />
 
 ### SetIfNotEqual
+
+:::warning
+Do NOT use compare-and-set (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetIfAbsent` instead with `SetIfPresent`.
+:::
 
 Associates the provided value to a cache item with a given key if the key does not already exist in the cache or the value in the cache is not equal to the value supplied for `notEqual`.
 
@@ -377,6 +388,11 @@ See [response objects](./response-objects.md) for specific information.
 
 ### SetIfPresentAndNotEqual
 
+:::warning
+Do NOT use compare-and-set (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetIfAbsent` instead with `SetIfPresent`.
+:::
+
 Associates the provided value to a cache item with a given key if the key already exists in the cache and the value in the cache is not equal to the value supplied for `notEqual`.
 
 | Name       | Type   | Description                                   |
@@ -403,6 +419,11 @@ See [response objects](./response-objects.md) for specific information.
 <SdkExampleTabs snippetId={'API_SetIfPresentAndNotEqual'} />
 
 ### SetIfAbsentOrEqual
+
+:::warning
+Do NOT use compare-and-set (CAS) APIs such as `SetIfPresent` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetIfAbsent` instead with `SetIfPresent`.
+:::
 
 Associates the provided value to a cache item with a given key if the key does not already exist in the cache or the value in the cache is equal to the value supplied for `equal`.
 
