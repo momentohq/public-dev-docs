@@ -257,6 +257,10 @@ cacheの全データをフラッシュします。
 
 ### SetIfAbsent
 
+:::warning
+SetIfPresent` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。そうすると、一貫性の動作が定義されません。代わりに `SetIfAbsent` を `SetIfPresent` と一緒に使用してください。
+:::
+
 キーがキャッシュにまだ存在しない場合は、指定されたキーを使用して、指定された値をキャッシュ項目に関連付けます。
 
 | Name       | Type   | Description                                   |
@@ -283,6 +287,10 @@ cacheの全データをフラッシュします。
 
 ### SetIfPresent
 
+:::warning
+SetIfPresent` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。そうすると、一貫性の動作が定義されません。代わりに `SetIfAbsent` を `SetIfPresent` と一緒に使用してください。
+:::
+
 指定されたキーが既にキャッシュに存在する場合は、指定された値を指定されたキーのキャッシュ項目に関連付けます。
 
 | Name       | Type   | Description                                   |
@@ -308,6 +316,10 @@ cacheの全データをフラッシュします。
 <SdkExampleTabs snippetId={'API_SetIfPresent'} />
 
 ### SetIfEqual
+
+:::warning
+SetIfEqual` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。そうすると、一貫性のない動作になります。代わりに `SetIfNotEqual` を `SetIfEqual` と一緒に使用してください。
+:::
 
 指定されたキーが既にキャッシュ内に存在し、キャッシュ内の値が `equal` で指定された値と等しい場合に、指定された値を指定されたキーのキャッシュアイテムに関連付ける。
 
@@ -336,6 +348,10 @@ cacheの全データをフラッシュします。
 
 ### SetIfNotEqual
 
+:::warning
+SetIfEqual` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。そうすると、一貫性のない動作になります。代わりに `SetIfNotEqual` を `SetIfEqual` と一緒に使用してください。
+:::
+
 指定したキーがキャッシュ内に存在しないか、キャッシュ内の値が `notEqual` で指定した値と等しくない場合に、指定した値を指定したキーのキャッシュアイテムに関連付ける。
 
 | Name       | Type   | Description                                   |
@@ -363,6 +379,10 @@ cacheの全データをフラッシュします。
 
 ### SetIfPresentAndNotEqual
 
+::warnings
+SetIfPresentAndNotEqual` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。そのようなことをすると、一貫性の動作が未定義になります。代わりに `SetIfAbsentOrEqual` `SetIfPresentAndNotEqual` を使用してください。
+:::
+
 指定されたキーが既にキャッシュ内に存在し、キャッシュ内の値が `notEqual` で指定された値と等しくない場合に、指定された値を指定されたキーのキャッシュアイテムに関連付ける。
 
 | Name       | Type   | Description                                   |
@@ -389,6 +409,10 @@ cacheの全データをフラッシュします。
 <SdkExampleTabs snippetId={'API_SetIfPresentAndNotEqual'} />
 
 ### SetIfAbsentOrEqual
+
+::警告
+SetIfAbsentOrEqual` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。そのようなことをすると、一貫性の動作が未定義になります。代わりに `SetIfAbsentOrEqual` と一緒`SetIfPresentAndNotEqual` を使用してください。
+:::
 
 指定したキーがキャッシュ内に存在しないか、キャッシュ内の値が `equal` で指定した値と等しい場合に、指定した値を指定したキーのキャッシュアイテムに関連付ける。
 
