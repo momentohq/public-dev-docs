@@ -22,27 +22,28 @@ If you need further assistance (or just can’t believe it), drop a message in o
 <details open>
   <summary>Is it really just $.50/GB transferred in and out of Momento services? What else do you charge for?</summary>
 
-| Dimension                            | Momento charges           |
-|--------------------------------------|---------------------------|
-| Memory / Storage                     | $0/GB                     |
-| Multi-AZ replication charges         | $0/GB                     |
-| Single sign-on & teams (coming soon) | $0/user                   |
+| Dimension                            | Momento charges |
+| ------------------------------------ | --------------- |
+| Memory / Storage                     | $0/GB           |
+| Multi-AZ replication charges         | $0/GB           |
+| Single sign-on & teams (coming soon) | $0/user         |
 
  </details>
 
 <details>
 <summary>Can I run a production app for free on Topics?</summary>
-Absolutely! Our free tier and low usage tiers are just billing. It is the same exact service and features whether you use 40GB/month or 40TB/month. You get all our availability features like multi-AZ replication, hot key protection, and automatic scaling to handle bursts. In the free tier, you even get all our security features for free, such as <a href="./../develop/authentication">fine-grained auth tokens</a>, end-to-end encryption, per-request authentication, and TLS.
+Absolutely! Our free tier and low usage tiers are just billing. It is the same exact service and features whether you use 40GB/month or 40TB/month. You get all our availability features like multi-AZ replication, hot key protection, and automatic scaling to handle bursts. In the free tier, you even get all our security features for free, such as <a href="/../develop/authentication">fine-grained auth tokens</a>, end-to-end encryption, per-request authentication, and TLS.
 
 We frequently find customers provisioning an entire cluster to handle low-request per second (RPS) workflows. If you want them to be HA, you need multiple nodes. If you believe in CICD, you likely have a similarly sized cluster in staging—and maybe even in dev. That adds up! Turn off those machines—and save the environment. Go Momento!
+
 </details>
 
 <details>
   <summary>Can I run a production app for $5.00/month on Momento services?</summary>
 Absolutely! If you are transferring 15 GB of data in/out of Momento Cache each month, you get the first 5GB free each month and pay $0.50/GB for the remaining 10GB each month. Access enterprise-grade availability, security, and performance at any scale with Momento.
 
-
 As crazy as it sounds, we are not the first to do this. You can experience this with other serverless services like Amazon DynamoDB, Amazon S3, and more—we are just bringing serverless to caching!
+
 </details>
 
 <details>
