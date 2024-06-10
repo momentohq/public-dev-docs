@@ -390,7 +390,7 @@ const config = {
             },
             {
               to: "https://github.com/momentohq/",
-              label: "Github",
+              label: "GitHub",
               position: "right",
             },
             {
@@ -446,7 +446,7 @@ const config = {
                   to: "https://www.gomomento.com/blog",
                 },
                 {
-                  label: "Github",
+                  label: "GitHub",
                   to: "https://github.com/momentohq",
                 },
               ],

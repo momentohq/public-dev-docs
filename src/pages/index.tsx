@@ -128,21 +128,21 @@ export default function Home(): JSX.Element {
               <div className={styles.products}>
                 <ReferenceCard
                   title="Cache"
-                  link="./cache"
+                  link="/cache"
                   description="Serverless caching made simple"
                   icon="/img/cache/momento-cache-brand-icon.svg"
                   variation="dense"
                 />
                 <ReferenceCard
                   title="Topics"
-                  link="./topics"
+                  link="/topics"
                   description="Event bus with webhook support"
                   icon="/img/topics/momento-topics-brand-icons.svg"
                   variation="dense"
                 />
                 <ReferenceCard
                   title="Leaderboards"
-                  link="./leaderboards"
+                  link="/leaderboards"
                   description="Durable and ready for massive scale"
                   icon="/img/leaderboards/momento-leaderboards-2d.svg"
                   variation="dense"
