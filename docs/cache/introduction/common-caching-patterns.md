@@ -55,7 +55,7 @@ A remote, centralized cache does not have these downsides. It can be used by any
 
 The second caching choice to consider is when to cache the data. Again, you have two choices -- cache the data when it is read the first time (often called "lazy-loading"), or cache the data when it is written.
 
-The most popular caching pattern is likely the [read-aside pattern](#read-aside-caching). For this pattern, your application first attempts to read and return data from the cache on a request. If the data is not currently in the cache, the application falls back to the database to read the data. It then stores it in the cache before returning the response so that the retrieved data is available for the next request that needs this data.
+The most popular caching pattern is likely the [read-aside pattern](./common-caching-strategies#read-aside-caching). For this pattern, your application first attempts to read and return data from the cache on a request. If the data is not currently in the cache, the application falls back to the database to read the data. It then stores it in the cache before returning the response so that the retrieved data is available for the next request that needs this data.
 
 The opposite pattern is to load your cache following a successful write. After a write succeeds, you would proactively push it to the cache in anticipation of imminent use.
 
