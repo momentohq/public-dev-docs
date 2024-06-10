@@ -13,25 +13,19 @@ import TabItem from '@theme/TabItem';
 An item in Momento Cache is a byte array, so a cache can easily store most any file you want to create, as long as it is under the [per item limit of 1MB](./../../limits).
 
 Here is an example of reading a file from the filesystem, saving the file to an item in a cache, reading it from the cache, and then writing it to the filesystem.
-<Tabs>
-<TabItem value="nodejs" label="Node.js" default>
+  <Tabs>
+    <TabItem value="nodejs" label="Node.js" default>
 
 ```javascript
-const fs = require("fs");
-const {
-  CacheClient,
-  CacheGet,
-  CacheSet,
-  Configurations,
-  CredentialProvider,
-} = require("@gomomento/sdk");
-const dotenv = require("dotenv");
+const fs = require('fs');
+const { CacheClient, CacheGet, CacheSet, Configurations, CredentialProvider } = require('@gomomento/sdk');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
-const filePath = "./myfile.json";
-const fileName = "myfile";
-const CACHE_NAME = "test-cache";
+const filePath = './myfile.json';
+const fileName = 'myfile';
+const CACHE_NAME = 'test-cache';
 
 // Read a file from the filesystem
 async function readFile(filePath) {
@@ -49,7 +43,7 @@ async function createCacheClient() {
   return CacheClient.create({
     configuration: Configurations.Laptop.v1(),
     credentialProvider: CredentialProvider.fromEnvironmentVariable({
-      environmentVariableName: "MOMENTO_API_KEY",
+      environmentVariableName: 'MOMENTO_API_KEY',
     }),
     defaultTtlSeconds: 600,
   });
@@ -58,7 +52,7 @@ async function createCacheClient() {
 async function writeToCache(client, cacheName, key, data) {
   const setResponse = await client.set(cacheName, key, data);
   if (setResponse instanceof CacheSet.Success) {
-    console.log("Key stored successfully!");
+    console.log('Key stored successfully!');
   } else if (setResponse instanceof CacheSet.Error) {
     console.log(`Error setting key: ${setResponse.toString()}`);
   } else {
@@ -72,9 +66,9 @@ async function readFromCache(client, cacheName, key) {
     console.log(`cache hit: ${fileResponse.valueString()}`);
     const contents = fileResponse.valueUint8Array();
     const buffer = Buffer.from(contents);
-    fs.writeFileSync("/myfile2.json", buffer);
+    fs.writeFileSync("./myfile2.json", buffer);
   } else if (fileResponse instanceof CacheGet.Miss) {
-    console.log("cache miss");
+    console.log('cache miss');
   } else if (fileResponse instanceof CacheGet.Error) {
     console.log(`Error: ${fileResponse.message()}`);
   }
@@ -96,8 +90,8 @@ run();
 ```
 
 Check our [Node.js Cache guide](/sdks/nodejs/cache.mdx) for more on using our Node.js SDK.
-</TabItem>
-<TabItem value="py" label="Python">
+   </TabItem>
+   <TabItem value="py" label="Python">
 
 ```python
 import os
@@ -155,7 +149,7 @@ def run():
             print(f'Cache hit! The value is: {file_response.value_string}')
             buffer = bytes(file_response.value_string, 'utf-8')
             print('Writing file to filesystem.')
-            write_file("/myfile2.json", buffer)
+            write_file("./myfile2.json", buffer)
         elif isinstance(file_response, CacheGet.Miss):
             print('cache miss')
         elif isinstance(file_response, CacheGet.Error):

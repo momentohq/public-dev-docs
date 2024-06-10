@@ -8,30 +8,24 @@ description: Learn to add and retrieve files from Momento Cache with hands on co
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Momento Cache を使ったファイルの追加と取得
+# Momento Cacheを使ったファイルの追加と取得
 
-Momento Cache のアイテムはバイト配列なので、[アイテムあたりの上限 1MB](./../../limits)以内であれば、作成したいファイルのほとんどを簡単にキャッシュに保存することができます。
+Momento Cacheのアイテムはバイト配列なので、[アイテムあたりの上限1MB](./../../limits)以内であれば、作成したいファイルのほとんどを簡単にキャッシュに保存することができます。
 
 以下は、ファイルシステムからファイルを読み込み、そのファイルをキャッシュのアイテムに保存し、キャッシュから読み込んでからファイルシステムに書き込む例です。
-<Tabs>
-<TabItem value="nodejs" label="Node.js" default>
+  <Tabs>
+    <TabItem value="nodejs" label="Node.js" default>
 
 ```javascript
-const fs = require("fs");
-const {
-  CacheClient,
-  CacheGet,
-  CacheSet,
-  Configurations,
-  CredentialProvider,
-} = require("@gomomento/sdk");
-const dotenv = require("dotenv");
+const fs = require('fs');
+const { CacheClient, CacheGet, CacheSet, Configurations, CredentialProvider } = require('@gomomento/sdk');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
-const filePath = "./myfile.json";
-const fileName = "myfile";
-const CACHE_NAME = "test-cache";
+const filePath = './myfile.json';
+const fileName = 'myfile';
+const CACHE_NAME = 'test-cache';
 
 // Read a file from the filesystem
 async function readFile(filePath) {
@@ -49,7 +43,7 @@ async function createCacheClient() {
   return CacheClient.create({
     configuration: Configurations.Laptop.v1(),
     credentialProvider: CredentialProvider.fromEnvironmentVariable({
-      environmentVariableName: "MOMENTO_API_KEY",
+      environmentVariableName: 'MOMENTO_API_KEY',
     }),
     defaultTtlSeconds: 600,
   });
@@ -58,7 +52,7 @@ async function createCacheClient() {
 async function writeToCache(client, cacheName, key, data) {
   const setResponse = await client.set(cacheName, key, data);
   if (setResponse instanceof CacheSet.Success) {
-    console.log("Key stored successfully!");
+    console.log('Key stored successfully!');
   } else if (setResponse instanceof CacheSet.Error) {
     console.log(`Error setting key: ${setResponse.toString()}`);
   } else {
@@ -72,9 +66,9 @@ async function readFromCache(client, cacheName, key) {
     console.log(`cache hit: ${fileResponse.valueString()}`);
     const contents = fileResponse.valueUint8Array();
     const buffer = Buffer.from(contents);
-    fs.writeFileSync("/myfile2.json", buffer);
+    fs.writeFileSync("./myfile2.json", buffer);
   } else if (fileResponse instanceof CacheGet.Miss) {
-    console.log("cache miss");
+    console.log('cache miss');
   } else if (fileResponse instanceof CacheGet.Error) {
     console.log(`Error: ${fileResponse.message()}`);
   }
@@ -95,9 +89,9 @@ async function run() {
 run();
 ```
 
-Node.jsSDK の使い方については、[Node.js チートシート](/sdks/nodejs/cache.mdx)をご覧ください。
-</TabItem>
-<TabItem value="py" label="Python">
+Node.jsSDKの使い方については、[Node.jsチートシート](/sdks/nodejs/cache.mdx)をご覧ください。
+   </TabItem>
+   <TabItem value="py" label="Python">
 
 ```python
 import os
@@ -155,7 +149,7 @@ def run():
             print(f'Cache hit! The value is: {file_response.value_string}')
             buffer = bytes(file_response.value_string, 'utf-8')
             print('Writing file to filesystem.')
-            write_file("/myfile2.json", buffer)
+            write_file("./myfile2.json", buffer)
         elif isinstance(file_response, CacheGet.Miss):
             print('cache miss')
         elif isinstance(file_response, CacheGet.Error):
@@ -166,7 +160,7 @@ if __name__ == '__main__':
 
 ```
 
-Python SDK の使い方については、[Python チートシート](/sdks/python/cache.md)をご覧ください。
+Python SDKの使い方については、[Pythonチートシート](/sdks/python/cache.md)をご覧ください。
 
    </TabItem>
 </Tabs>
