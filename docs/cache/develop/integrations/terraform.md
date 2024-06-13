@@ -8,7 +8,7 @@ pagination_next: null
 
 # Manage Momento Caches with Terraform
 
-[Terraform](https://www.terraform.io/) is an infrastructure as code tool for building, changing, and versioning infrastructure safely and efficiently.
+[Terraform](https://www.terraform.io/) is an infrastructure-as-code tool for building, changing, and versioning infrastructure safely and efficiently.
 
 The [Momento Terraform Provider](https://registry.terraform.io/providers/momentohq/momento/latest) allows you to create and delete Momento Caches in your Terraform project.
 
@@ -43,7 +43,7 @@ To provide your Momento API key, you can include it in the `provider` block like
 
 ```hcl
 provider "momento" {
-  api_key = "your-api-key
+  api_key = "your-api-key"
 }
 ```
 
