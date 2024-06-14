@@ -43,7 +43,7 @@ const sidebars = {
   topLevelSidebar: [
     {
       type: "html",
-      value: "<span class='sidebar-title'>Table of Contents</span>",
+      value: "<span class='sidebar-title'>Table of Contents</span>"
     },
     {
       type: "link",
@@ -60,6 +60,10 @@ const sidebars = {
       label: 'Quotas and Limits',
       collapsible: true,
       collapsed: false,
+      link: {
+        type: 'doc',
+        id: 'limits/index'
+      },
       items: [
         {
           type: 'link',
