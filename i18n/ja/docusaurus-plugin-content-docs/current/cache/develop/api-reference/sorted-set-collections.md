@@ -265,7 +265,7 @@ You can remove either one or a specific group of elements.
 例:
 
 - 要素がソートされたセットに存在しない場合、`SortedSetIncrementScore(cacheName, setName, value, 10)` は要素のスコアを10に設定します。
-- 既存の要素が value:score の "{ 'KesselRun' : 12 }" の場合、`SortedSetIncrementScore(cacheName, setName, 10)` は要素のスコアを10に設定します。の場合、`SortedSetIncrementScore(cacheName, setName, value, 10)` は要素のスコアを22に設定します。
+- 既存の要素が value:score の "\{ 'KesselRun' : 12 \}" の場合、`SortedSetIncrementScore(cacheName, setName, 10)` は要素のスコアを10に設定します。の場合、`SortedSetIncrementScore(cacheName, setName, value, 10)` は要素のスコアを22に設定します。
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |

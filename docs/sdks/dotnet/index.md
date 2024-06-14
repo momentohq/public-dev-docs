@@ -42,8 +42,8 @@ The source code can be found on GitHub: [momentohq/client-sdk-dotnet](https://gi
 
 ## Resources
 
-- [Getting started with Momento Cache in .NET](./cache)
-- [Getting started with Momento Topics in .NET](./topics)
+- [Getting started with Momento Cache in .NET](./cache.mdx)
+- [Getting started with Momento Topics in .NET](./topics.mdx)
 - [.NET SDK Examples](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples/README.md): working example projects that illustrate how to use the .NET SDK
 - [.NET SDK Observability](./observability.mdx): Logging and Client-side Metrics with the .NET SDK
 

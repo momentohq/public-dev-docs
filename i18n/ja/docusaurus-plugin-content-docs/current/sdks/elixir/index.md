@@ -41,5 +41,5 @@ Momento Elixir SDKはhexパッケージ[`gomento`](https://hex.pm/packages/gomom
 
 ## リソース
 
-- [Getting started with Momento Cache in Elixir](./cache)
+- [Getting started with Momento Cache in Elixir](./cache.mdx)
 - [Elixir SDK examples](https://github.com/momentohq/client-sdk-elixir/blob/main/examples/README.md): Elixir SDKの使い方を説明するサンプルプロジェクト

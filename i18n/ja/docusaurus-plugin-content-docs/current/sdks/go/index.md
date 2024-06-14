@@ -38,8 +38,8 @@ Momento Go SDK は GitHub からインストールできます： github.com/mom
 
 ## リソース
 
-- [Getting started with Momento Cache in Go](./cache)
-- [Getting started with Momento Topics in Go](./topics)
+- [Getting started with Momento Cache in Go](./cache.mdx)
+- [Getting started with Momento Topics in Go](./topics.mdx)
 - [Go SDK Examples](https://github.com/momentohq/client-sdk-go/blob/main/examples/README.md): Go SDKの使い方を説明するサンプルプロジェクト
 
 ## インテグレーション

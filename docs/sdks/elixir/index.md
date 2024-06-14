@@ -41,5 +41,5 @@ The source code can be found on GitHub: [momentohq/client-sdk-elixir](https://gi
 
 ## Resources
 
-- [Getting started with Momento Cache in Elixir](./cache)
+- [Getting started with Momento Cache in Elixir](./cache.mdx)
 - [Elixir SDK examples](https://github.com/momentohq/client-sdk-elixir/blob/main/examples/README.md): working example projects that illustrate how to use the Elixir SDK
