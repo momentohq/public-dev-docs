@@ -74,7 +74,7 @@ See [response objects](./response-objects.md) for specific information.
 ## TokenScope objects
 | Name            | Type                                      | Description                                  |
 | --------------- |-------------------------------------------| -------------------------------------------- |
-| permissions           | List <[Permission](#permission-objects)\> | The permissions to grant to the new token.|
+| permissions           | List \<[Permission](#permission-objects)\> | The permissions to grant to the new token.|
 
 A TokenScope is a list of [permission objects](#permission-objects). The list can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and can contain [up to ten](../../limits) permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
 
@@ -188,7 +188,7 @@ See [response objects](./response-objects.md) for specific information.
 
 | Name            | Type                                      | Description                                  |
 | --------------- |-------------------------------------------| -------------------------------------------- |
-| permissions           | List <[DisposableTokenCachePermission](#disposabletokencachepermissions)&nbsp;&nbsp;\|&nbsp;&nbsp;[Permission](#permission-objects)\> | The permissions to grant to the new token.|
+| permissions           | List \<[DisposableTokenCachePermission](#disposabletokencachepermissions)&nbsp;&nbsp;\|&nbsp;&nbsp;[Permission](#permission-objects)\> | The permissions to grant to the new token.|
 
 The DisposableTokenScope object will accept permissions objects of the type [CachePermission](#cachepermission), [TopicPermission](#topicpermission), or [DisposableTokenCachePermission](#disposabletokencachepermissions).
 

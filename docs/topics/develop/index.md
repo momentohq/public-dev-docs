@@ -32,7 +32,7 @@ If you're storing your Momento API key in a secret manager such as [AWS Secret M
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromString'} />
 
-For an example of how to retrieve credentials from AWS Secrets Manager, see [Retrieving a Momento auth token from AWS Secrets Manager](./develop/integrations/aws-secrets-manager).
+For an example of how to retrieve credentials from AWS Secrets Manager, see [Retrieving a Momento auth token from AWS Secrets Manager](../integrations/aws-secrets-manager.md).
 
 For general information on Momento authentication, see [our auth page](./develop/authentication).
 

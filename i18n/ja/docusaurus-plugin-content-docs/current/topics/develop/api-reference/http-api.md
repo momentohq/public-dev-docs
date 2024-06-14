@@ -42,7 +42,7 @@ Momento HTTP API にアクセスするには、API トークンとキャッシ�
 
 ### Request
 
-- Path: /topics/{cacheName}/{topicName}
+- Path: /topics/\{cacheName\}/\{topicName\}
 - HTTP Method: POST
 
 #### Body

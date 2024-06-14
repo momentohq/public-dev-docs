@@ -1,25 +1,10 @@
-import visit from 'unist-util-visit';
+import {visit} from 'unist-util-visit';
 // eslint-disable-next-line import/no-unresolved,node/no-missing-import
 import * as unist from 'unist';
+// eslint-disable-next-line import/no-unresolved,node/no-missing-import
+import * as mdast from 'mdast';
 import {ApiSupportMatrixGenerator} from './api-support/api-support-matrix-generator';
-
-function isSupportMatrixNode<T extends unist.Node>(node: unknown): node is T {
-  const unistNode = node as unist.Node;
-  if (unistNode.type === 'paragraph') {
-    const unistParent = unistNode as unist.Parent;
-    if (unistParent.children.length === 1) {
-      const childLiteral: unist.Literal = unistParent
-        .children[0] as unist.Literal;
-      if (childLiteral.type === 'text') {
-        const value = childLiteral.value as string;
-        if (value.includes('API_SUPPORT_MATRIX%%%')) {
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-}
+import type {Transformer} from 'unified';
 
 /**
  * This is a docusaurus MDX/remark plugin.  It finds the %%%{product}_API_SUPPORT_MATRIX%%% marker
@@ -27,30 +12,46 @@ function isSupportMatrixNode<T extends unist.Node>(node: unknown): node is T {
  * Current supported markers are in the `generateApiMatrixMarkdownNodes` switch statement.
  *
  * @param options
- * @returns {unknown}
+ * @returns {Transformer}
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function plugin(options: unknown): unknown {
+function plugin(): Transformer {
   const matrixGenerator = new ApiSupportMatrixGenerator();
-  function transformer(tree: unist.Parent) {
-    visit(tree, isSupportMatrixNode, node => {
-      const matrixType = ((node as unist.Parent).children[0] as unist.Literal)
-        .value as string;
-      console.log('Found matrix type:', matrixType);
+  return tree => {
+    visit(
+      tree,
+      'paragraph',
+      (node: mdast.Paragraph, index: number, parent: unist.Parent) => {
+        if (node.children.length !== 1) {
+          return;
+        }
 
-      const newNodes =
-        matrixGenerator.generateApiMatrixMarkdownNodes(matrixType);
+        const child = node.children[0];
+        if (child.type !== 'text') {
+          return;
+        }
 
-      const treeChildren: Array<unist.Node> = tree.children;
-      const thisNodeIndex = treeChildren.findIndex(n => n === node);
-      tree.children = [
-        ...treeChildren.slice(0, thisNodeIndex),
-        ...newNodes,
-        ...treeChildren.slice(thisNodeIndex + 1),
-      ];
-    });
-  }
-  return transformer;
+        const value = child.value;
+        if (!value.includes('API_SUPPORT_MATRIX%%%')) {
+          return;
+        }
+
+        const matrixType = value;
+        console.log('Found matrix type:', matrixType);
+
+        const newNodes =
+          matrixGenerator.generateApiMatrixMarkdownNodes(matrixType);
+
+        node.data?.parent;
+
+        const siblings = parent.children;
+        parent.children = [
+          ...siblings.slice(0, index),
+          ...newNodes,
+          ...siblings.slice(index + 1),
+        ];
+      }
+    );
+  };
 }
 
 module.exports = plugin;

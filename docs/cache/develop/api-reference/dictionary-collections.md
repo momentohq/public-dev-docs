@@ -36,10 +36,10 @@ Gets a dictionary item from a cache.
 The response object for DictionaryFetch returns three possible options, a cache hit, miss, or an error.
 
 * Cache hit
-    - `valueDictionaryBytesBytes()`: Map<Bytes, Bytes>
-    - `valueDictionaryStringString()`: Map<String, String>
-    - `valueDictionaryStringBytes()`: Map<String, Bytes>
-    - `valueDictionaryBytesString()`: Map<Bytes, String>
+    - `valueDictionaryBytesBytes()`: Map\<Bytes, Bytes\>
+    - `valueDictionaryStringString()`: Map\<String, String\>
+    - `valueDictionaryStringBytes()`: Map\<String, Bytes\>
+    - `valueDictionaryBytesString()`: Map\<Bytes, String\>
     - `toString()`: String - displays the field/value pairs, truncated.
 * Cache miss
 * Cache error
@@ -97,10 +97,10 @@ Get one or more fields from a dictionary in the cache.
   <summary>Method response object</summary>
 
 * Cache hit
-    - valueDictionaryBytesBytes(): Map<Bytes, Bytes>
-    - valueDictionaryStringString(): Map<String, String>
-    - valueDictionaryStringBytes(): Map<String, Bytes>
-    - valueDictionaryBytesString(): Map<Bytes, String>
+    - valueDictionaryBytesBytes(): Map\<Bytes, Bytes>
+    - valueDictionaryStringString(): Map\<String, String>
+    - valueDictionaryStringBytes(): Map\<String, Bytes>
+    - valueDictionaryBytesString(): Map\<Bytes, String>
     - toString(): String - displays truncated valueDictionaryStringString()
 * Cache miss
 * Error

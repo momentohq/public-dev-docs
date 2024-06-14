@@ -74,7 +74,7 @@ MomentoコントロールプレーンAPIにアクセスするためのトーク�
 ## TokenScope objects
 | Name            | Type                                      | Description                                  |
 | --------------- |-------------------------------------------| -------------------------------------------- |
-| permissions           | List <[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション|
+| permissions           | List \<[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション|
 
 TokenScopeは[パーミッション・オブジェクト](#permission-objects)のリストです。このリストには、[CachePermission](#cachepermission) 型または [TopicPermission](#topicpermission) 型のパーミッションを含めることができ、[最大10個](../../limits) のパーミッションオブジェクトを含めることができます。パーミッションは Momento データプレーン API (`get` や `set` など) へのアクセスのみを許可する。複数のパーミッションオブジェクトを持つ認証トークンが作成された場合、一致するパーミッションがアクセスを許可します。たとえば、1 つのトークンに 2 つのパーミッションオブジェクトを設定した場合、次のようになります：
 
@@ -186,7 +186,7 @@ const TopicsPermissions = {
 
 | Name            | Type                                      | Description                                  |
 | --------------- |-------------------------------------------| -------------------------------------------- |
-| permissions           | List <[DisposableTokenCachePermission](#disposabletokencachepermissions)&nbsp;&nbsp;\|&nbsp;&nbsp;[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション|
+| permissions           | List \<[DisposableTokenCachePermission](#disposabletokencachepermissions)&nbsp;&nbsp;\|&nbsp;&nbsp;[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション|
 
 DisposableTokenScope オブジェクトは、[CachePermission](#cachepermission)、[TopicPermission](#topicpermission)、または [DisposableTokenCachePermission](#disposabletokencachepermissions) タイプのパーミッション・オブジェクトを受け入れます。
 

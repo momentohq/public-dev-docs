@@ -1,11 +1,7 @@
-// @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
+import { themes } from "prism-react-renderer";
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
-
-const exampleSnippetsPlugin = require('./plugins/example-code-snippets/dist/inject-example-code-snippets');
-const languageApiSupportMatrixPlugin = require('./plugins/example-code-snippets/dist/language-api-support-matrix');
+import exampleSnippetsPlugin from './plugins/example-code-snippets/dist/inject-example-code-snippets';
+import languageApiSupportMatrixPlugin from './plugins/example-code-snippets/dist/language-api-support-matrix';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -469,8 +465,8 @@ const config = {
         },
         prism: {
           additionalLanguages: ["java", "kotlin", "rust", "csharp", "php", "elixir", "swift", "dart"],
-          theme: lightCodeTheme,
-          darkTheme: darkCodeTheme,
+          theme: themes.github,
+          darkTheme: themes.dracula,
         },
         algolia: {
           appId: '3P10N8HW6D',

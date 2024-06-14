@@ -1,0 +1,24 @@
+---
+displayed_sidebar: topLevelSidebar
+sidebar_label: Quotas and Limits
+title: Momento quotas and limits
+pagination_next: null
+description: Examine the service quotas in place with Momento auth and discover the default and tunable values for your workload based on your support plan.
+hide_title: true
+---
+# Momento quotas and limits
+
+:::info
+Service quotas are directly affected by the support plan on your account. Both <ins>soft and hard limits</ins> are increasable for the Pro tier and Enterprise plans. If you would like to request an increase, please [contact sales](https://www.gomomento.com/contact-us).
+:::
+
+View the quotas and limits for a specific service here:
+
+import Card from '@site/src/components/Card';
+
+<div className="card-wrapper">
+  <Card to="/auth/limits" title="Auth" description="quotas and limits" />
+  <Card to="/cache/limits" title="Cache" description="quotas and limits" />
+  <Card to="/topics/limits" title="Topics" description="quotas and limits" />
+  <Card to="/leaderboards/limits" title="Leaderboards" description="quotas and limits" />
+</div>
