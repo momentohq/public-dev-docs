@@ -20,7 +20,7 @@ keywords:
 
 # What is Cloud Linter?
 
-[Cloud Linter](https://console.gomomento.com/caches) is a web service that you can use to automatically inspect your cloud footprint for common inefficiencies.
+[Cloud Linter](https://console.gomomento.com/cloud-linter) is a web service that you can use to automatically inspect your cloud footprint for common inefficiencies.
 
 Operating cloud infrastructure at enterprise scale is a challenge in governance and compliance. Automated tools such as Cloud Linter empower a platform team to conduct large-scale audits or a product team to self-assess their architecture. For smaller development teams, it provides instant access to a tremendous pool of accumulated expertise.
 
