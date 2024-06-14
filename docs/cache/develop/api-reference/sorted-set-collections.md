@@ -265,7 +265,7 @@ The resulting incremented score must be between -9223372036854775808 and 9223372
 Examples:
 
 - When the element does not exist in the sorted set, `SortedSetIncrementScore(cacheName, setName, value, 10)` will set the element's score to 10.
-- When the existing element is a value:score of "{ 'KesselRun' : 12 }" , `SortedSetIncrementScore(cacheName, setName, value, 10)` will set the element's score to 22.
+- When the existing element is a value:score of "\{ 'KesselRun' : 12 \}" , `SortedSetIncrementScore(cacheName, setName, value, 10)` will set the element's score to 22.
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |

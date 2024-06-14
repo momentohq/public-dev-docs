@@ -36,10 +36,10 @@ Momentoコレクションタイプは、[CollectionTTL](./collection-ttl.md)を�
 DictionaryFetchのレスポンスオブジェクトは、キャッシュヒット、ミス、エラーの3つのオプションを返します。
 
 * Cache hit
-    - `valueDictionaryBytesBytes()`: Map<Bytes, Bytes>
-    - `valueDictionaryStringString()`: Map<String, String>
-    - `valueDictionaryStringBytes()`: Map<String, Bytes>
-    - `valueDictionaryBytesString()`: Map<Bytes, String>
+    - `valueDictionaryBytesBytes()`: Map\<Bytes, Bytes>
+    - `valueDictionaryStringString()`: Map\<String, String>
+    - `valueDictionaryStringBytes()`: Map\<String, Bytes>
+    - `valueDictionaryBytesString()`: Map\<Bytes, String>
     - `toString()`: String - displays the field/value pairs, truncated.
 * Cache miss
 * Cache error
@@ -97,10 +97,10 @@ DictionaryFetchのレスポンスオブジェクトは、キャッシュヒッ�
   <summary>Method response object</summary>
 
 * Cache hit
-    - valueDictionaryBytesBytes(): Map<Bytes, Bytes>
-    - valueDictionaryStringString(): Map<String, String>
-    - valueDictionaryStringBytes(): Map<String, Bytes>
-    - valueDictionaryBytesString(): Map<Bytes, String>
+    - valueDictionaryBytesBytes(): Map\<Bytes, Bytes>
+    - valueDictionaryStringString(): Map\<String, String>
+    - valueDictionaryStringBytes(): Map\<String, Bytes>
+    - valueDictionaryBytesString(): Map\<Bytes, String>
     - toString(): String - displays truncated valueDictionaryStringString()
 * Cache miss
 * Error

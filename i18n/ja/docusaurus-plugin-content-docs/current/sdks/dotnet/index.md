@@ -42,8 +42,8 @@ Momento .NET SDKはnugetパッケージ[`Momento.Sdk`](https://www.nuget.org/pac
 
 ## リソース
 
-- [Getting started with Momento Cache in .NET](./cache)
-- [Getting started with Momento Topics in .NET](./topics)
+- [Getting started with Momento Cache in .NET](./cache.mdx)
+- [Getting started with Momento Topics in .NET](./topics.mdx)
 - [.NET SDK Examples](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples/README.md): .NET SDKの使用方法を説明するサンプルプロジェクト
 - [.NET SDK Observability](./observability.mdx): .NET SDKによるロギングとクライアント側メトリクス
 

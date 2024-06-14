@@ -42,7 +42,7 @@ Momento HTTP API にアクセスするには、API トークンとキャッシ�
 
 ### Request
 
-- Path: /cache/{cacheName}
+- Path: /cache/\{cacheName\}
 - HTTP Method: GET
 
 #### Path Parameters
@@ -109,7 +109,7 @@ Momento HTTP API にアクセスするには、API トークンとキャッシ�
 
 ### Request
 
-- Path: /cache/{cacheName}
+- Path: /cache/\{cacheName\}
 - HTTP Method: PUT
 
 #### Body
@@ -178,7 +178,7 @@ Momento HTTP API にアクセスするには、API トークンとキャッシ�
 
 ### Request
 
-- Path: /cache/{cacheName}
+- Path: /cache/\{cacheName\}
 - HTTP Method: DELETE
 
 #### Path Parameters

@@ -36,7 +36,7 @@ Some common use-cases of rate-limiting includes:
 ## Using Momento to build a distributed rate-limiter
 
 Let’s imagine you want to create a distributed rate-limiter that could effectively manage transactions-per-minute (TPM) for individual users.
-Our approach utilizes Momento's `increment` and `updateTTL` [APIs](./../develop/api-reference). This method proves to be not only efficient but also highly accurate.
+Our approach utilizes Momento's `increment` and `updateTTL` [APIs](/cache/develop/api-reference). This method proves to be not only efficient but also highly accurate.
 
 At the heart of our rate-limiter is a key mechanism that allows us to perform rate limiting based on user-per-minute granularity. The key is constructed using a combination of a user or entity and the current minute. This key plays a pivotal role in tracking and limiting the number of transactions a user can make in a given minute.
 

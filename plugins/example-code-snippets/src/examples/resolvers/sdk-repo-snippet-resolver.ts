@@ -48,7 +48,7 @@ export class SdkRepoSnippetResolver implements SnippetResolver {
   ): string | undefined {
     const sourceParser = this.sourceParserForLanguage(language);
     if (sourceParser === undefined) {
-      return undefined;
+      throw Error(`NotImplemented: resolveSnippet(${language})`);
     } else {
       return sourceParser.parseSourceForSnippet(snippetType, snippetId);
     }
@@ -57,7 +57,7 @@ export class SdkRepoSnippetResolver implements SnippetResolver {
   getFileContent(language: ExampleLanguage, file: string): string | undefined {
     const sourceParser = this.sourceParserForLanguage(language);
     if (sourceParser === undefined) {
-      return undefined;
+      throw Error(`NotImplemented: getFileContent(${language})`);
     } else {
       return sourceParser.getFileContent(file);
     }

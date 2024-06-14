@@ -42,7 +42,7 @@ Gets a scalar value from a cache.
 
 ### Request
 
-- Path: /cache/{cacheName}
+- Path: /cache/\{cacheName\}
 - HTTP Method: GET
 
 #### Path Parameters
@@ -109,7 +109,7 @@ Sets a scalar value in a cache.
 
 ### Request
 
-- Path: /cache/{cacheName}
+- Path: /cache/\{cacheName\}
 - HTTP Method: PUT
 
 #### Body
@@ -178,7 +178,7 @@ Deletes a scalar value from a cache.
 
 ### Request
 
-- Path: /cache/{cacheName}
+- Path: /cache/\{cacheName\}
 - HTTP Method: DELETE
 
 #### Path Parameters

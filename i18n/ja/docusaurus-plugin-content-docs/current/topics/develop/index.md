@@ -32,7 +32,7 @@ Momentoクライアントをインスタンス化する際に、Momento APIキ�
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromString'} />
 
-AWS Secrets Manager から認証情報を取得する例については、[Retrieving a Momento auth token from AWS Secrets Manager](./develop/integrations/aws-secrets-manager) を参照してください。
+AWS Secrets Manager から認証情報を取得する例については、[Retrieving a Momento auth token from AWS Secrets Manager](/topics/integrations/aws-secrets-manager) を参照してください。
 
 Momento 認証に関する一般的な情報は、[認証のページ](./develop/authentication) を参照してください。
 
