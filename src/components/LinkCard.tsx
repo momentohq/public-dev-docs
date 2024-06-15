@@ -6,11 +6,11 @@ export type LinkCardProps = {
   description: string,
   link: string,
   icon: string,
-  alignText?: 'left' | 'center',
+  alignText?: 'start' | 'center',
   alignItems?: 'start' | 'center',
 };
 
-export const LinkCard: React.FC<LinkCardProps> = ({ title, description, link, icon, alignText = 'left', alignItems = 'start' }) => (
+export const LinkCard: React.FC<LinkCardProps> = ({ title, description, link, icon, alignText = 'start', alignItems = 'start' }) => (
     <a href={link} target="_blank" {...stylex.props(styles.card, styles.link, alignItems === 'center' && styles.alignItemsCenter)}>
       {icon && (
         <img src={icon} height="32px" width="32px" />
@@ -55,7 +55,7 @@ const styles = stylex.create({
   },
   content: {
     flexGrow: 1,
-    textAlign: 'left',
+    textAlign: 'start',
   },
   alignCenter: {
     textAlign: 'center',
