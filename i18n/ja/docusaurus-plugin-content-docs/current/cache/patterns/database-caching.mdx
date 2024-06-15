@@ -13,7 +13,8 @@ keywords:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import ReferenceCard from '@site/src/components/ReferenceCard';
+import { CardGrid } from '@site/src/components/CardGrid';
+import { LinkCard } from '@site/src/components/LinkCard';
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
@@ -78,21 +79,15 @@ Momentoでライトスルーキャッシングを実装する例を示します�
 
 Momentoについてもっと知りたい方、プロジェクトを素早くスタートさせたい方は、以下の追加リソースをご覧ください。
 
-<div style={{
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  gap: '20px',
-  marginBottom: '20px'
-}}>
-  <ReferenceCard
+<CardGrid>
+  <LinkCard
     title="More about caching patterns"
     link="https://docs.momentohq.com/cache/introduction/common-caching-patterns"
     description="Learn more about common caching patterns and how to use them in your application"
     />
-  <ReferenceCard
+  <LinkCard
     title="Caching Strategies"
     link="https://docs.momentohq.com/cache/introduction/common-caching-strategies"
     description="Different levels and layers of caching used throughout your application"
     />
-</div>
+</CardGrid>

@@ -110,25 +110,20 @@ Momentoはイベントをあなたのウェブフックに**1回**配信しよ�
 ## See More
 
 ```mdx-code-block
-import ReferenceCard from '@site/src/components/ReferenceCard';
+import { CardGrid } from '@site/src/components/CardGrid';
+import { LinkCard } from '@site/src/components/LinkCard';
 
-<div style={{
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  gap: '20px',
-  marginBottom: '20px' // Add margin bottom to the container if needed
-}}>
-  <ReferenceCard
+<CardGrid>
+  <LinkCard
     title="Use webhooks with API Gateway + Lambda"
     link="https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app"
     description="Learn how to integrate Momento webhooks with Amazon API Gateway and Lambda functions"
     />
 
-  <ReferenceCard
+  <LinkCard
     title="Multi-language chat app"
     link="https://github.com/momentohq/moderated-chat/"
     description="Explore the source code of our live-translation chat app using webhooks."
     />
-</div>
+</CardGrid>
 ```

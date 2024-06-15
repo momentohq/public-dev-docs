@@ -169,26 +169,19 @@ async function main() {
 
 ## See More
 ```mdx-code-block
-import ReferenceCard from '@site/src/components/ReferenceCard';
+import { CardGrid } from '@site/src/components/CardGrid';
+import { LinkCard } from '@site/src/components/LinkCard';
 
-<div style={{
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  gap: '20px',
-  marginBottom: '20px' // Add margin bottom to the container if needed
-}}>
-
-  <ReferenceCard
+<CardGrid>
+  <LinkCard
     title="6 common caching strategies"
     link="https://www.gomomento.com/blog/6-common-caching-design-patterns-to-execute-your-caching-strategy"
     description="Learn more about other types of caching strategies"
     />
-  <ReferenceCard
+  <LinkCard
     title="Using Momento to cache chatbot calls"
     link="https://www.gomomento.com/resources/case-studies/cydas-people-takes-momento-cache-to-prod-for-their-chatgpt-ai-powered-chatbot-in-just-two-hours"
     description="See how CYDAS used Momento to cache calls to LangChain to build a chatbot"
     />
-
-</div>
+</CardGrid>
 ```
