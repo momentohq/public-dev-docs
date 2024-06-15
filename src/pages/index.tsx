@@ -131,21 +131,21 @@ export default function Home(): JSX.Element {
                   link="/cache"
                   description="Serverless caching made simple"
                   icon="/img/cache/momento-cache-brand-icon.svg"
-                  variation="dense"
+                  variant="dense"
                 />
                 <ReferenceCard
                   title="Topics"
                   link="/topics"
                   description="Event bus with webhook support"
                   icon="/img/topics/momento-topics-brand-icons.svg"
-                  variation="dense"
+                  variant="dense"
                 />
                 <ReferenceCard
                   title="Leaderboards"
                   link="/leaderboards"
                   description="Durable and ready for massive scale"
                   icon="/img/leaderboards/momento-leaderboards-2d.svg"
-                  variation="dense"
+                  variant="dense"
                 />
               </div>
             </div>
