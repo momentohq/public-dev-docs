@@ -20,7 +20,7 @@ Momento Topics は"Fire-and-forget (発火したら忘れる)"メッセージモ
 
 :::note
 
-Momento Topics は Momento Cache をバックエンドとして使うので、既存のキャッシュを使うか、新しいキャッシュを Momento Cache に作成してから、[Momento Topics のパブリッシュやサブスクライブ API](./../develop/api-reference/topics)を呼び出すことができます。
+Momento Topics は Momento Cache をバックエンドとして使うので、既存のキャッシュを使うか、新しいキャッシュを Momento Cache に作成してから、[Momento Topics のパブリッシュやサブスクライブ API](../develop/api-reference/topics)を呼び出すことができます。
 
 :::
 
@@ -59,7 +59,7 @@ Momento Topics は Momento Cache をバックエンドとして使うので、�
 
 ## Momento TopicsのAPI呼び出し
 
-[API reference page for Topics](./../develop/api-reference/topics.md)をご参照ください。
+[API reference page for Topics](../develop/api-reference/topics.md)をご参照ください。
 
 ## デモ
 

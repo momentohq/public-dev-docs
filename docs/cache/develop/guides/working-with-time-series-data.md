@@ -9,15 +9,15 @@ description: Learn how to store time series data in Momento Cache
 
 Temporarily storing time series data enables you to visualize that data without having to worry about long-term storage costs. Let's think about a common use case for time series data like IoT sensors. Sure, it's useful to see what the recent data looks like, but do you need to keep each sensor value indefinitely? With numerous sensors sending metrics into your database, your storage costs will skyrocket. Storing that data in Momento instead is a great way to take advantage of what Momento does best - storing large volumes of data without having to worry about scaling or long-term storage costs.
 
-You can store related data elements in Momento's collection data types such as [lists](./../api-reference/list-collections.md), [sets](./../api-reference/set-collections.md), and [dictionaries](./../api-reference/dictionary-collections.md). You should pick the appropriate data type for your application's access patterns and data schema. For time series data, you should use Momento's [SortedSet data type](./../api-reference/sorted-set-collections.md). You can read more about `SortedSets` [in this blog](https://www.gomomento.com/blog/were-back-with-another-collection-data-type-sorted-sets).
+You can store related data elements in Momento's collection data types such as [lists](../api-reference/list-collections.md), [sets](../api-reference/set-collections.md), and [dictionaries](../api-reference/dictionary-collections.md). You should pick the appropriate data type for your application's access patterns and data schema. For time series data, you should use Momento's [SortedSet data type](../api-reference/sorted-set-collections.md). You can read more about `SortedSets` [in this blog](https://www.gomomento.com/blog/were-back-with-another-collection-data-type-sorted-sets).
 
 ### Why use SortedSets?
 
 - Sorting your time series data by timestamp makes it easy for client applications to retrieve and display the data in sorted order.
-- Limit query responses with the Momento SDK's [SortedSetFetchByRank](./../api-reference/sorted-set-collections.md#sortedsetfetchbyrank) and [SortedSetFetchByScore](./../api-reference/sorted-set-collections.md#sortedsetfetchbyscore) to a certain number of values or values within a certain timespan.
+- Limit query responses with the Momento SDK's [SortedSetFetchByRank](../api-reference/sorted-set-collections.md#sortedsetfetchbyrank) and [SortedSetFetchByScore](../api-reference/sorted-set-collections.md#sortedsetfetchbyscore) to a certain number of values or values within a certain timespan.
 
 ## Storing time series data in the SortedSet
-Use the Momento SDK's [SortedSetPutElement](./../api-reference/sorted-set-collections.md#sortedsetputelement) method to insert items into your SortedSet.
+Use the Momento SDK's [SortedSetPutElement](../api-reference/sorted-set-collections.md#sortedsetputelement) method to insert items into your SortedSet.
 
 Let's consider a workload for storing IoT sensor data in a Momento Cache.
 
@@ -52,7 +52,7 @@ If you only want to retrieve a subset of the SortedSet, you could set the startR
 const sensor_data = await cacheClient.sortedSetFetchByRank("sensor_data", `${sensor_id}-sensor-data`, 0, 10)
 ```
 
-If you only want to retrieve data from a specified time period instead of a specific number of values, you can use [SortedSetFetchByScore](./../api-reference/sorted-set-collections.md#sortedsetfetchbyscore). 
+If you only want to retrieve data from a specified time period instead of a specific number of values, you can use [SortedSetFetchByScore](../api-reference/sorted-set-collections.md#sortedsetfetchbyscore). 
 
 >Code snippet for SortedSetFetchByScore to retrieve a subset of the SortedSet
 

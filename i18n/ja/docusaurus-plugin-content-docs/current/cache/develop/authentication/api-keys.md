@@ -23,7 +23,7 @@ APIキーを作成する際、[Momentoコンソール](https://console.gomomento
 :::info
 
 Momento SDK を使用して「スーパーユーザー」API キーを作成することはできません。
-ただし、SDK を使用して、きめ細かなアクセス制御を行い、特定の権限を持つ API キーを作成することはできます！詳細は [Auth API リファレンスページ](./../api-reference/auth.md) を参照してください。
+ただし、SDK を使用して、きめ細かなアクセス制御を行い、特定の権限を持つ API キーを作成することはできます！詳細は [Auth API リファレンスページ](../api-reference/auth.md) を参照してください。
 
 :::
 

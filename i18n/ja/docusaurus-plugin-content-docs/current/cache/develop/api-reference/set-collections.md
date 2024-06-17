@@ -21,7 +21,7 @@ Momentoコレクションタイプは、[CollectionTTL](./collection-ttl.md)を�
 集合は要素の集まりですが、各要素は一度しか現れず、順序は保証されません。
 例: セットが `[1, 2, 3]` を含み、2 を追加してもセットは `[1, 2, 3].` のままです。
 
-詳しくは、[Sets](./../basics/datatypes.md#set-collections)を参照してください。
+詳しくは、[Sets](../basics/datatypes.md#sets)を参照してください。
 
 ## Set methods
 

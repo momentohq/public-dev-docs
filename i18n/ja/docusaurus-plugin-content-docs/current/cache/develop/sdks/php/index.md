@@ -27,6 +27,6 @@ Momento PHP SDK は Packagist パッケージ [`momentohq/client-sdk-php`](https
 
 ## Integrations
 
-- [Laravel Cache](https://github.com/momentohq/laravel-cache) - は、既存のLaravelアプリケーションでMomento Cacheを使用するためのドロップイン置き換えです！[Laravelインテグレーション](./../../integrations/momento-cache-laravel-php.md) ページも参照してください。
+- [Laravel Cache](https://github.com/momentohq/laravel-cache) - は、既存のLaravelアプリケーションでMomento Cacheを使用するためのドロップイン置き換えです！[Laravelインテグレーション](../../integrations/momento-cache-laravel-php.md) ページも参照してください。
 - [Laravel Example App](https://github.com/momentohq/laravel-example) - Momento Laravelキャッシュ統合を使用した、完全に動作するLaravelサンプルアプリケーションです。
 - [PSR-16 Cache API](https://github.com/momentohq/client-sdk-php/blob/main/README-PSR16.md) - PHPのPSR-16キャッシュ仕様の実装で、Momento Cacheによってバックアップされています。

@@ -36,7 +36,7 @@ import { SdkExampleFileTabsImpl } from "@site/src/components/SdkExampleFileTabsI
 ## Momentoを使った分散型レートリミッターの構築
 
 分散レートリミッターを作成し、個々のユーザーのトランザクション/分(TPM)を効果的に管理したいとします。
-私たちのアプローチは、Momentoの`increment`と`updateTTL` [API](./../develop/api-reference)を利用すします。この方法は効率的であるだけでなく、非常に正確であることが証明されています。
+私たちのアプローチは、Momentoの`increment`と`updateTTL` [API](../develop/api-reference)を利用すします。この方法は効率的であるだけでなく、非常に正確であることが証明されています。
 
 私たちのレートリミッターの中核をなすのは、ユーザー毎分の粒度に基づいてレート制限を行うことを可能にするキーメカニズムです。キーは、ユーザーまたはエンティティの組み合わせと現在の分を使用して構築されます。このキーは、ユーザーが1分間に行えるトランザクション数を追跡し、制限する上で極めて重要な役割を果たします。
 

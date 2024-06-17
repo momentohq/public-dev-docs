@@ -45,4 +45,4 @@ The source code can be found on GitHub: [momentohq/client-sdk-go](https://github
 
 ## Integrations
 
-- [Redis Compatibility Client for `@go-redis`](https://github.com/momentohq/momento-go-redis-client) - a drop-in replacement that allows you to use Momento Cache with your existing `go-redis` code! See also our [Redis Client Compatibility](/cache/develop/integrations/redis-client-compatibility.md) page.
+- [Redis Compatibility Client for `@go-redis`](https://github.com/momentohq/momento-go-redis-client) - a drop-in replacement that allows you to use Momento Cache with your existing `go-redis` code! See also our [Redis Client Compatibility](/cache/integrations/redis-client-compatibility.md) page.

@@ -14,7 +14,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 # Using Momento Leaderboards
 
 Momento Leaderboards is a first-class service with purpose-built APIs that supports leaderboards with tens of millions of items and rapid ingestion/querying/updates.
- 
+
 
 ## Leaderboard Client Methods
 
@@ -31,7 +31,7 @@ To create and interact with leaderboards, you must first create a LeaderboardCli
 #### Parameters
 ---
 
-**configuration** - *LeaderboardConfiguration* 
+**configuration** - *LeaderboardConfiguration*
 
 * Options for configuring your leaderboard client. For more information, see [SDK Configuration Objects](/cache/develop/basics/client-configuration-objects).
 
@@ -59,7 +59,7 @@ PreviewLeaderboardClient object capable of creating new leaderboards and interac
 
 </div>
 
-</div> 
+</div>
 
 ---
 
@@ -74,7 +74,7 @@ Use a LeaderboardClient to create a leaderboard by specifying a cache and leader
 #### Parameters
 ---
 
-**cacheName** - *string* 
+**cacheName** - *string*
 
 * Which cache to create the leaderboard in
 
@@ -130,14 +130,14 @@ Inserts elements if they do not already exist in the leaderboard. Updates elemen
 #### Parameters
 ---
 
-**elements** - *Dictionary* 
+**elements** - *Dictionary*
 
 * Dictionary of (id, score) pairs to upsert.
 
   * id: integer
   * score: double
 
-* The id can be a player identifier, session identifier, browser identifier or any other kind of identifier you want to use for this scoreboard. The full unsigned 64 bit range is allowed here, between 0 and 2^63-1 inclusive. 
+* The id can be a player identifier, session identifier, browser identifier or any other kind of identifier you want to use for this scoreboard. The full unsigned 64 bit range is allowed here, between 0 and 2^63-1 inclusive.
 
 * An id can only appear in a leaderboard one time, meaning you can't have two scores for one player unless that player has two ids!
 
@@ -151,7 +151,7 @@ Inserts elements if they do not already exist in the leaderboard. Updates elemen
 
 One of the following:
 
-* [LeaderboardUpsert.Success](/leaderboards/api-reference/response-objects#success) 
+* [LeaderboardUpsert.Success](/leaderboards/api-reference/response-objects#success)
 * [LeaderboardUpsert.Error](/leaderboards/api-reference/response-objects#error)
 
 </div>
@@ -172,14 +172,14 @@ One of the following:
 
 ### Fetch elements by score
 
-Fetches elements that fall within the specified min and max scores. 
+Fetches elements that fall within the specified min and max scores.
 
 Elements with the same score will be returned in alphanumerical order based on their ID (e.g. IDs of elements with the same score would be returned in the order `[1, 10, 123, 2, 234, ...]` rather than `[1, 2, 10, 123, 234, ...]`).
 
 <details>
   <summary>FetchByScore is implemented as a batch operation, so for large leaderboards, you can fetch in batches of up to 8192 elements.</summary>
 
-You can page through multiple elements that fall within the requested score range using the `offset` parameter until you receive an empty list, which indicates the end of the requested elements. 
+You can page through multiple elements that fall within the requested score range using the `offset` parameter until you receive an empty list, which indicates the end of the requested elements.
 
 <SdkExampleTabs snippetId={'API_LeaderboardFetchByScorePagination'} />
 
@@ -191,7 +191,7 @@ You can page through multiple elements that fall within the requested score rang
 #### Optional Parameters
 ---
 
-**minScore** - *double* 
+**minScore** - *double*
 
 * Inclusive lower bound for the score range. Defaults to `-inf`.
 
@@ -199,7 +199,7 @@ You can page through multiple elements that fall within the requested score rang
 
 **maxScore** - *double*
 
-* Exclusive upper bound for the score range. Defaults to `+inf`. 
+* Exclusive upper bound for the score range. Defaults to `+inf`.
 
 ---
 
@@ -207,13 +207,13 @@ You can page through multiple elements that fall within the requested score rang
 
 * Enum values: Ascending, Descending
 
-* The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank. 
+* The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.
 
 ---
 
 **offset** - *integer*
 
-* The number of elements to skip before returning the first element. Defaults to 0. 
+* The number of elements to skip before returning the first element. Defaults to 0.
 
 * Note: this is not the score of the first element to return, but the number of elements of the result set to skip before returning the first element.
 
@@ -230,7 +230,7 @@ You can page through multiple elements that fall within the requested score rang
 
 One of the following:
 
-* [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#leaderboardfetchsuccess) 
+* [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#success)
 * [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
 
 </div>
@@ -263,13 +263,13 @@ Fetches elements that fall within the specified min and max ranks.
 #### Parameters
 ---
 
-**startRank** - *integer* 
+**startRank** - *integer*
 
 * Inclusive lower bound for the rank range. Defaults to 0.
 
 ---
 
-**endRank** - *integer* 
+**endRank** - *integer*
 
 * Exclusive upper bound for the rank range. Defaults to `startRank` + 8192.
 
@@ -291,7 +291,7 @@ Fetches elements that fall within the specified min and max ranks.
 
 One of the following:
 
-* [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#leaderboardfetchsuccess) 
+* [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#success)
 * [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
 
 </div>
@@ -312,12 +312,12 @@ One of the following:
 
 ### Fetch elements by ID
 
-Fetches elements given a list of element IDs. 
+Fetches elements given a list of element IDs.
 
 #### Parameters
 ---
 
-**ids** - *List* 
+**ids** - *List*
 
 * List of integers representing the ids of the elements to fetch.
 
@@ -339,7 +339,7 @@ Fetches elements given a list of element IDs.
 
 One of the following:
 
-* [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#leaderboardfetchsuccess) 
+* [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#success)
 * [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
 
 </div>
@@ -373,7 +373,7 @@ Gets the number of entries in the leaderboard. The leaderboard name is inferred 
 
 One of the following:
 
-* [LeaderboardLength.Success](/leaderboards/api-reference/response-objects#leaderboardlengthsuccess) 
+* [LeaderboardLength.Success](/leaderboards/api-reference/response-objects#success)
 * [LeaderboardLength.Error](/leaderboards/api-reference/response-objects#error)
 
 </div>
@@ -406,9 +406,9 @@ Removes elements with the specified IDs.
 #### Parameters
 ---
 
-**ids** - *List* 
+**ids** - *List*
 
-* A list of ids for the elements you want to remove.  
+* A list of ids for the elements you want to remove.
 
 ---
 
@@ -419,7 +419,7 @@ Removes elements with the specified IDs.
 ---
 One of the following:
 
-* [LeaderboardRemoveElements.Success](/leaderboards/api-reference/response-objects#success) 
+* [LeaderboardRemoveElements.Success](/leaderboards/api-reference/response-objects#success)
 * [LeaderboardRemoveElements.Error](/leaderboards/api-reference/response-objects#error)
 
 </div>
@@ -452,7 +452,7 @@ Deletes the leaderboard. The leaderboard name is inferred from the `Leaderboard`
 ---
 One of the following:
 
-* [LeaderboardDelete.Success](/leaderboards/api-reference/response-objects#success) 
+* [LeaderboardDelete.Success](/leaderboards/api-reference/response-objects#success)
 * [LeaderboardDelete.Error](/leaderboards/api-reference/response-objects#error)
 
 </div>

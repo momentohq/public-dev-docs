@@ -56,9 +56,9 @@ Assuming you have a directory of RDB files located in `./redis` and you wish to 
 $ ./extract-rdb-and-validate.sh -s 1 -t 1 ./redis
 ```
 
-The command will extract the RDB files in `./redis` to JSON lines format and write the output to the current directory. The `-s` and `-t` flags set the max size in MiB and max time-to-live (TTL) in days of items in the cache, respectively. If an item exceeds [Momento’s service limits](./../../limits), item size (5 MB), or a TTL (24 hours), that item will be flagged by the process.
+The command will extract the RDB files in `./redis` to JSON lines format and write the output to the current directory. The `-s` and `-t` flags set the max size in MiB and max time-to-live (TTL) in days of items in the cache, respectively. If an item exceeds [Momento’s service limits](../../limits), item size (5 MB), or a TTL (24 hours), that item will be flagged by the process.
 
-For more information, check out [Service Limits](./../../limits).
+For more information, check out [Service Limits](../../limits).
 
 ### Inspecting the output
 
@@ -76,7 +76,7 @@ This is helpful in understanding which data lacks a TTL to understand what TTL t
 
 To contrast, the `validate-lax` directory has data if the data:
 
-- exceeds [Momento’s max item size](./../../limits), or
+- exceeds [Momento’s max item size](../../limits), or
 - is a type unsupported by Momento
 
 The `validate-lax` directory contains data that is unsupported to load into Momento Cache and should be reviewed manually. For example, items with a TTL greater than the Momento max, items lacking a TTL, or those already expired can be addressed and then loaded into Momento.

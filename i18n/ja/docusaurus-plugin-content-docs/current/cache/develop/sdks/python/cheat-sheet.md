@@ -110,7 +110,7 @@ def incr(client, cache_name, key, value:int = 1):
 ```
 
 :::info
-これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](./../../api-reference/index.mdx)をチェックしてください。
+これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](../../api-reference/index.mdx)をチェックしてください。
 :::
 
 ## 使用上の注意事項

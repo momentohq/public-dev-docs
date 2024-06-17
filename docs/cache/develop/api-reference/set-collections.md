@@ -22,7 +22,7 @@ Momento collection types use a [CollectionTTL](./collection-ttl.md) to specify t
 
 Example: if your set contains `[1, 2, 3]` and you add 2, the set remains `[1, 2, 3].`
 
-See [Sets](./../basics/datatypes.md#set-collections) for more information on their usage.
+See [Sets](../basics/datatypes.md#sets) for more information on their usage.
 
 ## Set methods
 

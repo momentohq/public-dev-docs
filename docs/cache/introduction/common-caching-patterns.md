@@ -41,7 +41,7 @@ Let's discuss each of these in order.
 
 The first caching choice you need to make is on where to cache your data.
 
-In thinking about caching, we often jump to a centralized, remote cache that is used like a faster, less durable version of our database. But a cache need not be a separate piece of infrastructure. You can add caching locally to your application, whether on your [backend servers](#local-backend-caching) or even on your [users' browsers](#local-browser-caching). When we say 'local' caching, we mean caching that is local to some compute and that is inaccessible from other compute instances.
+In thinking about caching, we often jump to a centralized, remote cache that is used like a faster, less durable version of our database. But a cache need not be a separate piece of infrastructure. You can add caching locally to your application, whether on your [backend servers](./common-caching-strategies#local-backend-caching) or even on your [users' browsers](./common-caching-strategies#local-browser-caching). When we say 'local' caching, we mean caching that is local to some compute and that is inaccessible from other compute instances.
 
 In general, the question of a local vs. remote cache comes down to utility vs. simplicity. A local cache is usually easier to add to an application than pulling in a new piece of infrastructure. Additionally, a new piece of infrastructure brings additional challenges around availability and application uptime that a local cache will generally avoid.
 

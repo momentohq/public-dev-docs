@@ -262,7 +262,7 @@ No. We only support the managed roles listed above for each permission.
 <details>
 <summary>Do these keys control access to the Momento control plane APIs?</summary>
 
-API keys generated with the [GenerateApiKey](#generateauthtoken-api) API only control access to the Momento data plane APIs. A key for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
+API keys generated with the [GenerateApiKey](#generateapikey-api) API only control access to the Momento data plane APIs. A key for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
 
 </details>
 

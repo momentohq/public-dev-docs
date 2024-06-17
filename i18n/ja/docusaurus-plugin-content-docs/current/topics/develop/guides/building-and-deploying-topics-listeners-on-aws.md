@@ -30,7 +30,7 @@ AWS App Runner は、ソースコードまたはコンテナイメージから�
     - リスナーアプリケーションから取得するために、Momento 認証トークンをどのように保存するかを検討します。
     - トークンの保存と取得には、AWS Secrets Managerを使用することをお勧めします。
     - シークレットマネージャーのコストを削減するために、シークレットをメモリーにキャッシュすることができます。
-    - Momento認証の詳細については、こちらをご覧ください。 [here](./../authentication)
+    - Momento認証の詳細については、こちらをご覧ください。 [here](../authentication)
 - ランタイムの選択（AWS App Runnerのみ）
     - ランタイムが AWS App Runner と Momento SDK でサポートされていることを確認します。
 - Infrastructure as code

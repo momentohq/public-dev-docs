@@ -50,7 +50,7 @@ export default function Home(): JSX.Element {
                 <ul className={styles.columnList}>
                   <li><a href="/cache/getting-started"><Translate id="gettingStarted">Getting started</Translate></a></li>
                   <li><a href="/cache/develop/api-reference"><Translate id="apiReference">API reference</Translate></a></li>
-                  <li><a href="/cache/develop/integrations/redis-client-compatibility"><Translate id="dropInReplacementsForRedis">Drop-in replacements for Redis</Translate></a></li>
+                  <li><a href="/cache/integrations/redis-client-compatibility"><Translate id="dropInReplacementsForRedis">Drop-in replacements for Redis</Translate></a></li>
                   <li><a href="/cache/develop/guides/working-with-files-cache"><Translate id="howToCacheFiles">How to cache files</Translate></a></li>
                 </ul>
               </div>

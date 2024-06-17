@@ -40,7 +40,7 @@ Momento Cache は、さまざまな最新のプログラミング言語の一般
 ]
 ```
 
-APIメソッドを学ぶには、[リスト・コレクション・データ型のAPIリファレンス](./../api-reference/list-collections.md)を確認してください。
+APIメソッドを学ぶには、[リスト・コレクション・データ型のAPIリファレンス](../api-reference/list-collections.md)を確認してください。
 
 #### Dictionaries
 
@@ -56,7 +56,7 @@ An example of using a dictionary is when you need to store data together and ret
 }
 ```
 
-API メソッドを学ぶには、[辞書コレクション・データ型の API リファレンス](./../api-reference/dictionary-collections.md) を確認してください。
+API メソッドを学ぶには、[辞書コレクション・データ型の API リファレンス](../api-reference/dictionary-collections.md) を確認してください。
 
 #### Sets
 セットとは、一意な要素の並び順のないコレクションのことで、それぞれが文字列形式になっている。たとえば、「sugar」を何度セットに追加しても、「sugar」のエントリーは1つしかありません。
@@ -72,7 +72,7 @@ API メソッドを学ぶには、[辞書コレクション・データ型の AP
 }
 ```
 
-APIメソッドを学ぶには、[セット・コレクション・データ型のAPIリファレンス](./../api-reference/set-collections.md)を確認してください。
+APIメソッドを学ぶには、[セット・コレクション・データ型のAPIリファレンス](../api-reference/set-collections.md)を確認してください。
 
 #### Sorted sets
 
@@ -97,7 +97,7 @@ Sorted setsは、値（文字列）とスコア（符号付きダブル64ビッ�
 
 :::
 
-APIメソッドを学ぶには、[API reference for sorted set collection data types](./../api-reference/sorted-set-collections.md)を確認してください。
+APIメソッドを学ぶには、[API reference for sorted set collection data types](../api-reference/sorted-set-collections.md)を確認してください。
 
 ## FAQs
 <details>

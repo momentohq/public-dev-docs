@@ -13,7 +13,7 @@ import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBloc
 
 # Momento web SDK for JavaScript をブラウザ上で
 
-Momento は 2つの JavaScript SDK を提供しています。[1つは Node.js 用](./../nodejs/index.md)で、もう一つがウェブアプリケーション用です。2つの SDK は同一の API を持っているので、`import` ステートメントを除けばコードは同じに見えると思いますが、裏側では異なる JavaScript 実行環境に対してパフォーマンス最適化や互換性を求めて構築されています。
+Momento は 2つの JavaScript SDK を提供しています。[1つは Node.js 用](../nodejs/index.md)で、もう一つがウェブアプリケーション用です。2つの SDK は同一の API を持っているので、`import` ステートメントを除けばコードは同じに見えると思いますが、裏側では異なる JavaScript 実行環境に対してパフォーマンス最適化や互換性を求めて構築されています。
 
 Node.js SDK はサーバーサイドのユースケースに最適です。一方、Momento web SDK はブラウザ上で実行され Momento のサービスと直接通信する JavaScript コードを書くことを可能にしてくれます。これによってブラウザと Momento の間でキャッシュやパブ/サブの呼出しを仲介するウェブサービスを自身で構築したり運用する典型的なオーバーヘッドを回避することができます。これはまた、ウェブトラフィックにおいて1ホップ減らせることを意味するので、ブラウザアプリケーションはより良いパフォーマンスさえも得られます。両方の意味でお得です！
 
@@ -29,7 +29,7 @@ Momento web SDK は [`@gomomento/sdk-web`](https://www.npmjs.com/package/@gomome
 
 ## リソース
 
-- [Momento Node.js チートシート](./../nodejs/cheat-sheet.mdx): このチートシートは Node.js SDK をターゲットにしていますが、web SDK API は完全に互換性があります。
+- [Momento Node.js チートシート](../nodejs/cheat-sheet.mdx): このチートシートは Node.js SDK をターゲットにしていますが、web SDK API は完全に互換性があります。
 - [チャットアプリの例](https://github.com/momentohq/example-chat-app): web SDK を使って作られた完全機能のチャットアプリケーションです！
   ![チャットスクリーンショット](@site/static/img/web-sdk-chat-app.png)
 - [Web SDK の例](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/README.md): web SDK をどの様に使うかを示した動作可能なプロジェクトの例です。
@@ -43,7 +43,7 @@ Momento Topics を Momento web SDK 使って組み込むことでサーバーサ
 
 ## ブラウザで web SDK を使う
 
-API 呼出しは [Momento Node.js SDK と同一](./../nodejs/cheat-sheet.mdx)ですが、, import/require ステートメントは Node.js SDK の `@gomomento/sdk` の代わりに `@gomomento/sdk-web` パッケージを npm から使います。
+API 呼出しは [Momento Node.js SDK と同一](../nodejs/cheat-sheet.mdx)ですが、, import/require ステートメントは Node.js SDK の `@gomomento/sdk` の代わりに `@gomomento/sdk-web` パッケージを npm から使います。
 
 こちらが、web SDK の import ステートメントの例です:
 
@@ -61,7 +61,7 @@ API 呼出しは [Momento Node.js SDK と同一](./../nodejs/cheat-sheet.mdx)で
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateApiKey'} />
 
-他にも、認可のための `TokenScope` や、期限切れのトークンをどうやってリフレッシュするか、などを含めた Momento 認証トークンに関する情報は、[Momento 認証トークンを使う](./../../authentication/index.mdx)をご覧下さい。
+他にも、認可のための `TokenScope` や、期限切れのトークンをどうやってリフレッシュするか、などを含めた Momento 認証トークンに関する情報は、[Momento 認証トークンを使う](../../authentication/index.mdx)をご覧下さい。
 
 ## よくある質問
 

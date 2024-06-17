@@ -51,5 +51,5 @@ Momento Node.js SDKはnpmパッケージ[`@gomento/sdk`](https://www.npmjs.com/p
 ## 統合
 
 - [Node.js Token Vending Machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine): は、[Momento Web SDK](https://github.com/momentohq/client-sdk-javascript/tree/main/packages/client-sdk-web)に対して記述されたアプリケーションを実行するブラウザで使用できる、一時的な、制限されたスコープのMomento Authトークンを提供します。
-- [Redis Compatibility Client for `@redis/client`](https://github.com/momentohq/momento-node-redis-client) - は、既存の `@redis/client` コードで Momento Cache を使えるようにするドロップイン置き換えです！[Redis クライアントとの互換性](/cache/develop/integrations/redis-client-compatibility.md) ページも参照してください。
-- [Redis Compatibility Client for `ioredis`](https://github.com/momentohq/momento-node-ioredis-client) - は、Momento Cache を既存の `ioredis` コードで使えるようにするドロップインの置き換えです！[Redis クライアントとの互換性](/cache/develop/integrations/redis-client-compatibility.md) ページも参照してください。
+- [Redis Compatibility Client for `@redis/client`](https://github.com/momentohq/momento-node-redis-client) - は、既存の `@redis/client` コードで Momento Cache を使えるようにするドロップイン置き換えです！[Redis クライアントとの互換性](/cache/integrations/redis-client-compatibility.md) ページも参照してください。
+- [Redis Compatibility Client for `ioredis`](https://github.com/momentohq/momento-node-ioredis-client) - は、Momento Cache を既存の `ioredis` コードで使えるようにするドロップインの置き換えです！[Redis クライアントとの互換性](/cache/integrations/redis-client-compatibility.md) ページも参照してください。

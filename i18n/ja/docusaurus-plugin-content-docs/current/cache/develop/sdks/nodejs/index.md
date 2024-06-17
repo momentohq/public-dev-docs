@@ -27,5 +27,5 @@ Momento Node.js SDKはnpmパッケージ[`@gomento/sdk`](https://www.npmjs.com/p
 
 ## 実装方法
 
-- [Redis Compatibility Client for `@redis/client`](https://github.com/momentohq/momento-node-redis-client) - は、既存の `@redis/client` コードで Momento Cache を使用するためのドロップイン置き換えです！Redisクライアントの互換性](./../../integrations/redis-client-compatibility.md) ページも参照してください。
-- [Redis Compatibility Client for `ioredis`](https://github.com/momentohq/momento-node-ioredis-client) - は、Momento Cache を既存の `ioredis` コードで使えるようにするドロップイン置き換えです！Redisクライアントの互換性](./../../integrations/redis-client-compatibility.md) ページも参照してください。
+- [Redis Compatibility Client for `@redis/client`](https://github.com/momentohq/momento-node-redis-client) - は、既存の `@redis/client` コードで Momento Cache を使用するためのドロップイン置き換えです！Redisクライアントの互換性](../../integrations/redis-client-compatibility.md) ページも参照してください。
+- [Redis Compatibility Client for `ioredis`](https://github.com/momentohq/momento-node-ioredis-client) - は、Momento Cache を既存の `ioredis` コードで使えるようにするドロップイン置き換えです！Redisクライアントの互換性](../../integrations/redis-client-compatibility.md) ページも参照してください。

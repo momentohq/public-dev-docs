@@ -17,7 +17,7 @@ With this app, you can create, update, and delete items in a DynamoDB table, and
 
 :::
 
-Using the Momento [HTTP API](./../api-reference/http-api.md) and [Amazon EventBridge API Destinations](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html), you can trigger asynchronous events with a simple `PutEvents` call in your workflows. Here's how it works:
+Using the Momento [HTTP API](/cache/develop/api-reference/http-api.md) and [Amazon EventBridge API Destinations](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html), you can trigger asynchronous events with a simple `PutEvents` call in your workflows. Here's how it works:
 
 ![Diagram of compute resources triggering an event that calls Momento](@site/static/img/eventbridge_destinations.png)
 
@@ -39,7 +39,7 @@ You optionally can provide the EventBridge event bus name that will rules will t
 
 ![CloudFormation UI with deployment parameters configured](@site/static/img/eb-destination-ui.png)
 
-With the two parameters filled out, you can hit *Create stack* and the resources will be deployed automatically for you, optimized for your deployment region. *Wondering what that means?* Momento, like AWS, is region-based, and your auth tokens target a specific region. For the HTTP API, this means you must [hit a different base URL](./../api-reference/http-api.md#regions) depending on the region you wish to use. The quick start we've provided will determine the appropriate base URL upon deployment so you don't have to think about it 👍
+With the two parameters filled out, you can hit *Create stack* and the resources will be deployed automatically for you, optimized for your deployment region. *Wondering what that means?* Momento, like AWS, is region-based, and your auth tokens target a specific region. For the HTTP API, this means you must [hit a different base URL](/cache/develop/api-reference/http-api.md#regions) depending on the region you wish to use. The quick start we've provided will determine the appropriate base URL upon deployment so you don't have to think about it 👍
 
 This also means the integration will only work in the Momento-supported AWS Regions:
 

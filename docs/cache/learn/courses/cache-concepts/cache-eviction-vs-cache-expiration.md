@@ -28,5 +28,5 @@ Now that you know these two terms, let's quickly talk about them as they relate 
 
 For cache expiration, Momento Cache requires a time to live value in seconds for every object inserted into the cache. There are two places to set that value. Number one, when you establish the connection to the cache in your call to the SDK, you can specify that value. And number two, when you do a write operation, you can override that value on a per-object basis. If you do not set a TTL value in the write operation, the SDK uses the value from the connection object. By default, the maximum value for TTL is 24 hours.
 
-For more information, see the "[Cache eviction vs. cache expiration](./../../../learn/how-it-works/cache-eviction-vs-expiration.md)" documentation.
+For more information, see the "[Cache eviction vs. cache expiration](../../../learn/how-it-works/cache-eviction-vs-expiration.md)" documentation.
 
