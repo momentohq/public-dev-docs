@@ -18,6 +18,16 @@ keywords:
 
 Momento [webhooks](https://docs.momentohq.com/topics/webhooks/overview) are a serverless way to connect a topic to a stateless consumer. Below is a guide on how to deploy an AWS Lambda function with a public URL that puts the message onto an Amazon EventBridge bus.
 
+:::tip
+
+On this page you'll learn some general-purpose patterns for connecting EventBridge to Momento.
+
+For a more concrete example, check out our [DynamoDB-Momento EventBridge Demo](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/aws/eventbridge)!
+This project shows how to create a write-through cache in Momento using DynamoDB Streams and AWS EventBridge.
+With this app, you can create, update, and delete items in a DynamoDB table, and see these changes reflected in the cache/topic in real-time.
+
+:::
+
 ## Architecture
 
 The goal of the webhook handler is to process the notification from Momento as quickly and securely as possible with the ultimate destination being AWS EventBridge. By getting the message onto a bus, the possibilities for how to handle that data open up tremendously. The message could be persisted into more durable storage or even propagated to other consumers for further actions.
