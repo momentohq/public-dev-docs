@@ -116,3 +116,12 @@ There are two details in the implementation that need to be considered when depl
 2.  The Lambda function is deployed in an Amazon Managed Linux 2 environment built for ARM64 and the Graviton chipset. It is natively compiled from Rust using the AWS SDK built for Rust.
 
 With a webhook handler that publishes into an EventBridge bus, the extensions are practically endless. By leveraging a purely serverless implementation, resources expand as needed and costs are $0 when messages aren't consumed.
+
+:::tip
+
+On this page you'll learn some general-purpose patterns for connecting EventBridge to Momento. For a more concrete example, check out our [DynamoDB-Momento EventBridge Demo](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/aws/eventbridge)!
+
+This project shows how to create a write-through cache in Momento using DynamoDB Streams and AWS EventBridge.
+With this app, you can create, update, and delete items in a DynamoDB table, and see these changes reflected in the cache/topic in real-time.
+
+:::

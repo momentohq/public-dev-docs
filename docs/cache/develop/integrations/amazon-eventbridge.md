@@ -147,9 +147,11 @@ This integration will continue to grow as our HTTP API gains more and more featu
 
 If you have issues deploying the stack to your account or would like support for another region, feel free to [reach out on Discord](https://discord.com/invite/3HkAKjUZGq) and the team will be happy to help you.
 
-## Explore More
-Now that you've learned how to integrate Momento with Amazon EventBridge, you can further your knowledge with our DynamoDB-Momento EventBridge Demo! This project showcases a write-through cache pattern for DynamoDB using DynamoDB Streams, AWS EventBridge, and Momento.
+:::tip
 
+On this page you'll learn some general-purpose patterns for connecting EventBridge to Momento. For a more concrete example, check out our [DynamoDB-Momento EventBridge Demo](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/aws/eventbridge)! 
+
+This project shows how to create a write-through cache in Momento using DynamoDB Streams and AWS EventBridge.
 With this app, you can create, update, and delete items in a DynamoDB table, and see these changes reflected in the cache/topic in real-time.
 
-Check out the project on GitHub: [DynamoDB-Momento EventBridge Demo](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/aws/eventbridge).
+:::
