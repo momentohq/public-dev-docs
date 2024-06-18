@@ -46,6 +46,7 @@ Momento Node.js SDKはnpmパッケージ[`@gomento/sdk`](https://www.npmjs.com/p
 - [Node.js SDK Configuration and Error Handling](./config-and-error-handling.mdx): コードを本番に持ち込む
 - [Node.js SDK Style Guide](./style-guide.mdx): Momentoとの対話に使用できる2つの異なるコードスタイルについて学ぶ
 - [Node.js SDK Observability](./observability.mdx): Node.js SDKによるロギングとクライアント側メトリクス
+-  [DynamoDB-Momento EventBridge Demo](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/aws/eventbridge) - DynamoDB StreamsとAWS EventBridgeを使ったMomentoのライトスルーキャッシュ。
 
 ## 統合
 
