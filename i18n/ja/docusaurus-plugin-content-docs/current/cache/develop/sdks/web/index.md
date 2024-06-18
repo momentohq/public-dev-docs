@@ -43,7 +43,7 @@ Momento Web SDKにMomento Topicsを組み込むことで、このサーバーサ
 
 ## ブラウザ用ウェブSDKの使用
 
-APIコールは[Momento Node.js SDKと同じ](./../nodejs/cheat-sheet.mdx)ですが、import/require文は(Node.js SDKである)`@gomento/sdk`の代わりに、npmから`@gomento/sdk-web`パッケージを消費します。
+APIコールは[Momento Node.js SDKと同じ](../nodejs/cheat-sheet.mdx)ですが、import/require文は(Node.js SDKである)`@gomento/sdk`の代わりに、npmから`@gomento/sdk-web`パッケージを消費します。
 
 以下は、ウェブSDKのインポート文の例です：
 

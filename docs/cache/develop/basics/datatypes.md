@@ -40,7 +40,7 @@ A list is a collection of ordered elements, sorted in the sequence each element 
 ]
 ```
 
-To learn the API methods, check the [API reference for list collection data types](./../api-reference/list-collections.md).
+To learn the API methods, check the [API reference for list collection data types](../api-reference/list-collections.md).
 
 #### Dictionaries
 
@@ -56,7 +56,7 @@ An example of using a dictionary is when you need to store data together and ret
 }
 ```
 
-To learn the API methods, check the [API reference for dictionary collection data types](./../api-reference/dictionary-collections.md).
+To learn the API methods, check the [API reference for dictionary collection data types](../api-reference/dictionary-collections.md).
 
 #### Sets
 A set is an unordered collection of unique elements, each in string format. For example, no matter how many times you add 'sugar' to a set, there will only be one entry for 'sugar'.
@@ -72,7 +72,7 @@ A set is an unordered collection of unique elements, each in string format. For 
 }
 ```
 
-To learn the API methods, check the [API reference for set collection data types](./../api-reference/set-collections.md).
+To learn the API methods, check the [API reference for set collection data types](../api-reference/set-collections.md).
 
 #### Sorted sets
 
@@ -97,7 +97,7 @@ If elements have the same score, they are sorted [lexicographically](https://www
 
 :::
 
-To learn the API methods, check the [API reference for sorted set collection data types](./../api-reference/sorted-set-collections.md).
+To learn the API methods, check the [API reference for sorted set collection data types](../api-reference/sorted-set-collections.md).
 
 ## FAQs
 <details>

@@ -168,19 +168,19 @@ const config = {
           },
           {
             from: '/develop/sdks-integrations/aws-secrets-manager',
-            to: '/cache/develop/integrations/aws-secrets-manager',
+            to: '/cache/integrations/aws-secrets-manager',
           },
           {
             from: '/develop/sdks-integrations/bulk-writing-from-redis-json-csv',
-            to: '/cache/develop/integrations/bulk-writing-from-redis-json-csv',
+            to: '/cache/integrations/bulk-writing-from-redis-json-csv',
           },
           {
             from: '/develop/sdks-integrations/momento-cache-laravel-php',
-            to: '/cache/develop/integrations/momento-cache-laravel-php',
+            to: '/cache/integrations/momento-cache-laravel-php',
           },
           {
             from: '/develop/sdks-integrations/redis-client-compatibility',
-            to: '/cache/develop/integrations/redis-client-compatibility',
+            to: '/cache/integrations/redis-client-compatibility',
           },
           {
             from: '/develop/guides/cheat-sheets/momento-cache-go-cheat-sheet',
@@ -349,6 +349,7 @@ const config = {
               existingPath.replace('/cache/learn', '/learn'),
               existingPath.replace('/cache/manage', '/manage'),
               existingPath.replace('/cache/introduction', '/introduction'),
+              existingPath.replace('/cache/develop/integrations', '/cache/integrations'),
             ];
           }
           return undefined; // Return a falsy value: no redirect created

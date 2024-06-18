@@ -26,4 +26,4 @@ Momento Go SDK は GitHub からインストールできます： `github.com/mo
 
 ## 実装
 
-- [Redis Compatibility Client for `@go-redis`](https://github.com/momentohq/momento-go-redis-client) - 既存の `go-redis` コードで Momento Cache を使えるようにするドロップイン置き換えです！[Redis クライアントとの互換性](./../../integrations/redis-client-compatibility.md) も参照してください。
+- [Redis Compatibility Client for `@go-redis`](https://github.com/momentohq/momento-go-redis-client) - 既存の `go-redis` コードで Momento Cache を使えるようにするドロップイン置き換えです！[Redis クライアントとの互換性](../../integrations/redis-client-compatibility.md) も参照してください。

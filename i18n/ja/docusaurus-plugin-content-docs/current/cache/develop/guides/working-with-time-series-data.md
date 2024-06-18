@@ -9,16 +9,16 @@ description: Learn how to store time series data in Momento Cache
 
 時系列データを一時的に保存することで、長期間の保存コストを気にすることなくデータを可視化できる。IoTセンサーのような時系列データの一般的なユースケースについて考えてみよう。確かに、最近のデータがどのようなものかを見るのは便利ですが、各センサーの値を無期限に保存する必要があるでしょうか？多数のセンサーがデータベースにメトリクスを送信すると、ストレージ・コストが急上昇します。その代わりにMomentoにデータを保存すれば、Momentoが最も得意とする、スケーリングや長期的なストレージ・コストを心配することなく大量のデータを保存することができます。
 
-[lists](./../api-reference/list-collections.md)、[sets](./../api-reference/set-collections.md)、[dictionaries](./../api-reference/dictionary-collections.md)などのMomentoのコレクションデータ型に関連するデータ要素を格納できます。アプリケーションのアクセスパターンとデータスキーマに適したデータ型を選ぶべきです。時系列データの場合は、Momentoの[SortedSetデータ型](./../api-reference/sorted-set-collections.md)を使用します。`SortedSets`については[このブログ](https://www.gomomento.com/blog/were-back-with-another-collection-data-type-sorted-sets)で詳しく説明されています。
+[lists](../api-reference/list-collections.md)、[sets](../api-reference/set-collections.md)、[dictionaries](../api-reference/dictionary-collections.md)などのMomentoのコレクションデータ型に関連するデータ要素を格納できます。アプリケーションのアクセスパターンとデータスキーマに適したデータ型を選ぶべきです。時系列データの場合は、Momentoの[SortedSetデータ型](../api-reference/sorted-set-collections.md)を使用します。`SortedSets`については[このブログ](https://www.gomomento.com/blog/were-back-with-another-collection-data-type-sorted-sets)で詳しく説明されています。
 
 
 ### なぜSortedSetsを使うのか？
 
 - 時系列データをタイムスタンプでソートすることで、クライアントアプリケーションはデータを簡単に取得し、ソートされた順序で表示することができます。
-- Momento SDKの[SortedSetFetchByRank](./../api-reference/sorted-set-collections.md#sortedsetfetchbyrank)および[SortedSetFetchByScore](./../api-reference/sorted-set-collections.md#sortedsetfetchbyscore)を使用して、クエリ応答を特定の値数または特定のタイムスパン内の値に制限します。
+- Momento SDKの[SortedSetFetchByRank](../api-reference/sorted-set-collections.md#sortedsetfetchbyrank)および[SortedSetFetchByScore](../api-reference/sorted-set-collections.md#sortedsetfetchbyscore)を使用して、クエリ応答を特定の値数または特定のタイムスパン内の値に制限します。
 
 ## 時系列データをSortedSetに格納する
-SortedSet にアイテムを挿入するには、Momento SDK の [SortedSetPutElement](./../api-reference/sorted-set-collections.md#sortedsetputelement) メソッドを使用します。
+SortedSet にアイテムを挿入するには、Momento SDK の [SortedSetPutElement](../api-reference/sorted-set-collections.md#sortedsetputelement) メソッドを使用します。
 
 IoTセンサーのデータをMomento Cacheに格納するワークロードを考えてみましょう。
 
@@ -53,7 +53,7 @@ SortedSetのサブセットだけを取得したい場合は、次のようにst
 const sensor_data = await cacheClient.sortedSetFetchByRank("sensor_data", `${sensor_id}-sensor-data`, 0, 10)
 ```
 
-特定の数の値ではなく、指定された期間のデータのみを取得したい場合は、[SortedSetFetchByScore](./../api-reference/sorted-set-collections.md#sortedsetfetchbyscore)を使用することができます。
+特定の数の値ではなく、指定された期間のデータのみを取得したい場合は、[SortedSetFetchByScore](../api-reference/sorted-set-collections.md#sortedsetfetchbyscore)を使用することができます。
 
 >SortedSetのサブセットを取得するためのSortedSetFetchByScoreのコードスニペット。
 

@@ -7,7 +7,7 @@ description: Discover the HTTP API for edge computing services to access serverl
 
 # HTTP API Reference for Momento Cache
 
-Momento provides an HTTP API interface for your applications that can’t use our [SDKs](./../) or for ones that prefer to use things like curl or fetch. For example, when deploying to edge compute services like [Cloudflare Workers](https://workers.cloudflare.com/), [Fastly Compute@Edge](https://www.fastly.com/products/edge-compute), etm. this API is for you. Be aware that most other applications should likely use [Momento’s SDK clients](./../).
+Momento provides an HTTP API interface for your applications that can’t use our [SDKs](../) or for ones that prefer to use things like curl or fetch. For example, when deploying to edge compute services like [Cloudflare Workers](https://workers.cloudflare.com/), [Fastly Compute@Edge](https://www.fastly.com/products/edge-compute), etm. this API is for you. Be aware that most other applications should likely use [Momento’s SDK clients](../).
 
 You can also view the Open API Specification in our [public workspace in Postman](https://www.postman.com/gomomento/workspace/momento-http-api/api/662743a0-471a-41a1-b446-5db596164a00/definition/4765b18e-ba84-4802-9795-ecce9c408062?view=documentation).
 
@@ -130,7 +130,7 @@ Sets a scalar value in a cache.
 | key                 | no**      | URL-safe&nbsp;string                         | The key to retrieve from the cache.                                                                                                               |
 | key_base64          | no**      | Base64&nbsp;URL-encoded&nbsp;binary&nbsp;key | The key to retrieve from the cache.                                                                                                               |
 | token               | no***     | URL-safe&nbsp;string                         | The Momento auth token, in string format, to be used for authentication/authorization of the request.                                             |
-| ttl_seconds         | yes       | Integer                                      | The TTL to be set on the key, in seconds. For more on TTL, see  [Expire Data with Time-to-Live](./../../learn/how-it-works/expire-data-with-ttl). |
+| ttl_seconds         | yes       | Integer                                      | The TTL to be set on the key, in seconds. For more on TTL, see  [Expire Data with Time-to-Live](../../learn/how-it-works/expire-data-with-ttl). |
 
 ** You must specify a key to be accessed in the cache. This may be either the key query parameter, which allows a URL-safe string, or the key_base64 parameter, which allows a Base64 URL-encoded key.
 

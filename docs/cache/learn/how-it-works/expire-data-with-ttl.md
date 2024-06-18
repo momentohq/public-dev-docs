@@ -22,7 +22,7 @@ The TTL value is the number of seconds from when Momento Cache writes the item t
 
 ## How to set TTL in Momento Cache
 
-For more robust examples of the code below in multiple languages, please see "[Developing applications with Momento SDKs](./../../develop)"
+For more robust examples of the code below in multiple languages, please see "[Developing applications with Momento SDKs](../../develop)"
 
 There are three locations to set a TTL value:
 1. When creating a CacheClient object in a Momento SDK, you must set a TTL value for the connection. Any future SET operation using that client object will use that TTL value, unless you override the value.

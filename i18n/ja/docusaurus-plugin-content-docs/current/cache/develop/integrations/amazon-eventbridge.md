@@ -17,7 +17,7 @@ AWSでイベントドリブンアーキテクチャを構築している方な�
 
 :::
 
-Momentoの[HTTP API](./../api-reference/http-api.md)と[Amazon EventBridge API Destinations](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html)を使うことで、ワークフローで`PutEvents`を呼び出すだけで非同期イベントをトリガーすることができます。
+Momentoの[HTTP API](../api-reference/http-api.md)と[Amazon EventBridge API Destinations](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html)を使うことで、ワークフローで`PutEvents`を呼び出すだけで非同期イベントをトリガーすることができます。
 
 ![Diagram of compute resources triggering an event that calls Momento](@site/static/img/eventbridge_destinations.png)
 
@@ -40,7 +40,7 @@ Momentoの[HTTP API](./../api-reference/http-api.md)と[Amazon EventBridge API D
 
 ![CloudFormation UI with deployment parameters configured](@site/static/img/eb-destination-ui.png)
 
-2つのパラメータを入力し、*Create stack*を押すと、リソースが自動的にデプロイされます。*MomentoはAWSのようにリージョンベースであり、認証トークンは特定のリージョンをターゲットにしています。HTTP API の場合、使用したいリージョンに応じて [異なるベース URL](./../api-reference/http-api.md#regions) をヒットする必要があります。私たちが提供するクイックスタートは、デプロイ時に適切なベースURLを決定するので、考える必要はありません👍
+2つのパラメータを入力し、*Create stack*を押すと、リソースが自動的にデプロイされます。*MomentoはAWSのようにリージョンベースであり、認証トークンは特定のリージョンをターゲットにしています。HTTP API の場合、使用したいリージョンに応じて [異なるベース URL](../api-reference/http-api.md#regions) をヒットする必要があります。私たちが提供するクイックスタートは、デプロイ時に適切なベースURLを決定するので、考える必要はありません👍
 
 これは、MomentoがサポートするAWSリージョンでのみ機能します。
 

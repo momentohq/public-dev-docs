@@ -147,5 +147,5 @@ if ($response->asError()) {
 ```
 
 :::info
-これらの API 呼出し以上のものは、[API リファレンスページ](./../../api-reference/index.mdx)で Momento API 呼出しの全種類の詳しい情報をご確認下さい。
+これらの API 呼出し以上のものは、[API リファレンスページ](../../api-reference/index.mdx)で Momento API 呼出しの全種類の詳しい情報をご確認下さい。
 :::

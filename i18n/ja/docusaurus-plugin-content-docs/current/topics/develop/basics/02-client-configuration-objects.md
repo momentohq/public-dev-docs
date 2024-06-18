@@ -45,7 +45,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 ### Browser
 
-Configurations.Browser は [web SDK](./../sdks/web/index.md) に特有の設定になっています。ユーザー毎にブラウザのレイテンシの振れ幅が大きいので、タイムアウト設定が緩めになっています。
+Configurations.Browser は [web SDK](../sdks/web/index.md) に特有の設定になっています。ユーザー毎にブラウザのレイテンシの振れ幅が大きいので、タイムアウト設定が緩めになっています。
 
 ### InRegion - Default
 

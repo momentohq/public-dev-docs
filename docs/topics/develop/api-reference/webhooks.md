@@ -267,7 +267,7 @@ The `WebhookDestination` object contains the information about where the webhook
 
 <details>
 <summary>How do I validate incoming webhook requests?</summary>
-Check out our [webhook security page](./../../webhooks/security.md) on validating inbound webhook requests.
+Check out our [webhook security page](../../webhooks/security.md) on validating inbound webhook requests.
 </details>
 
 <details>

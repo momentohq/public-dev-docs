@@ -45,4 +45,4 @@ Momento Python SDK は pypi パッケージ [`momento`](https://pypi.org/project
 
 ## インテグレーション
 
-- [Redis Compatibility Client for `redis/redis-py`](https://github.com/momentohq/momento-python-redis-client) - 既存の `redis/redis-py` コードで Momento Cache を使えるようにするドロップイン置き換えです！[Redis Client Compatibility](/cache/develop/integrations/redis-client-compatibility.md) ページも参照してください。
+- [Redis Compatibility Client for `redis/redis-py`](https://github.com/momentohq/momento-python-redis-client) - 既存の `redis/redis-py` コードで Momento Cache を使えるようにするドロップイン置き換えです！[Redis Client Compatibility](/cache/integrations/redis-client-compatibility.md) ページも参照してください。

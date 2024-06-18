@@ -257,7 +257,7 @@ WebhookId` オブジェクトはウェブフックの一意な識別子を表し
 
 <details>
 <summary>受信したWebhookリクエストを検証するには？</summary>
-[ウェブフック・セキュリティページ](./../../webhooks/security.md)をチェックしてください。
+[ウェブフック・セキュリティページ](../../webhooks/security.md)をチェックしてください。
 </details>
 
 <details>

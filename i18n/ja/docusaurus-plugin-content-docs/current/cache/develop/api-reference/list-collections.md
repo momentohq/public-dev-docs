@@ -11,7 +11,7 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # List API reference for Momento Cache
-このページでは、[リストコレクションデータ型](./../basics/datatypes.md#list-collections)の Momento API メソッドの詳細を説明しています。
+このページでは、[リストコレクションデータ型](../basics/datatypes.md#lists)の Momento API メソッドの詳細を説明しています。
 
 <br />
 

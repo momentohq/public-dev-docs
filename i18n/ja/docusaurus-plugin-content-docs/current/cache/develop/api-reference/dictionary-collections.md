@@ -11,7 +11,7 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Momento Cache 用 Dictionary API リファレンス
-このページでは、[辞書コレクション・データ型](./../basics/datatypes.md#dictionary-collections) の Momento API メソッドについて詳しく説明します。
+このページでは、[辞書コレクション・データ型](../basics/datatypes.md#dictionaries) の Momento API メソッドについて詳しく説明します。
 
 :::info
 

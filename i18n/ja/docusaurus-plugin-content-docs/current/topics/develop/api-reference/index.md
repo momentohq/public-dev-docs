@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 # Momento Topics（pub/sub）API を使用する
 Momento Topics は、分散型アプリケーションの各部分間でリアルタイム通信を可能にするメッセージングパターンです。トピックの値をパブリッシュ(プロデュース)し、トピックからサブスクライブ(コンシューム)することを可能にします。このページでは、Momento Topics で操作するための Momento API メソッドについて詳しく説明します。
 
-詳細は[Momento Topics](./../../index.md)をご覧ください。
+詳細は[Momento Topics](../../index.md)をご覧ください。
 
 ## Topics のメソッド
 

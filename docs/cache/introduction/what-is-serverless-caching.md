@@ -90,9 +90,9 @@ Second, _these developers are looking for a generous free tier as they start usi
 
 If you're an indie hacker or an early-stage startup that's looking to save money, Momento is a great fit for you as well.
 
-First, Momento Cache has a painless self-service sign up. You can get a Momento authentication token and [start writing to your cache in less than five minutes](./../getting-started). You don't need to talk to a salesperson or sign an upfront contract. In fact, you don't even need to enter a credit card to enjoy the free tier.
+First, Momento Cache has a painless self-service sign up. You can get a Momento authentication token and [start writing to your cache in less than five minutes](../getting-started). You don't need to talk to a salesperson or sign an upfront contract. In fact, you don't even need to enter a credit card to enjoy the free tier.
 
-Second, Momento Cache has a generous free tier. You get 5 GB free each month (see [pricing](./../manage/pricing) for details). Our goal is to allow a wide variety of applications to run on Momento without ever paying us a cent. We want to provide a top-tier, robust service for applications that need it while also supporting a broad community of applications to use Momento as they grow.
+Second, Momento Cache has a generous free tier. You get 5 GB free each month (see [pricing](../manage/pricing) for details). Our goal is to allow a wide variety of applications to run on Momento without ever paying us a cent. We want to provide a top-tier, robust service for applications that need it while also supporting a broad community of applications to use Momento as they grow.
 
 ## Conclusion
 
@@ -100,4 +100,4 @@ In this page, you learned how Momento Cache fits with every conception of server
 
 If you're ready to get started with Momento Cache, be sure to check out the following materials:
 
-- Quickstart guide to [start caching with Momento](./../getting-started) in less than 5 minutes;
+- Quickstart guide to [start caching with Momento](../getting-started) in less than 5 minutes;

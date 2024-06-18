@@ -47,7 +47,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-php](https://githu
 
 ## Integrations
 
-- [Drupal Cache Backend](/cache/develop/integrations/drupal-integration.md)
-- [Laravel Cache](https://github.com/momentohq/laravel-cache) - a drop-in replacement that allows you to use Momento Cache with your existing Laravel application! See also our [Laravel Integration](/cache/develop/integrations/momento-cache-laravel-php.md) page.
+- [Drupal Cache Backend](/cache/integrations/drupal-integration.md)
+- [Laravel Cache](https://github.com/momentohq/laravel-cache) - a drop-in replacement that allows you to use Momento Cache with your existing Laravel application! See also our [Laravel Integration](/cache/integrations/momento-cache-laravel-php.md) page.
 - [Laravel Example App](https://github.com/momentohq/laravel-example) - a fully operational Laravel example application that uses the Momento Laravel cache integration.
 - [PSR-16 Cache API](https://github.com/momentohq/client-sdk-php/blob/main/README-PSR16.md) - an implementation of the PHP PSR-16 cache specification backed by Momento Cache.

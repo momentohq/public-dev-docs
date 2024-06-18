@@ -45,7 +45,7 @@ AWSを使って`worker`というキャッシュを作成する。現在、Moment
 
 [tokens](https://console.gomomento.com/tokens)ページに移動し、キャッシュの作成に使用したクラウドプロバイダとリージョンを選択します。キャッシュはすでに作成されているので、Worker にキャッシュからの読み込みとキャッシュへの書き込みを許可し、キャッシュの作成や削除のようなコントロールプレーン操作は許可しない、きめの細かいトークンを使います。これは特に、コントロールプレーンとデータプレーンの操作のセキュリティを別々に管理したい場合に便利です。
 
-`Fine-Grained Access Token` トークンタイプを選択し、ドロップダウンから `Cache Name` として `worker` を選択し、`Role Type` として `readwrite` を選択します。スーパーユーザトークン `Super User Token` はコントロールプレーンの操作管理に使用します。Momento 認証の詳細については [こちら](./../authentication/index.mdx) を参照してください。Generate API Key` ボタンを押します。
+`Fine-Grained Access Token` トークンタイプを選択し、ドロップダウンから `Cache Name` として `worker` を選択し、`Role Type` として `readwrite` を選択します。スーパーユーザトークン `Super User Token` はコントロールプレーンの操作管理に使用します。Momento 認証の詳細については [こちら](../authentication/index.mdx) を参照してください。Generate API Key` ボタンを押します。
 
 ![Generate token](/img/fgac-worker-auth.png)
 

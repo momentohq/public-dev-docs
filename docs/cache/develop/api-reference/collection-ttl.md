@@ -19,7 +19,7 @@ CollectionTtl parameter allows you to specify this behavior.
 
 The default behavior is that the collection TTL is reset whenever a write operation occurs. You cannot provide a CollectionTTL object when performing a read operation like `dictionaryFetch` or `listLength`. 
 
-See [Expire Data with TTL](./../../learn/how-it-works/expire-data-with-ttl.md) for more information on how TTL works with Momento Cache.
+See [Expire Data with TTL](../../learn/how-it-works/expire-data-with-ttl.md) for more information on how TTL works with Momento Cache.
 
 :::caution
 

@@ -28,4 +28,4 @@ pagination_next: null
 
 キャッシュの有効期限を設定するために、Momento Cacheはキャッシュに挿入されたオブジェクトごとに、秒単位でtime to liveの値を設定する必要があります。この値を設定する場所は2つあります。1つ目は、SDKへのコールでキャッシュへの接続を確立するときに、その値を指定できます。そして2つ目は、書き込み操作を行うときに、オブジェクトごとにその値を上書きすることです。書き込み操作でTTL値を設定しない場合、SDKは接続オブジェクトの値を使用します。デフォルトでは、TTLの最大値は24時間です。
 
-詳細については、"[Cache eviction vs. cache expiration](./../../how-it-works/cache-eviction-vs-expiration.md)" ドキュメントを参照してください。
+詳細については、"[Cache eviction vs. cache expiration](../../how-it-works/cache-eviction-vs-expiration.md)" ドキュメントを参照してください。

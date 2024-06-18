@@ -7,7 +7,7 @@ description: Discover the HTTP API for edge computing services to access serverl
 
 # Momento Cache の HTTP API リファレンス
 
-Momentoは、私たちの[SDK](./../)を使用できないアプリケーションや、curlやfetchのようなものを使用したいアプリケーションのためにHTTP APIインターフェイスを提供します。例えば、[Cloudflare Workers](https://workers.cloudflare.com/)、[Fastly Compute@Edge](https://www.fastly.com/products/edge-compute)などのエッジコンピュートサービスにデプロイする場合、このAPIはあなたのためにあります。その他のアプリケーションは、[Momento's SDK clients](./../) を使用する必要があります。
+Momentoは、私たちの[SDK](../)を使用できないアプリケーションや、curlやfetchのようなものを使用したいアプリケーションのためにHTTP APIインターフェイスを提供します。例えば、[Cloudflare Workers](https://workers.cloudflare.com/)、[Fastly Compute@Edge](https://www.fastly.com/products/edge-compute)などのエッジコンピュートサービスにデプロイする場合、このAPIはあなたのためにあります。その他のアプリケーションは、[Momento's SDK clients](../) を使用する必要があります。
 
 私たちの[Postmanの公開ワークスペース](https://www.postman.com/gomomento/workspace/momento-http-api/api/662743a0-471a-41a1-b446-5db596164a00/definition/4765b18e-ba84-4802-9795-ecce9c408062?view=documentation)でもOpen API Specificationを見ることができます。
 
@@ -130,7 +130,7 @@ Momento HTTP API にアクセスするには、API トークンとキャッシ�
 | key                 | no**      | URL-safe&nbsp;string                         | キャッシュから取得するキー。                                                                                                               |
 | key_base64          | no**      | Base64&nbsp;URL-encoded&nbsp;binary&nbsp;key | キャッシュから取得するキー。                                                                                                               |
 | token               | no***     | URL-safe&nbsp;string                         | リクエストの認証/認可に使用する Momento 認証トークン (文字列形式)。                                             |
-| ttl_seconds         | yes       | Integer                                      | キーに設定するTTLを秒単位で指定する。TTLについては、[Expire Data with Time-to-Live](./../../learn/how-it-works/expire-data-with-ttl)を参照ください。 |
+| ttl_seconds         | yes       | Integer                                      | キーに設定するTTLを秒単位で指定する。TTLについては、[Expire Data with Time-to-Live](../../learn/how-it-works/expire-data-with-ttl)を参照ください。 |
 
 ** キャッシュにアクセスするキーを指定する必要があります。これは、URLセーフ文字列を指定するkey queryパラメータか、Base64でURLエンコードされたキーを指定するkey_base64パラメータのどちらかになります。
 
