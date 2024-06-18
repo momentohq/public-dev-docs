@@ -7,6 +7,16 @@ description: Trigger async events in Momento directly with Amazon EventBridge!
 
 AWSでイベントドリブンアーキテクチャを構築している方なら、[Amazon EventBridge](https://aws.amazon.com/eventbridge/)を知っているでしょう。このサーバーレスイベントバスサービスは、イベントのフィルタリング、変換、ルーティング、配信を堅牢なエラー処理と高可用性で支援します。これをMomentoで直接使えたら最高だと思いませんか？
 
+:::tip
+
+このページでは、EventBridgeとMomentoを接続するための汎用パターンを紹介します。
+
+より具体的な例としては、[DynamoDB-Momento EventBridge Demo](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/aws/eventbridge)をご覧ください！
+このプロジェクトでは、DynamoDB StreamsとAWS EventBridgeを使ってMomentoにライトスルーキャッシュを作成する方法を紹介します。
+このアプリを使うと、DynamoDBテーブルのアイテムを作成・更新・削除し、その変更をリアルタイムにキャッシュ/トピックに反映させることができます。
+
+:::
+
 Momentoの[HTTP API](./../api-reference/http-api.md)と[Amazon EventBridge API Destinations](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html)を使うことで、ワークフローで`PutEvents`を呼び出すだけで非同期イベントをトリガーすることができます。
 
 ![Diagram of compute resources triggering an event that calls Momento](@site/static/img/eventbridge_destinations.png)
