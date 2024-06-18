@@ -58,10 +58,10 @@ export default function Home(): JSX.Element {
                 <h2>Topics</h2>
                 <ul className={styles.columnList}>
                   <li><a href="/topics"><Translate id="aboutOurServerlessEventBus">About our serverless event bus</Translate></a></li>
-                  <li><a href="/cache/develop/guides/working-with-files-cache"><Translate id="integrateWithAmazonEventBridge">Integrate with Amazon EventBridge</Translate></a></li>
+                  <li><a href="/topics/integrations/lambda-handler"><Translate id="integrateWithAmazonEventBridge">Integrate with Amazon EventBridge</Translate></a></li>
                   <li><a href="/topics/webhooks"><Translate id="webhooksOverview">Webhooks overview</Translate></a></li>
                   <li>
-                  
+
                     <a href="https://www.gomomento.com/blog/how-to-create-a-slack-workflow-with-webhooks-in-momento-topics" target='_blank'>
                       <div className={styles.openInNew}>
                       <span><Translate id="publishMessagesToSlack">Publish messages to Slack</Translate></span>
