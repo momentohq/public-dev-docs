@@ -17,13 +17,12 @@ By default, a Momento Cache follows an eventual consistency model. That is, if y
 
 | Read Concern | Operation Count Multiplier           | Default |
 |--------------|-----------------|---------|
-| Express      | 0.8x            | No      |
 | Balanced     | 1x              | Yes     |
 | Consistent   | 6x              | No      |
 
 :::note
 
-Since this configuration is specified at the client level, it will be used for all api calls from that client. If there are only a few api calls that require read consistency, it is best to create 2 separate clients, one for a `Consistent` `ReadConcern`, and another for a `Balanced` or `Express` `ReadConcern`. This way, only the consistent read requests will incur the 6x operations count multiplier.
+Since this configuration is specified at the client level, it will be used for all api calls from that client. If there are only a few api calls that require read consistency, it is best to create 2 separate clients, one for a `Consistent` `ReadConcern`, and another for a `Balanced` `ReadConcern`. This way, only the consistent read requests will incur the 6x operations count multiplier.
 :::
 
 An example of instantiating a new client with a `Consistent` `ReadConcern` is shown below:
