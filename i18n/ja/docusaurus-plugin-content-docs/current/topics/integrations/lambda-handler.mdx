@@ -18,6 +18,15 @@ keywords:
 
 Momento [webhooks](https://docs.momentohq.com/topics/webhooks/overview)は、トピックをステートレスコンシューマーに接続するサーバーレスな方法です。以下は、メッセージをAmazon EventBridgeバスに載せるパブリックURLを持つAWS Lambda関数をデプロイする方法のガイドになります。
 
+:::tip
+
+このページでは、EventBridgeとMomentoを接続するための汎用パターンを紹介します。
+
+より具体的な例としては、[DynamoDB-Momento EventBridge Demo](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/aws/eventbridge)をご覧ください！
+このプロジェクトでは、DynamoDB StreamsとAWS EventBridgeを使ってMomentoにライトスルーキャッシュを作成する方法を紹介します。
+このアプリを使うと、DynamoDBテーブルのアイテムを作成・更新・削除し、その変更をリアルタイムにキャッシュ/トピックに反映させることができます。
+:::
+
 ## Architecture
 
 Webhookハンドラのゴールは、Momentoからの通知を可能な限り迅速かつ安全に処理することであり、最終的な宛先はAWS EventBridgeです。メッセージをバスに乗せることで、そのデータをどう扱うかの可能性が大きく広がります。メッセージは、より耐久性のあるストレージに永続化されたり、他のコンシューマーに伝搬されて、さらなるアクションを実行することもできます。
