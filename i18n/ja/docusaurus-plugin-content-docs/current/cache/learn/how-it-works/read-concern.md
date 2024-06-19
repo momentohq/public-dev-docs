@@ -17,13 +17,12 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 | Read Concern | 動作回数の係数          | Default |
 |--------------|-----------------|---------|
-| Express      | 0.8x            | No      |
 | Balanced     | 1x              | Yes     |
 | Consistent   | 6x              | No      |
 
 :::note
 
-この設定はクライアントレベルで指定されるので、そのクライアントからのすべてのapiコールに使用されます。読み込みの一貫性が必要な api 呼び出しが数件しかない場合は、2 つのクライアントを作成するのが最善です。1 つは `Consistent` `ReadConcern` 用、もう 1 つは `Balanced` または `Express` `ReadConcern` 用です。こうすることで、一貫性のある読み取りのリクエストにのみ 6 倍の操作回数乗数が発生します。
+この設定はクライアントレベルで指定されるので、そのクライアントからのすべてのapiコールに使用されます。読み込みの一貫性が必要な api 呼び出しが数件しかない場合は、2 つのクライアントを作成するのが最善です。1 つは `Consistent` `ReadConcern` 用、もう 1 つは `Balanced` `ReadConcern` 用です。こうすることで、一貫性のある読み取りのリクエストにのみ 6 倍の操作回数乗数が発生します。
 :::
 
 以下は `Consistent` `ReadConcern` を持つ新しいクライアントをインスタンス化する例です：
