@@ -80,10 +80,6 @@ Service quotas are directly affected by the support plan on your account. Both <
 
 Certain cache APIs can perform multiple operations in a single request. Multi-element operations are more efficient, so the cost of these APIs is discounted at a **2:1 ratio**. This means every two elements will count as one operation towards the limiter.
 
-:::tip
-To further reduce the number of operations charged against your account, look into setting the [read concern](./learn/how-it-works/read-concern) header to `Express`. This will reduce the charged operations count to 0.8x the default value, and will reduce latencies for frequently accessed keys.
-:::
-
 As an example, a `SetAddElements` request adding one or two elements costs *one operation*, but with three or four elements it costs *two operations*, and so on. All the APIs listed below perform multiple operations and are subject to reduced cost. All unlisted APIs cost one operation.
 
 <table class="customTable">
