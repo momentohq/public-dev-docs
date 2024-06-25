@@ -2,6 +2,7 @@ import { themes } from "prism-react-renderer";
 
 import exampleSnippetsPlugin from './plugins/example-code-snippets/dist/inject-example-code-snippets';
 import languageApiSupportMatrixPlugin from './plugins/example-code-snippets/dist/language-api-support-matrix';
+import stylexPlugin from './plugins/stylex-docusaurus.plugin.mjs';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -61,6 +62,7 @@ const config = {
   ],
   plugins: [
     "docusaurus-plugin-sass",
+    stylexPlugin,
     [
       require.resolve("docusaurus-gtm-plugin"),
       {

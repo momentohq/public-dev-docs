@@ -14,11 +14,12 @@ Service quotas are directly affected by the support plan on your account. Both <
 
 View the quotas and limits for a specific service here:
 
-import Card from '@site/src/components/Card';
+import { CardGrid } from '@site/src/components/CardGrid';
+import { LinkCard } from '@site/src/components/LinkCard';
 
-<div className="card-wrapper">
-  <Card to="/auth/limits" title="Auth" description="quotas and limits" />
-  <Card to="/cache/limits" title="Cache" description="quotas and limits" />
-  <Card to="/topics/limits" title="Topics" description="quotas and limits" />
-  <Card to="/leaderboards/limits" title="Leaderboards" description="quotas and limits" />
-</div>
+<CardGrid>
+  <LinkCard alignText='center' link="/auth/limits" title="Auth" description="quotas and limits" />
+  <LinkCard alignText='center' link="/cache/limits" title="Cache" description="quotas and limits" />
+  <LinkCard alignText='center' link="/topics/limits" title="Topics" description="quotas and limits" />
+  <LinkCard alignText='center' link="/leaderboards/limits" title="Leaderboards" description="quotas and limits" />
+</CardGrid>

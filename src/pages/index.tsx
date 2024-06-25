@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { IoOpenOutline } from "react-icons/io5";
-import ReferenceCard from '@site/src/components/ReferenceCard';
+import { CardGrid } from '@site/src/components/CardGrid';
+import { LinkCard } from '@site/src/components/LinkCard';
 import Translate from '@docusaurus/Translate';
 
 import styles from './index.module.css';
@@ -125,29 +126,29 @@ export default function Home(): JSX.Element {
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}><Translate id="browseOurProducts">Browse our products</Translate></h2>
             <div className={styles.productWrapper}>
-              <div className={styles.products}>
-                <ReferenceCard
+              <CardGrid variant='dense'>
+                <LinkCard
+                  alignItems='center'
                   title="Cache"
                   link="/cache"
-                  description="Serverless caching made simple"
+                  description="low-latency ephemeral storage"
                   icon="/img/cache/momento-cache-brand-icon.svg"
-                  variation="dense"
                 />
-                <ReferenceCard
+                <LinkCard
+                  alignItems='center'
                   title="Topics"
                   link="/topics"
-                  description="Event bus with webhook support"
+                  description="low-latency ephemeral event bus"
                   icon="/img/topics/momento-topics-brand-icons.svg"
-                  variation="dense"
                 />
-                <ReferenceCard
+                <LinkCard
+                  alignItems='center'
                   title="Leaderboards"
                   link="/leaderboards"
-                  description="Durable and ready for massive scale"
+                  description="massive, durable sorted sets"
                   icon="/img/leaderboards/momento-leaderboards-2d.svg"
-                  variation="dense"
                 />
-              </div>
+              </CardGrid>
             </div>
           </div>
         </div>

@@ -14,7 +14,8 @@ keywords:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import ReferenceCard from '@site/src/components/ReferenceCard';
+import { CardGrid } from '@site/src/components/CardGrid';
+import { LinkCard } from '@site/src/components/LinkCard';
 
 # Momento CacheとTopicsを使ってインスタント・メッセージを構築する
 
@@ -412,27 +413,20 @@ Momentoは[堅牢な認証メカニズム](../develop/authentication/tokens)を�
 
 Momentoを使用すると、あらゆるアプリケーションでインスタント・メッセージを迅速かつ安全に開発できます。CacheとTopicsの詳細、またはプロジェクトのクイックスタートについては、以下のリソースをご覧ください。
 
-<div style={{
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  gap: '20px',
-  marginBottom: '20px'
-}}>
-
-  <ReferenceCard
+<CardGrid>
+  <LinkCard
     title="More about instant messaging"
     link="https://www.gomomento.com/solutions/use-cases/chat"
     description="Learn more about how to build instant messaging on Momento"
     />
-  <ReferenceCard
+  <LinkCard
     title="How to build a multi-language chat app"
     link="https://www.gomomento.com/blog/how-to-develop-a-chat-app-with-built-in-moderation"
     description="Walk through an app that automatically translates messages to other languages"
     />
-  <ReferenceCard
+  <LinkCard
     title="In-game chat case study"
     link="https://www.gomomento.com/resources/case-studies/momento-enables-zigzagame-to-go-fully-serverless-and-save-money-in-the-process"
     description="See how ZigZaGame used Momento to power their in-game chat"
     />
-</div>
+</CardGrid>

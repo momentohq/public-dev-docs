@@ -343,26 +343,19 @@ async function getSecret(secretName: string): Promise<string> {
 - Momentoトピック、ウェブフック、トークンを統合することで、セキュアでステートレスな非同期システムを作成できます。この規約は、多言語チャットアプリ、オンラインポーリング、イベント駆動型システムなど、さまざまなユースケースに適用できます。
 
 ```mdx-code-block
-import ReferenceCard from '@site/src/components/ReferenceCard';
+import { CardGrid } from '@site/src/components/CardGrid';
+import { LinkCard } from '@site/src/components/LinkCard';
 
-<div style={{
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  gap: '20px',
-  marginBottom: '20px' // Add margin bottom to the container if needed
-}}>
-
-  <ReferenceCard
+<CardGrid>
+  <LinkCard
     title="Multi-language chat app"
     link="https://github.com/momentohq/moderated-chat/"
     description="Explore the source code of our live-translation chat app using webhooks."
     />
-  <ReferenceCard
+  <LinkCard
     title="Use webhooks with API Gateway + Lambda"
     link="https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app"
     description="Learn how to integrate Momento webhooks with Amazon API Gateway and Lambda functions"
     />
-
-</div>
+</CardGrid>
 ```
