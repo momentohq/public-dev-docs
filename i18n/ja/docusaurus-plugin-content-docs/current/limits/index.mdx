@@ -1,0 +1,25 @@
+---
+displayed_sidebar: topLevelSidebar
+sidebar_label: Quotas and Limits
+title: Momento quotas and limits
+pagination_next: null
+description: Examine the service quotas in place with Momento auth and discover the default and tunable values for your workload based on your support plan.
+hide_title: true
+---
+# Momento とクォータと制限
+
+:::info
+サービスクォータはアカウントのサポートプランに直接影響されます。<ins>ソフトリミット</ins>とハードリミット</ins>の両方は、プロティアプランとエンタープライズプランで増やすことができます。増額をご希望の場合は、[営業担当までご連絡ください](https://www.gomomento.com/contact-us).
+:::
+
+特定のサービスのクォータとリミットはこちらからご覧ください：
+
+import { CardGrid } from '@site/src/components/CardGrid';
+import { LinkCard } from '@site/src/components/LinkCard';
+
+<CardGrid>
+  <LinkCard alignText='center' link="/auth/limits" title="Auth" description="quotas and limits" />
+  <LinkCard alignText='center' link="/cache/limits" title="Cache" description="quotas and limits" />
+  <LinkCard alignText='center' link="/topics/limits" title="Topics" description="quotas and limits" />
+  <LinkCard alignText='center' link="/leaderboards/limits" title="Leaderboards" description="quotas and limits" />
+</CardGrid>
