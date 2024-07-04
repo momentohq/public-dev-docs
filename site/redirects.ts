@@ -8,8 +8,9 @@ const REDIRECTS = {
     // ## Relocated Sections
     // former top-level cache pages
     '/getting-started': '/cache/getting-started',
-    '/pricing': '/cache/manage/pricing',
-    '/docs/pricing': '/cache/manage/pricing',
+    '/pricing': 'https://www.gomomento.com/pricing',
+    '/docs/pricing': 'https://www.gomomento.com/pricing',
+    // '/cache/manage/pricing': 'https://www.gomomento.com/pricing',
     '/docs/API-reference': '/cache/develop/api-reference',
     '/API-reference': '/cache/develop/api-reference',
 
