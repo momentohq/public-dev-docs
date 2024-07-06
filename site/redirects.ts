@@ -10,7 +10,7 @@ const REDIRECTS = {
     '/getting-started': '/cache/getting-started',
     '/pricing': 'https://www.gomomento.com/pricing',
     '/docs/pricing': 'https://www.gomomento.com/pricing',
-    // '/cache/manage/pricing': 'https://www.gomomento.com/pricing',
+    '/cache/manage/pricing': 'https://www.gomomento.com/pricing',
     '/docs/API-reference': '/cache/develop/api-reference',
     '/API-reference': '/cache/develop/api-reference',
 
