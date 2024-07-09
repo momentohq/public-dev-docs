@@ -105,6 +105,7 @@ The Momento Web SDK allows you to create rich browser applications in TypeScript
   <LinkButton text="Style Guide" link="/sdks/nodejs/style-guide.html"/>
   <LinkButton text="Cache" link="/sdks/nodejs/cache.html"/>
   <LinkButton text="Topics" link="/sdks/nodejs/topics.html"/>
+  <LinkButton text="Storage" link="/sdks/nodejs/storage.html"/>
   <LinkButton text="API Tokens" link="/sdks/web#credentials-for-browsers"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web" openInNewTab="true"/>
   <LinkButton text="Packages" link="https://www.npmjs.com/package/@gomomento/sdk-web" openInNewTab="true" />
@@ -215,6 +216,7 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   <LinkButton text="Style Guide" link="/sdks/nodejs/style-guide.html"/>
   <LinkButton text="Cache" link="/sdks/nodejs/cache.html"/>
   <LinkButton text="Topics" link="/sdks/nodejs/topics.html"/>
+  <LinkButton text="Storage" link="/sdks/nodejs/storage.html"/>
   <LinkButton text="Compression" link="/sdks/nodejs/compression.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-nodejs/tree/main/examples/nodejs" openInNewTab="true" />
   <LinkButton text="Packages" link="https://www.npmjs.com/package/@gomomento/sdk" openInNewTab="true" />
