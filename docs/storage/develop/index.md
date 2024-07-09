@@ -34,6 +34,4 @@ If you're storing your Momento auth token in a secret manager such as [AWS Secre
 
 For an example of how to retrieve credentials from AWS Secrets Manager, see [Retrieving a Momento auth token from AWS Secrets Manager](/cache/integrations/aws-secrets-manager).
 
-For general information on Momento authentication, see our [auth page](./develop/authentication).
-
-For more information, see our [API Reference](./develop/api-reference) page, and the docs for the specific [SDK](../../sdks) that you are using.
+For more information, see our [API Reference](./develop/api-reference) page, and the docs for the specific [SDK](/sdks) that you are using.
