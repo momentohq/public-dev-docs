@@ -38,70 +38,12 @@ You can also install the Momento CLI locally (Linux, Windows, Mac) if desired. T
 
 ## Using the [Momento SDKs](../sdks)
 
-<details>
-<summary>SDK Installation and Example</summary>
-There are multiple places you can store the API key you created. For this simple example, we'll store it in an environment variable, but the best practice is to store it in a secure location like AWS Secrets Manager.
+Ready to start writing some code? Check out our [SDKs](../sdks) page for a list of all of our supported languages. Each
+SDK has a quick start for using Momento Cache or Topics. Here are direct links to a few of the most popular ones:
 
-<Tabs>
-   <TabItem value="node" label="Node.js" default>
-
-Install the Momento SDK in your project directory
-
-```cli
-npm install @gomomento/sdk
-```
-
-Copy this code to a file `test.js`
-
-```typescript
-const { CacheGet, CacheSet, Configurations, CacheClient, CredentialProvider } = require('@gomomento/sdk');
-
-const CACHE_NAME = 'demo';
-
-// A simple function that calls all functions in order. You probably want more error handling.
-async function run() {
-  const cacheClient = await CacheClient.create({
-       configuration: Configurations.Laptop.v1(),
-       credentialProvider: CredentialProvider.fromEnvironmentVariable({
-           environmentVariableName: 'MOMENTO_API_KEY',
-        }),
-       defaultTtlSeconds: 600,
-   });
-  await client.createCache(CACHE_NAME);
-  // set cache key
-  const key = "key";
-  const data = 12345;
-  const setResponse = await client.set(cacheName, key, data);
-  if (setResponse instanceof CacheSet.Success) {
-      console.log('Key stored successfully!');
-  }
-  const readResponse = await client.get(cacheName, key);
-  if (readResponse instanceof CacheGet.Hit) {
-      console.log('Cache hit: ', readResponse.valueString());
-  } else if (readResponse instanceof CacheGet.Miss) {
-      console.log('Cache miss');
-  }
-}
-
-run();
-```
-
-Run code
-
-```cli
-MOMENTO_API_KEY='your_key_here' node test.js
-```
-
-The output should look something like this:
-
-```cli
-[2023-05-21T00:56:37.819Z] INFO (Momento: CacheClient): Creating Momento CacheClient
-[2023-05-21T00:56:37.831Z] INFO (Momento: ControlClient): Creating cache: demo
-Cache created.
-Key stored successfully!
-Cache hit:  12345
-```
-
-   </TabItem>
-</Tabs>
-</details>
+- [Node.js](../sdks/node) ([cache](../sdks/node/cache), [topics](../sdks/node/topics)
+- [JavaScript Web SDK](../sdks/web) ([cache](../sdks/web/cache), [topics](../sdks/web/topics))
+- [Python](../sdks/python) ([cache](../sdks/python/cache), [topics](../sdks/python/topics))
+- [Java](../sdks/java) ([cache](../sdks/java/cache), [topics](../sdks/java/topics))
+- [Go](../sdks/go) ([cache](../sdks/go/cache), [topics](../sdks/go/topics))
+- [.NET](../sdks/dotnet) ([cache](../sdks/dotnet/cache), [topics](../sdks/dotnet/topics)
