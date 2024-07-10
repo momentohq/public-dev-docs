@@ -7,8 +7,7 @@ import * as path from 'path';
 
 export class JavaSnippetSourceParser extends RegexSnippetSourceParser {
   constructor(repoSourceDir: string) {
-    const wholeFileExamplesDir =
-      'examples/cache/src/main/java/momento/client/example/doc_examples';
+    const wholeFileExamplesDir = '.';
     const codeSnippetFiles: Array<string> = [
       'examples/cache/src/main/java/momento/client/example/doc_examples/DocExamplesJavaAPIs.java',
       'examples/cache-with-aws/src/main/java/momento/client/example/doc_examples/DocExamplesJavaAPIs.java',
