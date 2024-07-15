@@ -1,0 +1,91 @@
+---
+sidebar_position: 1
+title: API reference information
+pagination_prev: null
+sidebar_label: API Reference
+description: Learn the API calls you need to know and how to use them with Momento Storage.
+---
+
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
+# Momento StorageのAPIリファレンス。
+  
+## コントロールAPI。
+
+これらのAPIメソッドは、ストアの管理と制御に使用されます。
+
+### ストアを作成する。
+
+指定された名前のストアを作成します。
+
+Attributes:
+
+| Name      | Type   | Description                      |
+| --------- | ------ | -------------------------------- |
+| storeName | String | Name of the store to be created. |
+
+<SdkExampleTabs snippetId={'API_Storage_CreateStore'} />
+
+### ストアを削除する。
+
+ストアを削除する。
+
+Attributes:
+
+| Name      | Type   | Description                      |
+| --------- | ------ | -------------------------------- |
+| storeName | String | Name of the store to be deleted. |
+
+<SdkExampleTabs snippetId={'API_Storage_DeleteStore'} />
+
+### ストアをリストする。
+
+全てのストアをリストする。
+
+<SdkExampleTabs snippetId={'API_Storage_ListStores'} />
+
+## データAPI。
+
+これらのAPIメソッドは、ストア内のデータを直接操作するために使用されます。
+
+### Put
+
+値をストアに入れる。このキーの値がすでに存在する場合は、新しい値に置き換えられます。
+  
+| Name       | Type                              | Description                                   |
+|------------|-----------------------------------|-----------------------------------------------|
+| storeName  | String                            | Name of the store.                            |
+| key        | String                            | The key under which the value is to be added. |
+| value      | String / Bytes / Integer / Double | The value to be stored.                       |
+
+<SdkExampleTabs snippetId={'API_Storage_Put'} />
+
+### Get
+
+与えられたキーに対して格納されている値を取得する。
+
+| Name      | Type   | Description                             |
+|-----------|--------|-----------------------------------------|
+| storeName | String | Name of the store.                      |
+| key       | String | The key whose value is to be retrieved. |
+
+<SdkExampleTabs snippetId={'API_Storage_Get'} />
+
+### Delete
+
+指定されたキーに格納されている値を削除します。
+
+| Name      | Type   | Description                           |
+|-----------|--------|---------------------------------------|
+| storeName | String | Name of the store.                    |
+| key       | String | The key whose value is to be deleted. |
+
+<SdkExampleTabs snippetId={'API_Storage_Delete'} />
+
+
+## SDKにおけるAPIサポートの現状。
+
+様々なSDK言語におけるAPIサポートの現状については、[言語サポートページ](./language-support.md)を参照してください。
