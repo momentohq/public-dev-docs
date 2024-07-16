@@ -21,6 +21,12 @@ keywords:
   - database
   - durable
   - sdk
+  - storage
+  - persistence
+  - datastore
+  - database
+  - durable
+  - sdk
   - sdks
   - api
   - typescript
