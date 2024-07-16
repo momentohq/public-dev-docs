@@ -21,9 +21,15 @@ keywords:
   - examples
   - resources
   - getting started
+  - quick start
   - server-side
   - go
   - golang
+  - storage
+  - persistence
+  - datastore
+  - database
+  - durable
 ---
 
 # Momento Go SDK
