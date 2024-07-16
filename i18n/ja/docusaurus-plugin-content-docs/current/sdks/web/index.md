@@ -54,7 +54,7 @@ Momento web SDKはnpmパッケージ[`@gomento/sdk-web`](https://www.npmjs.com/p
 
 - [Getting started with Momento Cache in JavaScript](/sdks/nodejs/cache.mdx): このチート・シートはNode.js SDKを対象としていますが、Web SDK APIは完全に互換性があります。
 - [Getting started with Momento Topics in JavaScript](/sdks/nodejs/topics.mdx): このチート・シートはNode.js SDKを対象としていますが、Web SDK APIは完全に互換性があります。
-- [Getting started with Momento Storage in JavaScript](/sdks/nodejs/storage.mdx): このチートシートはNode.js SDKを対象としていますが、Web SDK APIは完全に互換性があります。
+- [Getting started with Momento Storage in JavaScript](/sdks/nodejs/storage.mdx): このチート・シートはNode.js SDKを対象としていますが、Web SDK APIは完全に互換性があります。
 - [Chat app: Next.js](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/nextjs-chat): は、キャッシュとトピック名を入力することで、ユーザーがブラウザ上でチャットを行うことを可能にするダイナミック・アプリである。このアプリケーションは、トピックを購読するために使用されるブラウザに、スコープが低く寿命の短い認証トークンを提供します。
 - [Chat app: Vite](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/vite-chat-app): チャットアプリの静的バージョンは、ブラウザに認証トークンを提供するために別のAPI（私たちの[Node.jsトークン自動販売機](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine)など）を必要とします。
 - [Web SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/README.md): ウェブSDKの使い方を説明するサンプルプロジェクト
