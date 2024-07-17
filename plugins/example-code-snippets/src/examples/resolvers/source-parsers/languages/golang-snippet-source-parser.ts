@@ -7,12 +7,10 @@ import * as path from 'path';
 
 export class GolangSnippetSourceParser extends RegexSnippetSourceParser {
   constructor(repoSourceDir: string) {
-    // const wholeFileExamplesDir = 'examples/doc-example-files';
-    const codeSnippetFiles: Array<string> = [
-      'examples/doc-examples-go-apis.go',
-    ];
+    const wholeFileExamplesDir = '.';
+    const codeSnippetFiles: Array<string> = ['examples/docs-examples/main.go'];
     super({
-      // wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),
+      wholeFileExamplesDir: path.join(repoSourceDir, wholeFileExamplesDir),
       snippetTypeParseOptions: new Map<
         ExampleSnippetType,
         RegexSnippetTypeOptions

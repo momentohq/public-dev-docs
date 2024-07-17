@@ -272,6 +272,7 @@ Momento Server-Side SDK を使用すると、バックエンド アプリケー�
   <LinkButton text="Overview" link="/sdks/java"/>
   <LinkButton text="Cache" link="/sdks/java/cache.html"/>
   <LinkButton text="Topics" link="/sdks/java/topics.html"/>
+  <LinkButton text="Storage" link="/sdks/java/storage.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-java/tree/main/examples" openInNewTab="true" />
   <LinkButton text="Packages" link="https://central.sonatype.com/artifact/software.momento.kotlin/sdk" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-java" openInNewTab="true" />
