@@ -1,0 +1,91 @@
+---
+sidebar_position: 1
+title: API reference information
+pagination_prev: null
+sidebar_label: API Reference
+description: Learn the API calls you need to know and how to use them with Momento Storage.
+---
+
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
+# API reference for Momento Storage
+
+## Control APIs
+
+These API methods are used to manage and control stores.
+
+### Create store
+
+Creates a store with the provided name
+
+Attributes:
+
+| Name      | Type   | Description                      |
+| --------- | ------ | -------------------------------- |
+| storeName | String | Name of the store to be created. |
+
+<SdkExampleTabs snippetId={'API_Storage_CreateStore'} />
+
+### Delete store
+
+Deletes a store
+
+Attributes:
+
+| Name      | Type   | Description                      |
+| --------- | ------ | -------------------------------- |
+| storeName | String | Name of the store to be deleted. |
+
+<SdkExampleTabs snippetId={'API_Storage_DeleteStore'} />
+
+### List stores
+
+Lists all stores
+
+<SdkExampleTabs snippetId={'API_Storage_ListStores'} />
+
+## Data APIs
+
+These API methods are used to directly interact with data in a store.
+
+### Put
+
+Puts a value into the store. If a value for this key is already present it will be replaced by the new value.
+
+| Name       | Type                              | Description                                   |
+|------------|-----------------------------------|-----------------------------------------------|
+| storeName  | String                            | Name of the store.                            |
+| key        | String                            | The key under which the value is to be added. |
+| value      | String / Bytes / Integer / Double | The value to be stored.                       |
+
+<SdkExampleTabs snippetId={'API_Storage_Put'} />
+
+### Get
+
+Get the value stored for the given key.
+
+| Name      | Type   | Description                             |
+|-----------|--------|-----------------------------------------|
+| storeName | String | Name of the store.                      |
+| key       | String | The key whose value is to be retrieved. |
+
+<SdkExampleTabs snippetId={'API_Storage_Get'} />
+
+### Delete
+
+Delete the value stored for the given key.
+
+| Name      | Type   | Description                           |
+|-----------|--------|---------------------------------------|
+| storeName | String | Name of the store.                    |
+| key       | String | The key whose value is to be deleted. |
+
+<SdkExampleTabs snippetId={'API_Storage_Delete'} />
+
+
+## Current status of API support in SDKs
+
+For the current status of API support in various SDK languages, see the [language support page](./language-support.md).

@@ -105,6 +105,7 @@ Momento Web SDK を使用すると、TypeScript または JavaScript でリッ�
   <LinkButton text="Style Guide" link="/sdks/nodejs/style-guide.html"/>
   <LinkButton text="Cache" link="/sdks/nodejs/cache.html"/>
   <LinkButton text="Topics" link="/sdks/nodejs/topics.html"/>
+  <LinkButton text="Storage" link="/sdks/nodejs/storage.html"/>
   <LinkButton text="API Tokens" link="/sdks/web#credentials-for-browsers"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web" openInNewTab="true"/>
   <LinkButton text="Packages" link="https://www.npmjs.com/package/@gomomento/sdk-web" openInNewTab="true" />
@@ -215,6 +216,8 @@ Momento Server-Side SDK を使用すると、バックエンド アプリケー�
   <LinkButton text="Style Guide" link="/sdks/nodejs/style-guide.html"/>
   <LinkButton text="Cache" link="/sdks/nodejs/cache.html"/>
   <LinkButton text="Topics" link="/sdks/nodejs/topics.html"/>
+  <LinkButton text="Storage" link="/sdks/nodejs/storage.html"/>
+  <LinkButton text="Compression" link="/sdks/nodejs/compression.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-nodejs/tree/main/examples/nodejs" openInNewTab="true" />
   <LinkButton text="Packages" link="https://www.npmjs.com/package/@gomomento/sdk" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-javascript" openInNewTab="true" />
@@ -269,6 +272,7 @@ Momento Server-Side SDK を使用すると、バックエンド アプリケー�
   <LinkButton text="Overview" link="/sdks/java"/>
   <LinkButton text="Cache" link="/sdks/java/cache.html"/>
   <LinkButton text="Topics" link="/sdks/java/topics.html"/>
+  <LinkButton text="Storage" link="/sdks/java/storage.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-java/tree/main/examples" openInNewTab="true" />
   <LinkButton text="Packages" link="https://central.sonatype.com/artifact/software.momento.kotlin/sdk" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-java" openInNewTab="true" />

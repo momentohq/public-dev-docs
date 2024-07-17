@@ -45,10 +45,6 @@ Attributes:
 
 Lists all caches
 
-| Name      | Type   | Description                     |
-| --------- | ------ | ------------------------------- |
-| nextToken | String | Token for pagination of caches. |
-
 <SdkExampleTabs snippetId={'API_ListCaches'} />
 
 ### Flush cache
@@ -75,7 +71,7 @@ These API methods are used to directly interact with data in a cache.
 
 ### Set
 
-Sets the value in cache with a given Time To Live (TTL) seconds. If a value for this key is already present it will be replaced by the new value.
+Sets the value in cache with a given Time To Live (TTL) seconds. If a value for this key is already present, it will be replaced by the new value regardless of the previous value's data type.
 
 | Name       | Type   | Description                                   |
 | ---------- | ------ | --------------------------------------------- |
@@ -88,7 +84,7 @@ Sets the value in cache with a given Time To Live (TTL) seconds. If a value for 
 
 ### SetBatch
 
-Sets multiple key-value pairs in a cache with a given Time To Live (TTL) seconds. If a value for a key is already present it will be replaced by the new value.
+Sets multiple key-value pairs in a cache with a given Time To Live (TTL) seconds. If a value for a key is already present, it will be replaced by the new value regardless of the previous value's data type.
 
 | Name       | Type   | Description                                   |
 | ---------- | ------ | --------------------------------------------- |
