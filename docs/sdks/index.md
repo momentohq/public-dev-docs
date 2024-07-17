@@ -361,6 +361,9 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   gap: '10px'
 }}>
   <LinkButton text="Overview" link="/sdks/rust"/>
+  <LinkButton text="Cache" link="/sdks/rust/cache.html"/>
+  <LinkButton text="Topics" link="/sdks/rust/topics.html"/>
+  <LinkButton text="Storage" link="/sdks/rust/storage.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-rust/blob/main/example" openInNewTab="true" />
   <LinkButton text="Packages" link="https://crates.io/crates/momento" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-rust" openInNewTab="true" />
