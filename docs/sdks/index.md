@@ -327,6 +327,7 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
 }}>
   <LinkButton text="Overview" link="/sdks/php"/>
   <LinkButton text="Cache" link="/sdks/php/cache.html"/>
+  <LinkButton text="Storage" link="/sdks/php/storage.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-php/blob/main/examples" openInNewTab="true" />
   <LinkButton text="Packages" link="https://packagist.org/packages/momentohq/client-sdk-php" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-php" openInNewTab="true" />
