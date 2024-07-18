@@ -15,6 +15,11 @@ keywords:
   - event-driven architecture
   - redis
   - serverless
+  - storage
+  - persistence
+  - datastore
+  - database
+  - durable
   - sdk
   - sdks
   - api
@@ -43,6 +48,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-javascript](https:
 
 - [Getting started with Momento Cache in JavaScript](/sdks/nodejs/cache.mdx)
 - [Getting started with Momento Topics in JavaScript](/sdks/nodejs/topics.mdx)
+- [Getting started with Momento Storage in JavaScript](/sdks/nodejs/storage.mdx)
 - [Using compression with the Node.js SDK](/sdks/nodejs/compression.mdx)
 - [Node.js SDK Configuration and Error Handling](./config-and-error-handling.mdx): Taking your code to production
 - [Node.js SDK Style Guide](./style-guide.mdx): Learn about the two different code styles you can use to interact with Momento
