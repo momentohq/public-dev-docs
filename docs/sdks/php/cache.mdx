@@ -27,37 +27,37 @@ keywords:
   - drupal
 ---
 
-# PHPでMomento Cacheを始める
+# Getting Started with Momento Cache in PHP
 
-PHPとMomento Cacheをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。
+If you need to get going quickly with PHP and Momento Cache, this page contains the basic API calls you'll need.
 
-詳しくは、[GitHubのPHP SDK](https://github.com/momentohq/client-sdk-php)もご覧ください。
+For more info, you can also see [the PHP SDK on GitHub](https://github.com/momentohq/client-sdk-php).
 
-### 前提条件
+### Prerequisites
 
-* Momento API Keyが必要です。[Momentoコンソール](https://console.gomomento.com/)を使って生成できます。
-* PHP 8.0以上のインストール
-* [gRPC PHP 拡張](https://github.com/grpc/grpc/blob/master/src/php/README.md) のインストール
-* [protobuf C拡張](https://developers.google.com/google-ads/api/docs/client-libs/php/protobuf#c_implementation)のインストール
-* [Composer](https://getcomposer.org/doc/00-intro.md)のインストール - PHP用の共通ライブラリと依存性マネージャ
+* A Momento API Key is required. You can generate one using [the Momento console](https://console.gomomento.com/).
+* Installation of PHP 8.0 or higher
+* Installation of the [gRPC PHP extension](https://github.com/grpc/grpc/blob/master/src/php/README.md).
+* Installation of the [protobuf C extension](https://developers.google.com/google-ads/api/docs/client-libs/php/protobuf#c_implementation)
+* Installation of [Composer](https://getcomposer.org/doc/00-intro.md)  - A common library and dependency manager for PHP.
 
-### PHP SDKを取得するためにcomposerを設定する
+### Configure composer to get the PHP SDK
 
-`composer.json`ファイルに当社のリポジトリを追加し、依存関係として当社のSDKを追加します：
+Add our repository to your `composer.json` file and our SDK as a dependency:
 
 ```json
 {
   "require": {
-    "momentohq/client-sdk-php": "1.7.1"
+    "momentohq/client-sdk-php": "1.11.1"
   }
 }
 ```
 
-`composer update` を実行して、必要な前提条件をインストールする。
+Run `composer update` to install the necessary prerequisites.
 
-## ライブラリをインポートして接続し、CacheClient オブジェクトを返します。
+## Import libraries and connect to return a CacheClient object
 
-このコードは[サンプルファイル](https://github.com/momentohq/client-sdk-php/blob/main/examples/example.php)をセットアップする。
+This code sets up the [example file](https://github.com/momentohq/client-sdk-php/blob/main/examples/example.php)
 
 ```php
 <?php
@@ -93,8 +93,8 @@ function printBanner(string $message, LoggerInterface $logger): void
 printBanner("*                      Momento Example Start                     *", $logger);
 ```
 
-## Momento Cacheに新しいキャッシュを作成する。
-この関数は、Momentoアカウントに新しいキャッシュを作成します。
+## Create a new cache in Momento Cache
+This function creates a new cache in your Momento account.
 
 ```php
 $response = $client->createCache($CACHE_NAME);
@@ -108,8 +108,8 @@ if ($response->asSuccess()) {
 }
 ```
 
-## アカウントに存在するキャッシュのリストを取得する
-この例では、上記の CacheClient 関数を使用して、Momento アカウントのすべてのキャッシュを一覧表示し、エラーがあればトラップします。
+## Get list of existing caches in your account
+In this example, we use the CacheClient function above to list all of the caches for the Momento account and trap any errors.
 
 ```php
 // List cache
@@ -127,8 +127,8 @@ if ($response->asSuccess()) {
 }
 ```
 
-## キャッシュに項目を書き込む
-セット操作の簡単な例。client.set呼び出しでは、TTLはオプションです。TTLを渡すと、クライアント接続オブジェクトで設定されたデフォルトのTTL値が上書きされます。
+## Write an item to a cache
+A simple example of doing a set operation. In the client.set call, the TTL it optional. If you did pass it in, this would override the default TTL value set with the client connection object.
 
 ```php
 // Set
@@ -142,8 +142,8 @@ if ($response->asSuccess()) {
 }
 ```
 
-## キャッシュからアイテムを読み込む
-これは、キャッシュから項目を取得する単純な読み取り操作の例です。
+## Read an item from a cache
+This is an example of a simple read operation to get an item from a cache.
 ```php
 // Get
 $logger->info("Getting value for key: $KEY\n");
@@ -158,8 +158,8 @@ if ($response->asHit()) {
 }
 ```
 
-## テストキャッシュの削除
-先に作成したテスト・キャッシュを削除する例。
+## Delete the test cache
+An example of deleting the test cache we created earlier.
 
 ```php
 // Delete test cache
@@ -171,5 +171,5 @@ if ($response->asError()) {
 ```
 
 :::info
-これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](/cache/develop/api-reference/index.mdx)をチェックしてください。
+Beyond these basic API calls check out the [API reference page](/cache/develop/api-reference/index.mdx) for more information on the full assortment of Momento API calls.
 :::
