@@ -22,7 +22,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 | Name            | Type                      | Description                                                                                                                                                                             |
 | --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| scope           | [TokenScope](#tokenscope-objects) | 新しいトークンに付与する権限。TokenScopeオブジェクトはSDKによって提供される                                                                                   |
+| scope           | [PermissionScope](#permissionscope-objects) | 新しいトークンに付与する権限。TokenScopeオブジェクトはSDKによって提供される                                                                                   |
 | expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | ExpiresIn.never()`メソッド、`ExpiresIn.minutes()`メソッド、`ExpiresIn.hours()`メソッドを呼び出すことで、トークンが期限切れになるまでの秒数、またはその期間を表すExpiresInオブジェクト |
 
 <details>
@@ -71,7 +71,7 @@ MomentoコントロールプレーンAPIにアクセスするためのトーク�
 
 <SdkExampleTabs snippetId={'API_RefreshApiKey'} />
 
-## TokenScope objects
+## PermissionScope objects
 | Name            | Type                                      | Description                                  |
 | --------------- |-------------------------------------------| -------------------------------------------- |
 | permissions           | List \<[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション|
@@ -85,10 +85,10 @@ TokenScopeは[パーミッション・オブジェクト](#permission-objects)�
 
 ## Permission objects
 
-これらのオブジェクトはキャッシュやトピック情報を持つ特定のロールを定義し、[TokenScope](#tokenscope-objects)に割り当てられます。
+これらのオブジェクトはキャッシュやトピック情報を持つ特定のロールを定義し、[PermissionScope](#permissionscope-objects)に割り当てられます。
 
 ### CachePermission
-キャッシュのパーミッションを定義する [TokenScope](#tokenscope-objects) オブジェクトのコンポーネント
+キャッシュのパーミッションを定義する [PermissionScope](#permissionscope-objects) オブジェクトのコンポーネント
 
 | Name            | Type                 | Description                                                                                                      |
 | --------------- |----------------------|------------------------------------------------------------------------------------------------------------------|
@@ -99,8 +99,8 @@ TokenScopeは[パーミッション・オブジェクト](#permission-objects)�
 
 キャッシュの場合、値は組み込みの `AllCaches` か、このパーミッションのキャッシュ名を含む文字列となります。
 
-#### TokenScope example for a CachePermission object
-これは、CachePermissions だけで TokenScope を作成する例です。
+#### PermissionScope example for a CachePermission object
+これは、CachePermissions だけで PermissionScope を作成する例です。
 
 ```javascript
 const CachePermissions = {
@@ -118,7 +118,7 @@ const CachePermissions = {
 ```
 
 ### TopicPermission
-トークンのパーミッションを定義する[TokenScope](#tokenscope-objects)オブジェクトのコンポーネント
+トークンのパーミッションを定義する[PermissionScope](#permissionscope-objects)オブジェクトのコンポーネント
 
 | Name            | Type                            | Description                                                                                                                                                                                                            |
 | --------------- |---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -132,9 +132,9 @@ const CachePermissions = {
 
 トピックには、組み込みの `AllTopics` 値を設定することができます。これは、cache で定義されているキャッシュ内のすべてのトピックにアクセスできるようにするもので、特定のトピック名を文字列で指定することもできます。
 
-#### TokenScope example for a TopicPermission object
+#### PermissionScope example for a TopicPermission object
 
-これは、TopicPermissions だけで TokenScope を作成する例です。
+これは、TopicPermissions だけで PermissionScope を作成する例です。
 
 ```javascript
 const TopicsPermissions = {
