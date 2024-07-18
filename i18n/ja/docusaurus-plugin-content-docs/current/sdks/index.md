@@ -309,6 +309,7 @@ Momento Server-Side SDK を使用すると、バックエンド アプリケー�
   <LinkButton text="Overview" link="/sdks/go"/>
   <LinkButton text="Cache" link="/sdks/go/cache.html"/>
   <LinkButton text="Topics" link="/sdks/go/topics.html"/>
+  <LinkButton text="Storage" link="/sdks/go/storage.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-go/blob/main/examples/README.md" openInNewTab="true" />
   <LinkButton text="Packages" link="https://github.com/momentohq/client-sdk-go/releases" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-go" openInNewTab="true" />
@@ -343,6 +344,7 @@ Momento Server-Side SDK を使用すると、バックエンド アプリケー�
 }}>
   <LinkButton text="Overview" link="/sdks/elixir"/>
   <LinkButton text="Cache" link="/sdks/elixir/cache.html"/>
+ <LinkButton text="Storage" link="/sdks/php/storage.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-elixir/blob/main/examples" openInNewTab="true" />
   <LinkButton text="Packages" link="https://hex.pm/packages/gomomento" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-elixir" openInNewTab="true" />
