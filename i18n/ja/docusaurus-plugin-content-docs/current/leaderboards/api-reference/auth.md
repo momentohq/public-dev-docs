@@ -22,7 +22,7 @@ Auth API は、Momento サービスの API キーとトークンを作成およ�
 
 | 名前            | タイプ                      | 説明                                                                                                                                                                             |
 | --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| scope           | [TokenScope](#tokenscope-objects) | 新しいトークンに付与する権限。TokenScopeオブジェクトはSDKによって提供されます。                                                                                       |
+| scope           | [PermissionScope](#permissionscope-objects) | 新しいトークンに付与するパーミッション。PermissionScopeオブジェクトはSDKによって提供されます。                                                                                        |
 | expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | `ExpiresIn.never()`メソッド、`ExpiresIn.minutes()`メソッド、`ExpiresIn.hours()`メソッドを呼び出すことで、トークンが期限切れになるまでの秒数、またはその期間を表すExpiresInオブジェクト。 |
 
 <details>
@@ -71,13 +71,12 @@ MomentoコントロールプレーンAPIにアクセスするためのトーク�
 
 <SdkExampleTabs snippetId={'API_RefreshApiKey'} />
 
-## TokenScope objects
+## PermissionScope objects
 | 名前            | タイプ                                      | 説明                                  |
 | --------------- |-------------------------------------------| -------------------------------------------- |
 | permissions           | List \<[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション |
 
-TokenScopeは、[パーミッションオブジェクト](#permission-objects)のリストです。このリストには、[CachePermission](#cachepermission) 型または [TopicPermission](#topicpermission) 型のパーミッションを含めることができ、最大 10 個のパーミッションオブジェクトを含めることができます。パーミッションは Momento データプレーン API (`get` や `set` など) へのアクセスのみを許可します。
-複数のパーミッションオブジェクトを持つAuthトークンが作成された場合、一致するパーミッションがアクセスを許可します。たとえば、1 つのトークンに 2 つのパーミッションオブジェクトを設定した場合、次のようになります：
+PermissionScopeは[permissionオブジェクト](#permission-objects)のリストです。このリストには、[CachePermission](#cachepermission) または [TopicPermission](#topicpermission) タイプのパーミッションを含めることができ、最大 10 個のパーミッションオブジェクトを含めることができます。パーミッションは Momento データプレーン API (`get` や `set` など) へのアクセスのみを許可する。複数のパーミッションオブジェクトを持つ認証トークンが作成された場合、一致するパーミッションがアクセスを許可します。たとえば、1 つのトークンに 2 つのパーミッションオブジェクトを設定した場合、次のようになります：
 
 1. アカウントのすべてのキャッシュへの ReadWrite アクセスを許可するパーミッションオブジェクト
 2. キャッシュ `foo` に対する ReadOnly アクセスを許可するパーミッションオブジェクト
@@ -86,10 +85,10 @@ TokenScopeは、[パーミッションオブジェクト](#permission-objects)�
 
 ## Permission objects
 
-これらのオブジェクトはキャッシュやトピック情報を持つ特定のロールを定義し、[TokenScope](#tokenscope-objects)に割り当てられます。
+これらのオブジェクトはキャッシュやトピック情報を持つ特定のロールを定義し、[PermissionScope](#permissionscope-objects)に割り当てられます。
 
 ### CachePermission
-キャッシュのパーミッションを定義する [TokenScope](#tokenscope-objects) オブジェクトのコンポーネント
+キャッシュのパーミッションを定義する [PermissionScope](#permissionscope-objects) オブジェクトのコンポーネント。
 
 | 名前            | タイプ                 | 説明                                                                                                      |
 | --------------- |----------------------|------------------------------------------------------------------------------------------------------------------|
@@ -104,8 +103,8 @@ TokenScopeは、[パーミッションオブジェクト](#permission-objects)�
 キャッシュの場合、値は組み込みの `AllCaches` か、このパーミッションのキャッシュ名を含む文字列となります。
 
 
-#### CachePermission オブジェクトの TokenScope の例
-これは、CachePermissions だけで TokenScope を作成する例です。
+#### CachePermission オブジェクトの PermissionScope の例
+これはCachePermissionsだけでPermissionScopeを作成する例です。
 
 ```javascript
 const CachePermissions = {
@@ -123,7 +122,7 @@ const CachePermissions = {
 ```
 
 ### TopicPermission
-トークンのパーミッションを定義する[TokenScope](#tokenscope-objects)オブジェクトのコンポーネント
+トークンのパーミッションを定義する[PermissionScope](#permissionscope-objects)オブジェクトのコンポーネント。
 
 | 名前            | タイプ                            | 説明                                                                                                                                                                                                            |
 | --------------- |---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -139,9 +138,9 @@ const CachePermissions = {
 トピックには、組み込みの `AllTopics` 値を設定することができます。
 これは、cache で定義されているキャッシュ内のすべてのトピックにアクセスできるようにするもので、特定のトピック名を文字列で指定することもできます。
 
-#### TopicPermissionオブジェクトのTokenScopeの例
+#### TopicPermissionオブジェクトのPermissionScopeの例
 
-これは、TopicPermissions だけで TokenScope を作成する例です。
+これはTopicPermissionsだけでPermissionScopeを作成する例です。
 
 ```javascript
 const TopicsPermissions = {
