@@ -23,6 +23,11 @@ keywords:
   - getting started
   - rust
   - tokio
+  - storage
+  - persistence
+  - datastore
+  - database
+  - durable
 ---
 
 # Momento Rust SDK
@@ -40,5 +45,6 @@ The source code can be found on GitHub: [momentohq/client-sdk-rust](https://gith
 
 - [Getting started with Momento Cache in Rust](./cache.mdx)
 - [Getting started with Momento Topics in Rust](./topics.mdx)
+- [Getting started with Momento Storage in Rust](./storage.mdx)
 - [Asynchronous APIs, Result Types, Configuration, and Error Handling](./config-and-error-handling.mdx)
 - [Rust SDK Examples](https://github.com/momentohq/client-sdk-rust/blob/main/example/README.md): working example projects that illustrate how to use the Rust SDK
