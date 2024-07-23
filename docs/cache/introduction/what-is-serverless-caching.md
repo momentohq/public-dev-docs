@@ -42,7 +42,7 @@ First, Momento Cache is a managed service. You won't be installing software, man
 
 Second, Momento Cache abstracts the decisions around cache management from you. You don't have to specify the type and number of instances in your cache, nor do you have to think about the maximum memory size for your cache. Momento is purpose-built for the cloud and takes advantage of the elasticity and scalability of modern cloud infrastructure. You can store as much data as you need in your cache, and Momento will handle it seamlessly.
 
-Finally, Momento Cache has a pay-for-value pricing model. As mentioned above, you aren't selecting a specific cache and cluster size in advance, regardless of whether you use it. Momento [charges](../manage/pricing) for data transferred in/out of Momento Cache and Momento Topics services. Everything else is included. With this, you are in control of your pricing, and changes you make to your application have a direct impact on your bill.
+Finally, Momento Cache has a pay-for-value pricing model. As mentioned above, you aren't selecting a specific cache and cluster size in advance, regardless of whether you use it. Momento [charges](https://www.gomomento.com/pricing) for data transferred in/out of Momento Cache and Momento Topics services. Everything else is included. With this, you are in control of your pricing, and changes you make to your application have a direct impact on your bill.
 
 Under this first definition of serverless, Memento Cache is the cache that fits best in the serverless ecosystem.
 
@@ -92,7 +92,7 @@ If you're an indie hacker or an early-stage startup that's looking to save money
 
 First, Momento Cache has a painless self-service sign up. You can get a Momento authentication token and [start writing to your cache in less than five minutes](../getting-started). You don't need to talk to a salesperson or sign an upfront contract. In fact, you don't even need to enter a credit card to enjoy the free tier.
 
-Second, Momento Cache has a generous free tier. You get 5 GB free each month (see [pricing](../manage/pricing) for details). Our goal is to allow a wide variety of applications to run on Momento without ever paying us a cent. We want to provide a top-tier, robust service for applications that need it while also supporting a broad community of applications to use Momento as they grow.
+Second, Momento Cache has a generous free tier. You get 5 GB free each month (see [pricing](https://www.gomomento.com/pricing) for details). Our goal is to allow a wide variety of applications to run on Momento without ever paying us a cent. We want to provide a top-tier, robust service for applications that need it while also supporting a broad community of applications to use Momento as they grow.
 
 ## Conclusion
 
