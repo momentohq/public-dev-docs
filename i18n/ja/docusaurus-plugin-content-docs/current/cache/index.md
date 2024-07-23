@@ -35,5 +35,5 @@ import { LinkCard } from '@site/src/components/LinkCard';
   <LinkCard alignText='center' link="/cache/introduction/what-is-serverless-caching" title="Serverless Caching" description="サーバーレス・エコシステムでMomentoが輝く理由。キャッシングでもメッセージングでも、インフラ管理ならお任せください。" />
   <LinkCard alignText='center' link="/cache/introduction/common-caching-strategies" title="Caching strategies" description="Momentoを活用して、好きな場所に好きなようにキャッシュしよう！" />
   <LinkCard alignText='center' link="/cache/develop/basics/client-configuration-objects" title="Configurations" description="どこへ行っても、お客様の環境に合わせた手作りのコンフィギュレーションをご用意しています！" />
-  <LinkCard alignText='center' link="/cache/manage/pricing" title="We scale to zero!" description="最低支払額なし、未利用リソースなし。使った分だけ支払い。" />
+  <LinkCard alignText='center' link="https://jp.gomomento.com/price/" title="We scale to zero!" description="最低支払額なし、未利用リソースなし。使った分だけ支払い。" />
 </CardGrid>
