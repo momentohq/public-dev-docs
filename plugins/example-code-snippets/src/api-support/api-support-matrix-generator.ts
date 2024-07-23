@@ -76,7 +76,7 @@ const SDKS: Array<SdkInfo> = [
     cacheClientFile: 'momento/cache_client.go',
     configObjectFile: 'config/config.go',
     topicClientFile: 'momento/topic_client.go',
-    authClientFile: undefined,
+    authClientFile: 'momento/auth_client.go',
     leaderboardClientFile: [
       'momento/leaderboard.go',
       'momento/leaderboard_client.go',
