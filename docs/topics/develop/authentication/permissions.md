@@ -19,7 +19,7 @@ You can create API keys directly in the [Momento console](https://console.gomome
 
 ## Scope
 
-When creating an API key, you build a `PermissionScope` object. When creating a token, you create a `TokenScope` object. These objects are mostly the same but with one big difference. First, the similarities.
+When creating an API key, you build a `PermissionScope` object. When creating a token, you create a `PermissionScope` object. These objects are mostly the same but with one big difference. First, the similarities.
 
 ### Roles
 
