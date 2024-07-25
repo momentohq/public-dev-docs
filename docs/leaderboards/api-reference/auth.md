@@ -22,7 +22,7 @@ Generates a new Momento auth token with the specified permissions and expiry.
 
 | Name            | Type                      | Description                                                                                                                                                                             |
 | --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| scope           | [TokenScope](#tokenscope-objects) | The permissions to grant to the new token. Pre-built TokenScope objects are provided by the SDKs.                                                                                       |
+| scope           | [PermissionScope](#permissionscope-objects) | The permissions to grant to the new token. Pre-built PermissionScope objects are provided by the SDKs.                                                                                       |
 | expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the `ExpiresIn.never()`, `ExpiresIn.minutes()`, or `ExpiresIn.hours()` methods. |
 
 <details>
@@ -71,12 +71,12 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_RefreshApiKey'} />
 
-## TokenScope objects
+## PermissionScope objects
 | Name            | Type                                      | Description                                  |
 | --------------- |-------------------------------------------| -------------------------------------------- |
 | permissions           | List \<[Permission](#permission-objects)\> | The permissions to grant to the new token.|
 
-A TokenScope is a list of [permission objects](#permission-objects). The list can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and can contain up to ten permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
+A PermissionScope is a list of [permission objects](#permission-objects). The list can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and can contain up to ten permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
 
 1. A permission object that allows ReadWrite access to all caches for the account
 2. A permission object that allows ReadOnly access to cache `foo`
@@ -85,10 +85,10 @@ In this case, the token will still allow use of data manipulation APIs (e.g. `se
 
 ## Permission objects
 
-These objects define the specific role with cache or topic information and are then assigned to a [TokenScope](#tokenscope-objects).
+These objects define the specific role with cache or topic information and are then assigned to a [PermissionScope](#permissionscope-objects).
 
 ### CachePermission
-A component of a [TokenScope](#tokenscope-objects) object that defines permissions for a cache.
+A component of a [PermissionScope](#permissionscope-objects) object that defines permissions for a cache.
 
 | Name            | Type                 | Description                                                                                                      |
 | --------------- |----------------------|------------------------------------------------------------------------------------------------------------------|
@@ -100,8 +100,8 @@ For role, using `CacheRole.ReadOnly` allows access to all read data plane APIs o
 For cache, the value can be the built-in `AllCaches` or a string value containing the name of the cache this permission is for.
 
 
-#### TokenScope example for a CachePermission object
-This is an example of creating a TokenScope with just CachePermissions.
+#### PermissionScope example for a CachePermission object
+This is an example of creating a PermissionScope with just CachePermissions.
 
 ```javascript
 const CachePermissions = {
@@ -119,7 +119,7 @@ const CachePermissions = {
 ```
 
 ### TopicPermission
-A component of a [TokenScope](#tokenscope-objects) object that defines permissions for a token.
+A component of a [PermissionScope](#permissionscope-objects) object that defines permissions for a token.
 
 | Name            | Type                            | Description                                                                                                                                                                                                            |
 | --------------- |---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -133,9 +133,9 @@ For cache, only topics within that cache's namespace are allowed by the permissi
 
 For topic, this can be set to the built-in `AllTopics` value, which gives access to all topics in the cache(s) defined in cache or it can be a string with a specific topic name.
 
-#### TokenScope example for a TopicPermission object
+#### PermissionScope example for a TopicPermission object
 
-This is an example of creating a TokenScope with just TopicPermissions.
+This is an example of creating a PermissionScope with just TopicPermissions.
 
 ```javascript
 const TopicsPermissions = {
