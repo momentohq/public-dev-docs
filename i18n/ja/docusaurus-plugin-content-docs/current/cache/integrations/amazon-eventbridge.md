@@ -40,7 +40,7 @@ Momentoの[HTTP API](../develop/api-reference/http-api.md)と[Amazon EventBridge
 
 ![CloudFormation UI with deployment parameters configured](@site/static/img/eb-destination-ui.png)
 
-2つのパラメータを入力し、*Create stack*を押すと、リソースが自動的にデプロイされます。*MomentoはAWSのようにリージョンベースであり、認証トークンは特定のリージョンをターゲットにしています。HTTP API の場合、使用したいリージョンに応じて [異なるベース URL](../api-reference/http-api.md#regions) をヒットする必要があります。私たちが提供するクイックスタートは、デプロイ時に適切なベースURLを決定するので、考える必要はありません👍
+2つのパラメータを入力し、*Create stack*を押すと、リソースが自動的にデプロイされます。*MomentoはAWSのようにリージョンベースであり、認証トークンは特定のリージョンをターゲットにしています。HTTP API の場合、使用したいリージョンに応じて [異なるベース URL](../develop/api-reference/http-api.md#regions) をヒットする必要があります。私たちが提供するクイックスタートは、デプロイ時に適切なベースURLを決定するので、考える必要はありません👍
 
 これは、MomentoがサポートするAWSリージョンでのみ機能します。
 
