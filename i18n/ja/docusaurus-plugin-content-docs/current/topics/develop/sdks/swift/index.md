@@ -25,4 +25,4 @@ Momento Swift SDK と　source code は GitHub　にあります: [momentohq/cli
 
 ## Integrations
 
-まもなく
+近日公開
