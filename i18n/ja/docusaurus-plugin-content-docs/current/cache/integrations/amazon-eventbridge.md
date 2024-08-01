@@ -17,7 +17,7 @@ AWSでイベントドリブンアーキテクチャを構築している方な�
 
 :::
 
-Momentoの[HTTP API](../api-reference/http-api.md)と[Amazon EventBridge API Destinations](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html)を使うことで、ワークフローで`PutEvents`を呼び出すだけで非同期イベントをトリガーすることができます。
+Momentoの[HTTP API](../develop/api-reference/http-api.md)と[Amazon EventBridge API Destinations](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html)を使うことで、ワークフローで`PutEvents`を呼び出すだけで非同期イベントをトリガーすることができます。
 
 ![Diagram of compute resources triggering an event that calls Momento](@site/static/img/eventbridge_destinations.png)
 
