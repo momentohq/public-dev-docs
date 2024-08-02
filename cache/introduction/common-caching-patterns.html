@@ -9,7 +9,7 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.7a193496.css">
-<script src="/assets/js/runtime~main.5ff939a8.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.531d0f01.js" defer="defer"></script>
 <script src="/assets/js/main.5b758477.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -58,6 +58,7 @@
 <p>In the previous section, we talked about a read-aside cache. An aside cache is the most straightforward type of remote cache, where it stores data explicitly given to it by your service. It usually has simple get &amp; set semantics that can flexibly store any piece of data that you want, but you must store that data specifically. If the data does not exist in the cache, your service is responsible for finding the underlying data elsewhere and updating the cache, if desired.</p>
 <p>On the other hand, an inline cache is one that is transparent to your service that is calling to retrieve the data. Your application will hit the inline cache directly to retrieve the item. If the cache does not have the requested data, the cache itself will do the work to fetch the data from the upstream data source.</p>
 <p>You can see why these caches get the name from the architecture diagrams below. The aside cache sits <em>aside</em> your application and is called separately from your data source. Alternatively, the inline cache is used inline with your request to the data source.</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/cache_architecture_diagram-61c97025dcbb8f3144d064ed9392f273.png" width="1200" height="1200" class="img_ev3q"></p>
 <p>Aside caches are more common due to their flexibility for nearly any use case. Additionally, they are decoupled from your end datastore and allow you to choose how to handle failures at the caching layer.</p>
 <p>The benefit of an inline cache is simplicity within your application. Your application doesn&#x27;t need to worry about multiple different stores and the corresponding logic to fallback to a database in the event of a cache miss.</p>
 <p>The downside of an inline cache is the reduced availability for your application. You&#x27;re adding in an additional piece of infrastructure that not only adds caching functionality but also takes responsibility for talking to your database. If your cache goes down, you may have trouble falling back to your database as the cache itself was talking to your database.</p>
