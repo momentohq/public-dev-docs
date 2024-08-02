@@ -79,7 +79,7 @@ On the other hand, an inline cache is one that is transparent to your service th
 
 You can see why these caches get the name from the architecture diagrams below. The aside cache sits _aside_ your application and is called separately from your data source. Alternatively, the inline cache is used inline with your request to the data source.
 
-![Architecture diagram of aside/inline cache](images/caching-strategies-and-patterns/cache_architecture_diagram.png "Aside/inline cache")
+![](images/caching-strategies-and-patterns/cache_architecture_diagram.png)
 
 Aside caches are more common due to their flexibility for nearly any use case. Additionally, they are decoupled from your end datastore and allow you to choose how to handle failures at the caching layer.
 
