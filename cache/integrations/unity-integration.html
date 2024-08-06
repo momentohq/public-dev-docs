@@ -9,7 +9,7 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.7a193496.css">
-<script src="/assets/js/runtime~main.531d0f01.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.4c8144d1.js" defer="defer"></script>
 <script src="/assets/js/main.5b758477.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -82,7 +82,7 @@
 <li>an image button in the bottom-right that utilizes the third-party <a href="https://github.com/gkngkc/UnityStandaloneFileBrowser" target="_blank" rel="noopener noreferrer">UnityStandaloneFileBrowser</a> to allow the user to load images from their computer to send in a chat message</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="example-scenes">Example Scenes<a class="hash-link" aria-label="Direct link to Example Scenes" title="Direct link to Example Scenes" href="/cache/integrations/unity-integration#example-scenes">​</a></h3>
-<p>In the example code, we provide four example Unity scenes, showcasing various ways to integrate the Momento SDK with Unity. The first two require ensuring the <code>MOMENTO_AUTH_TOKEN</code> environment variable is set, or copying and pasting your auth token into <code>Assets/Scripts/TopicsTest.cs</code> (or <code>Assets/Scripts/TopicsTestCoroutine.cs</code>) replacing <code>ADD_YOUR_TOKEN_HERE</code> in the <code>ReadAuthToken()</code> function (hard-coding your auth token in code is not recommended but can be used for testing purposes if necessary).</p>
+<p>In the example code, we provide four example Unity scenes, showcasing various ways to integrate the Momento SDK with Unity. The first two require ensuring the <code>MOMENTO_API_KEY</code> environment variable is set, or copying and pasting your auth token into <code>Assets/Scripts/TopicsTest.cs</code> (or <code>Assets/Scripts/TopicsTestCoroutine.cs</code>) replacing <code>ADD_YOUR_TOKEN_HERE</code> in the <code>ReadAuthToken()</code> function (hard-coding your auth token in code is not recommended but can be used for testing purposes if necessary).</p>
 <ul>
 <li><code>MomentoTopicsDemo.unity</code> (using <code>TopicsTest.cs</code>): utilizes <code>Task.Run()</code> to run the subscription to the Momento Topic in a background thread. This is the approach descirbed above. This code is based upon the <a href="https://github.com/momentohq/client-sdk-dotnet/tree/main/examples/TopicExample" target="_blank" rel="noopener noreferrer">Momento .NET SDK Topic Example</a>.</li>
 <li><code>MomentoTopicsDemo-Coroutine.unity</code> (using <code>TopicsTestCoroutine.cs</code>): identical to the previous scene except that it utilizes Unity Coroutines to run the subscription asyncronously in the main thread.</li>
