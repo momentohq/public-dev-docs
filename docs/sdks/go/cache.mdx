@@ -48,7 +48,7 @@ You'll need a [Momento API key](/cache/develop/authentication/api-keys.md) to au
 Once you have your token, store it in an environment variable so that the Momento client can consume it:
 
 ```
-export MOMENTO_AUTH_TOKEN=<your Momento token here>
+export MOMENTO_API_KEY=<your Momento token here>
 ```
 
 **Note**: it is best practice to put the token into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
