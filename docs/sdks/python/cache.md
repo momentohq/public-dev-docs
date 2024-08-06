@@ -69,11 +69,11 @@ from momento.responses import CacheGet, CacheSet, CreateCache, ListCaches, Cache
 import os
 
 def create_client():
-  momento_auth_token = CredentialProvider.from_environment_variable('MOMENTO_API_KEY')
+  momento_api_key = CredentialProvider.from_environment_variable('MOMENTO_API_KEY')
   ttl  = timedelta(seconds=int(os.getenv('MOMENTO_TTL_SECONDS', '600')))
   config = {
     'configuration': Configurations.Laptop.v1(),
-    'credential_provider': momento_auth_token,
+    'credential_provider': momento_api_key,
     'default_ttl':  ttl
   }
   return CacheClient.create(**config)
