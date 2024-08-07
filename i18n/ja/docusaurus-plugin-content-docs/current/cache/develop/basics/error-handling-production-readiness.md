@@ -1,8 +1,8 @@
 ---
 sidebar_position: 20
-sidebar_label: SDK Error Handling
-title: SDK error handling
-description: Discover how to handle errors when using the Momento SDK.
+sidebar_label: SDK エラー処理
+title: SDK エラー処理
+description: Momento SDK を使用する際のエラーの処理方法を説明しています。
 pagination_next: null
 ---
 

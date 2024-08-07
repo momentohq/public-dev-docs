@@ -1,6 +1,6 @@
 ---
 sidebar_position: 11
-sidebar_label: Response objects
+sidebar_label: レスポンスオブジェクト
 title: Response object API リファレンス
 pagination_next: null
 description: Momento API におけるレスポンスオブジェクトとのやり取り方法を学びましょう。
