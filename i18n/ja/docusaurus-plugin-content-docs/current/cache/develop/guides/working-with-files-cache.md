@@ -1,8 +1,8 @@
 ---
 sidebar_position: 4
-sidebar_label: Working with files
-title: Adding and retrieving files in a cache
-description: Learn to add and retrieve files from Momento Cache with hands on code samples.
+sidebar_label: File の扱い
+title: Momento Cacheを使ったファイルの追加と取得
+description: コードサンプルを使って Momento Cache にファイルを追加し、取得する方法を説明しています。
 ---
 
 import Tabs from '@theme/Tabs';

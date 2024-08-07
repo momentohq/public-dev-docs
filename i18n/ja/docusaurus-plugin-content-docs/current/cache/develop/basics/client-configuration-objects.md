@@ -1,8 +1,8 @@
 ---
 sidebar_position: 10
-sidebar_label: SDK Configuration Objects
-title: SDK configuration objects
-description: Discover how to use configuration objects to initialize the Momento SDK client.
+sidebar_label: SDK クライエント Configuration オブジェクト
+title: SDK クライエント Configuration オブジェクト
+description: Confugiration オブジェクトを使用して Momento SDK クライエントをイニシャライズする方法を説明しています。
 pagination_prev: null
 ---
 

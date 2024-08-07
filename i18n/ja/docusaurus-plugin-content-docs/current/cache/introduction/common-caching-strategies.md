@@ -1,9 +1,9 @@
 ---
 sidebar_position: 3
-sidebar_label: Common Caching Strategies
-title: Common Caching Strategies
+sidebar_label: 一般的なキャッシュ戦略
+title: 一般的なキャッシュ戦略
 pagination_next: null
-description: Learn what serverless is in terms of caching and what Momento Cache can be your simple, fast cache for your apps.
+description: サーバーレスのキャッシングとは何か、そしてMomento Cacheがどのようにアプリケーションをシンプルで高速にするのかを説明しています。
 ---
 
 # 一般的なキャッシュ戦略

@@ -1,8 +1,8 @@
 ---
 sidebar_position: 5
-sidebar_label: Working with Time Series Data
-title: Working with Time Series Data
-description: Learn how to store time series data in Momento Cache
+sidebar_label: 時系列データの扱い
+title: 時系列データの扱い
+description: Momento Cache での時系列データの保存の仕方を説明しています。
 ---
 
 # 時系列データの保存

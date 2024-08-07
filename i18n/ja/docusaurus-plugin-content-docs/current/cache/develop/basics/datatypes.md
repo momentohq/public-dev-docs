@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
-sidebar_label: Data Types
-title: Supported data types
-description: Learn the core data types in Momento Cache to match up with common types in modern programming languages and information about each.
+sidebar_label: データ型
+title: サポートされているデータ型
+description: 最新のプログラミング言語の一般的な型に対応する Momento Cache のコア・データ型について詳しく説明しています。
 ---
 
 # Momento Cacheでサポートされているデータ型
