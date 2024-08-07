@@ -169,3 +169,39 @@
 .fadeIn {
   opacity: 1;
 }
+
+.highlightedSection {
+  background-color: #f4f8fc;
+  border-left: 5px solid #25c2a0;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.highlightedTitle {
+  color: #25c2a0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.highlightedDescription {
+  font-size: 1.125rem;
+  margin-bottom: 10px;
+}
+
+.learnMoreLink {
+  color: #25c2a0;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  padding: 8px 12px;
+  border: 2px solid #25c2a0;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.learnMoreLink:hover {
+  background-color: #25c2a0;
+  color: white;
+}
+
