@@ -51,7 +51,7 @@ Generates a new Momento auth token with the specified permissions and expiry.
 * Success
 
   - `authToken`: string - the new auth token
-  - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey-api) to refresh a token before it expires
+  - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires
   - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
   - `expiresAt`: Timestamp - the timestamp at which the token will expire
 
@@ -96,7 +96,7 @@ Refreshes an existing, unexpired Momento API key. Produces a new API key with th
 * Success
 
   - `apiKey`: string - the new auth token
-  - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey-api) to refresh a token before it expires
+  - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires
   - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
   - `expiresAt`: Timestamp - the timestamp at which the token will expire
 
