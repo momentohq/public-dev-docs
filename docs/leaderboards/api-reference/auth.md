@@ -29,10 +29,12 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
         Generates a new Momento auth token with the specified permissions and expiry.
 
         #### Parameters
+        ----------------
         - **scope** - [*PermissionScope*](#permissionscope-objects): The permissions to grant to the new token. Pre-built PermissionScope objects are provided by the SDKs.
         - **expiresIn** - *Number* \| *ExpiresIn object*: The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the `ExpiresIn.never()`, `ExpiresIn.minutes()`, or `ExpiresIn.hours()` methods.
 
         #### Returns
+        ----------------
         One of the following:
         - **Success**:
             - `authToken`: string - the new auth token
@@ -64,9 +66,11 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
         Refreshes an existing, unexpired Momento API key. Produces a new API key with the same permissions and expiry duration as the original API key.
 
         #### Parameters
+        ----------------
         - **refreshToken** - *string*: The refresh token that was provided when the original API key was generated.
 
         #### Returns
+        ----------------
         One of the following:
         - **Success**:
             - `apiKey`: string - the new auth token
@@ -103,10 +107,12 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
           - Permissions are specified using DisposableTokenScope object.
 
         #### Parameters
+        ----------------
         - **scope** - [*DisposableTokenScope*](#disposabletokenscope-objects): The permissions to grant to the new disposable token. Pre-built DisposableTokenScope objects are provided by the SDKs.
-        -**expiresIn** - *Number* \| *ExpiresIn object*: The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the ExpiresIn.minutes() or ExpiresIn.hours(1) methods. Disposable tokens must expire within 1 hour.
+        - **expiresIn** - *Number* \| *ExpiresIn object*: The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the ExpiresIn.minutes() or ExpiresIn.hours(1) methods. Disposable tokens must expire within 1 hour.
 
         #### Returns
+        ----------------
         One of the following:
         - **Success**:
             - `authToken`: string - the new disposable auth token

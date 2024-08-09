@@ -28,10 +28,12 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
         To create and interact with leaderboards, you must first create a LeaderboardClient.
 
         #### Parameters
+        ----------------
         - **configuration** - *LeaderboardConfiguration*: Options for configuring your leaderboard client. For more information, see [SDK Configuration Objects](/cache/develop/basics/client-configuration-objects).
         - **credentialProvider** - *CredentialProvider*: See [Instantiating CredentialProviders](/cache/develop#instantiating-credential-providers-using-momento-api-keys) for more information on using your Momento API key.
 
         #### Returns
+        ----------------
         - PreviewLeaderboardClient object capable of creating new leaderboards and interacting with existing ones.
 
     </div>
@@ -55,10 +57,12 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
         Use a LeaderboardClient to create a leaderboard by specifying a cache and leaderboard name.
 
         #### Parameters
+        ----------------
         - **cacheName** - *string*: Which cache to create the leaderboard in.
         - **leaderboardName** - *string*: What to name the leaderboard.
 
         #### Returns
+        ----------------
         - Leaderboard object or [Error](/leaderboards/api-reference/response-objects#error)
 
     </div>
@@ -93,6 +97,7 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
         </details>
 
         #### Parameters
+        ----------------
         - **elements** - *Dictionary*: Dictionary of (id, score) pairs to upsert.
         - id: integer
         - score: double
@@ -102,6 +107,7 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
         - An id can only appear in a leaderboard one time, meaning you can't have two scores for one player unless that player has two ids!
 
         #### Returns
+        ----------------
         One of the following:
         - [LeaderboardUpsert.Success](/leaderboards/api-reference/response-objects#success)
         - [LeaderboardUpsert.Error](/leaderboards/api-reference/response-objects#error)
@@ -136,6 +142,7 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
         </details>
 
         #### Parameters
+        ----------------
         - **minScore** - *double*: Inclusive lower bound for the score range. Defaults to `-inf`.
         - **maxScore** - *double*: Exclusive upper bound for the score range. Defaults to `+inf`.
         - **order** - *LeaderboardOrder enum*: The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.
@@ -143,6 +150,7 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
         - **count** - *integer*: The maximum number of elements to return. Defaults to 8192.
 
         #### Returns
+        ----------------
         One of the following:
         - [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#success)
         - [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
@@ -175,11 +183,13 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
         </details>
 
         #### Parameters
+        ----------------
         - **startRank** - *integer*: Inclusive lower bound for the rank range. Defaults to 0.
         - **endRank** - *integer*: Exclusive upper bound for the rank range. Defaults to `startRank` + 8192.
         - **order** - *LeaderboardOrder enum*: The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.
 
         #### Returns
+        ----------------
         One of the following:
         - [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#success)
         - [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
@@ -205,10 +215,12 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
         Fetches elements given a list of element IDs.
 
         #### Parameters
+        ----------------
         - **ids** - *List*: List of integers representing the ids of the elements to fetch.
         - **order** - *LeaderboardOrder enum*: The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.
 
         #### Returns
+        ----------------
         One of the following:
         - [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#success)
         - [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
@@ -234,6 +246,7 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
         Gets the number of entries in the leaderboard. The leaderboard name is inferred from the `Leaderboard` object.
 
         #### Returns
+        ----------------
         One of the following:
         - [LeaderboardLength.Success](/leaderboards/api-reference/response-objects#success)
         - [LeaderboardLength.Error](/leaderboards/api-reference/response-objects#error)
@@ -266,9 +279,11 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
         </details>
 
         #### Parameters
+        ----------------
         - **ids** - *List*: A list of ids for the elements you want to remove.
 
         #### Returns
+        ----------------
         One of the following:
         - [LeaderboardRemoveElements.Success](/leaderboards/api-reference/response-objects#success)
         - [LeaderboardRemoveElements.Error](/leaderboards/api-reference/response-objects#error)
@@ -294,9 +309,11 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
         Permanently deletes a leaderboard. You will not be able to recover a leaderboard once it has been deleted.
 
         #### Parameters
+        ----------------
         - **leaderboardName** - *string*: The name of the leaderboard to delete.
 
         #### Returns
+        ----------------
         One of the following:
         - [LeaderboardDelete.Success](/leaderboards/api-reference/response-objects#success)
         - [LeaderboardDelete.Error](/leaderboards/api-reference/response-objects#error)
