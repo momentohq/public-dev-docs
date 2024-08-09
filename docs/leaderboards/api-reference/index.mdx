@@ -89,18 +89,11 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
 
         Inserts elements if they do not already exist in the leaderboard. Updates elements if they do already exist in the leaderboard. There are no partial failures; an upsert call will either succeed or fail.
 
-        <details>
-            <summary>Upsert is implemented as a batched operation, so for large leaderboards, you can upsert in batches of up to 8192 elements. </summary>
-
-            <SdkExampleTabs snippetId={'API_LeaderboardUpsertPagination'} />
-
-        </details>
-
         #### Parameters
         ----------------
         - **elements** - *Dictionary*: Dictionary of (id, score) pairs to upsert.
-        - id: integer
-        - score: double
+            - id: integer
+            - score: double
 
         - The id can be a player identifier, session identifier, browser identifier or any other kind of identifier you want to use for this scoreboard. The full unsigned 64 bit range is allowed here, between 0 and 2^63-1 inclusive.
 
@@ -117,7 +110,12 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
     <div class='col col--8'>
 
         <SdkExampleTabs snippetId={'API_LeaderboardUpsert'} />
+        <details>
+            <summary>Upsert is implemented as a batched operation, so for large leaderboards, you can upsert in batches of up to 8192 elements. </summary>
 
+            <SdkExampleTabs snippetId={'API_LeaderboardUpsertPagination'} />
+
+        </details>
     </div>
 
 </div>
@@ -132,16 +130,13 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
 
         Fetches elements that fall within the specified min and max scores.
 
-        <details>
-            <summary>FetchByScore is implemented as a batch operation, so for large leaderboards, you can fetch in batches of up to 8192 elements.</summary>
+        Elements with the same score will be returned in alphanumerical order based on their ID (e.g. IDs of elements with the same score would be returned in the order [1, 10, 123, 2, 234, ...] rather than [1, 2, 10, 123, 234, ...]).
 
-            You can page through multiple elements that fall within the requested score range using the `offset` parameter until you receive an empty list, which indicates the end of the requested elements.
-
-            <SdkExampleTabs snippetId={'API_LeaderboardFetchByScorePagination'} />
-
-        </details>
 
         #### Parameters
+        ----------------
+
+        #### Optional Parameters
         ----------------
         - **minScore** - *double*: Inclusive lower bound for the score range. Defaults to `-inf`.
         - **maxScore** - *double*: Exclusive upper bound for the score range. Defaults to `+inf`.
@@ -160,6 +155,14 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
     <div class='col col--8'>
 
         <SdkExampleTabs snippetId={'API_LeaderboardFetchByScore'} />
+        <details>
+            <summary>FetchByScore is implemented as a batch operation, so for large leaderboards, you can fetch in batches of up to 8192 elements.</summary>
+
+            You can page through multiple elements that fall within the requested score range using the `offset` parameter until you receive an empty list, which indicates the end of the requested elements.
+
+            <SdkExampleTabs snippetId={'API_LeaderboardFetchByScorePagination'} />
+
+        </details>
 
     </div>
 
@@ -175,17 +178,13 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
 
         Fetches elements that fall within the specified min and max ranks.
 
-        <details>
-            <summary>For large leaderboards, you will need to fetch in batches of up to 8192 elements.</summary>
-
-            <SdkExampleTabs snippetId={'API_LeaderboardFetchByRankPagination'} />
-
-        </details>
-
         #### Parameters
         ----------------
         - **startRank** - *integer*: Inclusive lower bound for the rank range. Defaults to 0.
         - **endRank** - *integer*: Exclusive upper bound for the rank range. Defaults to `startRank` + 8192.
+
+        #### Optional Parameters
+        ----------------
         - **order** - *LeaderboardOrder enum*: The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.
 
         #### Returns
@@ -199,6 +198,12 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
     <div class='col col--8'>
 
         <SdkExampleTabs snippetId={'API_LeaderboardFetchByRank'} />
+        <details>
+            <summary>For large leaderboards, you will need to fetch in batches of up to 8192 elements.</summary>
+
+            <SdkExampleTabs snippetId={'API_LeaderboardFetchByRankPagination'} />
+
+        </details>
 
     </div>
 
@@ -217,6 +222,9 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
         #### Parameters
         ----------------
         - **ids** - *List*: List of integers representing the ids of the elements to fetch.
+
+        #### Optional Parameters
+        ----------------
         - **order** - *LeaderboardOrder enum*: The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.
 
         #### Returns
@@ -245,6 +253,9 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
 
         Gets the number of entries in the leaderboard. The leaderboard name is inferred from the `Leaderboard` object.
 
+        #### Parameters
+        ----------------
+
         #### Returns
         ----------------
         One of the following:
@@ -271,13 +282,6 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
 
         Removes elements with the specified IDs.
 
-        <details>
-            <summary>For large leaderboards, you will need to remove in batches of up to 8192 elements.</summary>
-
-            <SdkExampleTabs snippetId={'API_LeaderboardRemoveElementsPagination'} />
-
-        </details>
-
         #### Parameters
         ----------------
         - **ids** - *List*: A list of ids for the elements you want to remove.
@@ -293,6 +297,12 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
     <div class='col col--8'>
 
         <SdkExampleTabs snippetId={'API_LeaderboardRemoveElements'} />
+        <details>
+            <summary>For large leaderboards, you will need to remove in batches of up to 8192 elements.</summary>
+
+            <SdkExampleTabs snippetId={'API_LeaderboardRemoveElementsPagination'} />
+
+        </details>
 
     </div>
 
@@ -306,11 +316,10 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
 
         ### Delete leaderboard
 
-        Permanently deletes a leaderboard. You will not be able to recover a leaderboard once it has been deleted.
+        Deletes the leaderboard. The leaderboard name is inferred from the Leaderboard object.
 
         #### Parameters
         ----------------
-        - **leaderboardName** - *string*: The name of the leaderboard to delete.
 
         #### Returns
         ----------------
