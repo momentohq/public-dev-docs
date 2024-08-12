@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
-sidebar_label: Lists
 title: List API reference
+sidebar_label: Lists
 description: Learn how to interact with the API for list collection data types in Momento Cache.
 ---
 
@@ -20,271 +20,397 @@ Momento collection types use a [CollectionTTL](./collection-ttl.md) to specify t
 
 :::
 
-## List methods
+## List Methods
 
-### ListFetch
+---
 
-Gets a list item from a cache, with optional slices.
+<div class='row'>
 
-| Name       | Type   | Description                                                                 |
-|------------|--------|-----------------------------------------------------------------------------|
-| cacheName  | String | Name of the cache.                                                          |
-| listName   | String | The name of the list item to be retrieved.                                  |
-| startIndex | Number | The starting inclusive element of the list to fetch. Default is 0. **This argument is optional.** |
-| endIndex   | Number | The ending exclusive element of the list to fetch. Default is end of list. **This argument is optional.** |
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-<details>
-  <summary>Method response object</summary>
+        ### ListFetch
 
-The response object for ListFetch returns three possible options, a cache hit, miss, or an error.
+        Gets a list item from a cache, with optional slices.
 
-* Hit
-    * valueListBytes(): Bytes[]
-    * valueListString(): String[]
-    * toString(): String - Display a truncated valueListString(). See [truncation](#truncate-to-size).
-* Miss
-* Error
+        #### Parameters
+        ----------------
+        - **cacheName** - *String*: Name of the cache.  
+        - **listName** - *String*: The name of the list item to be retrieved.
 
-See [response objects](./response-objects.md) for specific information.
+        #### Optional Parameters
+        ----------------
+        - **startIndex** - *Number*: The starting inclusive element of the list to fetch. Default is 0. 
+        - **endIndex** - *Number*: The ending exclusive element of the list to fetch. Default is end of list.
 
-</details>
+        #### Returns
+        ----------------
+        The response object for ListFetch returns three possible options, a cache hit, miss, or an error:
+        - **Hit**:
+            - `valueListBytes()`: Bytes[] 
+            - `valueListString()`: String[]
+            - `toString()`: String - Display a truncated valueListString(). See [truncation](#truncate-to-size).
 
-<SdkExampleTabs snippetId={'API_ListFetch'} />
+        - **Miss**:
 
-### ListConcatenateBack
-Appends the supplied list to the end of an existing list item.
+        - **Error**:
+            - See [response objects](./response-objects.md) for specific information.
 
-Example:
+    </div>
 
-If you have [1, 2, 3] and listConcatenateBack [4, 5, 6] you will have [1, 2, 3, 4, 5, 6].
+    <div class='col col--8'>
 
-| Name            | Type                | Description                                   |
-| --------------- | ------------------- | --------------------------------------------- |
-| cacheName       | String              | Name of the cache.                            |
-| listName        | String              | Name of the list item to be set. |
-| values          | String[] \| Bytes[] | Values to be added as elements to the list item. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache client connection object. |
-| truncateFrontToSize | Number | See [truncate to size](#truncate-to-size). |
+        <SdkExampleTabs snippetId={'API_ListFetch'} />
 
-<details>
-  <summary>Method response object</summary>
+    </div>
 
-* Success
-    * `listLength()`: Number - the new length of the list
-    * `toString()`: String - add the listLength
-* Error
+</div>
 
-See [response objects](./response-objects.md) for specific information.
+---
 
-</details>
+<div class='row'>
 
-<SdkExampleTabs snippetId={'API_ListConcatenateBack'} />
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-### ListConcatenateFront
-Appends the supplied list to the front of an existing list item.
+        ### ListConcatenateBack
 
-Example:
+        Appends the supplied list to the end of an existing list item.
 
-If you have [1, 2, 3] and listConcatenateFront [4, 5, 6] you will have [4, 5, 6, 1, 2, 3].
+        Example:
+        
+        If you have [1, 2, 3] and listConcatenateBack [4, 5, 6] you will have [1, 2, 3, 4, 5, 6].
 
-| Name            | Type         | Description                                   |
-| --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the list item to be set.              |
-| values          | String[] \| Bytes[] | Values to be added as elements to the list item. |
-| ttl          | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache client. |
-| truncateBackToSize | Number | See [truncate to size](#truncate-to-size). |
+        #### Parameters
+        ----------------
+        - **cacheName** - *String*: Name of the cache.  
+        - **listName** - *String*: Name of the list item to be set.
+        - **values** - *String[] | Bytes[]*: Values to be added as elements to the list item.
+        - **ttl** - *[CollectionTTL object](./collection-ttl.md)*: TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache client connection object.
+        - **truncateFrontToSize** - *Number*: See [truncate to size](#truncate-to-size).
 
-<details>
-  <summary>Method response object</summary>
+        #### Returns
+        ----------------
+        One of the following:
+        - **Success**:
+            - `listLength()`: Number - the new length of the list
+            - `toString()`: String - add the listLength
 
-* Success
-    * `listLength()`: Number - the new length of the list item
-    * `toString()`: String - add the listLength
-* Error
+        - **Error**:
+            - See [response objects](./response-objects.md) for specific information.
 
-See [response objects](./response-objects.md) for specific information.
+    </div>
 
-</details>
+    <div class='col col--8'>
 
-<SdkExampleTabs snippetId={'API_ListConcatenateFront'} />
+        <SdkExampleTabs snippetId={'API_ListConcatenateBack'} />
 
-### ListLength
-Get the length of an existing list item
+    </div>
 
-| Name            | Type         | Description                                   |
-| --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the list item to be checked.          |
+</div>
 
-<details>
-  <summary>Method response object</summary>
+---
 
-* Hit
-    * `length()`: Number
-* Miss
-* Error
+<div class='row'>
 
-See [response objects](./response-objects.md) for specific information.
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-</details>
+        ### ListConcatenateFront
 
-<SdkExampleTabs snippetId={'API_ListLength'} />
+        Appends the supplied list to the front of an existing list item.
 
-### ListPopBack
-Remove and return the last element from a list item.
+        Example:
+        
+        If you have [1, 2, 3] and listConcatenateFront [4, 5, 6] you will have [4, 5, 6, 1, 2, 3].
 
-| Name            | Type         | Description                                   |
-| --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the list item to be retrieved.        |
+        #### Parameters
+        ----------------
+        - **cacheName** - *String*: Name of the cache.  
+        - **listName** - *String*: Name of the list item to be set.
+        - **values** - *String[] | Bytes[]*: Values to be added as elements to the list item.
+        - **ttl** - *[CollectionTTL object](./collection-ttl.md)*: TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache client connection object.
+        - **truncateBackToSize** - *Number*: See [truncate to size](#truncate-to-size).
 
-<details>
-  <summary>Method response object</summary>
+        #### Returns
+        ----------------
+        One of the following:
+        - **Success**:
+            - `listLength()`: Number - the new length of the list
+            - `toString()`: String - add the listLength
 
-* Hit
-    * `valueString()`: String
-    * `valueBytes()`: Bytes
-    * `toString()`: truncated valueString()
-* Miss
-* Error
+        - **Error**:
+            - See [response objects](./response-objects.md) for specific information.
 
-See [response objects](./response-objects.md) for specific information.
+    </div>
 
-</details>
+    <div class='col col--8'>
 
-<SdkExampleTabs snippetId={'API_ListPopBack'} />
+        <SdkExampleTabs snippetId={'API_ListConcatenateFront'} />
 
-### ListPopFront
-Remove and return the first element from a list item.
+    </div>
 
-| Name            | Type         | Description                                   |
-| --------------- | ------------ | --------------------------------------------- |
-| cacheName       | String       | Name of the cache.                            |
-| listName        | String       | Name of the list item to be retrieved.        |
+</div>
 
-<details>
-  <summary>Method response object</summary>
+---
 
-* Hit
-    * `valueString()`: String
-    * `valueBytes()`: Bytes
-    * `toString()`: truncated valueString()
-* Miss
-* Error
+<div class='row'>
 
-See [response objects](./response-objects.md) for specific information.
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-</details>
+        ### ListLength
 
-<SdkExampleTabs snippetId={'API_ListPopFront'} />
+        Get the length of an existing list item.
 
-### ListPushBack
-Push a value to the end of a list item. This is exactly like passing just one value to [ListConcatenateBack](#listconcatenateback).
+        #### Parameters
+        ----------------
+        - **cacheName** - *String*: Name of the cache.  
+        - **listName** - *String*: Name of the list item to be checked.
 
-| Name            | Type            | Description                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| listName        | String          | Name of the list to be set.                   |
-| value           | String \| Bytes | Value to be added.              |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
-| truncateBackToSize | Number | See [truncate to size](#truncate-to-size). |
+        #### Returns
+        ----------------
+        One of the following:
+        - **Hit**:
+            - `length()`: Number
 
-<details>
-  <summary>Method response object</summary>
+        - **Miss**
 
-* Success
-    * `listLength()`: Number - the new length of the list item
-    * `toString()`: String - add the listLength
-* Error
+        - **Error**:
+            - See [response objects](./response-objects.md) for specific information.
 
-See [response objects](./response-objects.md) for specific information.
+    </div>
 
-</details>
+    <div class='col col--8'>
 
-<SdkExampleTabs snippetId={'API_ListPushBack'} />
+        <SdkExampleTabs snippetId={'API_ListLength'} />
 
-### ListPushFront
-Push a value to the beginning of a list item. Just like [ListPushBack](#listpushback), but to the front.
+    </div>
 
-| Name            | Type            | Description                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| listName        | String          | Name of the list to be set. |
-| value           | String \| Bytes | Value to be added to the list item by the operation. |
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
-| truncateBackToSize | Number | See [truncate to size](#truncate-to-size). |
+</div>
 
-<details>
-  <summary>Method response object</summary>
+---
 
-* Success
-    * `listLength()`: Number - the new length of the list
-    * `toString()`: String - add the listLength
-* Error
+<div class='row'>
 
-See [response objects](./response-objects.md) for specific information.
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-</details>
+        ### ListPopBack
 
-<SdkExampleTabs snippetId={'API_ListPushFront'} />
+        Remove and return the last element from a list item.
 
-### ListRemoveValue
-Remove all elements in a list item equal to a particular value.
+        #### Parameters
+        ----------------
+        - **cacheName** - *String*: Name of the cache.  
+        - **listName** - *String*: Name of the list item to be retrieved.
 
-Examples
+        #### Returns
+        ----------------
+        One of the following:
+        - **Hit**:
+            - `valueString()`: String
+            - `valueBytes()`: Bytes
+            - `toString()`: truncated valueString()
 
-- If you have the list `['up', 'up', 'down', 'down', 'left', 'right']` and remove ‘up’ the list will be `['down', 'down', 'left', 'right']`
+        - **Miss**
 
-| Name            | Type            | Description                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| listName        | String          | Name of the list item to be set.              |
-| value           | String \| Bytes | Value to be added to the list item by the operation. |
+        - **Error**:
+            - See [response objects](./response-objects.md) for specific information.
 
-<details>
-  <summary>Method response object</summary>
+    </div>
 
-Responses
+    <div class='col col--8'>
 
-* Success - even if the value does not exist
-* Error
+        <SdkExampleTabs snippetId={'API_ListPopBack'} />
 
-See [response objects](./response-objects.md) for specific information.
+    </div>
 
-</details>
+</div>
 
-<SdkExampleTabs snippetId={'API_ListRemoveValue'} />
+---
 
-### ListRetain
+<div class='row'>
 
-Retains only slice of the list where the start is inclusive and the end is exclusive.  The items outside of this range will be dropped from the list.
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-Example:
-For the specified list, start at index 4 (the startIndex) and keep the next five elements, end at index 10 (the endIndex). Discard all other elements in the list. In this example, elements at position 0-3 and 9 or higher are dropped.
+        ### ListPopFront
 
-| Name       | Type                                        | Description                                                                                                              |
-|------------|---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| cacheName  | String                                      | Name of the cache.                                                                                                       |
-| listName   | String                                      | Name of the list item to be set.                                                                                         |
-| startIndex | Number                                      | The starting inclusive element of the list to retain. Default is 0.                                                      |
-| endIndex   | Number                                      | The ending exclusive element of the list to retain. Default is end of list.                                              |
-| ttl        | [CollectionTTL object](./collection-ttl.md) | TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+        Remove and return the first element from a list item.
 
-<details>
-  <summary>Method response object</summary>
+        #### Parameters
+        ----------------
+        - **cacheName** - *String*: Name of the cache.  
+        - **listName** - *String*: Name of the list item to be retrieved.
 
-Responses
+        #### Returns
+        ----------------
+        One of the following:
+        - **Hit**:
+            - `valueString()`: String
+            - `valueBytes()`: Bytes
+            - `toString()`: truncated valueString()
 
-* Success - even if the value does not exist
-* Error
+        - **Miss**
 
-See [response objects](./response-objects.md) for specific information.
+        - **Error**:
+            - See [response objects](./response-objects.md) for specific information.
 
-</details>
+    </div>
 
-<SdkExampleTabs snippetId={'API_ListRetain'} />
+    <div class='col col--8'>
 
+        <SdkExampleTabs snippetId={'API_ListPopFront'} />
+
+    </div>
+
+</div>
+
+---
+
+<div class='row'>
+
+    <div class='col col--4' style={{paddingRight: '20px'}}>
+
+        ### ListPushBack
+
+        Push a value to the end of a list item. This is exactly like passing just one value to [ListConcatenateBack](#listconcatenateback).
+
+        #### Parameters
+        ----------------
+        - **cacheName** - *String*: Name of the cache.  
+        - **listName** - *String*: Name of the list item to be set.
+        - **value** - *String | Bytes*: Value to be added.
+        - **ttl** - *[CollectionTTL object](./collection-ttl.md)*: TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client.
+        - **truncateFrontToSize** - *Number*: See [truncate to size](#truncate-to-size).
+
+        #### Returns
+        ----------------
+        One of the following:
+        - **Success**:
+            - `listLength()`: Number - the new length of the list item
+            - `toString()`: String - add the listLength
+
+        - **Error**:
+            - See [response objects](./response-objects.md) for specific information.
+
+    </div>
+
+    <div class='col col--8'>
+
+        <SdkExampleTabs snippetId={'API_ListPushBack'} />
+
+    </div>
+
+</div>
+ 
+---
+
+<div class='row'>
+
+    <div class='col col--4' style={{paddingRight: '20px'}}>
+
+        ### ListPushFront
+
+        Push a value to the beginning of a list item. Just like [ListPushBack](#listpushback), but to the front.
+
+        #### Parameters
+        ----------------
+        - **cacheName** - *String*: Name of the cache.  
+        - **listName** - *String*: Name of the list item to be set.
+        - **value** - *String | Bytes*: Value to be added.
+        - **ttl** - *[CollectionTTL object](./collection-ttl.md)*: TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client.
+        - **truncateBackToSize** - *Number*: See [truncate to size](#truncate-to-size).
+
+        #### Returns
+        ----------------
+        One of the following:
+        - **Success**:
+            - `listLength()`: Number - the new length of the list item
+            - `toString()`: String - add the listLength
+
+        - **Error**:
+            - See [response objects](./response-objects.md) for specific information.
+
+    </div>
+
+    <div class='col col--8'>
+
+        <SdkExampleTabs snippetId={'API_ListPushFront'} />
+
+    </div>
+
+</div>
+
+---
+
+<div class='row'>
+
+    <div class='col col--4' style={{paddingRight: '20px'}}>
+
+        ### ListRemoveValue
+
+        Remove all elements in a list item equal to a particular value.
+
+        #### Parameters
+        ----------------
+        - **cacheName** - *String*: Name of the cache.  
+        - **listName** - *String*: Name of the list item to be set.
+        - **value** - *String | Bytes*: Value to be added to the list item by the operation.
+
+        #### Returns
+        ----------------
+        One of the following:
+        - **Success**: even if the value does not exist.
+
+        - **Error**:
+            - See [response objects](./response-objects.md) for specific information.
+
+    </div>
+
+    <div class='col col--8'>
+
+        <SdkExampleTabs snippetId={'API_ListRemoveValue'} />
+
+    </div>
+
+</div>
+
+---
+
+<div class='row'>
+
+    <div class='col col--4' style={{paddingRight: '20px'}}>
+
+        ### ListRetain
+
+        Retains only slice of the list where the start is inclusive and the end is exclusive.  The items outside of this range will be dropped from the list.
+
+        Example:
+        For the specified list, start at index 4 (the startIndex) and keep the next five elements, end at index 10 (the endIndex). Discard all other elements in the list. In this example, elements at position 0-3 and 9 or higher are dropped.
+
+        #### Parameters
+        ----------------
+        - **cacheName** - *String*: Name of the cache.  
+        - **listName** - *String*: Name of the list item to be set.
+        - **startIndex** - *Number*: The starting inclusive element of the list to retain. Default is 0.
+        - **endIndex** - *Number*: The ending exclusive element of the list to retain. Default is end of list.
+        - **ttl** - *[CollectionTTL object](./collection-ttl.md)*: TTL for the list item in cache. This TTL takes precedence over the TTL used when initializing a cache connection client.
+
+        #### Returns
+        ----------------
+        One of the following:
+        - **Success**: even if the value does not exist.
+
+        - **Error**:
+            - See [response objects](./response-objects.md) for specific information.
+
+    </div>
+
+    <div class='col col--8'>
+
+       <SdkExampleTabs snippetId={'API_ListRetain'} />
+
+    </div>
+
+</div>
+
+---
 
 ## Truncate to size
 
