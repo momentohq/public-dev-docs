@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 7
 title: Auth API reference information
 sidebar_label: Auth
 description: Learn the Auth API calls you need to know about and how to use them with Momento services.
