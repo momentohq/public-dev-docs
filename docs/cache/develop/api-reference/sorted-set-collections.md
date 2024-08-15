@@ -232,11 +232,13 @@ See [response objects](./response-objects.md) for specific information.
 
 What position is the element, in the specified sorted set?
 
-| Name            | Type            | Description                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | Name of the cache.                            |
-| setName         | String          | Name of the sorted set collection to be altered.    |
-| value           | String \| Bytes | Value of the element to retrieve the score of. |
+| Name      | Type                              | Description                                                         |
+|-----------|-----------------------------------|---------------------------------------------------------------------|
+| cacheName | String                            | Name of the cache.                                                  |
+| setName   | String                            | Name of the sorted set collection to be altered.                    |
+| value     | String \| Bytes                   | Value of the element to retrieve the score of.                      |
+| order     | Optional[Ascending \| Descending] | The order in which sorted set will be sorted to determine the rank. |
+
 
 <details>
   <summary>Method response object</summary>
