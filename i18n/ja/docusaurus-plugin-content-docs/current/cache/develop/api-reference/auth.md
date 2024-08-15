@@ -16,65 +16,129 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 <img src="/img/momento-auth-tokens.png" width="60%"/>
 
-## GenerateApiKey API
+## AuthClient Methods
 
-指定された権限と有効期限を持つ新しいMomento APIキーを生成します。
+---
 
-| Name            | Type                      | Description                                                                                                                                                                             |
-| --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| scope           | [PermissionScope](#permissionscope-objects) | 新しいトークンに付与する権限。TokenScopeオブジェクトはSDKによって提供されます。                                                                                      |
-| expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | `ExpiresIn.never()`メソッド、`ExpiresIn.minutes()`メソッド、`ExpiresIn.hours()`メソッドを呼び出すことで、トークンが期限切れになるまでの秒数、またはその期間を表すExpiresInオブジェクト。|
+<div class='row'>
 
-<details>
-  <summary>Method response object</summary>
+ <div class='col col--4' style={{paddingRight: '20px'}}>
 
-* Success
-  - `apiKey`: string - 新しいAPIキー
-  - `refreshToken`: string - [RefreshApiKey API](#refreshapikey-api)を使って、トークンの有効期限が切れる前にリフレッシュするためのリフレッシュトークン
-  - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
-  - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
-* Error
+   ### GenerateApiKey
 
-詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
+指定した権限と有効期限を持つ新しい Momento 認証トークンを生成します。
 
-</details>
+        #### Parameters
+        ----------------
+        - **scope** - [*PermissionScope*](#permissionscope-objects): 新しいトークンに付与するパーミッション。PermissionScopeオブジェクトはSDKによって提供されます。
+        - **expiresIn** - *Number* \| *ExpiresIn object*: ExpiresIn.never()`メソッド、`ExpiresIn.minutes()`メソッド、`ExpiresIn.hours()`メソッドを呼び出すことで、トークンが期限切れになるまでの秒数、またはその期間を表すExpiresInオブジェクト。
+        
+  #### Returns
+        ----------------
+        次のいずれか:
+        - **Success**:
+            - `authToken`: string - 新しい認証トークン
+            - `refreshToken`: string - [RefreshApiKey API](#refreshapikey)で使用できるリフレッシュトークンで、トークンの有効期限が切れる前にリフレッシュします
+            - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
+            - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
+        
+        - **Error**:
+            - 詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
 
-:::note
+</div>
 
-MomentoコントロールプレーンAPIにアクセスするためのトークンは、[Momentoコンソール](https://console.gomomento.com/)を使用してのみ生成できます。
+ <div class='col col--8'>
 
-:::
+        <SdkExampleTabs snippetId={'API_GenerateApiKey'} />
 
-<SdkExampleTabs snippetId={'API_GenerateApiKey'} />
+  </div>
 
-## RefreshApiKey API
+</div>
 
-既存の未使用のMomento APIキーをリフレッシュします。 元のAPIキーと同じ権限と有効期限を持つ新しいAPIキーを生成します。
+---
 
-| Name            | Type            | Description                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| refreshToken    | String          | `GenerateApiKey` をコールした際に取得した、現在の API キーの refreshToken。 |
+<div class='row'>
 
-<details>
-  <summary>Method response object</summary>
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-* Success
-  - `apiKey`: string - 新しいAPIキー
-  - `refreshToken`: string - [RefreshApiKey API](#refreshapikey-api)を使って、トークンの有効期限が切れる前にリフレッシュするためのリフレッシュトークン
-  - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
-  - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
-* Error
+        ### RefreshApiKey
 
-詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
+        Refreshes an existing, unexpired Momento API key. Produces a new API key with the same permissions and expiry duration as the original API key.
 
-</details>
+        #### Parameters
+        ----------------
+        - **refreshToken** - *string*: The refresh token that was provided when the original API key was generated.
 
-<SdkExampleTabs snippetId={'API_RefreshApiKey'} />
+        #### Returns
+        ----------------
+        One of the following:
+        - **Success**:
+            - `apiKey`: string - the new auth token
+            - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires
+            - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
+            - `expiresAt`: Timestamp - the timestamp at which the token will expire
+        
+        - **Error**:
+            - See [response objects](./response-objects.md) for specific information. 
+
+    </div>
+
+    <div class='col col--8'>
+
+        <SdkExampleTabs snippetId={'API_RefreshApiKey'} />
+
+    </div>
+
+</div> 
+
+---
+
+<div class='row'>
+
+    <div class='col col--4' style={{paddingRight: '20px'}}>
+
+        ### GenerateDisposableToken
+
+        指定した権限と有効期限を持つ、使い捨ての Momento 認証トークンを生成します。
+        使い捨てトークンは、通常の Momento 認証トークンとは以下の点で異なります。:
+          - トークンはコンソールで生成することはできず、プログラムによってのみ生成することができます。generateDisposableToken` API 呼び出しに使用するトークンは、Momento コンソールから生成したスーパーユーザースコープのトークンでなければなりません。
+          - 有効期限は1時間以内です。
+          - これらはリフレッシュできないため、リフレッシュ・トークンは付属しません。
+          - パーミッションは、DisposableTokenScopeオブジェクトを使って指定します。
+
+        #### Parameters
+        ----------------
+        - **scope** - [*DisposableTokenScope*](#disposabletokenscope-objects):新しい使い捨てトークンに付与する権限。SDK は、あらかじめ DisposableTokenScope オブジェクトを用意しています。
+        - **expiresIn** - *Number* \| *ExpiresIn object*: トークンが失効するまでの秒数、または ExpiresIn.minutes() メソッドや ExpiresIn.hours(1) メソッドを呼び出して期間を表す ExpiresIn オブジェクト。使い捨てトークンは1時間以内に失効しなければなりません。
+
+        #### Returns
+        ----------------
+        以下のいずれかです:
+        - **Success**:
+            - `authToken`: string - 新しい使い捨て認証トークン
+            - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント。
+            - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
+      
+        - **Error**:
+            - 詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
+
+     </div>
+
+      <div class='col col--8'>
+
+          <SdkExampleTabs snippetId={'API_GenerateDisposableToken'} />
+
+      </div>
+
+</div> 
+
+---
 
 ## PermissionScope objects
+### PermissionScope
 | Name            | Type                                      | Description                                  |
 | --------------- |-------------------------------------------| -------------------------------------------- |
-| permissions           | List \<[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション|
+| permissions     | List \<[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション   |
 
 TokenScopeは[パーミッション・オブジェクト](#permission-objects)のリストです。このリストには、[CachePermission](#cachepermission) 型または [TopicPermission](#topicpermission) 型のパーミッションを含めることができ、[最大10個](../../limits) のパーミッションオブジェクトを含めることができます。パーミッションは Momento データプレーン API (`get` や `set` など) へのアクセスのみを許可する。複数のパーミッションオブジェクトを持つ認証トークンが作成された場合、一致するパーミッションがアクセスを許可します。たとえば、1 つのトークンに 2 つのパーミッションオブジェクトを設定した場合、次のようになります：
 
@@ -83,7 +147,7 @@ TokenScopeは[パーミッション・オブジェクト](#permission-objects)�
 
 この場合でも、トークンはキャッシュ `foo` に対してデータ操作 API (`set`、`delete`、`DictionarySetFields` など) を使用することができます。
 
-## Permission objects
+### Permission objects
 
 これらのオブジェクトはキャッシュやトピック情報を持つ特定のロールを定義し、[PermissionScope](#permissionscope-objects)に割り当てられます。
 
@@ -116,7 +180,7 @@ const CachePermissions = {
     ],
 };
 ```
-
+---
 ### TopicPermission
 トークンのパーミッションを定義する[PermissionScope](#permissionscope-objects)オブジェクトのコンポーネント。
 
@@ -152,37 +216,7 @@ const TopicsPermissions = {
 };
 ```
 
-## GenerateDisposableToken API
-
-指定した権限と有効期限を持つ、使い捨ての Momento 認証トークンを生成します。
-
-使い捨てトークンは、いくつかの重要な点で、通常の Momento 認証トークンとは異なります：
-  - トークンはコンソールで生成することはできず、プログラムによってのみ生成することができます。`generateDisposableToken` API 呼び出しに使用するトークンは、Momento コンソールから生成したスーパーユーザースコープのトークンでなければなりません。
-  - 有効期限は1時間以内。
-  - リフレッシュはできないので、リフレッシュ・トークンは付属しません。
-  - パーミッションは、DisposableTokenScopeオブジェクトを使って指定します。
-
-| Name            | Type                      | Description                                                                                                                                                                             |
-| --------------- |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| scope           | [DisposableTokenScope](#disposabletokenscope-objects) | 新しい使い捨てトークンに付与する権限。SDK は、あらかじめ DisposableTokenScope オブジェクトを用意しています                                                                 |
-| expiresIn       | Number&nbsp;&nbsp;\|&nbsp;&nbsp;ExpiresIn&nbsp;object | トークンが失効するまでの秒数、または `ExpiresIn.minutes()` メソッドや `ExpiresIn.hours(1)` メソッドを呼び出して期間を指定した ExpiresIn オブジェクト。使い捨てトークンは1時間以内に失効しなければならない |
-
-<details>
-  <summary>Method response object</summary>
-
-* Success
-  - `authToken`: string - 新しい使い捨て認証トークン
-  - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
-  - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
-* Error
-
-詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
-
-</details>
-
-<SdkExampleTabs snippetId={'API_GenerateDisposableToken'} />
-
-### DisposableTokenScope objects
+## DisposableTokenScope objects
 
 | Name            | Type                                      | Description                                  |
 | --------------- |-------------------------------------------| -------------------------------------------- |
@@ -214,40 +248,40 @@ item の場合、値は組み込みの `AllCacheItems` か、このパーミッ�
 
 ```javascript
 const exampleDisposableTokenPermission: DisposableTokenCachePermission = {
-  role: CacheRole.WriteOnly,
-  cache: "WriteCache",
-  item: {
-    keyPrefix: "WriteKey"
-  }
+    role: CacheRole.WriteOnly,
+    cache: "WriteCache",
+    item: {
+        keyPrefix: "WriteKey"
+    }
 };
 
 const exampleCachePermission: CachePermission = {
-  role: CacheRole.ReadOnly,
-  cache: "ReadCache"
+    role: CacheRole.ReadOnly,
+    cache: "ReadCache"
 };
 
 const exampleTopicPermission: TopicPermission = {
-  role: TopicRole.PublishSubscribe,
-  cache: "ReadWriteCache",
-  topic: "MyTopic"
+    role: TopicRole.PublishSubscribe,
+    cache: "ReadWriteCache",
+    topic: "MyTopic"
 }
 
 const exampleScope: DisposableTokenScope = {
     permissions: [
-      exampleDisposableTokenPermission,
-      exampleCachePermission,
-      exampleTopicPermission,
+        exampleDisposableTokenPermission,
+        exampleCachePermission,
+        exampleTopicPermission,
     ],
 };
 
 // Then pass in the entire DisposableTokenScope object when
 // you call generateDisposableToken
 const tokenResponse = await authClient.generateDisposableToken(
-  exampleScope,
-  ExpiresIn.minutes(30)
+    exampleScope,
+    ExpiresIn.minutes(30)
 );
 ```
-
+---
 ## FAQ
 
 <details>
