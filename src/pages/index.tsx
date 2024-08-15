@@ -79,7 +79,7 @@ export default function Home(): JSX.Element {
                   <li><a href="/cache/develop/authentication"><Translate id="authenticationAndAccessControl">Authentication and access control</Translate></a></li>
                   <li><a href="/cache/develop/basics/error-handling-production-readiness"><Translate id="properlyHandlingErrorsInMomento">Properly handling errors in Momento</Translate></a></li>
                   <li>
-                    <a href="https://aws.amazon.com/marketplace/pp/prodview-ndqotnrhhjyvo" target="_blank">
+                    <a href="https://aws.amazon.com/marketplace/pp/prodview-tntv64zqgaqm2" target="_blank">
                       <div className={styles.openInNew}>
                         <span><Translate id="momentoOnAWSMarketplace">Momento on AWS Marketplace</Translate></span>
                         <IoOpenOutline />
