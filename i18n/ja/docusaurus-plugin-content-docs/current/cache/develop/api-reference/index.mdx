@@ -6,6 +6,7 @@ sidebar_label: API リファレンス
 説明: 知っておくべきAPIコールを学んで、Momento Cacheと共に使ってみよう。
 ---
 
+
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
@@ -172,6 +173,7 @@ cacheの全データをフラッシュします。
 サーバにpingを送信します。このAPIは、クライアントがサーバに正常に接続できることを確認するた めの接続性のチェックに使用できます。
 
 <details>
+
 <summary>メソッドのレスポンスオブジェクト</summary>
 
 * Success
@@ -193,15 +195,16 @@ cacheの全データをフラッシュします。
 | key        | String \| Byte          | itemの型が返却されるべきkey。            |
 
 <details>
-  <summary>メソッドのレスポンスオブジェクト</summary>
 
-  * Cache hit
-  - `型()`: enum: SCALAR, DICTIONARY, SET, LIST, SORTED_SET
+<summary>メソッドのレスポンスオブジェクト</summary>
 
-  * Cache miss
-  * Cache error
+* Cache hit
+- `型()`: enum: SCALAR, DICTIONARY, SET, LIST, SORTED_SET
 
-  具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
+* Cache miss
+* Cache error
+
+具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
 
 </details>
 
@@ -217,6 +220,7 @@ cacheの全データをフラッシュします。
 | key        | String \| Byte          | cacheに存在するかどうかをチェックするkey。             |
 
 <details>
+
 <summary>メソッドのレスポンスオブジェクト</summary>
 
 * Success
@@ -239,6 +243,7 @@ cacheの全データをフラッシュします。
 | keys        | String[] \| Byte[]          | cacheに存在するかどうかをチェックするkey(複数)。              |
 
 <details>
+
 <summary>メソッドのレスポンスオブジェクト</summary>
 
 * Success
@@ -254,8 +259,10 @@ cacheの全データをフラッシュします。
 ### SetIfAbsent
 
 :::warning
-SetIfPresent` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。そうすると、一貫性の動作が定義されません。代わりに `SetIfAbsent` を `SetIfPresent` と一緒に使用してください。
+SetIfPresent` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。
+そうすると、一貫性の動作が定義されません。代わりに `SetIfAbsent` を `SetIfPresent` と一緒に使用してください。
 :::
+
 
 キーがキャッシュにまだ存在しない場合は、指定されたキーを使用して、指定された値をキャッシュ項目に関連付けます。
 
@@ -284,7 +291,8 @@ SetIfPresent` のようなチェックアンドセット (CAS) API を `Set` や
 ### SetIfPresent
 
 :::warning
-SetIfPresent` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。そうすると、一貫性の動作が定義されません。代わりに `SetIfAbsent` を `SetIfPresent` と一緒に使用してください。
+SetIfPresent` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。
+そうすると、一貫性の動作が定義されません。代わりに `SetIfAbsent` を `SetIfPresent` と一緒に使用してください。
 :::
 
 指定されたキーが既にキャッシュに存在する場合は、指定された値を指定されたキーのキャッシュ項目に関連付けます。
@@ -314,7 +322,8 @@ SetIfPresent` のようなチェックアンドセット (CAS) API を `Set` や
 ### SetIfEqual
 
 :::warning
-SetIfEqual` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。そうすると、一貫性のない動作になります。代わりに `SetIfNotEqual` を `SetIfEqual` と一緒に使用してください。
+SetIfEqual` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。
+そうすると、一貫性のない動作になります。代わりに `SetIfNotEqual` を `SetIfEqual` と一緒に使用してください。
 :::
 
 指定されたキーが既にキャッシュ内に存在し、キャッシュ内の値が `equal` で指定された値と等しい場合に、指定された値を指定されたキーのキャッシュアイテムに関連付ける。
@@ -345,7 +354,8 @@ SetIfEqual` のようなチェックアンドセット (CAS) API を `Set` や `
 ### SetIfNotEqual
 
 :::warning
-SetIfEqual` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。そうすると、一貫性のない動作になります。代わりに `SetIfNotEqual` を `SetIfEqual` と一緒に使用してください。
+SetIfEqual` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。
+そうすると、一貫性のない動作になります。代わりに `SetIfNotEqual` を `SetIfEqual` と一緒に使用してください。
 :::
 
 指定したキーがキャッシュ内に存在しないか、キャッシュ内の値が `notEqual` で指定した値と等しくない場合に、指定した値を指定したキーのキャッシュアイテムに関連付ける。
@@ -376,7 +386,8 @@ SetIfEqual` のようなチェックアンドセット (CAS) API を `Set` や `
 ### SetIfPresentAndNotEqual
 
 ::warnings
-SetIfPresentAndNotEqual` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。そのようなことをすると、一貫性の動作が未定義になります。代わりに `SetIfAbsentOrEqual` `SetIfPresentAndNotEqual` を使用してください。
+SetIfPresentAndNotEqual` のようなチェックアンドセット (CAS) API を `Set` や `Delete` のようなスカラー API や非 CAS API と一緒に使用しないでください。
+そのようなことをすると、一貫性の動作が未定義になります。代わりに `SetIfAbsentOrEqual` `SetIfPresentAndNotEqual` を使用してください。
 :::
 
 指定されたキーが既にキャッシュ内に存在し、キャッシュ内の値が `notEqual` で指定された値と等しくない場合に、指定された値を指定されたキーのキャッシュアイテムに関連付ける。
@@ -492,6 +503,7 @@ TTLを減少させる場合のみ、keyのTTL秒数を指定された値に減�
 | key        | String \| Byte          | アイテムの型を返すkeyの指定。              |
 
 <details>
+
 <summary>メソッドのレスポンスオブジェクト</summary>
 
 * Cache hit
@@ -506,58 +518,9 @@ TTLを減少させる場合のみ、keyのTTL秒数を指定された値に減�
 
 <SdkExampleTabs snippetId={'API_ItemGetTtl'} />
 
-## 認証API
 
-これらのAPIは、Momentoの認証トークンやアクセスを管理するために使用されます。
 
-### GenerateApiKey
-
-指定した権限と有効期限を持つ新しいMomento認証トークンを生成します。
-
-| 名前            | 型            | 説明                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| scope           | PermissionScope      | 新しいトークンに付与する権限です。あらかじめ構築されたTokenScope オブジェクトは、SDKによって提供されます。 |
-| expiresIn       | ExpiresIn       | トークンが期限切れになるまでの秒数、または`never`の指定。              |
-
-<details>
-<summary>メソッドのレスポンスオブジェクト</summary>
-
-* Success
-- `authToken`: string - the new auth token
-- `refreshToken`: string - a refresh token that can be used with the `RefreshApiKey` API to refresh the token before it expires
-- `expiresAt`: Timestamp - the timestamp at which the token will expire
-* Error
-
-具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
-
-</details>
-
-<SdkExampleTabs snippetId={'API_GenerateApiKey'} />
-
-### RefreshApiKey
-
-既存の有効期限内のMomento認証トークンを更新します。元のトークンと同じ権限と有効期限を持つ 新しいトークンを生成します。
-
-| 名前            | 型            | 説明                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| refreshToken    | String          | 最初の`GenerateApiKey`の呼び出しから取得した、現在の認証トー クンのrefreshTokenを指定。 |
-
-<details>
-<summary>メソッドのレスポンスオブジェクト</summary>
-
-* Success
-- `authToken`: string - the new auth token
-- `refreshToken`: string - a refresh token that can be used with the `RefreshApiKey` API to refresh the token before it expires
-- `expiresAt`: Timestamp - the timestamp at which the token will expire
-* Error
-
-具体的な情報については、[レスポンスオブジェクト](./response-objects.md)を参照してください。
-
-</details>
-
-<SdkExampleTabs snippetId={'API_RefreshApiKey'} />
-
-### コレクションデータ型
+## コレクションデータ型
 
 コレクション型は、ユースケースに応じて、さまざまなタイプの構造を含むことができます。サポートされ ているデータ型は以下の通りです:
 
@@ -567,3 +530,7 @@ TTLを減少させる場合のみ、keyのTTL秒数を指定された値に減�
 * [Sorted Sets(ソート済みセット型) ](./sorted-set-collections.md)は、ユニークな要素の順序付きコレクションです。各要素 は、値:スコアのペアを含んでいます。
 
 利用方法についての詳しい情報は、[コレクションデータ型](../basics/datatypes.md)をご覧ください。
+
+## SDK における API サポートの現状
+
+様々なSDK言語におけるAPIサポートの現状については、[言語サポートページ](../language-support/language-support.md)を参照してください。
