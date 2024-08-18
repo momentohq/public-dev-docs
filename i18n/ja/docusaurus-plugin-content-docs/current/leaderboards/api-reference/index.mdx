@@ -11,156 +11,38 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Momentoリーダーボードの使用
+# Using Momento Leaderboards
 
 Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービスであり、数千万のアイテムを持つリーダーボードと、迅速な取り込み/照会/更新をサポートします。
- 
 
-## リーダーボード・クライアントの方法
-
----
-
-<div class='row'>
-
-<div class='col col--6'>
-
-### リーダーボードクライアントの作成
-
-リーダーボードを作成し、操作するには、まずLeaderboardClientを作成する必要があります。
-
-#### パラメータ
----
-
-**configuration** - *LeaderboardConfiguration* 
-
-* リーダーボードクライアントを設定するためのオプションです。詳細については、[SDK Configuration Objects](/cache/develop/basics/client-configuration-objects) を参照してください。
-
----
-
-**credentialProvider** - *CredentialProvider*
-
-* Momento API キーの詳細については、[Instantiating CredentialProviders](/cache/develop#instantiating-credential-providers-using-momento-api-keys) を参照してください。
-
----
-
-#### オプション・パラメータ
----
-
-#### 戻り値
----
-
-新しいリーダーボードを作成し、既存のリーダーボードと相互作用することができる PreviewLeaderboardClient オブジェクト。
-
-</div>
-
-<div class='col col--6'>
-
-<SdkExampleTabs snippetId={'API_InstantiateLeaderboardClient'} />
-
-</div>
-
-</div> 
+## Leaderboard Client Methods
 
 ---
 
 <div class='row'>
 
-<div class='col col--6'>
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-### リーダーボードの作成
+        ### Create Leaderboard Client
 
-LeaderboardClient を使用して、キャッシュとリーダーボード名を指定してリーダーボードを作成します。
+        リーダーボードを作成し、操作するには、まずLeaderboardClientを作成する必要があります。
 
-#### パラメータ
----
+        #### Parameters
+        ----------------
+        - **configuration** - *LeaderboardConfiguration*: リーダーボードクライアントを設定するためのオプションです。詳細については、[SDK Configuration Objects](/cache/develop/basics/client-configuration-objects) を参照してください。
+        - **credentialProvider** - *CredentialProvider*: Momento API キーの使用については、[Instantiating CredentialProviders](/cache/develop#instantiating-credential-providers-using-momento-api-keys) を参照してください。
 
-**cacheName** - *string* 
+        #### Returns
+        ----------------
+        - 新しいリーダーボードを作成し、既存のリーダーボードと相互作用することができる PreviewLeaderboardClient オブジェクト
 
-* どのキャッシュにリーダーボードを作成するか
+    </div>
 
----
+    <div class='col col--8'>
 
-**leaderboardName** - *string*
+        <SdkExampleTabs snippetId={'API_InstantiateLeaderboardClient'} />
 
-* リーダーボードの名前をどうするか
-
----
-
-#### オプション・パラメータ
----
-
-#### 戻り値
----
-
-リーダーボードオブジェクトまたは[エラー](/leaderboards/api-reference/response-objects#error)
-
-</div>
-
-<div class='col col--6'>
-
-<SdkExampleTabs snippetId={'API_CreateLeaderboard'} />
-
-</div>
-
-</div>
-
----
-
-
-
-## リーダーボードの方法
-
----
-
-<div class='row'>
-
-<div class='col col--6'>
-
-### 要素のアップサート
-
-リーダボードにまだ要素が存在しない場合、要素を挿入します。要素がすでにリーダーボードに存在する場合は、要素を更新します。。upsert呼び出しは成功するか失敗するかのどちらかです。
-
-<details>
-  <summary>アップサートはバッチ操作として実装されているので、大規模なリーダーボードでは、最大8192要素のバッチでアップサートを行うことができます。 </summary>
-
-<SdkExampleTabs snippetId={'API_LeaderboardUpsertPagination'} />
-
-</details>
-
-#### パラメータ
----
-
-**elements** - *Dictionary* 
-
-* Dictionary of (id, score) pairs to upsert.
-
-  * id: integer
-  * score: double
-
-* idはプレイヤー識別子、セッション識別子、ブラウザ識別子、またはこのスコアボードに使いたい他の種類の識別子にすることができます。0から2^63-1まで、64ビットの符号なし整数で指定できます。
-
-* つまり、1人の選手が2つのIDを持っていない限り、2つのスコアを持つことはできません！
-
----
-
-#### オプション・パラメータ
----
-
-#### 戻り値
----
-
-以下のいずれか：
-
-* [LeaderboardUpsert.Success](/leaderboards/api-reference/response-objects#success) 
-* [LeaderboardUpsert.Error](/leaderboards/api-reference/response-objects#error)
-
-</div>
-
-<div class='col col--6'>
-
-<SdkExampleTabs snippetId={'API_LeaderboardUpsert'} />
-
-</div>
+    </div>
 
 </div>
 
@@ -168,78 +50,73 @@ LeaderboardClient を使用して、キャッシュとリーダーボード名�
 
 <div class='row'>
 
-<div class='col col--6'>
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-### スコアで要素を取得
+        ### Create a Leaderboard
 
-指定された最小スコアと最大スコアの範囲内にある要素を取得します。
+        LeaderboardClient を使用して、キャッシュとリーダーボード名を指定してリーダーボードを作成します。
 
-同じスコアを持つ要素は、そのIDに基づいた英数字の順番で返されます（例えば、同じスコアを持つ要素のIDは、`[1, 2, 10, 123, 2, 234, ...]` ではなく `[1, 10, 123, 234, ...]` の順番で返されます）。
+        #### Parameters
+        ----------------
+        - **cacheName** - *string*: どのキャッシュにリーダーボードを作成するか
+        - **leaderboardName** - *string*: リーダーボードの名前
 
-<details>
-  <summary>FetchByScoreはバッチ操作として実装されているので、大規模なリーダーボードでは、最大8192個の要素をバッチでフェッチすることができます。</summary>
+        #### Returns
+        ----------------
+        - Leaderboard object or [Error](/leaderboards/api-reference/response-objects#error)
 
-`offset`パラメータを使用すると、要求されたスコア範囲内にある複数の要素を、要求された要素の終わりを示す空のリストを受け取るまで、ページ送りすることができます。
+    </div>
 
-<SdkExampleTabs snippetId={'API_LeaderboardFetchByScorePagination'} />
+    <div class='col col--8'>
 
-</details>
+        <SdkExampleTabs snippetId={'API_CreateLeaderboard'} />
 
-#### パラメータ
----
-
-#### オプション・パラメータ
----
-
-**minScore** - *double* 
-
-* スコア範囲の下限を含む。デフォルトは `-inf` です。
-
----
-
-**maxScore** - *double*
-
-* スコア範囲の排他的上限値。デフォルトは `+inf` です。
-
----
-
-**order** - *LeaderboardOrder enum*
-
-* Enum values: Ascending, Descending
-
-* 要素を取得する順番。デフォルトは昇順で、0が最も低いスコアとなります。
-
----
-
-**offset** - *integer*
-
-* 最初の要素を返す前にスキップする要素数。デフォルトは0。
-
-* Note: これは最初に返す要素のスコアではなく、最初の要素を返す前にスキップする結果セットの要素数です。
-
----
-
-**count** - *integer*
-
-* 返す要素の最大数。デフォルトは 8192 で、これはリクエストごとに取得できる最大数です。
-
----
-
-#### 戻り値
----
-
-以下のいずれか：
-
-* [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#leaderboardfetchsuccess) 
-* [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
+    </div>
 
 </div>
 
-<div class='col col--6'>
+---
 
-<SdkExampleTabs snippetId={'API_LeaderboardFetchByScore'} />
+## Leaderboard Methods
 
-</div>
+---
+
+<div class='row'>
+
+    <div class='col col--4' style={{paddingRight: '20px'}}>
+
+        ### Upsert elements
+
+        リーダボードにまだ要素が存在しない場合、要素を挿入する。要素がすでにリーダーボードに存在する場合は、要素を更新する。upsert呼び出しは成功するか失敗するかのどちらかです。
+
+        #### Parameters
+        ----------------
+        - **elements** - *Dictionary*: upsert する (id, score) ペアのDictionary。
+            - id: integer
+            - score: double
+
+        - idはプレイヤー識別子、セッション識別子、ブラウザ識別子、またはこのスコアボードに使いたい他の種類の識別子にすることができます。0から2^63-1まで、64ビットの符号なし整数で指定できます。
+
+        - つまり、1人の選手が2つのIDを持っていない限り、2つのスコアを持つことはできません！
+
+        #### Returns
+        ----------------
+        以下のいずれか:
+        - [LeaderboardUpsert.Success](/leaderboards/api-reference/response-objects#success)
+        - [LeaderboardUpsert.Error](/leaderboards/api-reference/response-objects#error)
+
+    </div>
+
+    <div class='col col--8'>
+
+        <SdkExampleTabs snippetId={'API_LeaderboardUpsert'} />
+        <details>
+            <summary>アップサートはバッチ操作として実装されているので、大規模なリーダーボードでは、最大8192要素のバッチでアップサートを行うことができます。 </summary>
+
+            <SdkExampleTabs snippetId={'API_LeaderboardUpsertPagination'} />
+
+        </details>
+    </div>
 
 </div>
 
@@ -247,60 +124,47 @@ LeaderboardClient を使用して、キャッシュとリーダーボード名�
 
 <div class='row'>
 
-<div class='col col--6'>
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-### ランク別に要素を取り出す
+        ### Fetch elements by score
 
-指定された最小ランクと最大ランクの範囲内にある要素を取得する。
+        指定された最小スコアと最大スコアの範囲内にある要素を取得する。
 
-<details>
-  <summary>大規模なリーダーボードでは、最大8192個の要素を一括でフェッチすることができます。</summary>
+        同じスコアを持つ要素は、そのIDに基づいて英数字順に返されます（例えば、同じスコアを持つ要素のIDは、[1, 2, 10, 123, 234, ...]ではなく、[1, 10, 123, 2, 234, ...]の順に返されます）。
 
-<SdkExampleTabs snippetId={'API_LeaderboardFetchByRankPagination'} />
 
-</details>
+        #### Parameters
+        ----------------
 
-#### パラメータ
----
+        #### Optional Parameters
+        ----------------
+        - **minScore** - *double*: スコア範囲の下限を含む。デフォルトは `-inf` 
+        - **maxScore** - *double*: スコア範囲の排他的上限。デフォルトは `+inf`
+        - **order** - *LeaderboardOrder enum*: 要素を取得する順番。デフォルトは昇順で、0が最も低いスコア
+        - **offset** - *integer*: 最初の要素を返す前にスキップする要素数。デフォルトは0
+        - **count** - *integer*: 返す要素の最大数。デフォルトは8192。
 
-**startRank** - *integer* 
+        #### Returns
+        ----------------
+        以下のいずれか:
+        - [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#success)
+        - [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
 
-* ランク範囲の包含下限。デフォルトは0。
+    </div>
 
----
+    <div class='col col--8'>
 
-**endRank** - *integer* 
+        <SdkExampleTabs snippetId={'API_LeaderboardFetchByScore'} />
+        <details>
+            <summary>FetchByScoreはバッチ操作として実装されているので、大規模なリーダーボードでは、最大8192個の要素をバッチでフェッチすることができます。</summary>
 
-* ランク範囲の排他的な上限。デフォルトは `startRank` + 8192 です。
+            offset`パラメータを使用すると、要求されたスコア範囲内にある複数の要素を、要求された要素の終わりを示す空のリストを受け取るまで、ページ送りすることができます。
 
----
+            <SdkExampleTabs snippetId={'API_LeaderboardFetchByScorePagination'} />
 
-#### オプション・パラメータ
----
+        </details>
 
-**order** - *LeaderboardOrder enum*
-
-* Enum values: Ascending, Descending
-
-* 要素を取得する順番。デフォルトは昇順で、0が最も低いスコアとなります。
-
----
-
-#### 戻り値
----
-
-以下のいずれか：
-
-* [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#leaderboardfetchsuccess) 
-* [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
-
-</div>
-
-<div class='col col--6'>
-
-<SdkExampleTabs snippetId={'API_LeaderboardFetchByRank'} />
-
-</div>
+    </div>
 
 </div>
 
@@ -308,47 +172,40 @@ LeaderboardClient を使用して、キャッシュとリーダーボード名�
 
 <div class='row'>
 
-<div class='col col--6'>
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-### IDで要素を取り出す
+        ### Fetch elements by rank
 
-要素IDのリストが与えられた要素を取得します。
+        指定された最小ランクと最大ランクの範囲内にある要素を取得する。
 
-#### パラメータ
----
+        #### Parameters
+        ----------------
+        - **startRank** - *integer*: ランク範囲の包含下限。デフォルトは0
+        - **endRank** - *integer*: ランク範囲の排他的な上限。デフォルトは `startRank` + 8192 
 
-**ids** - *List* 
+        #### Optional Parameters
+        ----------------
+        - **order** - *LeaderboardOrder enum*: 要素を取得する順番。デフォルトは昇順で、0が最も低いスコア
 
-* フェッチする要素のIDを表す整数のリスト。
+        #### Returns
+        ----------------
+        以下のいずれか:
+        - [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#success)
+        - [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
 
----
+    </div>
 
-#### オプション・パラメータ
----
+    <div class='col col--8'>
 
-**order** - *LeaderboardOrder enum*
+        <SdkExampleTabs snippetId={'API_LeaderboardFetchByRank'} />
+        <details>
+            <summary>大規模なリーダーボードでは、最大8192個の要素を一括でフェッチする必要があります。</summary>
 
-* Enum values: Ascending, Descending
+            <SdkExampleTabs snippetId={'API_LeaderboardFetchByRankPagination'} />
 
-* 要素を取得する順番。デフォルトは昇順で、0が最も低いスコアとなります。
+        </details>
 
----
-
-#### 戻り値
----
-
-以下のいずれか：
-
-* [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#leaderboardfetchsuccess) 
-* [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
-
-</div>
-
-<div class='col col--6'>
-
-<SdkExampleTabs snippetId={'API_LeaderboardGetRank'} />
-
-</div>
+    </div>
 
 </div>
 
@@ -356,79 +213,33 @@ LeaderboardClient を使用して、キャッシュとリーダーボード名�
 
 <div class='row'>
 
-<div class='col col--6'>
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-### リーダーボードの長さを取得
+        ### Fetch elements by ID
 
-リーダーボードのエントリー数を取得する。リーダーボードの名前は `Leaderboard` オブジェクトから推測される。
+        要素IDのリストが与えられた要素を取得する。
 
-#### パラメータ
----
+        #### Parameters
+        ----------------
+        - **ids** - *List*: フェッチする要素のIDを表す整数のリスト
 
-#### オプション・パラメータ
----
+        #### Optional Parameters
+        ----------------
+        - **order** - *LeaderboardOrder enum*: 要素を取得する順番。デフォルトは昇順で、0が最も低いスコア
 
-#### 戻り値
----
+        #### Returns
+        ----------------
+        以下のいずれか:
+        - [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#success)
+        - [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
 
-以下のいずれか：
+    </div>
 
-* [LeaderboardLength.Success](/leaderboards/api-reference/response-objects#leaderboardlengthsuccess) 
-* [LeaderboardLength.Error](/leaderboards/api-reference/response-objects#error)
+    <div class='col col--8'>
 
-</div>
+        <SdkExampleTabs snippetId={'API_LeaderboardGetRank'} />
 
-<div class='col col--6'>
-
-<SdkExampleTabs snippetId={'API_LeaderboardLength'} />
-
-</div>
-
-</div>
-
----
-
-<div class='row'>
-
-<div class='col col--6'>
-
-### 要素を取り除く
-
-指定されたIDを持つ要素を削除します。
-
-<details>
-  <summary>大規模なリーダーボードでは、最大8192個の要素を一括して削除できます。</summary>
-
-<SdkExampleTabs snippetId={'API_LeaderboardRemoveElementsPagination'} />
-
-</details>
-
-#### パラメータ
----
-
-**ids** - *List* 
-
-* 削除したい要素のIDのリスト
-
----
-
-#### オプション・パラメータ
----
-
-#### オプションパラメータ
----
-以下のいずれか：
-
-* [LeaderboardRemoveElements.Success](/leaderboards/api-reference/response-objects#success) 
-* [LeaderboardRemoveElements.Error](/leaderboards/api-reference/response-objects#error)
-
-</div>
-
-<div class='col col--6'>
-
-<SdkExampleTabs snippetId={'API_LeaderboardRemoveElements'} />
-
-</div>
+    </div>
 
 </div>
 
@@ -436,32 +247,93 @@ LeaderboardClient を使用して、キャッシュとリーダーボード名�
 
 <div class='row'>
 
-<div class='col col--6'>
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-### リーダーボードの削除
+        ### Get leaderboard length
 
-リーダーボードを削除する。リーダーボードの名前は `Leaderboard` オブジェクトから取得可能です。
+        リーダーボードのエントリー数を取得する。リーダーボードの名前は `Leaderboard` オブジェクトから推測される。
 
-#### パラメータ
+        #### Parameters
+        ----------------
+
+        #### Returns
+        ----------------
+        以下のいずれか:
+        - [LeaderboardLength.Success](/leaderboards/api-reference/response-objects#success)
+        - [LeaderboardLength.Error](/leaderboards/api-reference/response-objects#error)
+
+    </div>
+
+    <div class='col col--8'>
+
+        <SdkExampleTabs snippetId={'API_LeaderboardLength'} />
+
+    </div>
+
+</div>
+
 ---
 
-#### オプションパラメータ
----
+<div class='row'>
 
-#### 戻り値
----
-以下のいずれか：
+    <div class='col col--4' style={{paddingRight: '20px'}}>
 
-* [LeaderboardDelete.Success](/leaderboards/api-reference/response-objects#success) 
-* [LeaderboardDelete.Error](/leaderboards/api-reference/response-objects#error)
+        ### Remove elements
+
+        指定されたIDを持つ要素を削除します。
+
+        #### Parameters
+        ----------------
+        - **ids** - *List*: 削除したい要素のIDのリスト
+
+        #### Returns
+        ----------------
+        以下のいずれか:
+        - [LeaderboardRemoveElements.Success](/leaderboards/api-reference/response-objects#success)
+        - [LeaderboardRemoveElements.Error](/leaderboards/api-reference/response-objects#error)
+
+    </div>
+
+    <div class='col col--8'>
+
+        <SdkExampleTabs snippetId={'API_LeaderboardRemoveElements'} />
+        <details>
+            <summary>大規模なリーダーボードでは、最大8192個の要素を一括して削除する必要があります。</summary>
+
+            <SdkExampleTabs snippetId={'API_LeaderboardRemoveElementsPagination'} />
+
+        </details>
+
+    </div>
 
 </div>
 
-<div class='col col--6'>
+---
 
-<SdkExampleTabs snippetId={'API_LeaderboardDelete'} />
+<div class='row'>
 
-</div>
+    <div class='col col--4' style={{paddingRight: '20px'}}>
+
+        ### Delete leaderboard
+
+        リーダーボードを削除する。リーダーボード名はリーダーボードオブジェクトから推測されます。
+
+        #### Parameters
+        ----------------
+
+        #### Returns
+        ----------------
+        以下のいずれか:
+        - [LeaderboardDelete.Success](/leaderboards/api-reference/response-objects#success)
+        - [LeaderboardDelete.Error](/leaderboards/api-reference/response-objects#error)
+
+    </div>
+
+    <div class='col col--8'>
+
+        <SdkExampleTabs snippetId={'API_LeaderboardDelete'} />
+
+    </div>
 
 </div>
 
