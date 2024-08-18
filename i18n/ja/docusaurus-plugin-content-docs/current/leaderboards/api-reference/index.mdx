@@ -11,11 +11,11 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 // plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
-# Momentoリーダーボードの使用
+# Using Momento Leaderboards
 
 Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービスであり、数千万のアイテムを持つリーダーボードと、迅速な取り込み/照会/更新をサポートします。
 
-## リーダーボード・クライアントの方法
+## Leaderboard Client Methods
 
 ---
 
@@ -25,12 +25,12 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
         ### Create Leaderboard Client
 
-        To create and interact with leaderboards, you must first create a LeaderboardClient.
+        リーダーボードを作成し、操作するには、まずLeaderboardClientを作成する必要があります。
 
         #### Parameters
         ----------------
-        - **configuration** - *LeaderboardConfiguration*: リーダーボードクライアントを設定するためのオプションです。詳細については、[SDK Configuration Objects](/cache/develop/basics/client-configuration-objects) を参照してください
-        - **credentialProvider** - *CredentialProvider*: Momento API キーの使用については、[Instantiating CredentialProviders](/cache/develop#instantiating-credential-providers-using-momento-api-keys) を参照してください
+        - **configuration** - *LeaderboardConfiguration*: リーダーボードクライアントを設定するためのオプションです。詳細については、[SDK Configuration Objects](/cache/develop/basics/client-configuration-objects) を参照してください。
+        - **credentialProvider** - *CredentialProvider*: Momento API キーの使用については、[Instantiating CredentialProviders](/cache/develop#instantiating-credential-providers-using-momento-api-keys) を参照してください。
 
         #### Returns
         ----------------
@@ -44,7 +44,7 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
     </div>
 
-</div> 
+</div>
 
 ---
 
@@ -59,11 +59,11 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
         #### Parameters
         ----------------
         - **cacheName** - *string*: どのキャッシュにリーダーボードを作成するか
-        - **leaderboardName** - *string*: リーダーボードの名前をどうするか
+        - **leaderboardName** - *string*: リーダーボードの名前
 
         #### Returns
         ----------------
-        - リーダーボードオブジェクトまたは[エラー](/leaderboards/api-reference/response-objects#error)
+        - Leaderboard object or [Error](/leaderboards/api-reference/response-objects#error)
 
     </div>
 
@@ -77,7 +77,7 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
 ---
 
-## リーダーボードの方法
+## Leaderboard Methods
 
 ---
 
@@ -87,7 +87,7 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
         ### Upsert elements
 
-        リーダボードにまだ要素が存在しない場合、要素を挿入する。要素がすでにリーダーボードに存在する場合は、要素を更新します。upsert呼び出しは成功するか失敗するかのどちらかです。
+        リーダボードにまだ要素が存在しない場合、要素を挿入する。要素がすでにリーダーボードに存在する場合は、要素を更新する。upsert呼び出しは成功するか失敗するかのどちらかです。
 
         #### Parameters
         ----------------
@@ -111,7 +111,7 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
         <SdkExampleTabs snippetId={'API_LeaderboardUpsert'} />
         <details>
-            <summary>アップサートはバッチ操作として実装されているので、大規模なリーダーボードでは、最大8192要素のバッチでアップサートを行うことができます。</summary>
+            <summary>アップサートはバッチ操作として実装されているので、大規模なリーダーボードでは、最大8192要素のバッチでアップサートを行うことができます。 </summary>
 
             <SdkExampleTabs snippetId={'API_LeaderboardUpsertPagination'} />
 
@@ -126,9 +126,9 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
     <div class='col col--4' style={{paddingRight: '20px'}}>
 
-        ### スコアで要素を取得
+        ### Fetch elements by score
 
-        指定された最小スコアと最大スコアの範囲内にある要素を取得します。
+        指定された最小スコアと最大スコアの範囲内にある要素を取得する。
 
         同じスコアを持つ要素は、そのIDに基づいて英数字順に返されます（例えば、同じスコアを持つ要素のIDは、[1, 2, 10, 123, 234, ...]ではなく、[1, 10, 123, 2, 234, ...]の順に返されます）。
 
@@ -138,15 +138,15 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
         #### Optional Parameters
         ----------------
-        - **minScore** - *double*: スコア範囲の下限を含む。デフォルトは `-inf` である
-        - **maxScore** - *double*: スコア範囲の排他的上限値。デフォルトは `+inf` である
-        - **order** - *LeaderboardOrder enum*: 要素を取得する順番。デフォルトは昇順で、0が最も低いスコアとなる
+        - **minScore** - *double*: スコア範囲の下限を含む。デフォルトは `-inf` 
+        - **maxScore** - *double*: スコア範囲の排他的上限。デフォルトは `+inf`
+        - **order** - *LeaderboardOrder enum*: 要素を取得する順番。デフォルトは昇順で、0が最も低いスコア
         - **offset** - *integer*: 最初の要素を返す前にスキップする要素数。デフォルトは0
-        - **count** - *integer*: 返す要素の最大数。デフォルトは8192
+        - **count** - *integer*: 返す要素の最大数。デフォルトは8192。
 
         #### Returns
         ----------------
-        以下のいずれか
+        以下のいずれか:
         - [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#success)
         - [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
 
@@ -156,9 +156,9 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
         <SdkExampleTabs snippetId={'API_LeaderboardFetchByScore'} />
         <details>
-            <summary>FetchByScoreはバッチ処理として実装されているため、大規模なリーダーボードの場合、最大8192要素のバッチでフェッチすることができます。</summary>
+            <summary>FetchByScoreはバッチ操作として実装されているので、大規模なリーダーボードでは、最大8192個の要素をバッチでフェッチすることができます。</summary>
 
-            `offset`パラメータを使用すると、要求されたスコア範囲内にある複数の要素を、要求された要素の終わりを示す空のリストを受け取るまで、ページ送りすることができます。
+            offset`パラメータを使用すると、要求されたスコア範囲内にある複数の要素を、要求された要素の終わりを示す空のリストを受け取るまで、ページ送りすることができます。
 
             <SdkExampleTabs snippetId={'API_LeaderboardFetchByScorePagination'} />
 
@@ -174,18 +174,18 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
     <div class='col col--4' style={{paddingRight: '20px'}}>
 
-        ### ランク別に要素を取り出す
+        ### Fetch elements by rank
 
-                指定された最小ランクと最大ランクの範囲内にある要素を取得する。
+        指定された最小ランクと最大ランクの範囲内にある要素を取得する。
 
         #### Parameters
         ----------------
-        - **startRank** - *integer*: ランク範囲の包含下限。デフォルトは0。
+        - **startRank** - *integer*: ランク範囲の包含下限。デフォルトは0
         - **endRank** - *integer*: ランク範囲の排他的な上限。デフォルトは `startRank` + 8192 
 
         #### Optional Parameters
         ----------------
-        - **order** - *LeaderboardOrder enum*: 要素を取得する順番。デフォルトは昇順で、0が最も低いスコアとなる
+        - **order** - *LeaderboardOrder enum*: 要素を取得する順番。デフォルトは昇順で、0が最も低いスコア
 
         #### Returns
         ----------------
@@ -199,13 +199,13 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
         <SdkExampleTabs snippetId={'API_LeaderboardFetchByRank'} />
         <details>
-            <summary>大規模なリーダーボードでは、最大8192個の要素を一括でフェッチする必要があります</summary>
+            <summary>大規模なリーダーボードでは、最大8192個の要素を一括でフェッチする必要があります。</summary>
 
-               </div>
+            <SdkExampleTabs snippetId={'API_LeaderboardFetchByRankPagination'} />
 
         </details>
 
-   </div>
+    </div>
 
 </div>
 
@@ -215,7 +215,7 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
     <div class='col col--4' style={{paddingRight: '20px'}}>
 
-        ### IDで要素を取り出す
+        ### Fetch elements by ID
 
         要素IDのリストが与えられた要素を取得する。
 
@@ -225,7 +225,7 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
         #### Optional Parameters
         ----------------
-        - **order** - *LeaderboardOrder enum*: 要素を取得する順番。デフォルトは昇順で、0が最も低いスコアとなる
+        - **order** - *LeaderboardOrder enum*: 要素を取得する順番。デフォルトは昇順で、0が最も低いスコア
 
         #### Returns
         ----------------
@@ -233,7 +233,7 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
         - [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#success)
         - [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
 
-以下のいずれか：
+    </div>
 
     <div class='col col--8'>
 
@@ -251,7 +251,7 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
         ### Get leaderboard length
 
-        リーダーボードのエントリー数を取得する。リーダーボードの名前は `Leaderboard` オブジェクトから推測されます。
+        リーダーボードのエントリー数を取得する。リーダーボードの名前は `Leaderboard` オブジェクトから推測される。
 
         #### Parameters
         ----------------
@@ -298,13 +298,13 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
         <SdkExampleTabs snippetId={'API_LeaderboardRemoveElements'} />
         <details>
-            <summary>大規模なリーダーボードでは、最大8192個の要素を一括して削除する必要があります</summary>
+            <summary>大規模なリーダーボードでは、最大8192個の要素を一括して削除する必要があります。</summary>
 
             <SdkExampleTabs snippetId={'API_LeaderboardRemoveElementsPagination'} />
 
         </details>
 
-   </div>
+    </div>
 
 </div>
 
