@@ -66,7 +66,7 @@ S3:
 
 API Gateway:
 - GetRestApis: 10 TPS
-- GetRestApi
+- GetRestApi: 10 TPS
 
 Cloud Linter is designed to always stay within these specified limits. It's crafted with careful consideration to avoid generating any traffic to these APIs that could lead to AWS throttling or disrupt the normal operations of your AWS resources.
 Please note that while the average running time typically spans 15 minutes, this can vary significantly based on the volume of data being processed. Therefore, the process may extend up to 1 hour in some cases.
