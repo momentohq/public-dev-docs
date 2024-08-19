@@ -43,46 +43,55 @@ export default function Home(): JSX.Element {
       <main className={styles.content}>
         <img className={styles.headerBackground} src="/img/acorn-grid-background.svg"  alt={"acorn-grid"}/>
         <div className={styles.contentContainer}>
-          <RotatingHeader />
+          <RotatingHeader/>
           <div className={styles.desktopOnly}>
             <div className={styles.columns}>
               <div>
                 <h2>Cache</h2>
                 <ul className={styles.columnList}>
-                  <li><a href="/cache/getting-started"><Translate id="gettingStarted">Getting started</Translate></a></li>
-                  <li><a href="/cache/develop/api-reference"><Translate id="apiReference">API reference</Translate></a></li>
-                  <li><a href="/cache/integrations/redis-client-compatibility"><Translate id="dropInReplacementsForRedis">Drop-in replacements for Redis</Translate></a></li>
-                  <li><a href="/cache/develop/guides/working-with-files-cache"><Translate id="howToCacheFiles">How to cache files</Translate></a></li>
+                  <li><a href="/cache/getting-started"><Translate id="gettingStarted">Getting started</Translate></a>
+                  </li>
+                  <li><a href="/cache/develop/api-reference"><Translate id="apiReference">API reference</Translate></a>
+                  </li>
+                  <li><a href="/cache/integrations/redis-client-compatibility"><Translate
+                      id="dropInReplacementsForRedis">Drop-in replacements for Redis</Translate></a></li>
+                  <li><a href="/cache/develop/guides/working-with-files-cache"><Translate id="howToCacheFiles">How to
+                    cache files</Translate></a></li>
                 </ul>
               </div>
               <div>
                 <h2>Topics</h2>
                 <ul className={styles.columnList}>
-                  <li><a href="/topics"><Translate id="aboutOurServerlessEventBus">About our serverless event bus</Translate></a></li>
-                  <li><a href="/topics/integrations/lambda-handler"><Translate id="integrateWithAmazonEventBridge">Integrate with Amazon EventBridge</Translate></a></li>
+                  <li><a href="/topics"><Translate id="aboutOurServerlessEventBus">About our serverless event
+                    bus</Translate></a></li>
+                  <li><a href="/topics/integrations/lambda-handler"><Translate id="integrateWithAmazonEventBridge">Integrate
+                    with Amazon EventBridge</Translate></a></li>
                   <li><a href="/topics/webhooks"><Translate id="webhooksOverview">Webhooks overview</Translate></a></li>
                   <li>
 
-                    <a href="https://www.gomomento.com/blog/how-to-create-a-slack-workflow-with-webhooks-in-momento-topics" target='_blank'>
+                    <a href="https://www.gomomento.com/blog/how-to-create-a-slack-workflow-with-webhooks-in-momento-topics"
+                       target='_blank'>
                       <div className={styles.openInNew}>
-                      <span><Translate id="publishMessagesToSlack">Publish messages to Slack</Translate></span>
-                        <IoOpenOutline />
+                        <span><Translate id="publishMessagesToSlack">Publish messages to Slack</Translate></span>
+                        <IoOpenOutline/>
                       </div>
                     </a>
                   </li>
                 </ul>
               </div>
               <div>
-              <h2><Translate id="forDevelopers">For developers</Translate></h2>
+                <h2><Translate id="forDevelopers">For developers</Translate></h2>
                 <ul className={styles.columnList}>
                   <li><a href="/sdks"><Translate id="availableSDKs">Available SDKs</Translate></a></li>
-                  <li><a href="/cache/develop/authentication"><Translate id="authenticationAndAccessControl">Authentication and access control</Translate></a></li>
-                  <li><a href="/cache/develop/basics/error-handling-production-readiness"><Translate id="properlyHandlingErrorsInMomento">Properly handling errors in Momento</Translate></a></li>
+                  <li><a href="/cache/develop/authentication"><Translate id="authenticationAndAccessControl">Authentication
+                    and access control</Translate></a></li>
+                  <li><a href="/cache/develop/basics/error-handling-production-readiness"><Translate
+                      id="properlyHandlingErrorsInMomento">Properly handling errors in Momento</Translate></a></li>
                   <li>
                     <a href="https://aws.amazon.com/marketplace/pp/prodview-tntv64zqgaqm2" target="_blank">
                       <div className={styles.openInNew}>
                         <span><Translate id="momentoOnAWSMarketplace">Momento on AWS Marketplace</Translate></span>
-                        <IoOpenOutline />
+                        <IoOpenOutline/>
                       </div>
                     </a>
                   </li>
@@ -93,34 +102,49 @@ export default function Home(): JSX.Element {
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}><Translate id="Overview">Overview</Translate></h2>
             <p>
-            <Translate id="momentoSimplifiesCloudArchitecture">Momento simplifies cloud architecture and automates resource management so developers can build from zero to global scale without distractions.
-              With our flagship </Translate><b>Cache</b> <Translate id="and">and</Translate> <b>Topics</b> <Translate id="servicesMomentoProvidesDevelopers">services, Momento provides developers the building blocks they need to focus on the thing that matters
+              <Translate id="momentoSimplifiesCloudArchitecture">Momento simplifies cloud architecture and automates
+                resource management so developers can build from zero to global scale without distractions.
+                With our flagship </Translate><b>Cache</b> <Translate id="and">and</Translate> <b>Topics</b> <Translate
+                id="servicesMomentoProvidesDevelopers">services, Momento provides developers the building blocks they
+              need to focus on the thing that matters
               most: </Translate><i><Translate id="yourBusinessProblem">your business problem</Translate></i>.
             </p>
             <div className={styles.columns}>
               <div className={styles.subsectionDetail}>
-                <h2 className={styles.subsectionTitle}><Translate id="ItsAbout">It's about </Translate><i><Translate id="developerProductivity">developer productivity</Translate></i></h2>
+                <h2 className={styles.subsectionTitle}><Translate id="ItsAbout">It's about </Translate><i><Translate
+                    id="developerProductivity">developer productivity</Translate></i></h2>
                 <p>
-                <Translate id="weWantYouToMoveAsFastAsPossible">We want you to move as fast as possible. Whether your database is pushing millions of transactions per second or you're publishing messages to tens of
-                  thousands of subscribers, Momento is with you managing the infrastructure, tackling scaling events, and providing you with simple API calls.</Translate>
+                  <Translate id="weWantYouToMoveAsFastAsPossible">We want you to move as fast as possible. Whether your
+                    database is pushing millions of transactions per second or you're publishing messages to tens of
+                    thousands of subscribers, Momento is with you managing the infrastructure, tackling scaling events,
+                    and providing you with simple API calls.</Translate>
                 </p>
 
-                <h2 className={styles.subsectionTitle}><Translate id="weGoWhereYouGo">We go where you go</Translate></h2>
+                <h2 className={styles.subsectionTitle}><Translate id="weGoWhereYouGo">We go where you go</Translate>
+                </h2>
                 <p>
-                <Translate id="momentoWorksHardToProvideDevelopers">Momento works hard to provide developers with SDKs in as many programming languages possible. We have clients for all types of projects: browsers, Android
-                  development, iOS apps, and 10+ server-side languages. Looking for tuned clients for your production environment or Lambda function? Our SDKs have</Translate>
-                  <a href="/cache/develop/basics/client-configuration-objects#pre-built-configurations"><Translate id="optimizedConfigurations">optimized configurations</Translate></a> <Translate id="forAnywhereDevelopmentTakesYou">for anywhere development takes you.</Translate>
+                  <Translate id="momentoWorksHardToProvideDevelopers">Momento works hard to provide developers with SDKs
+                    in as many programming languages possible. We have clients for all types of projects: browsers,
+                    Android
+                    development, iOS apps, and 10+ server-side languages. Looking for tuned clients for your production
+                    environment or Lambda function? Our SDKs have</Translate>
+                  <a href="/cache/develop/basics/client-configuration-objects#pre-built-configurations"><Translate
+                      id="optimizedConfigurations">optimized configurations</Translate></a> <Translate
+                    id="forAnywhereDevelopmentTakesYou">for anywhere development takes you.</Translate>
                 </p>
               </div>
               <div className={styles.subsectionGraphic}>
-                <img src="/img/landing-page-detail-graphic.png" width={300} />
+                <img src="/img/landing-page-detail-graphic.png" width={300}/>
               </div>
             </div>
-            <h2 className={styles.subsectionTitle}><Translate id="simplifyYourCloudArchitecture">Simplify your cloud architecture</Translate></h2>
+            <h2 className={styles.subsectionTitle}><Translate id="simplifyYourCloudArchitecture">Simplify your cloud
+              architecture</Translate></h2>
             <p>
-            <Translate id="buildingRobust">Building robust, fault-tolerant systems at scale in the cloud is tough. We know. Lean on Momento's expertise to handle the infrastructure for you. Say
-              goodbye to advanced networking, aggressive load balancing and scaling configurations, and complex WebSocket architectures. With Momento Cache and Topics,
-              it's all managed for you - and getting better every day.</Translate>
+              <Translate id="buildingRobust">Building robust, fault-tolerant systems at scale in the cloud is tough. We
+                know. Lean on Momento's expertise to handle the infrastructure for you. Say
+                goodbye to advanced networking, aggressive load balancing and scaling configurations, and complex
+                WebSocket architectures. With Momento Cache and Topics,
+                it's all managed for you - and getting better every day.</Translate>
             </p>
           </div>
           <div className={styles.section}>
@@ -128,28 +152,37 @@ export default function Home(): JSX.Element {
             <div className={styles.productWrapper}>
               <CardGrid variant='dense'>
                 <LinkCard
-                  alignItems='center'
-                  title="Cache"
-                  link="/cache"
-                  description="low-latency ephemeral storage"
-                  icon="/img/cache/momento-cache-brand-icon.svg"
+                    alignItems='center'
+                    title="Cache"
+                    link="/cache"
+                    description="low-latency ephemeral storage"
+                    icon="/img/cache/momento-cache-brand-icon.svg"
                 />
                 <LinkCard
-                  alignItems='center'
-                  title="Topics"
-                  link="/topics"
-                  description="low-latency ephemeral event bus"
-                  icon="/img/topics/momento-topics-brand-icons.svg"
+                    alignItems='center'
+                    title="Topics"
+                    link="/topics"
+                    description="low-latency ephemeral event bus"
+                    icon="/img/topics/momento-topics-brand-icons.svg"
                 />
                 <LinkCard
-                  alignItems='center'
-                  title="Leaderboards"
-                  link="/leaderboards"
-                  description="massive, durable sorted sets"
-                  icon="/img/leaderboards/momento-leaderboards-2d.svg"
+                    alignItems='center'
+                    title="Leaderboards"
+                    link="/leaderboards"
+                    description="massive, durable sorted sets"
+                    icon="/img/leaderboards/momento-leaderboards-2d.svg"
                 />
               </CardGrid>
             </div>
+          </div>
+          <div className={styles.highlightedSection}>
+            <h2 className={styles.highlightedTitle}><Translate id="AccountSharing">Account Sharing</Translate></h2>
+            <p className={styles.highlightedDescription}>
+              <Translate id="momentoAccountSharingFeature">Momento now supports account sharing, making it easy to manage and collaborate with your team. Simplify access and improve workflows with our new account-sharing functionality. Learn more about how to set it up and use it effectively.</Translate>
+            </p>
+            <a href="/account-sharing" className={styles.learnMoreLink}>
+              <Translate id="learnMore">Learn More</Translate>
+            </a>
           </div>
         </div>
       </main>
