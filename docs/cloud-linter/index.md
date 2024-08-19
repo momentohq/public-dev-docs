@@ -43,8 +43,8 @@ Cloud Linter is intended to interact with the following AWS services via their r
 - Amazon CloudWatch
 
 It can optionally interact with the following AWS services:
-- Amazon S3, using the `-enable-s3` option
-- Amazon API Gateway, using the `-enable-api-gateway` option
+- Amazon S3, using the `--enable-s3` option
+- Amazon API Gateway, using the `--enable-api-gateway` option
 
 The usage of the software is limited to the following API calls and transactions per second (TPS):
 
