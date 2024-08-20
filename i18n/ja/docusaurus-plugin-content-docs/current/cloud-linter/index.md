@@ -42,6 +42,11 @@ Cloud Linterは、それぞれのコントロールプレーンAPIを介して�
 - Amazon ElastiCache
 - Amazon CloudWatch
 
+オプションで以下のAWSサービスとやりとりできます：
+- Amazon S3, `--enable-s3` オプションを使用する
+- Amazon API Gateway, `--enable-api-gateway` オプションを使用する
+
+
 ソフトウェアの使用は、以下のAPIコールと1秒あたりのトランザクション（TPS）に制限されています：
 
 Elasticache:
@@ -55,6 +60,14 @@ DynamoDB:
 
 CloudWatch:
 - GetMetricData: 20 TPS
+
+S3:
+- ListBuckets
+- ListBucketMetricsConfigurations: 10 TPS
+
+API Gateway:
+- GetRestApis: 10 TPS
+- GetRestApi: 10 TPS
 
 Cloud Linterは常にこれらの指定された制限内に収まるように設計されています。AWSのスロットリングやAWSリソースの正常な運用に支障をきたすようなAPIへのトラフィックを発生させないよう、細心の注意を払って作られています。
 平均実行時間は通常15分ですが、これは処理されるデータ量によって大きく変わる可能性があることに注意してください。そのため、場合によっては1時間程度かかることもあります。
