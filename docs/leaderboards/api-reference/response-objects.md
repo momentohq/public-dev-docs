@@ -17,29 +17,27 @@ Errors that occur in calls to the Momento Leaderboards service are surfaced to d
 
 ### Available methods
 
-- message(): String - a human readable error message
-- innerException(): Exception - the original exception.
-- errorCode(): MomentoErrorCode - Momento’s own category of errors such as InvalidArgument or BadRequest. See [Standards And Practices - Error Handling](https://github.com/momentohq/standards-and-practices/blob/main/docs/client-specifications/error-handling.md)
-- toString(): String - alias for message()
+- `message()`: String - a human readable error message
+- `innerException()`: Exception - the original exception.
+- `errorCode()`: MomentoErrorCode - Momento’s own category of errors such as InvalidArgument or BadRequest. See [Standards And Practices - Error Handling](https://github.com/momentohq/standards-and-practices/blob/main/docs/client-specifications/error-handling.md)
+- `toString()`: String - alias for message()
 
 ---
 
 ## Success
 
-Generic response object indicating a successful request with no additional methods attached. Variations of the Success response object include:
+Generic response object indicating a successful request with no additional methods attached. 
+
+Variations of the Success response object include:
 
 ### LeaderboardFetch
 
-Indicates a successful fetch request.
+Indicates a successful fetch request. Available methods include:
 
-#### Available methods
-
-- values(): List - returns a list of records containing the fields `id`, `score`, and `rank`
+- `values()`: List - returns a list of records containing the fields `id`, `score`, and `rank`
 
 ### LeaderboardLength
 
-Indicates a successful length request.
+Indicates a successful length request. Available methods include: 
 
-#### Available methods
-
-- length(): Integer - returns the number of elements in the specified leaderboard
+- `length()`: Integer - returns the number of elements in the specified leaderboard
