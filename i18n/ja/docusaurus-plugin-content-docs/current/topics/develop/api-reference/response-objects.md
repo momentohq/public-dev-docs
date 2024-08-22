@@ -1,58 +1,67 @@
 ---
 sidebar_position: 11
 sidebar_label: Response objects
-title: Response object API リファレンス
-pagination_next: null
+title: Momento Topicsのレスポンスオブジェクト API リファレンス
 description: Momento API におけるレスポンスオブジェクトとのやり取り方法を学びましょう。
 ---
 
-# Momento API からのレスポンスオブジェクト
+# Momento APIからのレスポンスオブジェクト
 
-これらはすべてのコマンドの基本的なレスポンスです。一部のコマンドでは、追加のデータや機能が提供される場合もあります。
+Momento レスポンスオブジェクトは親クラスから拡張され、`Success` や `Error` といった子型を持ち、パターンマッチによってアクセスできるように設計されている。(ある言語ではこの概念を「シールドクラス」と呼び、別の言語では「代数的データ型」と呼ぶ。ポリモーフィズムの一種である)。コードはレスポンスが `Success` か `Error` かをチェックし、それに応じて分岐する。この方法を使うと、型安全なレスポンスオブジェクトを得ることができ、それを使ってさらに情報を得ることができる。
 
-コマンドは、*一般的*に2つのカテゴリに分類されます。以下のようなレスポンスを返すものがあります。
-1. **Success or Error** - 例えば、Set 操作はその一例です。キャッシュにアイテムが正常に書き込まれた場合とエラーが発生した場合の2つのレスポンスがあります。
-2. **Hit, Miss, or Error** - 例えば、Get 操作はその一例です。要求されたアイテムがキャッシュに存在する場合、キャッシュヒットとなります。キャッシュに存在しない場合はキャッシュミスとなります。エラーが発生した場合はエラーとなります。
+---
 
-## Error
+## エラー
 
-例外の代わりに返されます。
+Momento Leaderboards サービスの呼び出しで発生したエラーは、例外のスローではなく、呼び出しの戻り値の一部として開発者に表示されます。これは、実行時にアプリケーションがクラッシュしないようにし、コードを書いているときにエラーをより見やすくし、気になるエラーを確実に処理するために IDE がより役立つようにします。この点に関する私たちの考え方については、ブログ記事「なぜ[例外はバグ]なのか」(https://www.gomomento.com/blog/exceptions-are-bugs)をご覧ください。また、ご意見があればお寄せください！
 
-### Constructor
-
-- innerException: Exception - エラーの原因となった例外
-
-### Methods
+### 利用可能なメソッド
 
 - message(): String - 読みやすいエラーメッセージ
 - innerException(): Exception - 元の例外
 - errorCode(): MomentoErrorCode - Momento 独自のエラーカテゴリ（例：InvalidArgument や BadRequest ）を指します。詳細は [Standards And Practices - Error Handling](https://github.com/momentohq/standards-and-practices/blob/main/docs/client-specifications/error-handling.md)を参照してください。
 - toString(): String - message() のエイリアスです。
 
+---
+
 ## Success
 
-コマンドは成功しました。
+追加のメソッドを持たない、リクエストの成功を示す汎用レスポンスオブジェクト。
 
-## Hit
+成功のレスポンス・オブジェクトのバリエーションには次のようなものがあります：
 
-キーまたはフィールドはキャッシュに存在します。通常、値を返すように拡張されます。
+### Subscription
 
-## Miss
+Momento トピックの購読が成功したことを示します。言語によっては、コールバック関数や、新しい購読アイテムのポーリングに使用できるイテレータが提供される場合があります。
 
-キーまたはフィールドはキャッシュに存在しません。
+利用可能なメソッドは以下の通り：
 
-## Set
+- `unsubscribe()`: void - トピックのサブスクリプションを終了します。
+  
+### ListWebhooks
 
-TTLコマンドに対して、更新が正常に適用されました。
+Webhooks リクエストのリストが成功したことを示します。利用可能なメソッドは以下のとおりです： 
 
-## NotSet
+- `getWebhooks()`: リスト - 既存の Webhook のリストを返します。各 [`Webhook` オブジェクト](./webhooks#webhook-object) は `destination`、`id`、`topicName` フィールドを含みます。
 
-TTL コマンドに対して、更新は適用されず、既存の TTL に変更はありませんでした。
+### PutWebhook
 
-## Stored
+put webhook リクエストが成功したことを示します。利用可能なメソッドは以下のとおりです： 
 
-setIf* コマンドにおいて、キーが存在せず、値が設定されました。
+- secretString()`： 文字列 - Webhookの署名の秘密を返す。
 
-## NotStored
+### GetWebhookSecret
 
-setIf* コマンドにおいて、キーが存在し、値は設定されませんでした。
+get webhook secret リクエストが成功したことを示します。利用可能なメソッドは以下のとおりです： 
+
+- `secret()`: 文字列 - Webhookの署名シークレットを返します。
+- `webhookName()`: 文字列 - Webhookの名前を返します。
+- `cacheName()`: 文字列 - webhook に関連付けられたキャッシュの名前を返します。
+
+### RotateWebhookSecret
+
+rotate webhook secret リクエストが成功したことを示します。利用可能なメソッドは以下のとおりです： 
+
+- `secret()`: 文字列 - webhookの署名シークレットを返します。
+- `webhookName()`: 文字列 - webhookの名前を返します。
+- `cacheName()`: 文字列 - webhookに関連付けられたキャッシュの名前を返します。
