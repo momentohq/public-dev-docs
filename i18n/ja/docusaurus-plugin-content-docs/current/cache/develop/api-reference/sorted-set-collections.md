@@ -232,11 +232,12 @@ You can remove either one or a specific group of elements.
 
 指定されたソートされた集合の中で、要素はどの位置にあるか？が分かります。
 
-| Name            | Type            | Description                                   |
-| --------------- | --------------- | --------------------------------------------- |
-| cacheName       | String          | キャッシュの名前                            |
-| setName         | String          | 変更するソートセットコレクションの名前。    |
-| value           | String \| Bytes | スコアを取得する要素の値。 |
+| Name      | Type                              | Description                                                         |
+|-----------|-----------------------------------|---------------------------------------------------------------------|
+| cacheName | String                            | キャッシュの名前                                              |
+| setName   | String                            | 変更されるコレクションの名前                  |
+| value     | String \| Bytes                   | スコアを取得する要素の値                     |
+| order     | Optional[Ascending \| Descending] | ソートされた集合が順位を決定するためにソートされる順序 |
 
 <details>
   <summary>Method response object</summary>
