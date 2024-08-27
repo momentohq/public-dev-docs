@@ -68,7 +68,7 @@ export class WolframWeatherDescriptionClient
   }
 }
 ```
-4. このシナリオがキャッシュに適していることを思い出してください。[Momento JavaScript SDK](../../sdks)を使って結果をキャッシュすることができます。
+4. このシナリオがキャッシュに適していることを思い出してください。[Momento JavaScript SDK](../../platform/sdks)を使って結果をキャッシュすることができます。
 コードの再利用性を高めるために、[Decorator パターン](https://en.wikipedia.org/wiki/Decorator_pattern) を使用して、`WeatherDescriptionClient` を抽象化した `WeatherDescriptionClient` の周りに `CachingWeatherDescriptionClient` をラップします。この場合、既存の `WolframWeatherDescriptionClient` のコード変更は必要ないことに注意してください。
 ```typescript
 import {CacheClient, CacheGet} from '@gomomento/sdk';

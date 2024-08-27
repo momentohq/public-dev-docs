@@ -3,6 +3,7 @@ sidebar_position: 2
 title: Auth API reference information
 sidebar_label: Auth
 description: Learn the Auth API calls you need to know about and how to use them with Momento services.
+hide_table_of_contents: true
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -41,9 +42,9 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
             - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires
             - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
             - `expiresAt`: Timestamp - the timestamp at which the token will expire
-        
+
         - **Error**:
-            - See [response objects](./response-objects.md) for specific information. 
+            - See [response objects](./response-objects.md) for specific information.
 
     </div>
 
@@ -77,9 +78,9 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
             - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires
             - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
             - `expiresAt`: Timestamp - the timestamp at which the token will expire
-        
+
         - **Error**:
-            - See [response objects](./response-objects.md) for specific information. 
+            - See [response objects](./response-objects.md) for specific information.
 
     </div>
 
@@ -89,7 +90,7 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
 
     </div>
 
-</div> 
+</div>
 
 ---
 
@@ -118,9 +119,9 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
             - `authToken`: string - the new disposable auth token
             - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
             - `expiresAt`: Timestamp - the timestamp at which the token will expire
-      
+
         - **Error**:
-            - See [response objects](./response-objects.md) for specific information. 
+            - See [response objects](./response-objects.md) for specific information.
 
       </div>
 
@@ -130,7 +131,7 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
 
       </div>
 
-</div> 
+</div>
 
 ---
 
@@ -142,7 +143,7 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
 | --------------- |-------------------------------------------| -------------------------------------------- |
 | permissions     | List \<[Permission](#permission-objects)\> | The permissions to grant to the new token.   |
 
-A PermissionScope is a list of [permission objects](#permission-objects). The list can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and can contain [up to ten](../../limits) permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
+A PermissionScope is a list of [permission objects](#permission-objects). The list can have permissions that are of type [CachePermission](#cachepermission) or [TopicPermission](#topicpermission), and can contain [up to ten](/leaderboards/limits) permission objects. A permission only grants access to the Momento data plane APIs (e.g. `get`, `set`, etc.). When an auth token is created with multiple permission objects, any matching permission will grant access. For example, if a single token is created with two permission objects:
 
 1. A permission object that allows ReadWrite access to all caches for the account
 2. A permission object that allows ReadOnly access to cache `foo`

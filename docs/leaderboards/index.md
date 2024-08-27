@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-sidebar_label: Momento Leaderboards
+sidebar_label: Overview
 title: Leaderboards
 description: Learn about Momento's purpose-built Leaderboard API
 pagination_next: null

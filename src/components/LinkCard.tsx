@@ -30,7 +30,7 @@ const styles = stylex.create({
     width: '100%',
     minHeight: '2rem',
     padding: 16,
-    
+
     // content layout
     flexDirection: 'row',
     alignItems: 'start',
@@ -39,7 +39,7 @@ const styles = stylex.create({
     // border
     border: '1px solid #c9cdca',
     borderRadius: 4,
-    
+
     // hover
     transition: 'box-shadow 0.3s ease',
     boxShadow: {
@@ -64,8 +64,6 @@ const styles = stylex.create({
     marginTop: 0,
   },
   description: {
-    // color: '#929C95',
-    color: '#1C1E21',
     fontSize: 14,
     fontWeight: 400,
     marginBottom: 0,

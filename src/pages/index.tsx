@@ -82,7 +82,7 @@ export default function Home(): JSX.Element {
               <div>
                 <h2><Translate id="forDevelopers">For developers</Translate></h2>
                 <ul className={styles.columnList}>
-                  <li><a href="/sdks"><Translate id="availableSDKs">Available SDKs</Translate></a></li>
+                  <li><a href="/platform/sdks"><Translate id="availableSDKs">Available SDKs</Translate></a></li>
                   <li><a href="/cache/develop/authentication"><Translate id="authenticationAndAccessControl">Authentication
                     and access control</Translate></a></li>
                   <li><a href="/cache/develop/basics/error-handling-production-readiness"><Translate

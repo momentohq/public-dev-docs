@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 # Momento Cacheを使ったファイルの追加と取得
 
-Momento Cacheのアイテムはバイト配列なので、[アイテムあたりの上限1MB](../../limits)以内であれば、作成したいファイルのほとんどを簡単にキャッシュに保存することができます。
+Momento Cacheのアイテムはバイト配列なので、[アイテムあたりの上限1MB](/cache/limits)以内であれば、作成したいファイルのほとんどを簡単にキャッシュに保存することができます。
 
 以下は、ファイルシステムからファイルを読み込み、そのファイルをキャッシュのアイテムに保存し、キャッシュから読み込んでからファイルシステムに書き込む例です。
   <Tabs>
@@ -89,7 +89,7 @@ async function run() {
 run();
 ```
 
-Node.jsSDKの使い方については、[Node.jsチートシート](/sdks/nodejs/cache.mdx)をご覧ください。
+Node.jsSDKの使い方については、[Node.jsチートシート](/platform/sdks/nodejs/cache)をご覧ください。
    </TabItem>
    <TabItem value="py" label="Python">
 
@@ -160,7 +160,7 @@ if __name__ == '__main__':
 
 ```
 
-Python SDKの使い方については、[Pythonチートシート](/sdks/python/cache.md)をご覧ください。
+Python SDKの使い方については、[Pythonチートシート](/platform/sdks/python/cache)をご覧ください。
 
    </TabItem>
 </Tabs>

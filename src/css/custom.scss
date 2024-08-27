@@ -78,6 +78,7 @@ h4 {
   --footer-text: #ffffff;
   --container-background-color: #ffffff;
   --table-highlight-row: #f0f0f0;
+  --doc-sidebar-width: 250px !important;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -97,7 +98,7 @@ h4 {
 
 @media (min-width: 997px) {
   :root {
-    --ifm-spacing-horizontal: 2.25rem;
+    --ifm-spacing-horizontal: 2.5rem;
     --ifm-spacing-vertical: 2.25rem;
     --ifm-navbar-padding-horizontal: 2rem;
   }
@@ -157,9 +158,21 @@ code span {
 }
 
 .navbar__items .navbar__link {
-  padding: 0 0 0 20px;
   font-weight: 500;
   color: var(--ifm-color-primary);
+}
+
+.navbar__items .navbar__link.navbar__link--active {
+  border-bottom: 2px solid var(--ifm-color-primary);
+  padding-bottom: 3px;
+}
+
+.table-of-contents__link--active {
+  font-weight: bold !important;
+}
+
+.sidebar_node_modules-\@docusaurus-theme-classic-lib-theme-DocSidebar-Desktop-styles-module {
+  padding-top: 0 !important;
 }
 
 .theme-doc-sidebar-container {
@@ -208,14 +221,7 @@ code span {
 .menu__list-item {
   margin: 4px 0;
   width: 100%;
-
-  ul {
-    /* padding: 0 !important; */
-
-    a {
-      padding: 8px 8px 8px 50px;
-    }
-  }
+  font-size: 14px;
 }
 
 .footer {
