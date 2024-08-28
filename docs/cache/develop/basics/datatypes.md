@@ -99,23 +99,27 @@ If elements have the same score, they are sorted [lexicographically](https://www
 
 To learn the API methods, check the [API reference for sorted set collection data types](../api-reference/sorted-set-collections.md).
 
-## FAQs
+## FAQ
 <details>
   <summary>If I perform an API call to get a subset of data from a dictionary item, will the size of the entire item count toward the per GB transfer costs?</summary>
+
 No, it will not. For example, if you perform the API call DictionaryGetField to get one 5-kilobyte field:value pair from a dictionary where the entire dictionary item is 50 kilobytes, only 5 kilobytes count towards your per GB transfer costs.
 </details>
 
 <details>
   <summary>How do I store a JSON document in Momento Cache?</summary>
+
 Use your favorite JSON library to serialize the JSON document into a byte array and insert that byte array into Momento Cache. You could also store each field value in your JSON document in a dictionary.
 </details>
 
 <details>
   <summary>Does Momento Cache store nested data in collection data types?</summary>
+
 Not directly. Your best option is to store this data as a JSON object and then use your favorite JSON library to serialize the JSON document into a byte array and insert that byte array into Momento Cache.
 </details>
 
 <details>
   <summary>How do I format elements when using the increment APIs?</summary>
+  
 Elements used with increment API calls must be stored as a UTF-8 string representing a base 10 integer. If the elements are not in that format, the API calls will throw a formatting error.
 </details>

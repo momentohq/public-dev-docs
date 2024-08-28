@@ -266,33 +266,31 @@ The `WebhookDestination` object contains the information about where the webhook
 ## FAQ
 
 <details>
-<summary>How do I validate incoming webhook requests?</summary>
-Check out our [webhook security page](../../webhooks/security.md) on validating inbound webhook requests.
+    <summary>How do I validate incoming webhook requests?</summary>
+
+    Check out our [webhook security page](../../webhooks/security.md) on validating inbound webhook requests.
 </details>
 
 <details>
-<summary>What is the structure of the POST body?</summary>
+    <summary>What is the structure of the POST body?</summary>
 
-```typescript
-{
-    cache: string;
-    topic: string;
-    event_timestamp: number;
-    publish_timestamp: number;
-    topic_sequence_number: number;
-    token_id: string; // is an empty string if the message was published with an api key that does not contain a token_id
-    text: string; // this is the message that was published
-}
-```
-
+    ```typescript
+    {
+        cache: string;
+        topic: string;
+        event_timestamp: number;
+        publish_timestamp: number;
+        topic_sequence_number: number;
+        token_id: string; // is an empty string if the message was published with an api key that does not contain a token_id
+        text: string; // this is the message that was published
+    }
+    ```
 </details>
 
 <details>
-<summary>What should I do if the webhook subscription fails?</summary>
+    <summary>What should I do if the webhook subscription fails?</summary>
 
-Ensure that your webhook url is public and valid. Common issues include wrong cache or topic names, or issues with the
-provided `postUrl`.
-
+    Ensure that your webhook url is public and valid. Common issues include wrong cache or topic names, or issues with the provided `postUrl`.
 </details>
 
 If you have any questions not answered here, please reach out on [our Discord server](https://discord.gg/3HkAKjUZGq) and

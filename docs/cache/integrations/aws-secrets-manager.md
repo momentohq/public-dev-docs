@@ -34,5 +34,6 @@ When inserting the Momento API key into AWS Secrets Manager, it should be as pla
 
 <details>
   <summary>Do I have to do this?</summary>
-No. You can store your Momento auth token in an environment variable or a file, but that is not best practice as it is not as secure as storing it in something like AWS Secrets Manager.
+
+  No. You can store your Momento auth token in an environment variable or a file, but that is not best practice as it is not as secure as storing it in something like AWS Secrets Manager.
 </details>
