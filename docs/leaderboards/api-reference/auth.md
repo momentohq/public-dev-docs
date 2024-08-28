@@ -293,17 +293,15 @@ const tokenResponse = await authClient.generateDisposableToken(
 ## FAQ
 
 <details>
-<summary>Can I create a custom role for a cache or topic permission?</summary>
+  <summary>Can I create a custom role for a cache or topic permission?</summary>
 
-No. We only support the managed roles listed above for each permission.
-
+  No. We only support the managed roles listed above for each permission.
 </details>
 
 <details>
-<summary>Do these tokens control access to the Momento control plane APIs?</summary>
+  <summary>Do these tokens control access to the Momento control plane APIs?</summary>
 
-Access tokens generated with the [GenerateApiKey](#generateapikey-api) API only control access to the Momento data plane APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
-
+  Access tokens generated with the [GenerateApiKey](#generateapikey-api) API only control access to the Momento data plane APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
 </details>
 
 :::tip

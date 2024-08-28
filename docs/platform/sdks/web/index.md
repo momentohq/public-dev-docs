@@ -95,5 +95,6 @@ For more information on Momento tokens, including `DisposableTokenScope` and per
 
 <details>
   <summary>Is the traffic from the browser encrypted?</summary>
-As with all traffic with Momento services, the web SDK is fully encrypted on the wire. In addition, the SDK uses TLS 1.2+ encryption.
+
+  As with all traffic with Momento services, the web SDK is fully encrypted on the wire. In addition, the SDK uses TLS 1.2+ encryption.
 </details>
