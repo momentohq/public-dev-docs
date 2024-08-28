@@ -32,7 +32,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
         ----------------
         - **scope** - [*PermissionScope*](#permissionscope-objects): 新しいトークンに付与するパーミッション。PermissionScopeオブジェクトはSDKによって提供されます。
         - **expiresIn** - *Number* \| *ExpiresIn object*: ExpiresIn.never()`メソッド、`ExpiresIn.minutes()`メソッド、`ExpiresIn.hours()`メソッドを呼び出すことで、トークンが期限切れになるまでの秒数、またはその期間を表すExpiresInオブジェクト。
-        
+
   #### Returns
         ----------------
         次のいずれか:
@@ -41,7 +41,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
             - `refreshToken`: string - [RefreshApiKey API](#refreshapikey)で使用できるリフレッシュトークンで、トークンの有効期限が切れる前にリフレッシュします
             - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
             - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
-        
+
         - **Error**:
             - 詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
 
@@ -77,9 +77,9 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
             - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires
             - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
             - `expiresAt`: Timestamp - the timestamp at which the token will expire
-        
+
         - **Error**:
-            - See [response objects](./response-objects.md) for specific information. 
+            - See [response objects](./response-objects.md) for specific information.
 
     </div>
 
@@ -89,7 +89,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
     </div>
 
-</div> 
+</div>
 
 ---
 
@@ -118,7 +118,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
             - `authToken`: string - 新しい使い捨て認証トークン
             - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント。
             - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
-      
+
         - **Error**:
             - 詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
 
@@ -130,7 +130,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
       </div>
 
-</div> 
+</div>
 
 ---
 
@@ -140,7 +140,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 | --------------- |-------------------------------------------| -------------------------------------------- |
 | permissions     | List \<[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション   |
 
-TokenScopeは[パーミッション・オブジェクト](#permission-objects)のリストです。このリストには、[CachePermission](#cachepermission) 型または [TopicPermission](#topicpermission) 型のパーミッションを含めることができ、[最大10個](../../limits) のパーミッションオブジェクトを含めることができます。パーミッションは Momento データプレーン API (`get` や `set` など) へのアクセスのみを許可する。複数のパーミッションオブジェクトを持つ認証トークンが作成された場合、一致するパーミッションがアクセスを許可します。たとえば、1 つのトークンに 2 つのパーミッションオブジェクトを設定した場合、次のようになります：
+TokenScopeは[パーミッション・オブジェクト](#permission-objects)のリストです。このリストには、[CachePermission](#cachepermission) 型または [TopicPermission](#topicpermission) 型のパーミッションを含めることができ、[最大10個](/cache/limits) のパーミッションオブジェクトを含めることができます。パーミッションは Momento データプレーン API (`get` や `set` など) へのアクセスのみを許可する。複数のパーミッションオブジェクトを持つ認証トークンが作成された場合、一致するパーミッションがアクセスを許可します。たとえば、1 つのトークンに 2 つのパーミッションオブジェクトを設定した場合、次のようになります：
 
 1. アカウントのすべてのキャッシュへの ReadWrite アクセスを許可する権限オブジェクト。
 2. キャッシュ `foo` に対する ReadOnly アクセスを許可するパーミッションオブジェクト。

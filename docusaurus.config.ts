@@ -95,18 +95,8 @@ const config = {
           items: [
             { to: '/cache', label: 'Cache', position: 'left'},
             { to: '/topics', label: 'Topics', position: 'left'},
-            { to: '/leaderboards', label: 'Leaderboards', position: 'left'},
-            { to: '/cloud-linter', label: 'Cloud Linter', position: 'left'},
             {
-              to: '/sdks', label: 'SDKs', position: 'right'
-            },
-            {
-              to:  '/regions', label: 'Regions', position: 'right'
-            },
-            {
-              to: "https://github.com/momentohq/",
-              label: "GitHub",
-              position: "right",
+              to: '/platform', label: 'Platform', position: 'right'
             },
             {
               type: 'localeDropdown',
@@ -195,7 +185,7 @@ const config = {
         },
         docs: {
           sidebar: {
-            autoCollapseCategories: false,
+            autoCollapseCategories: false
           },
         },
       }),

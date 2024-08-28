@@ -68,7 +68,7 @@ export class WolframWeatherDescriptionClient
   }
 }
 ```
-4. Recall that this scenario is well-suited for caching. We can cache the results using [Momento JavaScript SDK](../../sdks).
+4. Recall that this scenario is well-suited for caching. We can cache the results using [Momento JavaScript SDK](/platform/sdks).
 For code reusability, we use [the Decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern) to wrap `CachingWeatherDescriptionClient` around an abstract `WeatherDescriptionClient` that we have created in an earlier step. Note that this requires no code-change to the existing `WolframWeatherDescriptionClient`.
 ```typescript
 import {CacheClient, CacheGet} from '@gomomento/sdk';

@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 # Add and retrieve a file with Momento Cache
 
-An item in Momento Cache is a byte array, so a cache can easily store most any file you want to create, as long as it is under the [per item limit of 1MB](../../limits).
+An item in Momento Cache is a byte array, so a cache can easily store most any file you want to create, as long as it is under the [per item limit of 1MB](/cache/limits).
 
 Here is an example of reading a file from the filesystem, saving the file to an item in a cache, reading it from the cache, and then writing it to the filesystem.
   <Tabs>
@@ -89,7 +89,7 @@ async function run() {
 run();
 ```
 
-Check our [Node.js Cache guide](/sdks/nodejs/cache.mdx) for more on using our Node.js SDK.
+Check our [Node.js Cache guide](/platform/sdks/nodejs/cache.mdx) for more on using our Node.js SDK.
    </TabItem>
    <TabItem value="py" label="Python">
 
@@ -160,7 +160,7 @@ if __name__ == '__main__':
 
 ```
 
-Check our [Python Cache guide](/sdks/python/cache.md) for more on using our Python SDK.
+Check our [Python Cache guide](/platform/sdks/python/cache.md) for more on using our Python SDK.
 
    </TabItem>
 </Tabs>

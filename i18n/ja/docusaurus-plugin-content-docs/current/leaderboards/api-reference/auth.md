@@ -41,9 +41,9 @@ Auth API は、Momento サービスの API キーとトークンを作成およ�
             - `refreshToken`: string - RefreshApiKey API](#refreshapikey)で使用できるリフレッシュトークンで、トークンの有効期限が切れる前にリフレッシュします
             - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
             - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
-        
+
         - **Error**:
-            - See [response objects](./response-objects.md) for specific information. 
+            - See [response objects](./response-objects.md) for specific information.
 
     </div>
 
@@ -77,9 +77,9 @@ Auth API は、Momento サービスの API キーとトークンを作成およ�
             - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires
             - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
             - `expiresAt`: Timestamp - the timestamp at which the token will expire
-        
+
         - **Error**:
-            - See [response objects](./response-objects.md) for specific information. 
+            - See [response objects](./response-objects.md) for specific information.
 
     </div>
 
@@ -89,7 +89,7 @@ Auth API は、Momento サービスの API キーとトークンを作成およ�
 
     </div>
 
-</div> 
+</div>
 
 ---
 
@@ -118,10 +118,10 @@ Auth API は、Momento サービスの API キーとトークンを作成およ�
             - `authToken`: string - 新しい使い捨て認証トークン
             - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
             - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
-      
+
         - **Error**:
             - 詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
-            
+
       </div>
 
       <div class='col col--8'>
@@ -130,7 +130,7 @@ Auth API は、Momento サービスの API キーとトークンを作成およ�
 
       </div>
 
-</div> 
+</div>
 
 ---
 
@@ -141,7 +141,7 @@ Auth API は、Momento サービスの API キーとトークンを作成およ�
 | --------------- |-------------------------------------------| -------------------------------------------- |
 | permissions     | List \<[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション   |
 
-PermissionScopeは[パーミッションオブジェクト](#permission-objects)のリストです。このリストには、[CachePermission](#cachepermission) 型または [TopicPermission](#topicpermission) 型のパーミッションを含めることができ、[最大10個](../../limits) のパーミッションオブジェクトを含めることができます。パーミッションは Momento データプレーン API (`get` や `set` など) へのアクセスのみを許可する。複数のパーミッションオブジェクトを持つ認証トークンが作成された場合、一致するパーミッションがアクセスを許可します。たとえば、1 つのトークンに 2 つのパーミッションオブジェクトを設定した場合、次のようになります：
+PermissionScopeは[パーミッションオブジェクト](#permission-objects)のリストです。このリストには、[CachePermission](#cachepermission) 型または [TopicPermission](#topicpermission) 型のパーミッションを含めることができ、[最大10個](/leaderboards/limits) のパーミッションオブジェクトを含めることができます。パーミッションは Momento データプレーン API (`get` や `set` など) へのアクセスのみを許可する。複数のパーミッションオブジェクトを持つ認証トークンが作成された場合、一致するパーミッションがアクセスを許可します。たとえば、1 つのトークンに 2 つのパーミッションオブジェクトを設定した場合、次のようになります：
 
 1. アカウントのすべてのキャッシュへの ReadWrite アクセスを許可するパーミッションオブジェクト
 2. キャッシュ `foo` に対する ReadOnly アクセスを許可するパーミッションオブジェクト

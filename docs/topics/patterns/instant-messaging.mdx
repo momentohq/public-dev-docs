@@ -19,7 +19,7 @@ import { LinkCard } from '@site/src/components/LinkCard';
 
 # Use Momento Cache and Topics to build instant messaging
 
-Instant messaging is a must-have feature in many applications. Communicating seamlessly in one-to-one, one-to-many, and many-to-many conversations is often thought of as a necessary component of an application. With Momento Cache and Topics, you can build instant messaging into your application without any backend infrastructure. Using the [Momento web SDK](../../sdks/web), you can access your cache data and publish and subscribe to messages directly in your browser.
+Instant messaging is a must-have feature in many applications. Communicating seamlessly in one-to-one, one-to-many, and many-to-many conversations is often thought of as a necessary component of an application. With Momento Cache and Topics, you can build instant messaging into your application without any backend infrastructure. Using the [Momento web SDK](/platform/sdks/web), you can access your cache data and publish and subscribe to messages directly in your browser.
 
 :::info
 This pattern uses **Momento Cache** to store historical messages and **Momento Topics** to facilitate real-time communication between instant messaging participants.
@@ -31,7 +31,7 @@ Building instant messaging on Momento can be done entirely client-side, meaning 
 
 ![Diagram of client applications communicating directly via Momento](@site/static/img/topics/patterns/instant-messaging-architecture.png)
 
-In the diagram above, messages are being loaded from a [list](../../cache/develop/basics/datatypes#lists) when a new user joins the chat. Users subscribe to a chatroom-specific topic to recieve messages in real-time while they are active in the chat. As messages are sent, they are added directly to the list by the sender.
+In the diagram above, messages are being loaded from a [list](/cache/develop/basics/datatypes#lists) when a new user joins the chat. Users subscribe to a chatroom-specific topic to recieve messages in real-time while they are active in the chat. As messages are sent, they are added directly to the list by the sender.
 
 ## Components
 
