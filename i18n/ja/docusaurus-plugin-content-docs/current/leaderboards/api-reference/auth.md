@@ -3,6 +3,7 @@ sidebar_position: 2
 title: Auth API reference information
 sidebar_label: Auth
 description: 知っておく必要がある Auth API 呼び出しと、それらを Momento サービスで使用する方法について学びます。
+hide_table_of_contents: true
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
