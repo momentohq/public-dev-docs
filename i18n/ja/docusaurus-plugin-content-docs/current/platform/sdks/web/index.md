@@ -95,5 +95,6 @@ APIコールは[Momento Node.js SDK](/platform/sdks/nodejs/cache.mdx)と同じ�
 
 <details>
   <summary>ブラウザからのトラフィックは暗号化されていますか？</summary>
-Momentoサービスのすべてのトラフィックと同様に、Web SDKはワイヤ上で完全に暗号化されています。さらに、SDKはTLS 1.2+暗号化を使用しています。
+
+  Momentoサービスのすべてのトラフィックと同様に、Web SDKはワイヤ上で完全に暗号化されています。さらに、SDKはTLS 1.2+暗号化を使用しています。
 </details>
