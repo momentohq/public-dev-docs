@@ -29,21 +29,21 @@ keywords:
 
 # Momento Python SDK
 
-Momento Python SDK は pypi パッケージ [`momento`](https://pypi.org/project/momento/) から入手できます。
+The Momento Python SDK is available via the pypi package [`momento`](https://pypi.org/project/momento/).
 
-ソースコードはGitHubにあります： [momentohq/client-sdk-python](https://github.com/momentohq/client-sdk-python)。
+The source code can be found on GitHub: [momentohq/client-sdk-python](https://github.com/momentohq/client-sdk-python).
 
-## 必要条件
+## Requirements
 
-- [Python 3.7](https://www.python.org/downloads/)以上が必要です。
-- Momento API Keyが必要です。[Momento Web Console](https://console.gomomento.com/)から取得できます。
+- [Python 3.7](https://www.python.org/downloads/) or above is required
+- A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
 
-## リソース
+## Resources
 
 - [Getting started with Momento Cache in Python](./cache.md)
 - [Getting started with Momento Topics in Python](./topics.mdx)
-- [Python SDK Examples](https://github.com/momentohq/client-sdk-python/blob/main/examples/README.md): Python SDKの使い方を説明するサンプルプロジェクト
+- [Python SDK Examples](https://github.com/momentohq/client-sdk-python/blob/main/examples/README.md): working example projects that illustrate how to use the Python SDK
 
-## インテグレーション
+## Integrations
 
-- [Redis Compatibility Client for `redis/redis-py`](https://github.com/momentohq/momento-python-redis-client) - 既存の `redis/redis-py` コードで Momento Cache を使えるようにするドロップイン置き換えです！[Redis Client Compatibility](/cache/integrations/redis-client-compatibility.md) ページも参照してください。
+- [Redis Compatibility Client for `redis/redis-py`](https://github.com/momentohq/momento-python-redis-client) - a drop-in replacement that allows you to use Momento Cache with your existing `redis/redis-py` code! See also our [Redis Client Compatibility](/cache/integrations/redis-client-compatibility.md) page.
