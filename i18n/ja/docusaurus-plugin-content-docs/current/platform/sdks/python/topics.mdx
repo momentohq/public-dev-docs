@@ -31,51 +31,51 @@ import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
 // plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
-# Getting Started with Momento Topics in Python
+# PythonでMomentoトピックを始める
 
-If you need to get going quickly with Python and Momento Topics, this page contains the basic API calls you'll need. [Check the Python SDK examples](https://github.com/momentohq/client-sdk-python/tree/main/examples) for complete, working code samples.
+PythonとMomentoトピックをすぐに使い始める必要がある場合、このページには必要な基本的なAPIコールが含まれています。[Python SDK のサンプル](https://github.com/momentohq/client-sdk-python/tree/main/examples) には、完全な動作するコードサンプルがあります。
 
 
 ## Install the Momento SDK
 
-The Momento Python SDK is available on [pypi as `momento`](https://pypi.org/project/momento/).
+Momento Python SDK は [pypi as `momento`](https://pypi.org/project/momento/) から入手できます。
 
-To install in your Python application via pip, use:
+Pythonアプリケーションにpip経由でインストールするには、次のようにする：
 
 ```bash
 pip install momento
 ```
 
-## Get your Momento API key
+## Momento APIキーを取得する
 
-You'll need a Momento API key. You can get one from the [Momento Web Console](https://console.gomomento.com/).
-Once you have your token, store it in an environment variable so that the Momento client can consume it:
+[Momento APIキーが必要です。Momento Web Console](https://console.gomomento.com/)から取得できます。
+トークンを取得したら、Momentoクライアントが利用できるように環境変数に保存します：
 
 ```
 export MOMENTO_API_KEY=<your api key here>
 ```
 
-**Note**: it is best practice to put the API key into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
+**Note**: セキュリティ強化のためには、APIキーを環境変数ではなく、AWS Secret ManagerやGCP Secret Managerのようなものに入れるのがベストプラクティスだが、ここではデモのためにAPIキーを使っています。
 
-## Set up a TopicClient
-This code creates the TopicClient that you will use to interact with your pub/sub topic.
+## TopicClientのセットアップ
+このコードでは、パブ/サブ・トピックとの対話に使用する TopicClient を作成します。
 
 <SdkExampleCodeBlock language={'python'} snippetId={'API_InstantiateTopicClient'} />
 
-## Publish a message to a topic
-This is an example of publishing a message to a topic called "topic", then catching the return value to check if the publish was successful.
+## トピックにメッセージを公開する
+これは、"topic "というトピックにメッセージを発行し、その返り値をキャッチして発行が成功したかどうかをチェックする例です。
 
 <SdkExampleCodeBlock language={'python'} snippetId={'API_TopicPublish'} />
 
-## Subscribe to a topic
-This is an example of subscribing to a topic called "topic". When messages are published to this topic, the code here receives and prints them asynchronously.
+## トピックをサブスクライブする
+これは、"topic "というトピックを購読する例です。このトピックにメッセージがパブリッシュされると、ここのコードはそれを非同期に受信して表示します。
 
 <SdkExampleCodeBlock language={'python'} snippetId={'API_TopicSubscribe'} />
 
-## Running the code
+## コードの実行
 
-You can find complete, working examples in the [Python SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-python/tree/main/examples).
+[Python SDK GitHub repo examples directory](https://github.com/momentohq/client-sdk-python/tree/main/examples)に完全な動作例があります。
 
 :::info
-Beyond these basic API calls check out the [API reference page](/topics/develop/api-reference) for more information on the full assortment of Momento API calls.
+これらの基本的なAPIコール以外にも、MomentoのAPIコールの詳細については、[APIリファレンスページ](/topics/develop/api-reference)を参照してください。
 :::
