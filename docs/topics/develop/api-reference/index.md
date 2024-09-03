@@ -22,7 +22,13 @@ Momento Topics API calls are made using a `TopicClient` object.
 ## Topics methods
 
 ### Subscribe
-This method subscribes to a topic to receive new values with a stateful connection.
+This method subscribes to a topic to receive subscription events with a stateful connection.
+
+Depending on the language, you may use a callback function or an iterator to receive new subscription events, such as items, heartbeats, and discontinuities: 
+- Items include a string or byte message, topic sequence number, and a unique token identifier if one is present ([learn more](https://www.gomomento.com/blog/momento-topics-just-got-more-secure-introducing-embedded-token-identifiers)).
+- Heartbeats indicate that the connection is still active.
+- Discontinuities indicate that there was an interruption in the subscription and some messages may have been skipped.
+
 
 | Name            | Type            | Description                                   |
 | --------------- | --------------- | --------------------------------------------- |
@@ -33,12 +39,10 @@ This method subscribes to a topic to receive new values with a stateful connecti
 <details>
   <summary>Method response object</summary>
 
-* Success - Returns a subscription object.
+* Success - Returns a [subscription](./response-objects.md#subscription) object.
 * Error
 
 See [response objects](./response-objects.md) for specific information.
-
-With the returned subscription object, once put in a for loop, your code will receive an event when a new value is published to the Topic.
 
 </details>
 
