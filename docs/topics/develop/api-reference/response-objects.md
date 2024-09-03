@@ -32,11 +32,16 @@ Variations of the Success response object include:
 
 ### Subscription
 
-Indicates a successful Momento Topics subscription. Depending on the language, you may be provided a callback function or an iterator you can use to poll for new subscription items.
+Indicates a successful Momento Topics subscription. 
 
 Available methods include:
 
 - `unsubscribe()`: void - closes the topics subscription.
+
+Depending on the language, you may use a callback function or an iterator to receive new subscription events, such as items, heartbeats, and discontinuities: 
+- Items include a string or byte message, topic sequence number, and a unique token identifier if one is present ([learn more](https://www.gomomento.com/blog/momento-topics-just-got-more-secure-introducing-embedded-token-identifiers)).
+- Heartbeats indicate that the connection is still active.
+- Discontinuities indicate that there was an interruption in the subscription and some messages may have been skipped.
 
 ### ListWebhooks
 
