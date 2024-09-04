@@ -9,7 +9,7 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var g=t.getElementsByTagName(a)[0],m=t.createElement(a);m.async=!0,m.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",g.parentNode.insertBefore(m,g)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.59ea368f.css">
-<script src="/assets/js/runtime~main.eccd66e4.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.0513545f.js" defer="defer"></script>
 <script src="/assets/js/main.d9e598a2.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -30,10 +30,16 @@
 <p>Generic response object indicating a successful request with no additional methods attached.</p>
 <p>Variations of the Success response object include:</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="subscription">Subscription<a href="#subscription" class="hash-link" aria-label="Direct link to Subscription" title="Direct link to Subscription">​</a></h3>
-<p>Indicates a successful Momento Topics subscription. Depending on the language, you may be provided a callback function or an iterator you can use to poll for new subscription items.</p>
+<p>Indicates a successful Momento Topics subscription.</p>
 <p>Available methods include:</p>
 <ul>
 <li><code>unsubscribe()</code>: void - closes the topics subscription.</li>
+</ul>
+<p>Depending on the language, you may use a callback function or an iterator to receive new subscription events, such as items, heartbeats, and discontinuities:</p>
+<ul>
+<li>Items include a string or byte message, topic sequence number, and a unique token identifier if one is present (<a href="https://www.gomomento.com/blog/momento-topics-just-got-more-secure-introducing-embedded-token-identifiers" target="_blank" rel="noopener noreferrer">learn more</a>).</li>
+<li>Heartbeats indicate that the connection is still active.</li>
+<li>Discontinuities indicate that there was an interruption in the subscription and some messages may have been skipped.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="listwebhooks">ListWebhooks<a href="#listwebhooks" class="hash-link" aria-label="Direct link to ListWebhooks" title="Direct link to ListWebhooks">​</a></h3>
 <p>Indicates a successful list webhooks request. Available methods include:</p>
