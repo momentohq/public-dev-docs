@@ -25,16 +25,16 @@ For each connection, you will need a Momento auth token generated via the [Momen
 
 To access the Momento HTTP API, use one of the following endpoints in the region of your API token and cache. If you do not see a region you require, let’s discuss. Please [contact support](mailto:support@momentohq.com).
 
-| AWS Region     | Endpoints                                                    |
-|----------------|--------------------------------------------------------------|
-| us-west-2      | https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com    |
-| us-east-1      | https://api.cache.cell-us-east-1-1.prod.a.momentohq.com      |
-| us-east-2      | https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com    |
-| ap-northeast-1 | https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com |
-| ap-southeast-1 | https://api.cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com|
-| eu-west-1      | https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com    |
-| eu-central-1   | https://api.cache.cell-1-eu-central-1-1.prod.a.momentohq.com |
-| ap-south-1     | https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com   |
+| AWS Region     | Endpoints                                                      |
+|----------------|----------------------------------------------------------------|
+| us-west-2      | https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com      |
+| us-east-1      | https://api.cache.cell-us-east-1-1.prod.a.momentohq.com        |
+| us-east-2      | https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com      |
+| ap-northeast-1 | https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com   |
+| ap-southeast-1 | https://api.cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com |
+| eu-west-1      | https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com      |
+| eu-central-1   | https://api.cache.cell-1-eu-central-1-1.prod.a.momentohq.com   |
+| ap-south-1     | https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com     |
 
 ## Publish
 
@@ -45,10 +45,6 @@ Publishes a message to a topic.
 - Path: /topics/\{cacheName\}/\{topicName\}
 - HTTP Method: POST
 
-#### Body
-
-- Content-Type: octet-stream
-- The body of the request should contain the binary value to be published to the topic.
 
 #### Path Parameters
 
@@ -59,19 +55,26 @@ Publishes a message to a topic.
 
 #### Query Parameters
 
-| Parameter&nbsp;name | Required? | Type                | Description                                                                                         |
-|---------------------|-----------|---------------------|-----------------------------------------------------------------------------------------------------|
-| token               | no**     | URL-safe&nbsp;string | The Momento auth token, in string format, to be used for authentication/authorization of the request.|
+| Parameter&nbsp;name | Required? | Type                 | Description                                                                                           |
+|---------------------|-----------|----------------------|-------------------------------------------------------------------------------------------------------|
+| `token`             | no**      | URL-safe&nbsp;string | The Momento auth token, in string format, to be used for authentication/authorization of the request. |
 
 *** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
 
 #### Headers
 
-| Header&nbsp;name | Required? | Type                 | Description                                                                                        |
-|------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
-| Authorization    | no**     | URL-safe&nbsp;string | The Momento auth token, in string format, is used for authentication/authorization of the request. |
+| Header&nbsp;name | Required? | Description                                                                                                          |
+|------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
+| `Authorization`  | no**      | The Momento auth token, in string format, is used for authentication/authorization of the request.                   |
+| `Content-Type`   | yes       | To publish plain text data (UTF-8), specify `text/plain`. To publish binary data, specify `application/octet-stream` |
 
 ** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.
+
+#### Body
+
+The body of the HTTP POST request should contain the value that you wish to publish to the topic. You may publish
+either text data, or binary data. To specify which type of data you are publishing, use the `Content-Type` header, as
+documented in the [Headers](#Headers) section above.
 
 ## Responses
 
