@@ -97,7 +97,7 @@ MomentoLoggerFactory` と `MomentoLogger` を定義したら、最後に Momento
 - [`ExperimentalMetricsLoggingMiddleware`](https://github.com/momentohq/client-sdk-javascript/blob/main/packages/client-sdk-nodejs/src/config/middleware/experimental-metrics-logging-middleware.ts)：選択したロガーにメトリクスを出力します。警告: リクエスト量に応じて、このミドルウェアは大量のログを出力します。ローカルディスクに直接ログを書き込む場合は、ディスクの使用量に注意し、`logrotate`のようなツールでログのローテーション/圧縮を有効にしてください。
 - [`ExperimentalMetricsCsvMiddleware`](https://github.com/momentohq/client-sdk-javascript/blob/main/packages/client-sdk-nodejs/src/config/middleware/experimental-metrics-csv-middleware.ts)：メトリクスをCSVファイルに出力します。警告: このミドルウェアを有効にすると、ちょっとしたパフォーマンス上の影響があるかもしれません。リクエスト量によっては、CSVファイルのサイズがすぐに大きくなる可能性があります。
 
-ログファイルやCSVを分析したり、Momentoと共有することで、パフォーマンスの問題を診断することができます。また、ログを AWS CloudWatch Log Group に転送し、CloudWatch ダッシュボードを作成して Momento リクエストを監視することもできます。[Momento メトリクスダッシュボードの起動例](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/lambda-examples/cloudwatch-metrics) とオプションのサンプルアプリケーションは、Node.js SDK で利用できる。LambdaとFargateのサンプルアプリケーションは、`ExperimentalMetricsLoggingMiddleware`クラスとCloudWatchメトリックフィルタを利用して、下図のようなダッシュボードを生成します。
+ログファイルやCSVを分析したり、Momentoと共有することで、パフォーマンスの問題を診断することができます。また、ログを AWS CloudWatch Log Group に転送し、CloudWatch ダッシュボードを作成して Momento リクエストを監視することもできます。[Momento メトリクスダッシュボードの起動例](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/aws/lambda-examples/cloudwatch-metrics) とオプションのサンプルアプリケーションは、Node.js SDK で利用できる。LambdaとFargateのサンプルアプリケーションは、`ExperimentalMetricsLoggingMiddleware`クラスとCloudWatchメトリックフィルタを利用して、下図のようなダッシュボードを生成します。
 
 ![An image of a CloudWatch dashboard with nine graphs populated by Momento metrics](@site/static/img/cloudwatch-dashboard.png)
 
