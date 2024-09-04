@@ -9,7 +9,7 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var g=t.getElementsByTagName(a)[0],m=t.createElement(a);m.async=!0,m.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",g.parentNode.insertBefore(m,g)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.59ea368f.css">
-<script src="/assets/js/runtime~main.0513545f.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.e247c0a1.js" defer="defer"></script>
 <script src="/assets/js/main.d9e598a2.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -29,19 +29,18 @@
 <li>Path: /topics/{cacheName}/{topicName}</li>
 <li>HTTP Method: POST</li>
 </ul>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="body">Body<a href="#body" class="hash-link" aria-label="Direct link to Body" title="Direct link to Body">​</a></h4>
-<ul>
-<li>Content-Type: octet-stream</li>
-<li>The body of the request should contain the binary value to be published to the topic.</li>
-</ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="path-parameters">Path Parameters<a href="#path-parameters" class="hash-link" aria-label="Direct link to Path Parameters" title="Direct link to Path Parameters">​</a></h4>
 <table><thead><tr><th>Parameter name</th><th>Required?</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>cacheName</td><td>yes</td><td>URL-safe string</td><td>The name of the cache containing the topic.</td></tr><tr><td>topicName</td><td>yes</td><td>URL-safe string</td><td>Name of the topic to publish to.</td></tr></tbody></table>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="query-parameters">Query Parameters<a href="#query-parameters" class="hash-link" aria-label="Direct link to Query Parameters" title="Direct link to Query Parameters">​</a></h4>
-<table><thead><tr><th>Parameter name</th><th>Required?</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>token</td><td>no**</td><td>URL-safe string</td><td>The Momento auth token, in string format, to be used for authentication/authorization of the request.</td></tr></tbody></table>
+<table><thead><tr><th>Parameter name</th><th>Required?</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token</code></td><td>no**</td><td>URL-safe string</td><td>The Momento auth token, in string format, to be used for authentication/authorization of the request.</td></tr></tbody></table>
 <p>*** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="headers">Headers<a href="#headers" class="hash-link" aria-label="Direct link to Headers" title="Direct link to Headers">​</a></h4>
-<table><thead><tr><th>Header name</th><th>Required?</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>Authorization</td><td>no**</td><td>URL-safe string</td><td>The Momento auth token, in string format, is used for authentication/authorization of the request.</td></tr></tbody></table>
+<table><thead><tr><th>Header name</th><th>Required?</th><th>Description</th></tr></thead><tbody><tr><td><code>Authorization</code></td><td>no**</td><td>The Momento auth token, in string format, is used for authentication/authorization of the request.</td></tr><tr><td><code>Content-Type</code></td><td>yes</td><td>To publish plain text data (UTF-8), specify <code>text/plain</code>. To publish binary data, specify <code>application/octet-stream</code></td></tr></tbody></table>
 <p>** You must provide a Momento auth token to be used for authentication/authorization of the request. This may be passed either as the token query parameter or as the Authorization header.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="body">Body<a href="#body" class="hash-link" aria-label="Direct link to Body" title="Direct link to Body">​</a></h4>
+<p>The body of the HTTP POST request should contain the value that you wish to publish to the topic. You may publish
+either text data, or binary data. To specify which type of data you are publishing, use the <code>Content-Type</code> header, as
+documented in the <a href="#Headers">Headers</a> section above.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="responses">Responses<a href="#responses" class="hash-link" aria-label="Direct link to Responses" title="Direct link to Responses">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="success">Success<a href="#success" class="hash-link" aria-label="Direct link to Success" title="Direct link to Success">​</a></h3>
 <p><em>Status Code: 204 No Content</em></p>
