@@ -299,16 +299,16 @@ const tokenResponse = await authClient.generateDisposableToken(
 ## FAQ
 
 <details>
-<summary>キャッシュやトピックのパーミッションにカスタムロールを作成できますか?</summary>
+  <summary>キャッシュやトピックのパーミッションにカスタムロールを作成できますか?</summary>
 
-各権限について、上記の管理された役割のみをサポートしています。
+  各権限について、上記の管理された役割のみをサポートしています。
 
 </details>
 
 <details>
-<summary>これらのトークンは、MomentoのコントロールプレーンAPIへのアクセスを制御しますか？</summary>
+  <summary>これらのトークンは、MomentoのコントロールプレーンAPIへのアクセスを制御しますか？</summary>
 
-[GenerateApiKey](#generateauthtoken-api)APIで生成されたアクセストークンは、MomentoのデータプレーンAPIへのアクセスのみを制御します。Momento のコントロールプレーン API にアクセスするためのトークンは、[Momento console](https://console.gomomento.com/) を使用して生成する必要があります。
+  [GenerateApiKey](#generateauthtoken-api)APIで生成されたアクセストークンは、MomentoのデータプレーンAPIへのアクセスのみを制御します。Momento のコントロールプレーン API にアクセスするためのトークンは、[Momento console](https://console.gomomento.com/) を使用して生成する必要があります。
 
 </details>
 
