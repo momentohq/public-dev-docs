@@ -32,5 +32,6 @@ Momento API keyをAWS Secrets Managerへ入力する際は、下のスクリー�
 
 <details>
   <summary>Momento API keyをAWS Secrets Managerに保存する必要がありますか？</summary>
-あります。MomentoのAPI keyを環境変数やファイルに保存することはできますが、AWS Secrets Managerなどに保存するよりも安全ではないため、ベストプラクティスではありません。
+  
+   Momentoの認証トークンを環境変数やファイルに保存することはできますが、AWS Secrets Managerなどに保存するよりも安全ではないため、ベストプラクティスではありません。
 </details>
