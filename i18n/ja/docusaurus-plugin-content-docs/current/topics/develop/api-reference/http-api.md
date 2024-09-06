@@ -25,16 +25,16 @@ Momentoは、私たちの[SDK](../)を使用できないアプリケーション
 
 Momento HTTP API にアクセスするには、API トークンとキャッシュのリージョンで以下のエンドポイントのいずれかを使用します。ご希望の地域がない場合は、[サポートまでご連絡ください](mailto:support@momentohq.com)。
 
-| AWS Region     | Endpoints                                                    |
-|----------------|--------------------------------------------------------------|
-| us-west-2      | https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com    |
-| us-east-1      | https://api.cache.cell-us-east-1-1.prod.a.momentohq.com      |
-| us-east-2      | https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com    |
-| ap-northeast-1 | https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com |
-| ap-southeast-1 | https://api.cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com|
-| eu-west-1      | https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com    |
-| eu-central-1   | https://api.cache.cell-1-eu-central-1-1.prod.a.momentohq.com |
-| ap-south-1     | https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com   |
+| AWS Region     | Endpoints                                                      |
+|----------------|----------------------------------------------------------------|
+| us-west-2      | https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com      |
+| us-east-1      | https://api.cache.cell-us-east-1-1.prod.a.momentohq.com        |
+| us-east-2      | https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com      |
+| ap-northeast-1 | https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com   |
+| ap-southeast-1 | https://api.cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com |
+| eu-west-1      | https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com      |
+| eu-central-1   | https://api.cache.cell-1-eu-central-1-1.prod.a.momentohq.com   |
+| ap-south-1     | https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com     |
 
 ## Publish
 
@@ -45,11 +45,6 @@ Momento HTTP API にアクセスするには、API トークンとキャッシ�
 - Path: /topics/\{cacheName\}/\{topicName\}
 - HTTP Method: POST
 
-#### Body
-
-- Content-Type: octet-stream
-- リクエストのボディには、トピックに公開するバイナリ値を含める。
-
 #### Path Parameters
 
 | Parameter&nbsp;name | Required? | Type            | Description                                 |
@@ -59,19 +54,27 @@ Momento HTTP API にアクセスするには、API トークンとキャッシ�
 
 #### Query Parameters
 
-| Parameter&nbsp;name | Required? | Type                | Description                                                                                         |
-|---------------------|-----------|---------------------|-----------------------------------------------------------------------------------------------------|
-| token               | no**     | URL-safe&nbsp;string | リクエストの認証/認可に使用する Momento 認証トークン (文字列形式)|
+| Parameter&nbsp;name | Required? | Type                 | Description                                                                                           |
+|---------------------|-----------|----------------------|-------------------------------------------------------------------------------------------------------|
+| `token`             | no**      | URL-safe&nbsp;string | リクエストの認証/認可に使用する Momento 認証トークン (文字列形式) |
+
 
 *** リクエストの認証/認可に使用する Momento auth トークンを指定する必要があります。これは、トークンクエリパラメータか Authorization ヘッダで指定します。
 
 #### Headers
 
-| Header&nbsp;name | Required? | Type                 | Description                                                                                        |
-|------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
-| Authorization    | no**     | URL-safe&nbsp;string | 文字列形式の Momento auth トークンは、リクエストの認証/認可に使用されます |
+| Header&nbsp;name | Required? | Description                                                                                                          |
+|------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
+| `Authorization`  | no**      | 文字列形式の Momento auth トークンは、リクエストの認証/認可に使用されます                  |
+| `Content-Type`   | yes       | プレーンテキストデータ（UTF-8）を公開するには `text/plain` を指定する。バイナリデータを公開するには、`application/octet-stream` を指定します |
 
 ** リクエストの認証/認可に使用する Momento auth トークンを指定する必要があります。これは、トークンクエリパラメータか Authorization ヘッダで指定します。
+
+
+#### Body
+
+HTTP POSTリクエストの本文には、トピックに公開する値を含める必要があります。公開できるのは
+テキストデータかバイナリデータのどちらかを公開できます。公開するデータのタイプを指定するには、上記の [ヘッダー](#Headers) のセクションで説明した `Content-Type` ヘッダーを使用します。
 
 ## Responses
 
