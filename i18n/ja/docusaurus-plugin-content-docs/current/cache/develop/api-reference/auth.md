@@ -63,23 +63,23 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
         ### RefreshApiKey
 
-        Refreshes an existing, unexpired Momento API key. Produces a new API key with the same permissions and expiry duration as the original API key.
+        既存の未使用のMomento APIキーをリフレッシュします。元のAPIキーと同じ権限と有効期限を持つ新しいAPIキーを生成します。
 
         #### Parameters
         ----------------
-        - **refreshToken** - *string*: The refresh token that was provided when the original API key was generated.
+        - **refreshToken** - *string*: 元のAPIキーが生成されたときに提供されたリフレッシュ・トークン
 
         #### Returns
         ----------------
         One of the following:
         - **Success**:
-            - `apiKey`: string - the new auth token
-            - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires
-            - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
-            - `expiresAt`: Timestamp - the timestamp at which the token will expire
+            - `apiKey`: string - 新しい認証トークン
+            - `refreshToken`: string - [RefreshApiKey API](#refreshapikey)で使用できるリフレッシュトークンで、トークンの有効期限が切れる前にリフレッシュします。
+            - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
+            - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
 
         - **Error**:
-            - See [response objects](./response-objects.md) for specific information.
+            - 詳しくは[レスポンスオブジェクト](./response-objects.md)を参照
 
     </div>
 
@@ -285,16 +285,16 @@ const tokenResponse = await authClient.generateDisposableToken(
 ## FAQ
 
 <details>
-<summary>キャッシュやトピックのパーミッションにカスタムロールを作成できますか?</summary>
+    <summary>キャッシュやトピックのパーミッションにカスタムロールを作成できますか?</summary>
 
-各権限について、上記の管理された役割のみをサポートしています。
+   各権限について、上記の管理された役割のみをサポートしています。
 
 </details>
 
 <details>
-<summary>これらのトークンは、MomentoのコントロールプレーンAPIへのアクセスを制御しますか</summary>？
+    <summary>これらのトークンは、MomentoのコントロールプレーンAPIへのアクセスを制御しますか</summary>？
 
-[GenerateApiKey](#generateapikey-api)APIで生成されたアクセストークンは、MomentoのデータプレーンAPIへのアクセスのみを制御します。Momento のコントロールプレーン API にアクセスするためのトークンは、[Momento console](https://console.gomomento.com/) を使用して生成する必要があります。
+    [GenerateApiKey](#generateapikey-api)APIで生成されたアクセストークンは、MomentoのデータプレーンAPIへのアクセスのみを制御します。Momento のコントロールプレーン API にアクセスするためのトークンは、[Momento console](https://console.gomomento.com/) を使用して生成する必要があります。
 
 </details>
 

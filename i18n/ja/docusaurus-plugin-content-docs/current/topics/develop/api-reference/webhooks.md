@@ -256,31 +256,32 @@ WebhookId` オブジェクトはウェブフックの一意な識別子を表し
 ## FAQ
 
 <details>
-<summary>受信したWebhookリクエストを検証するには？</summary>
-[ウェブフック・セキュリティページ](../../webhooks/security.md)をチェックしてください。
+  <summary>受信したWebhookリクエストを検証するには？</summary>
+  
+  [ウェブフック・セキュリティページ](../../webhooks/security.md)をチェックしてください。
 </details>
 
 <details>
-<summary>ポストのボディ構造は？</summary>
+  <summary>ポストのボディ構造は？</summary>
 
-```typescript
-{
-    cache: string;
-    topic: string;
-    event_timestamp: number;
-    publish_timestamp: number;
-    topic_sequence_number: number;
-    token_id: string; // is an empty string if the message was published with an api key that does not contain a token_id
-    text: string; // this is the message that was published
-}
+  ```typescript
+  {
+      cache: string;
+      topic: string;
+      event_timestamp: number;
+      publish_timestamp: number;
+      topic_sequence_number: number;
+      token_id: string; // is an empty string if the message was published with an api key that does not contain a token_id
+      text: string; // this is the message that was published
+  }
 ```
 
 </details>
 
 <details>
-<summary>Webhookのサブスクリプションに失敗した場合はどうすればよいですか？</summary>
+  <summary>Webhookのサブスクリプションに失敗した場合はどうすればよいですか？</summary>
 
-WebhookのURLが公開されており、有効であることを確認してください。よくある問題としては、間違ったキャッシュ名やトピック名、あるいは`postURL` の問題などです。
+  WebhookのURLが公開されており、有効であることを確認してください。よくある問題としては、間違ったキャッシュ名やトピック名、あるいは`postURL` の問題などです。
 
 </details>
 

@@ -143,7 +143,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 | --------------- |-------------------------------------------| -------------------------------------------- |
 | permissions           | List \<[Permission](#permission-objects)\> | 新しいトークンに付与するパーミッション|
 
-TokenScopeは[パーミッション・オブジェクト](#permission-objects)のリストです。このリストには、[CachePermission](#cachepermission) 型または [TopicPermission](#topicpermission) 型のパーミッションを含めることができ、[最大10個](../../limits) のパーミッションオブジェクトを含めることができます。パーミッションは Momento データプレーン API (`get` や `set` など) へのアクセスのみを許可する。複数のパーミッションオブジェクトを持つ認証トークンが作成された場合、一致するパーミッションがアクセスを許可します。たとえば、1 つのトークンに 2 つのパーミッションオブジェクトを設定した場合、次のようになります：
+TokenScopeは[パーミッション・オブジェクト](#permission-objects)のリストです。このリストには、[CachePermission](#cachepermission) 型または [TopicPermission](#topicpermission) 型のパーミッションを含めることができ、[最大10個](/topics/limits) のパーミッションオブジェクトを含めることができます。パーミッションは Momento データプレーン API (`get` や `set` など) へのアクセスのみを許可する。複数のパーミッションオブジェクトを持つ認証トークンが作成された場合、一致するパーミッションがアクセスを許可します。たとえば、1 つのトークンに 2 つのパーミッションオブジェクトを設定した場合、次のようになります：
 
 1. アカウントのすべてのキャッシュへの ReadWrite アクセスを許可するパーミッションオブジェクト
 2. キャッシュ `foo` に対する ReadOnly アクセスを許可するパーミッションオブジェクト
@@ -292,16 +292,16 @@ const tokenResponse = await authClient.generateDisposableToken(
 ## FAQ
 
 <details>
-<summary>キャッシュまたはトピックの権限にカスタム・ロールを作成できますか?</summary>
+  <summary>キャッシュまたはトピックの権限にカスタム・ロールを作成できますか?</summary>
 
-各権限について、上記の管理された役割のみをサポートしています。
+  各権限について、上記の管理された役割のみをサポートしています。
 
 </details>
 
 <details>
-<summary>これらのトークンはMomentoコントロールプレーンAPIへのアクセスを制御しますか？</summary>
+  <summary>これらのトークンはMomentoコントロールプレーンAPIへのアクセスを制御しますか？</summary>
 
-[GenerateApiKey](#generateauthtoken-api)APIで生成されたアクセストークンは、MomentoのデータプレーンAPIへのアクセスのみを制御します。Momento のコントロールプレーン API にアクセスするためのトークンは、[Momento console](https://console.gomomento.com/) を使用して生成する必要があります。
+  [GenerateApiKey](#generateauthtoken-api)APIで生成されたアクセストークンは、MomentoのデータプレーンAPIへのアクセスのみを制御します。Momento のコントロールプレーン API にアクセスするためのトークンは、[Momento console](https://console.gomomento.com/) を使用して生成する必要があります。
 
 </details>
 

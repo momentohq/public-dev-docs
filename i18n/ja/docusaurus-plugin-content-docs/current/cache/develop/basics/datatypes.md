@@ -99,23 +99,27 @@ Sorted setsは、値（文字列）とスコア（符号付きダブル64ビッ�
 
 APIメソッドを学ぶには、[API reference for sorted set collection data types](../api-reference/sorted-set-collections.md)を確認してください。
 
-## FAQs
+## FAQ
 <details>
   <summary>Dictionary項目からデータのサブセットを取得するためにAPIコールを実行した場合、項目全体のサイズはGBあたりの転送コストにカウントされますか？</summary>
+  
 いいえ、カウントされません。たとえば、辞書項目全体が50キロバイトである辞書から、5キロバイトのフィールド:値のペアを1つ取得するためにAPIコールDictionaryGetFieldを実行した場合、GBあたりの転送コストには5キロバイトしかカウントされません。
 </details>
 
 <details>
   <summary>JSONドキュメントをMomento Cacheに保存するには？</summary>
+  
 お気に入りの JSON ライブラリを使用して JSON ドキュメントをバイト配列にシリアライズし、そのバイト配列を Momento Cache に挿入します。JSONドキュメントの各フィールド値を辞書に格納することもできます。
 </details>
 
 <details>
   <summary>Momento Cacheは、コレクション・データ型にネストされたデータを保存しますか？</summary>
+  
 直接はできません。このデータを JSON オブジェクトとして保存し、お気に入りの JSON ライブラリを使用して JSON ドキュメントをバイト配列にシリアライズし、そのバイト配列を Momento Cache に挿入するのが最善の方法です。
 </details>
 
 <details>
   <summary>インクリメントAPIを使用する際、要素をどのようにフォーマットすればいいですか？</summary>
+  
 インクリメントAPIコールで使用される要素は、基数10の整数を表すUTF-8文字列として格納されなければなりません。要素がその形式でない場合、APIコールはフォーマットエラーを投げます。
 </details>
