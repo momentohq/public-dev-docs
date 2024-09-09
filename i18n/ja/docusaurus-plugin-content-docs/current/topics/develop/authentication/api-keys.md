@@ -15,7 +15,7 @@ APIキーは、プログラム的な使用を目的とした、長期間の利�
 :::info
 
 Momento SDKを使用して"super-user" APIキーを作成することはできません。しかし、"A fine-grained access control (FGAC)"キーを作成することは可能です！
-詳しくは[Auth API reference page](../api-reference/auth.md)をご覧ください。
+詳しくは[Auth API reference page](/topics/api-reference/auth)をご覧ください。
 
 :::
 

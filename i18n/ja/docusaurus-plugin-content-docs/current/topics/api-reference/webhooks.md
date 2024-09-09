@@ -31,7 +31,7 @@ Webhook に送信されたすべてのメッセージは、トピックへのサ
     - `secretString`: 文字列 - ウェブフックの署名用シークレット
 * Error
 
-具体的な情報は[レスポンスオブジェクト](https://docs.momentohq.com/topics/develop/api-reference/response-objects)を参照してください。
+具体的な情報は[レスポンスオブジェクト](/topics/api-reference/response-objects)を参照してください。
 
 </details>
 
@@ -75,7 +75,7 @@ if (result instanceof PutWebhook.Success) {
     - `webhooks`: [Webhook](#webhook-object) の配列 - 指定したキャッシュのウェブフックのリスト
 * Error
 
-具体的な情報は[レスポンスオブジェクト](https://docs.momentohq.com/topics/develop/api-reference/response-objects)を参照してください。
+具体的な情報は[レスポンスオブジェクト](/topics/api-reference/response-objects)を参照してください。
 
 </details>
 
@@ -114,7 +114,7 @@ if (result instanceof ListWebhooks.Success) {
     - 成功の場合、追加データはありません。
 * Error
 
-具体的な情報は[レスポンスオブジェクト](https://docs.momentohq.com/topics/develop/api-reference/response-objects)を参照してください。
+具体的な情報は[レスポンスオブジェクト](/topics/api-reference/response-objects)を参照してください。
 
 </details>
 
@@ -157,7 +157,7 @@ if (result instanceof DeleteWebhook.Success) {
     - `cacheName`: string - ウェブフックに関連付けられたキャッシュの名前
 * Error
 
-具体的な情報は[レスポンスオブジェクト](https://docs.momentohq.com/topics/develop/api-reference/response-objects)を参照してください。
+具体的な情報は[レスポンスオブジェクト](/topics/api-reference/response-objects)を参照してください。
 
 </details>
 
@@ -200,7 +200,7 @@ if (result instanceof GetWebhookSecret.Success) {
     - `cacheName`: 文字列 - ウェブフックに関連付けられたキャッシュの名前
 * Error
 
-具体的な情報は[レスポンスオブジェクト](https://docs.momentohq.com/topics/develop/api-reference/response-objects)を参照してください。
+具体的な情報は[レスポンスオブジェクト](/topics/api-reference/response-objects)を参照してください。
 
 </details>
 
@@ -257,8 +257,8 @@ WebhookId` オブジェクトはウェブフックの一意な識別子を表し
 
 <details>
   <summary>受信したWebhookリクエストを検証するには？</summary>
-  
-  [ウェブフック・セキュリティページ](../../webhooks/security.md)をチェックしてください。
+
+  [ウェブフック・セキュリティページ](/topics/webhooks/security)をチェックしてください。
 </details>
 
 <details>

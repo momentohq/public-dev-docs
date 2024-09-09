@@ -107,7 +107,7 @@ Momentoで新しいWebhookを作成すると、署名秘密が提供されます
 
 ### Obtaining your signing secret programmatically
 
-[putWebhook API](../develop/api-reference/webhooks#put-webhook-api)を使って新しいウェブフックを作成すると、成功したレスポンスの一部として署名シークレットを受け取ります。シークレットを紛失したり、リクエストの一部として保存し忘れた場合は、[getWebhookSecret API](../develop/api-reference/webhooks#get-webhook-secret-api)で現在の値を返します。
+[putWebhook API](/topics/api-reference/webhooks#put-webhook-api)を使って新しいウェブフックを作成すると、成功したレスポンスの一部として署名シークレットを受け取ります。シークレットを紛失したり、リクエストの一部として保存し忘れた場合は、[getWebhookSecret API](/topics/api-reference/webhooks#get-webhook-secret-api)で現在の値を返します。
 
 ### Obtaining your signing secret via the Momento console
 
@@ -133,4 +133,4 @@ Momentoコンソールを使用したい場合は、いつでもWebhookに移動
 
 ### Regularly rotate secrets
 
-ウェブフック署名の秘密が漏洩した場合、リクエストの真正性を保証することはできません。エンドポイントの安全性を確保するために、定期的にシークレットをローテーションすることを検討してください。[rotateWebhookSecret API](../develop/api-reference/webhooks#rotate-webhook-secret-api)を使ってシークレットをローテーションできます。
+ウェブフック署名の秘密が漏洩した場合、リクエストの真正性を保証することはできません。エンドポイントの安全性を確保するために、定期的にシークレットをローテーションすることを検討してください。[rotateWebhookSecret API](/topics/api-reference/webhooks#rotate-webhook-secret-api)を使ってシークレットをローテーションできます。

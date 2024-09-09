@@ -22,7 +22,7 @@ When creating an API key, you are presented with two options via the [Momento co
 
 :::info
 
-It is not possible to create "super-user" API keys via the Momento SDK; these may only be created in the console. However, you *can* use the SDK to create API keys with specific permissions, via fine-grain access control! Check out our [Auth API reference page](../api-reference/auth.md) for more details.
+It is not possible to create "super-user" API keys via the Momento SDK; these may only be created in the console. However, you *can* use the SDK to create API keys with specific permissions, via fine-grain access control! Check out our [Auth API reference page](/topics/api-reference/auth) for more details.
 
 :::
 

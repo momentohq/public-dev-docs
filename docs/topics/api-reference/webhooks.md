@@ -32,7 +32,7 @@ Generates a new webhook with the provided webhook.
     - `secretString`: string - the signing secret for the webhook
 * Error
 
-See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific
+See [response objects](/topics/api-reference/response-objects) for specific
 information.
 
 </details>
@@ -78,7 +78,7 @@ Retrieves a list of webhooks for a specific cache.
     - `webhooks`: array of [Webhook](#webhook-object) - the list of webhooks for the specified cache.
 * Error
 
-See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific
+See [response objects](/topics/api-reference/response-objects) for specific
 information.
 
 </details>
@@ -118,7 +118,7 @@ Deletes a webhook with the specified identifier.
     - No additional data on success.
 * Error
 
-See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific
+See [response objects](/topics/api-reference/response-objects) for specific
 information.
 
 </details>
@@ -162,7 +162,7 @@ Retrieves the secret string associated with a specific webhook.
     - `cacheName`: string - the name of the cache associated with the webhook.
 * Error
 
-See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific
+See [response objects](/topics/api-reference/response-objects) for specific
 information.
 
 </details>
@@ -208,7 +208,7 @@ endpoint will have a 'momento-signature' header signed with the new secret.
     - `cacheName`: string - the name of the cache associated with the webhook.
 * Error
 
-See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific
+See [response objects](/topics/api-reference/response-objects) for specific
 information.
 
 </details>
@@ -268,7 +268,7 @@ The `WebhookDestination` object contains the information about where the webhook
 <details>
     <summary>How do I validate incoming webhook requests?</summary>
 
-    Check out our [webhook security page](../../webhooks/security.md) on validating inbound webhook requests.
+    Check out our [webhook security page](/topics/webhooks/security) on validating inbound webhook requests.
 </details>
 
 <details>

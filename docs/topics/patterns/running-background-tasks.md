@@ -77,7 +77,7 @@ const result = await topicClient.subscribe(cacheName, 'topic 2', {
     },
 });
 ```
-5. Begin publishing messages to the topic that the webhook is listening to. You can use the [Momento SDK](/topics/develop/api-reference) to publish to the topic.
+5. Begin publishing messages to the topic that the webhook is listening to. You can use the [Momento SDK](/topics/api-reference) to publish to the topic.
 ```typescript
 import {TopicPublish} from '@gomomento/sdk';
 const publishResponse = await topicClient.publish(cacheName, 'topic 1', 'a value');
