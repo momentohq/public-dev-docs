@@ -178,7 +178,28 @@ Subscribes to a topic via long polling, waiting for messages to be published.
 
 ### Examples
 
-Below is an example that subscribes to the *example* topic in the *my-cache* cache in the *us-east-1* region, using a sequence number of `100` to ensure message continuity.
+#### Request with no sequence number
+
+This request includes auth as a header.
+
+`curl -X GET -H "Authorization: <token>" "https://api.cache.cell-us-east-1-1.prod.a.momentohq.com/topics/my-cache/my-topic"`
+
+**Response**
+
+```json
+{
+  "items": [
+    {
+      "item": {
+        "topic_sequence_number": 0,
+        "value": {
+          "text": "hello world"
+        }
+      }
+    }
+  ]
+}
+```
 
 #### Request with a sequence number provided
 
@@ -208,27 +229,4 @@ This request includes auth as a query parameter.
   ]
 }
 
-```
-
-#### Request with no sequence number
-
-This request includes auth as a header.
-
-`curl -X GET -H "Authorization: <token>" "https://api.cache.cell-us-east-1-1.prod.a.momentohq.com/topics/my-cache/my-topic"`
-
-**Response**
-
-```json
-{
-  "items": [
-    {
-      "item": {
-        "topic_sequence_number": 0,
-        "value": {
-          "text": "hello world"
-        }
-      }
-    }
-  ]
-}
 ```
