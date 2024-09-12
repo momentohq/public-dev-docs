@@ -29,7 +29,7 @@ Momento Topics operates on a fire-and-forget messaging model, which means that o
 
 :::note
 
-As Momento Topics uses Momento Cache as its backend, you either use an existing cache or create a new cache in Momento Cache, then call the [Momento Topics publish and subscribe API](./develop/api-reference/index.md).
+As Momento Topics uses Momento Cache as its backend, you either use an existing cache or create a new cache in Momento Cache, then call the [Momento Topics publish and subscribe API](/topics/api-reference).
 
 :::
 
@@ -79,7 +79,7 @@ As a heads up, Momento Topics requires a stateful connection for subscribers, so
 
 ## API calls for Momento Topics
 
-See [API reference page for Topics](./develop/api-reference/index.md).
+See [API reference page for Topics](/topics/api-reference).
 
 ## Language support for Momento Topics
 Learn more about the SDKs available for different programming languages on our [Language Support Page](./develop/language-support/language-support.md).

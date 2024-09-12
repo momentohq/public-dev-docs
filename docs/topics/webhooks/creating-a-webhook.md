@@ -30,7 +30,7 @@ Next, [create a Fine-Grained Access Key](https://console.gomomento.com/api-keys)
 
 ![Token Creation](@site/static/img/topics/patterns/create-fine-grained-token.png)
 
-Using this token, you can now start publishing to the topic. You can use the [Momento SDK](/topics/develop/api-reference) to publish to the topic.
+Using this token, you can now start publishing to the topic. You can use the [Momento SDK](/topics/api-reference) to publish to the topic.
 ```typescript
 import {TopicClient, TopicPublish, CredentialProvider} from '@gomomento/sdk';
 

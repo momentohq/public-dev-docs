@@ -107,7 +107,7 @@ When you create a new webhook in Momento you will be provided a signing secret. 
 
 ### Obtaining your signing secret programmatically
 
-When you create a new webhook with the [putWebhook API](../develop/api-reference/webhooks#put-webhook-api), you will receive the signing secret as part of a successful response. If you lose the secret or forget to save it as part of the request, the [getWebhookSecret API](../develop/api-reference/webhooks#get-webhook-secret-api) will return the current value.
+When you create a new webhook with the [putWebhook API](/topics/api-reference/webhooks#put-webhook-api), you will receive the signing secret as part of a successful response. If you lose the secret or forget to save it as part of the request, the [getWebhookSecret API](/topics/api-reference/webhooks#get-webhook-secret-api) will return the current value.
 
 ### Obtaining your signing secret via the Momento console
 
@@ -133,4 +133,4 @@ You can use the [publish_timestamp](./overview#publish_timestamp) property of th
 
 ### Regularly rotate secrets
 
-If your webhook signing secret is compromised, you cannot guarantee authenticity of a request. Consider rotating the secret periodically to ensure safety of your endpoints. You can rotate a secret using the [rotateWebhookSecret API](../develop/api-reference/webhooks#rotate-webhook-secret-api).
+If your webhook signing secret is compromised, you cannot guarantee authenticity of a request. Consider rotating the secret periodically to ensure safety of your endpoints. You can rotate a secret using the [rotateWebhookSecret API](/topics/api-reference/webhooks#rotate-webhook-secret-api).

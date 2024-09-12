@@ -77,7 +77,7 @@ const result = await topicClient.subscribe(cacheName, 'topic 2', {
     },
 });
 ```
-5. Webhookがリッスンしているトピックへのメッセージのパブリッシュを開始する。トピックへの発行には、[Momento SDK](/topics/develop/api-reference) を使用する
+5. Webhookがリッスンしているトピックへのメッセージのパブリッシュを開始する。トピックへの発行には、[Momento SDK](/topics/api-reference) を使用する
 ```typescript
 import {TopicPublish} from '@gomomento/sdk';
 const publishResponse = await topicClient.publish(cacheName, 'topic 1', 'a value');

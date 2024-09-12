@@ -1,8 +1,19 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 sidebar_label: API Reference
-title: Topics (pub/sub) API reference
-description: Learn how to interact programmatically with Momento Topics pub/sub API.
+title: Topics API reference
+description: Learn how to interact programmatically with the Momento Topics API.
+keywords:
+  - momento
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - serverless
+  - resources
+  - api
+  - docs
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -11,6 +22,7 @@ import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Using the Momento Topics API
+
 Momento Topics is a messaging pattern enabling real-time communication between parts of a distributed application. It enables you to publish (produce) values to a topic and subscribe (consume) from a topic. This page details the Momento API methods for interacting with Momento Topics.
 
 ## TopicClient
@@ -24,7 +36,7 @@ Momento Topics API calls are made using a `TopicClient` object.
 ### Subscribe
 This method subscribes to a topic to receive subscription events with a stateful connection.
 
-Depending on the language, you may use a callback function or an iterator to receive new subscription events, such as items, heartbeats, and discontinuities: 
+Depending on the language, you may use a callback function or an iterator to receive new subscription events, such as items, heartbeats, and discontinuities:
 - Items include a string or byte message, topic sequence number, and a unique token identifier if one is present ([learn more](https://www.gomomento.com/blog/momento-topics-just-got-more-secure-introducing-embedded-token-identifiers)).
 - Heartbeats indicate that the connection is still active.
 - Discontinuities indicate that there was an interruption in the subscription and some messages may have been skipped.

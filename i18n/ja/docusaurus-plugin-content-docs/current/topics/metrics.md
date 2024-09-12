@@ -1,13 +1,25 @@
 ---
-sidebar_position: 2
-sidebar_label: Metrics in the Console
-title: Metrics in the Console
+sidebar_position: 7
+sidebar_label: Metrics
+title: Topic Metrics
 pagination_prev: null
-description: Metrics in the console
+description: Discover how to view your Topic usage directly in the Momento console
+keywords:
+  - momento
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - serverless
+  - metrics
+  - dashboard
+  - metric
+  - resources
 hide_title: true
 ---
 
-# Metrics in the console
+# Usage metrics
 
 Momento Cacheを使用してアプリケーションを開発、運用する場合、バグを効果的に診断し、パフォーマンスを最適化するための可視性が必要になります。Momentoは、トラブルシューティングとチューニングを容易にすることを目的として、Momentoコンソールを介して、すべての顧客に1時間のサービス側メトリクスを提供します。Momento Cacheに重要な依存関係を持つ企業であれば、Momentoチームと緊密に連携し、サポートと詳細な履歴メトリクスの提供を受けることをお勧めします。
 
@@ -41,14 +53,14 @@ Momentoコンソールで、左のナビゲーションメニューにある小�
 ### FAQ
 <details>
   <summary>どうすれば1時間以上のメトリックスを得ることができますか？</summary>
-  
+
   本番環境では、Momentoチームと提携してサポートを受けることをお勧めします。これには、詳細なメトリクスの観測可能ツールへの公開が含まれます（現在はCloudWatchですが、今後オプションが増える予定です）。詳細なメトリクスの配信が可能になれば、運用基準に従ってアラームやダッシュボードを構築することができます。
-  
+
 </details>
 
 <details>
   <summary>なぜレイテンシ・メトリクスが提供されないのですか？</summary>
-  
+
   Momentoが測定できるのは、サービス内部（リクエスト・ルーターとストレージ・ノード間）のトラフィックに関連するレイテンシーだけです。これは、全体的なレイテンシーの話と、ユーザーが受けているエクスペリエンスについて、より多くのことを物語っています。また、カナリアを使って、ネットワーク上のどこか遠くにいるエンドユーザーが経験するレイテンシーをテストし、報告することを検討することもできます。
 
   CloudWatchへの詳細なメトリクス配信を受けているお客様には、パーセンタイル付きのレイテンシ・メトリクスが提供されます。これは、クライアント側のレイテンシやカナリア・レイテンシと比較することで、ユーザー・エクスペリエンスの問題がMomentoキャッシュに関連しているのか、あるいは根本的な原因や解決策を他の場所に求める必要があるのかを迅速に判断するために使用できます。
