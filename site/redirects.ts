@@ -6,13 +6,14 @@ const REDIRECTS = {
     '/docs/limits': '/cache/limits',
 
     // ## Relocated Sections
-    // former top-level cache pages
+    // former top-level pages
     '/getting-started': '/cache/getting-started',
     '/pricing': 'https://www.gomomento.com/pricing',
     '/docs/pricing': 'https://www.gomomento.com/pricing',
     '/cache/manage/pricing': 'https://www.gomomento.com/pricing',
     '/docs/API-reference': '/cache/develop/api-reference',
     '/API-reference': '/cache/develop/api-reference',
+    '/sdks': '/platform/sdks',
 
     // cache api-reference
     '/develop/api-reference/collections/collectionttl': '/cache/develop/api-reference/collection-ttl',
