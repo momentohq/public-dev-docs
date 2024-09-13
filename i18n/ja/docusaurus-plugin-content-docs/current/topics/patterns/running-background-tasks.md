@@ -77,7 +77,7 @@ const result = await topicClient.subscribe(cacheName, 'topic 2', {
     },
 });
 ```
-5. Webhookがリッスンしているトピックへのメッセージのパブリッシュを開始する。トピックへの発行には、[Momento SDK](/topics/api-reference) を使用する
+5. Webhookがリッスンしているトピックへのメッセージのパブリッシュを開始します。トピックへの発行には、[Momento SDK](/topics/api-reference) を使用します
 ```typescript
 import {TopicPublish} from '@gomomento/sdk';
 const publishResponse = await topicClient.publish(cacheName, 'topic 1', 'a value');
@@ -87,6 +87,6 @@ if (publishResponse instanceof TopicPublish.Success) {
     console.log(`Error publishing value: ${publishResponse.toString()}`);
 }
 ```
-6. これで `topic 2` のサブスクライバーは大文字のメッセージを受信し、コンソールにメッセージをロギングする！
+6. これで `topic 2` のサブスクライバーは大文字のメッセージを受信し、コンソールにメッセージをロギングします！
 
 これで終わりです！これは文字列変換の極めて基本的な例だが、このパターンは、DBへの状態保存やキューへのメッセージ発行など、より高度な非同期処理にも当てはまります。アプリケーションの負荷がAPI Gateway + Lambda関数のような環境を超えた場合、コンテナやEC2インスタンスに簡単に置き換えることができます。イベント処理にWebhookを使用する、より完全な例については、私たちのEventBridge [example](/topics/integrations/lambda-handler)や、このパターンを使用して多言語チャットアプリケーションを作成する[blog post](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app)をチェックしてください。
