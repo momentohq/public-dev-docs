@@ -157,6 +157,32 @@ redis_client = MomentoRedis(
 For more in-depth information, with example code, please see [Momento Python Redis compatibility client](https://github.com/momentohq/momento-python-redis-client) on GitHub.
 
 </TabItem>
+<TabItem value="lettuce" label="lettuce" default>
+
+```java
+import io.lettuce.core.api.reactive.RedisReactiveCommands;
+import java.time.Duration;
+import momento.lettuce.MomentoRedisReactiveClient;
+import momento.sdk.CacheClient;
+import momento.sdk.auth.CredentialProvider;
+import momento.sdk.config.Configurations;
+
+class Basic {
+  public static void main(String[] args) {
+    // Use try-with-resources to ensure proper closing of CacheClient
+    try (CacheClient cacheClient = CacheClient.create(
+        CredentialProvider.fromEnvironmentVariable("MOMENTO_API_KEY"),
+        Configurations.Laptop.v1(),
+        Duration.ofSeconds(60)
+    )) {
+      // Create a Redis client backed by the Momento cache client
+      RedisReactiveCommands<String, String> redisClient =
+          MomentoRedisReactiveClient.create(cacheClient, "cache_name");
+    }
+  }
+}
+```
+</TabItem>
 </Tabs>
 
 ## Source Code
@@ -168,3 +194,4 @@ For source code and examples for all of our Redis compatibility clients, please 
 * [StackExchange.Redis](https://github.com/momentohq/momento-dotnet-stackexchange-redis)
 * [go-redis](https://github.com/momentohq/momento-go-redis-client)
 * [redis-py](https://github.com/momentohq/momento-python-redis-client)
+* [lettuce](https://github.com/momentohq/momento-java-lettuce-client)
