@@ -167,7 +167,7 @@ import momento.sdk.CacheClient;
 import momento.sdk.auth.CredentialProvider;
 import momento.sdk.config.Configurations;
 
-class Basic {
+class CompatibilityExample {
   public static void main(String[] args) {
     // Use try-with-resources to ensure proper closing of CacheClient
     try (CacheClient cacheClient = CacheClient.create(
