@@ -12,6 +12,11 @@ keywords:
   - event-driven architecture
 ---
 
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
 # Create your first webhook in Momento
 
 To complete step one of setting up the webhook, log into the [Momento console](https://console.gomomento.com). Navigate to the [cache list](https://console.gomomento.com/caches) on the left navigation bar and select the cache that will publish to the webhook.
@@ -31,18 +36,7 @@ Next, [create a Fine-Grained Access Key](https://console.gomomento.com/api-keys)
 ![Token Creation](@site/static/img/topics/patterns/create-fine-grained-token.png)
 
 Using this token, you can now start publishing to the topic. You can use the [Momento SDK](/topics/api-reference) to publish to the topic.
-```typescript
-import {TopicClient, TopicPublish, CredentialProvider} from '@gomomento/sdk';
 
-const momento = new TopicClient({
-    credentialProvider: CredentialProvider.fromString('<the api key>'),
-});
-const publishResponse = await momento.publish(cacheName, topicName, value);
-if (publishResponse instanceof TopicPublish.Success) {
-    console.log('Value published successfully!');
-} else {
-    console.log(`Error publishing value: ${publishResponse.toString()}`);
-}
-```
+<SdkExampleTabs snippetId={'API_TopicPublish'} />
 
 You should now be able to see the events being received by your webhook endpoint. What this endpoint does with the events is up to you! It is worth noting that this Webhook can listen to multiple topics across multiple caches. Since the `topic` and `cache` come as part of the POST body, events can be distinguished by these attributes, and processed in differently depending on which Cache/Topic the event came from.
