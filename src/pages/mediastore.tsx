@@ -73,40 +73,24 @@ export default function Home(): JSX.Element {
               </div>
             <div className={styles.columns}>
               <div className={styles.subsectionDetail}>
-                <h2 className={styles.subsectionTitle}><Translate id="ItsAbout">It's about </Translate><i>flexibility</i></h2>
+                <h2 className={styles.subsectionTitle}>Zero buffer rates</h2>
                 <p>
-                  <Translate id="weWantYouToMoveAsFastAsPossible">Momento MediaStore isn't just about speed—it's about giving you the flexibility to scale, adapt, and optimize your content delivery strategy. Whether you're working with high-demand live streams, on-demand video, or complex workflows, MediaStore's seamless integration with CDNs ensures you can serve content reliably without being locked into rigid infrastructure.</Translate>
-                </p>
-                <p>
-                  With <b>real-time metrics tracking</b> and the ability to <b>add interactive features</b> like reactions or comments to live streams, Momento MediaStore gives you the tools to enhance viewer engagement. You can dynamically manage caching and storage while tracking audience behavior, ensuring you stay in control of how, when, and where your media is delivered.
-                </p>
-
-                <h2 className={styles.subsectionTitle}><Translate id="weGoWhereYouGo">We go where you go</Translate>
-                </h2>
-                <p>
-                  <Translate id="momentoWorksHardToProvideDevelopers">Momento works hard to provide developers with SDKs
-                    in as many programming languages possible. We have clients for all types of projects: browsers,
-                    Android
-                    development, iOS apps, and 10+ server-side languages. Looking for tuned clients for your production
-                    environment or Lambda function? Our SDKs have</Translate>
-                  <a href="/cache/develop/basics/client-configuration-objects#pre-built-configurations"><Translate
-                      id="optimizedConfigurations">optimized configurations</Translate></a> <Translate
-                    id="forAnywhereDevelopmentTakesYou">for anywhere development takes you.</Translate>
+                  At Momento, we believe that buffering should be a thing of the past. That’s why we’ve engineered Momento MediaStore to deliver content with a zero buffer rate—the gold standard in streaming performance. By leveraging the ultra-low latency system that powers our platform, we ensure your viewers experience seamless, uninterrupted streaming, no matter the demand.
+                  <br/><br/>
+                  With Momento, you can confidently deliver content at scale without compromising on quality. Zero buffer rate isn’t just a feature—it’s our promise to deliver the smoothest, most reliable streaming experience possible.
                 </p>
               </div>
               <div className={styles.subsectionGraphic}>
                 <img src="/img/landing-page-detail-graphic.png" width={300}/>
               </div>
             </div>
-            <h2 className={styles.subsectionTitle}><Translate id="simplifyYourCloudArchitecture">Simplify your cloud
-              architecture</Translate></h2>
-            <p>
-              <Translate id="buildingRobust">Building robust, fault-tolerant systems at scale in the cloud is tough. We
-                know. Lean on Momento's expertise to handle the infrastructure for you. Say
-                goodbye to advanced networking, aggressive load balancing and scaling configurations, and complex
-                WebSocket architectures. With Momento Cache and Topics,
-                it's all managed for you - and getting better every day.</Translate>
-            </p>
+            <h2 className={styles.subsectionTitle}>Stream with <i>flexibility</i></h2>
+              <p>
+                Momento MediaStore isn't just about speed—it's about giving you the flexibility to scale, adapt, and optimize your content delivery strategy. Whether you're working with high-demand live streams, on-demand video, or complex workflows, MediaStore's seamless integration with CDNs ensures you can serve content reliably without being locked into rigid infrastructure.
+              </p>
+              <p>
+                With <b>real-time metrics tracking</b> and the ability to <b>add interactive features</b> like reactions or comments to live streams, Momento MediaStore gives you the tools to enhance viewer engagement. You can dynamically manage caching and storage while tracking audience behavior, ensuring you stay in control of how, when, and where your media is delivered.
+              </p>
           </div>
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}><Translate id="browseOurProducts">Browse our products</Translate></h2>
