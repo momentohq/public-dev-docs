@@ -1,0 +1,39 @@
+---
+id: tokens
+title: Tokens
+sidebar_label: Tokens
+description: Learn what Momento tokens are, how to create them, and how they are used.
+hide_table_of_contents: true
+---
+
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
+# Tokens
+
+Tokens are short-lived, limited-scope values intended to be used in situations like a browser session or granting temporary access in service-to-service communication. Software lifecycle events like a user login often result in the issuing of a token only valid for the duration of that session. These tokens cannot be refreshed, meaning once it expires, it's gone forever. Your application is responsible for creating and issuing a new one if the session continues.
+
+A token allows access to **data operations only**. They are unable to perform control plane operations like creating, deleting, or flushing a cache or creating other tokens.
+
+A user with a fully privileged token will be able to perform the following actions:
+
+* Add/edit/delete cache items in any namespace
+* Increment counter values via the increment API in any namespace
+* Publish and subscribe to any topic in any namespace
+
+It is at the user's discretion to limit the access of a token based on your security requirements.
+
+## The token object
+
+import SchemaView from '@site/src/components/SchemaView';
+import tokenSchema from '@site/src/data/schemas/token.json';
+
+<SchemaView title="The token object" schema={tokenSchema} />
+
+## Create a token
+
+Use the `GenerateDisposableToken` function call to create a new token. This token has a max life of 1 hour and cannot be renewed.
+
+

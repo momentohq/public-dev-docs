@@ -1,0 +1,66 @@
+---
+sidebar_label: Overview
+id: overview
+title: Authentication
+description: Learn how to authenticate with the Momento platform with API keys and session tokens.
+hide_title: true
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - api
+  - dev docs
+  - api docs
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - enterprise
+  - platform
+  - auth
+  - authn
+  - authz
+  - authentication
+---
+
+# Authentication
+
+Both the Momento SDKs and HTTP API use API keys and session tokens to authenticate requests. You can create an API key through the [Momento console](https://console.gomomento.com). Session tokens are created through the Momento Auth client in the SDK. To decide whether your use case requires an API key or a session token, please reference the table below.
+
+<table className="customTable">
+  <thead>
+    <tr>
+      <th></th>
+      <th>API key</th>
+      <th>Session token</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td className="highlightRow">What it is</td>
+      <td>Key used to identify and authorize the API caller.</td>
+      <td>Token that represents a user or system during a short-lived session.</td>
+    </tr>
+    <tr>
+      <td className="highlightRow">Creation</td>
+      <td>Created one time via the Momento console. Can optionally expire and be refreshed.</td>
+      <td>Programmatically generated on authentication or specific system action. Short-lived and not renewable.</td>
+    </tr>
+    <tr>
+      <td className="highlightRow">Scope</td>
+      <td>Can be used to create session tokens, add or remove caches, and all data operations. Able to be scoped to a specific set of permissions.</td>
+      <td>Used for data operations only. Can be scoped to specific caches or topics.</td>
+    </tr>
+    <tr>
+      <td className="highlightRow">Security</td>
+      <td>Long-lived with high risk if compromised. Should be rotated regularly.</td>
+      <td>Max life of 1 hour. Limited only to data operations like read and write.</td>
+    </tr>
+    <tr>
+      <td className="highlightRow">Use cases</td>
+      <td>Building integrations, creating a token vending machine, and server-to-server authentication.</td>
+      <td>User authentication, browser sessions, and temporary access to data.</td>
+    </tr>
+  </tbody>
+</table>

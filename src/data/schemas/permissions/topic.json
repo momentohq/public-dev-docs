@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "subscribeonly",
+        "publishonly",
+        "publishsubscribe"
+      ],
+      "description": "The system-defined permission set for topic operations",
+      "example": "subscribeonly"
+    },
+    "cache": {
+      "type": "string",
+      "description": "The namespace to scope permissions to",
+      "example": "myCache"
+    },
+    "topic": {
+      "type": "string",
+      "description": "The name of the specific topic to scope permissions to.",
+      "example": "test-topic"
+    }
+  },
+  "required": [
+    "role",
+    "cache",
+    "topic"
+  ]
+}
