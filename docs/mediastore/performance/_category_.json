@@ -1,0 +1,9 @@
+{
+  "label": "Performance",
+  "position": 30,
+  "collapsible": false,
+  "collapsed": false,
+  "link": {
+    "description": "Learn how to optimize the performance of video streaming and content delivery"
+  }
+}
