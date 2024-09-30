@@ -20,7 +20,7 @@ Momento Topics は"Fire-and-forget (発火したら忘れる)"メッセージモ
 
 :::note
 
-Momento Topics は Momento Cache をバックエンドとして使うので、既存のキャッシュを使うか、新しいキャッシュを Momento Cache に作成してから、[Momento Topics のパブリッシュやサブスクライブ API](./develop/api-reference/index.md)を呼び出すことができます。
+Momento Topics は Momento Cache をバックエンドとして使うので、既存のキャッシュを使うか、新しいキャッシュを Momento Cache に作成してから、[Momento Topics のパブリッシュやサブスクライブ API](/topics/api-reference)を呼び出すことができます。
 
 :::
 
@@ -38,7 +38,7 @@ Momento Topics は Momento Cache をバックエンドとして使うので、�
 * [Momento Swift SDK](/platform/sdks/swift/index.md) (for native iOS apps)
 * [Momento Kotlin SDK](/platform/sdks/kotlin/index.md) (for native Android apps)
 * [Momento Dart SDK](/platform/sdks/dart/index.md) (for Flutter apps)
- 
+
 ### サーバから接続
 
 また、バックエンド・サービスでトピックを公開したり購読したりすることもできます。サーバーサイド開発をサポートするSDKはこちらです：
@@ -49,7 +49,7 @@ Momento Topics は Momento Cache をバックエンドとして使うので、�
 * [Momento Kotlin SDK](/platform/sdks/kotlin/index.md)
 * [Momento Python SDK](/platform/sdks/python/index.md)
 * [Momento .NET SDK](/platform/sdks/dotnet/index.md)
-* 
+*
 :::note
 
 注意点として、Momento Topicsはサブスクライバにステートフルな接続を要求するため、LambdaやCloudflare Workerのようなサーバレスファンクションには最適ではありません。しかし、データをパブリッシュするだけであれば、完全にステートレスなので、サーバレスファンクションでも動作します。
@@ -71,10 +71,10 @@ Momento Topics は Momento Cache をバックエンドとして使うので、�
 
 ## Momento TopicsのAPI呼び出し
 
-[API reference page for Topics](./develop/api-reference/index.md)をご参照ください。
+[API reference page for Topics](/topics/api-reference)をご参照ください。
 
 ## Momento Topicsの言語サポート
-[言語サポートページ](./develop/language-support/language-support.md)で、さまざまなプログラミング言語で利用可能なSDKの詳細をご覧ください。
+[言語サポートページ](/topics/develop/language-support)で、さまざまなプログラミング言語で利用可能なSDKの詳細をご覧ください。
 
 ## デモ
 

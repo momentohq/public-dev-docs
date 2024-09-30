@@ -30,7 +30,7 @@ Webhookを設定するステップ1を完了するには、[Momentoコンソー�
 
 ![Token Creation](@site/static/img/topics/patterns/create-fine-grained-token.png)
 
-このトークンを使って、トピックへの公開を開始できます。トピックへの公開には[Momento SDK](/topics/develop/api-reference)を使用します。
+このトークンを使って、トピックへの公開を開始できます。トピックへの公開には[Momento SDK](/topics/api-reference)を使用します。
 ```typescript
 import {TopicClient, TopicPublish, CredentialProvider} from '@gomomento/sdk';
 

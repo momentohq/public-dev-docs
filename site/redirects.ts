@@ -6,13 +6,14 @@ const REDIRECTS = {
     '/docs/limits': '/cache/limits',
 
     // ## Relocated Sections
-    // former top-level cache pages
+    // former top-level pages
     '/getting-started': '/cache/getting-started',
     '/pricing': 'https://www.gomomento.com/pricing',
     '/docs/pricing': 'https://www.gomomento.com/pricing',
     '/cache/manage/pricing': 'https://www.gomomento.com/pricing',
     '/docs/API-reference': '/cache/develop/api-reference',
     '/API-reference': '/cache/develop/api-reference',
+    '/sdks': '/platform/sdks',
 
     // cache api-reference
     '/develop/api-reference/collections/collectionttl': '/cache/develop/api-reference/collection-ttl',
@@ -29,7 +30,8 @@ const REDIRECTS = {
     // topics
     '/topics/develop/integrations/aws-secrets-manager': '/topics/integrations/aws-secrets-manager',
     '/introduction/momento-topics': '/topics',
-    '/develop/api-reference/topics': '/topics/develop/api-reference',
+    '/develop/api-reference/topics': '/topics/api-reference',
+    '/topics/develop/api-reference': '/topics/api-reference',
     '/develop/sdks/nodejs/topics-cheat-sheet': '/platform/sdks/nodejs/topics',
     '/topics/webhooks': '/topics/webhooks/overview',
     '/topics/develop/patterns/asynchronous-processing': '/topics/patterns/running-background-tasks',
@@ -76,7 +78,7 @@ const REDIRECTS = {
 const REDIRECT_PREFIXES = Object.entries({
     '/develop/': '/cache/develop/',
     '/learn/': '/cache/learn/',
-    '/manage/': '/cache/manage/',
+    '/manage/': '/cache/',
     '/introduction/': '/cache/introduction/',
     '/cache/develop/integrations/': '/cache/integrations/',
     '/develop/integrations/': '/cache/integrations/',

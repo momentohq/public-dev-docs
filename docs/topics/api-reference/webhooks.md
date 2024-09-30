@@ -5,6 +5,11 @@ sidebar_label: Webhooks
 description: Learn the Webhook API calls you need to know about and how to use them with Momento services.
 ---
 
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
 # Webhook API reference
 
 Webhooks provide an additional way to consume messages on a topic. When a webhook is created, it gets attached to a
@@ -32,7 +37,7 @@ Generates a new webhook with the provided webhook.
     - `secretString`: string - the signing secret for the webhook
 * Error
 
-See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific
+See [response objects](/topics/api-reference/response-objects) for specific
 information.
 
 </details>
@@ -46,22 +51,7 @@ upon success, as it is required for validating incoming webhook requests.
 
 ### Example
 
-```javascript
-const webhookId: WebhookId = {
-    cacheName: 'exampleCache',
-    webhookName: 'exampleWebhook',
-};
-
-const result = await webhookClient.putWebhook(webhookId.cacheName, webhookId.webhookName, {
-    destination: new PostUrlWebhookDestination('https://example.com/webhook'),
-    topicName: 'exampleTopic',
-});
-if (result instanceof PutWebhook.Success) {
-    console.log('Webhook created successfully. Secret:', result.secret);
-} else {
-    console.error('Error creating webhook:', result.error.message);
-}
-```
+<SdkExampleTabs snippetId={'API_PutWebhook'} />
 
 ## List Webhook API
 
@@ -78,7 +68,7 @@ Retrieves a list of webhooks for a specific cache.
     - `webhooks`: array of [Webhook](#webhook-object) - the list of webhooks for the specified cache.
 * Error
 
-See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific
+See [response objects](/topics/api-reference/response-objects) for specific
 information.
 
 </details>
@@ -92,16 +82,7 @@ caching the results to reduce unnecessary API calls and improve performance.
 
 ### Example
 
-```javascript
-const cacheName: string = 'exampleCache';
-
-const result = await webhookClient.listWebhooks(cacheName);
-if (result instanceof ListWebhooks.Success) {
-    console.log('Webhooks retrieved successfully:', result.webhooks);
-} else {
-    console.error('Error retrieving webhooks:', result.error.message);
-}
-```
+<SdkExampleTabs snippetId={'API_ListWebhooks'} />
 
 ## Delete Webhook API
 
@@ -118,7 +99,7 @@ Deletes a webhook with the specified identifier.
     - No additional data on success.
 * Error
 
-See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific
+See [response objects](/topics/api-reference/response-objects) for specific
 information.
 
 </details>
@@ -131,19 +112,7 @@ When a webhook is deleted, it will no longer be active, and incoming requests to
 
 ### Example
 
-```javascript
-const webhookId: WebhookId = {
-    cacheName: 'exampleCache',
-    webhookName: 'exampleWebhook',
-};
-
-const result = await webhookClient.deleteWebhook(webhookId.cacheName, webhookId.webhookName);
-if (result instanceof DeleteWebhook.Success) {
-    console.log('Webhook deleted successfully');
-} else {
-    console.error('Error deleting webhook:', result.error.message);
-}
-```
+<SdkExampleTabs snippetId={'API_DeleteWebhook'} />
 
 ## Get Webhook Secret API
 
@@ -162,7 +131,7 @@ Retrieves the secret string associated with a specific webhook.
     - `cacheName`: string - the name of the cache associated with the webhook.
 * Error
 
-See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific
+See [response objects](/topics/api-reference/response-objects) for specific
 information.
 
 </details>
@@ -176,19 +145,7 @@ retrieved secret.
 
 ### Example
 
-```javascript
-const webhookId: WebhookId = {
-    cacheName: 'exampleCache',
-    webhookName: 'exampleWebhook',
-};
-
-const result = await webhookClient.getWebhookSecret(webhookId.cacheName, webhookId.webhookName);
-if (result instanceof GetWebhookSecret.Success) {
-    console.log('Webhook secret retrieved successfully:', result.secret);
-} else {
-    console.error('Error retrieving webhook secret:', result.error.message);
-}
-```
+<SdkExampleTabs snippetId={'API_GetWebhookSecret'} />
 
 ## Rotate Webhook Secret API
 
@@ -208,7 +165,7 @@ endpoint will have a 'momento-signature' header signed with the new secret.
     - `cacheName`: string - the name of the cache associated with the webhook.
 * Error
 
-See [response objects](https://docs.momentohq.com/topics/develop/api-reference/response-objects) for specific
+See [response objects](/topics/api-reference/response-objects) for specific
 information.
 
 </details>
@@ -222,19 +179,7 @@ previous secret.
 
 ### Example
 
-```javascript
-const webhookId: WebhookId = {
-    cacheName: 'exampleCache',
-    webhookName: 'exampleWebhook',
-};
-
-const result = await webhookClient.rotateWebhookSecret(webhookId.cacheName, webhookId.webhookName);
-if (result instanceof RotateWebhookSecret.Success) {
-    console.log('Webhook secret rotated successfully:', result.secret);
-} else {
-    console.error('Error rotating webhook secret:', result.error.message);
-}
-```
+<SdkExampleTabs snippetId={'API_RotateWebhookSecret'} />
 
 ## Webhook object
 
@@ -268,7 +213,7 @@ The `WebhookDestination` object contains the information about where the webhook
 <details>
     <summary>How do I validate incoming webhook requests?</summary>
 
-    Check out our [webhook security page](../../webhooks/security.md) on validating inbound webhook requests.
+    Check out our [webhook security page](/topics/webhooks/security) on validating inbound webhook requests.
 </details>
 
 <details>

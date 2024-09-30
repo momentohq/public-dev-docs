@@ -1,9 +1,0 @@
-{
-    "label": "Manage",
-    "position": 5,
-    "collapsible": true,
-    "collapsed": true,
-    "link": {
-      "description": "Explore the information and easy tasks of managing and operating Momento Serverless Cache."
-    }
-  }

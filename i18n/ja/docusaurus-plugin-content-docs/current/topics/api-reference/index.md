@@ -1,8 +1,19 @@
 ---
-sidebar_position: 4
-sidebar_label: Topics (Pub/Sub)
-title: Topics (pub/sub) API リファレンス
-description: Momento Topics pub/sub API とプログラムでやりとりする方法を学びます。
+sidebar_position: 2
+sidebar_label: Topics
+title: Topics API reference
+description: Learn how to interact programmatically with the Momento Topics API.
+keywords:
+  - momento
+  - topics
+  - pubsub
+  - pub/sub
+  - eda
+  - event-driven architecture
+  - serverless
+  - resources
+  - api
+  - docs
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -13,9 +24,10 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Momento Topics（pub/sub）API を使用する
+
 Momento Topics は、分散型アプリケーションの各部分間でリアルタイム通信を可能にするメッセージングパターンです。トピックの値をパブリッシュ(プロデュース)し、トピックからサブスクライブ(コンシューム)することを可能にします。このページでは、Momento Topics で操作するための Momento API メソッドについて詳しく説明します。
 
-詳細は[Momento Topics](../../index.md)をご覧ください。
+詳細は[Momento Topics](/topics)をご覧ください。
 
 ## Topics のメソッド
 
@@ -47,7 +59,7 @@ Momento Topics は、分散型アプリケーションの各部分間でリア�
 * Success - [subscription](./response-objects.md#subscription)オブジェクトを返します。
 * Error
 
-具体的な情報については[レスポンスオブジェクト](./api-reference/response-objects)をご覧ください。
+具体的な情報については[レスポンスオブジェクト](/topics/api-reference/response-objects)をご覧ください。
 
 </details>
 
@@ -77,7 +89,7 @@ Momento Topics は、分散型アプリケーションの各部分間でリア�
 * Success
 * Error
 
-具体的な情報については[レスポンスオブジェクト](./api-reference/response-objects)をご覧ください。
+具体的な情報については[レスポンスオブジェクト](/topics/api-reference/response-objects)をご覧ください。
 
 </details>
 

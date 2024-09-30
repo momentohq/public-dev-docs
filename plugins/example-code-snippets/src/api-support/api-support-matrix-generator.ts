@@ -67,7 +67,7 @@ const SDKS: Array<SdkInfo> = [
     cacheClientFile: 'src/momento/cache_client_async.py',
     configObjectFile: 'src/momento/config/configuration.py',
     topicClientFile: 'src/momento/topic_client_async.py',
-    authClientFile: undefined,
+    authClientFile: 'src/momento/auth_client_async.py',
     leaderboardClientFile: undefined,
     storageClientFile: undefined,
   },
