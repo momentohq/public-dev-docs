@@ -31,18 +31,16 @@ export const RotatingHeader: React.FC<RotatingHeaderProps> = ({ rotatingText, he
         {rotatingText[index]}
       </span>
       </p>
-      <p {...stylex.props(styles.headerDescription)}>
-        <Translate id="welcomeToTheMomentoDeveloperDocs">
-          {description}
-        </Translate>
-      </p>
+      <div {...stylex.props(styles.headerDescription)}>
+        {description}
+      </div>
     </div>
   );
 };
 
 const styles = stylex.create({
   headerSection: {
-    padding: '0rem 1rem 1rem'
+    padding: '0rem 1rem'
   },
   headerDescription: {
     padding: '1rem 0rem',
