@@ -30,7 +30,7 @@ An origin is the **single source of truth** for media in a streaming workflow. I
 
 In a media streaming workflow, the origin is one of several components that work together to deliver content to end users. Here's how the media origin fits into the broader ecosystem:
 
-![Diagram: Media streaming components](/mediastore/images/streaming-components.png)
+![Diagram: Media streaming components](../images/streaming-components.png)
 
 * **Video encoder** - Transforms raw video/audio files into formats suitable for streaming, like [HLS (HTTP Live Streaming)](/mediastore/performance/adaptive-bitrates/hls) or [DASH (Dynamic Adaptive Streaming over HTTP)](/mediastore/performance/adaptive-bitrates/dash)
 * **Origin** - Stores the encoded media and makes it available for distribution
