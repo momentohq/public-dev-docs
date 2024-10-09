@@ -24,13 +24,24 @@ An **ABR (Adaptive Bitrate) ladder** is a collection of progressively higher qua
 
 ## Role of the ABR Ladder in media streaming
 
+<div style={{ display: "flex", alignItems: 'flex-start', flexWrap: 'wrap' }}>
+  <div style={{ flex: '2' }}>
 The ABR ladder enables [adaptive bitrate streaming](/mediastore/performance/adaptive-bitrates/how-it-works), where the video player dynamically adjusts the quality of the stream based on network performance. If bandwidth is high, the player selects a higher-quality stream (higher resolution and bitrate). If bandwidth drops, the player switches to a lower-quality stream, preventing interruptions in playback. This adaptability contributes to [zero buffer rate](/mediastore/core-concepts/zero-buffer-rate), the pinnacle metric of viewer experience.
+
 
 ### Bitrate and resolution
 
 - **Bitrate** - The amount of data used per second of video, usually measured in **kilobits per second (kbps)** or **megabits per second (Mbps)**. Higher bitrates deliver more data per second, resulting in higher visual quality. However, higher bitrates also require more bandwidth to stream, and if the network is slow, the player may need to switch to a lower-bitrate stream to prevent buffering.
 
+
+</div>
+ <div className="hideOnMobile" style={{ flex: '1', paddingLeft: '20px' }}>
+  <img src="/img/mediastore/mo-ladder.png" alt="Mo climbing ladder" style={{ width: '80%' }} />
+  </div>
+</div>
+
 - **Resolution**: The **number of pixels** that make up the video image, which directly correlates to the clarity and sharpness of the video. Common resolutions include **1080p** (1920x1080 pixels), **720p** (1280x720 pixels), and **480p** (854x480 pixels). Higher resolutions provide more detail and better image quality, but they also require more bandwidth and higher bitrates to maintain that quality.
+
 
 ### Progressive rungs of the ABR ladder
 
@@ -81,4 +92,4 @@ Momento’s in-memory, two-tier architecture is optimized for **low-latency deli
 
 In contrast, a slow origin can cause **timeouts** at CDN points of presence (POPs), which may result in buffering in downstream video players as they struggle to handle the delayed or missing data. Momento mitigates these risks by providing low-latency, in-memory access to [segments](/mediastore/core-concepts/segments), ensuring that content is delivered smoothly and without delays.
 
-By reducing origin latency, Momento not only prevents timeouts but also helps CDNs maintain a **consistent flow of data**, enabling higher-quality, uninterrupted playback and [zero buffer rates](/mediastore/core-concepts/zero-buffer-rate). 
+By reducing origin latency, Momento not only prevents timeouts but also helps CDNs maintain a **consistent flow of data**, enabling higher-quality, uninterrupted playback and [zero buffer rates](/mediastore/core-concepts/zero-buffer-rate).

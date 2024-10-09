@@ -137,6 +137,10 @@ code span {
   .ask-mo-button {
     visibility: hidden;
   }
+
+  .hideOnMobile {
+    display: none;
+  }
 }
 
 .markdown p {
