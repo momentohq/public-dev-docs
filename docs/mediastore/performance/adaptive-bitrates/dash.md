@@ -24,7 +24,7 @@ DASH (Dynamic Adaptive Streaming over HTTP) is an [adaptive bitrate streaming pr
 
 ## How DASH works
 
-DASH works by dividing content into small segments and providing a **manifest file** (called an MPD — Media Presentation Description) that lists all available segments at different bitrates and resolutions. Aa video player uses this manifest to request the correct segments for playback based on current network conditions. If bandwidth is high, the player streams higher-quality segments, but if it drops, the player switches to lower-quality segments to avoid interruptions.
+DASH works by dividing content into small segments and providing a **manifest file** (called an MPD — Media Presentation Description) that lists all available segments at different bitrates and resolutions. A video player uses this manifest to request the correct segments for playback based on current network conditions. If bandwidth is high, the player streams higher-quality segments, but if it drops, the player switches to lower-quality segments to avoid interruptions.
 
 ### The DASH workflow
 
