@@ -15,6 +15,8 @@ keywords:
   - serverless
 ---
 
+# Streaming media
+
 Streaming allows users to instantly watch video and audio content by delivering it in real time over the internet. Whether for [live streaming](/mediastore/streaming/live-streaming/how-it-works) or [video on demand (VOD)](/mediastore/streaming/video-on-demand/media-storage), streaming relies on a series of processes that ensure the smooth delivery of media, from encoding the video to dynamically adjusting its quality based on network conditions. By leveraging **Momento MediaStore** as the origin, you can optimize the storage and retrieval of [segments](/mediastore/core-concepts/segments) to ensure fast, reliable access for viewers.
 
 ## Encoding and adaptive bitrate streaming (ABR)
