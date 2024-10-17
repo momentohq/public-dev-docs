@@ -43,7 +43,7 @@ By providing ultra-low latency access to video segments, Momento MediaStore ensu
 
 * **Immediate manifest access** - In addition to storing video segments, **Momento MediaStore** also stores [manifest files](/mediastore/performance/adaptive-bitrates/hls) that guide the player in retrieving the appropriate segments. Quick access to these manifests is crucial for players to make decisions about which segments to load, further reducing delays.
 
-* **Scalability** - For livestreams with massive audiences, such as sporting events or live concerts, **Momento MediaStore** scales effortlessly to handle millions of concurrent requests per second.
+* **Scalability** - For liv estreams with massive audiences, such as sporting events or live concerts, **Momento MediaStore** scales effortlessly to handle millions of concurrent requests per second.
 
 ## Additional techniques for reducing latency
 
@@ -55,4 +55,4 @@ While **Momento MediaStore** plays a key role in minimizing latency, there are a
 
 * **Optimized player buffering** - Players can be tuned to buffer fewer seconds of video ahead of time, reducing the waiting period before playback starts. However, this comes with the trade-off of increased buffering risks if network conditions degrade.
 
-By combining **Momento MediaStore's** low-latency segment/manifest storage and efficient content retrieval with additional strategies like shorter segments and chunked transfer encoding, you can significantly reduce in glass-to-glass latency in your livestreams. Whether you're streaming sports, concerts, or news, reducing this latency is critical to delivering real-time content that keeps viewers engaged. As the demand for faster, more responsive livestreams grows, leveraging both optimized infrastructure and modern streaming techniques helps you provide a smooth, high-quality experience for audiences worldwide.
+Combining **Momento MediaStore's** low-latency segment/manifest storage and efficient content retrieval with additional strategies like shorter segments and chunked transfer encoding, significantly reduces glass-to-glass latency in your live streams. Whether you're streaming sports, concerts, or news, reducing this latency is critical to delivering real-time content that keeps viewers engaged. As the demand for faster, more responsive live streams grows, leveraging both optimized infrastructure and modern streaming techniques helps you provide a smooth, high-quality experience for audiences worldwide.
