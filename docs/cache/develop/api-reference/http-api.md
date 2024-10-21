@@ -11,30 +11,15 @@ Momento provides an HTTP API interface for your applications that can’t use ou
 
 You can also view the Open API Specification in our [public workspace in Postman](https://www.postman.com/gomomento/workspace/momento-http-api/api/662743a0-471a-41a1-b446-5db596164a00/definition/4765b18e-ba84-4802-9795-ecce9c408062?view=documentation).
 
-:::note
+:::tip[Info]
 
-This documentation does not describe how to implement HTTP request syntax as that is different and unique to each language you might use.
+The Momento platform is region-based with endpoints specific to each region. To view a list of supported regions and their endpoints, [click here](/platform/regions).
 
 :::
 
 ## Authentication
 
 For each connection, you will need a Momento auth token generated via the [Momento console](https://console.gomomento.com/tokens) or a [token "vending machine" microservice you host](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine). Momento auth tokens control access to the Momento services and can be set to expire and grant/restrict access to specific resources.
-
-## Regions
-
-To access the Momento HTTP API, use one of the following endpoints in the region of your API token and cache. If you do not see a region you require, let’s discuss. Please [contact support](mailto:support@momentohq.com).
-
-| AWS Region     | Endpoints                                                    |
-|----------------|--------------------------------------------------------------|
-| us-west-2      | https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com    |
-| us-east-1      | https://api.cache.cell-us-east-1-1.prod.a.momentohq.com      |
-| us-east-2      | https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com    |
-| ap-northeast-1 | https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com |
-| ap-southeast-1 | https://api.cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com|
-| eu-west-1      | https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com    |
-| eu-central-1   | https://api.cache.cell-1-eu-central-1-1.prod.a.momentohq.com |
-| ap-south-1     | https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com   |
 
 ## Get Value
 
