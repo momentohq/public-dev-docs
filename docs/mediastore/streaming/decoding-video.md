@@ -154,8 +154,6 @@ Adaptive bitrate streaming (ABR) allows the video player to adjust the quality o
 
 The **master manifest** is the top-level file that points to other **media playlists**. Each media playlist contains the list of segments for a [specific combination of bitrate and resolution](/mediastore/core-concepts/abr-ladder). This structure allows the player to choose the most suitable stream, dynamically switching between quality levels as network conditions change.
 
-For example, the master manifest might include:
-
 ```plaintext
 #EXTM3U
 #EXT-X-STREAM-INF:BANDWIDTH=5000000,RESOLUTION=1920x1080
