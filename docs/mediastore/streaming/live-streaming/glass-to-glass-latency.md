@@ -43,7 +43,7 @@ By providing ultra-low latency access to video segments, Momento MediaStore ensu
 
 * **Immediate manifest access** - In addition to storing video segments, **Momento MediaStore** also stores [manifest files](/mediastore/performance/adaptive-bitrates/hls) that guide the player in retrieving the appropriate segments. Quick access to these manifests is crucial for players to make decisions about which segments to load, further reducing delays.
 
-* **Scalability** - For liv estreams with massive audiences, such as sporting events or live concerts, **Momento MediaStore** scales effortlessly to handle millions of concurrent requests per second.
+* **Scalability** - For live streams with massive audiences, such as sporting events or live concerts, **Momento MediaStore** scales effortlessly to handle millions of concurrent requests per second.
 
 ## Additional techniques for reducing latency
 
