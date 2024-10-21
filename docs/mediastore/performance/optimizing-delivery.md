@@ -64,7 +64,7 @@ livestreams/720p/segment1.ts
 
 This allows CDNs to efficiently cache and serve segments, which results in faster transitions between quality levels. In contrast, inconsistent key names slow down retrieval by making caching and prefetching less effective.
 
-### Considerations and Trade-offs
+### Considerations and trade-offs
 
 While optimizing ABR transitions improves the viewing experience, be sure to consider the following:
 
