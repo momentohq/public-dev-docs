@@ -34,7 +34,7 @@ graph TD;
     A[Live Video Source] --> B[RTMP Ingestion via POST /livestreams];
     B --> C[FFmpeg Transcoding];
     C --> D[HLS Segments & Manifests];
-    D --> E[Momento MediaStore (Origin)];
+    D --> E[Momento MediaStore];
     E --> G[Media Player];
 
     subgraph Transcoding Process
