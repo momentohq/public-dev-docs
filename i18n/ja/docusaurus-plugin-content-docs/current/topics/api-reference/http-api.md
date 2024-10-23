@@ -11,26 +11,11 @@ Momentoは、私たちの[SDK](../)を使用できないアプリケーション
 
 私たちの[Postmanの公開ワークスペース](https://www.postman.com/gomomento/workspace/momento-http-api/api/662743a0-471a-41a1-b446-5db596164a00).でもOpen API Specificationを見ることができます。
 
-:::warning[Note]
+:::tip[Info]
 
-このドキュメントでは、HTTPリクエスト構文の実装方法については説明しません。
+Momentoはリージョンベースのサービスで、世界中でご利用いただけます。ご希望の地域がない場合は、ご相談ください。サポートまでご連絡ください](mailto:support@momentohq.com)。
 
 :::
-
-## リージョン
-
-Momento HTTP API にアクセスするには、API トークンとキャッシュのリージョンで以下のエンドポイントのいずれかを使用します。ご希望の地域がない場合は、[サポートまでご連絡ください](mailto:support@momentohq.com)。
-
-| AWS Region     | Endpoints                                                      |
-|----------------|----------------------------------------------------------------|
-| us-west-2      | https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com      |
-| us-east-1      | https://api.cache.cell-us-east-1-1.prod.a.momentohq.com        |
-| us-east-2      | https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com      |
-| ap-northeast-1 | https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com   |
-| ap-southeast-1 | https://api.cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com |
-| eu-west-1      | https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com      |
-| eu-central-1   | https://api.cache.cell-1-eu-central-1-1.prod.a.momentohq.com   |
-| ap-south-1     | https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com     |
 
 ## Authentication
 
