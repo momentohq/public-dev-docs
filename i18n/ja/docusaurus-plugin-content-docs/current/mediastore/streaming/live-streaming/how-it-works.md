@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 sidebar_label: How it works
 title: How does live streaming work?
 description: Discover the ins and outs of live streaming media from glass to glass
