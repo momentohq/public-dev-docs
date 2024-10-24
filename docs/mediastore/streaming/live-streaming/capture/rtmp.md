@@ -139,7 +139,7 @@ function startTranscodingWorkflow(rtmpUrl, streamName) {
 }
 ```
 
-This code uses the wrapper package `fluent-ffmpeg` to pass commands to the FFmpeg binary using the RTMP steam as input. We are building a command that will transcode the stream into *1080p at 5mbps*, *720p at 3mbps*, and *480p at 1.5mbps* bitrates and resolutions with one second segments. Each segment will be output to a directory for the specific resolution with the naming convention "segment<#>.ts".
+This code uses the wrapper package `fluent-ffmpeg` to pass commands to the FFmpeg binary using the RTMP steam as input. We are building a command that will transcode the stream into *1080p at 5mbps*, *720p at 3mbps*, and *480p at 1.5mbps* bitrates and resolutions with one second segments. Each segment will be output to a directory for the specific resolution with the naming convention "segment(number).ts".
 
 Next, we need to implement the watcher function that uploads segments to Momento MediaStore as they are created in real time.
 
@@ -250,7 +250,7 @@ To test this setup locally with an RTMP stream from [OBS (Open Broadcaster Softw
     - For local testing, you can use a player like [VLC](https://www.videolan.org/) or [Video.js](https://videojs.com/) in your browser.
 
 :::info
-The method we used in this demo was the [CDN route](/mediastore/streaming/decoding-video#using-a-cdn-with-header-forwarding) for accessing media files. This CDN takes requests and forwards a Momento auth token directly to Momento MediaStore. If you do not have a CDN configured to do this, the media player will be unable to fetch the manifest and segments. 
+The method we used in this demo was the [CDN route](/mediastore/streaming/decoding-video#using-a-cdn-with-header-forwarding) for accessing media files. This CDN takes requests and forwards a Momento auth token directly to Momento MediaStore. If you do not have a CDN configured to do this, the media player will be unable to fetch the manifest and segments.
 :::
 
 You are now be ready to handle RTMP live streaming, transcoding, and storing segments in **Momento MediaStore**. You can adjust the stream quality, segments length, and other parameters based on your streaming needs. Happy coding!
