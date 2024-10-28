@@ -23,7 +23,7 @@ keywords:
 
 # Live streaming with RTMP, FFmpeg, and Momento MediaStore
 
-In this tutorial, you will build a live stream ingestion workflow where an HTTP POST request initiates the process. The request will contain the [RTMP stream](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) URL, which triggers **FFmpeg** to transcode the stream into multiple resolutions and upload the resulting HLS segments and manifest files to **Momento MediaStore** using the Momento SDK.
+In this tutorial, you will build a live stream ingestion workflow triggered by an HTTP POST request. The request will contain the [RTMP stream](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) url and stream name, which triggers **FFmpeg** to transcode the stream into multiple resolutions and upload the resulting [HLS segments](/mediastore/performance/adaptive-bitrates/hls) and manifest files to **Momento MediaStore** using the Momento SDK.
 
 :::info
 You can skip straight to the [code in GitHub](https://github.com/momentohq/demo-rtmp-streaming) or follow along the tutorial below.
@@ -35,31 +35,31 @@ Below is a diagram of what you will be building in this tutorial.
 
 ```mermaid
 graph TD;
-    A[Live Video Source] --> B[RTMP Ingestion via POST /livestreams];
-    B --> C[FFmpeg Transcoding];
-    C --> D[HLS Segments & Manifests];
-    D --> E[Momento MediaStore];
-    E --> G[Media Player];
+    A[Live video source] --> B[RTMP ingestion via API];
+    B --> C[FFmpeg transcoding];
+    C --> D[HLS segments & manifests];
+    D --> E[Momento Cache];
 
-    subgraph Transcoding Process
-        C --> H[1080p @ 5 Mbps];
+
+    subgraph Transcoding process
+        C --> H[1080p @ 5 bps];
         C --> I[720p @ 3 Mbps];
         C --> J[480p @ 1.5 Mbps];
     end
 
     subgraph Momento MediaStore
-        E --> K[Store HLS Segments];
-        E --> L[Store Playlists];
-        K --> G;
-        L --> G;
+        E --> K[Store HLS segments];
+        E --> L[Store playlists];
     end
 
+    K --> G[Media player];
+    L --> G;
     G --> F[Playback];
 ```
 
-## Step 1: Setting up the Express web API
+## Step 1: Setting up the Express API
 
-First, create an [Express app](https://expressjs.com/) that listens for POST requests at the `/livestreams` endpoint. The request body will contain the RTMP URL, and the server will kick off an asynchronous workflow to process the stream.
+First, create an [Express app](https://expressjs.com/) that listens for POST requests at the `/livestreams` endpoint. The request body will contain the RTMP url and stream name, and the server will kick off an asynchronous workflow to process the stream.
 
 ### Install dependencies
 
@@ -73,7 +73,7 @@ npm install express fluent-ffmpeg @gomomento/sdk
 
 The segments and manifest files will be stored in [Momento Cache](/cache). You must create a cache [in your account](https://console.gomomento.com) before running the code. The example we are building uses a cache named `livestreams`.
 
-### Create the Express.js Server
+### Create the Express.js server
 
 To define the **POST /livestreams** endpoint and kick off the async processing task, use the code below.
 
@@ -95,7 +95,7 @@ app.post('/livestreams', async (req, res) => {
   const { rtmpUrl, streamName } = req.body;
 
   if (!rtmpUrl || !streamName ) {
-    return res.status(400).json({ error: 'RTMP URL and stream name are required' });
+    return res.status(400).json({ error: 'RTMP url and stream name are required' });
   }
 
   const stream = streamName.replace(/[^a-zA-Z]/g, "").toLowerCase();
@@ -108,11 +108,13 @@ app.listen(3000, () => {
 });
 ```
 
-The code above initializes the Momento `CacheClient` and configures the Express app to run with the `/livestreams` endpoint with basic validation. The endpoint returns a `stream` property with the key of the master playlist.
+The code above initializes the Momento `CacheClient` and configures the Express app to run with the `/livestreams` endpoint with basic validation. We also set the default [time to live](/cache/learn/how-it-works/expire-data-with-ttl) for segments and manifest files for one hour. After an hour they will be automatically deleted.
+
+The endpoint returns a `stream` property with the key of the master playlist.
 
 ## 2. Build the transcoding workflow
 
-Now that the request is handled, we need to write the async workflow that ingests the RTMP stream and transcodes it to different bitrates and resolutions.
+Now that the request is handled, we need to write the async workflow that ingests the RTMP stream and transcodes it to [different bitrates and resolutions](/mediastore/core-concepts/abr-ladder).
 
 ```javascript
 function startTranscodingWorkflow(rtmpUrl, streamName) {
@@ -169,7 +171,7 @@ function startTranscodingWorkflow(rtmpUrl, streamName) {
 }
 ```
 
-This code uses the wrapper package `fluent-ffmpeg` to pass commands to the FFmpeg binary using the RTMP steam as input. We are building a command that will transcode the stream into *1080p at 5mbps*, *720p at 3mbps*, and *480p at 1.5mbps* bitrates and resolutions with one second segments. Each segment will be output to a directory for the specific resolution with the naming convention "(streamName)_(resolution)_segment(number).ts". This naming convention grants us unique key names for each segment and resolution. The output file names are added automatically to each manifest file by ffmpeg.
+This code uses the wrapper package `fluent-ffmpeg` to pass commands to the FFmpeg binary using the RTMP steam as input. We are building a command that transcodes the stream into *1080p at 5mbps*, *720p at 3mbps*, and *480p at 1.5mbps* bitrates and resolutions with one second segments. Each segment will be output to a directory for the specific resolution with the naming convention "(streamName)_(resolution)_segment(number).ts". This naming convention grants us unique key names for each segment and resolution. The output file names are added automatically to each manifest file by ffmpeg.
 
 Next, we need to implement the watcher function that uploads segments to Momento MediaStore as they are created in real time.
 
@@ -252,6 +254,7 @@ To test this setup locally with an RTMP stream from [OBS (Open Broadcaster Softw
     }
     ```
     - Start Nginx
+
     *NOTE - The config file requires more than the rtmp section. The [Nginx docs](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) describe the full details.*
 2. **Configure OBS to stream via RTMP**
     - Open **OBS** and go to **File > Settings > Stream**.
@@ -288,4 +291,4 @@ To test this setup locally with an RTMP stream from [OBS (Open Broadcaster Softw
 The method we used in this demo was the [CDN route](/mediastore/streaming/decoding-video#using-a-cdn-with-header-forwarding) for accessing media files. This CDN takes requests and forwards a Momento auth token directly to Momento MediaStore. If you do not have a CDN configured to do this, the media player will be unable to fetch the manifest and segments.
 :::
 
-You are now be ready to handle RTMP live streaming, transcoding, and storing segments in **Momento MediaStore**. You can adjust the stream quality, segments length, and other parameters based on your streaming needs. Happy coding!
+You are now ready to handle RTMP live streaming, transcoding, and storing segments in **Momento MediaStore**. You can adjust the stream quality, segments length, and other parameters based on your streaming needs. Happy coding!

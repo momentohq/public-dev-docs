@@ -87,7 +87,7 @@ const config = {
         /** colorMode: {
          disableSwitch: true,
          }, **/
-        mermaid: { theme: { light: 'forest', dark: 'forest' }},
+
         navbar: {
           title: "",
           logo: {
@@ -191,6 +191,12 @@ const config = {
           sidebar: {
             autoCollapseCategories: false
           },
+        },
+        mermaid: {
+          theme: {
+            light: 'forest',
+            dark: 'forest'
+          }
         },
       }),
 };
