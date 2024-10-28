@@ -25,6 +25,10 @@ keywords:
 
 In this tutorial, you will build a live stream ingestion workflow where an HTTP POST request initiates the process. The request will contain the [RTMP stream](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) URL, which triggers **FFmpeg** to transcode the stream into multiple resolutions and upload the resulting HLS segments and manifest files to **Momento MediaStore** using the Momento SDK.
 
+:::info
+You can skip straight to the [code in GitHub](https://github.com/momentohq/demo-rtmp-streaming) or follow along the tutorial below.
+:::
+
 ## Architecture
 
 Below is a diagram of what you will be building in this tutorial.
@@ -53,17 +57,21 @@ graph TD;
     G --> F[Playback];
 ```
 
-## Step 1: Setting up the Express Web API
+## Step 1: Setting up the Express web API
 
 First, create an [Express app](https://expressjs.com/) that listens for POST requests at the `/livestreams` endpoint. The request body will contain the RTMP URL, and the server will kick off an asynchronous workflow to process the stream.
 
-### Install Dependencies
+### Install dependencies
 
 Install the npm packages below and make sure [FFmpeg](http://www.ffmpeg.org/) is installed on your media server with the `FFMPEG_PATH` environment variable set to the location of the FFmpeg binary.
 
 ```bash
 npm install express fluent-ffmpeg @gomomento/sdk
 ```
+
+### Create your cache
+
+The segments and manifest files will be stored in [Momento Cache](/cache). You must create a cache [in your account](https://console.gomomento.com) before running the code. The example we are building uses a cache named `livestreams`.
 
 ### Create the Express.js Server
 
@@ -91,7 +99,7 @@ app.post('/livestreams', async (req, res) => {
   }
 
   const stream = streamName.replace(/[^a-zA-Z]/g, "").toLowerCase();
-  res.status(202).json({ stream: `${stream}/playlist.m3u8` });
+  res.status(202).json({ stream: `${stream}_playlist.m3u8` });
   startTranscodingWorkflow(rtmpUrl, stream);
 });
 
@@ -100,7 +108,7 @@ app.listen(3000, () => {
 });
 ```
 
-The code above initializes the Momento `CacheClient` and configures the Express app to run with the `/livestreams` endpoint with basic validation.
+The code above initializes the Momento `CacheClient` and configures the Express app to run with the `/livestreams` endpoint with basic validation. The endpoint returns a `stream` property with the key of the master playlist.
 
 ## 2. Build the transcoding workflow
 
@@ -109,23 +117,45 @@ Now that the request is handled, we need to write the async workflow that ingest
 ```javascript
 function startTranscodingWorkflow(rtmpUrl, streamName) {
   ffmpeg(rtmpUrl)
+    // 1080p Output
+    .size('1920x1080')
+    .videoBitrate('5000k')
+    .output(`${streamName}/1080p/playlist.m3u8`)
     .outputOptions([
       '-c:v libx264',
       '-g 48',
       '-sc_threshold 0',
       '-f hls',
       '-hls_time 1',
-      '-hls_list_size 0'
+      '-hls_list_size 0',
+      `-hls_segment_filename ${streamName}/1080p/${streamName}_1080p_segment%03d.ts`
     ])
-    .output('1080p/segment%d.ts')
-    .size('1920x1080')
-    .videoBitrate('5000k')
-    .output('720p/segment%d.ts')
+    // 720p Output
     .size('1280x720')
     .videoBitrate('3000k')
-    .output('480p/segment%d.ts')
+    .output(`${streamName}/720p/playlist.m3u8`)
+    .outputOptions([
+      '-c:v libx264',
+      '-g 48',
+      '-sc_threshold 0',
+      '-f hls',
+      '-hls_time 1',
+      '-hls_list_size 0',
+      `-hls_segment_filename ${streamName}/720p/${streamName}_720p_segment%03d.ts`
+    ])
+    // 480p Output
     .size('854x480')
     .videoBitrate('1500k')
+    .output(`${streamName}/480p/playlist.m3u8`)
+    .outputOptions([
+      '-c:v libx264',
+      '-g 48',
+      '-sc_threshold 0',
+      '-f hls',
+      '-hls_time 1',
+      '-hls_list_size 0',
+      `-hls_segment_filename ${streamName}/480p/${streamName}_480p_segment%03d.ts`
+    ])
     .on('end', () => {
       console.log('Transcoding complete');
     })
@@ -139,7 +169,7 @@ function startTranscodingWorkflow(rtmpUrl, streamName) {
 }
 ```
 
-This code uses the wrapper package `fluent-ffmpeg` to pass commands to the FFmpeg binary using the RTMP steam as input. We are building a command that will transcode the stream into *1080p at 5mbps*, *720p at 3mbps*, and *480p at 1.5mbps* bitrates and resolutions with one second segments. Each segment will be output to a directory for the specific resolution with the naming convention "segment(number).ts".
+This code uses the wrapper package `fluent-ffmpeg` to pass commands to the FFmpeg binary using the RTMP steam as input. We are building a command that will transcode the stream into *1080p at 5mbps*, *720p at 3mbps*, and *480p at 1.5mbps* bitrates and resolutions with one second segments. Each segment will be output to a directory for the specific resolution with the naming convention "(streamName)_(resolution)_segment(number).ts". This naming convention grants us unique key names for each segment and resolution. The output file names are added automatically to each manifest file by ffmpeg.
 
 Next, we need to implement the watcher function that uploads segments to Momento MediaStore as they are created in real time.
 
@@ -150,12 +180,17 @@ Now that we are creating segments from the RTMP stream, we must upload them to M
 
 ```javascript
 function watchAndUploadSegments(streamName, directories) {
-  for(const directory of directories){
-    fs.watch(directory, (eventType, filename) => {
-      if (filename.endsWith('.ts') || filename.endsWith('.m3u8')) {
-        const filepath = `${directory}/${filename}`;
-        const key = `${streamName}/${directory}/${filename}`;
-        uploadToMomento(filepath, key);
+  for (const directory of directories) {
+    const streamDirectory = `${streamName}/${directory}`;
+    if (!fs.existsSync(streamDirectory)) {
+      fs.mkdirSync(streamDirectory, { recursive: true });
+    }
+
+    fs.watch(streamDirectory, (eventType, fileName) => {
+      if (fileName.endsWith('.ts') || fileName.endsWith('.m3u8')) {
+        const location = `${streamDirectory}/${fileName}`;
+        const key = `${streamName}_${directory}_${fileName}`;
+        uploadToMomento(location, key);
       }
     });
   }
@@ -165,23 +200,23 @@ async function uploadToMomento(filepath, key) {
   try {
     const fileData = fs.readFileSync(filepath);
     await momento.set(NAMESPACE, key, fileData);
+    console.log(`${key} uploaded`);
   } catch (error) {
     console.error(`Failed to upload ${key}:`, error);
   }
 }
 
-async function uploadMasterPlaylist(streamName){
-  const masterPlaylist = `
-  #EXTM3U
+async function uploadMasterPlaylist(streamName) {
+  const masterPlaylist = `#EXTM3U
   #EXT-X-STREAM-INF:BANDWIDTH=5000000,RESOLUTION=1920x1080
-  ${streamName}/1080p/playlist.m3u8
+  ${streamName}_1080p_playlist.m3u8
   #EXT-X-STREAM-INF:BANDWIDTH=3000000,RESOLUTION=1280x720
-  ${streamName}/720p/playlist.m3u8
+  ${streamName}_720p_playlist.m3u8
   #EXT-X-STREAM-INF:BANDWIDTH=1500000,RESOLUTION=854x480
-  ${streamName}/480p/playlist.m3u8
+  ${streamName}_480p_playlist.m3u8
   `;
 
-  await momento.set(NAMESPACE, `${streamName}/playlist.m3u8`);
+  await momento.set(NAMESPACE, `${streamName}_playlist.m3u8`, masterPlaylist);
 }
 ```
 
