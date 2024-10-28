@@ -183,6 +183,29 @@ class CompatibilityExample {
 }
 ```
 </TabItem>
+<TabItem value="PhpRedis" label="PhpRedis" default>
+
+```php
+<?php
+declare(strict_types=1);
+
+use Momento\Auth\CredentialProvider;
+use Momento\Cache\CacheClient;
+use Momento\Cache\MomentoCacheClient;
+use Momento\Config\Configurations\Laptop;
+use Momento\Logging\StderrLoggerFactory;
+
+require "vendor/autoload.php";
+
+// Create a Momento cache client
+$authProvider = CredentialProvider::fromEnvironmentVariable("MOMENTO_API_KEY");
+$configuration = Laptop::latest(new StderrLoggerFactory());
+$client = new CacheClient($configuration, $authProvider, 60);
+
+// Create a Redis client backed by Momento cache client over the cache
+$momentoCacheClient = new MomentoCacheClient($client, "cache_name");
+```
+</TabItem>
 </Tabs>
 
 ## Source Code
@@ -195,3 +218,4 @@ For source code and examples for all of our Redis compatibility clients, please 
 * [go-redis](https://github.com/momentohq/momento-go-redis-client)
 * [redis-py](https://github.com/momentohq/momento-python-redis-client)
 * [lettuce](https://github.com/momentohq/momento-java-lettuce-client)
+* [php-redis](https://github.com/momentohq/momento-php-redis-client)
