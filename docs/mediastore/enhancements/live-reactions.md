@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 sidebar_label: Live reactions
 title: Live reactions
 description: Learn how to overlay live reactions on your content with Momento MediaStore
@@ -18,15 +18,15 @@ keywords:
   - reactions
 ---
 
-# Adding live emoji reactions to a video stream
+# Adding real-time emoji reactions to a video stream
 
-Interactivity plays a significant role in viewer experience. Adding reactions to significants events or sharing emotions with other viewers adds a sense of community and engagement you can't find through media streaming alone. In this tutorial, you’ll set up a live emoji reactions overlay on a video player. With **Momento Topics**, emoji reactions appear in real time as users interact, allowing for a lively and engaging viewing experience.
+Interactivity plays a significant role in viewer experience. Sending reactions and sharing emotions with other viewers adds a sense of community and engagement you can't find through media streaming alone. In this tutorial, you’ll set up a real-time emoji overlay on a video player. With **Momento Topics**, emoji reactions appear instantly as users interact, allowing for a lively and engaging viewing experience.
 
 :::info
 You can skip straight to a complete [example in GitHub](https://github.com/momentohq/demo-video-streaming) or follow along the tutorial below to build a simple implementation yourself.
 :::
 
-## Sequence of events
+## How it works
 
 ```mermaid
 sequenceDiagram
@@ -43,11 +43,11 @@ sequenceDiagram
     Momento-->>-Browser: Broadcast reaction to all viewers
 ```
 
-First, the browser will request an auth token from a server component called a *token vending machine* responsible for creating and distributing short-lived, limited scope [session tokens](/cache/develop/authentication/tokens). This token will be active for a short period of time and will grant access only to the permissions needed for sending and receiving reactions.
+First, the browser will request an auth token from a server component called a *token vending machine*, which is responsible for creating and distributing short-lived, limited scope [session tokens](/cache/develop/authentication/tokens). This token will be active for a short period of time and grants access only to the resources needed for sending and receiving reactions.
 
 After the token is received, the player will publish a message to [Momento Topics](/topics) indicating which emoji was pressed. Topics will broadcast the emoji to all video players that subscribed for reactions.
 
-The event handler in the browser invoked by the Momento Topics subscription then renders the emoji on screen, providing real-time reactions to all your users.
+The event handler in the browser invoked by Momento Topics then renders the emoji on screen, providing real-time reactions to all your users.
 
 ## Prerequisites
 
@@ -55,7 +55,7 @@ The event handler in the browser invoked by the Momento Topics subscription then
 
 ## Step 1: Building a token vending machine
 
-The video player needs access to Momento Topics to publish and receive emojis. To grant access, you will generate a session token and return it to the caller. To do this, you can create a simple [Express server](https://expressjs.com/) with a `POST /tokens` endpoint.
+The video player needs access to Momento Topics to publish and receive emojis. To grant access, you must generate a session token and return it to the caller. We do this by creating a simple [Express server](https://expressjs.com/) with a `POST /tokens` endpoint.
 
 ```javascript
 import express from 'express';
@@ -80,15 +80,15 @@ app.post('/tokens', (req, res) => {
 });
 ```
 
-The endpoint you created here accepts a request body containing `playerId` and `streamId` properties. The `streamId` is a unique identifier for the video stream being watched. This is used to *limit the scope of the reactions to the requested video*. The `playerId` is the identifier for the caller. Momento best practices say to always include the identifier of the caller in your session tokens so you can uniquely identify the actor on your account. We are creating the token with the `playerId` embedded directly in it, which will carry through with every message published by the user.
-
-The permissions granted in the token allow the caller to both *publish* and *subscribe* to a topic dedicated to the video stream the caller is watching. This topic lives in a [cache](/cache) named `video`.
-
-Upon success, this endpoint will return a `201 Created` status code along with the generated token that expires in 30 minutes.
+The endpoint you created here accepts a request body containing `playerId` and `streamId` properties. The `streamId` is a unique identifier for the video stream being watched. This is used to *limit the scope of the reactions to the requested video*. The `playerId` is the identifier of the caller. Momento best practices say to *always include the identifier of the caller in your session tokens* so you can uniquely identify the actor on your account. We are creating the token with the `playerId` embedded directly in it, which will carry through to every message published by the user.
 
 :::tip
 For the Momento AuthClient to initialize properly, you must have your Momento API key configured in a `MOMENTO_API_KEY` environment variable or pass it directly to the constructor in the `credentialProvider` property.
 :::
+
+The permissions granted in the token allow the caller to both *publish* and *subscribe* to a topic dedicated to the video stream the caller is watching. This topic lives in a [cache](/cache) named `video`.
+
+Upon success, this endpoint will return a `201 Created` status code along with the generated token that expires in 30 minutes.
 
 ## Step 2: Creating the video player and emoji overlay
 
@@ -187,15 +187,15 @@ function sendReaction(reaction) {
 
 This code generates a unique `playerId` for the viewer, gets the requested video id from the `videoId` query string parameter, and gets an auth token from our token vending machine. It then saves the token globally so we have it in scope for calls made to Momento.
 
-We also define the `sendReaction` function, which simply wraps a call to the [Momento HTTP API](/topics/api-reference/http-api) using our globally-scoped auth token. The url to the Momento API is [region-based](/platform/regions) and varies based on geo-location. You can see in the url, we are doing a POST to Momento Topics, specifically to the `video` cache and sending a message to the `streamId` topic. This allows us to scope interactions specifically to the video being watched by the player.
+We also define the `sendReaction` function, which simply wraps a call to the [Momento HTTP API](/topics/api-reference/http-api) using our globally-scoped auth token variable. The url to the Momento API is [region-based](/platform/regions) and varies based on geo-location. You can see in the url, we are doing a POST to Momento Topics, specifically to the `video` cache and sending a message to the `streamId` topic. This allows us to scope interactions specifically to the video being watched by the player.
 
 :::tip
-When adding reactions to videos, it's considered best practice to scope interactions to a specific piece of media. If you broadcase to a generic `reactions` topic, then all reactions across all videos would display across the screen.
+When adding reactions to videos, it's considered best practice to scope interactions to a specific piece of media. If you broadcast to a generic `reactions` topic, then *all reactions* across *all videos* would display across the screen.
 :::
 
 ## Step 4: Rendering emojis on screen
 
-Now that we're publishing messages that share emojis with other viewers, we need to render them on screen. To get a dynamic effect, each emoji will be placed at a random point horizontally across the video player and will slowly animate from the bottom to the top gradually fading out. Remember, we've already configured the fade up and out animation in our `floatUpAndOut` keyframe CSS class.
+Now that we're publishing messages that share emojis with other viewers, we need to render them on screen. To get a dynamic effect, each emoji will be placed at a random point horizontally across the video player and will slowly animate from the bottom to the top gradually fading out. Remember, we've already configured the fade up and out animation in our `floatUpAndOut` keyframe CSS class in *step 2*.
 
 ```javascript
 function displayEmoji(emoji) {
@@ -256,7 +256,7 @@ longPoll(pollingController.signal);
 
 In the code above, we define the function that adds the emoji `div` to the video player and applies the CSS class that contains the animation. When the animation is over (it takes two seconds as defined in the CSS), we remove the `div` from the page to clean everything up.
 
-The other big piece of this is **long polling**. We use the Momento HTTP API to *subscribe* for messages to the `streamId` topic. With long polling, the browser will make a request to Momento and it will only return once a message has been published. The browser then immediately makes the request again, waiting for another message to be published. While technically this is a *pull* instead of a *push* for messages, it does provide near real-time messages from Momento.
+The other big piece you see above is **long polling**. We use the Momento HTTP API to *subscribe* for messages to the `streamId` topic. With long polling, the browser will make a request to Momento and it will only return once a message has been published. The browser then immediately makes the request again, waiting for another message to be published. While technically this is a *pull* instead of a *push* for messages, it does provide near real-time messages from Momento.
 
 The response handler of the long polling will iterate over all received messages, validate the text received is a valid reaction (to prevent against malicious emojis), then proceed to call the `displayEmoji` function and start the animation across the video player.
 
@@ -277,17 +277,17 @@ The first command will walk you through a wizard to setup the project. The secon
 
 ### Server-side code
 
-The code from step 1 should be in a file called `server.mjs`. You can configure a `.env` file with the `MOMENTO_API_KEY` environment variable set to your Momento API key. To start the server locally, you can run the following command:
+The code from *step 1* should be in a file called `server.mjs`. You can configure a `.env` file with the `MOMENTO_API_KEY` environment variable set to your Momento API key. To start the server locally, you can run the following command:
 
 ```bash
-node ./server.mjs
+node server.mjs
 ```
 
 This will start the server and allow our web page to make a call.
 
 ### Client-side code
 
-The html we created in step 2 should be in a file called 'client.html'. The JavaScript from steps 3 and 4 can be put in a `<script>` tag inside of the `<body>` element in the html. From there, we can run the web page by executing the following command in a terminal:
+The html we created in *step 2* should be in a file called `client.html`. The JavaScript from *steps 3 and 4* can be put in a `<script>` tag inside of the `<body>` element in the html. From there, we can run the web page by executing the following command in a terminal:
 
 ```bash
 npx serve client.html
@@ -297,7 +297,7 @@ This will start another server locally hosting the html. You can click on the li
 
 ## Concepts learned
 
-In this tutorial, you learned how to do a bunch of things in a short amount of time and even shorter amount of code! Here's what you now know how to do:
+In this tutorial, you learned how to do a bunch of things in a short amount of time and an even shorter amount of code! Here's what you now know how to do:
 
 * Use the Momento AuthClient to create a token vending machine
 * Use Momento Topics to send messages *directly between browsers* with no server-side code
