@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 sidebar_label: Encoding a live feed
 title: Encoding live video
 description: Learn how to use Momento MediaStore to encode live video streams

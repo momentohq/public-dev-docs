@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 sidebar_label: Glass-to-glass latency
 title: Glass-to-glass latency
 description: Learn about the events that occur between the moment light hits the glass of a camera sensor and the moment the image is displayed on your screen.
