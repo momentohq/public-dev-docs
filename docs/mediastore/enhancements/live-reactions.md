@@ -18,6 +18,9 @@ keywords:
   - reactions
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Adding real-time emoji reactions to a video stream
 
 Interactivity plays a significant role in viewer experience. Sending reactions and sharing emotions with other viewers adds a sense of community and engagement you can't find through media streaming alone. In this tutorial, you’ll set up a real-time emoji overlay on a video player. With **Momento Topics**, emoji reactions appear instantly as users interact, allowing for a lively and engaging viewing experience.
@@ -55,7 +58,10 @@ The event handler in the browser invoked by Momento Topics then renders the emoj
 
 ## Step 1: Building a token vending machine
 
-The video player needs access to Momento Topics to publish and receive emojis. To grant access, you must generate a session token and return it to the caller. We do this by creating a simple [Express server](https://expressjs.com/) with a `POST /tokens` endpoint.
+The video player needs access to Momento Topics to publish and receive emojis. To grant access, you must generate a session token and return it to the caller. We do this by creating a simple web server with a `POST /tokens` endpoint.
+
+<Tabs>
+<TabItem value="node" label="Node.js">
 
 ```javascript
 import express from 'express';
@@ -79,6 +85,157 @@ app.post('/tokens', (req, res) => {
   res.status(201).json({ token: tokenResponse.authToken });
 });
 ```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"net/http"
+	"time"
+
+	"github.com/gorilla/mux"
+	"github.com/momentohq/client-sdk-go/auth"
+	"github.com/momentohq/client-sdk-go/config"
+	"github.com/momentohq/client-sdk-go/momento"
+	auth_resp "github.com/momentohq/client-sdk-go/responses/auth"
+	"github.com/momentohq/client-sdk-go/utils"
+)
+
+var (
+	ctx                context.Context
+	authClient         momento.AuthClient
+)
+
+type TokenRequest struct {
+	PlayerID string `json:"playerId"`
+	StreamID string `json:"streamId"`
+}
+
+type TokenResponse struct {
+	Token string `json:"token"`
+}
+
+func generateTokenHandler(w http.ResponseWriter, r *http.Request) {
+	var req TokenRequest
+	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		return
+	}
+
+	credentialProvider, err := auth.NewEnvMomentoTokenProvider("MOMENTO_API_KEY")
+	if err != nil {
+		panic(err)
+	}
+
+	authClient, err = momento.NewAuthClient(config.AuthDefault(), credentialProvider)
+	if err != nil {
+		panic(err)
+	}
+
+	resp, err := authClient.GenerateDisposableToken(ctx, &momento.GenerateDisposableTokenRequest{
+		ExpiresIn: utils.ExpiresInMinutes(30),
+		Scope: momento.TopicSubscribeOnly(
+			momento.CacheName{Name: "video"},
+			momento.TopicName{Name: req.StreamID},
+		),
+		Props: momento.DisposableTokenProps{
+			TokenId: &req.PlayerID,
+		},
+	})
+
+	if err != nil {
+		http.Error(w, "Failed to generate token", http.StatusInternalServerError)
+		return
+	}
+
+	switch r := resp.(type) {
+	case *auth_resp.GenerateDisposableTokenSuccess:
+		res := TokenResponse{Token: r.ApiKey}
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusCreated)
+		json.NewEncoder(w).Encode(res)
+	default:
+		http.Error(w, "Failed to generate token", http.StatusInternalServerError)
+	}
+}
+
+func main() {
+	ctx = context.Background()
+
+	r := mux.NewRouter()
+	r.HandleFunc("/tokens", generateTokenHandler).Methods("POST")
+
+	srv := &http.Server{
+		Handler:      r,
+		Addr:         ":8080",
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+
+	log.Println("Server is running on port 8080")
+	log.Fatal(srv.ListenAndServe())
+}
+
+```
+
+</TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Momento.Sdk;
+using Momento.Sdk.Auth;
+using Momento.Sdk.Config;
+using Momento.Sdk.Auth.AccessControl;
+using Momento.Sdk.Responses;
+using System;
+using System.Threading.Tasks;
+
+[ApiController]
+[Route("api/[controller]")]
+public class TokenController : ControllerBase
+{
+  private readonly Momento.AuthClient _authClient;
+
+  public TokenController(IConfiguration configuration)
+  {
+    _authClient = configuration.AuthClient;
+  }
+
+  [HttpPost]
+  [Route("tokens")]
+  public async Task<IActionResult> GenerateToken([FromBody] TokenRequest request)
+  {
+    try
+    {
+      var response = await _authClient.GenerateDispableTokenAsync(
+        DisposableTokenScopes.TopicPublishSubscribe("video", request.StreamId),
+        ExpiresIn.Minutes(30)
+      )
+
+      return Created("", new TokenResponse { Token = response.AuthToken });
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine($"Error generating token: {ex.Message}");
+      return StatusCode(500, "Failed to generate token");
+    }
+  }
+}
+
+```
+
+</TabItem>
+</Tabs>
+
 
 The endpoint you created here accepts a request body containing `playerId` and `streamId` properties. The `streamId` is a unique identifier for the video stream being watched. This is used to *limit the scope of the reactions to the requested video*. The `playerId` is the identifier of the caller. Momento best practices say to *always include the identifier of the caller in your session tokens* so you can uniquely identify the actor on your account. We are creating the token with the `playerId` embedded directly in it, which will carry through to every message published by the user.
 
