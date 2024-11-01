@@ -7,7 +7,7 @@ hide_title: true
 keywords:
   - Momento Cache
   - Momento Topics
-  - Momento playform
+  - Momento platform
   - AWS PrivateLink
   - VPC endpoint
   - secure connection
@@ -31,7 +31,7 @@ This option enables you to establish a direct, private connection from your Amaz
 
 ![PrivateLink Connectivity Diagram](/img/vpc-diagram.jpeg)
 
-### Why Choose PrivateLink with Momento?
+### Why choose AWS PrivateLink with Momento?
 
 * **Optimized security** - Your data stays within a private IP space, granting a high-security posture by eliminating public internet exposure.
 * **Cost efficiency** - Skip the NAT gateway costs by routing directly through PrivateLink to Momento, reducing your cloud expenses on network traffic.
