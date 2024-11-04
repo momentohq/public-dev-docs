@@ -17,6 +17,9 @@ keywords:
   - concurrency tracking
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Tracking concurrent devices for an account
 
 Tracking concurrent devices or streams per account is essential for applications where managing access, ensuring security, and optimizing resources are top priorities. In subscription-based services, enforcing device or stream limits restrict simultaneous access to content to a specified number of devices. **Concurrency tracking** also supports account security by preventing unauthorized sharing, safeguarding the service from potential misuse. This also enables resource optimization in high-traffic applications, especially within media and entertainment, by managing resources dynamically based on real-time demand.
@@ -72,6 +75,8 @@ Four components are needed in this pattern
 ### Token vending machine
 
 A token vending machine is a pattern that dispenses short-lived session tokens with limited permissions. This is a server-side component, usually an API endpoint, that dynamically generates the token. Below is a snippet of code used to create a session token. This code should live inside of your API endpoint handler.
+<Tabs>
+<TabItem value="node" label="Node.js">
 
 ```javascript
 const scope = { permissions: [
@@ -87,4 +92,15 @@ if(response.type === GenerateDisposableTokenResponse.Success){
   return { token: response.authToken };
 }
 ```
+</TabItem>
+<TabItem value="go" label="Go">
+</TabItem>
+<TabItem value="dotnet" label=".NET">
+</TabItem>
+</Tabs>
 
+In the snippet above, we set explicit permissions to allow the user to *publish* messages to the `mediaId` topic. This is the way the player heartbeat will communicate with our handler. The token is configured to live for 30 minutes and has the user's `accountId` embedded in the token. The embedded account id will show up as an argument in our heartbeat subscription on the server, *preventing messages from being spoofed* and adding a layer of security to our solution.
+
+:::info
+In a production scenario, this code might live in your existing authZ mechanism and return the generated token as a claim. Assumptions are made here that prior to the code snippet above, the user has been authenticated and you have access to their account id and have securely identified the content their are attempting to view.
+:::
