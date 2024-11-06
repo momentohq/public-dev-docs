@@ -2,11 +2,11 @@
 sidebar_position: 4
 sidebar_label: Zero buffer rate (ZBR)
 title: What is zero buffer rate?
-description: Learn what zero buffer rate means and why Momento MediaStore is the perfect option to get it.
+description: Learn what zero buffer rate means and why Momento Media Storage is the perfect option to get it.
 hide_title: true
 keywords:
   - momento
-  - mediastore
+  - media storage
   - zero buffer rate
   - zbr
   - streaming
@@ -25,13 +25,13 @@ keywords:
 
 ## メディア・ストリーミングにおけるZBR
 
-高い ZBR を維持するためには、[segments](/mediastore/core-concepts/segments) が迅速かつ一貫して配信されることが重要です。ビデオ プレーヤーは、ビデオ セグメントを事前に受信して、*ルックアヘッド バッファー*を構築し、再生の中断を防ぎます。セグメント取得の遅延によりルックアヘッド バッファのコンテンツが不足すると、プレーヤは一時停止とバッファリングを余儀なくされ、ZBR が低下します。
+高い ZBR を維持するためには、[segments](/media-storage/core-concepts/segments) が迅速かつ一貫して配信されることが重要です。ビデオ プレーヤーは、ビデオ セグメントを事前に受信して、*ルックアヘッド バッファー*を構築し、再生の中断を防ぎます。セグメント取得の遅延によりルックアヘッド バッファのコンテンツが不足すると、プレーヤは一時停止とバッファリングを余儀なくされ、ZBR が低下します。
 
 ### ZBRに影響を与える要因
 
 - **Network conditions** - 携帯電話やWi-Fiネットワークの帯域幅が変動すると、プレーヤーが安定したルックアヘッドバッファを維持できなくなることがあります。
 - **CDN performance** - ポイント・オブ・プレゼンス（POP）は、オリジンの負荷を軽減するためにリクエストを折りたたもうとしますが、オリジンに問題が発生した場合、遅延やボトルネックが発生する可能性があります。
-- **Origin latency**: 遅い[origin](/mediastore/core-concepts/origin)は、失敗した書き込みや遅い読み込みのような追加の遅延をもたらします。
+- **Origin latency**: 遅い[origin](/media-storage/core-concepts/origin)は、失敗した書き込みや遅い読み込みのような追加の遅延をもたらします。
 
 ## MomentoがZBRを最大化する方法
 

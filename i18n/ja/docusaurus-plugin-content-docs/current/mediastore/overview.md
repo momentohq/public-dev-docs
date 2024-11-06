@@ -1,12 +1,12 @@
 ---
 sidebar_position: 1
-sidebar_label: Momento MediaStore
+sidebar_label: Momento Media Storage
 title: MediaStore
 description: Discover the world's first purpose-built media origin service designed for zero buffer rates
 hide_title: true
 keywords:
   - momento
-  - mediastore
+  - media storage
   - origin
   - streaming
   - live
@@ -16,7 +16,7 @@ keywords:
 
 # クラス最高の専用オリジン
 
-Momento MediaStoreは、[ビデオ・オン・デマンド(VOD)](/mediastore/streaming/video-on-demand/media-storage)や[ライブ・ストリーミング](/mediastore/streaming/live-streaming/how-it-works)など、ストリーミングのユースケースに特化して設計された高性能オリジンです。超低レイテンシーのインメモリーアーキテクチャ上に構築されたMomento MediaStoreは、すべての[ビデオセグメント](/mediastore/core-concepts/segments)、[マニフェスト](/mediastore/performance/adaptive-bitrates/hls)、およびメタデータを常に利用できるようにし、コンテンツ配信ネットワーク(CDN)およびエンドユーザーに高速で信頼性の高い配信を実現します。**Momento MediaStore**は、シームレスなメディアストリーミング体験を実現するクラス最高の[オリジン](/mediastore/core-concepts/origin)ソリューションを提供します。
+Momento MediaStoreは、[ビデオ・オン・デマンド(VOD)](/media-storage/streaming/video-on-demand/media-storage)や[ライブ・ストリーミング](/media-storage/streaming/live-streaming/how-it-works)など、ストリーミングのユースケースに特化して設計された高性能オリジンです。超低レイテンシーのインメモリーアーキテクチャ上に構築されたMomento MediaStoreは、すべての[ビデオセグメント](/media-storage/core-concepts/segments)、[マニフェスト](/media-storage/performance/adaptive-bitrates/hls)、およびメタデータを常に利用できるようにし、コンテンツ配信ネットワーク(CDN)およびエンドユーザーに高速で信頼性の高い配信を実現します。**Momento Media Storage**は、シームレスなメディアストリーミング体験を実現するクラス最高の[オリジン](/media-storage/core-concepts/origin)ソリューションを提供します。
 
 ## Momento MediaStoreの特徴
 
@@ -24,7 +24,7 @@ Momento MediaStoreは、ストリーミング・ワークフローにおける�
 
 ### 超低遅延の検索
 
-メディア配信はスピードが命です。Momento MediaStore は、動画セグメントとマニフェスト ファイルをメモリ内に保存し、**ほぼ即時の検索**を可能にします。この低レイテンシ アーキテクチャは、ライブ ストリーミングと VOD の両方のワークフローに不可欠です。セグメントへのアクセスが遅いと、バッファリング、低画質再生、視聴体験の低下につながります。リアルタイムでコンテンツを配信する場合でも、オンデマンドのリクエストに対応する場合でも、Momento MediaStoreは、可能な限り最高の[ゼロ バッファ レート](/mediastore/core-concepts/zero-buffer-rate)を提供することを目指しています。
+メディア配信はスピードが命です。Momento Media Storage は、動画セグメントとマニフェスト ファイルをメモリ内に保存し、**ほぼ即時の検索**を可能にします。この低レイテンシ アーキテクチャは、ライブ ストリーミングと VOD の両方のワークフローに不可欠です。セグメントへのアクセスが遅いと、バッファリング、低画質再生、視聴体験の低下につながります。リアルタイムでコンテンツを配信する場合でも、オンデマンドのリクエストに対応する場合でも、Momento MediaStoreは、可能な限り最高の[ゼロ バッファ レート](/media-storage/core-concepts/zero-buffer-rate)を提供することを目指しています。
 
 ### 高トラフィックイベントに対応するスケーラビリティ
 
@@ -32,11 +32,11 @@ Momento MediaStoreは、ストリーミング・ワークフローにおける�
 
 ### シームレスなアダプティブ・ビットレート・ストリーミング
 
-最高の画質を提供するために、[ABR（アダプティブ・ビットレート・ストリーミング）](/mediastore/performance/adaptive-bitrates/how-it-works) では、さまざまなビットレートと解像度の動画セグメントに高速にアクセスする必要があります。**Momento MediaStore**は、ABRワークフローで重要な役割を果たし、セグメントを効率的に保存および配信し、ビデオプレーヤーがネットワークの状況に応じて異なる品質レベルを瞬時に切り替えることを可能にします。これにより、視聴者は接続状況に関係なく、バッファリングすることなく、可能な限り最高の画質を得ることができます。
+最高の画質を提供するために、[ABR（アダプティブ・ビットレート・ストリーミング）](/media-storage/performance/adaptive-bitrates/how-it-works) では、さまざまなビットレートと解像度の動画セグメントに高速にアクセスする必要があります。**Momento Media Storage**は、ABRワークフローで重要な役割を果たし、セグメントを効率的に保存および配信し、ビデオプレーヤーがネットワークの状況に応じて異なる品質レベルを瞬時に切り替えることを可能にします。これにより、視聴者は接続状況に関係なく、バッファリングすることなく、可能な限り最高の画質を得ることができます。
 
 ### 信頼性と高可用性
 
-ストリーミングワークフローでは、ダウンタイムは視聴率の低下、フラストレーション、ブランドの毀損につながります。**Momento MediaStore**は、高い信頼性と可用性の基盤の上に構築されており、要求があればいつでもメディアコンテンツにアクセスできます。冗長性とフェイルオーバーメカニズムが組み込まれているため、予期せぬ需要の急増やインフラストラクチャの障害が発生した場合でも、一貫して高レベルのサービスを維持します。
+ストリーミングワークフローでは、ダウンタイムは視聴率の低下、フラストレーション、ブランドの毀損につながります。**Momento Media Storage**は、高い信頼性と可用性の基盤の上に構築されており、要求があればいつでもメディアコンテンツにアクセスできます。冗長性とフェイルオーバーメカニズムが組み込まれているため、予期せぬ需要の急増やインフラストラクチャの障害が発生した場合でも、一貫して高レベルのサービスを維持します。
 
 ### 効率的なコンテンツ管理のための階層型ストレージ
 
