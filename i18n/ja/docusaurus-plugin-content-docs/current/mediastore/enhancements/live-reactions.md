@@ -2,11 +2,11 @@
 sidebar_position: 2
 sidebar_label: Live reactions
 title: Live reactions
-description: Learn how to overlay live reactions on your content with Momento MediaStore
+description: Learn how to overlay live reactions on your content with Momento Media Storage
 hide_title: true
 keywords:
   - momento
-  - mediastore
+  - media storage
   - zero buffer rate
   - zbr
   - streaming

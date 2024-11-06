@@ -7,7 +7,7 @@ pagination_next: null
 hide_title: true
 keywords:
   - momento
-  - mediastore
+  - media storage
   - origin
   - decoding
   - streaming
@@ -21,17 +21,17 @@ import TabItem from '@theme/TabItem';
 
 # Decoding video streams
 
-ビデオストリームをデコードすることで、ビデオプレーヤーは、[ライブストリーミング](/mediastore/streaming/live-streaming/how-it-works)であれ、[ビデオオンデマンド(VOD)](/mediastore/streaming/video-on-demand/media-storage)であれ、コンテンツをストリーミングすることができます。このプロセスでは、コンテンツ・デリバリー・ネットワーク（CDN）から[セグメント](/mediastore/core-concepts/segments)をフェッチし、視聴可能なコンテンツにデコードし、視聴者の画面にビデオを最小限の遅延で配信します。HLS（HTTPライブストリーミング）](/mediastore/performance/adaptive-bitrates/hls) と [DASH（Dynamic Adaptive Streaming over HTTP）](/mediastore/performance/adaptive-bitrates/dash) が主要な方式です。これらのプロトコルは、[希望するビットレートと解像度](/mediastore/core-concepts/abr-ladder)のセグメントの場所をプレーヤーに指定するために、*マニフェストファイル*に依存しています。
+ビデオストリームをデコードすることで、ビデオプレーヤーは、[ライブストリーミング](/media-storage/streaming/live-streaming/how-it-works)であれ、[ビデオオンデマンド(VOD)](/media-storage/streaming/video-on-demand/media-storage)であれ、コンテンツをストリーミングすることができます。このプロセスでは、コンテンツ・デリバリー・ネットワーク（CDN）から[セグメント](/media-storage/core-concepts/segments)をフェッチし、視聴可能なコンテンツにデコードし、視聴者の画面にビデオを最小限の遅延で配信します。HLS（HTTPライブストリーミング）](/media-storage/performance/adaptive-bitrates/hls) と [DASH（Dynamic Adaptive Streaming over HTTP）](/media-storage/performance/adaptive-bitrates/dash) が主要な方式です。これらのプロトコルは、[希望するビットレートと解像度](/media-storage/core-concepts/abr-ladder)のセグメントの場所をプレーヤーに指定するために、*マニフェストファイル*に依存しています。
 
 ## ビデオプレーヤーの仕組み
 
-先に述べたように、ビデオストリーミングにおける 2 つの主要なプロトコルは HLS と DASH です。どちらのプロトコルも、[アダプティブ・ビットレート・ストリーミング（ABR）](/mediastore/performance/adaptive-bitrates/how-it-works) のサポートを可能にし、プレーヤーが視聴者のネットワーク状況に基づいて再生品質を最適化するために、異なる解像度とビットレートを動的に切り替えることを可能にします。これは、**マニフェスト・ファイル**の使用によって行われます。
+先に述べたように、ビデオストリーミングにおける 2 つの主要なプロトコルは HLS と DASH です。どちらのプロトコルも、[アダプティブ・ビットレート・ストリーミング（ABR）](/media-storage/performance/adaptive-bitrates/how-it-works) のサポートを可能にし、プレーヤーが視聴者のネットワーク状況に基づいて再生品質を最適化するために、異なる解像度とビットレートを動的に切り替えることを可能にします。これは、**マニフェスト・ファイル**の使用によって行われます。
 
 ### Momento MediaStoreに保存されたマニフェスト・ファイルとセグメント
 
-マニフェスト ファイルは、ストリームの利用可能な動画セグメントを、対応するビットレートおよび解像度とともに一覧表示します。これらのマニフェスト ファイルは、**Momento MediaStore** に格納されている特定のセグメントやその他のマニフェストへ、動画プレーヤを誘導します。
+マニフェスト ファイルは、ストリームの利用可能な動画セグメントを、対応するビットレートおよび解像度とともに一覧表示します。これらのマニフェスト ファイルは、**Momento Media Storage** に格納されている特定のセグメントやその他のマニフェストへ、動画プレーヤを誘導します。
 
-保存されたセグメントおよびビットレート/解像度固有のマニフェストファイルは、**キー名**によって識別されます。キー名は、セグメントが存在する URL に直接マッピングされるか、マニフェストのベース URL に基づく相対パスにマッピングされます。Momento MediaStore に保存されたファイルは、名前空間とキーの名前に基づいて HTTP 経由でアクセスできます。
+保存されたセグメントおよびビットレート/解像度固有のマニフェストファイルは、**キー名**によって識別されます。キー名は、セグメントが存在する URL に直接マッピングされるか、マニフェストのベース URL に基づく相対パスにマッピングされます。Momento Media Storage に保存されたファイルは、名前空間とキーの名前に基づいて HTTP 経由でアクセスできます。
 
 Momento プラットフォームのすべてのデータはデフォルトで安全に保存されるため、アクセスには認証が必要です。動画プレーヤの動作の性質上、マニフェスト ファイルは通常 2 つの方法のいずれかで構成されます：
 
@@ -89,7 +89,7 @@ https://<MOMENTO_REGION_BASE_URL>/cache/<NAMESPACE>/<SEGMENT_2_NAME>?token=<MOME
 * `NAMESPACE` - オリジン領域の名前空間/キャッシュの名前
 * `SEGMENT_#_NAME` - Momento に保存されているセグメントのキー。通常、HLS の場合は `.ts` で終わり、DASH の場合は `.m4s` で終わる。
 * `MOMENTO_TOKEN` - 名前空間内の特定のセグメントへの読み取りアクセスを許可する短命トークン
-* 
+*
 ### Using a CDN with header forwarding
 
 ビデオ オン デマンド (VOD) のワークフローでは、セグメントへのアクセス要求がいつでも発生する可能性があるため、短命のトークンを使用することはできません。代わりに、Amazon CloudFront や Cloudflare のような CDN を使用して、ヘッダーを追加してリクエストを転送することは、長寿命の [Momento API キー](/cache/develop/authentication/api-keys) を使用した実行可能な代替手段です。このソリューションにより、動画プレイヤーはトークンや API キーを知らなくても CDN を呼び出すことができ、サーバー側で自動的に追加されます。
@@ -152,7 +152,7 @@ https://<YOUR_BASE_URL>/<SEGMENT_2_NAME>
 
 #### マスター・プレイリストとメディア・プレイリスト
 
-**マスターマニフェスト**は、他の**メディアプレイリスト**を指すトップレベルのファイルです。各メディアプレイリストには、[ビットレートと解像度の特定の組み合わせ](/mediastore/core-concepts/abr-ladder)のセグメントリストが含まれます。この構造により、プレーヤーは最適なストリームを選択し、ネットワーク状況の変化に応じて品質レベルを動的に切り替えることができます。
+**マスターマニフェスト**は、他の**メディアプレイリスト**を指すトップレベルのファイルです。各メディアプレイリストには、[ビットレートと解像度の特定の組み合わせ](/media-storage/core-concepts/abr-ladder)のセグメントリストが含まれます。この構造により、プレーヤーは最適なストリームを選択し、ネットワーク状況の変化に応じて品質レベルを動的に切り替えることができます。
 
 
 ```plaintext
@@ -167,7 +167,7 @@ https://<YOUR_BASE_URL>/<SEGMENT_2_NAME>
 
 この例では
 * マスターマニフェストには3つの異なる品質レベルがリストされています： マスター マニフェストには、*1080p at 5mbps*、*720p at 3mbps*、*480p at 1.5mbps*の 3 つの品質レベルがリストされています。
-* 各エントリは、相対パスを使用して、特定の品質レベルの Momento MediaStore のメディア プレイリストをポイントします。
+* 各エントリは、相対パスを使用して、特定の品質レベルの Momento Media Storage のメディア プレイリストをポイントします。
 
 #### 単一のマニフェストの使用
 

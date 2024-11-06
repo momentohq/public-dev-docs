@@ -1,0 +1,9 @@
+{
+  "label": "Video capture",
+  "position": 10,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Learn how to use Momento Media Storage as part of your video capture process."
+  }
+}

@@ -2,11 +2,11 @@
 sidebar_position: 1
 sidebar_label: About
 title: Entitlements
-description: Learn about media entitlements and how to use them with Momento MediaStore
+description: Learn about media entitlements and how to use them with Momento Media Storage
 hide_title: true
 keywords:
   - momento
-  - mediastore
+  - media storage
   - zero buffer rate
   - zbr
   - streaming
@@ -143,7 +143,7 @@ return canView;
 
 エンタイトルメントにアプローチするもう一つの方法は、コンテンツへのアクセスを[session tokens](/cache/develop/authentication/tokens)に直接埋め込むことです。エンタイトルメントの計算が完了し、ユーザーがアクセスできるメディアのリストがわかったら、短命のトークンを使ってコンテンツへの明示的なアクセスを許可できます。
 
-Momento MediaStoreが[メディアオリジン](/mediastore/core-concepts/origin)として使用されている場合、要求に応じてコンテンツへのアクセスを制限するために、きめ細かいアクセス制御を使用することができます。
+Momento MediaStoreが[メディアオリジン](/media-storage/core-concepts/origin)として使用されている場合、要求に応じてコンテンツへのアクセスを制限するために、きめ細かいアクセス制御を使用することができます。
 
 :::warning
 メディアを配信するためにCDNを使用する場合、このアプローチは機能しません。このソリューションは、Momentoから直接コンテンツを取得するユースケースのためのものです。MomentoのIntelligent Gatewayは、提供された認証トークンに対してすべての受信リクエストを評価します。CDNは特定の視聴者のトークンをMomentoに転送しないため、この方法は有効ではありません。
@@ -159,7 +159,7 @@ Momento MediaStoreが[メディアオリジン](/mediastore/core-concepts/origin
 /{ContentName}/720p/segment1.ts
 ```
 
-この構造は、[HLS](/mediastore/performance/adaptive-bitrates/hls) でエンコードされた、複数の解像度とビットレートを持つ動画を意味する。この特定のメディアのすべてのキーの先頭には、コンテンツ識別子が付きます。短命トークンを作成するとき、そのコンテンツのすべてのキーへの読み取り専用アクセスを許可することができます。
+この構造は、[HLS](/media-storage/performance/adaptive-bitrates/hls) でエンコードされた、複数の解像度とビットレートを持つ動画を意味する。この特定のメディアのすべてのキーの先頭には、コンテンツ識別子が付きます。短命トークンを作成するとき、そのコンテンツのすべてのキーへの読み取り専用アクセスを許可することができます。
 
 ```javascript
 const scope = {

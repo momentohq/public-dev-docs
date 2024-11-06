@@ -6,7 +6,7 @@ description: Learn what the ABR ladder is and why it's important in the world of
 hide_title: true
 keywords:
   - momento
-  - mediastore
+  - media storage
   - abr ladder
   - bitrate
   - adaptive bitrate
@@ -26,7 +26,7 @@ keywords:
 
 <div style={{ display: "flex", alignItems: 'flex-start', flexWrap: 'wrap' }}>
   <div style={{ flex: '2' }}>
-ABRラダーは[アダプティブ・ビットレート・ストリーミング](/mediastore/performance/adaptive-bitrates/how-it-works)を有効にし、ビデオプレーヤーがネットワークパフォーマンスに基づいてストリームの品質を動的に調整します。帯域幅が広い場合、プレーヤーはより高品質のストリーム（より高い解像度とビットレート）を選択します。帯域幅が低下すると、プレーヤーは低品質のストリームに切り替わり、再生の中断を防ぐ。この適応性は、視聴体験の最高指標である[ゼロバッファレート](/mediastore/core-concepts/zero-buffer-rate)に貢献します。
+ABRラダーは[アダプティブ・ビットレート・ストリーミング](/media-storage/performance/adaptive-bitrates/how-it-works)を有効にし、ビデオプレーヤーがネットワークパフォーマンスに基づいてストリームの品質を動的に調整します。帯域幅が広い場合、プレーヤーはより高品質のストリーム（より高い解像度とビットレート）を選択します。帯域幅が低下すると、プレーヤーは低品質のストリームに切り替わり、再生の中断を防ぐ。この適応性は、視聴体験の最高指標である[ゼロバッファレート](/media-storage/core-concepts/zero-buffer-rate)に貢献します。
 
 ### Bitrate and resolution
 
@@ -35,7 +35,7 @@ ABRラダーは[アダプティブ・ビットレート・ストリーミング]
 
 </div>
  <div className="hideOnMobile" style={{ flex: '1', paddingLeft: '20px' }}>
-  <img src="/img/mediastore/mo-ladder.png" alt="Mo climbing ladder" style={{ width: '80%' }} />
+  <img src="/img/media-storage/mo-ladder.png" alt="Mo climbing ladder" style={{ width: '80%' }} />
   </div>
 </div>
 
@@ -85,10 +85,10 @@ ABRラダーは複数の**ラング**で構成され、それぞれが例えば�
 
 この構造により、プレーヤーの現在のネットワーク状況やデバイスの能力に応じて、プレーヤーが常に利用可能な最高の品質でビデオコンテンツを配信できることが保証されます。
 
-## Momento Mediastore は、あなたを可能な限り高いレベルに保ちます
+## Momento Media Storage は、あなたを可能な限り高いレベルに保ちます
 
 Momento のインメモリ 2 層アーキテクチャは、**低レイテンシ配信**用に最適化されており、ABR ラダーを使用するストリーミング ワークフローのパフォーマンスを大幅に向上させます。オリジンレイテンシーを削減することで、Momento は比類のない信頼性とパフォーマンスでセグメントを配信し、ビデオプレーヤーは最高品質のラダーに可能な限り長い時間留まることができます。
 
-一方、オリジンの速度が遅いと、CDN の POP (Point of Presence) で **タイムアウト** が発生し、ダウンストリームの動画プレーヤが遅延や欠落したデータの処理に苦労するため、バッファリングが発生する可能性があります。Momento は、[segments](/mediastore/core-concepts/segments) への低レイテンシーのインメモリ アクセスを提供することで、これらのリスクを軽減し、コンテンツが遅延なくスムーズに配信されるようにします。
+一方、オリジンの速度が遅いと、CDN の POP (Point of Presence) で **タイムアウト** が発生し、ダウンストリームの動画プレーヤが遅延や欠落したデータの処理に苦労するため、バッファリングが発生する可能性があります。Momento は、[segments](/media-storage/core-concepts/segments) への低レイテンシーのインメモリ アクセスを提供することで、これらのリスクを軽減し、コンテンツが遅延なくスムーズに配信されるようにします。
 
-オリジンレイテンシーを削減することで、Momentoはタイムアウトを防ぐだけでなく、CDNが**一貫したデータの流れ**を維持するのを支援し、より高品質で中断のない再生と[ゼロバッファレート](/mediastore/core-concepts/zero-buffer-rate)を可能にします。
+オリジンレイテンシーを削減することで、Momentoはタイムアウトを防ぐだけでなく、CDNが**一貫したデータの流れ**を維持するのを支援し、より高品質で中断のない再生と[ゼロバッファレート](/media-storage/core-concepts/zero-buffer-rate)を可能にします。

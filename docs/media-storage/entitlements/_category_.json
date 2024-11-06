@@ -1,0 +1,9 @@
+{
+  "label": "Entitlements",
+  "position": 35,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "description": "Learn how to handle entitlements with Momento Media Storage"
+  }
+}
