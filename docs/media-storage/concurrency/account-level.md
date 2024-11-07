@@ -437,5 +437,5 @@ This function uses the `getIntervalMarker` method we created in the previous ste
 The value is returned to the caller and it's up to standard business logic to take over from there.
 
 :::tip
-Interested in something a little more managed? Check out our [helper library]() that does the hard work for you!
+Interested in something a little more managed? Check out our [helper library](/media-storage) that does the hard work for you!
 :::
