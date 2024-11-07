@@ -75,6 +75,7 @@ Four components are needed in this pattern
 ### Token vending machine
 
 A token vending machine is a pattern that dispenses short-lived session tokens with limited permissions. This is a server-side component, usually an API endpoint, that dynamically generates the token. Below is a snippet of code used to create a session token. This code should live inside of your API endpoint handler.
+
 <Tabs>
 <TabItem value="node" label="Node.js">
 
@@ -83,7 +84,7 @@ const scope = { permissions: [
   {
     role: 'publishonly',
     cache: 'video',
-    topic: mediaId
+    topic: 'heartbeat'
   }
 ]};
 
@@ -94,13 +95,221 @@ if(response.type === GenerateDisposableTokenResponse.Success){
 ```
 </TabItem>
 <TabItem value="go" label="Go">
+
+```go
+resp, err := authClient.GenerateDisposableToken(ctx, &momento.GenerateDisposableTokenRequest{
+		ExpiresIn: utils.ExpiresInMinutes(30),
+		Scope: momento.TopicPublishOnly(
+			momento.CacheName{Name: "video"},
+			momento.TopicName{Name: "heartbeat"},
+		),
+		Props: momento.DisposableTokenProps{
+			TokenId: &req.PlayerID,
+		},
+	})
+
+	if err != nil {
+		http.Error(w, "Failed to generate token", http.StatusInternalServerError)
+		return
+	}
+
+  switch r := resp.(type) {
+	case *auth_resp.GenerateDisposableTokenSuccess:
+		return r.ApiKey
+	default:
+		http.Error(w, "Failed to generate token", http.StatusInternalServerError)
+	}
+```
+
 </TabItem>
 <TabItem value="dotnet" label=".NET">
+
+```csharp
+var response = await _authClient.GenerateDispableTokenAsync(
+  DisposableTokenScopes.TopicPublishOnly("video", "heartbeat"),
+  ExpiresIn.Minutes(30)
+);
+
+return response.AuthToken;
+```
+
 </TabItem>
 </Tabs>
 
-In the snippet above, we set explicit permissions to allow the user to *publish* messages to the `mediaId` topic. This is the way the player heartbeat will communicate with our handler. The token is configured to live for 30 minutes and has the user's `accountId` embedded in the token. The embedded account id will show up as an argument in our heartbeat subscription on the server, *preventing messages from being spoofed* and adding a layer of security to our solution.
+In the snippet above, we set explicit permissions to allow the user to *publish* messages to the `heartbeat` topic. This is the way the player heartbeat will communicate with our handler. The token is configured to live for 30 minutes and has the user's `accountId` embedded in the token. The embedded account id will show up as an argument in our heartbeat subscription on the server, *preventing messages from being spoofed* and adding a layer of security to our solution.
 
 :::info
 In a production scenario, this code might live in your existing authZ mechanism and return the generated token as a claim. Assumptions are made here that prior to the code snippet above, the user has been authenticated and you have access to their account id and have securely identified the content their are attempting to view.
 :::
+
+### Device heartbeat
+
+With the token vending machine in place, we can use it on the device to publish heartbeat on a regular interval. The heartbeat can contain any information about the media, player, or device based on your use case. For this simple walkthrough, we will provide the minimum amount of information and include only the device id.
+
+<Tabs>
+<TabItem value="sdk" label="Momento Web SDK (React)">
+
+```jsx
+import React, { useEffect, useState, useMemo } from 'react';
+import ReactDOM from 'react-dom/client';
+import { TopicClient, CredentialProvider } from '@gomomento/sdk-web';
+
+const HEARTBEAT_INTERVAL_MS = 5000;
+
+function getMediaIdFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('id')
+}
+
+function Device() {
+  const [topicClient, setTopicClient] = useState(null);
+
+  const mediaId = useMemo(() => getMediaIdFromQuery(), []);
+  const deviceId = useMemo(() => {
+    const savedDeviceId = localStorage.getItem('deviceId');
+    if (savedDeviceId) return savedDeviceId;
+
+    const newDeviceId = crypto.randomUUID();
+    localStorage.setItem('deviceId', newDeviceId);
+    return newDeviceId;
+  }, []);
+
+  const message = useMemo(() => JSON.stringify({ deviceId, mediaId }), [deviceId, mediaId]);
+
+  useEffect(() => {
+    async function initTopicClient() {
+      const response = await fetch('http://localhost:3000/tokens', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ accountId: 'account-id' }),
+      });
+      if (response.ok) {
+        const { token } = await response.json();
+        const topicClient = new TopicClient({
+          credentialProvider: CredentialProvider.fromString(token),
+        });
+        setTopicClient(topicClient);
+      }
+    }
+
+    initTopicClient();
+  }, [mediaId]);
+
+  useEffect(() => {
+    if (topicClient) {
+      const intervalId = setInterval(() => {
+        topicClient.publish('video', 'heartbeat', message);
+      }, HEARTBEAT_INTERVAL_MS);
+
+      return () => clearInterval(intervalId);
+    }
+  }, [topicClient, mediaId, message]);
+
+  return (
+    <div>
+      <h2>Device {deviceId}: {topicClient ? 'Connected' : 'Not Connected'}</h2>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Device />);
+
+```
+
+</TabItem>
+<TabItem value="http" label="HTTP only">
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+  <div id="root">
+    <h2>Device <span id="deviceId"></span>: <span id="status">Not Connected</span></h2>
+  </div>
+
+  <script>
+    const HEARTBEAT_INTERVAL_MS = 5000;
+    const mediaId = getMediaIdFromQuery();
+    const deviceId = getDeviceId();
+    const message = JSON.stringify({ deviceId, mediaId });
+    let token;
+
+    function getMediaIdFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    function getDeviceId() {
+      let deviceId = localStorage.getItem('deviceId');
+      if (!deviceId) {
+        deviceId = crypto.randomUUID();
+        localStorage.setItem('deviceId', deviceId);
+      }
+
+      document.getElementById('deviceId').innerText = deviceId;
+      return deviceId;
+    }
+
+    async function sendHeartbeat() {
+      await fetch(`<MOMENTO_REGION_ENDPOINT>/topics/video/heartbeat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        },
+        body: message,
+      });
+    }
+
+    async function getToken() {
+      const response = await fetch('http://localhost:3000/tokens', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ accountId: 'account-id' }),
+      });
+
+      if (response.ok) {
+        const { token } = await response.json();
+        return token;
+      }
+    }
+
+    function startHeartbeat() {
+      setInterval(() => {
+        sendHeartbeat();
+      }, HEARTBEAT_INTERVAL_MS);
+    }
+
+    async function init() {
+      const statusElement = document.getElementById('status');
+      token = await getToken();
+      if (token) {
+        statusElement.innerText = 'Connected';
+        startHeartbeat();
+      } else {
+        statusElement.innerText = 'Failed to Connect';
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
+
+```
+
+</TabItem>
+</Tabs>
+
+In the above examples, the player html only includes the heartbeat logic. It calls the token vending machine from step one that we put behind an API endpoint running locally to fetch a token. Once the player has the token, it begins publishing the device id and media id to the `heartbeat` topic. The heartbeat is sent every 5 seconds so the heartbeat handler can track active instances.
+
+Two things to note in the code for the device heartbeat:
+
+1. The account id being supplied to the token vending machine is hardcoded, in practice this would come from your AuthN mechanism.
+2. When calling the Momento HTTP API, the base url is [region based](/platform/regions). Substitute the placeholder with the correct region endpoint for your use case. If you use the Momento SDK, region handling is managed for you.
+
+### Heartbeat handler

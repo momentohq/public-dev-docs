@@ -71,7 +71,7 @@ const authClient = new AuthClient();
 const app = express();
 app.use(express.json());
 
-app.post('/tokens', (req, res) => {
+app.post('/tokens', async (req, res) => {
   const { playerId, streamId} = req.body;
   const scope = {
     permissions: [{
@@ -79,10 +79,14 @@ app.post('/tokens', (req, res) => {
       cache: 'video',
       topic: streamId
     }]
-  },
+  };
 
   const tokenResponse = await authClient.generateDisposableToken(scope, ExpiresIn.minutes(30), { tokenId: playerId });
   res.status(201).json({ token: tokenResponse.authToken });
+});
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
 });
 ```
 
