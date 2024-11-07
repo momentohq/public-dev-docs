@@ -7,7 +7,7 @@ pagination_next: null
 hide_title: true
 keywords:
   - momento
-  - mediastore
+  - media storage
   - origin
   - encoding
   - streaming
@@ -20,7 +20,7 @@ keywords:
 
 # DASH（Dynamic Adaptive Streaming over HTTP）とは？
 
-DASH (Dynamic Adaptive Streaming over HTTP) は、[アダプティブ・ビットレート・ストリーミング・プロトコル](/mediastore/performance/adaptive-bitrates/how-it-works) であり、ビデオプレーヤーの利用可能な帯域幅に基づいてストリームの品質をリアルタイムに調整することで、インターネット上でビデオをスムーズに配信することができます。[HLS](/mediastore/performance/adaptive-bitrates/hls)のように、DASHは動画コンテンツを[segments](/mediastore/core-concepts/segments)に分割し、HTTPで配信します。これにより、プレイヤーは品質レベルを動的に切り替えることができ、ネットワークの状態が変動してもバッファのない体験を保証します。
+DASH (Dynamic Adaptive Streaming over HTTP) は、[アダプティブ・ビットレート・ストリーミング・プロトコル](/media-storage/performance/adaptive-bitrates/how-it-works) であり、ビデオプレーヤーの利用可能な帯域幅に基づいてストリームの品質をリアルタイムに調整することで、インターネット上でビデオをスムーズに配信することができます。[HLS](/media-storage/performance/adaptive-bitrates/hls)のように、DASHは動画コンテンツを[segments](/media-storage/core-concepts/segments)に分割し、HTTPで配信します。これにより、プレイヤーは品質レベルを動的に切り替えることができ、ネットワークの状態が変動してもバッファのない体験を保証します。
 
 ## DASHの仕組み
 
@@ -34,7 +34,7 @@ DASH は、HLS のような他のアダプティブ・ビットレート・ス�
 
 2. **Manifest file (MPD)** - MPD ファイルが生成され、さまざまな品質レベルで利用可能なセグメントが一覧表示されます。MPDファイルには、各セグメントのビットレート、解像度、各セグメントに対応するURLまたはキー名の情報が含まれます。
 
-3. **Segment delivery** - 動画セグメントと MPD ファイルは、[origin](/mediastore/core-concepts/origin) に保存されます。プレーヤーは MPD を取得し、それを使用して **コンテンツ配信ネットワーク（CDN）** から適切なセグメントをダウンロードします。プレーヤーは、変化するネットワーク条件に基づいてストリーム品質を動的に調整します。
+3. **Segment delivery** - 動画セグメントと MPD ファイルは、[origin](/media-storage/core-concepts/origin) に保存されます。プレーヤーは MPD を取得し、それを使用して **コンテンツ配信ネットワーク（CDN）** から適切なセグメントをダウンロードします。プレーヤーは、変化するネットワーク条件に基づいてストリーム品質を動的に調整します。
 
 4. **Dynamic switching** - ネットワークの帯域幅が変動すると、プレーヤーはMPDファイルで指定された異なるセグメントをフェッチすることによって、異なる品質レベルを動的に切り替えます。
 
@@ -70,4 +70,4 @@ MPDファイルはこれらのキー名を一覧表示し、現在の帯域幅�
 </MPD>
 ```
 
-この例では、プレーヤーはMPDを参照し、利用可能な帯域幅に応じて、*1080p*、 *720p*、または*480p*ストリームの適切なセグメントを選択します。プレーヤーは、現在利用可能な帯域幅に基づいて、最初のセグメントを要求してストリー ミングを開始します。ストリームが進むにつれて、プレーヤーはネットワークの状態を継続的に監視し、それに応じてビットレートを調整します。**Momento MediaStore**は、これらのセグメントへの高速で低遅延なアクセスを保証し、品質レベル間の迅速な切り替えを可能にし、バッファリングを最小限に抑えます。
+この例では、プレーヤーはMPDを参照し、利用可能な帯域幅に応じて、*1080p*、 *720p*、または*480p*ストリームの適切なセグメントを選択します。プレーヤーは、現在利用可能な帯域幅に基づいて、最初のセグメントを要求してストリー ミングを開始します。ストリームが進むにつれて、プレーヤーはネットワークの状態を継続的に監視し、それに応じてビットレートを調整します。**Momento Media Storage**は、これらのセグメントへの高速で低遅延なアクセスを保証し、品質レベル間の迅速な切り替えを可能にし、バッファリングを最小限に抑えます。

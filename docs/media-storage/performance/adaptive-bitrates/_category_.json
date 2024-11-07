@@ -1,0 +1,9 @@
+{
+  "label": "Adaptive bitrates",
+  "position": 30,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Learn about streaming content at various bitrates via Momento Media Storage"
+  }
+}

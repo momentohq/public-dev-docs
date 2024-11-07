@@ -1,0 +1,9 @@
+{
+  "label": "Video on demand (VOD)",
+  "position": 20,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Learn how Momento Media Storage simplifies the intricacies of live streaming."
+  }
+}

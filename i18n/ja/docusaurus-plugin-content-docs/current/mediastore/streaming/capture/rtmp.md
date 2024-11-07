@@ -1,12 +1,12 @@
 ---
 sidebar_position: 1
 sidebar_label: RTMP
-title: RTMP and Momento MediaStore
-description: Learn how to use RTMP to capture and transcode live video and upload it to Momento MediaStore.
+title: RTMP and Momento Media Storage
+description: Learn how to use RTMP to capture and transcode live video and upload it to Momento Media Storage.
 hide_title: true
 keywords:
   - momento
-  - mediastore
+  - media storage
   - zero buffer rate
   - zbr
   - streaming
@@ -23,7 +23,7 @@ keywords:
 
 # RTMP、FFmpeg、Momento MediaStoreによるライブストリーミング
 
-このチュートリアルでは、HTTP POST リクエストをトリガーとするライブストリーム取り込みワークフローを構築します。リクエストには [RTMP ストリーム](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) の URL とストリーム名が含まれます。このリクエストをトリガーとして、**FFmpeg** がストリームを複数の解像度にトランスコードし、Momento SDK を使用して、結果の [HLS セグメント](/mediastore/performance/adaptive-bitrates/hls) とマニフェスト ファイルを **Momento MediaStore** にアップロードします。
+このチュートリアルでは、HTTP POST リクエストをトリガーとするライブストリーム取り込みワークフローを構築します。リクエストには [RTMP ストリーム](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) の URL とストリーム名が含まれます。このリクエストをトリガーとして、**FFmpeg** がストリームを複数の解像度にトランスコードし、Momento SDK を使用して、結果の [HLS セグメント](/media-storage/performance/adaptive-bitrates/hls) とマニフェスト ファイルを **Momento Media Storage** にアップロードします。
 
 :::info
 [GitHubのコード](https://github.com/momentohq/demo-rtmp-streaming)に直接飛んでもいいしですし、以下のチュートリアルに沿って進んでもいいです。
@@ -46,7 +46,7 @@ graph TD;
         C --> J[480p @ 1.5 Mbps];
     end
 
-    subgraph Momento MediaStore
+    subgraph Momento Media Storage
         E --> K[Store HLS segments];
         E --> L[Store playlists];
     end
@@ -113,7 +113,7 @@ app.listen(3000, () => {
 
 ## 2. トランスコーディング・ワークフローの構築
 
-リクエストが処理されたので、RTMPストリームをインジェストして[異なるビットレートと解像度](/mediastore/core-concepts/abr-ladder)にトランスコードする非同期ワークフローを書く必要があります。
+リクエストが処理されたので、RTMPストリームをインジェストして[異なるビットレートと解像度](/media-storage/core-concepts/abr-ladder)にトランスコードする非同期ワークフローを書く必要があります。
 
 ```javascript
 function startTranscodingWorkflow(rtmpUrl, streamName) {
@@ -172,7 +172,7 @@ function startTranscodingWorkflow(rtmpUrl, streamName) {
 
 このコードは `fluent-ffmpeg` というラッパーパッケージを使って、RTMP スチームを入力として FFmpeg バイナリにコマンドを渡します。ストリームを*1080p at 5mbps*、*720p at 3mbps*、*480p at 1.5mbps*のビットレートと解像度に1秒のセグメントでトランスコードするコマンドを構築しています。各セグメントは、「(streamName)_(resolution)_segment(number).ts 」という命名規則で、特定の解像度のディレクトリに出力されます。この命名規則により、各セグメントと解像度に一意のキー名が与えられます。出力ファイル名は、ffmpeg によって各マニフェストファイルに自動的に追加されます。
 
-次に、Momento MediaStore にセグメントをリアルタイムでアップロードするウォッチャー関数を実装します。
+次に、Momento Media Storage にセグメントをリアルタイムでアップロードするウォッチャー関数を実装します。
 
 ## 3. Momentoにデータをアップロードする
 
@@ -275,18 +275,18 @@ async function uploadMasterPlaylist(streamName) {
      ```
 
 5. **トランスコードとアップロードを監視する**
-    - アプリがセグメントを作成し、リアルタイムで**Momento MediaStore**にアップロードすることで、トランスコード処理が開始されます。サーバーはアップロードのプロセスを記録し、完了すると通知します。
+    - アプリがセグメントを作成し、リアルタイムで**Momento Media Storage**にアップロードすることで、トランスコード処理が開始されます。サーバーはアップロードのプロセスを記録し、完了すると通知します。
     - また、各解像度フォルダに作成されたセグメントをファイルシステムで確認することもできます。
 
 5. **Playback**
-    - セグメントとマニフェスト・ファイルが **Momento MediaStore** に格納されると、マスター・プレイリスト URL を使用して、HLS 互換プレーヤーからアクセスできます：
+    - セグメントとマニフェスト・ファイルが **Momento Media Storage** に格納されると、マスター・プレイリスト URL を使用して、HLS 互換プレーヤーからアクセスできます：
     ```
     https://<your-cdn-url>/<streamName>/playlist.m3u8
     ```
     - ローカルでのテストには、ブラウザで[VLC](https://www.videolan.org/)や[Video.js](https://videojs.com/)のようなプレーヤーを使うことができます。
 
 :::info
-このデモで使用したのは、メディア ファイルにアクセスするための [CDN ルート](/mediastore/streaming/decoding-video#using-a-cdn-with-header-forwarding) です。この CDN はリクエストを受け取り、Momento の認証トークンを直接 Momento MediaStore に転送します。これを行う CDN を設定していない場合、メディア プレーヤはマニフェストとセグメントを取得できません。
+このデモで使用したのは、メディア ファイルにアクセスするための [CDN ルート](/media-storage/streaming/decoding-video#using-a-cdn-with-header-forwarding) です。この CDN はリクエストを受け取り、Momento の認証トークンを直接 Momento Media Storage に転送します。これを行う CDN を設定していない場合、メディア プレーヤはマニフェストとセグメントを取得できません。
 :::
 
-これで、RTMPライブストリーミング、トランスコード、**Momento MediaStore**へのセグメント保存の準備が整いました。ストリーミングのニーズに応じて、ストリームの品質、セグメントの長さ、その他のパラメータを調整できます。ハッピーコーディング！
+これで、RTMPライブストリーミング、トランスコード、**Momento Media Storage**へのセグメント保存の準備が整いました。ストリーミングのニーズに応じて、ストリームの品質、セグメントの長さ、その他のパラメータを調整できます。ハッピーコーディング！

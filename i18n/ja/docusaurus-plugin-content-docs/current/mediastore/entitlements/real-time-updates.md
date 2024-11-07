@@ -6,7 +6,7 @@ description: Learn how to keep entitlements in sync across all your media player
 hide_title: true
 keywords:
   - momento
-  - mediastore
+  - media storage
   - zero buffer rate
   - zbr
   - streaming
@@ -19,7 +19,7 @@ keywords:
 
 # リアルタイムでの資格更新
 
-ユーザーがサブスクリプションを購入すると、新しいコンテンツにすぐにアクセスできるようにする必要があります。しかし、[entitlements](/mediastore/entitlements/about)がクライアントサイドのプレイヤーにキャッシュされている場合、それを効率的に無効にするにはどうすればよいでしょうか？
+ユーザーがサブスクリプションを購入すると、新しいコンテンツにすぐにアクセスできるようにする必要があります。しかし、[entitlements](/media-storage/entitlements/about)がクライアントサイドのプレイヤーにキャッシュされている場合、それを効率的に無効にするにはどうすればよいでしょうか？
 
 [Momento Topics](/topics)は、厳重なセキュリティ制御が組み込まれた、どこからでもアクセスできる高性能なpub/subサービスです。エンタイトルメントが変更されると、トピックにメッセージが発行され、プレイヤーに更新が通知されます。
 

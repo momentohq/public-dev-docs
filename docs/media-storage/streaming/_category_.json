@@ -1,0 +1,9 @@
+{
+  "label": "Streaming",
+  "position": 20,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "description": "Learn about streaming content via Momento Media Storage"
+  }
+}

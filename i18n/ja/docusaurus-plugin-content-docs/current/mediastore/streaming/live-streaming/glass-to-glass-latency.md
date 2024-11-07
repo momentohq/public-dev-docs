@@ -6,7 +6,7 @@ description: Learn about the events that occur between the moment light hits the
 hide_title: true
 keywords:
   - momento
-  - mediastore
+  - media storage
   - zero buffer rate
   - zbr
   - streaming
@@ -27,27 +27,27 @@ Glass-to-Glassのレイテンシを最小化するには、ライブビデオの
 
 グラス間のレイテンシには、いくつかの重要なコンポーネントが寄与しています：
 
-* **Capture and transcoding** - ビデオを録画し、[異なるビットレートと解像度](/mediastore/core-concepts/abr-ladder)にトランスコードして、ストリーミング用に準備します。
+* **Capture and transcoding** - ビデオを録画し、[異なるビットレートと解像度](/media-storage/core-concepts/abr-ladder)にトランスコードして、ストリーミング用に準備します。
 
-* **Segmenting and storing** - ビデオは[segments](/mediastore/core-concepts/segments)として知られる小さな塊に分割されます。これらのセグメントは [オリジン](/mediastore/core-concepts/origin) に保存されます。Momento MediaStore**をオリジンとすることで、セグメントは超低遅延で保存され、CDNによる高速検索が可能になります。
+* **Segmenting and storing** - ビデオは[segments](/media-storage/core-concepts/segments)として知られる小さな塊に分割されます。これらのセグメントは [オリジン](/media-storage/core-concepts/origin) に保存されます。Momento Media Storage**をオリジンとすることで、セグメントは超低遅延で保存され、CDNによる高速検索が可能になります。
 
 * **Content delivery networks** - セグメントは視聴者の近くにキャッシュされるため、データの移動距離が短くなり、バッファリングの可能性が低くなります。CDNが複数の視聴者から同じセグメントに対するリクエストを受けると、負荷を軽減するために、これらのリクエストをオリジンへの単一のコール*にまとめることが多くあります。オリジンの速度が遅い場合、CDNへのセグメントの配信が遅れる可能性があり、それが積み重なり、そのCDNに依存しているすべての視聴者が経験する遅延に影響を与えます。
-* 
+*
 * **Player buffering and playback** - ビデオプレーヤーは、スムーズな再生を保証するために、コンテンツをバッファリング（保存）します。セグメントが短く、オリジンからの取得が速いほど、視聴者が経験する遅延は少なくなります。バッファ要件が低いプレーヤは、再生の遅延をさらに減らすことができます。
 
 ## Momento MediaStoreでグラス間のレイテンシーを最小化する
 
-動画セグメントへの超低遅延アクセスを提供することで、Momento MediaStore は、CDN による即時取得が可能なセグメントを常に確保します。これにより、トランスコードからコンテンツ配信までの遅延が最小限に抑えられ、パイプラインの総遅延が大幅に短縮されます。
+動画セグメントへの超低遅延アクセスを提供することで、Momento Media Storage は、CDN による即時取得が可能なセグメントを常に確保します。これにより、トランスコードからコンテンツ配信までの遅延が最小限に抑えられ、パイプラインの総遅延が大幅に短縮されます。
 
-* **Low-latency segment storage** - セグメントはインメモリで保存されるため、従来のディスクベースのストレージのようなオーバーヘッドなしに即座に検索することができます。つまり、CDNがセグメントを要求するとすぐに**Momento MediaStore**がセグメントを配信するため、コンテンツ配信プロセスのボトルネックを防ぐことができます。
+* **Low-latency segment storage** - セグメントはインメモリで保存されるため、従来のディスクベースのストレージのようなオーバーヘッドなしに即座に検索することができます。つまり、CDNがセグメントを要求するとすぐに**Momento Media Storage**がセグメントを配信するため、コンテンツ配信プロセスのボトルネックを防ぐことができます。
 
-* **Immediate manifest access** - **Momento MediaStore** は、動画セグメントを保存するだけでなく、プレーヤが適切なセグメントを取得するためのガイドとなる [マニフェスト ファイル](/mediastore/performance/adaptive-bitrates/hls) も保存します。これらのマニフェストへの迅速なアクセスは、プレーヤーがどのセグメントをロードするかを決定する上で非常に重要であり、遅延をさらに低減します。
+* **Immediate manifest access** - **Momento Media Storage** は、動画セグメントを保存するだけでなく、プレーヤが適切なセグメントを取得するためのガイドとなる [マニフェスト ファイル](/media-storage/performance/adaptive-bitrates/hls) も保存します。これらのマニフェストへの迅速なアクセスは、プレーヤーがどのセグメントをロードするかを決定する上で非常に重要であり、遅延をさらに低減します。
 
-* **Scalability** - スポーツ・イベントやライブ・コンサートのような大規模な視聴者を伴うライブ・ストリームの場合、**Momento MediaStore**は、毎秒数百万の同時リクエストを処理するために楽に拡張できます。
+* **Scalability** - スポーツ・イベントやライブ・コンサートのような大規模な視聴者を伴うライブ・ストリームの場合、**Momento Media Storage**は、毎秒数百万の同時リクエストを処理するために楽に拡張できます。
 
 ## 待ち時間を短縮する追加テクニック
 
-Momento MediaStore**はレイテンシーを最小化する上で重要な役割を果たしますが、Glass-to-Glassのレイテンシーを低減するための戦略もあります：
+Momento Media Storage**はレイテンシーを最小化する上で重要な役割を果たしますが、Glass-to-Glassのレイテンシーを低減するための戦略もあります：
 
 * **Shorter Segments** - 例えば、ビデオセグメントの時間を10秒から2秒に短縮すると、プレーヤーがコンテンツをバッファリングするのに必要な時間が大幅に短縮され、より迅速な配信が可能になります。
 
