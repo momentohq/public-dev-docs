@@ -34,7 +34,7 @@ flowchart TD
         A[Account ID]
     end
     subgraph Momento
-        B1[Store Heartbeats in Capped List]
+        B1[Store Heartbeats in Cache Dictionary]
         B2[Evaluate Unique Devices on Entitlement Check]
     end
     subgraph Device
@@ -53,13 +53,13 @@ flowchart TD
     Account -.->|Check Entitlement| A
 ```
 
-Monitoring concurrency with Momento relies on [heartbeats](/mediastore/enhancements/heartbeats) to be emitted from connected players. A server component manages a [cache list](/cache/develop/basics/datatypes#lists) in Momento that tracks the most recent N heartbeats (N is based on your business requirements). During an [entitlement check](/mediastore/entitlements/about), the list is fetched, player ids are deduplicated, and the concurrency count is determined.
+Monitoring concurrency with Momento relies on [heartbeats](/mediastore/enhancements/heartbeats) to be emitted from connected players. A server component manages [cache dictionaries](/cache/develop/basics/datatypes#dictionaries) in Momento that track the heartbeats from unique players over a given interval. During an [entitlement check](/mediastore/entitlements/about), the last *complete* interval dictionary is fetched and the concurrency count is determined.
 
 The major components in concurrency tracking are:
 
 * **Device** - Each device or stream sends a heartbeat via [Momento Topics](/topics), which includes a unique session ID.
 * **Momento**
-  * **Cache** - Stores recent heartbeats for each account in a dedicated cache list, discarding old entries when the list exceeds a certain length.
+  * **Cache** - Stores recent heartbeats for each account in interval based cache dictionaries.
   * **Auth** - Creates [session tokens](/cache/develop/authentication/tokens) for players, encoding the account id directly in the token.
 * **Account** - Represents the user account in your system.
 
@@ -158,7 +158,7 @@ const HEARTBEAT_INTERVAL_MS = 5000;
 
 function getMediaIdFromQuery() {
   const params = new URLSearchParams(window.location.search);
-  return params.get('id')
+  return params.get('id');
 }
 
 function Device() {
@@ -312,4 +312,130 @@ Two things to note in the code for the device heartbeat:
 1. The account id being supplied to the token vending machine is hardcoded, in practice this would come from your AuthN mechanism.
 2. When calling the Momento HTTP API, the base url is [region based](/platform/regions). Substitute the placeholder with the correct region endpoint for your use case. If you use the Momento SDK, region handling is managed for you.
 
+*For a complete example of a token vending machine, [check out this tutorial](/media-storage/enhancements/live-reactions#step-1-building-a-token-vending-machine).*
+
 ### Heartbeat handler
+
+Devices for a specific account will be tracked in a series of cache dictionaries. A unique cache dictionary will be used to track device heartbeats over a given time interval. The time interval can vary based on your business requirements. Our example will be evaluating concurrency once a minute.
+
+The naming convention for the interval-based dictionaries is `{accountId}-${intervalTime}`. To calculate the interval time, get the time in ticks of a given minute and round down.
+
+<Tabs>
+<TabItem value="node" label="Node.js">
+
+```javascript
+function getIntervalMarker(minutesBack = 0) {
+  const now = new Date();
+  now.setTime(now.getTime() - minutesBack * 60000);
+  now.setSeconds(0, 0);
+  return now.getTime();
+}
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+import (
+	"fmt"
+	"time"
+)
+
+func getIntervalMarker(minutesBack int) int64 {
+	now := time.Now().Add(-time.Duration(minutesBack) * time.Minute)
+	rounded := time.Date(now.Year(), now.Month(), now.Day(), now.Hour(), now.Minute(), 0, 0, now.Location())
+	return rounded.UnixNano() / int64(time.Millisecond)
+}
+```
+
+</TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```csharp
+static long GetIntervalMarker(int minutesBack = 0)
+{
+  DateTime now = DateTime.UtcNow.AddMinutes(-minutesBack);
+  now = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0, DateTimeKind.Utc);
+  return new DateTimeOffset(now).ToUnixTimeMilliseconds();
+}
+```
+
+</TabItem>
+</Tabs>
+
+As heartbeats come in, the device id is stored as a value in the dictionary and a count is incremented. A [time to live (TTL)](/cache/learn/how-it-works/expire-data-with-ttl) is set on the dictionary for twice the interval length, so the data automatically cleans itself up when it is no longer needed.
+
+### Concurrency checker
+
+Lastly, we have the concurrency checker. Often rolled in as part of an [entitlement check](/media-storage/entitlements/about), this is the logic that reads the heartbeat dictionary and determines if an account is over their allowed limit. To check concurrency, we fetch the dictionary length from the *previous interval* and count the number of entries.
+
+<Tabs>
+<TabItem value="node" label="Node.js">
+
+```javascript
+async function getConcurrentDeviceCount(accountId) {
+  const interval = getIntervalMarker(1);
+  const intervalKey = `${accountId}-${interval}`;
+  let deviceCount = 0;
+  const response = await cacheClient.dictionaryLength('video', intervalKey);
+  if(response.type === CacheDictionaryLengthResponse.Hit){
+    deviceCount = response.value();
+  }
+  return deviceCount;
+}
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+func getConcurrentDeviceCount(accountId string) int {
+  interval := getIntervalMarker(1)
+	intervalKey := fmt.Sprintf("%s-%d", accountId, interval)
+	deviceCount := 0
+
+	resp, err := client.DictionaryLength(ctx, &momento.DictionaryLengthRequest{
+		CacheName:      cacheName,
+		DictionaryName: intervalKey,
+	})
+	if err != nil {
+		panic(err)
+	}
+	switch r := resp.(type) {
+	case *responses.DictionaryLengthHit:
+		deviceCount = int(r.Length())
+	}
+	return deviceCount
+}
+```
+
+</TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```csharp
+static async Task<int> GetConcurrentDeviceCount(CacheClient cacheClient, string accountId)
+{
+  long interval = GetIntervalMarker(1);
+  string intervalKey = $"{accountId}-{interval}";
+  int deviceCount = 0;
+
+  CacheDictionaryLengthResponse response = await cacheClient.DictionaryLengthAsync("video", intervalKey);
+  if (response is CacheDictionaryLengthResponse.Hit)
+  {
+    deviceCount = response.Length;
+  }
+
+  return deviceCount;
+}
+```
+
+</TabItem>
+</Tabs>
+
+This function uses the `getIntervalMarker` method we created in the previous step to get the time of our last interval, then calls Momento Cache to see how many entries are in the dictionary. Remember, each device that reported a heartbeat counts as an entry in the dictionary, so the length directly maps to the number of concurrent players.
+
+The value is returned to the caller and it's up to standard business logic to take over from there.
+
+:::tip
+Interested in something a little more managed? Check out our [helper library]() that does the hard work for you!
+:::
