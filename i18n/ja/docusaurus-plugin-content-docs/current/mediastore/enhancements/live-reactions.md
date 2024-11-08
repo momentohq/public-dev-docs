@@ -18,6 +18,9 @@ keywords:
   - reactions
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # ビデオストリームにリアルタイムの絵文字リアクションを追加する
 
 視聴者の体験において、インタラクティブ性は重要な役割を果たしています。リアクションを送ったり、他の視聴者と感情を共有したりすることで、メディアストリーミングだけでは得られないコミュニティ感やエンゲージメントが生まれます。このチュートリアルでは、動画プレーヤにリアルタイムの絵文字オーバーレイを設定します。Momento Topics** を使用すると、ユーザーとのインタラクションに応じて絵文字のリアクションが即座に表示されるため、生き生きとした魅力的な視聴体験が可能になります。
@@ -54,7 +57,10 @@ Momento Topicsによって呼び出されたブラウザのイベントハンド
 
 ## Step 1: トークン発行機の作成
 
-動画プレーヤが絵文字を公開および受信するには、Momento トピックへのアクセスが必要です。アクセスを許可するには、セッション トークンを生成して呼び出し元に返す必要があります。これを行うには、`POST /tokens` エンドポイントを持つ単純な [Express サーバ](https://expressjs.com/) を作成します。
+動画プレーヤが絵文字を公開および受信するには、Momento トピックへのアクセスが必要です。アクセスを許可するには、セッション トークンを生成して呼び出し元に返す必要があります。これを行うには、`POST /tokens` エンドポイントを持つ単純な Web サーバーを作成します。
+
+<Tabs>
+<TabItem value="node" label="Node.js">
 
 ```javascript
 import express from 'express';
@@ -78,6 +84,156 @@ app.post('/tokens', (req, res) => {
   res.status(201).json({ token: tokenResponse.authToken });
 });
 ```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"log"
+	"net/http"
+	"time"
+
+	"github.com/gorilla/mux"
+	"github.com/momentohq/client-sdk-go/auth"
+	"github.com/momentohq/client-sdk-go/config"
+	"github.com/momentohq/client-sdk-go/momento"
+	auth_resp "github.com/momentohq/client-sdk-go/responses/auth"
+	"github.com/momentohq/client-sdk-go/utils"
+)
+
+var (
+	ctx                context.Context
+	authClient         momento.AuthClient
+)
+
+type TokenRequest struct {
+	PlayerID string `json:"playerId"`
+	StreamID string `json:"streamId"`
+}
+
+type TokenResponse struct {
+	Token string `json:"token"`
+}
+
+func generateTokenHandler(w http.ResponseWriter, r *http.Request) {
+	var req TokenRequest
+	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		return
+	}
+
+	credentialProvider, err := auth.NewEnvMomentoTokenProvider("MOMENTO_API_KEY")
+	if err != nil {
+		panic(err)
+	}
+
+	authClient, err = momento.NewAuthClient(config.AuthDefault(), credentialProvider)
+	if err != nil {
+		panic(err)
+	}
+
+	resp, err := authClient.GenerateDisposableToken(ctx, &momento.GenerateDisposableTokenRequest{
+		ExpiresIn: utils.ExpiresInMinutes(30),
+		Scope: momento.TopicSubscribeOnly(
+			momento.CacheName{Name: "video"},
+			momento.TopicName{Name: req.StreamID},
+		),
+		Props: momento.DisposableTokenProps{
+			TokenId: &req.PlayerID,
+		},
+	})
+
+	if err != nil {
+		http.Error(w, "Failed to generate token", http.StatusInternalServerError)
+		return
+	}
+
+	switch r := resp.(type) {
+	case *auth_resp.GenerateDisposableTokenSuccess:
+		res := TokenResponse{Token: r.ApiKey}
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusCreated)
+		json.NewEncoder(w).Encode(res)
+	default:
+		http.Error(w, "Failed to generate token", http.StatusInternalServerError)
+	}
+}
+
+func main() {
+	ctx = context.Background()
+
+	r := mux.NewRouter()
+	r.HandleFunc("/tokens", generateTokenHandler).Methods("POST")
+
+	srv := &http.Server{
+		Handler:      r,
+		Addr:         ":8080",
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+
+	log.Println("Server is running on port 8080")
+	log.Fatal(srv.ListenAndServe())
+}
+
+```
+
+</TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Momento.Sdk;
+using Momento.Sdk.Auth;
+using Momento.Sdk.Config;
+using Momento.Sdk.Auth.AccessControl;
+using Momento.Sdk.Responses;
+using System;
+using System.Threading.Tasks;
+
+[ApiController]
+[Route("api/[controller]")]
+public class TokenController : ControllerBase
+{
+  private readonly Momento.AuthClient _authClient;
+
+  public TokenController(IConfiguration configuration)
+  {
+    _authClient = configuration.AuthClient;
+  }
+
+  [HttpPost]
+  [Route("tokens")]
+  public async Task<IActionResult> GenerateToken([FromBody] TokenRequest request)
+  {
+    try
+    {
+      var response = await _authClient.GenerateDispableTokenAsync(
+        DisposableTokenScopes.TopicPublishSubscribe("video", request.StreamId),
+        ExpiresIn.Minutes(30)
+      )
+
+      return Created("", new TokenResponse { Token = response.AuthToken });
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine($"Error generating token: {ex.Message}");
+      return StatusCode(500, "Failed to generate token");
+    }
+  }
+}
+
+```
+
+</TabItem>
+</Tabs>
 
 ここで作成したエンドポイントは、`playerId` と `streamId` プロパティを含むリクエストボディを受け付けます。streamId` は、視聴する動画ストリームの一意な識別子です。これは、リアクションのスコープをリクエストされた動画*に限定するために使用されます。`playerId` は呼び出し元の識別子です。Momento のベストプラクティスでは、*常にセッション トークンに発信者の識別子を含めるように*言われています。私たちは `playerId` を直接埋め込んだトークンを作成しており、このトークンはユーザーが公開するすべてのメッセージに適用されます。
 
