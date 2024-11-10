@@ -37,7 +37,7 @@ keywords:
 * **Content delivery network (CDN)** - 地理的に分散されたPoP（Point of Presence）と呼ばれるサーバーにキャッシュすることで、メディアをエンドユーザーに配信し、遅延を減らしてストリーミング・パフォーマンスを向上させる。
 * **Media player** - CDNからメディアセグメントを要求し、再生するデバイス（ブラウザ、スマートテレビ、モバイルアプリなど）。
 
-## オリジンとしてのMomento MediaStore
+## オリジンとしてのMomento Media Storage
 
 Momento MediaStoreは、[ライブストリーミング](/media-storage/streaming/live-streaming/how-it-works)および[ビデオ・オン・デマンド(VOD)](/media-storage/streaming/video-on-demand/media-storage)アプリケーションの要求を満たすように設計された専用高速オリジンです。当社の超低遅延ストレージを活用することで、MediaStoreはコンテンツが常にアクセス可能で、CDNへの配信準備が整っていることを保証し、スムーズで中断のない視聴体験を可能にします。ライブイベントでもオンデマンドコンテンツでも、MediaStoreは卓越したパフォーマンスを維持しながらメディア配信の管理プロセスを簡素化します。
 
