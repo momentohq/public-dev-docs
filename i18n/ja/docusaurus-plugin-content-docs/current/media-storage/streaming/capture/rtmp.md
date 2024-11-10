@@ -21,7 +21,7 @@ keywords:
   - rtmp
 ---
 
-# RTMP、FFmpeg、Momento MediaStoreによるライブストリーミング
+# RTMP、FFmpeg、Momento Media Storageによるライブストリーミング
 
 このチュートリアルでは、HTTP POST リクエストをトリガーとするライブストリーム取り込みワークフローを構築します。リクエストには [RTMP ストリーム](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) の URL とストリーム名が含まれます。このリクエストをトリガーとして、**FFmpeg** がストリームを複数の解像度にトランスコードし、Momento SDK を使用して、結果の [HLS セグメント](/media-storage/performance/adaptive-bitrates/hls) とマニフェスト ファイルを **Momento Media Storage** にアップロードします。
 
@@ -47,8 +47,8 @@ graph TD;
     end
 
     subgraph Momento Media Storage
-        E --> K[Store HLS segments];
-        E --> L[Store playlists];
+        E --> K[Storage HLS segments];
+        E --> L[Storage playlists];
     end
 
     K --> G[Media player];
