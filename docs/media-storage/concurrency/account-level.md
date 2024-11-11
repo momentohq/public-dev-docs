@@ -363,6 +363,52 @@ static long GetIntervalMarker(int minutesBack = 0)
 </TabItem>
 </Tabs>
 
+To create the cache key that tracks the device heartbeat count, you append the value from the function above to the end of a user's account id. Creating keys this way means you have a dedicated cache item per interval. Coupled with an appropriate TTL, the cache item will clean itself up automatically, simplifying the code needed for the pattern.
+
+<Tabs>
+<TabItem value="node" label="Node.js">
+
+```javascript
+// Get the account id through your business logic
+const accountId = getAccountId(req);
+const { deviceId } = req.body;
+const key = `${accountId}-${getIntervalMarker()}`;
+
+await cacheClient.dictionaryIncrement('video', key, deviceId, 1);
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+```go
+accountId := getAccountId(req)
+deviceId := req.DeviceID
+
+key := fmt.Sprintf("%s-%d", accountId, getIntervalMarker())
+_, err := cacheClient.DictionaryIncrement(ctx, &momento.DictionaryIncrementRequest{
+  CacheName:      momento.String("video"),
+  DictionaryName: key,
+  Field:          deviceId,
+  Amount:         1
+})
+if err != nil {
+  fmt.Println("Error incrementing cache:", err)
+}
+```
+
+</TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```csharp
+  var accountId = GetAccountId(req);
+  var deviceId = req.Body.DeviceId;
+  var key = $"{accountId}-{getIntervalMarker()}";
+
+  await cacheClient.DictionaryIncrementAsync("video", key, deviceId, 1);
+```
+</TabItem>
+</Tabs>
+
 As heartbeats come in, the device id is stored as a value in the dictionary and a count is incremented. A [time to live (TTL)](/cache/learn/how-it-works/expire-data-with-ttl) is set on the dictionary for twice the interval length, so the data automatically cleans itself up when it is no longer needed.
 
 ### Concurrency checker
@@ -395,7 +441,7 @@ func getConcurrentDeviceCount(accountId string) int {
 	deviceCount := 0
 
 	resp, err := client.DictionaryLength(ctx, &momento.DictionaryLengthRequest{
-		CacheName:      cacheName,
+		CacheName:      momento.String("video"),
 		DictionaryName: intervalKey,
 	})
 	if err != nil {
@@ -437,5 +483,5 @@ This function uses the `getIntervalMarker` method we created in the previous ste
 The value is returned to the caller and it's up to standard business logic to take over from there.
 
 :::tip
-Interested in something a little more managed? Check out our [helper library](/media-storage) that does the hard work for you!
+For a complete example of this pattern in action, along with other practical patterns for media streaming, check out our [demo on GitHub](https://github.com/momentohq/demo-video-streaming)!
 :::
