@@ -65,7 +65,7 @@ The major components in concurrency tracking are:
 
 ## Building a concurrency tracker
 
-Four components are needed in this pattern
+Four components are needed in this pattern:
 
 * Token vending machine
 * Device heartbeat
@@ -316,9 +316,9 @@ Two things to note in the code for the device heartbeat:
 
 ### Heartbeat handler
 
-Devices for a specific account will be tracked in a series of cache dictionaries. A unique cache dictionary will be used to track device heartbeats over a given time interval. The time interval can vary based on your business requirements. Our example will be evaluating concurrency once a minute.
+Devices for a specific account will be tracked in a series of cache dictionaries. A unique cache dictionary is used to track device heartbeats over a given time interval. The time interval can vary based on your business requirements. Our example will be evaluating concurrency *once a minute*.
 
-The naming convention for the interval-based dictionaries is `{accountId}-${intervalTime}`. To calculate the interval time, get the time in ticks of a given minute and round down.
+The naming convention for the interval-based dictionaries is `{accountId}-{intervalTime}`. To calculate the interval time, get a number representation of time for a given minute and round down.
 
 <Tabs>
 <TabItem value="node" label="Node.js">
@@ -336,11 +336,6 @@ function getIntervalMarker(minutesBack = 0) {
 <TabItem value="go" label="Go">
 
 ```go
-import (
-	"fmt"
-	"time"
-)
-
 func getIntervalMarker(minutesBack int) int64 {
 	now := time.Now().Add(-time.Duration(minutesBack) * time.Minute)
 	rounded := time.Date(now.Year(), now.Month(), now.Day(), now.Hour(), now.Minute(), 0, 0, now.Location())
@@ -363,7 +358,7 @@ static long GetIntervalMarker(int minutesBack = 0)
 </TabItem>
 </Tabs>
 
-To create the cache key that tracks the device heartbeat count, you append the value from the function above to the end of a user's account id. Creating keys this way means you have a dedicated cache item per interval. Coupled with an appropriate TTL, the cache item will clean itself up automatically, simplifying the code needed for the pattern.
+To create the cache key that tracks the device heartbeat count, you append the value from the function above to the end of a user's account id. Creating keys in this manner provides a *dedicated cache item per interval*. Coupled with an appropriate [time to live (TTL)](/cache/learn/how-it-works/expire-data-with-ttl), the cache item will clean itself up automatically, simplifying the code needed for the pattern.
 
 <Tabs>
 <TabItem value="node" label="Node.js">
@@ -409,8 +404,9 @@ if err != nil {
 </TabItem>
 </Tabs>
 
-As heartbeats come in, the device id is stored as a value in the dictionary and a count is incremented. A [time to live (TTL)](/cache/learn/how-it-works/expire-data-with-ttl) is set on the dictionary for twice the interval length, so the data automatically cleans itself up when it is no longer needed.
+As heartbeats come in, the device id is stored as a value in the dictionary and a count is incremented. A TTL is set on the dictionary for twice the interval length, so the data automatically cleans itself up when it is no longer needed.
 
+Now that the data is stored, let's move on to the code that checks how many devices are actively steaming.
 ### Concurrency checker
 
 Lastly, we have the concurrency checker. Often rolled in as part of an [entitlement check](/media-storage/entitlements/about), this is the logic that reads the heartbeat dictionary and determines if an account is over their allowed limit. To check concurrency, we fetch the dictionary length from the *previous interval* and count the number of entries.
