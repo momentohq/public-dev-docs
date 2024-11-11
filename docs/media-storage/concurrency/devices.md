@@ -43,9 +43,9 @@ flowchart TD
         C3[Device N]
     end
 
-    C1 -- "Heartbeat ➡ Session ID + Timestamp" --> B1
-    C2 -- "Heartbeat ➡ Session ID + Timestamp" --> B1
-    C3 -- "Heartbeat ➡ Session ID + Timestamp" --> B1
+    C1 -- "Heartbeat ➡ Account ID + Timestamp" --> B1
+    C2 -- "Heartbeat ➡ Account ID + Timestamp" --> B1
+    C3 -- "Heartbeat ➡ Account ID + Timestamp" --> B1
 
     B1 -- "Capped to Most Recent N Entries" --> B2
     A -- "Evaluate Active Concurrency" --> B2
