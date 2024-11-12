@@ -6,7 +6,7 @@ description: Learn how to track and manage concurrent devices for an account
 hide_title: true
 keywords:
   - momento
-  - mediastore
+  - media storage
   - zero buffer rate
   - zbr
   - streaming
@@ -53,7 +53,7 @@ flowchart TD
     Account -.->|Check Entitlement| A
 ```
 
-Monitoring concurrency with Momento relies on [heartbeats](/mediastore/enhancements/heartbeats) to be emitted from connected players. A server component manages [cache dictionaries](/cache/develop/basics/datatypes#dictionaries) in Momento that track the heartbeats from unique players over a given interval. During an [entitlement check](/mediastore/entitlements/about), the last *complete* interval dictionary is fetched and the concurrency count is determined.
+Monitoring concurrency with Momento relies on [heartbeats](/media-storage/enhancements/heartbeats) to be emitted from connected players. A server component manages [cache dictionaries](/cache/develop/basics/datatypes#dictionaries) in Momento that track the heartbeats from unique players over a given interval. During an [entitlement check](/media-storage/entitlements/about), the last *complete* interval dictionary is fetched and the concurrency count is determined.
 
 The major components in concurrency tracking are:
 
