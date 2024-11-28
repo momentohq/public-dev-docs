@@ -1,0 +1,46 @@
+---
+sidebar_position: 4
+title: Permissions
+sidebar_label: Permissions
+id: permissions
+description: Learn about the permissions available when creating your API keys and session tokens to control access to Momento resources.
+pagination_next: null
+hide_table_of_contents: true
+---
+
+# Permissions and access control
+
+When creating a session token or API key, you have the ability to limit permissions to specific namespaces, cache keys, cache key prefixes, and topics. This is made possible through the use of *permissions*. When creating a token, you define a set of permissions in a Scope object. Upon creation, the token will only be able to access the cache keys and topics indicated in the permission scope, along with performing specific operations (read, write, publish, subscribe, etc...). If a user attempts to perform an action outside the bounds of the permission scope, they will receive a `403 Unauthorized` status code.
+
+## Scope
+
+API keys and tokens can be scoped to specific sets of permissions to limit access to resources. The scope object contains both cache permissions and topic permissions.
+
+import SchemaView from '@site/src/components/SchemaView';
+import scopeSchema from '@site/src/data/schemas/permissions/scope.json';
+
+<SchemaView title="The Scope object" schema={scopeSchema} />
+
+## Cache permission
+
+You can create permissions for individual cache keys, cache key prefixes, or for an entire cache. When creating a cache permission, users select one of three system-defined roles:
+
+* *readwrite* - Provides full access to cache data
+* *writeonly* - Provides access to only write operations (`set`, `sortedSetIncrementScore`, `listPopFront`, etc...)
+* *readonly* - Provides access to only read operations (`get`, `dictionaryFetch`, `setFetch`, etc...)
+
+import cacheSchema from '@site/src/data/schemas/permissions/cache.json';
+
+<SchemaView title="The Cache permission object" schema={cacheSchema} />
+
+## Topic permission
+
+You can create permissions for individual or all topics in a given namespace. *Topic prefixes are not supported*. When creating a topic permission, users select from one of three system-defined roles:
+
+* *publishsubscribe* - Provides full access to topic data
+* *publishonly* - Provides access to only write operations (`publish`)
+* *subscribeonly* - Provides access to only read operations (`subscribe`)
+
+import topicSchema from '@site/src/data/schemas/permissions/topic.json';
+
+<SchemaView title="The Topic permission object" schema={topicSchema} />

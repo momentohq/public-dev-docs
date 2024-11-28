@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "permissions": {
+      "type": "array",
+      "description": "A set of cache and/or topic permissions used to scope the token.",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "Cache permission",
+            "link": "/api/authentication/permissions#cache-permission"
+          },
+          {
+            "$ref": "Topic permission",
+            "link": "/api/authentication/permissions#topic-permission"
+          }
+        ]
+      }
+    }
+  },
+  "required": ["permissions"],
+  "examples": [
+    {
+      "permissions": [
+        {
+          "role": "readonly",
+          "cache": "data",
+          "item": {
+            "key": "foo"
+          }
+        },
+        {
+          "role": "subscribeonly",
+          "cache": "data",
+          "topic": "bar"
+        }
+      ]
+    }
+  ]
+}
