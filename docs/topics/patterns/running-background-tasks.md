@@ -39,9 +39,7 @@ In this diagram, `Topic 1` is the `inbound` topic, and `Topic 2` is the `outboun
 2. [Create a webhook](/topics/webhooks/creating-a-webhook) for the cache. Assign the webhook destination to the public facing endpoint.
 3. Add code to the webhook to process the incoming messages. For example, if your webhook is implemented as an AWS Lambda function behind an API Gateway, then here is some very simple code that processes the incoming message, converts it to upper case, and then publishes it to the outbound topic:
 
-```
 <SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/webhooks/doc-example-files/webhook-lambda-handler.ts'} />
-```
 
 4. On the client side, add a subscriber to this new `topic 2`
 
