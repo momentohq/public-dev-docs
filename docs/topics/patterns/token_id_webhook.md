@@ -11,6 +11,11 @@ keywords:
  - event-driven architecture
 ---
 
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
+
 # Leverage Momento Topics, webhooks, and tokens in your event-driven architectures
 
 With [Momento Topics](../), you can subscribe to messages on a topic and publish messages to a different topic. [Webhooks](../webhooks/overview) serve as HTTP callbacks triggered in response to messages published to these topics, acting as stateless consumers. [Tokens](../../cache/develop/authentication/tokens) are designed to provide short-lived session tokens for users and services interacting with a system. By embedding unique identifiers (`token_id`) in each token, they ensure secure and traceable access to resources.
@@ -27,23 +32,17 @@ The key here is that you can use Topics to facilitate real-time communication be
 3. Create your infrastructure. For example, below is sample code that creates a lambda function URL for our webhook endpoint. It also stores
 your Momento auth token in AWS secrets manager.
 
-```
 <SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/aws/lambda-examples/webhooks/infrastructure/lib/momento-webhook-stack.ts'} />
-```
 
 4. Add code to the webhook to process incoming messages. Below is sample code for the webhook lambda handler that extracts a user's `token_id` from the webhook payload, and access resources stored in Momento cache. It also verifies that the webhook caller is indeed Momento through the signing secret.
 
 
-```
 <SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/aws/lambda-examples/webhooks/lambda/webhook-handler/handler.ts'} />
-```
 
 5. Finally, below has sample code for generating the token and publishing user messages on a topic. In a real-world,
 these would ideally live in separate micro-services.
 
-```
 <SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/aws/lambda-examples/webhooks/lambda/service-topics/handler.ts'} />
-```
 
 ## See More
 - By integrating Momento topics, webhooks, and tokens, you can create secure and stateless asynchronous systems. This convention can be applied to a variety of use-cases such as multi-language chat app, online polling, and event-driven systems.
