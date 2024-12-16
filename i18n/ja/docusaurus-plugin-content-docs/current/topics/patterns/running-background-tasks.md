@@ -12,6 +12,15 @@ keywords:
  - Step Functions
 ---
 
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
+
 # Momento トピックを使用してデータを非同期に処理する
 
 [Momento Topics](../)を使用すると、トピック上のメッセージを購読したり、別のトピックにメッセージを公開したりできます。[Webhooks](../webhooks/overview)を使うと、これらのトピックをステートレスコンシューマーに接続し、非同期にイベントを処理することができます。イベントを `topic_id` で集約したり、各イベントをデータベースに保存したり、ペイロードを使用して Step 関数のワークフローをトリガーしたり、Webhook を使用することで、これらのイベントを好きなように処理する柔軟性が得られます。
@@ -63,7 +72,9 @@ export const lambdaHandler = async (
         body: JSON.stringify({status : "success"})
     }
 }
-```
+
+<SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/webhooks/doc-example-files/webhook-lambda-handler.ts'} />
+
 4. クライアント側で、この新しい`topic 2`に購読者を追加する
 ```typescript
 const result = await topicClient.subscribe(cacheName, 'topic 2', {
