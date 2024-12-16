@@ -151,6 +151,8 @@ Since CloudFront is accessed by video players, which don't go through auth flows
 
 You do not need to enable the *Origin Shield* functionality of CloudFront, Momento takes care of it natively.
 
+For the **Web Application Firewall (WAF)** settings, select *Do not enable security protections* for our demo.
+
 Now we need to define the CloudFront behaviors for three types of objects read from the Momento origin server:
 
 1. The default behavior

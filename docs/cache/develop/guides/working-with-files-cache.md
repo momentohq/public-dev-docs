@@ -7,6 +7,8 @@ description: Learn to add and retrieve files from Momento Cache with hands on co
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
 # Add and retrieve a file with Momento Cache
 
@@ -14,6 +16,5 @@ An item in Momento Cache is a byte array, so a cache can easily store most any f
 
 Here is an example of reading a file from the filesystem, saving the file to an item in a cache, reading it from the cache, and then writing it to the filesystem.
 
-```
-<SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/cache/doc-example-files/working-with-files.ts'} />
-```
+<SdkExampleCodeBlock language={"javascript"} file={"examples/nodejs/cache/doc-example-files/working-with-files.ts"} />
+
