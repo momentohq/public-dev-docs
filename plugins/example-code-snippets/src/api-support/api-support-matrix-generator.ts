@@ -126,12 +126,12 @@ const SDKS: Array<SdkInfo> = [
   },
   {
     sdk: Sdk.RUST,
-    cacheClientFile: 'sdk/src/cache/cache_client.rs',
-    configObjectFile: 'sdk/src/cache/config/configuration.rs',
-    topicClientFile: 'sdk/src/topics/topic_client.rs',
+    cacheClientFile: 'src/cache/cache_client.rs',
+    configObjectFile: 'src/cache/config/configuration.rs',
+    topicClientFile: 'src/topics/topic_client.rs',
     authClientFile: undefined,
     leaderboardClientFile: undefined,
-    storageClientFile: 'sdk/src/storage/preview_storage_client.rs',
+    storageClientFile: 'src/storage/preview_storage_client.rs',
   },
   {
     sdk: Sdk.RUBY,
