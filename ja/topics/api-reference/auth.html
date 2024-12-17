@@ -9,7 +9,7 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/ja/assets/css/styles.2b7b47a5.css">
-<script src="/ja/assets/js/runtime~main.4f89d68c.js" defer="defer"></script>
+<script src="/ja/assets/js/runtime~main.afe18d7e.js" defer="defer"></script>
 <script src="/ja/assets/js/main.68d0af17.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -22,7 +22,8 @@
 <li><strong>scope</strong> - <a href="#permissionscope-objects"><em>PermissionScope</em></a>: 新しいトークンに付与するパーミッション。PermissionScopeオブジェクトはSDKによって提供されます。</li>
 <li><strong>expiresIn</strong> - <em>Number</em> | <em>ExpiresIn object</em>: <code>ExpiresIn.never()</code>メソッド、<code>ExpiresIn.minutes()</code>メソッド、<code>ExpiresIn.hours()</code>メソッドを呼び出すことで、トークンが期限切れになるまでの秒数、またはその期間を表すExpiresInオブジェクト。</li>
 </ul><h4 class="anchor anchorWithStickyNavbar_LWe7" id="returns">Returns<a href="#returns" class="hash-link" aria-label="この見出しへのリンク" title="この見出しへのリンク">​</a></h4><hr><p>以下のいずれか:</p><ul>
-<li><strong>Success</strong>:<!-- -->
+<li>
+<p><strong>Success</strong>:</p>
 <ul>
 <li><code>authToken</code>: string - 新しい認証トークン</li>
 <li><code>refreshToken</code>: string - <a href="#refreshapikey">RefreshApiKey API</a>で使用できるリフレッシュトークンで、トークンの有効期限が切れる前にリフレッシュします</li>
@@ -30,7 +31,8 @@
 <li><code>expiresAt</code>: Timestamp - トークンの有効期限が切れるタイムスタンプ</li>
 </ul>
 </li>
-<li><strong>Error</strong>:<!-- -->
+<li>
+<p><strong>Error</strong>:</p>
 <ul>
 <li>詳しくは<a href="/ja/topics/api-reference/response-objects">レスポンスオブジェクト</a>を参照。</li>
 </ul>
@@ -40,7 +42,8 @@
 <div class="row"><div class="col col--4" style="padding-right:20px"><h3 class="anchor anchorWithStickyNavbar_LWe7" id="refreshapikey">RefreshApiKey<a href="#refreshapikey" class="hash-link" aria-label="この見出しへのリンク" title="この見出しへのリンク">​</a></h3><p>Refreshes an existing, unexpired Momento API key. Produces a new API key with the same permissions and expiry duration as the original API key.</p><h4 class="anchor anchorWithStickyNavbar_LWe7" id="parameters-1">Parameters<a href="#parameters-1" class="hash-link" aria-label="この見出しへのリンク" title="この見出しへのリンク">​</a></h4><hr><ul>
 <li><strong>refreshToken</strong> - <em>string</em>: The refresh token that was provided when the original API key was generated.</li>
 </ul><h4 class="anchor anchorWithStickyNavbar_LWe7" id="returns-1">Returns<a href="#returns-1" class="hash-link" aria-label="この見出しへのリンク" title="この見出しへのリンク">​</a></h4><hr><p>One of the following:</p><ul>
-<li><strong>Success</strong>:<!-- -->
+<li>
+<p><strong>Success</strong>:</p>
 <ul>
 <li><code>apiKey</code>: string - the new auth token</li>
 <li><code>refreshToken</code>: string - a refresh token that can be used with the <a href="#refreshapikey">RefreshApiKey API</a> to refresh a token before it expires</li>
@@ -48,7 +51,8 @@
 <li><code>expiresAt</code>: Timestamp - the timestamp at which the token will expire</li>
 </ul>
 </li>
-<li><strong>Error</strong>:<!-- -->
+<li>
+<p><strong>Error</strong>:</p>
 <ul>
 <li>See <a href="/ja/topics/api-reference/response-objects">response objects</a> for specific information.</li>
 </ul>
@@ -65,14 +69,16 @@
 <li><strong>scope</strong> - <a href="#disposabletokenscope-objects"><em>DisposableTokenScope</em></a>: 新しい使い捨てトークンに付与する権限。SDK は、あらかじめ DisposableTokenScope オブジェクトを用意しています。</li>
 <li><strong>expiresIn</strong> - <em>Number</em> | <em>ExpiresIn object</em>: トークンが失効するまでの秒数、または ExpiresIn.minutes() メソッドや ExpiresIn.hours(1) メソッドを呼び出して期間を表す ExpiresIn オブジェクト。使い捨てトークンは1時間以内に失効しなければなりません。</li>
 </ul><h4 class="anchor anchorWithStickyNavbar_LWe7" id="returns-2">Returns<a href="#returns-2" class="hash-link" aria-label="この見出しへのリンク" title="この見出しへのリンク">​</a></h4><hr><p>以下のいずれか:</p><ul>
-<li><strong>Success</strong>:<!-- -->
+<li>
+<p><strong>Success</strong>:</p>
 <ul>
 <li><code>authToken</code>: string - 新しい使い捨て認証トークン</li>
 <li><code>endpoint</code>: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント。</li>
 <li><code>expiresAt</code>: Timestamp - トークンの有効期限が切れるタイムスタ ンプ</li>
 </ul>
 </li>
-<li><strong>Error</strong>:<!-- -->
+<li>
+<p><strong>Error</strong>:</p>
 <ul>
 <li>詳しくは<a href="/ja/topics/api-reference/response-objects">レスポンスオブジェクト</a>を参照。</li>
 </ul>
