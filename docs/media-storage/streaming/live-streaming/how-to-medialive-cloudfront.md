@@ -29,79 +29,96 @@ In this tutorial, you will learn how to set up Momento Media Storage as the orig
 
 Here's what we'll cover:
 
-1. Creating a cache in Momento Media Storage to act as the origin server.
+1. Creating a storage namespace in Momento Media Storage to act as the origin server.
 2. Configuring AWS Elemental MediaLive to encode and push live content to Momento.
 3. Setting up Amazon CloudFront to serve content to viewers with low latency.
-4. Testing and troubleshooting your setup to ensure smooth playback.
+4. Testing and troubleshooting the setup to ensure smooth playback.
 
-In this tutorial, we will use the [Momento console](https://console.gomomento.com), but everything could be created programmatically through [the Momento SDK](/platform/sdks).
+In this tutorial, we will use the [Momento console](https://console.gomomento.com), but everything could be created and configured programmatically through [the Momento SDK](/platform/sdks).
 
-## 1. Create a cache in your Momento account
 
-With Momento Media Storage, an origin server is defined *as a cache*. So, let's [create a new Momento Media Storage cache](https://console.gomomento.com/caches/create) called `live-origin`. The AWS region we choose should be the **closest available to the live encoder or encoding service** you will be using.
+## Preparation
 
-![Momento console displaying the create cache dialog with all fields configured](./_how-to-images/console-create-cache.png)
+Before creating any resources, please determine the basic characteristics of the live video channel.
 
-Next, we generate the API key to access the `live-origin` cache to securely upload your video segments and manifests. [From the Momento console](https://console.gomomento.com/api-keys), let's define a "*Fine-Grained Access Key*" that expires in 30 days, with read-write access to our newly created `live-origin` cache. Don't forget to click on the "*Add Permission*" button to enable the attributes you want to grant to the API key.
+**Channel bitrates**: The bitrate of a channel depends on the resolution, framerate, and encoding. The table below lists the example bitrates used in this guide.
 
-![Momento console displaying the generate api key page with all fields configured](./_how-to-images/console-api-key-1.png)
+**Segment duration**: Segment duration should fall between 1 and 2.5 seconds to minimize glass-to-glass latency. This guide uses 2.5 seconds.
 
-Click on the "*Generate Api Key*" button, to get the details for the new key.
+**TTL (Time-to-Live)**: TTL determines how long stream data remains available for playback. This guide uses 3600 seconds (1 hour). Note that if your product includes features like DVR playback, you may need a much longer TTL measured in days.
 
-![Momento console showing readwrite permissions for the live-origin cache](./_how-to-images/console-api-key-2.png)
+:::tip
 
-This API key information can be downloaded as the file *momento_key_info.json*. From now on, we will reference this API key as `encoder_api_key`.
+Momento Media Storage supports a maximum object size of 10MB. To estimate segment size, divide the bitrate in Kbps by 8, multiply by the segment duration in seconds, and add 10% to account for headers. For example, a 2 second segment at 1000 Kbps is roughly `1000 / 8 * 2 * 1.1 = 275 KB`.
 
-![Momento console displaying the contents of the generated API key](./_how-to-images/console-api-key-3.png)
+:::
 
-Video players read the content pushed by encoders to Momento Media Storage via a **Content Delivery Network (CDN)**. For security best practices, we must create a *readonly* API key with access to the `live-origin` cache as well. Use the same Generate API Key page as before to add this new read-only API key to your `live-origin` cache. We will reference this API key as the `player_api_key`.
+For the purposes of this tutorial, configure one live video channel for an [adaptive bitrate ladder](/media-storage/core-concepts/abr-ladder) with 3 encoding profiles and 2.5-second segments:
+
+| resolution | framerate | bitrate | segment size |
+|:-:|:-:|:-:|:-:|
+| `720p` | `30` | `2,500 kbps` | `850 KiB`
+| `480p` | `30` | `1,500 kbps` | `500 KiB`
+| `240p` | `30` |   `750 kbps` | `250 KiB`
+
+
+## 1. Create a storage namespace in your Momento account
+
+Momento Media Storage is currently restricted to private preview access by key design partners. To create a storage namespace, please ensure that you have successfully logged in to the [Momento Console](https://console.gomomento.com/) once to initialize your account. Then, contact `support@momentohq.com` or your support representative with the following information to create a storage namespace:
+
+- **account id**: Locate your account id in the dropdown in the upper right corner of the [console](https://console.gomomento.com/) (`a-xxxxxxxxxxxx`).
+- **namespace id**: The desired id for the new storage namespace. This guide uses `live-origin`.
+- **AWS region**: The AWS region for the new storage namespace. This guide uses `us-west-1`. Once AZ-alignment becomes available, you will also need to specify two AZs within the region.
+- **hot storage capacity**: This determines how much stream data will be held in low-latency storage. Estimate required capacity by adding up the size of all segments and multiplying by the number of segments to keep in hot storage. For example, keeping 5 minutes of the example bitrate ladder in hot storage requires `(850+500+250)Kib * 300/2.5 ≈ 200 MiB`.
+
+While Momento Media Storage is in private preview, the Storage *namespace* will be appear as a *cache* in the console. This guide will use *namespace* interchangeably with *cache*. As Momento Media Storage approaches general availability, updates to the console will make namespace creation a self-service process.
+
+Next, generate the API key that the encoder will use to securely write segment and manifest files to the `live-origin` namespace. In the [API Key section](https://console.gomomento.com/api-keys) of Momento console, create a Fine-Grained Access Key that expires in 30 days with *readwrite* access to the `live-origin` namespace. Don't forget to click on "Add Permission" to grant the permissions before generating the API key.
+
+![Momento console showing readwrite permissions for the live-origin namespace](./_how-to-images/console-api-key-2.png)
+
+API key information will no longer be available after you navigate away from this page, so download the API key as a JSON file. The guide will refer to this API key as `encoder_api_key`.
+
+Video players read the content pushed by encoders to Momento Media Storage via a **Content Delivery Network (CDN)**. As a security best practices, create a second API key with *readonly* access to the `live-origin` namespace. Use the same [API key page](https://console.gomomento.com/api-keys) as before to create this new API key. The guide will refer to this API key as `player_api_key`.
 
 :::info[Checking in]
 
-At the end of this step, you should have created two API keys: one that grants *read/write* access and one that *read only* access to your `live-origin` cache. Keep these handy, as we'll need them in the upcoming steps.
+At the end of this step, you should have created two API keys: one that grants *readwrite* access and one that *readonly* access to the `live-origin` namespace. Keep these handy to use in the upcoming steps.
 
 :::
 
 ## 2. Set up AWS MediaLive for live video encoding
 
-AWS Elemental MediaLive is a live video encoding service from AWS that enables you to process and deliver live streams at scale. It converts live video into streaming formats like [HLS](/media-storage/performance/adaptive-bitrates/hls) and is used across the globe for live sports, big events, and 24/7 channels.
+AWS Elemental MediaLive is a live video encoding service from AWS that processes and delivers live streams at scale. MediaLive converts live video into streaming formats like [HLS](/media-storage/performance/adaptive-bitrates/hls). It is commonly used for live sports, major live events, and 24/7 channels.
 
-We will configure MediaLive to act as the **encoder** for our live video workflow. The encoded video will be sent directly to our `live-origin` cache, which is serving as the origin server.
+MediaLive will act as the **encoder** in this live video workflow. The encoded video will be sent directly to Momento Media Storage, which functions as the origin server.
 
 :::tip
 
-For best performance, make sure the MediaLive service and your `live-origin` cache are in the same AWS region or as close as possible. If you are new to MediaLive, refer to the [AWS documentation](https://docs.aws.amazon.com/medialive/latest/ug/container-planning-workflow.html) for detailed setup instructions.
+For best performance, make sure the MediaLive service and the `live-origin` namespace are in the same AWS region or as close as possible. If you are new to MediaLive, refer to the [AWS documentation](https://docs.aws.amazon.com/medialive/latest/ug/container-planning-workflow.html) for detailed setup instructions.
 
 :::
 
-We will use a MediaLive channel with a single encoding pipeline, sending to one destination (our `live-origin` cache in Momento). This channel should be configured with an [adaptive bitrate ladder](/media-storage/core-concepts/abr-ladder) of 3 encoding profiles (**720p at 2,500 kbps**, **480p at 1,500 kbps** and **240p at 750kbps**). Follow these best practices to optimize your configuration:
+Configure a MediaLive channel with one encoding pipeline that outputs to a single destination, the `live-origin` namespace. The output destination URL for the channel should follow this format:
 
-* **Segment size** - Media segments should be less than 10MB (Momento's current limit). To estimate segment size:
-  * Multiply the bitrate (in Mbps) by the segment duration (in seconds).
-  * Add 10% overhead for variability and headers (e.g., for 3 Mbps and 2-second segments: 3 * 2 * 1.1 = 6.6MB).
-* **Segment duration** - Set segment durations to 1-2.5 seconds for lower latency without impacting performance.
-* **TTL (Time-to-Live)** - Assign a TTL of 3600 seconds (1 hour) for live streams. Adjust this if your workflow involves features like replay or live-to-VOD.
-
-The output destination URL for our channel should follow this format:
-
-> https://\<*momento_rest_endpoint*\>/cache/\<*cache_name*\>/playlist.m3u8?token=\<*encoder_api_key*\>&ttl_seconds=\<*ttl*\>&role=origin
+> https://\<*momento_rest_endpoint*\>/cache/\<*namespace_id*\>/playlist.m3u8?token=\<*encoder_api_key*\>&ttl_seconds=\<*ttl*\>&role=origin
 
 The variable placeholders are:
 
-* `momento_rest_endpoint` - Region-specific endpoint of the Momento HTTP API ([find the endpoint of your region here](/platform/regions)).
-* `cache_name` - Name of the cache to upload the segments to.
-* `encoder_api_key` - Value of the encoder key generated in step 1.
-* `ttl` - Number of seconds to keep the playlist and segments in the cache.
+* `momento_rest_endpoint` - Region-specific endpoint of the Momento HTTP API ([find the endpoint of the region here](/platform/regions)).
+* `namespace_id` - ID of the namespace to upload the segments to.
+* `encoder_api_key` - Value of the *readwrite* encoder key generated in step 1.
+* `ttl` - Number of seconds to retain the playlist and segments in the Storage namespace.
 
-*Note - The query parameter `role=origin` is required for AWS MediaLive and is NOT a required query parameter with the Momento HTTP API.*
+*Note - The query parameter `role=origin` is required for AWS MediaLive. It is not a required query parameter for the Momento HTTP API.*
 
-Applied to this tutorial, the resulting destination URL would be:
+Applying the configuration from this tutorial, the resulting destination URL would be:
 
 ```
 https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com/cache/live-origin/playlist.m3u8?token=ey[...]J9&ttl_seconds=3600&role=origin
 ```
 
-Set the *CDN Settings* field to **HLS basic put** and configure the retry policy as shown below to guarantee compatibility with the Momento Media Storage cache retention period.
+Set the *CDN Settings* field to **HLS basic put** and configure the retry policy as shown below to guarantee compatibility with the Momento Media Storage namespace retention period.
 
 ![AWS MediaLive console with channel configuration filled out](./_how-to-images/medialive-create-channel.png)
 
@@ -116,15 +133,15 @@ The remaining settings should match the configuration below:
 
 ![AWS MediaLive console with output configuration complete](./_how-to-images/medialive-segments.png)
 
-Finally, we configure how AWS Elemental MediaLive updates the variant playlists: the variant playlists are derived from the master manifest by appending a *Name modifier* at the end of the master playlist chosen name. For each variant playlist/output, add a descriptive modifier that tells us at a glance which playlist we are looking at. For example, each of the variant playlists in our example will have `_480p30`, `_240p30`, and `_720p30` as the *Name Modifier*. Since we named the master manifest `playlist.m3u8`, the resulting variant manifests will be named respectively `playlist_480p30.m3u8`, `playlist_240p30.m3u8`, and `playlist_720p30.m3u8`. This naming convention will need to be specified in the CloudFront settings below.
+Finally, we configure how AWS Elemental MediaLive updates the variant playlists: the variant playlists are derived from the master manifest by appending a *Name modifier* at the end of the master playlist chosen name. For each variant playlist/output, add a descriptive modifier that tells us at a glance which playlist we are looking at. For example, each of the variant playlists in the example bitrate ladder will have `_480p30`, `_240p30`, and `_720p30` as the *Name Modifier*. Since we named the master manifest `playlist.m3u8`, the resulting variant manifests will be named respectively `playlist_480p30.m3u8`, `playlist_240p30.m3u8`, and `playlist_720p30.m3u8`. This naming convention will need to be specified in the CloudFront settings below.
 
 ![AWS MediaLive console with the name modifier configured for all outputs](./_how-to-images/medialive-output.png)
 
-Once everything is configured, hit the *Create channel* button to create our encoder!
+Once everything is configured, hit the *Create channel* button to create the encoder!
 
 ## 3. Optimize content delivery with Amazon CloudFront
 
-Amazon CloudFront is a Content Delivery Network (CDN) that ensures your live video streams are delivered quickly and reliably to viewers worldwide. In this step, we'll configure CloudFront to work with Momento Media Storage - optimizing latency, managing costs, and securing access.
+Amazon CloudFront is a Content Delivery Network (CDN) that ensures the live video streams are delivered quickly and reliably to viewers worldwide. In this step, we'll configure CloudFront to work with Momento Media Storage - optimizing latency, managing costs, and securing access.
 
 CloudFront will serve two key purposes in this workflow:
 
@@ -137,7 +154,7 @@ While VOD workflows have HLS manifests that never change once they are created, 
 
 :::tip
 
-You can optimize retreival of manifest files by using a short TTL in your cache.
+You can optimize retrieval of manifest files by specifying a short TTL in the appropraite CloudFront behavior.
 
 :::
 
@@ -145,13 +162,13 @@ In the [Amazon CloudFront console](https://console.aws.amazon.com/cloudfront), c
 
 ![CloudFront console with the create distribution fields completed](./_how-to-images/cloudfront-origin.png)
 
-The *Origin domain* of the CloudFront distribution must be set as the `momento_rest_endpoint` url we used to configure our MediaLive channel, with the *Origin path* as `/cache/<cache_name>`. Note the *Origin path* field **is required for this workflow**.
+The *Origin domain* of the CloudFront distribution must be set as the `momento_rest_endpoint` url we used to configure the MediaLive channel, with the *Origin path* as `/cache/<namespace_id>`. Note the *Origin path* field **is required for this workflow**.
 
-Since CloudFront is accessed by video players, which don't go through auth flows to obtain API keys or session tokens, we must set up the default policy to add an *Authorization* header with our `player_api_key` for incoming requests. This enables CloudFront to automatically forward an API key to Momento, granting read-only access to the generated segments.
+Since CloudFront is accessed by video players, which don't go through auth flows to obtain API keys or session tokens, we must set up the default policy to add an *Authorization* header with `player_api_key` for incoming requests. This enables CloudFront to automatically forward an API key to Momento, granting read-only access to the generated segments.
 
 You do not need to enable the *Origin Shield* functionality of CloudFront, Momento takes care of it natively.
 
-For the **Web Application Firewall (WAF)** settings, select *Do not enable security protections* for our demo.
+For the **Web Application Firewall (WAF)** settings, select *Do not enable security protections* for the demo.
 
 Now we need to define the CloudFront behaviors for three types of objects read from the Momento origin server:
 
@@ -165,24 +182,24 @@ Now we need to define the CloudFront behaviors for three types of objects read f
 
 ![CloudFront behavior for the default behavior](./_how-to-images/cloudfront-default.png)
 
-**Media segments behavior**: These files won't change after the encoder has sent them to the origin, so they are good candidates for being cached by CloudFront and its "CachingOptimized" policy. From our AWS MediaLive configuration, the segments that contain audio/video will always have the file extension `.ts` :
+**Media segments behavior**: These files won't change after the encoder has sent them to the origin, so they are good candidates for being cached by CloudFront and its "CachingOptimized" policy. From the AWS MediaLive configuration, the segments that contain audio/video will always have the file extension `.ts` :
 
 ![CloudFront behavior for caching segments](./_how-to-images/cloudfront-segments.png)
 
-**Variant playlists behavior**: These `playlist_*.m3u8` files are refreshed every time a new media segment is available from AWS Elemental MediaLive. When MediaLive recreates the playlists, it automatically appends the `encoder_api_key` token query parameter in its URI. Since our default rules apply a different, conflicting value (`player_api_key`) in *Authorization* header when requesting these segments, we need to define a behavior where the *Authorization* header is dropped for these requests. To accomplish this, set the *Origin request policy* to None.
+**Variant playlists behavior**: These `playlist_*.m3u8` files are refreshed every time a new media segment is available from AWS Elemental MediaLive. When MediaLive recreates the playlists, it automatically appends the `encoder_api_key` token query parameter in its URI. Since the default rules apply a different, conflicting value (`player_api_key`) in *Authorization* header when requesting these segments, we need to define a behavior where the *Authorization* header is dropped for these requests. To accomplish this, set the *Origin request policy* to None.
 
 ![CloudFront behavior for variant playlists](./_how-to-images/cloudfront-playlist.png)
 
 
 ## 4. Playback and troubleshooting
 
-With that, we're ready to stream! You can now point your favorite HLS player (in [VLC media player](https://www.videolan.org/) open a network stream and paste the .m3u8 path) to `https://<your_CloudFront_id>.CloudFront.net/playlist.m3u8` and play the live stream encoded by AWS Elemental MediaLive.
+With that, we're ready to stream! You can now point your favorite HLS player (in [VLC media player](https://www.videolan.org/) open a network stream and paste the .m3u8 path) to `https://<cloudfront_id>.CloudFront.net/playlist.m3u8` and play the live stream encoded by AWS Elemental MediaLive.
 
 If things go wrong and the stream doesn't play, the best way to troubleshoot is to manually check each of the steps that is performed by the HLS video player.
 
-### Momento and encoder level
+### MediaLive and Momento
 
-Verify the master manifest is accessible with your `player_api_key` and returns the variant playlists correctly. You can use the following `curl` command to test it yourself, or you can use the [Momento console](https://console.gomomento.com/caches/live-origin) to view data in your cache.
+Verify the master manifest is accessible with `player_api_key` and returns the variant playlists correctly. Use the following `curl` command to test, or use the [Momento console](https://console.gomomento.com/caches/live-origin) to view data in the namespace.
 
 ```
 $ curl "https://<momento_rest_endpoint>/cache/live-origin/playlist.m3u8?token=<player_api_key>"
@@ -225,29 +242,28 @@ When viewing the live point, verify a `test.ts` file is correctly downloaded and
 
 If any of these steps fails, usual suspects are:
 
-* Your Momento `encoder_api_key` or `player_api_key` might not have the right access level to the cache.
+* `encoder_api_key` or `player_api_key` might not have the right access level to the namespace.
 * AWS Elemental MediaLive isn't configured correctly or isn't running.
   * Double check the URI provided in the *Destination URL* field at the HLS output group level, and don't forget to add the query parameters `&ttl_seconds=<ttl>&role=origin`
 
-### CloudFront level
+### CloudFront
 
-If everything looks correct at the Momento level, verify the requests from CloudFront. Because of the distribution rules we have defined, you don't need to add the `player_api_key` in the URIs. We just need to verify that CloudFront inserts them properly.
+If everything looks correct in MediaLive and Momento, verify the requests from CloudFront. The distribution rules already embed an authorization header, so you don't need to add `player_api_key` in the URIs. Verify that CloudFront inserts them properly.
 
-The three commands below should give you the same results as the commands run at the Momento level, with the media segments in the variant playlists refreshed at the time you enter the command line `playlist_480p30_xxxx.ts`:
+The three commands below produce the same results as the requests sent from the player through CloudFront to Momento Media Storage. Remember that the media segments listed in each variant playlist constantly change, so replace `<id>` in the final command with a valid value from the fetched playlist:
 
 ```
-$ curl "https://<your_CloudFront_id>.CloudFront.net/playlist.m3u8"
+$ curl "https://<cloudfront_id>.CloudFront.net/playlist.m3u8"
 
-$ curl "https://<your_CloudFront_id>.CloudFront.net/playlist_480p30.m3u8"
+$ curl "https://<cloudfront_id>.CloudFront.net/playlist_480p30.m3u8"
 
-$ curl -o test.ts "https://<your_CloudFront_id>.CloudFront.net/playlist_480p30_01488.ts"
+$ curl -o test.ts "https://<cloudfront_id>.CloudFront.net/playlist_480p30_<id>.ts"
 ```
 
 If any of these steps fails, usual suspects are:
 
 * The *Authorization* header has not been correctly set to the `player_api_key` when the CloudFront distribution was created.
-* A CloudFront behavior might be incorrectly set.
-  * Double check the file patterns and the associated caching policies.
+* A CloudFront behavior might be incorrectly set. Double check the file patterns and the associated caching policies.
 
 ## That's it!
 
