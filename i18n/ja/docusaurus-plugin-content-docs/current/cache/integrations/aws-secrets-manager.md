@@ -6,8 +6,6 @@ description: AWS Secrets ManagerからMomento API Key を取得する方法を�
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
-// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
-// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # AWS Secrets ManagerからMomento API Key を取得する
@@ -32,6 +30,6 @@ Momento API keyをAWS Secrets Managerへ入力する際は、下のスクリー�
 
 <details>
   <summary>Momento API keyをAWS Secrets Managerに保存する必要がありますか？</summary>
-  
+
    Momentoの認証トークンを環境変数やファイルに保存することはできますが、AWS Secrets Managerなどに保存するよりも安全ではないため、ベストプラクティスではありません。
 </details>
