@@ -1,0 +1,9 @@
+{
+  "label": "Live streaming",
+  "position": 10,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Learn how Momento Media Storage simplifies the intricacies of live streaming."
+  }
+}

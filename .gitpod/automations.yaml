@@ -1,0 +1,8 @@
+services:
+  docusaurus:
+    name: Start Docusaurus Locally
+    triggeredBy: [ 'manual', 'postDevcontainerStart']
+    commands:
+      start: |
+        npm install
+        npm start

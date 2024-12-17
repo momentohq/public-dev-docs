@@ -1,9 +1,0 @@
-{
-    "label": "Security",
-    "position": 3,
-    "collapsible": true,
-    "collapsed": true,
-    "link": {
-      "description": "Learn more in depth about Momento Cache security."
-    }
-  }

@@ -10,7 +10,7 @@ hide_title: true
 # Momento Cacheサービスのクォータ
 
 :::info
-サービスクォータは、アカウントのサポートプランに直接影響されます。<ins>ソフトリミットとハードリミット</ins>の両方は、プロティアプランとエンタープライズプランで増やすことができます。増額をご希望の場合は、[営業担当までご連絡ください](https://www.gomomento.com/contact-us).
+これらの限度額は調整可能です。増額申請を行う前に、お客様のアカウントに[登録済みのお支払い方法](https://console.gomomento.com/account/payment)があることをご確認ください。その後、[当社までご連絡ください](https://www.gomomento.com/contact-us)。
 :::
 
 ## リミット
@@ -21,8 +21,6 @@ hide_title: true
       <th>Resource</th>
       <th>Entity</th>
       <th>Default</th>
-      <th>Basic support</th>
-      <th>Pro support</th>
     </tr>
   </thead>
   <tbody>
@@ -33,22 +31,16 @@ hide_title: true
       <td>Namespace count</td>
       <td>region</td>
       <td>3</td>
-      <td>30</td>
-      <td>300</td>
     </tr>
     <tr>
       <td>Operations per second</td>
       <td>region</td>
       <td>100</td>
-      <td>1,000</td>
-      <td>10,000</td>
     </tr>
     <tr>
       <td>Hot storage</td>
       <td>region</td>
       <td>100 MB</td>
-      <td>1 GB</td>
-      <td>10 GB</td>
     </tr>
     <tr className="highlightRow">
       <td colspan="5"><strong>Hard limits</strong></td>
@@ -59,7 +51,7 @@ hide_title: true
       <td colspan="3">24 hours</td>
     </tr>
     <tr>
-      <td>Item size</td>
+      <td>Item size[^1]</td>
       <td>item</td>
       <td colspan="3">5 MB</td>
     </tr>
@@ -75,6 +67,7 @@ hide_title: true
     </tr>
   </tbody>
 </table>
+[^1]: Item size includes both cache key and cache value.
 
 ## オペレーション
 

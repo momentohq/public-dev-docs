@@ -11,30 +11,15 @@ Momentoは、私たちの[SDK](../)を使用できないアプリケーション
 
 私たちの[Postmanの公開ワークスペース](https://www.postman.com/gomomento/workspace/momento-http-api/api/662743a0-471a-41a1-b446-5db596164a00/definition/4765b18e-ba84-4802-9795-ecce9c408062?view=documentation)でもOpen API Specificationを見ることができます。
 
-:::note
+:::tip[Info]
 
-このドキュメントでは、HTTPリクエスト構文の実装方法については説明しません。
+Momentoプラットフォームは、各地域に固有のエンドポイントを持つ地域ベースです。サポートされている地域とそのエンドポイントのリストを表示するには、[ここをクリック](/platform/regions).
 
 :::
 
 ## 認証
 
 各接続には、[Momento コンソール](https://console.gomomento.com/tokens) または [ホスティングしているトークン "自動販売機" マイクロサービス](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine) を介して生成された Momento 認証トークンが必要です。Momento auth トークンは、Momento サービスへのアクセスを制御し、有効期限を設定したり、特定のリソースへのアクセスを許可/制限することができます。
-
-## リージョン
-
-Momento HTTP API にアクセスするには、API トークンとキャッシュのリージョンで以下のエンドポイントのいずれかを使用します。必要なリージョンが見つからない場合は、ご相談ください。[サポートまでご連絡ください](mailto:support@momentohq.com)。
-
-| AWS Region     | Endpoints                                                    |
-|----------------|--------------------------------------------------------------|
-| us-west-2      | https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com    |
-| us-east-1      | https://api.cache.cell-us-east-1-1.prod.a.momentohq.com      |
-| us-east-2      | https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com    |
-| ap-northeast-1 | https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com |
-| ap-southeast-1 | https://api.cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com|
-| eu-west-1      | https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com    |
-| eu-central-1   | https://api.cache.cell-1-eu-central-1-1.prod.a.momentohq.com |
-| ap-south-1     | https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com   |
 
 ## 値の取得
 

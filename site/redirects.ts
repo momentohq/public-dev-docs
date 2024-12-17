@@ -38,6 +38,7 @@ const REDIRECTS = {
 
     // ## Relocated Pages
     '/develop/datatypes': '/cache/develop/basics/datatypes',
+    '/cache/learn/security/private-link': '/platform/connectivity/private-link',
 
     // caching-with-serverless
     '/how-it-works/caching-with-serverless': '/cache/introduction/what-is-serverless-caching',

@@ -1,0 +1,9 @@
+{
+  "label": "Core Concepts",
+  "position": 10,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "description": "Discover the core concepts behind Momento Media Storage"
+  }
+}
