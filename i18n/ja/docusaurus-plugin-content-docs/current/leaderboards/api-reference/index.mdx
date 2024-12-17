@@ -7,8 +7,6 @@ hide_table_of_contents: false
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
-// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
-// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Using Momento Leaderboards
@@ -138,7 +136,7 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
 
         #### Optional Parameters
         ----------------
-        - **minScore** - *double*: スコア範囲の下限を含む。デフォルトは `-inf` 
+        - **minScore** - *double*: スコア範囲の下限を含む。デフォルトは `-inf`
         - **maxScore** - *double*: スコア範囲の排他的上限。デフォルトは `+inf`
         - **order** - *LeaderboardOrder enum*: 要素を取得する順番。デフォルトは昇順で、0が最も低いスコア
         - **offset** - *integer*: 最初の要素を返す前にスキップする要素数。デフォルトは0
@@ -181,7 +179,7 @@ Momento Leaderboardsは、専用のAPIを備えたトップクラスのサービ
         #### Parameters
         ----------------
         - **startRank** - *integer*: ランク範囲の包含下限。デフォルトは0
-        - **endRank** - *integer*: ランク範囲の排他的な上限。デフォルトは `startRank` + 8192 
+        - **endRank** - *integer*: ランク範囲の排他的な上限。デフォルトは `startRank` + 8192
 
         #### Optional Parameters
         ----------------

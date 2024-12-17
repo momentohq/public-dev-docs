@@ -6,8 +6,6 @@ description: Learn how to interact with the CollectionTTL object in Momento Cach
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
-// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
-// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # CollectionTTL object API reference
@@ -17,7 +15,7 @@ The CollectionTtl type is used when performing write operations on a collection.
 Sometimes, when you update a collection, you want to refresh the TTL. Other times you want to keep the TTL the same. The
 CollectionTtl parameter allows you to specify this behavior.
 
-The default behavior is that the collection TTL is reset whenever a write operation occurs. You cannot provide a CollectionTTL object when performing a read operation like `dictionaryFetch` or `listLength`. 
+The default behavior is that the collection TTL is reset whenever a write operation occurs. You cannot provide a CollectionTTL object when performing a read operation like `dictionaryFetch` or `listLength`.
 
 See [Expire Data with TTL](../../learn/how-it-works/expire-data-with-ttl.md) for more information on how TTL works with Momento Cache.
 
@@ -36,14 +34,14 @@ The CollectionTTL object is compatible with the following [collection data types
 * [Set](../api-reference/set-collections.md)
 * [Sorted Set](../api-reference/sorted-set-collections.md)
 
-As the image below illustrates, collections are considered `items` that may contain `elements`. 
+As the image below illustrates, collections are considered `items` that may contain `elements`.
 
 <img src="/img/collection_data_types.png" alt="Collection data types drawing | Momento Cache" width="80%"/>
 
 ## Default Behavior
 
 - The `CollectionTtl` parameter is optional for all collection write operations.
-- If a CollectionTTL is not specified, a default value of `CollectionTtl.fromCacheTtl()` will be used. This value is the default TTL configured on the cache client. 
+- If a CollectionTTL is not specified, a default value of `CollectionTtl.fromCacheTtl()` will be used. This value is the default TTL configured on the cache client.
 - The TTL for the collection will be refreshed any time the collection is modified.
 
 ## Examples

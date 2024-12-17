@@ -6,8 +6,6 @@ description: Momentoトークンとは何か、トークンの作成方法、ト
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
-// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
-// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # 有効期間の短いアクセス許可用の Momento トークンz

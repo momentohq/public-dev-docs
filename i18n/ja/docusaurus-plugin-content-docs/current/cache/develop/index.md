@@ -6,8 +6,6 @@ description: Learn the core concepts for getting started with the Momento SDKs.
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
-// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
-// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Momento SDKを使用したアプリケーションの開発
