@@ -1,0 +1,9 @@
+{
+  "label": "Authentication",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Discover the authentication and authorization measures of the Momento platform"
+  }
+}
