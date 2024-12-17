@@ -10,8 +10,8 @@ keywords:
   - serverless
 ---
 
-import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
-import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
 # How to map numeric leaderboard IDs to arbitrary strings
 
@@ -20,10 +20,10 @@ Momento Leaderboards elements are uniquely identified by an unsigned 64-bit numb
 In some cases, you may want to associate that ID with some other information, such as a player's name, for a more human-friendly leaderboard display.
 You can use a dictionary to convert between the string and ID representations as shown below.
 
-
 <SdkExampleCodeBlock language={'javascript'} file={'examples/nodejs/cache/doc-example-files/leaderboard-ids.ts'} />
 
 When the example runs, you'll see a leaderboard printed out like this:
+
 ```
 ------------Top 5 Leaderboard-------------
 ------------------------------------------
