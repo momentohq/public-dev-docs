@@ -34,8 +34,6 @@ keywords:
 ---
 
 import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
-// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
-// plugin will transform instances of SdkExampleCodeBlock to SdkExampleCodeBlockImpl
 import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
 
 # PHPでMomentoストレージを始める
@@ -51,7 +49,7 @@ PHPとMomento Storageをすぐに使い始める必要がある場合、この�
 * [gRPC PHP 拡張](https://github.com/grpc/grpc/blob/master/src/php/README.md) のインストール
 * [protobuf C 拡張](https://developers.google.com/google-ads/api/docs/client-libs/php/protobuf#c_implementation) のインストール
 * [Composer](https://getcomposer.org/doc/00-intro.md) のインストール - PHP 用の共通ライブラリと依存性マネージャ
-  
+
 ### PHP SDKを取得するためにcomposerを設定する
 
 `composer.json`ファイルに当社のリポジトリを追加し、依存関係として当社のSDKを追加する：

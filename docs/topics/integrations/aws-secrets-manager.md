@@ -6,8 +6,6 @@ description: Learn how to retrieve your Momento Auth Token in AWS Secrets Manage
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
-// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
-// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Retrieving a Momento auth token from AWS Secrets Manager

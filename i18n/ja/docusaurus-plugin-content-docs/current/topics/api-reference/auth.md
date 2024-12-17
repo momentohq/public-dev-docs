@@ -6,8 +6,6 @@ description: Learn the Auth API calls you need to know about and how to use them
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
-// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
-// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
 # Auth API reference
@@ -21,7 +19,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 ---
 
 <div class='row'>
-  
+
     <div class='col col--4' style={{paddingRight: '20px'}}>
 
         ### GenerateApiKey
@@ -41,7 +39,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
             - `refreshToken`: string - [RefreshApiKey API](#refreshapikey)で使用できるリフレッシュトークンで、トークンの有効期限が切れる前にリフレッシュします
             - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
             - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
-        
+
         - **Error**:
             - 詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
 
@@ -62,7 +60,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
     <div class='col col--4' style={{paddingRight: '20px'}}>
 
         ### RefreshApiKey
-        
+
  Refreshes an existing, unexpired Momento API key. Produces a new API key with the same permissions and expiry duration as the original API key.
 
         #### Parameters
@@ -77,9 +75,9 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
             - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires
             - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
             - `expiresAt`: Timestamp - the timestamp at which the token will expire
-        
+
         - **Error**:
-            - See [response objects](./response-objects.md) for specific information. 
+            - See [response objects](./response-objects.md) for specific information.
 
     </div>
 
@@ -89,7 +87,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
     </div>
 
-</div> 
+</div>
 
 ---
 
@@ -105,7 +103,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
           - トークンの有効期限は1時間です。
           - リフレッシュはできないので、リフレッシュトークンは付属しない。
           - パーミッションは DisposableTokenScope オブジェクトで指定します。
-          
+
         #### Parameters
         ----------------
         - **scope** - [*DisposableTokenScope*](#disposabletokenscope-objects): 新しい使い捨てトークンに付与する権限。SDK は、あらかじめ DisposableTokenScope オブジェクトを用意しています。
@@ -118,7 +116,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
             - `authToken`: string - 新しい使い捨て認証トークン
             - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント。
             - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
-      
+
         - **Error**:
             - 詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
 
@@ -130,7 +128,7 @@ import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
       </div>
 
-</div> 
+</div>
 
 ---
 
