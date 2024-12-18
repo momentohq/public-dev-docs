@@ -154,7 +154,7 @@ While VOD workflows have HLS manifests that never change once they are created, 
 
 :::tip
 
-You can optimize retrieval of manifest files by specifying a short TTL in the appropraite CloudFront behavior.
+You can optimize retrieval of manifest files by specifying a short TTL in the appropriate CloudFront behavior.
 
 :::
 
