@@ -154,7 +154,7 @@ While VOD workflows have HLS manifests that never change once they are created, 
 
 :::tip
 
-You can optimize retrieval of manifest files by specifying a short TTL in the appropraite CloudFront behavior.
+You can optimize retrieval of manifest files by specifying a short TTL in the appropriate CloudFront behavior.
 
 :::
 
@@ -208,11 +208,11 @@ $ curl "https://<momento_rest_endpoint>/cache/live-origin/playlist.m3u8?token=<p
 #EXT-X-VERSION:3
 #EXT-X-INDEPENDENT-SEGMENTS
 #EXT-X-STREAM-INF:BANDWIDTH=2648800,AVERAGE-BANDWIDTH=1790800,CODECS="avc1.77.30,mp4a.40.2",RESOLUTION=640x480,FRAME-RATE=30.000
-playlist_480p30.m3u8?token=<encoder_api_key>&ttl_seconds=3600&role=origin
+playlist_480p30.m3u8?ttl_seconds=3600&role=origin
 #EXT-X-STREAM-INF:BANDWIDTH=1394800,AVERAGE-BANDWIDTH=965800,CODECS="avc1.4d400d,mp4a.40.2",RESOLUTION=320x240,FRAME-RATE=30.000
-playlist_240p30.m3u8?token=<encoder_api_key>&ttl_seconds=3600&role=origin
+playlist_240p30.m3u8?ttl_seconds=3600&role=origin
 #EXT-X-STREAM-INF:BANDWIDTH=4391200,AVERAGE-BANDWIDTH=2961200,CODECS="avc1.4d401f,mp4a.40.2",RESOLUTION=960x720,FRAME-RATE=30.000
-playlist_720p30.m3u8?token=<encoder_api_key>&ttl_seconds=3600&role=origin
+playlist_720p30.m3u8?ttl_seconds=3600&role=origin
 ```
 
 Verify that each variant playlist is accessible, and if you can download the last media segment listed in the variant playlists (aka *the live point*). Below are the `curl` commands to view the 480p manifest and the live point.
