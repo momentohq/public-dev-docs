@@ -41,8 +41,8 @@ const REDIRECTS = {
     '/cache/learn/security/private-link': '/platform/connectivity/private-link',
 
     // caching-with-serverless
-    '/how-it-works/caching-with-serverless': '/cache/introduction/what-is-serverless-caching',
-    '/docs/how-it-works/caching-with-serverless': '/cache/introduction/what-is-serverless-caching',
+    '/how-it-works/caching-with-serverless': 'https://www.gomomento.com/blog/a-platform-for-everyone/',
+    '/docs/how-it-works/caching-with-serverless': 'https://www.gomomento.com/blog/a-platform-for-everyone/',
 
     // caching-concepts
     '/docs/category/caching-concepts': '/cache/introduction/common-caching-patterns',
@@ -69,7 +69,7 @@ const REDIRECTS = {
     '/docs/guides': '/cache',
     '/guides/caching-with-aws-lambda': '/cache',
     '/docs/guides/caching-with-aws-lambda': '/cache',
-    '/cache/develop/guides/caching-with-aws-lambda': '/cache/introduction/what-is-serverless-caching',
+    '/cache/develop/guides/caching-with-aws-lambda': 'https://www.gomomento.com/blog/a-platform-for-everyone/',
 
     // remove MVI
     '/vector-index': '/',
