@@ -2,10 +2,10 @@ import type { Options } from '@docusaurus/plugin-client-redirects';
 
 // map<from, to>
 const REDIRECTS = {
-    // ## Useful Redirects
+    // Useful Redirects
     '/docs/limits': '/cache/limits',
 
-    // ## Relocated Sections
+    // Relocated Sections
     // former top-level pages
     '/getting-started': '/cache/getting-started',
     '/pricing': 'https://www.gomomento.com/pricing',
@@ -36,13 +36,13 @@ const REDIRECTS = {
     '/topics/webhooks': '/topics/webhooks/overview',
     '/topics/develop/patterns/asynchronous-processing': '/topics/patterns/running-background-tasks',
 
-    // ## Relocated Pages
+    // Relocated Pages
     '/develop/datatypes': '/cache/develop/basics/datatypes',
     '/cache/learn/security/private-link': '/platform/connectivity/private-link',
 
     // caching-with-serverless
-    '/how-it-works/caching-with-serverless': '/cache/introduction/what-is-serverless-caching',
-    '/docs/how-it-works/caching-with-serverless': '/cache/introduction/what-is-serverless-caching',
+    '/how-it-works/caching-with-serverless': 'https://www.gomomento.com/blog/a-platform-for-everyone/',
+    '/docs/how-it-works/caching-with-serverless': 'https://www.gomomento.com/blog/a-platform-for-everyone/',
 
     // caching-concepts
     '/docs/category/caching-concepts': '/cache/introduction/common-caching-patterns',
@@ -56,19 +56,20 @@ const REDIRECTS = {
     '/develop/guides/cheat-sheets/momento-cache-python-cheat-sheet': '/platform/sdks/python/cache',
     '/develop/sdks-integrations/deploying-javascript-web-sdk': '/platform/sdks/web',
 
-    // ## Dead Pages
+    // Dead Pages
     '/docs/overview': '/',
     '/how-it-works': '/',
     '/docs/how-it-works': '/',
     '/how-it-works/momento-concepts': '/',
     '/docs/how-it-works/momento-concepts': '/',
+    '/cache/introduction/what-is-serverless-caching': 'https://www.gomomento.com/blog/a-platform-for-everyone/',
 
     // guides
     '/guides': '/cache',
     '/docs/guides': '/cache',
     '/guides/caching-with-aws-lambda': '/cache',
     '/docs/guides/caching-with-aws-lambda': '/cache',
-    '/cache/develop/guides/caching-with-aws-lambda': '/cache/introduction/what-is-serverless-caching',
+    '/cache/develop/guides/caching-with-aws-lambda': 'https://www.gomomento.com/blog/a-platform-for-everyone/',
 
     // remove MVI
     '/vector-index': '/',
