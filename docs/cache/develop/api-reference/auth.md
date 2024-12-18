@@ -109,6 +109,10 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
         - **scope** - [*DisposableTokenScope*](#disposabletokenscope-objects): The permissions to grant to the new disposable token. Pre-built DisposableTokenScope objects are provided by the SDKs.
         - **expiresIn** - *Number* \| *ExpiresIn object*: The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the ExpiresIn.minutes() or ExpiresIn.hours(1) methods. Disposable tokens must expire within 1 hour.
 
+        #### Optional Parameters
+        ----------------
+        - **tokenId** - *string*: user-provided string that can help identify which messages were published with which disposable token.
+
         #### Returns
         ----------------
         One of the following:
