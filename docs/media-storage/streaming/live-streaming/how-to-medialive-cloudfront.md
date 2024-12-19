@@ -101,26 +101,27 @@ For best performance, make sure the MediaLive service and the `live-origin` name
 
 Configure a MediaLive channel with one encoding pipeline that outputs to a single destination, the `live-origin` namespace. The output destination URL for the channel should follow this format:
 
-> https://\<*momento_rest_endpoint*\>/cache/\<*namespace_id*\>/playlist.m3u8?token=\<*encoder_api_key*\>&ttl_seconds=\<*ttl*\>&role=origin
+```
+https://<momento_rest_endpoint>/cache/<namespace_id>/playlist.m3u8?ttl_seconds=<ttl>
+```
 
 The variable placeholders are:
 
-* `momento_rest_endpoint` - Region-specific endpoint of the Momento HTTP API ([find the endpoint of the region here](/platform/regions)).
-* `namespace_id` - ID of the namespace to upload the segments to.
-* `encoder_api_key` - Value of the *readwrite* encoder key generated in step 1.
-* `ttl` - Number of seconds to retain the playlist and segments in the Storage namespace.
-
-*Note - The query parameter `role=origin` is required for AWS MediaLive. It is not a required query parameter for the Momento HTTP API.*
+* `momento_rest_endpoint` - Momento HTTP API region-specific endpoint ([see list](/platform/regions))
+* `namespace_id` - ID of the namespace receiving uploaded segments
+* `ttl` - number of seconds to retain the playlist and segments before deletion
 
 Applying the configuration from this tutorial, the resulting destination URL would be:
 
 ```
-https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com/cache/live-origin/playlist.m3u8?token=ey[...]J9&ttl_seconds=3600&role=origin
+https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com/cache/live-origin/playlist.m3u8?ttl_seconds=3600
 ```
 
-Set the *CDN Settings* field to **HLS basic put** and configure the retry policy as shown below to guarantee compatibility with the Momento Media Storage namespace retention period.
+Next, expand the *Credentials* section. Set *Username* to `momento`. Select **Create parameter** under *Password* and follow the instructions to create a new parameter named `/medialive/momento_api_key` that contains the previously-created encoder API key.
 
-![AWS MediaLive console with channel configuration filled out](./_how-to-images/medialive-create-channel.png)
+Under *CDN Settings*, select **HLS Akamai**. It is necessary to specify **HLS Akamai** so that MediaLive will properly transmit credentials with each request.
+
+![AWS MediaLive console with channel configuration filled out](./_how-to-images/medialive-hls-group.png)
 
 In the **Manifest and Segments** section, configure the following fields:
 
@@ -208,11 +209,11 @@ $ curl "https://<momento_rest_endpoint>/cache/live-origin/playlist.m3u8?token=<p
 #EXT-X-VERSION:3
 #EXT-X-INDEPENDENT-SEGMENTS
 #EXT-X-STREAM-INF:BANDWIDTH=2648800,AVERAGE-BANDWIDTH=1790800,CODECS="avc1.77.30,mp4a.40.2",RESOLUTION=640x480,FRAME-RATE=30.000
-playlist_480p30.m3u8?ttl_seconds=3600&role=origin
+playlist_480p30.m3u8?ttl_seconds=3600
 #EXT-X-STREAM-INF:BANDWIDTH=1394800,AVERAGE-BANDWIDTH=965800,CODECS="avc1.4d400d,mp4a.40.2",RESOLUTION=320x240,FRAME-RATE=30.000
-playlist_240p30.m3u8?ttl_seconds=3600&role=origin
+playlist_240p30.m3u8?ttl_seconds=3600
 #EXT-X-STREAM-INF:BANDWIDTH=4391200,AVERAGE-BANDWIDTH=2961200,CODECS="avc1.4d401f,mp4a.40.2",RESOLUTION=960x720,FRAME-RATE=30.000
-playlist_720p30.m3u8?ttl_seconds=3600&role=origin
+playlist_720p30.m3u8?ttl_seconds=3600
 ```
 
 Verify that each variant playlist is accessible, and if you can download the last media segment listed in the variant playlists (aka *the live point*). Below are the `curl` commands to view the 480p manifest and the live point.
