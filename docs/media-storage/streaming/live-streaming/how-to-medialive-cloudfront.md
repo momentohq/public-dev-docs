@@ -120,7 +120,7 @@ If you already have an input you'd like to use, select it now. Otherwise, click 
 
 Put the publicly accessible url to the MP4 in the **Input source A** field, and leave all other fields alone. It should resemble the following:
 
-![MediaLive completed input page](./how-to-images/medialive-input-settings.png)
+![MediaLive completed input page](./_how-to-images/medialive-input-settings.png)
 
 Once configured, hit the *Create input* button, navigate back to the channel configuration page, and select the input we just created.
 
