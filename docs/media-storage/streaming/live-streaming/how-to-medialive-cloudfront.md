@@ -36,6 +36,11 @@ Here's what we'll cover:
 
 In this tutorial, we will use the [Momento console](https://console.gomomento.com), but everything could be created and configured programmatically through [the Momento SDK](/platform/sdks).
 
+**Prefer to learn through video?**
+
+Watch this quick walkthrough of the tutorial to see the steps in action. This video compliments the guide below and is perfect if you're a visual learner or want a high-level overview or additional context before diving into the details.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dwb8Qd7CDYw?si=ALK8BnC2Ugh5ty-S" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Preparation
 
@@ -99,10 +104,36 @@ For best performance, make sure the MediaLive service and the `live-origin` name
 
 :::
 
-Configure a MediaLive channel with one encoding pipeline that outputs to a single destination, the `live-origin` namespace. The output destination URL for the channel should follow this format:
+### Channel settings
+
+First navigate to the [create channel](https://console.aws.amazon.com/medialive/home#/channels/new) page in AWS MediaLive. Give your channel a meaningful name, and if this is your first time using the service, follow the instructions to *Create role from template* to create an IAM role with the necessary permissions for encoding. After setup, select the `MediaLiveAccessRole` role.
+
+We will not be using a channel template or changing any input specifications. However, we will be changing the **Channel class** to `SINGLE_PIPELINE`. Leave all other configuration fields alone, the default values are appropriate for our use case. Once configured, you should have something that resembles the screenshot below.
+
+![MediaLive channel settings page fully configured](./_how-to-images/medialive-channel-settings.png)
+
+### Input attachments
+
+Next, we must configure an input for our channel. The input is the media that will be streamed on our channel while it is active. You can either click the *Add* button next to the **Input attachments** label, or [navigate directly](https://console.aws.amazon.com/medialive/home#/inputs) to the input list.
+
+If you already have an input you'd like to use, select it now. Otherwise, click on the *Create input* button to create a new one. For our example, we will be streaming a copy of *Big Buck Bunny* in MP4 format that is publicly available in an S3 bucket. So let's give it an appropriate name, input type of `MP4`, and select an **Input class** of `SINGLE_INPUT`.
+
+Put the publicly accessible url to the MP4 in the **Input source A** field, and leave all other fields alone. It should resemble the following:
+
+![MediaLive completed input page](./how-to-images/medialive-input-settings.png)
+
+Once configured, hit the *Create input* button, navigate back to the channel configuration page, and select the input we just created.
+
+### Output groups
+
+Now time for the important part: configuring the outputs we would like the input converted to. As mentioned at the beginning of this tutorial, we will be generating three variants at different resolutions: *720p*, *480p*, and *240p*. To do this, we configure an output group for our channel.
+
+Click on the *Add* button next to **Output groups** on the channel configuration page, select *HLS* as the output group type, and hit the *Confirm* button.
+
+The destination URL is going to be writing directly to the [Momento HTTP API](https://docs.momentohq.com/cache/develop/api-reference/http-api) using the `encoder_api_key` we setup earlier. It should be in the following format:
 
 ```
-https://<momento_rest_endpoint>/cache/<namespace_id>/playlist.m3u8?ttl_seconds=<ttl>
+https://<momento_rest_endpoint>/cache/<namespace_id>/playlist.m3u8?ttl_seconds=<ttl>&role=origin
 ```
 
 The variable placeholders are:
@@ -111,15 +142,17 @@ The variable placeholders are:
 * `namespace_id` - ID of the namespace receiving uploaded segments
 * `ttl` - number of seconds to retain the playlist and segments before deletion
 
-Applying the configuration from this tutorial, the resulting destination URL would be:
+*NOTE - notice the `role=origin` query parameter at the end. This is required for MediaLive to publish segments!*
+
+As an example, your destination URL should look something like this:
 
 ```
-https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com/cache/live-origin/playlist.m3u8?ttl_seconds=3600
+https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com/cache/live-origin/playlist.m3u8?ttl_seconds=3600&role=origin
 ```
 
 Next, expand the *Credentials* section. Set *Username* to `momento`. Select **Create parameter** under *Password* and follow the instructions to create a new parameter named `/medialive/momento_api_key` that contains the previously-created encoder API key.
 
-Under *CDN Settings*, select **HLS Akamai**. It is necessary to specify **HLS Akamai** so that MediaLive will properly transmit credentials with each request.
+Under *CDN Settings*, select **HLS Akamai**. We use **HLS Akamai** so that MediaLive will properly transmit credentials with each request. There's a small quirk with the service when using *HLS basic put* that omits the credentials.
 
 ![AWS MediaLive console with channel configuration filled out](./_how-to-images/medialive-hls-group.png)
 
@@ -191,10 +224,29 @@ Now we need to define the CloudFront behaviors for three types of objects read f
 
 ![CloudFront behavior for variant playlists](./_how-to-images/cloudfront-playlist.png)
 
+## 4. Starting the stream
 
-## 4. Playback and troubleshooting
+Now that we have our CDN configured allowing video players to access the playlists and segments, let's see if it works! Navigate back to the [channel we created](https://console.aws.amazon.com/medialive/home#/channels) and hit the **Start** button. After a few moments, your channel will be broadcasting the video!
 
-With that, we're ready to stream! You can now point your favorite HLS player (in [VLC media player](https://www.videolan.org/) open a network stream and paste the .m3u8 path) to `https://<cloudfront_id>.CloudFront.net/playlist.m3u8` and play the live stream encoded by AWS Elemental MediaLive.
+![MediaLive channel in a playing status](./_how-to-images/medialive-channel-playing.png)
+
+That's it, the stream is active and will be creating segments and uploading them to our `live-origin` cache. Now let's see it in action.
+
+## 5. Watching the stream
+
+If you already have a compatible media player like [VLC media player](https://www.videolan.org/) that accepts an HLS playlist, great! If you'd rather use an online player, you can navigate to [Livepush.io](https://livepush.io/hlsplayer/index.html) for testing purposes.
+
+To get the url of our livestream, we need to get the distribution id of our CloudFront distribution. Navigate to the [CloudFront distribution page](https://console.aws.amazon.com/cloudfront/v4/home#/distributions) to find it. Once you have it, the url to our playlist is in the following format:
+
+```
+https://<cloudfront_id>.CloudFront.net/playlist.m3u8
+```
+
+You can put this url in the player to start watching your stream!
+
+![HLS player streaming our content](./_how-to-images/hls-player.png)
+
+## 6. Troubleshooting
 
 If things go wrong and the stream doesn't play, the best way to troubleshoot is to manually check each of the steps that is performed by the HLS video player.
 
