@@ -1,0 +1,37 @@
+---
+id: tokens
+title: Tokens
+sidebar_label: Tokens
+description: Learn what Momento tokens are, how to create them, and how they are used.
+hide_table_of_contents: true
+---
+
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+// This import is necessary even though it looks like it's un-used; The inject-example-code-snippet
+// plugin will transform instances of SdkExampleTabs to SdkExampleTabsImpl
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
+# Tokens
+
+トークンは、ブラウザセッションやサービス間通信での一時的なアクセス許可などの状況で使用されることを目的とした、短命でスコープが限定された値です。ユーザーログインのようなソフトウェアライフサイクルイベントでは、そのセッションの間だけ有効なトークンが発行されることがよくあります。これらのトークンはリフレッシュすることができません。セッションが継続する場合は、アプリケーションが新しいトークンを作成して発行する必要があります。
+
+トークンは**データ操作のみ**へのアクセスを許可します。トークンは、キャッシュの作成、削除、フラッシュなどの制御プレーン操作や、他のトークンの作成はできません。
+
+完全に特権化されたトークンを持つユーザーは、以下の操作を実行できます：
+
+* 任意のネームスペースでのキャッシュ・アイテムの追加/編集/削除
+* 任意のネームスペースでインクリメント API を使用したカウンタ値のインクリメント
+* 任意のネームスペースの任意のトピックの公開と購読
+
+セキュリティ要件に基づいてトークンのアクセスを制限することは、ユーザーの裁量に任されています。
+
+## The token object
+
+import SchemaView from '@site/src/components/SchemaView';
+import tokenSchema from '@site/src/data/schemas/token.json';
+
+<SchemaView title="The token object" schema={tokenSchema} />
+
+## Create a token
+
+`GenerateDisposableToken`関数コールを使って新しいトークンを作成する。このトークンの有効期限は最大1時間で、更新することはできません。
