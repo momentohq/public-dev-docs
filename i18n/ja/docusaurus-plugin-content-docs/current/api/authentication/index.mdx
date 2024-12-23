@@ -1,0 +1,66 @@
+---
+sidebar_label: Overview
+id: overview
+title: Authentication
+description: Learn how to authenticate with the Momento platform with API keys and session tokens.
+hide_title: true
+keywords:
+  - momento
+  - cache
+  - caching
+  - topics
+  - api
+  - dev docs
+  - api docs
+  - eda
+  - event-driven architecture
+  - redis
+  - serverless
+  - enterprise
+  - platform
+  - auth
+  - authn
+  - authz
+  - authentication
+---
+
+# Authentication
+
+Momento SDKとHTTP APIは、リクエストの認証にAPIキーとセッショントークンを使用します。APIキーは[Momentoコンソール](https://console.gomomento.com)から作成できます。セッショントークンは、SDKのMomento Authクライアントで作成します。APIキーとセッショントークンのどちらを使用するかは、以下の表を参考にしてください。
+
+<table className="customTable">
+  <thead>
+    <tr>
+      <th></th>
+      <th>API key</th>
+      <th>Session token</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td className="highlightRow">What it is</td>
+      <td>API呼び出し元の識別と認証に使用されるキー。</td>
+      <td>短期間のセッション中にユーザーまたはシステムを表すトークン</td>
+    </tr>
+    <tr>
+      <td className="highlightRow">Creation</td>
+      <td>Created one time via the Momento console. Can optionally expire and be refreshed.</td>
+      <td>Programmatically generated on authentication or specific system action. Short-lived and not renewable.</td>
+    </tr>
+    <tr>
+      <td className="highlightRow">Scope</td>
+      <td>セッション・トークンの作成、キャッシュの追加や削除、すべてのデータ操作に使用できます。</td>特定のパーミッションにスコープすることができます。
+      <td>データ操作のみに使用されます。特定のキャッシュまたはトピックにスコープすることができます。</td>
+    </tr>
+    <tr>
+      <td className="highlightRow">Security</td>
+      <td>寿命が長く、危険性が高い。定期的に交換する必要があります。</td>
+      <td>最大寿命は1時間。読み取りや書き込みなどのデータ操作のみに制限されます。</td>
+    </tr>
+    <tr>
+      <td className="highlightRow">Use cases</td>
+      <td>統合の構築、トークン自動販売機の作成、サーバー間認証</td>
+      <td>ユーザー認証、ブラウザセッション、データへの一時的なアクセス</td>
+    </tr>
+  </tbody>
+</table>
