@@ -1,0 +1,46 @@
+---
+sidebar_position: 4
+title: Permissions
+sidebar_label: Permissions
+id: permissions
+description: Learn about the permissions available when creating your API keys and session tokens to control access to Momento resources.
+pagination_next: null
+hide_table_of_contents: true
+---
+
+# Permissions and access control
+
+セッション・トークンや API キーを作成する際に、特定のネームスペース、キャッシュ・キー、キャッ シュ・キー接頭辞、およびトピックに対する権限を制限することができます。これは、*permissions* を使用することで可能になります。トークンを作成する際に、Scope オブジェクトでパーミッションのセットを定義します。トークンを作成すると、トークンはパーミッションスコープで指定されたキャッシュキーとトピックにのみアクセスできるようになり、特定の操作（読み取り、書き込み、公開、購読など）を実行できるようになります。ユーザーがパーミッションスコープの範囲外のアクションを実行しようとすると、`403 Unauthorized` というステータスコードが返されます。
+
+## Scope
+
+APIキーとトークンは、リソースへのアクセスを制限するために、特定のパーミッション・セットにスコープすることができます。スコープオブジェクトにはキャッシュパーミッションとトピックパーミッションの両方が含まれます。
+
+import SchemaView from '@site/src/components/SchemaView';
+import scopeSchema from '@site/src/data/schemas/permissions/scope.json';
+
+<SchemaView title="The Scope object" schema={scopeSchema} />
+
+## Cache permission
+
+個々のキャッシュ・キー、キャッシュ・キーのプレフィックス、またはキャッシュ全体に対してパーミッションを作成できます。キャッシュ権限を作成するとき、ユーザはシステム定義の3つの役割のいずれかを選択します：
+
+* *readwrite* - キャッシュデータへのフルアクセスを提供
+* *writeonly* - 書き込み操作（`set`、`sortedSetIncrementScore`、`listPopFront` など）へのアクセスを提供する。
+* *readonly* - 読み取り操作のみへのアクセスを提供する (`get`、`dictionaryFetch`、`setFetch` など)。
+
+import cacheSchema from '@site/src/data/schemas/permissions/cache.json';
+
+<SchemaView title="The Cache permission object" schema={cacheSchema} />
+
+## Topic permission
+
+与えられたネームスペース内の個別またはすべてのトピックに対してパーミッションを作成できます。*トピック接頭辞はサポートされていません*。トピック権限を作成する際、ユーザは 3 つのシステム定義の役割から 1 つを選択します：
+
+* *publishsubscribe* - トピックデータへのフルアクセスを提供
+* *publishonly* - 書き込み操作（`publish`）のみへのアクセスを提供する。
+* *subscribeonly* - 読み取り操作のみへのアクセスを提供する (`subscribe`)
+
+import topicSchema from '@site/src/data/schemas/permissions/topic.json';
+
+<SchemaView title="The Topic permission object" schema={topicSchema} />
