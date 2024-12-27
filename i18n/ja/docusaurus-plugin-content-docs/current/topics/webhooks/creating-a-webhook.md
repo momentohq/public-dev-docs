@@ -12,6 +12,9 @@ keywords:
   - event-driven architecture
 ---
 
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
 # Momentoで最初のWebhookを作成する
 
 Webhookを設定するステップ1を完了するには、[Momentoコンソール](https://console.gomomento.com)にログインします。左のナビゲーションバーの[キャッシュリスト](https://console.gomomento.com/caches)に移動し、Webhookに公開するキャッシュを選択します。
