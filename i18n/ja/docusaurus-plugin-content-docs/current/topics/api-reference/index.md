@@ -18,8 +18,6 @@ keywords:
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Momento Topics（pub/sub）API を使用する
 
