@@ -10,6 +10,9 @@ keywords:
   - serverless
 ---
 
+import { SdkExampleCodeBlock } from "@site/src/components/SdkExampleCodeBlock";
+import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBlockImpl";
+
 # 数値リーダーボードIDを任意の文字列にマッピングする方法
 
 Momento Leaderboardsの要素は、プレイヤー識別子、セッション識別子、ブラウザ識別子、またはその他の使用したい識別子を表すことができる符号なし64ビット番号によって一意に識別されます。つまり、プレイヤーが2つのIDを持っていない限り、1人のプレイヤーに対して2つのスコアを持つことはできません！
