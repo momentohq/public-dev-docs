@@ -5,6 +5,9 @@ sidebar_label: Webhooks
 description: Learn the Webhook API calls you need to know about and how to use them with Momento services.
 ---
 
+import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
+import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
+
 # Webhook API reference
 
 Webhookは、トピック上のメッセージを消費するための追加の方法を提供します。ウェブフックが作成されると、トピックにアタッチされます。
