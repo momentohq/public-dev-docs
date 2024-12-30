@@ -31,13 +31,12 @@ Momento Leaderboards サービスの呼び出しで発生したエラーは、�
 成功の・レスポンス・オブジェクトのバリエーションには次のようなものがあります：
 
 ### LeaderboardFetch
-
-フェッチ要求に成功したことを示す。利用可能なメソッドは以下の通りです：
+フェッチ要求に成功したことを示します。利用可能なメソッドは以下の通り：
 
 `values()`: リスト - フィールド `id`、`score`、`rank` を含むレコードのリストを返します。
 
 ### LeaderboardLength
 
-lengthのリクエストに成功したことを示す。利用可能なメソッドは以下の通りです： 
+長さのリクエストに成功したことを示す。
 
-- `length()`: 整数 - 指定されたリーダーボードの要素数を返します。
+- `length()`: Integer - returns the number of elements in the specified leaderboard
