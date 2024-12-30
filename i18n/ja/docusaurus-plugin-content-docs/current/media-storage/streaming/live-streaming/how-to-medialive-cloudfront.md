@@ -35,6 +35,12 @@ keywords:
 
 このチュートリアルでは、[Momento コンソール](https://console.gomomento.com) を使用しますが、[Momento SDK](/platform/sdks) を使用して、すべてをプログラムで作成および設定することもできます。
 
+**ビデオでの学習がお好きですか？**
+
+このチュートリアルの簡単なウォークスルーを見て、実際に手順を確認してください。このビデオは、以下のガイドを補完するもので、視覚的に学習される方、または詳細に入る前にハイレベルな概要や追加コンテキストが必要な方に最適です。
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dwb8Qd7CDYw?si=ALK8BnC2Ugh5ty-S" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## 準備
 
 リソースを作成する前に、ライブ・ビデオ・チャンネルの基本的な特性を決定してください。
@@ -97,7 +103,33 @@ MediaLive は、このライブ動画ワークフローで **エンコーダー*
 
 :::
 
-1つの出力先である `live-origin` 名前空間に出力する1つのエンコーディングパイプラインを持つ MediaLive チャンネルを設定します。チャネルの出力先URLは以下の形式に従ってください：
+### Channel settings
+
+最初にAWS MediaLiveの[create channel](https://console.aws.amazon.com/medialive/home#/channels/new)ページに移動します。チャンネルに意味のある名前を付け、初めてサービスを利用する場合は、*Create role from template*の指示に従って、エンコードに必要な権限を持つIAMロールを作成します。セットアップが完了したら、`MediaLiveAccessRole`ロールを選択します。
+
+チャンネル・テンプレートを使ったり、入力仕様を変更したりすることはありません。しかし、**Channel class** を `SINGLE_PIPELINE` に変更します。他のすべての設定フィールドはそのままで、デフォルト値が今回のユースケースに適しています。設定が完了したら、以下のスクリーンショットのようなものができるはずです。
+
+![MediaLive channel settings page fully configured](./_how-to-images/medialive-channel-settings.png)
+
+### Input attachments
+
+次に、チャンネルの入力を設定します。入力はチャンネルがアクティブなときにストリーミングされるメディアです。**入力アタッチメント**ラベルの横にある *追加* ボタンをクリックするか、入力リストに [直接移動](https://console.aws.amazon.com/medialive/home#/inputs) することができます。
+
+すでに使用したい入力がある場合は、今すぐ選択してください。そうでない場合は、*Create input*ボタンをクリックして新しい入力を作成します。この例では、S3バケットで公開されているMP4形式の*Big Buck Bunny*をストリーミングします。適切な名前を付け、入力タイプを `MP4` とし、**入力クラス** を `SINGLE_INPUT` とします。
+
+**入力ソースA**フィールドにMP4への一般にアクセス可能なURLを入力し、他のフィールドはすべてそのままにしておきます。以下のようになります：
+
+![MediaLive completed input page](./_how-to-images/medialive-input-settings.png)
+
+設定が完了したら、*Create input*ボタンを押し、チャンネル設定ページに戻り、先ほど作成した入力を選択します。
+
+### Output groups
+
+さて、いよいよ重要な部分です。入力をどの出力に変換するかを設定します。このチュートリアルの最初に述べたように、異なる解像度で3つのバリエーションを生成します： *720p*、*480p*、*240p* です。これを行うには、チャンネルに出力グループを設定します。
+
+チャンネル設定ページの **出力グループ** の隣にある *追加* ボタンをクリックし、出力グループタイプとして *HLS* を選択し、*確認* ボタンを押します。
+
+保存先のURLは、先ほど設定した `encoder_api_key` を使って、[Momento HTTP API](https://docs.momentohq.com/cache/develop/api-reference/http-api) に直接書き込む。以下のような形式にしてください：
 
 ```
 https://<momento_rest_endpoint>/cache/<namespace_id>/playlist.m3u8?ttl_seconds=<ttl>
@@ -109,15 +141,17 @@ https://<momento_rest_endpoint>/cache/<namespace_id>/playlist.m3u8?ttl_seconds=<
 * `namespace_id` - アップロードされたセグメントを受け取る名前空間の ID
 * `ttl` - 削除前にプレイリストとセグメントを保持する秒数
 
-このチュートリアルのコンフィギュレーションを適用すると、宛先URLは次のようになります：
+*注意 - 最後の `role=origin` クエリーパラメーターに注目してください。これはMediaLiveがセグメントを公開するために必要です。*
+
+例として、目的地のURLは次のようになります：
 
 ```
-https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com/cache/live-origin/playlist.m3u8?ttl_seconds=3600
+https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com/cache/live-origin/playlist.m3u8?ttl_seconds=3600&role=origin
 ```
 
 次に、*Credentials*セクションを展開します。*ユーザー名*を `momento` に設定します。*Password*の下にある**Create parameter**を選択し、指示に従って`/medialive/momento_api_key`という新しいパラメータを作成します。
 
-*CDN設定*で、**HLS Akamai**を選択します。MediaLive が各リクエストで認証情報を適切に送信するように、**HLS Akamai** を指定する必要があります。
+*CDN設定*で、**HLS Akamai**を選択します。私たちは**HLS Akamai**を使用して、MediaLiveが各リクエストで認証情報を適切に送信するようにしています。*HLS basic put*を使用すると、認証情報を省略するサービスに小さな癖があります。
 
 ![AWS MediaLive console with channel configuration filled out](./_how-to-images/medialive-hls-group.png)
 
@@ -181,6 +215,28 @@ CloudFrontの*Origin Shield*機能を有効にする必要はありません。
 
 ![CloudFront behavior for the default behavior](./_how-to-images/cloudfront-default.png)
 
+## 4. Starting the stream
+
+さて、ビデオプレーヤーがプレイリストとセグメントにアクセスできるようにCDNを設定したので、動作するか確認してみましょう！[作成したチャンネル](https://console.aws.amazon.com/medialive/home#/channels)に戻り、**開始**ボタンを押してください。しばらくすると、チャンネルがビデオを放送します！
+
+![MediaLive channel in a playing status](./_how-to-images/medialive-channel-playing.png)
+
+これでストリームがアクティブになり、セグメントを作成して `live-origin` キャッシュにアップロードするようになった。では、実際に動かしてみよう。
+
+## 5. Watching the stream
+
+[VLC media player](https://www.videolan.org/)のような、HLSプレイリストを受け入れる互換性のあるメディアプレーヤーをすでにお持ちなら、素晴らしいことです！オンラインプレーヤーを使いたい場合は、[Livepush.io](https://livepush.io/hlsplayer/index.html) に移動してテストすることができます。
+
+ライブストリームのURLを取得するには、CloudFrontディストリビューションのディストリビューションIDを取得する必要があります。[CloudFrontディストリビューションページ](https://console.aws.amazon.com/cloudfront/v4/home#/distributions)に移動して見つけてください。これを取得すると、プレイリストのURLは以下の形式になります：
+
+```
+https://<cloudfront_id>.CloudFront.net/playlist.m3u8
+```
+
+このURLをプレーヤーに入力すると、ストリームを視聴できます！
+
+![HLS player streaming our content](./_how-to-images/hls-player.png)
+
 **Media segments behavior**: これらのファイルはエンコーダーがオリジンに送信した後に変更されることはないので、CloudFrontとその 「CachingOptimized 」ポリシーによってキャッシュされるのに適した候補となる。AWS MediaLiveの設定から、オーディオ/ビデオを含むセグメントは常にファイル拡張子`.ts`を持ちます：
 
 ![CloudFront behavior for caching segments](./_how-to-images/cloudfront-segments.png)
@@ -189,10 +245,7 @@ CloudFrontの*Origin Shield*機能を有効にする必要はありません。
 
 ![CloudFront behavior for variant playlists](./_how-to-images/cloudfront-playlist.png)
 
-
-## 4. Playback and troubleshooting
-
-これでストリーミングの準備が整いました！お気に入りのHLSプレイヤー（[VLC media player](https://www.videolan.org/)でネットワークストリームを開き、.m3u8のパスを貼り付ける）を`https://<cloudfront_id>.CloudFront.net/playlist.m3u8`に指定し、AWS Elemental MediaLiveによってエンコードされたライブストリームを再生することができます。
+## 6. Troubleshooting
 
 うまくいかず、ストリームが再生されない場合、トラブルシューティングの最善の方法は、HLS ビデオプレーヤーによって実行される各ステップを手動で確認することです。
 
