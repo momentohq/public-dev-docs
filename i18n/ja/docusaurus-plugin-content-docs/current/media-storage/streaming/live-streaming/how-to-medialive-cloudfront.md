@@ -99,26 +99,27 @@ MediaLive は、このライブ動画ワークフローで **エンコーダー*
 
 1つの出力先である `live-origin` 名前空間に出力する1つのエンコーディングパイプラインを持つ MediaLive チャンネルを設定します。チャネルの出力先URLは以下の形式に従ってください：
 
-> https://\<*momento_rest_endpoint*\>/cache/\<*namespace_id*\>/playlist.m3u8?token=\<*encoder_api_key*\>&ttl_seconds=\<*ttl*\>&role=origin
+```
+https://<momento_rest_endpoint>/cache/<namespace_id>/playlist.m3u8?ttl_seconds=<ttl>
+```
 
 変数のプレースホルダーは以下のとおりです：
 
-* `momento_rest_endpoint` - Momento HTTP API の地域固有のエンドポイント ([地域のエンドポイントはこちら](/platform/regions))。
-* `namespace_id` - セグメントをアップロードする名前空間の ID。
-* `encoder_api_key` - ステップ1で生成された*readwrite*エンコーダーキーの値。
-* `ttl` - Storageネームスペースにプレイリストとセグメントを保持する秒数。
-* 
-*Note - クエリパラメータ `role=origin` は AWS MediaLive では必須です。Momento HTTP API では必須のクエリパラメータではありません。
+* `momento_rest_endpoint` - Momento HTTP API 地域別エンドポイント ([一覧を参照](/platform/regions))
+* `namespace_id` - アップロードされたセグメントを受け取る名前空間の ID
+* `ttl` - 削除前にプレイリストとセグメントを保持する秒数
 
 このチュートリアルのコンフィギュレーションを適用すると、宛先URLは次のようになります：
 
 ```
-https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com/cache/live-origin/playlist.m3u8?token=ey[...]J9&ttl_seconds=3600&role=origin
+https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com/cache/live-origin/playlist.m3u8?ttl_seconds=3600
 ```
 
-CDN設定*フィールドを**HLSベーシックプット**に設定し、Momento Media Storageネームスペースの保持期間との互換性を保証するために、以下のように再試行ポリシーを設定します。
+次に、*Credentials*セクションを展開します。*ユーザー名*を `momento` に設定します。*Password*の下にある**Create parameter**を選択し、指示に従って`/medialive/momento_api_key`という新しいパラメータを作成します。
 
-![AWS MediaLive console with channel configuration filled out](./_how-to-images/medialive-create-channel.png)
+*CDN設定*で、**HLS Akamai**を選択します。MediaLive が各リクエストで認証情報を適切に送信するように、**HLS Akamai** を指定する必要があります。
+
+![AWS MediaLive console with channel configuration filled out](./_how-to-images/medialive-hls-group.png)
 
 Manifest and Segments**セクションで、以下のフィールドを設定する：
 
@@ -206,11 +207,11 @@ $ curl "https://<momento_rest_endpoint>/cache/live-origin/playlist.m3u8?token=<p
 #EXT-X-VERSION:3
 #EXT-X-INDEPENDENT-SEGMENTS
 #EXT-X-STREAM-INF:BANDWIDTH=2648800,AVERAGE-BANDWIDTH=1790800,CODECS="avc1.77.30,mp4a.40.2",RESOLUTION=640x480,FRAME-RATE=30.000
-playlist_480p30.m3u8?ttl_seconds=3600&role=origin
+playlist_480p30.m3u8?ttl_seconds=3600
 #EXT-X-STREAM-INF:BANDWIDTH=1394800,AVERAGE-BANDWIDTH=965800,CODECS="avc1.4d400d,mp4a.40.2",RESOLUTION=320x240,FRAME-RATE=30.000
-playlist_240p30.m3u8?ttl_seconds=3600&role=origin
+playlist_240p30.m3u8?ttl_seconds=3600
 #EXT-X-STREAM-INF:BANDWIDTH=4391200,AVERAGE-BANDWIDTH=2961200,CODECS="avc1.4d401f,mp4a.40.2",RESOLUTION=960x720,FRAME-RATE=30.000
-playlist_720p30.m3u8?ttl_seconds=3600&role=origin
+playlist_720p30.m3u8?ttl_seconds=3600
 ```
 
 各バリアントプレイリストにアクセスできるかどうか、バリアントプレイリストにリストされている最後のメディアセグメント（別名 *ライブポイント*）をダウンロードできるかどうかを確認します。以下は、480p マニフェストとライブ ポイントを表示するための `curl` コマンドです。
