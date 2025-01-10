@@ -35,10 +35,10 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
         ----------------
         One of the following:
         - **Success**:
-            - `authToken`- *String*: the new auth token.
-            - `refreshToken`- *String*: a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires.
-            - `endpoint`- *String*: the HTTP endpoint the Momento client should use when making requests.
-            - `expiresAt`- *ExpiresAt object*: the timestamp at which the token will expire.
+            - `authToken`- *String*: The new auth token.
+            - `refreshToken`- *String*: A refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires.
+            - `endpoint`- *String*: The HTTP endpoint the Momento client should use when making requests.
+            - `expiresAt`- *ExpiresAt object*: The timestamp at which the token will expire.
 
         - **Error**:
             - See [response objects](./response-objects.md) for specific information.
@@ -71,10 +71,10 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
         ----------------
         One of the following:
         - **Success**:
-            - `apiKey`- *String*: the new auth token.
-            - `refreshToken`- *String*: a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires.
-            - `endpoint`- *String*: the HTTP endpoint the Momento client should use when making requests.
-            - `expiresAt`- *ExpiresAt object*: the timestamp at which the token will expire.
+            - `apiKey`- *String*: The new auth token.
+            - `refreshToken`- *String*: A refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires.
+            - `endpoint`- *String*: The HTTP endpoint the Momento client should use when making requests.
+            - `expiresAt`- *ExpiresAt object*: The timestamp at which the token will expire.
 
         - **Error**:
             - See [response objects](./response-objects.md) for specific information.
@@ -111,15 +111,15 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
 
         #### Optional Parameters
         ----------------
-        - **tokenId** - *String*: user-provided string that can help identify which messages were published with which disposable token.
+        - **tokenId** - *String*: A user-provided string that can help identify which messages were published with which disposable token.
 
         #### Returns
         ----------------
         One of the following:
         - **Success**:
-            - `authToken`- *String*: the new disposable auth token.
-            - `endpoint`- *String*: the HTTP endpoint the Momento client should use when making requests.
-            - `expiresAt`- *ExpiresAt object*: the timestamp at which the token will expire.
+            - `authToken`- *String*: The new disposable auth token.
+            - `endpoint`- *String*: The HTTP endpoint the Momento client should use when making requests.
+            - `expiresAt`- *ExpiresAt object*: The timestamp at which the token will expire.
 
         - **Error**:
             - See [response objects](./response-objects.md) for specific information.
