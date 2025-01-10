@@ -16,6 +16,8 @@ keywords:
   - docs
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
 import { SdkExampleTabsImpl } from "@site/src/components/SdkExampleTabsImpl";
 
