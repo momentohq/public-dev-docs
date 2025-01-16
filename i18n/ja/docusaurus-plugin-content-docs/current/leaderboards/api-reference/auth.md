@@ -30,16 +30,16 @@ Auth API は、Momento サービスの API キーとトークンを作成およ�
    #### Parameters
         ----------------
         - **scope** - [*PermissionScope*](#permissionscope-objects): 新しいトークンに付与するパーミッション。PermissionScopeオブジェクトはSDKによって提供されます。
-        - **expiresIn** - *Number* \| *ExpiresIn object*: ExpiresIn.never()`メソッド、`ExpiresIn.minutes()`メソッド、`ExpiresIn.hours()`メソッドを呼び出すことで、トークンが期限切れになるまでの秒数、またはその期間を表すExpiresInオブジェクト。
+        - **expiresIn** - *ExpiresIn object*: ExpiresIn.never()`メソッド、`ExpiresIn.minutes()`メソッド、`ExpiresIn.hours()`メソッドを呼び出すことで、トークンが期限切れになるまでの秒数、またはその期間を表すExpiresInオブジェクト。
 
    #### Returns
         ----------------
         以下のいずれか:
         - **Success**:
-            - `authToken`: string - 新しい認証トークン
-            - `refreshToken`: string - RefreshApiKey API](#refreshapikey)で使用できるリフレッシュトークンで、トークンの有効期限が切れる前にリフレッシュします
-            - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
-            - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
+            - `authToken`- *String*:  新しい認証トークン
+            - `refreshToken`- *String*: - RefreshApiKey API](#refreshapikey)で使用できるリフレッシュトークンで、トークンの有効期限が切れる前にリフレッシュします
+            - `endpoint`- *String*: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
+            - `expiresAt`- *ExpiresAt object*: Timestamp - トークンの有効期限が切れるタイムスタンプ
 
         - **Error**:
             - See [response objects](./response-objects.md) for specific information.
@@ -66,16 +66,16 @@ Auth API は、Momento サービスの API キーとトークンを作成およ�
 
         #### Parameters
         ----------------
-        - **refreshToken** - *string*: The refresh token that was provided when the original API key was generated.
+        - **refreshToken** - *String*: The refresh token that was provided when the original API key was generated.
 
         #### Returns
         ----------------
         One of the following:
         - **Success**:
-            - `apiKey`: string - the new auth token
-            - `refreshToken`: string - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires
-            - `endpoint`: string - the HTTP endpoint the Momento client should use when making requests
-            - `expiresAt`: Timestamp - the timestamp at which the token will expire
+            - `apiKey`- *String*: the new auth token
+            - `refreshToken`- *String*: - a refresh token that can be used with the [RefreshApiKey API](#refreshapikey) to refresh a token before it expires
+            - `endpoint`- *String*: the HTTP endpoint the Momento client should use when making requests
+            - `expiresAt`- *ExpiresAt object*: the timestamp at which the token will expire
 
         - **Error**:
             - See [response objects](./response-objects.md) for specific information.
@@ -105,18 +105,22 @@ Auth API は、Momento サービスの API キーとトークンを作成およ�
           - リフレッシュはできないので、リフレッシュトークンは付属しません
           - パーミッションは DisposableTokenScope オブジェクトで指定します。
 
+        #### Optional Parameters
+        ----------------
+        - **tokenId** - *String*: どのメッセージがどの使い捨てトークンで発行されたかを識別するための文字列
+        
         #### Parameters
         ----------------
         - **scope** - [*DisposableTokenScope*](#disposabletokenscope-objects): 新しい使い捨てトークンに付与する権限。SDK は、あらかじめ DisposableTokenScope オブジェクトを用意しています。
-        - **expiresIn** - *Number* \| *ExpiresIn object*: トークンが失効するまでの秒数、または ExpiresIn.minutes() メソッドや ExpiresIn.hours(1) メソッドを呼び出して期間を表す ExpiresIn オブジェクト。使い捨てトークンは1時間以内に失効しなければなりません。
+        - **expiresIn** - *ExpiresIn object*: トークンが失効するまでの秒数、または ExpiresIn.minutes() メソッドや ExpiresIn.hours(1) メソッドを呼び出して期間を表す ExpiresIn オブジェクト。使い捨てトークンは1時間以内に失効しなければなりません。
 
         #### Returns
         ----------------
         以下のいずれか:
         - **Success**:
-            - `authToken`: string - 新しい使い捨て認証トークン
-            - `endpoint`: string - Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
-            - `expiresAt`: Timestamp - トークンの有効期限が切れるタイムスタンプ
+            - `authToken`- *String*: 新しい使い捨て認証トークン
+            - `endpoint`- *String*: Momento クライアントがリクエストを行う際に使用する HTTP エンドポイント
+            - `expiresAt`- *ExpiresAt object*: トークンの有効期限が切れるタイムスタンプ
 
         - **Error**:
             - 詳しくは[レスポンスオブジェクト](./response-objects.md)を参照。
