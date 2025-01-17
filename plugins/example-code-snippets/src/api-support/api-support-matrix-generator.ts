@@ -90,7 +90,10 @@ const SDKS: Array<SdkInfo> = [
       'momento-sdk/src/main/java/momento/sdk/config/Configuration.java',
     topicClientFile: 'momento-sdk/src/main/java/momento/sdk/TopicClient.java',
     authClientFile: 'momento-sdk/src/main/java/momento/sdk/AuthClient.java',
-    leaderboardClientFile: undefined,
+    leaderboardClientFile: [
+      'momento-sdk/src/main/java/momento/sdk/ILeaderboard.java',
+      'momento-sdk/src/main/java/momento/sdk/LeaderboardClient.java',
+    ],
     storageClientFile:
       'momento-sdk/src/main/java/momento/sdk/PreviewStorageClient.java',
   },
