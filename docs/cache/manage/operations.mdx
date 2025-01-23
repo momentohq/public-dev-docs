@@ -1,0 +1,67 @@
+---
+sidebar_label: Measuring Usage (Operations)
+sidebar_position: 9
+title: Momento Cache measuring usage with operations
+pagination_next: null
+description: Learn how Momento Cache meters and bills for usage based on operations.
+hide_title: true
+---
+
+# Momento Cache measures usage with operations
+
+## What is an operation?
+
+An operation is a unit of work that reflects the utilization of networking and compute power. As a request consumes more resources, the operation count will increase proportionally.
+
+The number of operations incurred by a request depends on two factors:
+- the API called, plus any parameters that modify its behavior
+- the size of each item or element involved in the API call
+
+Each API has an operational complexity factor (see table below). The total operation count for an API call is this complexity factor multiplied by the number of 1024 byte chunks in _each_ item or element involved in a request.
+
+:::info
+`DictionaryGetFields` has a complexity factor of 0.5, so fetching two 10 byte elements incurs 1 operation: `0.5 * 2 * 1`
+
+`Get` has a complexity factor of 1, so writing one 1500 byte item incurs 2 operations.
+:::
+
+## API Complexity Factors
+This table defines the operational complexity factors for Momento Cache APIs. If an API is not listed below, its complexity factor is 1.
+
+<table className="customTable">
+  <thead>
+    <tr>
+      <th>API Name</th>
+      <th>Complexity Factor</th>
+      <th>Entity Counted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>KeysExist</td><td>0.5</td><td>keys in request</td></tr>
+    <tr><td>DictionaryFetch</td><td>0.5</td><td>elements in response</td></tr>
+    <tr><td>DictionaryGetFields</td><td>0.5</td><td>elements in response</td></tr>
+    <tr><td>DictionaryRemoveFields</td><td>0.5</td><td>fields in request</td></tr>
+    <tr><td>DictionarySetFields</td><td>0.5</td><td>elements in request</td></tr>
+    <tr><td>ListConcatenateBack</td><td>0.5</td><td>elements in request</td></tr>
+    <tr><td>ListConcatenateFront</td><td>0.5</td><td>elements in request</td></tr>
+    <tr><td>ListFetch</td><td>0.5</td><td>elements in response</td></tr>
+    <tr><td>SetAddElements</td><td>0.5</td><td>elements in request</td></tr>
+    <tr><td>SetContainsElements</td><td>0.5</td><td>elements in request</td></tr>
+    <tr><td>SetFetch</td><td>0.5</td><td>elements in response</td></tr>
+    <tr><td>SetRemoveElements</td><td>0.5</td><td>elements in request</td></tr>
+    <tr><td>SortedSetFetchByRank</td><td>0.5</td><td>elements in response</td></tr>
+    <tr><td>SortedSetFetchByScore</td><td>0.5</td><td>elements in response</td></tr>
+    <tr><td>SortedSetGetScores</td><td>0.5</td><td>elements in request</td></tr>
+    <tr><td>SortedSetPutElements</td><td>0.5</td><td>elements in request</td></tr>
+    <tr><td>SortedSetRemoveElements</td><td>0.5</td><td>elements in request</td></tr>
+  </tbody>
+</table>
+
+
+## API Parameter Modifiers
+
+Some APIs may be modified by the [ReadConcern parameter](/cache/learn/how-it-works/read-concern). When `ReadConcern` is set to `Consistent`, the operation cost is multiplied by an additional factor of 2.
+
+:::info
+`DictionaryGetFields` has a complexity factor of 0.5, so fetching two 10 byte elements with `Consistent` read concern incurs 2 operations: `(0.5 * 2 * 1) * 2`
+:::

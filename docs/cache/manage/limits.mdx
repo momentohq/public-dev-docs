@@ -68,38 +68,3 @@ These limits can be adjusted. Before requesting an increase, please ensure that 
   </tbody>
 </table>
 [^1]: Item size includes both cache key and cache value.
-
-## Operations
-
-Certain cache APIs can perform multiple operations in a single request. Multi-element operations are more efficient, so the cost of these APIs is discounted at a **2:1 ratio**. This means every two elements will count as one operation towards the limiter.
-
-As an example, a `SetAddElements` request adding one or two elements costs *one operation*, but with three or four elements it costs *two operations*, and so on. All the APIs listed below perform multiple operations and are subject to reduced cost. All unlisted APIs cost one operation.
-
-<table className="customTable">
-  <thead>
-    <tr>
-      <th>API Name</th>
-      <th>Operations</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>DictionaryFetch</td><td>Number of fields in response / 2, or 1 if dictionary is not found</td></tr>
-    <tr><td>DictionaryGetFields</td><td>Number of fields in request / 2</td></tr>
-    <tr><td>DictionaryRemoveFields</td><td>Number of fields in request / 2</td></tr>
-    <tr><td>DictionarySetFields</td><td>Number of fields in request / 2</td></tr>
-    <tr><td>KeysExist</td><td>Number of keys in request / 2</td></tr>
-    <tr><td>ListConcatenateBack</td><td>Number of elements in request / 2</td></tr>
-    <tr><td>ListConcatenateFront</td><td>Number of elements in request / 2</td></tr>
-    <tr><td>ListFetch</td><td>Number of elements in response / 2, or 1 if list is not found</td></tr>
-    <tr><td>SetAddElements</td><td>Number of elements in request / 2</td></tr>
-    <tr><td>SetContainsElements</td><td>Number of elements in request / 2</td></tr>
-    <tr><td>SetFetch</td><td>Number of elements in response / 2, or 1 if set is not found</td></tr>
-    <tr><td>SetRemoveElements</td><td>Number of elements in request/2</td></tr>
-    <tr><td>SortedSetFetchByRank</td><td>Number of elements in response / 2, or 1 if sorted set is not found</td></tr>
-    <tr><td>SortedSetFetchByScore</td><td>Number of elements in response / 2, or 1 if sorted set is not found</td></tr>
-    <tr><td>SortedSetGetScores</td><td>Number of elements in request / 2</td></tr>
-    <tr><td>SortedSetPutElements</td><td>Number of elements in request / 2</td></tr>
-    <tr><td>SortedSetRemoveElements</td><td>Number of elements in request / 2</td></tr>
-  </tbody>
-</table>
-
