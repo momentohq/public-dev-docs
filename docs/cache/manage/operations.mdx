@@ -14,16 +14,19 @@ hide_title: true
 An operation is a unit of work that reflects the utilization of networking and compute power. As a request consumes more resources, the operation count will increase proportionally.
 
 The number of operations incurred by a request depends on two factors:
+- the size of user data transfered in the API call
 - the API called, plus any parameters that modify its behavior
-- the size of each item or element involved in the API call
 
-Each API has an operational complexity factor (see table below). The total operation count for an API call is this complexity factor multiplied by the number of 1024 byte chunks in _each_ item or element involved in a request.
+## Calculating operation cost of an API call
 
-:::info
-`DictionaryGetFields` has a complexity factor of 0.5, so fetching two 10 byte elements incurs 1 operation: `0.5 * 2 * 1`
+The base operation count for an API call is the number of 1024 byte chunks in _each_ item or element transfered by the request and by the response.
 
-`Get` has a complexity factor of 1, so writing one 1500 byte item incurs 2 operations.
-:::
+When a request or response contains no items or elements (for example, a `BatchGet` request contains a list of _keys_), the user-supplied data it contains is treated as a single item.
+Protocol overhead is not counted towards request and response data size.
+
+Each API has an operational complexity factor, as listed in the table below. The total operation count for an API call is the complexity factor multiplied by the base operation count.
+
+All validly-authenticated API calls, including empty results or misconfigured requests, incur a minimum of 1 operation.
 
 ## API Complexity Factors
 This table defines the operational complexity factors for Momento Cache APIs. If an API is not listed below, its complexity factor is 1.
@@ -33,27 +36,15 @@ This table defines the operational complexity factors for Momento Cache APIs. If
     <tr>
       <th>API Name</th>
       <th>Complexity Factor</th>
-      <th>Entity Counted</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>KeysExist</td><td>0.5</td><td>keys in request</td></tr>
-    <tr><td>DictionaryFetch</td><td>0.5</td><td>elements in response</td></tr>
-    <tr><td>DictionaryGetFields</td><td>0.5</td><td>elements in response</td></tr>
-    <tr><td>DictionaryRemoveFields</td><td>0.5</td><td>fields in request</td></tr>
-    <tr><td>DictionarySetFields</td><td>0.5</td><td>elements in request</td></tr>
-    <tr><td>ListConcatenateBack</td><td>0.5</td><td>elements in request</td></tr>
-    <tr><td>ListConcatenateFront</td><td>0.5</td><td>elements in request</td></tr>
-    <tr><td>ListFetch</td><td>0.5</td><td>elements in response</td></tr>
-    <tr><td>SetAddElements</td><td>0.5</td><td>elements in request</td></tr>
-    <tr><td>SetContainsElements</td><td>0.5</td><td>elements in request</td></tr>
-    <tr><td>SetFetch</td><td>0.5</td><td>elements in response</td></tr>
-    <tr><td>SetRemoveElements</td><td>0.5</td><td>elements in request</td></tr>
-    <tr><td>SortedSetFetchByRank</td><td>0.5</td><td>elements in response</td></tr>
-    <tr><td>SortedSetFetchByScore</td><td>0.5</td><td>elements in response</td></tr>
-    <tr><td>SortedSetGetScores</td><td>0.5</td><td>elements in request</td></tr>
-    <tr><td>SortedSetPutElements</td><td>0.5</td><td>elements in request</td></tr>
-    <tr><td>SortedSetRemoveElements</td><td>0.5</td><td>elements in request</td></tr>
+    <tr><td>SetIfAbsent</td><td>2</td></tr>
+    <tr><td>SetIfPresent</td><td>2</td></tr>
+    <tr><td>SetIfEqual</td><td>2</td></tr>
+    <tr><td>SetIfNotEqual</td><td>2</td></tr>
+    <tr><td>SetIfPresentAndNotEqual</td><td>2</td></tr>
+    <tr><td>SetIfAbsentOrEqual</td><td>2</td></tr>
   </tbody>
 </table>
 
@@ -62,6 +53,13 @@ This table defines the operational complexity factors for Momento Cache APIs. If
 
 Some APIs may be modified by the [ReadConcern parameter](/cache/learn/how-it-works/read-concern). When `ReadConcern` is set to `Consistent`, the operation cost is multiplied by an additional factor of 2.
 
-:::info
-`DictionaryGetFields` has a complexity factor of 0.5, so fetching two 10 byte elements with `Consistent` read concern incurs 2 operations: `(0.5 * 2 * 1) * 2`
-:::
+
+## Examples
+
+`Get` for one item with a 16-byte key that does not exist incurs 1 operation, because the response will be empty: `CEIL(16 / 1024) + CEIL(0 / 1024)`
+
+`GetBatch` for one hundred 1-byte elements with 16-byte keys incurs 102 operations: `CEIL(100 * 16 / 1024) + 100 * CEIL(1 / 1024)`
+
+`SetIfAbsent` has a complexity factor of 2. Writing one 1500-byte item with a 16-byte key incurs 5 operations: `CEIL(16 / 1024) + 2 * CEIL(1500 / 1024)`
+
+`DictionaryGetFields` for two 10 byte elements with 16-byte keys and the `Consistent` read concern incurs 6 operations: `2 * (CEIL(2 * 16 / 1024) + 2 * CEIL(10 / 1024))`
