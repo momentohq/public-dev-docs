@@ -31,7 +31,7 @@ This line graph represents the number of bytes transferred in or out of your Mom
 
 ## Errors and successes
 
-This graph tells you about the number of error and success responses from Momento for application requests to your caches. It can be viewed as a percentage or as a raw count of responses for the minute. If you are seeing an elevated level of errors, dig closer into your application logs to better understand the cause. Elevated error rates can be an indicator that your application requests are being throttled by Momento due to encountering a [service limit](/cache/limits).
+This graph tells you about the number of error and success responses from Momento for application requests to your caches. It can be viewed as a percentage or as a raw count of responses for the minute. If you are seeing an elevated level of errors, dig closer into your application logs to better understand the cause. Elevated error rates can be an indicator that your application requests are being throttled by Momento due to encountering a [service limit](/cache/manage/limits).
 
 ![image](/img/metrics_success-error.png)
 
