@@ -19,10 +19,7 @@ The number of operations incurred by a request depends on two factors:
 
 ## Calculating operation cost of an API call
 
-The base operation count for an API call is the number of 1024 byte chunks in _each_ item or element transfered by the request and by the response.
-
-When a request or response contains no items or elements (for example, a `BatchGet` request contains a list of _keys_), the user-supplied data it contains is treated as a single item.
-Protocol overhead is not counted towards request and response data size.
+The base operation count for an API call is the number of 1024 byte chunks in _each_ item or collection element transfered by the request and by the response. When a request or response contains no items or elements, the user-supplied data it contains is treated as a single item.
 
 Each API has an operational complexity factor, as listed in the table below. The total operation count for an API call is the complexity factor multiplied by the base operation count.
 
@@ -52,14 +49,3 @@ This table defines the operational complexity factors for Momento Cache APIs. If
 ## API Parameter Modifiers
 
 Some APIs may be modified by the [ReadConcern parameter](/cache/learn/how-it-works/read-concern). When `ReadConcern` is set to `Consistent`, the operation cost is multiplied by an additional factor of 2.
-
-
-## Examples
-
-`Get` for one item with a 16-byte key that does not exist incurs 1 operation, because the response will be empty: `CEIL(16 / 1024) + CEIL(0 / 1024)`
-
-`GetBatch` for one hundred 1-byte elements with 16-byte keys incurs 102 operations: `CEIL(100 * 16 / 1024) + 100 * CEIL(1 / 1024)`
-
-`SetIfAbsent` has a complexity factor of 2. Writing one 1500-byte item with a 16-byte key incurs 5 operations: `CEIL(16 / 1024) + 2 * CEIL(1500 / 1024)`
-
-`DictionaryGetFields` for two 10 byte elements with 16-byte keys and the `Consistent` read concern incurs 6 operations: `2 * (CEIL(2 * 16 / 1024) + 2 * CEIL(10 / 1024))`
