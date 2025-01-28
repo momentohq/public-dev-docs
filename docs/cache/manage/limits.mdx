@@ -1,0 +1,75 @@
+---
+sidebar_label: Quotas and Limits
+sidebar_position: 9
+title: Momento Cache service quotas
+pagination_next: null
+description: Examine the namespace and item-level quotas in place with Momento Cache and discover the default and tunable values for your workload based on your support plan.
+hide_title: true
+---
+
+# Momento Cache service quotas
+
+:::info
+These limits can be adjusted. Before requesting an increase, please ensure that your account has [a registered payment method](https://console.gomomento.com/account/payment). You can then request an increase by [contacting us](https://www.gomomento.com/contact-us).
+:::
+
+## Limits
+
+<table className="customTable">
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Entity</th>
+      <th>On Demand</th>
+      <th>Provisioned</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className="highlightRow">
+      <td colspan="4"><strong>Soft limits</strong></td>
+    </tr>
+    <tr>
+      <td>Namespace count</td>
+      <td>region</td>
+      <td colspan="2" style={{textAlign: 'center'}}>3</td>
+    </tr>
+    <tr>
+      <td>Operations per second</td>
+      <td>region</td>
+      <td style={{textAlign: 'center'}}>100</td>
+      <td style={{textAlign: 'center'}}>as provisioned</td>
+    </tr>
+    <tr>
+      <td>Hot storage</td>
+      <td>region</td>
+      <td style={{textAlign: 'center'}}>100MB</td>
+      <td style={{textAlign: 'center'}}>as provisioned</td>
+    </tr>
+    <tr className="highlightRow">
+      <td colspan="4"><strong>Hard limits</strong></td>
+    </tr>
+    <tr>
+      <td>Time to live (TTL)</td>
+      <td>item</td>
+      <td style={{textAlign: 'center'}}>24 hours</td>
+      <td style={{textAlign: 'center'}}>+&infin; [^1]</td>
+    </tr>
+    <tr>
+      <td>Item size [^2]</td>
+      <td>item</td>
+      <td colspan="2" style={{textAlign: 'center'}}>5 MB</td>
+    </tr>
+    <tr>
+      <td>Collection element size</td>
+      <td><a href="../cache/develop/basics/datatypes#collection-data-types-cdts" target="_blank">element</a></td>
+      <td colspan="2" style={{textAlign: 'center'}}>128 KB</td>
+    </tr>
+    <tr>
+      <td>Operations per second (control APIs)</td>
+      <td>region</td>
+      <td colspan="2" style={{textAlign: 'center'}}>5</td>
+    </tr>
+  </tbody>
+</table>
+[^1]: Unbounded TTL is enabled when a cache uses provisioned hot storage. Provisioned hot storage may be combined with on-demand operations.
+[^2]: Item size includes both cache key and cache value.

@@ -123,7 +123,7 @@ const sidebars = {
         {
           type: 'link',
           label: 'Cache',
-          href: '/cache/limits'
+          href: '/cache/manage/limits'
         },
         {
           type: 'link',

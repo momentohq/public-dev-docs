@@ -3,7 +3,8 @@ import type { Options } from '@docusaurus/plugin-client-redirects';
 // map<from, to>
 const REDIRECTS = {
     // Useful Redirects
-    '/docs/limits': '/cache/limits',
+    '/docs/limits': '/cache/manage/limits',
+    '/cache/limits': '/cache/manage/limits',
 
     // Relocated Sections
     // former top-level pages

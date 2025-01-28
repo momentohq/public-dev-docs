@@ -12,7 +12,7 @@ import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBloc
 
 # Momento Cacheを使ったファイルの追加と取得
 
-Momento Cacheのアイテムはバイト配列なので、[アイテムあたりの上限1MB](/cache/limits)以内であれば、作成したいファイルのほとんどを簡単にキャッシュに保存することができます。
+Momento Cacheのアイテムはバイト配列なので、[アイテムあたりの上限1MB](/cache/manage/limits)以内であれば、作成したいファイルのほとんどを簡単にキャッシュに保存することができます。
 
 以下は、ファイルシステムからファイルを読み込み、そのファイルをキャッシュのアイテムに保存し、キャッシュから読み込んでからファイルシステムに書き込む例です。
 

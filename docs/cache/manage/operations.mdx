@@ -1,0 +1,51 @@
+---
+sidebar_label: Measuring Usage (Operations)
+sidebar_position: 9
+title: Momento Cache measuring usage with operations
+pagination_next: null
+description: Learn how Momento Cache meters and bills for usage based on operations.
+hide_title: true
+---
+
+# Momento Cache measures usage with operations
+
+## What is an operation?
+
+An operation is a unit of work that reflects the utilization of networking and compute power. As a request consumes more resources, the operation count will increase proportionally.
+
+The number of operations incurred by a request depends on two factors:
+- the size of user data transfered in the API call
+- the API called, plus any parameters that modify its behavior
+
+## Calculating operation cost of an API call
+
+The base operation count for an API call is the number of 1024 byte chunks in _each_ item or collection element transfered by the request and by the response. When a request or response contains no items or elements, the user-supplied data it contains is treated as a single item.
+
+Each API has an operational complexity factor, as listed in the table below. The total operation count for an API call is the complexity factor multiplied by the base operation count.
+
+All validly-authenticated API calls, including empty results or misconfigured requests, incur a minimum of 1 operation.
+
+## API Complexity Factors
+This table defines the operational complexity factors for Momento Cache APIs. If an API is not listed below, its complexity factor is 1.
+
+<table className="customTable">
+  <thead>
+    <tr>
+      <th>API Name</th>
+      <th>Complexity Factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>SetIfAbsent</td><td>2</td></tr>
+    <tr><td>SetIfPresent</td><td>2</td></tr>
+    <tr><td>SetIfEqual</td><td>2</td></tr>
+    <tr><td>SetIfNotEqual</td><td>2</td></tr>
+    <tr><td>SetIfPresentAndNotEqual</td><td>2</td></tr>
+    <tr><td>SetIfAbsentOrEqual</td><td>2</td></tr>
+  </tbody>
+</table>
+
+
+## API Parameter Modifiers
+
+Some APIs may be modified by the [ReadConcern parameter](/cache/learn/how-it-works/read-concern). When `ReadConcern` is set to `Consistent`, the operation cost is multiplied by an additional factor of 2.

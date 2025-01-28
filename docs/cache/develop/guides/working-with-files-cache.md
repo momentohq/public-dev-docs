@@ -12,7 +12,7 @@ import { SdkExampleCodeBlockImpl } from "@site/src/components/SdkExampleCodeBloc
 
 # Add and retrieve a file with Momento Cache
 
-An item in Momento Cache is a byte array, so a cache can easily store most any file you want to create, as long as it is under the [per item limit of 1MB](/cache/limits).
+An item in Momento Cache is a byte array, so a cache can easily store most any file you want to create, as long as it is under the [per item limit of 1MB](/cache/manage/limits).
 
 Here is an example of reading a file from the filesystem, saving the file to an item in a cache, reading it from the cache, and then writing it to the filesystem.
 
