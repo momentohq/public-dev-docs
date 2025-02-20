@@ -1,37 +1,38 @@
-name: Create Issue for Pull Request
+# Commeting out for now since we are not actively translating to Japanese
+# name: Create Issue for Pull Request
 
-on:
-  pull_request:
-    types: [opened, reopened]
-    branches:
-      - main
-    paths:
-      - "docs/**/*.md"
-      - "docs/**/*.mdx"
+# on:
+#   pull_request:
+#     types: [opened, reopened]
+#     branches:
+#       - main
+#     paths:
+#       - "docs/**/*.md"
+#       - "docs/**/*.mdx"
 
-jobs:
-  ja:
-    runs-on: ubuntu-latest
-    # Do not run translation on PRs from forks since they don't have access to the SIMPLEEN secret
-    if: ${{ !github.event.pull_request.head.repo.fork }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.base.sha }}
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.sha }}
-      - name: Get Changed Files
-        id: files
-        run: |
-          echo "::set-output name=list::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
-      - uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const issue = await github.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `${{ github.event.pull_request.title }} [ja]`,
-              body: `Changed Files:\n${{ github.event.pull_request.html_url }}/files \n cc: @MomentoBigFun @Yoshiitaka`
-            })
+# jobs:
+#   ja:
+#     runs-on: ubuntu-latest
+#     # Do not run translation on PRs from forks since they don't have access to the SIMPLEEN secret
+#     if: ${{ !github.event.pull_request.head.repo.fork }}
+#     steps:
+#       - uses: actions/checkout@v4
+#         with:
+#           ref: ${{ github.event.pull_request.base.sha }}
+#       - uses: actions/checkout@v4
+#         with:
+#           ref: ${{ github.sha }}
+#       - name: Get Changed Files
+#         id: files
+#         run: |
+#           echo "::set-output name=list::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
+#       - uses: actions/github-script@v3
+#         with:
+#           github-token: ${{secrets.GITHUB_TOKEN}}
+#           script: |
+#             const issue = await github.issues.create({
+#               owner: context.repo.owner,
+#               repo: context.repo.repo,
+#               title: `${{ github.event.pull_request.title }} [ja]`,
+#               body: `Changed Files:\n${{ github.event.pull_request.html_url }}/files \n cc: @MomentoBigFun @Yoshiitaka`
+#             })
