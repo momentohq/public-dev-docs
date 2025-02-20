@@ -14,43 +14,96 @@ keywords:
   - resources
   - members
   - accounts
-  - operators
+  - operator
+  - owner
+  - viewer
   - role
+  - access
+  - permissions
 ---
 
 
 # What is Account Sharing?
-Momento's Account Sharing feature enables you to collaborate and manage your resources with ease. By sharing your account, you can grant other users access to your topics, caches, and other resources.
+Momento's account sharing feature enables you to collaborate and manage access to your resources with ease. By sharing your account, you can grant other users access to your topics, caches, and other resources. You can also control the level of access each user has by assigning them roles.
 
-## How to Use Account Sharing
-To get started with Account Sharing, follow these steps:
+## Using Roles to Control Access
+The resources an account owner may share include **account** resources (e.g., account membership management and role assignment, billing and payment), **auth** resources (e.g., generating API keys and access tokens), and **data** resources (e.g., creating/deleting caches, manipulating cache data, publishing and subscribing to topics).
 
-### **Add an Operator**
+You can control the level of access to these categories of resources for each account member you invite using the following roles:
+
+- **Owner**: an owner has full access to view and modify all resources.
+- **Operator**: an operator has full access to view and modify all auth and data resources but has read-only access to account resources.
+- **Viewer**: a viewer has read-only access to all resources.
+
+## **How to Use Account Sharing as an Owner**
+
+Users with the **Owner** role enjoy full access to all of the resources in the account. These are the only users able to modify account resources-- only an **Owner** can invite other users to join an account, change other users' roles, and remove users from the account.
+
+### **Invite a User**
     - Log in to the [Momento Console](https://console.gomomento.com).
     - In the upper-right corner, click on your account info dropdown and select **Manage Account**.
 
         <img src="/img/account-sharing/manage-account.png" width="60%"/>
-    - Click on the **Add Operator** button.
+    - Click on the **Invite User** button.
 
-        <img src="/img/account-sharing/add-operator.png" width="60%"/>
-    - Enter the email address of the user you wish to add. Please ensure that the user has an existing Momento account, meaning they must have signed into the Momento console at least once using that email address.
+        <img src="/img/account-sharing/invite-user.png" width="90%"/>
+    - Enter the email address of the user you wish to invite, choose the role you want to assign to them, and click **Invite**. They will receive an email invitation to join your account.
 
-        <img src="/img/account-sharing/enter-email-address.png" width="60%"/>
-    - Click **Add** to add the user to your account.
+        <img src="/img/account-sharing/invite-user-modal.png" width="60%"/>
 
-        <img src="/img/account-sharing/confirm-add-operator.png" width="60%"/>
-
-### **Remove an Operator**
+### **View and Revoke Pending Account Invitations**
     - Log in to the [Momento Console](https://console.gomomento.com).
     - In the upper-right corner, click on your account info dropdown and select **Manage Account**.
 
         <img src="/img/account-sharing/manage-account.png" width="60%"/>
-    - Find the user you want to remove and click on the **Remove** button. You cannot remove yourself from the account if you are the account owner.
+    - Click on the **Pending Invitations** tab to view all outstanding user invitations. You can use the **Revoke** button to cancel a pending invitation.
 
-        <img src="/img/account-sharing/remove-operator.png" width="60%"/>
+        <img src="/img/account-sharing/pending-account-invitations.png" width="90%"/>
+
+### **Change a User's Role**
+    - Log in to the [Momento Console](https://console.gomomento.com).
+    - In the upper-right corner, click on your account info dropdown and select **Manage Account**.
+
+        <img src="/img/account-sharing/manage-account.png" width="60%"/>
+    - On the **Account Members** tab, find the user you want to change the role for and click on the edit icon next to their role.
+
+        <img src="/img/account-sharing/change-role-edit-button.png" width="90%"/>
+    - Select the new role you want to assign to the user and click **Save**.
+
+        <img src="/img/account-sharing/role-change-menu.png" width="90%"/>
+
+### **Remove a User**
+    - Log in to the [Momento Console](https://console.gomomento.com).
+    - In the upper-right corner, click on your account info dropdown and select **Manage Account**.
+
+        <img src="/img/account-sharing/manage-account.png" width="60%"/>
+    - Find the user you want to remove and click on the **Remove** button.
+
+        <img src="/img/account-sharing/remove-user.png" width="90%"/>
     - Confirm the removal by clicking **Remove** in the dialog box.
 
-        <img src="/img/account-sharing/confirm-remove-operator.png" width="60%"/>
+        <img src="/img/account-sharing/confirm-remove-user.png" width="60%"/>
+
+## **How to Use Account Sharing as an Account Member**
+
+After being invited to join an account, you can accept the invitation and switch between your accounts in the Momento Console. You can also leave an account if you no longer need access to it.
+
+### **Accept an Invitation**
+    - When a Momento account owner invites you to join an account, you will receive an email notification.
+    - Click on the **Join Account** button in the email to navigate to the Momento console.
+    - Log in to the console using the email address that received the invitation.
+    - After logging in, you will be presented with a modal dialog displaying a list of accounts you have been invited to.
+
+        <img src="/img/account-sharing/pending-user-invitations-modal.png" width="60%"/>
+
+    - Follow the link to the invitations page in the dialog or visit it later by clicking on your account info dropdown and selecting **Manage User**.
+
+        <img src="/img/account-sharing/account-menu-manage-user.png"/>
+
+    - Click on the **Pending Invitations** tab to view all of your outstanding invitations to accounts. You can use the **Accept** button to join an account or the **Decline** button to decline and remove the invitation.
+
+        <img src="/img/account-sharing/pending-user-invitations-list.png" width="90%"/>
+
 
 ### **Switch Accounts**
     - If you are added to multiple accounts, you can switch between accounts inside the Momento Console.
@@ -62,10 +115,36 @@ To get started with Account Sharing, follow these steps:
 
         <img src="/img/account-sharing/select-account.png" width="60%"/>
 
+### **Leave an Account**
+
+    - If you no longer need access to an acount, you can leave it.
+    - Log in to the [Momento Console](https://console.gomomento.com).
+    - In the upper-right corner, click on your account info dropdown and select **Manage Account**.
+
+        <img src="/img/account-sharing/manage-account.png" width="60%"/>
+
+    - Click on the **Account Members** tab to view all members of the account.
+    - Find your user entry and click on the **Leave** button.
+
+        <img src="/img/account-sharing/leave-account.png" width="90%"/>
+
+    - **Note**: users with the **Owner** role may not leave an account. If you are an account owner and wish to leave the account, you must have another **Owner** remove you or change your role so you can leave the account.
+
+## **Roles and the Console Interface**
+
+Depending on your role in an account, different pages and user interface elements may be inaccessible to you. For example, because only users with the **Owner** role are allowed to access account resources, the buttons and links that modify account data on the **Manage Account** page will be disabled for users with the **Operator** or **Viewer** roles. User interface elements highlighted in the image below are disabled for non-**Owner** users.
+
+    <img src="/img/account-sharing/disabled-actions.png" width="90%"/>
+
+Hovering over any of the highlighted elements on that page will display a tooltip explaining that the element is disabled due to insufficient permissions.
+
+    <img src="/img/account-sharing/unauthorized-tooltip.png" width="60%"/>
+
+Users with the **Viewer** role can view account, auth, and data resources but can not modify them. These users will encounter additional disabled elements throughout the console interface, for example the **Create Cache** button on the **Caches** page. Other console pages, such as the one for generating API keys and tokens, are inaccessible to **Viewer** users. Links to these pages are styled to signify that they are not clickable.
+
+    <img src="/img/account-sharing/landing-page-disabled-links.png" width="90%"/>
+
+
 ## Important Notes
-- **Existing Momento Account**: You can only add operators who have an existing Momento account and have signed into the Momento console at least once using the email address you are adding.
-- **Operator Limit**: You can add up to 10 operators to your account. If you reach this limit, you will need to remove an existing operator before adding a new one, or you can also request a higher limit by contacting Momento at support@momentohq.com.
-- **Full Access**: Operators have full access to the account's resources, including topics, caches, and other resources. They can perform actions like creating, updating, and deleting resources.
-- **Removing Operators**: Any operator can remove other operators from the account. However, the account owner cannot be removed. If you are not the account owner, you can remove yourself from the account.
-- **Adding Operators**: Any operator can add other operators to the account. To add an operator to your account, you need to know the email address associated with the user's Momento account.
-- **Adding Another Owner**: To add another owner to your account, you need to contact Momento at support@momentohq.com.
+- **Member Limit**: You can have up to 10 members in your account. If you reach this limit, you will need to remove an existing user before adding a new one, or you can also request a higher limit by contacting Momento at support@momentohq.com.
+- **Removing Owners**: Any **Owner** can remove any non-**Owner** account member. However, users with the **Owner** role cannot be removed from an account. To remove an account **Owner**, another **Owner** must first change their role.
