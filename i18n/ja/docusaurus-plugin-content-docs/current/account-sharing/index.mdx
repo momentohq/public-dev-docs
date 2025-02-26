@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
-sidebar_label: Account Sharing
-title: Account Sharing
-description: Learn how to share your Momento account with other users.
+sidebar_label: アカウント共有
+title: アカウント共有
+description: Momentoアカウントを他のユーザーと共有する方法を学びましょう。
 pagination_next: null
 hide_title: true
 keywords:
@@ -14,58 +14,133 @@ keywords:
   - resources
   - members
   - accounts
-  - operators
+  - operator
+  - owner
+  - viewer
   - role
+  - access
+  - permissions
 ---
 
+# アカウント共有とは？
+Momentoのアカウント共有機能により、リソースへのアクセスを簡単に管理し、コラボレーションすることができます。アカウントを共有することで、他のユーザーにトピック、キャッシュ、その他のリソースへのアクセスを許可できます。また、ロールを割り当てることで、各ユーザーのアクセスレベルを制御することもできます。
 
-# アカウント共有とは何ですか？
-Momento のアカウント共有機能を使用すると、コラボレーションやリソースの管理を簡単に行うことができます。アカウントを共有することで、トピック、キャッシュ、その他のリソースへのアクセスを他のユーザーに許可できます。
+## ロールを使用したアクセス制御
+アカウント所有者が共有できるリソースには、**アカウント**リソース（アカウントメンバーシップ管理とロール割り当て、課金と支払いなど）、**認証**リソース（APIキーとアクセストークンの生成など）、**データ**リソース（キャッシュの作成/削除、キャッシュデータの操作、トピックへの公開と購読）があります。
 
-## アカウント共有の使い方
-アカウント共有を開始するには、以下の手順に従ってください：
+これらのリソースカテゴリへのアクセスレベルは、招待する各アカウントメンバーに対して、以下のロールを使用して制御できます：
 
-### **オペレーターの追加**
-    - [Momento Console](https://console.gomomento.com)にログインします
-    - 右上のアカウント情報ドロップダウンをクリックし、**アカウント管理**を選択します
+- **所有者（Owner）**：所有者はすべてのリソースの表示と変更に対するフルアクセス権を持ちます。
+- **オペレーター（Operator）**：オペレーターは認証とデータリソースの表示と変更に対するフルアクセス権を持ちますが、アカウントリソースは読み取り専用です。
+- **閲覧者（Viewer）**：閲覧者はすべてのリソースに対して読み取り専用のアクセス権を持ちます。
 
-        <img src="/img/account-sharing/manage-account.png" width="60%"/>
-    - **オペレーターの追加**ボタンをクリックしてください
+## **所有者としてのアカウント共有の使用方法**
 
-        <img src="/img/account-sharing/add-operator.png" width="60%"/>
-    - 追加したいユーザーのメールアドレスを入力します。ユーザーが既存の Momento アカウントを持っていることを確認してください。つまり、そのメールアドレスを使用して少なくとも一度は Momento コンソールにサインインしている必要があります。
+**所有者**ロールを持つユーザーは、アカウント内のすべてのリソースへのフルアクセス権を持ちます。これらのユーザーのみがアカウントリソースを変更できます - **所有者**のみが他のユーザーをアカウントに招待し、他のユーザーのロールを変更し、アカウントからユーザーを削除できます。
 
-        <img src="/img/account-sharing/enter-email-address.png" width="60%"/>
-    - **Add**をクリックして、ユーザーをアカウントに追加します。
+### **ユーザーを招待する**
+    - [Momento Console](https://console.gomomento.com)にログインします。
+    - 右上隅のアカウント情報ドロップダウンをクリックし、**アカウントの管理**を選択します。
 
-        <img src="/img/account-sharing/confirm-add-operator.png" width="60%"/>
+        <img src="img/account-sharing/manage-account.png" width="60%"/>
+    - **ユーザーを招待**ボタンをクリックします。
 
-### **オペレーターの削除**
-    - [Momento Console](https://console.gomomento.com)にログインします
-    - 右上のアカウント情報ドロップダウンをクリックし、**アカウント管理**を選択します
+        <img src="img/account-sharing/invite-user.png" width="90%"/>
+    - 招待したいユーザーのメールアドレスを入力し、割り当てたいロールを選択して、**招待**をクリックします。招待メールが送信されます。
 
-        <img src="/img/account-sharing/manage-account.png" width="60%"/>
-    - 削除したいユーザーを見つけ、**削除**ボタンをクリックしてください。アカウントの所有者である場合、そのアカウントから自分自身を削除することはできません。
+        <img src="img/account-sharing/invite-user-modal.png" width="60%"/>
 
-        <img src="/img/account-sharing/remove-operator.png" width="60%"/>
-    - ダイアログボックスの **Remove** をクリックして、削除を確認します。
+### **保留中のアカウント招待を表示・取り消す**
+    - [Momento Console](https://console.gomomento.com)にログインします。
+    - 右上隅のアカウント情報ドロップダウンをクリックし、**アカウントの管理**を選択します。
 
-        <img src="/img/account-sharing/confirm-remove-operator.png" width="60%"/>
+        <img src="img/account-sharing/manage-account.png" width="60%"/>
+    - **保留中の招待**タブをクリックして、すべての保留中のユーザー招待を表示します。**取り消し**ボタンを使用して、保留中の招待をキャンセルできます。
 
-### **アカウント切り替え**
-    - 複数のアカウントに追加されている場合、Momentoコンソール内でアカウントを切り替えることができます
-    - [Momento Console](https://console.gomomento.com)にログインします
-    - 右上のアカウント情報ドロップダウンをクリックし、**アカウント切り替え**を選択します
+        <img src="img/account-sharing/pending-account-invitations.png" width="90%"/>
 
-        <img src="/img/account-sharing/switch-account.png" width="60%"/>
-    - リストから切り替えたいアカウントを選択します
+### **ユーザーのロールを変更する**
+    - [Momento Console](https://console.gomomento.com)にログインします。
+    - 右上隅のアカウント情報ドロップダウンをクリックし、**アカウントの管理**を選択します。
 
-        <img src="/img/account-sharing/select-account.png" width="60%"/>
+        <img src="img/account-sharing/manage-account.png" width="60%"/>
+    - **アカウントメンバー**タブで、ロールを変更したいユーザーを見つけ、そのロールの横にある編集アイコンをクリックします。
+
+        <img src="img/account-sharing/change-role-edit-button.png" width="90%"/>
+    - ユーザーに割り当てたい新しいロールを選択し、**保存**をクリックします。
+
+        <img src="img/account-sharing/role-change-menu.png" width="90%"/>
+
+### **ユーザーを削除する**
+    - [Momento Console](https://console.gomomento.com)にログインします。
+    - 右上隅のアカウント情報ドロップダウンをクリックし、**アカウントの管理**を選択します。
+
+        <img src="img/account-sharing/manage-account.png" width="60%"/>
+    - 削除したいユーザーを見つけ、**削除**ボタンをクリックします。
+
+        <img src="img/account-sharing/remove-user.png" width="90%"/>
+    - ダイアログボックスで**削除**をクリックして、削除を確認します。
+
+        <img src="img/account-sharing/confirm-remove-user.png" width="60%"/>
+
+## **アカウントメンバーとしてのアカウント共有の使用方法**
+
+アカウントに参加するよう招待された後、招待を受け入れ、Momento Console内でアカウントを切り替えることができます。また、アクセスが不要になった場合はアカウントから退出することもできます。
+
+### **招待を受け入れる**
+    - Momentoアカウント所有者からアカウントへの参加招待を受けると、メール通知が届きます。
+    - メール内の**アカウントに参加**ボタンをクリックして、Momentoコンソールに移動します。
+    - 招待を受け取ったメールアドレスでコンソールにログインします。
+    - ログイン後、招待されたアカウントのリストを表示するモーダルダイアログが表示されます。
+
+        <img src="img/account-sharing/pending-user-invitations-modal.png" width="60%"/>
+
+    - ダイアログ内の招待ページへのリンクをクリックするか、後でアカウント情報ドロップダウンから**ユーザーの管理**を選択してアクセスできます。
+
+        <img src="img/account-sharing/account-menu-manage-user.png"/>
+
+    - **保留中の招待**タブをクリックして、すべての保留中のアカウント招待を表示します。**承認**ボタンでアカウントに参加するか、**拒否**ボタンで招待を拒否して削除できます。
+
+        <img src="img/account-sharing/pending-user-invitations-list.png" width="90%"/>
+
+### **アカウントを切り替える**
+    - 複数のアカウントに追加されている場合、Momento Console内でアカウントを切り替えることができます。
+    - [Momento Console](https://console.gomomento.com)にログインします。
+    - 右上隅のアカウント情報ドロップダウンをクリックし、**アカウントの切り替え**を選択します。
+
+        <img src="img/account-sharing/switch-account.png" width="60%"/>
+    - リストから切り替えたいアカウントを選択します。
+
+        <img src="img/account-sharing/select-account.png" width="60%"/>
+
+### **アカウントから退出する**
+    - アカウントへのアクセスが不要になった場合は、退出することができます。
+    - [Momento Console](https://console.gomomento.com)にログインします。
+    - 右上隅のアカウント情報ドロップダウンをクリックし、**アカウントの管理**を選択します。
+
+        <img src="img/account-sharing/manage-account.png" width="60%"/>
+
+    - **アカウントメンバー**タブをクリックして、すべてのアカウントメンバーを表示します。
+    - 自分のユーザーエントリを見つけ、**退出**ボタンをクリックします。
+
+        <img src="img/account-sharing/leave-account.png" width="90%"/>
+
+    - **注意**：**所有者**ロールを持つユーザーはアカウントから退出できません。アカウント所有者が退出したい場合は、別の**所有者**に削除してもらうか、ロールを変更してもらう必要があります。
+
+## **ロールとコンソールインターフェース**
+
+アカウントでのロールに応じて、異なるページやユーザーインターフェース要素にアクセスできない場合があります。例えば、**所有者**ロールを持つユーザーのみがアカウントリソースにアクセスできるため、**アカウントの管理**ページでアカウントデータを変更するボタンやリンクは、**オペレーター**または**閲覧者**ロールを持つユーザーには無効化されています。以下の画像で強調表示されている要素は、**所有者**以外のユーザーには無効化されています。
+
+    <img src="img/account-sharing/disabled-actions.png" width="90%"/>
+
+そのページで強調表示された要素にカーソルを合わせると、権限不足のため要素が無効化されていることを説明するツールチップが表示されます。
+
+    <img src="img/account-sharing/unauthorized-tooltip.png" width="60%"/>
+
+**閲覧者**ロールを持つユーザーは、アカウント、認証、データリソースを表示できますが、変更することはできません。これらのユーザーは、コンソールインターフェース全体で追加の無効化された要素に遭遇します。例えば、**キャッシュ**ページの**キャッシュを作成**ボタンなどです。APIキーとトークンを生成するページなど、その他のコンソールページには**閲覧者**ユーザーはアクセスできません。これらのページへのリンクは、クリックできないことを示すスタイルが適用されています。
+
+    <img src="img/account-sharing/landing-page-disabled-links.png" width="90%"/>
 
 ## 重要な注意事項
-- **既存の Momento アカウント**： **既存の Momento アカウント**: オペレーターを追加できるのは、既存の Momento アカウントを持ち、追加するメールアドレスを使用して Momento コンソールに少なくとも 1 回サインインしたことがある人だけです。
-- **オペレーターの制限**： アカウントに追加できるオペレーターは 10 名までです。この制限に達した場合は、新しいオペレータを追加する前に既存のオペレータを削除する必要があります。また、Momento（support@momentohq.com）に連絡して、より高い制限を要求することもできます。
-- **フル アクセス**： オペレーターは、トピック、キャッシュ、その他のリソースを含むアカウントのリソースにフル アクセスできます。オペレーターは、リソースの作成、更新、削除などのアクションを実行できます。
-- **オペレータの削除**： どのオペレータも、アカウントから他のオペレータを削除できます。ただし、アカウント所有者を削除することはできません。アカウント所有者でない場合は、アカウントから自分自身を削除できます。
-- **オペレーターの追加** オペレーターは誰でも、他のオペレーターをアカウントに追加することができます。アカウントにオペレータを追加するには、そのユーザーの Momento アカウントに関連付けられている電子メール アドレスを知っている必要があります。
-- **別の所有者の追加**： アカウントに別の所有者を追加するには、Momento（support@momentohq.com）に連絡する必要があります。
+- **メンバー制限**：アカウントには最大10人のメンバーを持つことができます。この制限に達した場合、新しいユーザーを追加する前に既存のユーザーを削除する必要があります。また、support@momentohq.comにMomentoに連絡して、より高い制限を要求することもできます。
+- **所有者の削除**：任意の**所有者**は**所有者**以外のアカウントメンバーを削除できます。ただし、**所有者**ロールを持つユーザーはアカウントから削除できません。アカウント**所有者**を削除するには、別の**所有者**が最初にそのロールを変更する必要があります。

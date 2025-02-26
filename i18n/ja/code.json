@@ -377,5 +377,17 @@
   "publishMessagesToSlack": {
     "message": "Slackにメッセージを公開する",
     "description": "Publish messages to Slack"
+  },
+  "AccountSharing": {
+    "message": "アカウント共有",
+    "description": "Account Sharing"
+  },
+  "momentoAccountSharingFeature": {
+    "message": "Momentoはアカウント共有に対応し、チームでの管理とコラボレーションが容易になりました。新しいアカウント共有機能で、アクセス管理とワークフローの改善を実現します。設定方法と効果的な使用方法についての詳細をご確認ください。",
+    "description": "Momento now supports account sharing, making it easy to manage and collaborate with your team. Simplify access and improve workflows with our new account-sharing functionality. Learn more about how to set it up and use it effectively."
+  },
+  "learnMore": {
+    "message": "詳細を見る",
+    "description": "Learn more"
   }
 }
