@@ -7,6 +7,7 @@ import { LinkCard } from '@site/src/components/LinkCard';
 import Translate from '@docusaurus/Translate';
 
 import styles from './index.module.css';
+import Link from '@docusaurus/Link';
 
 function RotatingHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -49,51 +50,51 @@ export default function Home(): JSX.Element {
               <div>
                 <h2>Cache</h2>
                 <ul className={styles.columnList}>
-                  <li><a href="/cache/getting-started"><Translate id="gettingStarted">Getting started</Translate></a>
+                  <li><Link to="/cache/getting-started"><Translate id="gettingStarted">Getting started</Translate></Link>
                   </li>
-                  <li><a href="/cache/develop/api-reference"><Translate id="apiReference">API reference</Translate></a>
+                  <li><Link to="/cache/develop/api-reference"><Translate id="apiReference">API reference</Translate></Link>
                   </li>
-                  <li><a href="/cache/integrations/redis-client-compatibility"><Translate
-                      id="dropInReplacementsForRedis">Drop-in replacements for Redis</Translate></a></li>
-                  <li><a href="/cache/develop/guides/working-with-files-cache"><Translate id="howToCacheFiles">How to
-                    cache files</Translate></a></li>
+                  <li><Link to="/cache/integrations/redis-client-compatibility"><Translate
+                      id="dropInReplacementsForRedis">Drop-in replacements for Redis</Translate></Link></li>
+                  <li><Link to="/cache/develop/guides/working-with-files-cache"><Translate id="howToCacheFiles">How to
+                    cache files</Translate></Link></li>
                 </ul>
               </div>
               <div>
                 <h2>Topics</h2>
                 <ul className={styles.columnList}>
-                  <li><a href="/topics"><Translate id="aboutOurServerlessEventBus">About our serverless event
-                    bus</Translate></a></li>
-                  <li><a href="/topics/integrations/lambda-handler"><Translate id="integrateWithAmazonEventBridge">Integrate
-                    with Amazon EventBridge</Translate></a></li>
-                  <li><a href="/topics/webhooks"><Translate id="webhooksOverview">Webhooks overview</Translate></a></li>
+                  <li><Link to="/topics"><Translate id="aboutOurServerlessEventBus">About our serverless event
+                    bus</Translate></Link></li>
+                  <li><Link to="/topics/integrations/lambda-handler"><Translate id="integrateWithAmazonEventBridge">Integrate
+                    with Amazon EventBridge</Translate></Link></li>
+                  <li><Link to="/topics/webhooks/overview"><Translate id="webhooksOverview">Webhooks overview</Translate></Link></li>
                   <li>
 
-                    <a href="https://www.gomomento.com/blog/how-to-create-a-slack-workflow-with-webhooks-in-momento-topics"
+                    <Link to="https://www.gomomento.com/blog/how-to-create-a-slack-workflow-with-webhooks-in-momento-topics"
                        target='_blank'>
                       <div className={styles.openInNew}>
                         <span><Translate id="publishMessagesToSlack">Publish messages to Slack</Translate></span>
                         <IoOpenOutline/>
                       </div>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
               <div>
                 <h2><Translate id="forDevelopers">For developers</Translate></h2>
                 <ul className={styles.columnList}>
-                  <li><a href="/platform/sdks"><Translate id="availableSDKs">Available SDKs</Translate></a></li>
-                  <li><a href="/cache/develop/authentication"><Translate id="authenticationAndAccessControl">Authentication
-                    and access control</Translate></a></li>
-                  <li><a href="/cache/develop/basics/error-handling-production-readiness"><Translate
-                      id="properlyHandlingErrorsInMomento">Properly handling errors in Momento</Translate></a></li>
+                  <li><Link to="/platform/sdks"><Translate id="availableSDKs">Available SDKs</Translate></Link></li>
+                  <li><Link to="/cache/develop/authentication"><Translate id="authenticationAndAccessControl">Authentication
+                    and access control</Translate></Link></li>
+                  <li><Link to="/cache/develop/basics/error-handling-production-readiness"><Translate
+                      id="properlyHandlingErrorsInMomento">Properly handling errors in Momento</Translate></Link></li>
                   <li>
-                    <a href="https://aws.amazon.com/marketplace/pp/prodview-tntv64zqgaqm2" target="_blank">
+                    <Link to="https://aws.amazon.com/marketplace/pp/prodview-tntv64zqgaqm2" target="_blank">
                       <div className={styles.openInNew}>
                         <span><Translate id="momentoOnAWSMarketplace">Momento on AWS Marketplace</Translate></span>
                         <IoOpenOutline/>
                       </div>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -128,8 +129,8 @@ export default function Home(): JSX.Element {
                     Android
                     development, iOS apps, and 10+ server-side languages. Looking for tuned clients for your production
                     environment or Lambda function? Our SDKs have</Translate>
-                  <a href="/cache/develop/basics/client-configuration-objects#pre-built-configurations"><Translate
-                      id="optimizedConfigurations">optimized configurations</Translate></a> <Translate
+                  <Link to="/cache/develop/basics/client-configuration-objects#pre-built-configurations"><Translate
+                      id="optimizedConfigurations">optimized configurations</Translate></Link> <Translate
                     id="forAnywhereDevelopmentTakesYou">for anywhere development takes you.</Translate>
                 </p>
               </div>
@@ -180,9 +181,9 @@ export default function Home(): JSX.Element {
             <p className={styles.highlightedDescription}>
               <Translate id="momentoAccountSharingFeature">Momento now supports account sharing, making it easy to manage and collaborate with your team. Simplify access and improve workflows with our new account-sharing functionality. Learn more about how to set it up and use it effectively.</Translate>
             </p>
-            <a href="/account-sharing" className={styles.learnMoreLink}>
+            <Link to="/account-sharing" className={styles.learnMoreLink}>
               <Translate id="learnMore">Learn More</Translate>
-            </a>
+            </Link>
           </div>
         </div>
       </main>
