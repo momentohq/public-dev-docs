@@ -65,8 +65,10 @@ A function is invoked by sending an HTTPS request to a Momento-generated endpoin
 
 Each function invocation includes a structured JSON payload that carries the data to be processed. Functions dynamically process batched data within the execution environment, allowing them to operate on multiple related events at once without requiring clients to batch messages manually.
 
+When a function is invoked, the request is processed within the Momento execution environment, which optimizes for ultra-fast performance. Unlike traditional compute models, all function instances share global memory, allowing efficient state management and reducing redundant computations. This results in faster execution and lower costs, especially in high-frequency workloads.
+
 ### 2. Execution
-Once authenticated, the request is forwarded to a WebAssembly (WASM) execution environment. The function is executed with an extreme performance target of *2-3 milliseconds per invocation*.
+Once authenticated, the request is forwarded to a WebAssembly (WASM) execution environment. The function is executed with an extreme performance target of *5 milliseconds per invocation*.
 
 During execution, the function:
 - Processes and transforms data based on application logic.
