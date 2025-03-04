@@ -29,14 +29,14 @@ graph TD;
         A4[Device N] --> Gateway
     end
 
-    Gateway[Momento Gateway] -->|Invoke Function| Function[Momento Function (WASM Execution)];
+    Gateway[Momento Gateway] -->|Invoke Function| Function["Momento Function (WASM)"];
 
     Function -->|Write Data| Cache[Momento Cache];
     Function -->|Publish Event| Topics[Momento Topics];
-    Function -->|Store Batch| S3[Amazon S3 (Parquet)];
+    Function -->|Store Batch| S3[Amazon S3];
     Function -->|Query AI Models| Bedrock[Amazon Bedrock];
 
-    Gateway -.->|External Authentication| Auth[API Key / Session Token];
+    Gateway -.->|Momento Authentication| Auth[API Key / Session Token];
 ```
 One of the defining characteristics of Momento Functions is massive parallel execution. There are no concurrency limits, meaning functions can scale instantly to process millions of requests per second. Combined with an optimized batching model, this allows applications to efficiently handle high-frequency data streams, from telemetry ingestion and gaming analytics to media event tracking and financial transaction processing.
 
