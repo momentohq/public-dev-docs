@@ -1,0 +1,57 @@
+---
+sidebar_position: 1
+sidebar_label: Overview
+title: Momento Functions
+description: Process real-time data at massive scale with high-performance Momento Functions.
+hide_title: true
+slug: /functions
+keywords:
+  - momento
+  - functions
+  - wasm
+  - real-time processing
+  - event-driven
+  - serverless
+---
+
+# Momento Functions
+*Momento Functions* provide a high-throughput compute layer designed for event-driven applications at massive scale. Whether you're analyzing millions of telemetry events per second, processing real-time financial transactions, or enhancing AI-driven workflows, Momento Functions let you act on data instantly—without managing infrastructure.
+
+Unlike general-purpose serverless platforms, Momento Functions prioritize extreme performance and seamless integration with [Momento Cache](/cache), [Momento Topics](/topics), [Amazon S3](/functions/integrations/s3), and [Amazon Bedrock](/functions/integrations/bedrock).
+
+:::note
+Momento Functions execute **synchronously**, returning results immediately upon invocation. Streaming responses **are not supported**.
+:::
+
+```mermaid
+mindmap
+  root((Momento Functions))
+    (**High Performance**)
+      (2-3ms execution time)
+      (Designed for real-time workloads)
+    (**Massive Scale**)
+      (No concurrency limits)
+      (Process millions of events per second)
+    (**Batch processing**)
+      (Dynamic event batching)
+      (Efficient aggregation & data processing)
+    (**Integrations**)
+      (Amazon S3)
+      (Momento Topics)
+      (Momento Cache)
+      (Amazon Bedrock)
+```
+
+## What Can You Build?
+
+**Live Analytics & Telemetry**
+Process and aggregate **millions of IoT signals or telemetry beacons per second** to power dashboards and automated decision-making.
+
+**Fraud Detection & Financial Transactions**
+Detect **anomalous spending patterns in real time**, flag suspicious transactions, and protect users from fraud **as events occur**.
+
+**AI-Powered Data Processing**
+Enrich event streams with **AI-generated insights** by dynamically invoking **Amazon Bedrock models** at scale.
+
+**Media & Entertainment Optimization**
+Analyze **viewer engagement in real time**, dynamically optimize **content delivery**, and improve **ad targeting** during live events.
