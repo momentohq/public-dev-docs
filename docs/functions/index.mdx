@@ -14,44 +14,46 @@ keywords:
   - serverless
 ---
 
-# Momento Functions
-*Momento Functions* provide a high-throughput compute layer designed for event-driven applications at massive scale. Whether you're analyzing millions of telemetry events per second, processing real-time financial transactions, or enhancing AI-driven workflows, Momento Functions let you act on data instantly—without managing infrastructure.
+# *Momento Functions*
 
-Unlike general-purpose serverless platforms, Momento Functions prioritize extreme performance and seamless integration with [Momento Cache](/cache), [Momento Topics](/topics), [Amazon S3](/functions/integrations/amazon-s3), and [Amazon Bedrock](/functions/integrations/amazon-bedrock).
+*Momento Functions* are a high-speed compute layer designed for processing massive amounts of real-time data. Whether you're aggregating IoT sensor data, handling financial transactions, or enriching event streams with AI, *Momento Functions* allow you to process, transform, and act on data instantly—without managing infrastructure.
+
+Built for extreme scale and performance, functions offer low-latency execution and shared global memory across all running function instances. Unlike general-purpose serverless compute, they do not execute in isolation, allowing all instances of a function to share state for efficient data processing.
 
 ```mermaid
 mindmap
   root((Momento Functions))
-    (**Accelerated Execution**)
-      (5ms SLA for ultra-fast performance)
+    (Fast Execution)
+      (5ms SLA for ultra-fast processing)
       (10x faster, 10x cheaper)
-    (**Global Memory**)
-      (Shared across all function instances)
+    (Shared Global Memory)
+      (All function instances share state)
       (Persistent between executions)
-    (**Batch Processing**)
-      (Dynamic event batching)
-      (Efficient aggregation & data transformation)
-    (**Integrations**)
+    (Batch Processing)
+      (Dynamically process batched events)
+      (Seamless data aggregation)
+    (Seamless Integrations)
       (Amazon S3)
       (Momento Topics)
       (Momento Cache)
       (Amazon Bedrock)
-
 ```
 
-## What makes Momento Functions different?
-Traditional serverless platforms struggle with high-frequency event processing because they execute in isolation and require manual coordination for batching. Momento Functions remove these barriers by allowing functions to access batched events dynamically and fan out operations seamlessly. This makes them ideal for high-throughput real-time workloads without the overhead of managing state externally.
+## Why use Momento Functions?
+Most serverless platforms run functions in complete isolation, requiring external coordination to share data across executions. *Momento Functions* eliminate this bottleneck by allowing function instances to share global memory, making state management easier and improving performance at scale.
 
-## What Can You Build?
+With no concurrency limits, millions of invocations per second can dynamically access batched data, fan out operations, and store insights in memory for future function calls—all without external databases or caches.
+
+## What can you build?
 
 ### Live analytics and telemetry
-Process and aggregate millions of IoT signals or telemetry beacons per second to power dashboards and automated decision-making.
+Aggregate millions of IoT sensor readings or telemetry beacons per second to power dashboards and automate real-time decision-making.
 
 ### Fraud detection and financial transactions
-Detect anomalous spending patterns in real time, flag suspicious transactions, and protect users from fraud as events occur.
+Analyze past transactions stored in shared global memory to detect anomalies, flag suspicious activity, and improve fraud detection accuracy.
 
 ### AI-powered data processing
-Enrich event streams with AI-generated insights by dynamically invoking Amazon Bedrock models at scale.
+Enrich real-time event streams by invoking Amazon Bedrock AI models, allowing intelligent decision-making at scale.
 
 ### Media and entertainment optimization
-Analyze viewer engagement in real time, dynamically optimize content delivery, and improve ad targeting during live events.
+Analyze viewer engagement data in real-time and dynamically optimize content delivery to improve user experience.
