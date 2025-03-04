@@ -1,0 +1,62 @@
+---
+sidebar_position: 1
+sidebar_label: What is it?
+title: What is Momento Functions?
+description: Discover Momento Functions - a high-performance compute layer for real-time data processing at massive scale.
+hide_title: true
+keywords:
+  - momento
+  - functions
+  - serverless
+  - ETL
+  - real-time processing
+  - telemetry
+  - wasm
+---
+
+# What is Momento Functions?
+
+Momento Functions provide a high-performance compute layer for transforming, aggregating, and processing real-time data at massive scale. Designed for extreme throughput, functions operate in the 2-3 millisecond execution range, enabling applications to handle extremely large volumes of event data with minimal processing overhead. Unlike general-purpose serverless platforms, *Momento Functions* prioritize high-volume event processing, making them ideal for batching and exploding operations that optimize data movement across distributed systems.
+
+Functions execute in a WebAssembly (WASM) environment and are invoked through an HTTPS endpoint. They can process incoming data, transform it, and write outputs directly to [Momento Cache](/cache), [Momento Topics](/topics), or external services like [Amazon S3](/functions/integrations/amazon-s3) and [Amazon Bedrock](/functions/integrations/amazon-bedrock). This architecture enables real-time telemetry aggregation, event stream enrichment, and high-throughput ETL workloads without the complexity of managing infrastructure.
+
+```mermaid
+graph TD;
+    subgraph Clients[Client Devices / Services]
+        A1[Device 1] --> Gateway
+        A2[Device 2] --> Gateway
+        A3[Device 3] --> Gateway
+        A4[Device N] --> Gateway
+    end
+
+    Gateway[Momento Gateway] -->|Invoke Function| Function[Momento Function (WASM Execution)];
+
+    Function -->|Write Data| Cache[Momento Cache];
+    Function -->|Publish Event| Topics[Momento Topics];
+    Function -->|Store Batch| S3[Amazon S3 (Parquet)];
+    Function -->|Query AI Models| Bedrock[Amazon Bedrock];
+
+    Gateway -.->|External Authentication| Auth[API Key / Session Token];
+```
+One of the defining characteristics of Momento Functions is massive parallel execution. There are no concurrency limits, meaning functions can scale instantly to process millions of requests per second. Combined with an optimized batching model, this allows applications to efficiently handle high-frequency data streams, from telemetry ingestion and gaming analytics to media event tracking and financial transaction processing.
+
+By leveraging Momento's real-time data platform, functions provide an efficient alternative to traditional ETL systems. Instead of processing event data in large batch jobs, Momento Functions enable *in-line transformation*, allowing businesses to act on real-time insights as events occur. Whether it's aggregating user interactions, normalizing telemetry, or enriching streaming data, functions serve as a critical component in modern event-driven architectures.
+
+```mdx-code-block
+import { CardGrid } from '@site/src/components/CardGrid';
+import { LinkCard } from '@site/src/components/LinkCard';
+
+<CardGrid>
+  <LinkCard
+    title="How it works"
+    link="/functions/overview/how-it-works"
+    description="Learn more about how Momento Functions work"
+    />
+
+  <LinkCard
+    title="Get started"
+    link="/functions/overview/getting-started"
+    description="Ready to start building? Let's go!"
+    />
+</CardGrid>
+```

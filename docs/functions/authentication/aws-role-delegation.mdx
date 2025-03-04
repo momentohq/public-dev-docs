@@ -1,0 +1,137 @@
+---
+sidebar_position: 2
+sidebar_label: AWS Role Delegation
+title: Configuring AWS role delegation for Momento Functions
+description: Learn how to configure AWS trust relationships to enable Momento Functions to access Amazon S3 and Bedrock in your account.
+hide_title: true
+keywords:
+  - momento
+  - functions
+  - authentication
+  - AWS IAM
+  - role delegation
+  - assume role
+  - permissions
+---
+
+# Configuring AWS role delegation for Momento Functions
+To allow *Momento Functions* to access Amazon S3 or Amazon Bedrock, you need to configure a trust relationship between your AWS account and Momento. This setup enables Momento to assume an IAM role in your AWS account with only the permissions you define.
+
+Momento supports multiple IAM roles, allowing you to configure separate roles for different use cases, services, or Momento functions.
+
+## How AWS role delegation works
+To enable *Momento Functions* to access your AWS services, you must create an IAM role in your AWS account that grants the necessary permissions. This role must include a trust policy that allows Momento to assume the role when needed. Once the role is created, you link it to your Momento account by pasting the IAM Role ARN into the Momento Console. After the role is successfully configured, Momento can securely access AWS services according to the permissions specified in the IAM policy.
+
+## Step-by-step setup
+Follow the steps outlined below to configure an IAM role in your AWS account and link it to your Momento account.
+
+### Step 1: Navigate to AWS account configuration in the Momento console
+1. Log in to the [Momento Console](https://console.gomomento.com).
+2. Navigate to *Settings > AWS Account Configuration*.
+3. Click *"Add IAM Role"* to begin setup.
+
+### Step 2: Generate the IAM role trust policy
+Select the Momento region in the dialog and hit the `Generate Policy` button.
+
+The Momento Console will generate an IAM trust policy that allows Momento to assume the role in your account. The trust policy will look something like this:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:role/MomentoFunctionAccessRole-XYHOU"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+- **`123456789012`** is the Momento AWS account id you are allowing to assume the role
+- **`MomentoFunctionAccessRole-XYHOU`** is the generated role name
+
+### Step 3: Create the IAM role in AWS
+1. Go to the [AWS IAM Console](https://console.aws.amazon.com/iam/home#/roles).
+2. Click the *"Create role" button.
+3. Choose *"Custom trust policy"* and paste the generated JSON from Step 2.
+4. Attach the necessary [permission policies](#supported-aws-permissions) to allow Momento to access your resources
+5. Create the role and copy the IAM role ARN.
+
+### Step 4: Link the IAM role to Momento
+1. Return to the Momento Console.
+2. Paste the IAM role ARN from step 3 into the IAM role ARN field in the dialog.
+3. Click *"Validate & Save"*.
+4. Momento will test the configuration to ensure the provided permissions are supported.
+
+### Step 5: Confirm and manage multiple roles
+Once saved, the role appears under *"Trusted AWS Roles"* under the [AWS account configuration page](https://console.gomomento.com/settings/aws-accounts) in the Momento Console. You can add multiple roles for different AWS services, environments, or Momento functions.
+
+## Supported AWS Permissions
+When configuring an IAM role for *Momento Functions*, the role must grant only the necessary permissions for the intended use case. Currently, *Momento Functions* support the following AWS services:
+
+- **Amazon S3:**
+  - `s3:PutObject` → Write-only access to store function-generated data.
+  - `s3:HeadObject` → Check if an object exists before writing.
+  - `s3:ListBucket` → Retrieve object listings (useful for batch operations).
+
+- **Amazon Bedrock:**
+  - `bedrock:InvokeModel` → Permission to invoke models for AI-driven processing.
+
+### Example IAM Policy
+Below is an example IAM policy that grants the necessary permissions for both S3 and Bedrock:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:HeadObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::<your-bucket-name>/*",
+        "arn:aws:s3:::<your-bucket-name>"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "bedrock:InvokeModel",
+      "Resource": "arn:aws:bedrock:<your-region>::foundation-model/*"
+    }
+  ]
+}
+```
+
+Replace:
+- `your-bucket-name` with the name of your S3 bucket.
+- `your-region` with the AWS region where your Bedrock models are hosted.
+
+## Frequently Asked Questions
+<details>
+    <summary>Can I add multiple IAM roles to my Momento account?</summary>
+
+    Yes. You can add multiple AWS IAM roles, each granting access to different AWS services or resources. This allows flexibility in managing access for different workloads.
+</details>
+
+<details>
+    <summary>What happens if my IAM role permissions change in AWS?</summary>
+
+    If permissions are revoked or modified, Momento may lose access to AWS services. You should revalidate your configuration in the Momento Console.
+</details>
+
+<details>
+    <summary>Can I remove an IAM role after adding it?</summary>
+
+    Yes. You can remove IAM roles at any time in the [AWS account configuration page](https://console.gomomento.com/settings/aws-accounts) of the Momento Console.
+</details>
+
+<details>
+    <summary>Does Momento store AWS credentials?</summary>
+
+    No. Momento **does not** store your AWS credentials. It only assumes IAM roles using AWS STS ([Security Token Service](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html)).
+</details>

@@ -1,0 +1,117 @@
+---
+sidebar_position: 2
+sidebar_label: How it works
+title: How Momento Functions Work
+description: Learn how Momento Functions process real-time data at massive scale with high-performance execution.
+hide_title: true
+keywords:
+  - momento
+  - functions
+  - serverless
+  - ETL
+  - real-time processing
+  - telemetry
+  - wasm
+---
+
+# How Momento Functions Work
+
+Momento Functions provide a high-throughput compute layer designed for massive-scale real-time event processing. Functions execute in a WebAssembly (WASM) environment and run within the *Momento Gateway*, which optimizes performance by handling millions of concurrent function invocations with no concurrency limits.
+
+## Function Lifecycle
+
+A function follows a structured lifecycle from invocation to execution to result handling.
+
+```mermaid
+sequenceDiagram
+    participant Client as Client (Device / Service)
+    participant Gateway as Momento Gateway
+    participant Function as Momento Function (WASM Execution)
+    participant Cache as Momento Cache
+    participant Topics as Momento Topics
+    participant S3 as Amazon S3 (Parquet)
+    participant Bedrock as Amazon Bedrock
+
+    Client->>+Gateway: Send HTTPS request (JSON payload)
+    Gateway->>+Gateway: Validate authentication (API key/session token)
+    Gateway-->>Client: Reject if unauthorized (401)
+    Gateway->>+Function: Forward request for execution
+    Function->>+Function: Process data (batch/explode/transform)
+    Function-->>-Gateway: Return processed result
+
+    alt Store in Cache
+        Function->>+Cache: Write processed data
+    end
+
+    alt Publish to Topics
+        Function->>+Topics: Publish event
+    end
+
+    alt Store in S3
+        Function->>+S3: Save batch output (Parquet)
+    end
+
+    alt Query AI Model
+        Function->>+Bedrock: Query model for inference
+        Bedrock-->>Function: Return AI-generated result
+    end
+
+    Function-->>-Gateway: Complete execution (2-3ms)
+    Gateway-->>-Client: Return response (Success/Error)
+```
+
+### 1. Invocation
+A function is invoked by sending an HTTPS request to a Momento-generated endpoint specific to the function. The request must include a valid [API key or session token](/functions/authentication/authentication-methods) to pass authentication and access control checks. If authentication fails, the gateway will reject the request with a `401 Unauthorized` response.
+
+Each function invocation includes a structured JSON payload that carries the data to be processed. Functions dynamically process batched data within the execution environment, allowing them to operate on multiple related events at once without requiring clients to batch messages manually.
+
+### 2. Execution
+Once authenticated, the request is forwarded to a WebAssembly (WASM) execution environment. The function is executed with an extreme performance target of *2-3 milliseconds per invocation*.
+
+During execution, the function:
+- Processes and transforms data based on application logic.
+- Performs batch operations on dynamically accessible data from multiple invocations.
+- Explodes a single event into multiple downstream operations.
+
+Functions are optimized for high-throughput workloads, enabling efficient data processing, aggregation, and transformation within their execution lifecycle.
+
+### 3. Accessing external services
+Once a function executes, it has access to various services within the WASM execution environment, allowing it to interact with [Momento Cache](/cache), [Momento Topics](/topics), [Amazon S3](/functions/integrations/amazon-s3), and [Amazon Bedrock](/functions/integrations/amazon-bedrock). Functions can choose to write to or read from these services based on their logic.
+
+If a function needs to cache data for low-latency lookups, it can interact with Momento Cache. For event-driven workflows, it can publish structured messages to Momento Topics. When writing large volumes of processed data, it can store results in Amazon S3 in Parquet format. Users can also send queries to Amazon Bedrock and retrieve LLM-generated responses.
+
+
+:::note AWS Trust Relationship Setup
+To enable a function to interact with Amazon S3 or Amazon Bedrock, users must configure a trust relationship in their AWS account. For setup instructions, see [Configuring AWS Trust Relationships](/functions/authentication/aws-role-delegation).
+:::
+
+## Function behavior and performance
+*Momento Functions* are designed for high-throughput, event-driven workloads that require both reliability and scalability. While functions execute independently, their performance characteristics and error-handling mechanisms ensure smooth operation at massive scale.
+
+### Handling failures and retries
+If a function fails during execution, the response will return a `500 Internal Server Error` status code, indicating an unhandled error. Clients are responsible for implementing their own retry logic based on their application's needs.
+
+If authentication is invalid or missing, the gateway will reject the request with a `401 Unauthorized` error. If the request payload exceeds defined [limits](/functions/limits), a `4XX` status code will be returned, depending on the limit that was exceeded.
+
+Calls made from a function to Momento services such as [Momento Cache](/cache) or [Momento Topics](/topics) will automatically retry *up to 3 times* if they fail due to transient errors. However, if the retries are exhausted or the failure is non-recoverable, the function will proceed with execution as normal. The *function itself will not retry on its own*, meaning any failure at the function level must be handled externally by the client.
+
+### Scaling & Performance
+*Momento Functions* scale horizontally without concurrency limits, enabling them to handle both low-traffic workloads and millions of invocations per second with equal efficiency. The architecture is designed to deliver consistent performance, even under extreme traffic spikes.
+
+```mdx-code-block
+import { CardGrid } from '@site/src/components/CardGrid';
+import { LinkCard } from '@site/src/components/LinkCard';
+
+<CardGrid>
+  <LinkCard
+    title="Getting started"
+    link="/functions/overview/getting-started"
+    description="Ready to start building? Let's go!"
+  />
+
+  <LinkCard
+    title="Authentication"
+    link="/functions/authentication/authentication-methods"
+    description="Learn how to securely interact with functions."
+  />
+</CardGrid>

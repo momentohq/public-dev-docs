@@ -1,0 +1,205 @@
+---
+sidebar_position: 3
+sidebar_label: Getting Started
+title: Getting Started with Momento Functions
+description: Learn how to create, deploy, and invoke your first Momento Function.
+hide_title: true
+keywords:
+  - momento
+  - functions
+  - getting started
+  - serverless
+  - real-time processing
+  - wasm
+---
+
+# Getting started with Momento Functions
+*Momento Functions* allow you to process real-time data at massive scale with low-latency execution. This guide walks you through creating, deploying, and invoking your first function.
+
+## Prerequisites
+
+Before creating your first function, ensure you have:
+
+- A Momento API key with function permissions. [Get an API key](/functions/authentication/authentication-methods).
+- An AWS account (required if integrating with S3 or Bedrock).
+- A WASM-compatible development environment (see [Supported Languages](#supported-languages)).
+
+## Function input and context
+
+When a function is invoked, it receives an *HTTP POST request* containing structured data. The request body is automatically deserialized into the function's input type.
+
+### Request format
+Every function receives a JSON payload in the following format:
+
+```json
+{
+  "body": {
+    "event_type": "play",  // User event data
+    "user_id": "abc123"
+  },
+  "metadata": {
+    "function_name": "event-counter",
+    "request_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "timestamp": "2025-03-03T14:32:00Z"
+  }
+}
+```
+
+### Context object
+Each function also receives a context object, which provides access to essential Momento and AWS services.
+
+```rust
+pub struct AppContext {
+    pub cache_client: Arc<CacheClient>,
+    pub topic_client: Arc<TopicClient>,
+    pub s3_client: Arc<S3Client>,
+    pub bedrock_client: Arc<BedrockClient>,
+}
+```
+
+The context object provides direct access to:
+
+- [Momento Cache](/cache) - Store and retrieve data with ultra-low latency.
+- [Momento Topics](/topics) - Publish and subscribe to real-time event streams.
+- [Amazon S3](/functions/integrations/amazon-s3) - Write processed data to long-term storage.
+- [Amazon Bedrock](/functions/integrations/amazon-bedrock) - Invoke AI models for inference.
+
+## Function output
+A function must return a structured response containing a JSON payload. The standard response format is:
+
+```json
+{
+  "message": "Recorded event: play"
+}
+```
+
+### Example response type in Rust
+```rust
+pub struct Response<T> {
+    pub body: T,
+    pub status_code: u16,
+}
+```
+
+## How to create your first function
+Below are the steps needed to create your first function in Momento. The example walks you through creating a function in Rust, but you have [other language options](#supported-languages) to choose from.
+
+## Step 1. Write the function code
+This example function counts incoming events in Momento Cache and returns a structured response.
+
+```rust
+use momento::{CacheClient, Response};
+use serde::Deserialize;
+use std::sync::Arc;
+use crate::context::AppContext;
+
+#[derive(Deserialize)]
+struct Event {
+    event_type: String,
+    timestamp: String,
+    user_id: String,
+}
+
+pub async fn handler(
+    request: momento::Request<Event>,
+    context: Arc<AppContext>,
+) -> Response<String> {
+    let event = request.body();
+    let cache_key = format!("event_count:{}", event.event_type);
+
+    // Increment the event count in Momento Cache
+    let _ = context.cache_client.increment("metrics", cache_key, 1).await;
+
+    Response::json(format!("Recorded event: {}", event.event_type))
+}
+```
+## Step 2. Compile your code to a WASM binary
+Momento Functions requires you to upload a compiled WASM binary rather than source code. To do that in Rust, we execute the following commands in the directory where your code lives.
+
+First, install the WASI target if you haven't already. This is a one-time setup on your machine that allows Rust functions to run in a WebAssembly environment.
+
+```bash
+rustup target add wasm32-wasi
+```
+
+Next, compile your function for WebAssembly:
+```bash
+cargo build --release --target wasm32-wasi
+```
+
+Your compiled WASM binary will be located at `target/wasm32-asi/release/<your function name>.wasm`.
+
+## Step 3. Deploy your function using the Momento console
+Functions are created and managed in the [Momento console](https://console.gomomento.com).
+
+1. Navigate to [Functions list page](https://console.gomomento.com/functions).
+2. Click the *Create Function* button.
+3. Upload your compiled WASM binary from Step 2.
+4. Configure your function name and select permissions for your function, granting access only to required operations and resources.
+5. *(Optional)* If the function needs access to Amazon S3 or Bedrock, select an **IAM role** from your [account settings](/functions/authentication/aws-role-delegation).
+6. Click the *Save and Deploy* button.
+
+Once deployed, the Momento console will display the invocation url for your function.
+
+## Step 4. Invoke your function
+Once deployed, functions are accessible via an HTTPS endpoint. You can invoke your function with a `POST` request:
+
+```sh
+curl -X POST "https://functions.cache.cell-4-us-west-2-1.prod.a.momentohq.com/event-counter-OYKHJ" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "event_type": "play",
+           "user_id": "abc123"
+         }'
+```
+
+A successful response will return:
+
+```json
+{
+  "message": "Recorded event: play"
+}
+```
+:::tip
+A [valid auth token](/functions/authentication/authentication-methods) is required to successfully call your endpoint.
+:::
+
+## Supported languages
+
+Momento Functions run in a WASM execution environment, meaning functions must be compiled to WebAssembly. Currently, the following languages can be used:
+
+- **Rust** - Fully supported for performance-critical workloads.
+- **AssemblyScript** - A lightweight TypeScript-like language for WebAssembly.
+- **C/C++** - Supported via WASI-compatible toolchains.
+- **Zig** - Can be compiled to WASM with WASI support.
+- **Go** *(Limited Support)* - Requires manual memory management and WASI-compatible compilation.
+
+When writing functions, ensure the output is **a WASM module compiled for the WASI target**.
+
+## Next Steps
+
+```mdx-code-block
+import { CardGrid } from '@site/src/components/CardGrid';
+import { LinkCard } from '@site/src/components/LinkCard';
+
+<CardGrid>
+  <LinkCard
+    title="How it works"
+    link="/functions/overview/how-it-works"
+    description="Deep dive into function execution."
+  />
+
+  <LinkCard
+    title="Integrating with Amazon S3"
+    link="/functions/integrations/amazon-s3"
+    description="Learn how to store processed data."
+  />
+
+  <LinkCard
+    title="Authentication & Permissions"
+    link="/functions/authentication/authentication-methods"
+    description="Manage secure access."
+  />
+</CardGrid>
+```

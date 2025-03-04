@@ -1,0 +1,205 @@
+---
+sidebar_position: 1
+sidebar_label: Amazon Bedrock
+title: Integrating Momento Functions with Amazon Bedrock
+description: Learn how to integrate Momento Functions with Amazon Bedrock to invoke AI models in real time.
+hide_title: true
+keywords:
+  - momento
+  - functions
+  - integrations
+  - amazon bedrock
+  - AI models
+  - LLM
+  - inference
+---
+
+# Integrating Momento Functions with Amazon Bedrock
+*Momento Functions* can invoke [Amazon Bedrock](https://aws.amazon.com/bedrock/) models to integrate AI-powered decision-making into event-driven workloads. By leveraging Bedrock, functions can process real-time data and send queries to foundation models for text generation, embeddings, or other AI-powered operations.
+
+## How it works
+Functions must be configured with an [IAM role](/functions/authentication/aws-role-delegation) that grants permission to invoke models in Amazon Bedrock.
+
+### Example workflow
+1. A function is invoked with structured input data.
+2. The function processes the data and formats a request for an AI model.
+3. Amazon Bedrock is queried using the `bedrock:InvokeModel` IAM permission.
+4. The AI-generated result is returned and can be used for further processing or stored.
+
+:::note
+Invoking models in Amazon Bedrock is a *synchronous call* and will cause your function to wait until the query has completed. Streaming responses **are not supported**.
+:::
+
+### Required IAM policy
+The IAM role used to execute the function must include the following permission:
+
+```json
+{
+  "Effect": "Allow",
+  "Action": "bedrock:InvokeModel",
+  "Resource": "arn:aws:bedrock:<your-region>::foundation-model/*"
+}
+```
+Replace `your-region` with the AWS region where your Bedrock models are enabled. You can limit your function to specific models by replacing the `*` with the model id.
+
+For full setup instructions, see [Configuring AWS Role Delegation](/functions/authentication/aws-role-delegation).
+
+## Invoking an Amazon Bedrock model from a function
+Once the IAM role is configured, a function can send requests to Amazon Bedrock using the AWS SDK for Rust. The execution environment in **Momento Functions** provides AWS credentials through IAM role delegation, allowing secure access without requiring manual authentication.
+
+:::tip
+Unlike standard WASM environments, *Momento Functions* include a patched AWS SDK that enables direct communication with Amazon Bedrock and S3. This means functions can use the AWS SDK without requiring manual SigV4 signing or additional authentication handling.
+:::
+
+### Example: Fraud detection
+This example demonstrates how Amazon Bedrock can be used for real-time fraud detection by analyzing financial transactions in combination with a user's recent transaction history. When a new transaction is processed, the function retrieves the user's past transactions from [Momento Cache](/cache), constructs a structured prompt, and invokes Amazon Bedrock to assess whether the transaction appears fraudulent.
+
+```rust
+use momento::{CacheClient, Response};
+use serde::{Deserialize, Serialize};
+use std::sync::Arc;
+
+use crate::context::AppContext;
+
+const CACHE_TTL_SECONDS: u64 = 86400; // Keep transaction history for 24 hours
+const MAX_HISTORY_ENTRIES: usize = 5;
+
+#[derive(Deserialize)]
+struct Transaction {
+    transaction_id: String,
+    user_id: String,
+    amount: f64,
+    location: String,
+    timestamp: String,
+}
+
+#[derive(Serialize)]
+struct FraudDetectionResponse {
+    transaction_id: String,
+    fraud_detected: bool,
+}
+
+pub async fn handler(
+    request: momento::Request<Transaction>,
+    context: Arc<AppContext>,
+) -> Response<FraudDetectionResponse> {
+    let transaction = request.body();
+
+    // Retrieve user's past transactions from Momento Cache
+    let transaction_history = get_recent_transactions(&transaction.user_id, context.cache_client.clone()).await;
+
+    // Call Amazon Bedrock with transaction history
+    let fraud_detected = detect_fraud(transaction, &transaction_history, context.clone()).await.unwrap_or(false);
+
+    // If fraud is detected, cache the transaction for monitoring
+    if fraud_detected {
+        cache_fraudulent_transaction(transaction, context.cache_client.clone()).await;
+    } else {
+        cache_transaction_history(transaction, context.cache_client.clone()).await;
+    }
+
+    Response::json(FraudDetectionResponse {
+        transaction_id: transaction.transaction_id.clone(),
+        fraud_detected,
+    })
+}
+
+async fn get_recent_transactions(
+    user_id: &str,
+    cache_client: Arc<CacheClient>,
+) -> Vec<Transaction> {
+    let cache_key = format!("txn_history:{}", user_id);
+    if let Ok(Some(data)) = cache_client.get("fraud-detection", cache_key).await {
+        if let Ok(history) = serde_json::from_str::<Vec<Transaction>>(&data.value) {
+            return history;
+        }
+    }
+    Vec::new()
+}
+
+async fn detect_fraud(
+    transaction: &Transaction,
+    transaction_history: &[Transaction],
+    context: Arc<AppContext>,
+) -> Result<bool, Box<dyn std::error::Error>> {
+    let history_summary: Vec<String> = transaction_history.iter().map(|txn| {
+        format!(
+            "Amount: ${:.2}, Location: {}, Timestamp: {}",
+            txn.amount, txn.location, txn.timestamp
+        )
+    }).collect();
+
+    let prompt_text = format!(
+        "Analyze the following transaction in comparison to the user's recent transaction history. \
+        If this transaction appears fraudulent, return 'Fraud detected'. Otherwise, return 'No fraud'.\n\n\
+        Current transaction:\n\
+        User: {}\nAmount: ${:.2}\nLocation: {}\nTimestamp: {}\n\n\
+        Recent transaction history:\n{}",
+        transaction.user_id, transaction.amount, transaction.location, transaction.timestamp,
+        history_summary.join("\n")
+    );
+
+    let request_body = serde_json::json!({
+        "prompt": prompt_text,
+        "temperature": 0.5,
+        "max_tokens": 50
+    });
+
+    let input = aws_sdk_bedrock::types::InvokeModelInput::builder()
+        .model_id("anthropic.claude-3-5-sonnet-20240620-v1:0")
+        .body(serde_json::to_string(&request_body)?)
+        .build()?;
+
+    let response = context.bedrock_client.invoke_model(input).await?;
+    let response_text = response.body().await?;
+
+    Ok(response_text.contains("Fraud detected"))
+}
+
+async fn cache_fraudulent_transaction(
+    transaction: &Transaction,
+    cache_client: Arc<CacheClient>,
+) {
+    let cache_key = format!("fraudulent_txn:{}", transaction.transaction_id);
+    let cache_value = serde_json::to_string(transaction).unwrap_or_default();
+
+    let _ = cache_client.set("fraud-alerts", cache_key, cache_value, Some(300)).await;
+}
+
+async fn cache_transaction_history(
+    transaction: &Transaction,
+    cache_client: Arc<CacheClient>,
+) {
+    let cache_key = format!("txn_history:{}", transaction.user_id);
+
+    let mut transaction_history = get_recent_transactions(&transaction.user_id, cache_client.clone()).await;
+
+    if transaction_history.len() >= MAX_HISTORY_ENTRIES {
+        transaction_history.remove(0); // Remove the oldest transaction
+    }
+    transaction_history.push(transaction.clone());
+
+    let cache_value = serde_json::to_string(&transaction_history).unwrap_or_default();
+    let _ = cache_client.set("fraud-detection", cache_key, cache_value, Some(CACHE_TTL_SECONDS)).await;
+}
+
+```
+
+## Use Cases
+Momento Functions with Amazon Bedrock enable a variety of real-time AI-driven applications. Some examples include:
+
+**Fraud detection using transaction history**
+By analyzing a user's recent transactions, Bedrock can identify abnormal spending patterns and flag potential fraud. Suspicious transactions are stored in Momento Cache for rapid security team response.
+
+**Threat detection in security logs**
+Security events and network traffic logs are dynamically analyzed against historical behavior to detect intrusion attempts or malicious activity.
+
+**AI-powered customer interactions**
+Support requests can be intelligently routed or prioritized based on AI sentiment analysis, identifying frustrated customers needing immediate attention.
+
+**Predictive maintenance in industrial systems**
+Equipment telemetry is compared to past operational data, allowing AI to detect patterns that indicate potential failures before they happen.
+
+
+## Security Considerations
+When integrating with Amazon Bedrock, it is important to ensure that *IAM roles are correctly scoped* to grant only the necessary permissions, preventing over-permissioning and unintended access. Additionally, responses from Bedrock should be validated before being used in downstream workflows to prevent incorrect or malicious data from affecting application logic. By enforcing strict access controls and response validation, you can maintain a secure and reliable AI integration.

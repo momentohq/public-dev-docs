@@ -1,0 +1,99 @@
+---
+sidebar_label: Quotas and Limits
+sidebar_position: 8
+title: Momento Functions Quotas and Limits
+pagination_next: null
+description: Review execution, request size, and external service limits for Momento Functions.
+hide_title: true
+slug: /functions/limits
+---
+
+# Momento Functions Quotas and Limits
+
+:::info
+These limits ensure **high performance and stability** for all users. If you need an increase, [contact us](https://www.gomomento.com/contact-us).
+:::
+
+## Limits
+
+<table className="customTable">
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Entity</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className="highlightRow">
+      <td colspan="5"><strong>Execution limits</strong></td>
+    </tr>
+    <tr>
+      <td>Maximum execution time</td>
+      <td>per function</td>
+      <td>50 ms</td>
+    </tr>
+    <tr>
+      <td>Operations per invocation</td>
+      <td>per function</td>
+      <td>Unlimited</td>
+    </tr>
+    <tr className="highlightRow">
+      <td colspan="5"><strong>Request limits</strong></td>
+    </tr>
+    <tr>
+      <td>Maximum request size</td>
+      <td>per function</td>
+      <td>512 KB</td>
+    </tr>
+    <tr>
+      <td>Maximum response size</td>
+      <td>per function</td>
+      <td>128 KB</td>
+    </tr>
+    <tr className="highlightRow">
+      <td colspan="5"><strong>Concurrency and scale</strong></td>
+    </tr>
+    <tr>
+      <td>Concurrent executions</td>
+      <td>region</td>
+      <td>Unlimited</td>
+    </tr>
+    <tr>
+      <td>Function invocations per second</td>
+      <td>region</td>
+      <td>Unlimited</td>
+    </tr>
+    <tr className="highlightRow">
+      <td colspan="5"><strong>External service integrations</strong></td>
+    </tr>
+    <tr>
+      <td>Amazon S3 access</td>
+      <td>function</td>
+      <td>Write-only (`s3:PutObject`)</td>
+    </tr>
+    <tr>
+      <td>Amazon S3 metadata access</td>
+      <td>function</td>
+      <td>`s3:HeadObject`, `s3:ListBucket`</td>
+    </tr>
+    <tr>
+      <td>Amazon Bedrock access</td>
+      <td>function</td>
+      <td>`bedrock:InvokeModel`</td>
+    </tr>
+  </tbody>
+</table>
+
+## Execution constraints
+*Momento Functions* are designed for extreme throughput and low-latency execution. Each function runs in an optimized WebAssembly (WASM) environment, ensuring sub-50ms execution times at unlimited scale.
+
+Functions are stateful within the execution environment, meaning they can maintain local in-memory data across invocations while still operating at high throughput.
+
+## Integration with external services
+*Momento Functions* support direct integrations with AWS services:
+
+- **Amazon S3**: Functions can write files (`s3:PutObject`) and retrieve metadata (`s3:HeadObject`, `s3:ListBucket`).
+- **Amazon Bedrock**: Functions can invoke AI models using `bedrock:InvokeModel`.
+
+To configure AWS permissions, see [AWS Role Delegation](/functions/authentication/aws-role-delegation).
