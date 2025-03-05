@@ -158,20 +158,20 @@ async fn upload_to_s3(
 }
 ```
 
-## Use Cases
+## Use cases
 Momento Functions with Amazon S3 enable real-time analytics pipelines across various industries:
 
-**Video playback analytics with real-time counters**
+### Video playback analytics with real-time counters
 Track playback, pause, and buffering events in real time while storing detailed playback logs in S3 for later analysis.
 
-**IoT device telemetry tracking**
+### IoT device telemetry tracking
 Aggregate IoT sensor readings, increment live statistics in Momento Cache, and batch data into S3 for machine learning models.
 
-**Log aggregation with event counting**
+### Log aggregation with event counting
 Combine real-time log counters in Momento Cache with structured logs in S3 for monitoring performance and security.
 
-**Operational metrics for business intelligence**
+### Operational metrics for business intelligence
 Collect key business events, store them in S3, and enable ad-hoc queries with Amazon Athena for insights.
 
-## Security Considerations
+## Security considerations
 When integrating with Amazon S3, it is important to ensure that *IAM roles are correctly scoped* to grant only the necessary permissions, preventing over-permissioning and unintended access. Functions should be designed to validate and sanitize data before writing to S3 to avoid storing malformed or untrusted data. By enforcing strict access controls and input validation, you can maintain a secure and reliable data pipeline.

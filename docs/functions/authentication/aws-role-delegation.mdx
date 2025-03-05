@@ -17,10 +17,10 @@ keywords:
 # Configuring AWS role delegation for Momento Functions
 To allow *Momento Functions* to access Amazon S3 or Amazon Bedrock, you need to configure a trust relationship between your AWS account and Momento. This setup enables Momento to assume an IAM role in your AWS account with only the permissions you define.
 
-Momento supports multiple IAM roles, allowing you to configure separate roles for different use cases, services, or Momento functions.
+Momento supports multiple IAM roles, allowing you to configure separate roles for different use cases, services, or functions.
 
 ## How AWS role delegation works
-To enable *Momento Functions* to access your AWS services, you must create an IAM role in your AWS account that grants the necessary permissions. This role must include a trust policy that allows Momento to assume the role when needed. Once the role is created, you link it to your Momento account by pasting the IAM Role ARN into the Momento Console. After the role is successfully configured, Momento can securely access AWS services according to the permissions specified in the IAM policy.
+To enable *Momento Functions* to access your AWS services, you must create an IAM role in your AWS account that grants the necessary permissions. This role must include a trust policy that allows Momento to assume the role when needed. Once the role is created, you link it to your Momento account by pasting the IAM Role ARN into the Momento onsole. After the role is successfully configured, Momento can securely access AWS services according to the permissions specified in the IAM policy.
 
 ## Step-by-step setup
 Follow the steps outlined below to configure an IAM role in your AWS account and link it to your Momento account.
@@ -49,12 +49,12 @@ The Momento Console will generate an IAM trust policy that allows Momento to ass
   ]
 }
 ```
-- **`123456789012`** is the Momento AWS account id you are allowing to assume the role
-- **`MomentoFunctionAccessRole-XYHOU`** is the generated role name
+- `123456789012` is the Momento AWS account id you are allowing to assume the role
+- `MomentoFunctionAccessRole-XYHOU` is the generated role name
 
 ### Step 3: Create the IAM role in AWS
 1. Go to the [AWS IAM Console](https://console.aws.amazon.com/iam/home#/roles).
-2. Click the *"Create role" button.
+2. Click the *"Create role"* button.
 3. Choose *"Custom trust policy"* and paste the generated JSON from Step 2.
 4. Attach the necessary [permission policies](#supported-aws-permissions) to allow Momento to access your resources
 5. Create the role and copy the IAM role ARN.

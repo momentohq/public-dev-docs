@@ -15,15 +15,13 @@ keywords:
 
 # Authentication for Momento Functions
 
-Momento Functions require authentication to ensure secure access. Requests must include either an *API key* or a *session token*, which determine what resources the caller can access. Both authentication methods support fine-grained permissions, allowing access to be granted at different levels.
+*Momento Functions* require authentication to ensure secure access. Requests must include either an *API key* or a *session token*, which determine what resources the caller can access. Both authentication methods support fine-grained permissions, allowing access to be granted at different levels.
 
 ## API keys
 API keys are long-lived credentials that can be used to authenticate requests to all Momento services and operations, including Functions. API keys can be configured to grant *global access to all functions* or be restricted to *specific functions*.
 
-API keys can grant full access or be configured for fine-grained access control (FGAC) to restrict access to specific functions and operations.
-
 ## Session tokens
-Session tokens are short-lived credentials that provide temporary access to Momento Functions. They are useful for time-limited operations, user sessions, or scenarios where API keys should not be exposed, like interactions in a user interface.
+Session tokens are short-lived credentials that provide temporary access to *Momento Functions*. They are useful for time-limited operations, user sessions, or scenarios where API keys should not be exposed, like interactions in a user interface.
 
 Tokens are automatically expired based on their configured lifespan, with a *max valid duration of 1 hour*. These tokens cannot be renewed, meaning a new token must be issued when the previous one expires.
 
@@ -43,7 +41,7 @@ If a key/token is provided in both locations, the request is invalid and a `401 
 Function invocation requires appropriate permissions to be included in the [permission scope](/api/authentication/permissions#scope) when creating an FGAC API key or session token. The following examples show how to configure permission scopes for invoking all functions or specific functions.
 
 :::tip
-The following examples define *invocation permissions* for calling a function. They do **not** grant the function access to other Momento resources inside your account. Permissions for accessing Momento Cache, Topics, or Storage from a function must be configured separately.
+Below are examples of *invocation permissions* for calling a function. They do **not** grant the function access to other Momento resources inside your account. Functions automatically have permission to access all resources in your account.
 :::
 
 All functions in Momento are scoped to a namespace. This means that when specifying function permissions, the `namespace` field is required to define the scope in which the function resides.

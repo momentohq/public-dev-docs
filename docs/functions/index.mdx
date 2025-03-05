@@ -14,7 +14,7 @@ keywords:
   - serverless
 ---
 
-# *Momento Functions*
+# Momento Functions
 
 *Momento Functions* are a high-speed compute layer designed for processing massive amounts of real-time data. Whether you're aggregating IoT sensor data, handling financial transactions, or enriching event streams with AI, *Momento Functions* allow you to process, transform, and act on data instantly—without managing infrastructure.
 
@@ -39,10 +39,13 @@ mindmap
       (Amazon Bedrock)
 ```
 
-## Why use Momento Functions?
-Most serverless platforms run functions in complete isolation, requiring external coordination to share data across executions. *Momento Functions* eliminate this bottleneck by allowing function instances to share global memory, making state management easier and improving performance at scale.
+## What makes Momento Functions different?
+Traditional serverless platforms execute functions in isolation, requiring external coordination for batching, state sharing, and data transformations. Momento Functions remove these limitations:
 
-With no concurrency limits, millions of invocations per second can dynamically access batched data, fan out operations, and store insights in memory for future function calls—all without external databases or caches.
+* Global memory shared across all function instances enables stateful execution without an external database.
+* Automatic batching allows functions to process multiple related events in a single execution cycle.
+* No concurrency limits means functions can instantly scale to handle millions of invocations per second without cold starts.
+* 5ms execution SLA provides ultra-fast response times, 10x faster and 10x cheaper than alternatives.
 
 ## What can you build?
 

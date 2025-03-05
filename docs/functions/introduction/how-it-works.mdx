@@ -18,18 +18,29 @@ keywords:
 
 *Momento Functions* provide a high-throughput compute layer designed for massive-scale real-time event processing. Functions execute in a WebAssembly (WASM) environment and run within the *Momento Gateway*, which optimizes performance by handling millions of concurrent function invocations with no concurrency limits.
 
-## Function lifecycle
-
-A function follows a structured lifecycle from invocation to execution to result handling.
-
 ```mermaid
-flowchart TD;
-    A[Incoming Request] -->|Authenticate| B[Momento Gateway];
-    B -->|Route to Function| C[Execute in WASM];
-    C -->|Access Global Memory| D[Batch or Transform Data];
-    D -->|Process and Fan Out| E[Write to Cache / Topics / S3 / Bedrock];
-    E -->|Return Response| F[Client Receives Result];
+graph TD;
+    subgraph Clients[Client Devices / Services]
+        A1[Device 1] --> Gateway
+        A2[Device 2] --> Gateway
+        A3[Device 3] --> Gateway
+        A4[Device N] --> Gateway
+    end
+
+    Gateway[Momento Gateway] -->|Invoke Function| Function["Momento Function (WASM)"];
+
+    Function -->|Write Data| Cache[Momento Cache];
+    Function -->|Publish Event| Topics[Momento Topics];
+    Function -->|Store Batch| S3[Amazon S3];
+    Function -->|Query AI Models| Bedrock[Amazon Bedrock];
+
+    Gateway -.->|Momento Authentication| Auth[API Key / Session Token];
+
+    GlobalMemory["Global Memory"] --- Function;
 ```
+
+## Function lifecycle
+A function follows a structured lifecycle from invocation to execution to result handling.
 
 ### 1. Invocation
 A function is invoked by sending an HTTPS request to a Momento-generated endpoint specific to the function. The request must include a valid [API key or session token](/functions/authentication/authentication-methods) to pass authentication and access control checks. If authentication fails, the gateway will reject the request with a `401 Unauthorized` response.
@@ -53,7 +64,7 @@ Once a function executes, it has access to various services within the WASM exec
 
 If a function needs to cache data for low-latency lookups, it can interact with Momento Cache. For event-driven workflows, it can publish structured messages to Momento Topics. When writing large volumes of processed data, it can store results in Amazon S3 in Parquet format. Users can also send queries to Amazon Bedrock and retrieve LLM-generated responses.
 
-:::note AWS Trust Relationship Setup
+:::tip AWS Trust Relationship Setup
 To enable a function to interact with Amazon S3 or Amazon Bedrock, users must configure a trust relationship in their AWS account. For setup instructions, see [Configuring AWS Trust Relationships](/functions/authentication/aws-role-delegation).
 :::
 
@@ -68,4 +79,4 @@ If authentication is invalid or missing, the gateway will reject the request wit
 Calls made from a function to Momento services such as [Momento Cache](/cache) or [Momento Topics](/topics) will automatically retry *up to 3 times* if they fail due to transient errors. However, if the retries are exhausted or the failure is non-recoverable, the function will proceed with execution as normal. The *function itself will not retry on its own*, meaning any failure at the function level must be handled externally by the client.
 
 ### Scaling and performance
-*Momento Functions* scale horizontally without concurrency limits, enabling them to handle both low-traffic workloads and millions of invocations per second with equal efficiency. The architecture is designed to deliver consistent performance, even under extreme traffic spikes.
+*Momento Functions* scale horizontally without concurrency limits, enabling them to handle both low-traffic workloads and millions of invocations per second with equal efficiency. Whether processing 10 or 10 million events per second, the architecture is designed to deliver consistent, stable performance.

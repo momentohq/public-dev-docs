@@ -26,7 +26,7 @@ Functions must be configured with an [IAM role](/functions/authentication/aws-ro
 3. Amazon Bedrock is queried using the `bedrock:InvokeModel` IAM permission.
 4. The AI-generated result is returned and can be used for further processing or stored.
 
-:::note
+:::info
 Invoking models in Amazon Bedrock is a *synchronous call* and will cause your function to wait until the query has completed. Streaming responses **are not supported**.
 :::
 
@@ -185,21 +185,20 @@ async fn cache_transaction_history(
 
 ```
 
-## Use Cases
+## Use cases
 Momento Functions with Amazon Bedrock enable a variety of real-time AI-driven applications. Some examples include:
 
-**Fraud detection using transaction history**
+### Fraud detection using transaction history
 By analyzing a user's recent transactions, Bedrock can identify abnormal spending patterns and flag potential fraud. Suspicious transactions are stored in Momento Cache for rapid security team response.
 
-**Threat detection in security logs**
+### Threat detection in security logs
 Security events and network traffic logs are dynamically analyzed against historical behavior to detect intrusion attempts or malicious activity.
 
-**AI-powered customer interactions**
+### AI-powered customer interactions
 Support requests can be intelligently routed or prioritized based on AI sentiment analysis, identifying frustrated customers needing immediate attention.
 
-**Predictive maintenance in industrial systems**
+### Predictive maintenance in industrial systems
 Equipment telemetry is compared to past operational data, allowing AI to detect patterns that indicate potential failures before they happen.
 
-
-## Security Considerations
+## Security considerations
 When integrating with Amazon Bedrock, it is important to ensure that *IAM roles are correctly scoped* to grant only the necessary permissions, preventing over-permissioning and unintended access. Additionally, responses from Bedrock should be validated before being used in downstream workflows to prevent incorrect or malicious data from affecting application logic. By enforcing strict access controls and response validation, you can maintain a secure and reliable AI integration.
