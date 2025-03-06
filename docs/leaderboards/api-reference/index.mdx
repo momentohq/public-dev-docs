@@ -247,6 +247,40 @@ Momento Leaderboards is a first-class service with purpose-built APIs that suppo
 
     <div class='col col--4' style={{paddingRight: '20px'}}>
 
+        ### Get competition rank
+
+        Look up the competition rank for given element IDs in the leaderboard.
+
+        #### Parameters
+        ----------------
+        - **ids** - *List*: List of integers representing the ids of the elements to fetch.
+
+        #### Optional Parameters
+        ----------------
+        - **order** - *LeaderboardOrder enum*: The order to fetch the elements in. Defaults to ascending, meaning 0 is the lowest-scoring rank.
+
+        #### Returns
+        ----------------
+        One of the following:
+        - [LeaderboardFetch.Success](/leaderboards/api-reference/response-objects#success)
+        - [LeaderboardFetch.Error](/leaderboards/api-reference/response-objects#error)
+
+    </div>
+
+    <div class='col col--8'>
+
+        <SdkExampleTabs snippetId={'API_LeaderboardGetCompetitionRank'} />
+
+    </div>
+
+</div>
+
+---
+
+<div class='row'>
+
+    <div class='col col--4' style={{paddingRight: '20px'}}>
+
         ### Get leaderboard length
 
         Gets the number of entries in the leaderboard. The leaderboard name is inferred from the `Leaderboard` object.
