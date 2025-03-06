@@ -17,10 +17,10 @@ Errors that occur in calls to the Momento Leaderboards service are surfaced to d
 
 ### Available methods
 
-- `message()`: String - a human readable error message
+- `message()`: String - a human readable error message.
 - `innerException()`: Exception - the original exception.
-- `errorCode()`: MomentoErrorCode - Momento’s own category of errors such as InvalidArgument or BadRequest. See [Standards And Practices - Error Handling](https://github.com/momentohq/standards-and-practices/blob/main/docs/client-specifications/error-handling.md)
-- `toString()`: String - alias for message()
+- `errorCode()`: MomentoErrorCode - Momento’s own category of errors such as InvalidArgument or BadRequest. See [Standards And Practices - Error Handling](https://github.com/momentohq/standards-and-practices/blob/main/docs/client-specifications/error-handling.md).
+- `toString()`: String - alias for message().
 
 ---
 
