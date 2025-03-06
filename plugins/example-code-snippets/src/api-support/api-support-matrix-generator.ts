@@ -337,6 +337,7 @@ const LEADERBOARD_API_GROUPS: Array<ApiGroup> = [
       'fetchByScore',
       'fetchByRank',
       'getRank',
+      'getCompetitionRank',
       'length',
       'removeElements',
       'delete',
