@@ -223,6 +223,12 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
       'increment',
       'getBatch',
       'setBatch',
+      'getWithHash',
+      'setwithHash',
+      'setIfPresentAndHashEqual',
+      'setIfPresentAndHashNotEqual',
+      'setIfAbsentOrHashEqual',
+      'setIfAbsentOrHashNotEqual',
     ],
   },
   {
