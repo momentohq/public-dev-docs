@@ -282,14 +282,6 @@
     "message": "サーバーレスイベントバスについて",
     "description": "About our serverless event bus"
   },
-  "integrateWithAmazonEventBridge": {
-    "message": "Amazon EventBridgeとの統合",
-    "description": "Integrate with Amazon EventBridge"
-  },
-  "webhooksOverview": {
-    "message": "Webhooksの概要",
-    "description": "Webhooks overview"
-  },
   "forDevelopers": {
     "message": "開発者向け",
     "description": "For developers"

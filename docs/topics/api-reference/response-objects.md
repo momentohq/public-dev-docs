@@ -26,47 +26,19 @@ Errors that occur in calls to the Momento Leaderboards service are surfaced to d
 
 ## Success
 
-Generic response object indicating a successful request with no additional methods attached. 
+Generic response object indicating a successful request with no additional methods attached.
 
 Variations of the Success response object include:
 
 ### Subscription
 
-Indicates a successful Momento Topics subscription. 
+Indicates a successful Momento Topics subscription.
 
 Available methods include:
 
 - `unsubscribe()`: void - closes the topics subscription.
 
-Depending on the language, you may use a callback function or an iterator to receive new subscription events, such as items, heartbeats, and discontinuities: 
+Depending on the language, you may use a callback function or an iterator to receive new subscription events, such as items, heartbeats, and discontinuities:
 - Items include a string or byte message, topic sequence number, and a unique token identifier if one is present ([learn more](https://www.gomomento.com/blog/momento-topics-just-got-more-secure-introducing-embedded-token-identifiers)).
 - Heartbeats indicate that the connection is still active.
 - Discontinuities indicate that there was an interruption in the subscription and some messages may have been skipped.
-
-### ListWebhooks
-
-Indicates a successful list webhooks request. Available methods include: 
-
-- `getWebhooks()`: List - returns a list of existing webhooks. Each [`Webhook` object](./webhooks#webhook-object) contains the fields `destination`, `id`, and `topicName`.
-
-### PutWebhook
-
-Indicates a successful put webhook request. Available methods include: 
-
-- `secretString()`: String - returns the signing secret for the webhook.
-
-### GetWebhookSecret
-
-Indicates a successful get webhook secret request. Available methods include: 
-
-- `secret()`: String - returns the signing secret for the webhook.
-- `webhookName()`: String - returns the name of the webhook.
-- `cacheName()`: String - returns the name of the cache associated with the webhook.
-
-### RotateWebhookSecret
-
-Indicates a successful rotate webhook secret request. Available methods include: 
-
-- `secret()`: String - returns the signing secret for the webhook.
-- `webhookName()`: String - returns the name of the webhook.
-- `cacheName()`: String - returns the name of the cache associated with the webhook.

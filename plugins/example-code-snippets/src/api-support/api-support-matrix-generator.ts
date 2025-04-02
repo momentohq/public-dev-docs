@@ -305,20 +305,6 @@ const TOPIC_API_GROUPS: Array<ApiGroup> = [
   },
 ];
 
-const WEBHOOK_API_GROUPS: Array<ApiGroup> = [
-  {
-    groupName: 'Webhook Management',
-    groupDescription: 'A matrix of SDK support for Momento Webhook APIs',
-    apis: [
-      'listWebhooks',
-      'putWebhook',
-      'deleteWebhook',
-      'getWebhookSecret',
-      'rotateWebhookSecret',
-    ],
-  },
-];
-
 const AUTH_API_GROUPS: Array<ApiGroup> = [
   {
     groupName: 'Auth',
@@ -397,7 +383,6 @@ export class ApiSupportMatrixGenerator {
     const allSdksConfigApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksAuthApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksTopicsApiSupport = new Map<string, Map<string, boolean>>();
-    const allSdksWebhooksApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksLeaderboardApiSupport = new Map<
       string,
       Map<string, boolean>
@@ -435,13 +420,6 @@ export class ApiSupportMatrixGenerator {
       );
       allSdksTopicsApiSupport.set(sdkName, topicApiSupport);
 
-      const webhookApiSupport = determineApiSupport(
-        sdkRepoDir,
-        sdk.topicClientFile,
-        WEBHOOK_API_GROUPS
-      );
-      allSdksWebhooksApiSupport.set(sdkName, webhookApiSupport);
-
       const leaderboardApiSupport = determineApiSupport(
         sdkRepoDir,
         sdk.leaderboardClientFile,
@@ -456,9 +434,6 @@ export class ApiSupportMatrixGenerator {
     nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
     nodes.push(...renderApiGroups(CONFIG_API_GROUPS, allSdksConfigApiSupport));
     nodes.push(...renderApiGroups(TOPIC_API_GROUPS, allSdksTopicsApiSupport));
-    nodes.push(
-      ...renderApiGroups(WEBHOOK_API_GROUPS, allSdksWebhooksApiSupport)
-    );
     nodes.push(
       ...renderApiGroups(LEADERBOARD_API_GROUPS, allSdksLeaderboardApiSupport)
     );
@@ -504,7 +479,6 @@ export class ApiSupportMatrixGenerator {
 
   generateTopicsMatrixNodes(): Array<Heading | Paragraph | Table> {
     const allSdksTopicsApiSupport = new Map<string, Map<string, boolean>>();
-    const allSdksWebhookApiSupport = new Map<string, Map<string, boolean>>();
     const allSdksAuthApiSupport = new Map<string, Map<string, boolean>>();
 
     for (const sdk of SDKS) {
@@ -518,13 +492,6 @@ export class ApiSupportMatrixGenerator {
       );
       allSdksTopicsApiSupport.set(sdkName, topicApiSupport);
 
-      const webhookApiSupport = determineApiSupport(
-        sdkRepoDir,
-        sdk.topicClientFile,
-        WEBHOOK_API_GROUPS
-      );
-      allSdksWebhookApiSupport.set(sdkName, webhookApiSupport);
-
       const authApiSupport = determineApiSupport(
         sdkRepoDir,
         sdk.authClientFile,
@@ -535,9 +502,6 @@ export class ApiSupportMatrixGenerator {
 
     const nodes: Array<Heading | Paragraph | Table> = [];
     nodes.push(...renderApiGroups(TOPIC_API_GROUPS, allSdksTopicsApiSupport));
-    nodes.push(
-      ...renderApiGroups(WEBHOOK_API_GROUPS, allSdksWebhookApiSupport)
-    );
     nodes.push(...renderApiGroups(AUTH_API_GROUPS, allSdksAuthApiSupport));
     return nodes;
   }
