@@ -445,6 +445,192 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_SetIfAbsentOrEqual'} />
 
+### GetWithHash
+
+Get the cache value and hash of the cache value stored for the given key.
+
+| Name       | Type            | Description                          |
+| ---------- | --------------- | ------------------------------------ |
+| cacheName  | String          | Name of the cache.                   |
+| key        | String \| Bytes | The key to be set.                   |
+
+<details>
+
+<summary>Method response object</summary>
+
+* Hit
+  - `valueString()`: the value of the item stored in the cache returned as a string
+  - `valueByte()`: the value of the item stored in the cache returned as bytes
+  - `hashString()`: the hash of the value stored in the cache returned as a string
+  - `hashByte()`: the hash of the value stored in the cache returned as bytes
+* Miss
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_GetWithHash'} />
+
+### SetWithHash
+
+Associates the provided value to a cache item with a given key and returns the hash of the value.
+
+| Name       | Type            | Description                          |
+| ---------- | --------------- | ------------------------------------ |
+| cacheName  | String          | Name of the cache.                   |
+| key        | String \| Bytes | The key to be set.                   |
+| value      | String \| Bytes | The value to be stored.              |
+| ttlSeconds | Duration        | Time to Live for the item in Cache.  |
+
+<details>
+
+<summary>Method response object</summary>
+
+* Stored
+  - `hashString()`: the hash of the value stored in the cache returned as a string
+  - `hashByte()`: the hash of the value stored in the cache returned as bytes
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetWithHash'} />
+
+### SetIfPresentAndHashEqual
+
+:::warning
+Do NOT use check-and-set (CAS) APIs such as `SetIfPresentAndHashEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetWithHash` and `GetWithHash` instead for unconditional sets/gets with hash values.
+:::
+
+Associates the provided value to a cache item with a given key if the key exists in the cache and the hash value of the stored item is equal to the hash value supplied for `hashEqual`.
+
+| Name       | Type            | Description                                   |
+| ---------- | --------------- | --------------------------------------------- |
+| cacheName  | String          | Name of the cache.                            |
+| key        | String \| Bytes | The key to be set.                            |
+| value      | String \| Bytes | The value to be stored.                       |
+| hashEqual  | String \| Bytes | The hash of the value to compare with.        |
+| ttlSeconds | Duration        | Time to Live for the item in Cache.           |
+
+<details>
+
+<summary>Method response object</summary>
+
+* Stored
+  - `hashString()`: the hash of the value stored in the cache returned as a string
+  - `hashByte()`: the hash of the value stored in the cache returned as bytes
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfPresentAndHashEqual'} />
+
+### SetIfPresentAndHashNotEqual
+
+:::warning
+Do NOT use check-and-set (CAS) APIs such as `SetIfPresentAndHashNotEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetWithHash` and `GetWithHash` instead for unconditional sets/gets with hash values.
+:::
+
+Associates the provided value to a cache item with a given key if the key exists in the cache and the hash value of the stored item is not equal to the hash value supplied for `hashNotEqual`.
+
+| Name         | Type            | Description                              |
+| ------------ | --------------- | ---------------------------------------- |
+| cacheName    | String          | Name of the cache.                       |
+| key          | String \| Bytes | The key to be set.                       |
+| value        | String \| Bytes | The value to be stored.                  |
+| hashNotEqual | String \| Bytes | The hash of the value to compare with.   |
+| ttlSeconds   | Duration        | Time to Live for the item in Cache.      |
+
+<details>
+
+<summary>Method response object</summary>
+
+* Stored
+  - `hashString()`: the hash of the value stored in the cache returned as a string
+  - `hashByte()`: the hash of the value stored in the cache returned as bytes
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfPresentAndHashNotEqual'} />
+
+### SetIfAbsentOrHashEqual
+
+:::warning
+Do NOT use check-and-set (CAS) APIs such as `SetIfAbsentOrHashEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetWithHash` and `GetWithHash` instead for unconditional sets/gets with hash values.
+:::
+
+Associates the provided value to a cache item with a given key if (1) the key does not already exist in the cache or (2) the key exists and the hash value of the stored item is equal to the hash value supplied for `hashEqual`.
+
+| Name       | Type            | Description                               |
+| ---------- | --------------- | ----------------------------------------- |
+| cacheName  | String          | Name of the cache.                        |
+| key        | String \| Bytes | The key to be set.                        |
+| value      | String \| Bytes | The value to be stored.                   |
+| hashEqual  | String \| Bytes | The hash of the value to compare with.    |
+| ttlSeconds | Duration        | Time to Live for the item in Cache.       |
+
+<details>
+
+<summary>Method response object</summary>
+
+* Stored
+  - `hashString()`: the hash of the value stored in the cache returned as a string
+  - `hashByte()`: the hash of the value stored in the cache returned as bytes
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfAbsentOrHashEqual'} />
+
+### SetIfAbsentOrHashNotEqual
+
+:::warning
+Do NOT use check-and-set (CAS) APIs such as `SetIfAbsentOrHashNotEqual` with scalar or non-CAS APIs such as `Set` or `Delete`.
+Doing so will result in undefined consistency behaviors. Use `SetWithHash` and `GetWithHash` instead for unconditional sets/gets with hash values.
+:::
+
+Associates the provided value to a cache item with a given key if (1) the key does not already exist in the cache or (2) the key exists and the hash value of the stored item is not equal to the hash value supplied for `hashNotEqual`.
+
+| Name         | Type            | Description                                   |
+| ------------ | --------------- | --------------------------------------------- |
+| cacheName    | String          | Name of the cache.                            |
+| key          | String \| Bytes | The key to be set.                            |
+| value        | String \| Bytes | The value to be stored.                       |
+| hashNotEqual | String \| Bytes | The hash of the value to compare with.        |
+| ttlSeconds   | Duration        | Time to Live for the item in Cache.           |
+
+<details>
+
+<summary>Method response object</summary>
+
+* Stored
+  - `hashString()`: the hash of the value stored in the cache returned as a string
+  - `hashByte()`: the hash of the value stored in the cache returned as bytes
+* NotStored
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SetIfAbsentOrHashNotEqual'} />
+
 ## Time to Live APIs
 
 These APIs apply across all cache types.
