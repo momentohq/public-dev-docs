@@ -35,7 +35,7 @@ const REDIRECTS = {
     '/topics/develop/api-reference': '/topics/api-reference',
     '/topics/api-reference/webhooks': '/topics/api-reference',
     '/develop/sdks/nodejs/topics-cheat-sheet': '/platform/sdks/nodejs/topics',
-    '/topics/webhooks': '/topics/webhooks/overview',
+    '/topics/webhooks': '/topics',
     '/topics/develop/patterns/asynchronous-processing': '/topics/patterns/instant-messaging',
     '/topics/patterns/running-background-tasks': '/topics/patterns/instant-messaging',
     '/topics/patterns/token-id-webhook': '/topics/patterns/instant-messaging',
