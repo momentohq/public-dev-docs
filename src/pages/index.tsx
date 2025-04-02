@@ -65,19 +65,9 @@ export default function Home(): JSX.Element {
                 <ul className={styles.columnList}>
                   <li><Link to="/topics"><Translate id="aboutOurServerlessEventBus">About our serverless event
                     bus</Translate></Link></li>
-                  <li><Link to="/topics/integrations/lambda-handler"><Translate id="integrateWithAmazonEventBridge">Integrate
-                    with Amazon EventBridge</Translate></Link></li>
-                  <li><Link to="/topics/webhooks/overview"><Translate id="webhooksOverview">Webhooks overview</Translate></Link></li>
-                  <li>
-
-                    <Link to="https://www.gomomento.com/blog/how-to-create-a-slack-workflow-with-webhooks-in-momento-topics"
-                       target='_blank'>
-                      <div className={styles.openInNew}>
-                        <span><Translate id="publishMessagesToSlack">Publish messages to Slack</Translate></span>
-                        <IoOpenOutline/>
-                      </div>
-                    </Link>
-                  </li>
+                  <li><Link to="/topics/patterns/instant-messaging">Send instant messages</Link></li>
+                  <li><Link to="/topics/api-reference/http-api">Publish over HTTP</Link></li>
+                  <li><Link to="/topics/develop/authentication/tokens">Create session tokens</Link></li>
                 </ul>
               </div>
               <div>

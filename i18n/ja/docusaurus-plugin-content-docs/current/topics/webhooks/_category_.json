@@ -1,9 +1,0 @@
-{
-  "label": "Webhooks",
-  "position": 3,
-  "collapsible": false,
-  "collapsed": false,
-  "link": {
-    "description": "Learn about Webhooks, an event-driven mechanism to listen to Momento Topics"
-  }
-}

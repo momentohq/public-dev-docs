@@ -38,35 +38,7 @@ Momento トピックのサブスクリプションに成功したことを示し
 
 - `unsubscribe()`: void - トピックのサブスクリプションを終了します。
 
-言語によっては、アイテム、ハートビート、不連続などの新しいサブスクリプションイベントを受け取るために、コールバック関数やイテレータを使用することができます： 
+言語によっては、アイテム、ハートビート、不連続などの新しいサブスクリプションイベントを受け取るために、コールバック関数やイテレータを使用することができます：
 - アイテムは文字列またはバイトメッセージ、トピックシーケンス番号、一意なトークン識別子があればそれを含みます([learn more](https://www.gomomento.com/blog/momento-topics-just-got-more-secure-introducing-embedded-token-identifiers))。
 - ハートビートは、接続がまだアクティブであることを示します。
 - 不連続は、サブスクリプションに中断があり、いくつかのメッセー ジがスキップされたかもしれないことを示します。
-  
-### ListWebhooks
-
-Webhooks リクエストのリストが成功したことを示します。利用可能なメソッドは以下のとおりです： 
-
-- `getWebhooks()`: リスト - 既存の Webhook のリストを返します。各 [`Webhook` オブジェクト](./webhooks#webhook-object) は `destination`、`id`、`topicName` フィールドを含みます。
-
-### PutWebhook
-
-put webhook リクエストが成功したことを示します。利用可能なメソッドは以下のとおりです： 
-
-- secretString()`： 文字列 - Webhookの署名の秘密を返す。
-
-### GetWebhookSecret
-
-get webhook secret リクエストが成功したことを示します。利用可能なメソッドは以下のとおりです： 
-
-- `secret()`: 文字列 - Webhookの署名シークレットを返します。
-- `webhookName()`: 文字列 - Webhookの名前を返します。
-- `cacheName()`: 文字列 - webhook に関連付けられたキャッシュの名前を返します。
-
-### RotateWebhookSecret
-
-rotate webhook secret リクエストが成功したことを示します。利用可能なメソッドは以下のとおりです： 
-
-- `secret()`: 文字列 - webhookの署名シークレットを返します。
-- `webhookName()`: 文字列 - webhookの名前を返します。
-- `cacheName()`: 文字列 - webhookに関連付けられたキャッシュの名前を返します。

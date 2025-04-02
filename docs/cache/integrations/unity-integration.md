@@ -7,7 +7,7 @@ description: Learn to deploy a chat app using Momento .NET SDK to Unity.
 
 [Unity](https://unity.com/) is a real-time development platform that is one of the most popular game engines on the market today. The Unity game engine is used by thousands of developers to create 2D and 3D interactive apps, across a variety of platforms, including mobile, desktop, and immersive platforms (e.g., augmented and virtual reality).
 
-In this tutorial, we'll build a [simple Unity chat application](https://github.com/momentohq/momento-unity-demo) using the [Momento .NET SDK](https://github.com/momentohq/client-sdk-dotnet). Specifically, we'll utilize [Momento Topics](https://docs.momentohq.com/topics) for publishing and subscribing to the chat messages. 
+In this tutorial, we'll build a [simple Unity chat application](https://github.com/momentohq/momento-unity-demo) using the [Momento .NET SDK](https://github.com/momentohq/client-sdk-dotnet). Specifically, we'll utilize [Momento Topics](https://docs.momentohq.com/topics) for publishing and subscribing to the chat messages.
 
 Momento Topics is a serverless approach to real-time communication that allows clients to subscribe and publish to dedicated channels called topics. This makes it perfect for a real-time Unity-based chat application. Furthermore, since it's a serverless approach, there's no need for you to worry about all the details of creating or configuring your own server. More details can be found on the [Momento Topics Documentation page](https://docs.momentohq.com/topics).
 
@@ -19,7 +19,7 @@ Download the [Unity 2022 LTS release](https://unity.com/releases/lts). In writin
 ### Momento
 While waiting for Unity to download and install, you can optionally configure the Momento side of things using the [Momento console](https://console.gomomento.com). _Note: this step is only necessary if you want to set up your own API Auth Token, which is NOT required for the rest of this tutorial since we'll utilize a [Token Vending Machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine) that's already deployed as part of the main [Momento Moderated Chat](https://github.com/momentohq/moderated-chat/) application. However, in our [Unity demo repository](https://github.com/momentohq/momento-unity-demo), we include two extra Unity scenes where you can utilize your own Momento Topic; see [Example Scenes](#example-scenes) below for more information_.
 
-1. You can create an account in the [Momento console](https://console.gomomento.com) by providing your email address or linking an existing Google or GitHub account. 
+1. You can create an account in the [Momento console](https://console.gomomento.com) by providing your email address or linking an existing Google or GitHub account.
 2. Once you've logged into the console, click the `Create Cache` button on the top right of the page:
 ![Create Cache button](/img/console-create-cache.png)
 
@@ -37,7 +37,7 @@ While waiting for Unity to download and install, you can optionally configure th
 ## Setting up the Unity Project
 
 ### Creating the Project
-After completing the [Prerequisites](#prerequisites), you'll need to set up the Unity project. To do so, you can either clone our [example demo repository](https://github.com/momentohq/momento-unity-demo) and start from there, or you can create your own from scratch. If you're new to Unity or want to save time in later steps, we recommend cloning the example repository. 
+After completing the [Prerequisites](#prerequisites), you'll need to set up the Unity project. To do so, you can either clone our [example demo repository](https://github.com/momentohq/momento-unity-demo) and start from there, or you can create your own from scratch. If you're new to Unity or want to save time in later steps, we recommend cloning the example repository.
 
 To use the Unity project in our example repository, complete the following steps:
 1. Clone https://github.com/momentohq/momento-unity-demo.
@@ -46,28 +46,28 @@ To use the Unity project in our example repository, complete the following steps
 ![New Unity Project](/img/unity/hub-new-project.png)
 4. Then choose the cloned folder.
 5. If using a version other than Unity 2022.3.9f1, you may need to let Unity change the project's editor version appropriately.
-6. Once the Unity project is loaded, open the `MomentoTopicsDemo-ModeratedChat.unity` scene file. In the project, there are several scene files that show varying levels of functionality. The "Moderated Chat" scene provides a Unity client of the main [Momento Moderated Chat](https://github.com/momentohq/moderated-chat/) application; see also the blog post on [How to use webhooks and Momento Topics to build a multi-language chat app](https://www.gomomento.com/blog/how-to-use-webhooks-and-momento-topics-to-build-a-multi-language-chat-app).
+6. Once the Unity project is loaded, open the `MomentoTopicsDemo-ModeratedChat.unity` scene file. In the project, there are several scene files that show varying levels of functionality. The "Moderated Chat" scene provides a Unity client of the main [Momento Moderated Chat](https://github.com/momentohq/moderated-chat/) application.
 
 The rest of this tutorial will utilize our example repository.
 
 ### Adding the Momento .NET SDK to Unity
 Once the project has finished being opened:
-1. Download the latest [MomentoSdkUnity release .zip file](https://github.com/momentohq/client-sdk-dotnet/releases). For example, for the [v1.31.1 release](https://github.com/momentohq/client-sdk-dotnet/releases/tag/v1.31.1), you would download [MomentoSdkUnity-1.31.1.zip](https://github.com/momentohq/client-sdk-dotnet/releases/download/v1.31.1/MomentoSdkUnity-1.31.1.zip). This .zip file contains a special version of the Momento .NET SDK that utilizes gRPC-Web due to HTTP/2 compatibility limitations in Unity. Required DLL dependencies are also included in the zip. 
-4. Unzip its contents inside the folder `Assets/MomentoSdkUnity`. 
+1. Download the latest [MomentoSdkUnity release .zip file](https://github.com/momentohq/client-sdk-dotnet/releases). For example, for the [v1.31.1 release](https://github.com/momentohq/client-sdk-dotnet/releases/tag/v1.31.1), you would download [MomentoSdkUnity-1.31.1.zip](https://github.com/momentohq/client-sdk-dotnet/releases/download/v1.31.1/MomentoSdkUnity-1.31.1.zip). This .zip file contains a special version of the Momento .NET SDK that utilizes gRPC-Web due to HTTP/2 compatibility limitations in Unity. Required DLL dependencies are also included in the zip.
+4. Unzip its contents inside the folder `Assets/MomentoSdkUnity`.
 
 ## Building the Unity Chat Application with Momento Topics
-Once you get to this step, you are ready to start building the user interface and writing the C# scripts to connect to Momento Topics via the [Momento .NET SDK](https://docs.momentohq.com/cache/develop/sdks/dotnet). 
+Once you get to this step, you are ready to start building the user interface and writing the C# scripts to connect to Momento Topics via the [Momento .NET SDK](https://docs.momentohq.com/cache/develop/sdks/dotnet).
 
 In this tutorial, we'll utilize the already existing example code in the cloned repository and in the following two sections we'll give an overview of how the UI and C# code is setup.
 
 ### Understanding the User Interface
 In our example project, the user interface is already built out into three separate [Unity UI Canvas](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/UICanvas.html) elements, one for letting the user choose a name, one for the actual chat UI, and one for any communicating errors to the user.
 
-As shown below, the NameCanvas contains a [TextMeshPro](https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/) input field and a "Start" button. 
+As shown below, the NameCanvas contains a [TextMeshPro](https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/) input field and a "Start" button.
 
 ![NameCanvas](/img/unity/NameCanvas.png)
 
-After the user enters a name, either pressing the Enter key or clicking on the "Start" button will start the chat application. Once that happens, our C# script will hide the NameCanvas and then show the MessagingCanvas. 
+After the user enters a name, either pressing the Enter key or clicking on the "Start" button will start the chat application. Once that happens, our C# script will hide the NameCanvas and then show the MessagingCanvas.
 
 The MessagingCanvas contains a [Scroll View](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/UIInteractionComponents.html#scroll-rect-scroll-view) that will enable our chat messaging window to be scrollable. With the appropriate [positioning of the UI elements](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/UIBasicLayout.html), we can make the chat messaging area grow upwards, letting the latest messages always show at the bottom.
 
@@ -92,7 +92,7 @@ The first thing we need to do is to let our C# script know about the API key we 
 - To set the environment variable in Windows, click the Windows Start button, search for "environment" and click on "Edit the system environment variables." Then click on "Environment Variables" and ensure the `MOMENTO_API_KEY` environment variable is set. You may need to restart Unity to get it to recognize your newly created environment variable.
 - To hard-code the API key in a C# script, copy and paste your API key into `Assets/Scripts/TopicsTest.cs` replacing `ADD_YOUR_TOKEN_HERE` in the `ReadAuthToken()` function.
 
-After the API key is appropriately set, you can go ahead and click on the "Play" button in the Unity Editor to test it out! 
+After the API key is appropriately set, you can go ahead and click on the "Play" button in the Unity Editor to test it out!
 
 ## Conclusion
 
