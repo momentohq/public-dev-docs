@@ -459,6 +459,10 @@ Get the cache value and hash of the cache value stored for the given key.
 <summary>Method response object</summary>
 
 * Hit
+  - `valueString()`: the value of the item stored in the cache returned as a string
+  - `valueByte()`: the value of the item stored in the cache returned as bytes
+  - `hashString()`: the hash of the value stored in the cache returned as a string
+  - `hashByte()`: the hash of the value stored in the cache returned as bytes
 * Miss
 * Error
 
@@ -484,6 +488,8 @@ Associates the provided value to a cache item with a given key and returns the h
 <summary>Method response object</summary>
 
 * Stored
+  - `hashString()`: the hash of the value stored in the cache returned as a string
+  - `hashByte()`: the hash of the value stored in the cache returned as bytes
 * NotStored
 * Error
 
@@ -515,6 +521,8 @@ Associates the provided value to a cache item with a given key if the key exists
 <summary>Method response object</summary>
 
 * Stored
+  - `hashString()`: the hash of the value stored in the cache returned as a string
+  - `hashByte()`: the hash of the value stored in the cache returned as bytes
 * NotStored
 * Error
 
@@ -546,6 +554,8 @@ Associates the provided value to a cache item with a given key if the key exists
 <summary>Method response object</summary>
 
 * Stored
+  - `hashString()`: the hash of the value stored in the cache returned as a string
+  - `hashByte()`: the hash of the value stored in the cache returned as bytes
 * NotStored
 * Error
 
@@ -577,6 +587,8 @@ Associates the provided value to a cache item with a given key if (1) the key do
 <summary>Method response object</summary>
 
 * Stored
+  - `hashString()`: the hash of the value stored in the cache returned as a string
+  - `hashByte()`: the hash of the value stored in the cache returned as bytes
 * NotStored
 * Error
 
