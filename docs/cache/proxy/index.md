@@ -58,5 +58,5 @@ Momento Proxy will continue to get better and faster. Future improvements are co
 
 ---
 
-Ready to get started? Head over to the [configuration page](/docs/cache/proxy/configuration) to launch Momento Proxy in your environment.
+Ready to get started? Head over to the [configuration page](/cache/proxy/configuration) to launch Momento Proxy in your environment.
 
