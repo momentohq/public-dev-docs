@@ -1,7 +1,7 @@
 ---
 sidebar_position: 20
-sidebar_label: Example Config
-title: Momento Proxy Default Config
+sidebar_label: Example
+title: Momento Proxy Example Config
 description: View an example configuration file for Momento Proxy
 ---
 

@@ -1,11 +1,11 @@
 ---
 sidebar_position: 20
-sidebar_label: Build and run
+sidebar_label: Configuration
 title: Building Momento Proxy
 description: Discover how to build, deploy, and run Momento Proxy in your environment.
 ---
 
-# Build and run Momento Proxy in your environment
+# Configure Momento Proxy for your environment
 
 Getting started with Momento Proxy is fast and straightforward. You can either run it using [Docker](https://www.docker.com/) or build it from source using [Cargo](https://doc.rust-lang.org/cargo/). All you need is a [Momento API key](/cache/develop/authentication/api-keys) and a configuration file.
 
@@ -30,7 +30,7 @@ docker run -d \
   gomomento/momento-proxy
 ```
 
-This starts the proxy with a [default configuration file](/cache/proxy/default-config).
+This starts the proxy with a [default configuration file](/cache/proxy/configuration/example).
 
 To use a custom config, configure the `CONFIG` environment variable and the directory where your config file is located:
 
@@ -75,7 +75,4 @@ END
 
 This confirms that your set and get operations are being processed by Momento through the proxy. You should see successful responses from Momento now!
 
----
-
-Next: [Java Example and Benchmarks](/docs/cache/momento-proxy/java-example)
 
