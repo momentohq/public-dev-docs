@@ -48,7 +48,6 @@ The source code can be found on GitHub: [momentohq/client-sdk-go](https://github
 
 - [Getting started with Momento Cache in Go](./cache.mdx)
 - [Getting started with Momento Topics in Go](./topics.mdx)
-- [Getting started with Momento Storage in Go](./storage.mdx)
 - [Go SDK Examples](https://github.com/momentohq/client-sdk-go/blob/main/examples/README.md): working example projects that illustrate how to use the Go SDK
 
 ## Integrations

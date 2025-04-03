@@ -311,7 +311,6 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   <LinkButton text="Overview" link="/platform/sdks/go"/>
   <LinkButton text="Cache" link="/platform/sdks/go/cache.html"/>
   <LinkButton text="Topics" link="/platform/sdks/go/topics.html"/>
-  <LinkButton text="Storage" link="/platform/sdks/go/storage.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-go/blob/main/examples/README.md" openInNewTab="true" />
   <LinkButton text="Packages" link="https://github.com/momentohq/client-sdk-go/releases" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-go" openInNewTab="true" />
