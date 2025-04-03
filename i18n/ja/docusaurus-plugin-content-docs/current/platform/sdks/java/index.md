@@ -43,5 +43,4 @@ Momento Java SDK は Maven Central から入手できます: [`software.momento.
 
 - [Getting started with Momento Cache in Java](./cache.mdx)
 - [Getting started with Momento Topics in Java](./topics.mdx)
-- [Getting started with Momento Storage in Java](./storage.mdx)
 - [Java SDK Examples](https://github.com/momentohq/client-sdk-java/blob/main/examples/README.md): Java SDKの使い方を説明するサンプルプロジェクト
