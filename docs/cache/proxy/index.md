@@ -1,5 +1,5 @@
 ---
-sidebar_position: 70
+sidebar_position: 50
 sidebar_label: Momento Proxy
 title: Momento Proxy
 description: Learn how to use Momento Proxy as a drop-in replacement for Memcached with no code changes
@@ -60,5 +60,5 @@ Momento Proxy will continue to get better and faster. Future improvements are co
 
 ---
 
-Ready to get started? Head over to [Build and Run](/docs/cache/proxy/build-and-run) to launch Momento Proxy in your environment.
+Ready to get started? Head over to [Build and Run](/docs/cache/proxy/configuration) to launch Momento Proxy in your environment.
 
