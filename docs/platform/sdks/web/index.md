@@ -53,7 +53,6 @@ The source code can be found on GitHub: [momentohq/client-sdk-javascript](https:
 
 - [Getting started with Momento Cache in JavaScript](/platform/sdks/nodejs/cache.mdx): this cheat sheet targets the Node.js SDK, but the web SDK APIs are fully compatible.
 - [Getting started with Momento Topics in JavaScript](/platform/sdks/nodejs/topics.mdx): this cheat sheet targets the Node.js SDK, but the web SDK APIs are fully compatible.
-- [Getting started with Momento Storage in JavaScript](/platform/sdks/nodejs/storage.mdx): this cheat sheet targets the Node.js SDK, but the web SDK APIs are fully compatible.
 - [Chat app: Next.js](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/nextjs-chat): a dynamic app that allows users to chat in their browser by entering a cache and topic name. The application vends low scope, short-lived auth tokens to the browser which uses them to subscribe to the topic.
 - [Chat app: Vite](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web/vite-chat-app): a static version of the chat app that requires a separate API (such as our [Node.js token vending machine](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/token-vending-machine)) to provide auth tokens to browsers.
 - [Web SDK Examples](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/web/README.md): working example projects that illustrate how to use the web SDK
