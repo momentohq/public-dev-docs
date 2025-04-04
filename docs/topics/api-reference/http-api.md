@@ -65,7 +65,7 @@ Publishes a message to a topic.
 
 The body of the HTTP POST request should contain the value that you wish to publish to the topic. You may publish
 either text data, or binary data. To specify which type of data you are publishing, use the `Content-Type` header, as
-documented in the [Headers](#Headers) section above.
+documented in the [Headers](#headers) section above.
 
 ### Responses
 

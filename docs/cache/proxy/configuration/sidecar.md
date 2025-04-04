@@ -13,13 +13,13 @@ Running Momento Proxy as a sidecar is the best way to ensure low-latency perform
 
 A sidecar is a container that runs alongside your main application within the same service group (in Docker Compose) or pod (in Kubernetes). It shares the same network namespace, so your application can communicate with the proxy over `localhost` with no additional routing.
 
-This setup is ideal for performance-critical environments where every millisecond counts.
+This setup is for performance-critical environments where *every millisecond counts*.
 
 ## Running with Docker Compose
 
 Below is how you can configure Momento Proxy to run as a sidecar using Docker Compose:
 
-:::note
+:::info[Note]
 
  In Docker Compose, each container runs in its own network namespace. That means localhost refers to the container itself, not the proxy. Instead, your application should connect to the proxy using the service name defined in the Compose file—like `proxy:11211` for Memcached.
 
@@ -98,4 +98,4 @@ public class App {
 }
 ```
 
-With this, all your `get` and `set` calls to Memcached are now being proxied to Momento Cache 💡
+💡 With this, all your `get` and `set` calls to Memcached are now being proxied to Momento Cache!
