@@ -90,7 +90,7 @@ public class App {
             new InetSocketAddress("localhost", 11211)
         );
 
-        client.set("foo", 3600, "bar");
+        client.set("foo", 3600, "bar").get();
         Object value = client.get("foo");
 
         System.out.println("Value for key 'foo': " + value);
