@@ -86,7 +86,7 @@ Then you will use the `generateDisposableToken` API to create a disposable token
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateDisposableToken'} />
 
-For more information on Momento tokens, including `DisposableTokenScope` and permission objects for authorization, see [Auth API Reference](/cache/develop/api-reference/auth.md#generatedisposabletoken-api).
+For more information on Momento tokens, including `DisposableTokenScope` and permission objects for authorization, see [Auth API Reference](/cache/develop/api-reference/auth#generatedisposabletoken).
 
 ## FAQ
 

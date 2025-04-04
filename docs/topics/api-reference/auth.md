@@ -302,7 +302,7 @@ const tokenResponse = await authClient.generateDisposableToken(
 <details>
     <summary>Do these tokens control access to the Momento control plane APIs?</summary>
 
-    Access tokens generated with the [GenerateApiKey](#generateapikey-api) API only control access to the Momento data plane APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
+    Access tokens generated with the [GenerateApiKey](#generateapikey) API control access to the both the Momento data plane and control plane APIs. However, tokens generated with the [GenerateDisposableToken](#generatedisposabletoken) API will only have access to the data plane.
 </details>
 
 :::tip
