@@ -60,7 +60,7 @@ This sequence diagram shows the lifecycle of a typical set and get operation whe
 Momento Proxy will continue to get better and faster. Future improvements are coming soon and include:
 
 ### Local caching in the proxy
-To reduce latency even further, we're adding a local in-memory cache layer to Momento Proxy. This will allow frequently accessed items to be served directly from the proxy without needing a round trip to Momento Cache. This enhancement also addresses the "cold cache" problem when servers are restarted or rescheduled—making your application faster and more resilient right out of the gate.
+To reduce latency even further, we're adding a local in-memory cache layer to Momento Proxy. This will allow frequently accessed items to be served directly from the proxy without needing a round trip to Momento Cache.
 
 ### SSD-based caching
 Also planned is support for SSD-backed caching inside the proxy. This allows for much larger working sets to be cached locally—beyond what fits in memory—without requiring upstream calls for less frequently accessed data. It is especially useful for read-heavy workloads or applications with long-tail access patterns, where latency consistency and cache efficiency matter.
