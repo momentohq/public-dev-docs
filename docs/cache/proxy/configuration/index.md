@@ -1,5 +1,5 @@
 ---
-sidebar_position: 20
+sidebar_position: 10
 sidebar_label: Configuration
 title: Building Momento Proxy
 description: Discover how to build, deploy, and run Momento Proxy in your environment.
@@ -7,13 +7,12 @@ description: Discover how to build, deploy, and run Momento Proxy in your enviro
 
 # Configure Momento Proxy for your environment
 
-Getting started with Momento Proxy is fast and straightforward. You can either run it using [Docker](https://www.docker.com/) or build it from source using [Cargo](https://doc.rust-lang.org/cargo/). All you need is a [Momento API key](/cache/develop/authentication/api-keys) and a configuration file.
+Getting started with Momento Proxy is fast and straightforward. You can run it using [Docker](https://www.docker.com/) with only a [Momento API key](/cache/develop/authentication/api-keys) and a [configuration file](/cache/proxy/configuration/example).
 
 ## Prerequisites
 
 - A valid [Momento API key](/cache/develop/authentication/api-keys).
 - At least [one cache created](https://console.gomomento.com/caches/create) in your Momento account.
-- [Rust toolchain](https://www.rust-lang.org/tools/install) if building from source.
 
 ## Running with Docker
 
@@ -50,11 +49,11 @@ docker run -d \
 > - `6379` for Redis protocol
 > - `9999` for admin/stats commands
 
-## Verifying the Proxy is Working
+## Verifying the proxy is working
 
 Once the proxy is running, you can verify connectivity and functionality by testing the Memcached interface. Successful responses confirm that your application can communicate with Momento through the proxy.
 
-### Memcached Protocol (via telnet)
+### Memcached protocol (via telnet)
 
 Use telnet to test Memcached behavior:
 
@@ -73,6 +72,6 @@ bar
 END
 ```
 
-This confirms that your set and get operations are being processed by Momento through the proxy. You should see successful responses from Momento now!
+This confirms that your set and get operations are being processed by Momento through the proxy. You should see successful responses from Momento now! Ready to configure your application code? Learn [how to run the proxy as a sidecar](/cache/proxy/configuration/sidecar).
 
 
