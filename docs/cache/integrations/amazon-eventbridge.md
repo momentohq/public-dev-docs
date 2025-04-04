@@ -9,7 +9,7 @@ If you build event-driven architectures in AWS, you're likely familiar with [Ama
 
 :::tip
 
-On this page you'll learn some general-purpose patterns for connecting EventBridge to Momento. 
+On this page you'll learn some general-purpose patterns for connecting EventBridge to Momento.
 
 For a more concrete example, check out our [DynamoDB-Momento EventBridge Demo](https://github.com/momentohq/client-sdk-javascript/tree/main/examples/nodejs/aws/eventbridge)!
 This project shows how to create a write-through cache in Momento using DynamoDB Streams and AWS EventBridge.
@@ -39,7 +39,7 @@ You optionally can provide the EventBridge event bus name that will rules will t
 
 ![CloudFormation UI with deployment parameters configured](@site/static/img/eb-destination-ui.png)
 
-With the two parameters filled out, you can hit *Create stack* and the resources will be deployed automatically for you, optimized for your deployment region. *Wondering what that means?* Momento, like AWS, is region-based, and your auth tokens target a specific region. For the HTTP API, this means you must [hit a different base URL](/cache/develop/api-reference/http-api.md#regions) depending on the region you wish to use. The quick start we've provided will determine the appropriate base URL upon deployment so you don't have to think about it 👍
+With the two parameters filled out, you can hit *Create stack* and the resources will be deployed automatically for you, optimized for your deployment region. *Wondering what that means?* Momento, like AWS, is region-based, and your auth tokens target a specific region. For the HTTP API, this means you must [hit a different base URL](/platform/regions) depending on the region you wish to use. The quick start we've provided will determine the appropriate base URL upon deployment so you don't have to think about it 👍
 
 This also means the integration will only work in the Momento-supported AWS Regions:
 
@@ -63,7 +63,7 @@ If you wish to see the raw CloudFormation template, [click here](https://momento
 
 ## Triggering the API calls
 
-We currently support three API calls with this integration, *Cache Item Set*, *Cache Item Delete*, and *Topic Publish*. To invoke one of these rules, you must put an event on the configured event bus. 
+We currently support three API calls with this integration, *Cache Item Set*, *Cache Item Delete*, and *Topic Publish*. To invoke one of these rules, you must put an event on the configured event bus.
 
 ### Setting a cache item
 
@@ -78,7 +78,7 @@ To set a cache item, publish an event with the following information:
   "key": "<cache item key>",
   "key_base64": "<cache item key base-64 encoded>",
   "message": "<value to save to the cache item>",
-  "ttl": 60 // time to live in seconds 
+  "ttl": 60 // time to live in seconds
 }
 ```
 
@@ -153,6 +153,6 @@ When that code runs, it will publish an event to the default event bus, the *Cac
 
 ## Try it out!
 
-This integration will continue to grow as our HTTP API gains more and more features. You can always come back here, [deploy the stack to your AWS account](https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=momento-api&templateURL=https://momento-developers.s3.amazonaws.com/api-destinations.yaml) and get the updated version automatically. 
+This integration will continue to grow as our HTTP API gains more and more features. You can always come back here, [deploy the stack to your AWS account](https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=momento-api&templateURL=https://momento-developers.s3.amazonaws.com/api-destinations.yaml) and get the updated version automatically.
 
 If you have issues deploying the stack to your account or would like support for another region, feel free to [reach out on Discord](https://discord.com/invite/3HkAKjUZGq) and the team will be happy to help you.
