@@ -513,7 +513,7 @@ Associates the provided value to a cache item with a given key if the key exists
 | cacheName  | String          | Name of the cache.                            |
 | key        | String \| Bytes | The key to be set.                            |
 | value      | String \| Bytes | The value to be stored.                       |
-| hashEqual  | String \| Bytes | The hash of the value to compare with.        |
+| hashEqual  | Bytes           | The hash of the value to compare with.        |
 | ttlSeconds | Duration        | Time to Live for the item in Cache.           |
 
 <details>
@@ -546,7 +546,7 @@ Associates the provided value to a cache item with a given key if the key exists
 | cacheName    | String          | Name of the cache.                       |
 | key          | String \| Bytes | The key to be set.                       |
 | value        | String \| Bytes | The value to be stored.                  |
-| hashNotEqual | String \| Bytes | The hash of the value to compare with.   |
+| hashNotEqual | Bytes           | The hash of the value to compare with.   |
 | ttlSeconds   | Duration        | Time to Live for the item in Cache.      |
 
 <details>
@@ -579,7 +579,7 @@ Associates the provided value to a cache item with a given key if (1) the key do
 | cacheName  | String          | Name of the cache.                        |
 | key        | String \| Bytes | The key to be set.                        |
 | value      | String \| Bytes | The value to be stored.                   |
-| hashEqual  | String \| Bytes | The hash of the value to compare with.    |
+| hashEqual  | Bytes           | The hash of the value to compare with.    |
 | ttlSeconds | Duration        | Time to Live for the item in Cache.       |
 
 <details>
@@ -612,7 +612,7 @@ Associates the provided value to a cache item with a given key if (1) the key do
 | cacheName    | String          | Name of the cache.                            |
 | key          | String \| Bytes | The key to be set.                            |
 | value        | String \| Bytes | The value to be stored.                       |
-| hashNotEqual | String \| Bytes | The hash of the value to compare with.        |
+| hashNotEqual | Bytes           | The hash of the value to compare with.        |
 | ttlSeconds   | Duration        | Time to Live for the item in Cache.           |
 
 <details>
