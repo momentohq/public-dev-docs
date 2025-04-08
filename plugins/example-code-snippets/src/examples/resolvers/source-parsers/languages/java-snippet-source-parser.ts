@@ -12,7 +12,6 @@ export class JavaSnippetSourceParser extends RegexSnippetSourceParser {
       'examples/cache/src/main/java/momento/client/example/doc_examples/DocExamplesJavaAPIs.java',
       'examples/cache-with-aws/src/main/java/momento/client/example/doc_examples/DocExamplesJavaAPIs.java',
       'examples/token/src/main/java/momento/client/example/docs_examples/DocExamplesJavaAPIs.java',
-      'examples/storage/src/main/java/momento/client/example/doc_examples/DocExamplesJavaAPIs.java',
       'examples/leaderboard/src/main/java/momento/client/example/doc_examples/DocExamplesJavaAPIs.java',
     ];
     super({
