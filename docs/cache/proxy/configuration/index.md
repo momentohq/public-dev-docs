@@ -9,6 +9,8 @@ description: Discover how to build, deploy, and run Momento Proxy in your enviro
 
 Getting started with Momento Proxy is fast and straightforward. You can run it using [Docker](https://www.docker.com/) with only a [Momento API key](/cache/develop/authentication/api-keys) and a [configuration file](/cache/proxy/configuration/example).
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sdiqxGjA5HE?si=gEgkpgoI1L5Pacaz" title="Configure Momento Proxy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Prerequisites
 
 - A valid [Momento API key](/cache/develop/authentication/api-keys).
