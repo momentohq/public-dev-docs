@@ -1,0 +1,9 @@
+{
+  "label": "Integrations",
+  "position": 30,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "description": "Learn about the services accessible inside of a Momento function execution environment"
+  }
+}
