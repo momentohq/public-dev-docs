@@ -19,7 +19,6 @@ interface SdkInfo {
   topicClientFile: string | undefined;
   authClientFile: string | undefined;
   leaderboardClientFile: Array<string> | undefined;
-  storageClientFile: string | undefined;
 }
 
 const SDKS: Array<SdkInfo> = [
@@ -35,8 +34,6 @@ const SDKS: Array<SdkInfo> = [
     leaderboardClientFile: [
       'packages/core/src/internal/clients/leaderboard/AbstractLeaderboard.ts',
     ],
-    storageClientFile:
-      'packages/core/src/internal/clients/storage/AbstractStorageClient.ts',
   },
   {
     sdk: Sdk.WEB,
@@ -50,8 +47,6 @@ const SDKS: Array<SdkInfo> = [
     leaderboardClientFile: [
       'packages/core/src/internal/clients/leaderboard/AbstractLeaderboard.ts',
     ],
-    storageClientFile:
-      'packages/core/src/internal/clients/storage/AbstractStorageClient.ts',
   },
   {
     sdk: Sdk.DOTNET,
@@ -60,7 +55,6 @@ const SDKS: Array<SdkInfo> = [
     topicClientFile: 'src/Momento.Sdk/ITopicClient.cs',
     authClientFile: 'src/Momento.Sdk/IAuthClient.cs',
     leaderboardClientFile: undefined,
-    storageClientFile: undefined,
   },
   {
     sdk: Sdk.PYTHON,
@@ -69,7 +63,6 @@ const SDKS: Array<SdkInfo> = [
     topicClientFile: 'src/momento/topic_client_async.py',
     authClientFile: 'src/momento/auth_client_async.py',
     leaderboardClientFile: undefined,
-    storageClientFile: undefined,
   },
   {
     sdk: Sdk.GO,
@@ -81,7 +74,6 @@ const SDKS: Array<SdkInfo> = [
       'momento/leaderboard.go',
       'momento/leaderboard_client.go',
     ],
-    storageClientFile: 'momento/storage_client.go',
   },
   {
     sdk: Sdk.JAVA,
@@ -94,8 +86,6 @@ const SDKS: Array<SdkInfo> = [
       'momento-sdk/src/main/java/momento/sdk/ILeaderboard.java',
       'momento-sdk/src/main/java/momento/sdk/LeaderboardClient.java',
     ],
-    storageClientFile:
-      'momento-sdk/src/main/java/momento/sdk/PreviewStorageClient.java',
   },
   {
     sdk: Sdk.KOTLIN,
@@ -107,7 +97,6 @@ const SDKS: Array<SdkInfo> = [
       'src/commonMain/kotlin/software/momento/kotlin/sdk/TopicClient.kt',
     authClientFile: undefined,
     leaderboardClientFile: undefined,
-    storageClientFile: undefined,
   },
   {
     sdk: Sdk.ELIXIR,
@@ -116,7 +105,6 @@ const SDKS: Array<SdkInfo> = [
     topicClientFile: undefined,
     authClientFile: undefined,
     leaderboardClientFile: undefined,
-    storageClientFile: undefined,
   },
   {
     sdk: Sdk.PHP,
@@ -125,7 +113,6 @@ const SDKS: Array<SdkInfo> = [
     topicClientFile: undefined,
     authClientFile: undefined,
     leaderboardClientFile: undefined,
-    storageClientFile: 'src/Storage/PreviewStorageClient.php',
   },
   {
     sdk: Sdk.RUST,
@@ -134,7 +121,6 @@ const SDKS: Array<SdkInfo> = [
     topicClientFile: 'src/topics/topic_client.rs',
     authClientFile: undefined,
     leaderboardClientFile: undefined,
-    storageClientFile: 'src/storage/preview_storage_client.rs',
   },
   {
     sdk: Sdk.RUBY,
@@ -143,7 +129,6 @@ const SDKS: Array<SdkInfo> = [
     topicClientFile: undefined,
     authClientFile: undefined,
     leaderboardClientFile: undefined,
-    storageClientFile: undefined,
   },
   {
     sdk: Sdk.SWIFT,
@@ -152,7 +137,6 @@ const SDKS: Array<SdkInfo> = [
     topicClientFile: 'Sources/Momento/TopicClient.swift',
     authClientFile: undefined,
     leaderboardClientFile: undefined,
-    storageClientFile: undefined,
   },
   {
     sdk: Sdk.DART,
@@ -161,7 +145,6 @@ const SDKS: Array<SdkInfo> = [
     topicClientFile: 'lib/src/topic_client.dart',
     authClientFile: undefined,
     leaderboardClientFile: undefined,
-    storageClientFile: undefined,
   },
 ];
 
@@ -337,21 +320,6 @@ const LEADERBOARD_API_GROUPS: Array<ApiGroup> = [
   },
 ];
 
-const STORAGE_API_GROUPS: Array<ApiGroup> = [
-  {
-    groupName: 'Storage',
-    groupDescription: 'A matrix of SDK support for Momento Storage APIs',
-    apis: [
-      'createStore',
-      'deleteStore',
-      'listStores',
-      {displayName: 'put', functionName: /put(?:string)?\(/},
-      'get',
-      'delete',
-    ],
-  },
-];
-
 export class ApiSupportMatrixGenerator {
   private sourceProvider: SdkSourceProvider;
 
@@ -370,9 +338,6 @@ export class ApiSupportMatrixGenerator {
       }
       case '%%%LEADERBOARD_API_SUPPORT_MATRIX%%%': {
         return this.generateLeaderboardMatrixNodes();
-      }
-      case '%%%STORAGE_API_SUPPORT_MATRIX%%%': {
-        return this.generateStorageMatrixNodes();
       }
       case '%%%ALL_API_SUPPORT_MATRIX%%%': {
         return this.generateAllMatrixNodes();
@@ -534,29 +499,6 @@ export class ApiSupportMatrixGenerator {
     nodes.push(
       ...renderApiGroups(LEADERBOARD_API_GROUPS, allSdksLeaderboardApiSupport)
     );
-    return nodes;
-  }
-
-  generateStorageMatrixNodes(): Array<Heading | Paragraph | Table> {
-    const allSdksStorageApiSupport = new Map<string, Map<string, boolean>>();
-
-    for (const sdk of SDKS) {
-      const sdkRepoDir = this.sourceProvider.sdkSourceDir(sdk.sdk);
-      const sdkName = sdk.sdk.valueOf();
-
-      const storageApiSupport = determineApiSupport(
-        sdkRepoDir,
-        sdk.storageClientFile,
-        STORAGE_API_GROUPS
-      );
-      allSdksStorageApiSupport.set(sdkName, storageApiSupport);
-    }
-
-    const nodes: Array<Heading | Paragraph | Table> = [];
-    nodes.push(
-      ...renderApiGroups(STORAGE_API_GROUPS, allSdksStorageApiSupport)
-    );
-
     return nodes;
   }
 }

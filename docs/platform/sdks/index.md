@@ -107,7 +107,6 @@ The Momento Web SDK allows you to create rich browser applications in TypeScript
   <LinkButton text="Style Guide" link="/platform/sdks/nodejs/style-guide.html"/>
   <LinkButton text="Cache" link="/platform/sdks/nodejs/cache.html"/>
   <LinkButton text="Topics" link="/platform/sdks/nodejs/topics.html"/>
-  <LinkButton text="Storage" link="/platform/sdks/nodejs/storage.html"/>
   <LinkButton text="API Tokens" link="/platform/sdks/web#credentials-for-browsers"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-javascript/tree/main/examples/web" openInNewTab="true"/>
   <LinkButton text="Packages" link="https://www.npmjs.com/package/@gomomento/sdk-web" openInNewTab="true" />
@@ -218,7 +217,6 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   <LinkButton text="Style Guide" link="/platform/sdks/nodejs/style-guide.html"/>
   <LinkButton text="Cache" link="/platform/sdks/nodejs/cache.html"/>
   <LinkButton text="Topics" link="/platform/sdks/nodejs/topics.html"/>
-  <LinkButton text="Storage" link="/platform/sdks/nodejs/storage.html"/>
   <LinkButton text="Compression" link="/platform/sdks/nodejs/compression.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-nodejs/tree/main/examples/nodejs" openInNewTab="true" />
   <LinkButton text="Packages" link="https://www.npmjs.com/package/@gomomento/sdk" openInNewTab="true" />
@@ -274,7 +272,6 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   <LinkButton text="Overview" link="/platform/sdks/java"/>
   <LinkButton text="Cache" link="/platform/sdks/java/cache.html"/>
   <LinkButton text="Topics" link="/platform/sdks/java/topics.html"/>
-  <LinkButton text="Storage" link="/platform/sdks/java/storage.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-java/tree/main/examples" openInNewTab="true" />
   <LinkButton text="Packages" link="https://central.sonatype.com/artifact/software.momento.kotlin/sdk" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-java" openInNewTab="true" />
@@ -328,7 +325,6 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
 }}>
   <LinkButton text="Overview" link="/platform/sdks/php"/>
   <LinkButton text="Cache" link="/platform/sdks/php/cache.html"/>
-  <LinkButton text="Storage" link="/platform/sdks/php/storage.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-php/blob/main/examples" openInNewTab="true" />
   <LinkButton text="Packages" link="https://packagist.org/packages/momentohq/client-sdk-php" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-php" openInNewTab="true" />
@@ -364,7 +360,6 @@ Momento server-side SDKs allow you to take advantage of Momento's low-latency Ca
   <LinkButton text="Overview" link="/platform/sdks/rust"/>
   <LinkButton text="Cache" link="/platform/sdks/rust/cache.html"/>
   <LinkButton text="Topics" link="/platform/sdks/rust/topics.html"/>
-  <LinkButton text="Storage" link="/platform/sdks/rust/storage.html"/>
   <LinkButton text="Examples" link="https://github.com/momentohq/client-sdk-rust/blob/main/example" openInNewTab="true" />
   <LinkButton text="Packages" link="https://crates.io/crates/momento" openInNewTab="true" />
   <LinkButton text="Source Code" link="https://github.com/momentohq/client-sdk-rust" openInNewTab="true" />

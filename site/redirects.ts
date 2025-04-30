@@ -70,7 +70,12 @@ const REDIRECTS = {
     '/docs/how-it-works/momento-concepts': '/',
     '/cache/introduction/what-is-serverless-caching': 'https://www.gomomento.com/blog/a-platform-for-everyone/',
     '/platform/sdks/go/storage': '/platform/sdks/go',
-    
+    '/platform/sdks/php/storage': '/platform/sdks/php',
+    '/platform/sdks/rust/storage': '/platform/sdks/rust',
+    '/platform/sdks/nodejs/storage': '/platform/sdks/nodejs',
+    '/docs/storage': '/',
+    '/storage': '/',
+
     // guides
     '/guides': '/cache',
     '/docs/guides': '/cache',
