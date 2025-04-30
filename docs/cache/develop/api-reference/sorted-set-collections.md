@@ -18,6 +18,20 @@ Momento collection types use a [CollectionTTL](./collection-ttl.md) to specify t
 
 :::
 
+## SortedSetElement
+
+A value and score makes up each element in a sorted set.
+
+Example:
+`{ "TomHocusXaster" : 1138 }`
+
+| Name            | Type                         | Description                                   |
+| --------------- | ---------------------------- | --------------------------------------------- |
+| Value           | String \| Bytes              | Value for the element. |
+| Score           | Signed double 64-bit float   | Score for the element. |
+
+A SortedSetElement can exist by itself or as part of an array of SortedSetElements.
+
 ## Sorted set methods
 
 ### SortedSetPutElement
@@ -32,8 +46,8 @@ Adds a new or updates an existing [sorted set element](#sortedsetelement) in a s
 | --------------- | ------------------ | --------------------------------------------- |
 | cacheName       | String             | Name of the cache.                            |
 | setName         | String             | Name of the sorted set collection to be altered. |
-| value           | String \| Byte[]   | The value of the element to be added to the sorted set by this operation. |
-| score           | number             | The score of the element to be added to the sorted set by this operation. |
+| value           | String \| Byte[]   | The value of the element to be added to the sorted set. |
+| score           | number             | The score of the element to be added to the sorted set. |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set collection. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
@@ -60,7 +74,7 @@ Adds new or updates existing [sorted set elements](#sortedsetelement) in a sorte
 | --------------- | ------------------ | --------------------------------------------- |
 | cacheName       | String             | Name of the cache.                            |
 | setName         | String             | Name of the sorted set collection to be altered. |
-| elements        | [SortedSetElement](#sortedsetelement)[] | Elements to be added to the sorted set by this operation. |
+| elements        | [SortedSetElement](#sortedsetelement)[] | Elements to be added to the sorted set. |
 | ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set collection. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
@@ -137,7 +151,7 @@ Gets an element's score from the sorted set, indexed by value.
 | ---------------- | ------------------- | --------------------------------------------- |
 | cacheName        | String              | Name of the cache.                            |
 | setName          | String              | Name of the sorted set collection. |
-| value           | String \| Bytes | The value to get the score of. |
+| value            | String \| Bytes     | The value to get the score of. |
 
 <details>
   <summary>Method response object</summary>
@@ -288,20 +302,6 @@ See [response objects](./response-objects.md) for specific information.
 
 <SdkExampleTabs snippetId={'API_SortedSetIncrementScore'} />
 
-## SortedSetElement
-
-A value and score makes up each element in a sorted set.
-
-Example:
-`{ "TomHocusXaster" : 1138 }`
-
-| Name            | Type                         | Description                                   |
-| --------------- | ---------------------------- | --------------------------------------------- |
-| Value           | String \| Bytes              | Value for the sorted set element.                            |
-| Score           | Signed double 64-bit float   | Score the element. |
-
-A SortedSetElement can exist by itself or as part of an array of SortedSetElements.
-
 ### SortedSetLength
 Get the number of entries in a sorted set collection.
 
@@ -347,3 +347,46 @@ See [response objects](./response-objects.md) for specific information.
 </details>
 
 <SdkExampleTabs snippetId={'API_SortedSetLengthByScore'} />
+
+### SortedSetUnionStore
+
+Computes the union of multiple sorted sets and store the result in a destination sorted set.
+
+| Name           | Type         | Description                                |
+|----------------| ------------ |--------------------------------------------|
+| cacheName      | String       | Name of the cache.                         |
+| sortedSetName | String       | Name of the destination sorted set. This set is not implicitly included as a source. |
+| sources | SortedSetUnionStoreSource       | The sorted sets to compute the union of. |
+| aggregate | Optional[SortedSetAggregateFunction]   | A function to determine the final score for an element that exists in multiple source sets. Defaults to SUM.
+| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set collection. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+
+<details>
+  <summary>Method response object</summary>
+
+* Success
+    * `length()`: Number -- the number of items in the destination set
+* Error
+
+See [response objects](./response-objects.md) for specific information.
+
+</details>
+
+<SdkExampleTabs snippetId={'API_SortedSetUnionStore'} />
+
+#### SortedSetUnionStoreSource
+
+A source sorted set for a SortedSetUnionStore request.
+
+| Name           | Type         | Description                                |
+|----------------| ------------ |--------------------------------------------|
+| sortedSetName  | String       | Name of the sorted set to include as a source. |
+| weight         | Number       | A multiplier applied to the score of each element in the set before aggregation. Negative and zero weights are allowed. |
+
+#### SortedSetAggregateFunction
+
+An aggregation function to determien the final score for an element that exists in multiple source sets.
+Valid values are:
+
+- SUM: Sum the weighted scores of an element across all the source sets.
+- MIN: Use the minimum of the weight scores of an element across all the source sets.
+- MAX: Use the maximum of the weight scores of an element across all the source sets.

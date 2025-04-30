@@ -277,6 +277,7 @@ const CACHE_API_GROUPS: Array<ApiGroup> = [
       'sortedSetPutElements',
       'sortedSetRemoveElement',
       'sortedSetRemoveElements',
+      'sortedSetUnionStore',
     ],
   },
   {
