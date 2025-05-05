@@ -46,6 +46,5 @@ Momento Rust SDK は crates.io: [`momento`](https://crates.io/crates/momento) �
 
 - [Getting started with Momento Cache in Rust](./cache.mdx)
 - [Getting started with Momento Topics in Rust](./topics.mdx)
-- [Getting started with Momento Storage in Rust](./storage.mdx)
 - [Asynchronous APIs, Result Types, Configuration, and Error Handling](./config-and-error-handling.mdx)
 - [Rust SDK Examples](https://github.com/momentohq/client-sdk-rust/blob/main/example/README.md): Rust SDKの使い方を説明するサンプルプロジェクト
