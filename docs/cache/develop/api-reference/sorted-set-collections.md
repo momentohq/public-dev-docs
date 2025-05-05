@@ -356,9 +356,9 @@ Computes the union of multiple sorted sets and store the result in a destination
 |----------------| ------------ |--------------------------------------------|
 | cacheName      | String       | Name of the cache.                         |
 | sortedSetName | String       | Name of the destination sorted set. This set is not implicitly included as a source. |
-| sources | SortedSetUnionStoreSource       | The sorted sets to compute the union of. |
-| aggregate | Optional[SortedSetAggregateFunction]   | A function to determine the final score for an element that exists in multiple source sets. Defaults to SUM.
-| ttl             | [CollectionTTL object](./collection-ttl.md) | TTL for the sorted set collection. This TTL takes precedence over the TTL used when initializing a cache connection client. |
+| sources | [SortedSetUnionStoreSource](#sortedsetunionstoresource)[]       | The sorted sets to compute the union of. |
+| aggregate | Optional[[SortedSetAggregateFunction](#sortedsetaggregatefunction)]   | A function to determine the final score for an element that exists in multiple source sets. Defaults to SUM.
+| ttl             | Optional[[CollectionTTL object](./collection-ttl.md)] | TTL for the sorted set collection. This TTL takes precedence over the TTL used when initializing a cache connection client. |
 
 <details>
   <summary>Method response object</summary>
