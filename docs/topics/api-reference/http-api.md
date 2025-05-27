@@ -107,9 +107,9 @@ Below is an example that publishes the value `hello world!` to the *example* top
 
 `curl -X POST -H "Authorization: <token>" -d 'hello world!' "https://api.cache.cell-us-east-1-1.prod.a.momentohq.com/topics/my-cache/example"`
 
-## Subscribe
+## Subscribe (long-poll)
 
-Subscribes to a topic via long polling, waiting for messages to be published.
+Listen for new messages on a topic.  The HTTP GET blocks until at least one message (or discontinuity notice) is available.
 
 ### Request
 
@@ -120,15 +120,22 @@ Subscribes to a topic via long polling, waiting for messages to be published.
 
 | Parameter&nbsp;name | Required? | Type            | Description                                 |
 |---------------------|-----------|-----------------|---------------------------------------------|
-| cacheName           | yes       | URL-safe string | The name of the cache containing the topic. |
-| topicName           | yes       | URL-safe string | Name of the topic to subscribe to.          |
+| cacheName           | yes       | URL-safe string | Cache that owns the topic. |
+| topicName           | yes       | URL-safe string | Topic to subscribe to.          |
 
 #### Query parameters
 
 | Parameter&nbsp;name | Required? | Type                 | Description                                                                                           |
 |---------------------|-----------|----------------------|-------------------------------------------------------------------------------------------------------|
-| `token`             | no**      | URL-safe&nbsp;string | The Momento auth token, in string format, to be used for authentication/authorization of the request.  |
-| `sequence_number`   | no        | Integer              | Optional parameter to specify the last message received. Ensures messages are received in order or to detect discontinuities. |
+| `token`             | no**      | URL-safe string | Momento auth token (if not using the header).  |
+| `sequence_number`   | no        | Integer         | The next sequence you expect, typically lastReceived + 1. Use 0 on the first request. |
+| `sequence_page`     | no        | Integer         | Identifies the instance of the topic. Pass 0 on your first request to discover the current page, then return the value back on subsequent calls. |
+
+:::tip[About `sequence_page`]
+
+A topic can be evicted from memory or recreated after maintenance. The sequence page identifies two instances that both contain message 42. Always send the most recent `sequence_page` you received; if you’re not sure, set it to 0 and the server will return the correct value.
+
+:::
 
 #### Headers
 
@@ -161,38 +168,24 @@ Subscribes to a topic via long polling, waiting for messages to be published.
 *Status code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
 
-### Examples
+### Success response
 
-#### Request with no sequence number
-
-This request includes auth as a header.
-
-`curl -X GET -H "Authorization: <token>" "https://api.cache.cell-us-east-1-1.prod.a.momentohq.com/topics/my-cache/my-topic"`
-
-**Response**
+*Status - 200 OK*
 
 ```json
 {
   "items": [
     {
       "item": {
+        "sequence_page": 3,
         "topic_sequence_number": 0,
-        "value": {
-          "text": "hello world"
-        }
+        "value": { "text": "hello world" }
       }
     }
   ]
 }
 ```
-
-#### Request with a sequence number provided
-
-This request includes auth as a query parameter.
-
-`curl -X GET "https://api.cache.cell-us-east-1-1.prod.a.momentohq.com/topics/my-cache/my-topic?token=<token>&sequence_number=100"`
-
-**Response**
+If the stream is not contiguous, e.g. because the sequence page changed, you'll receive a discontinuity element:
 
 ```json
 {
@@ -200,12 +193,14 @@ This request includes auth as a query parameter.
     {
       "discontinuity": {
         "last_topic_sequence": 100,
-        "new_topic_sequence": 104
+        "new_topic_sequence": 104,
+        "new_sequence_page": 1748358253
       }
     },
     {
       "item": {
         "topic_sequence_number": 104,
+        "sequence_page": 1748358253,
         "value": {
           "text": "hello world"
         }
