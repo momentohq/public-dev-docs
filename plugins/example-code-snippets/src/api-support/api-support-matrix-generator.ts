@@ -119,8 +119,11 @@ const SDKS: Array<SdkInfo> = [
     cacheClientFile: 'src/cache/cache_client.rs',
     configObjectFile: 'src/cache/config/configuration.rs',
     topicClientFile: 'src/topics/topic_client.rs',
-    authClientFile: undefined,
-    leaderboardClientFile: undefined,
+    authClientFile: 'src/auth/auth_client.rs',
+    leaderboardClientFile: [
+      'src/leaderboard/leaderboard_resource.rs',
+      'src/leaderboard/leaderboard_client.rs',
+    ],
   },
   {
     sdk: Sdk.RUBY,
