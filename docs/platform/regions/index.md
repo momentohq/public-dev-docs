@@ -21,6 +21,12 @@ keywords:
 
 Momento is a region-based service with availability all over the world. If you do not see a region you require, let’s discuss. Please [contact support](mailto:support@momentohq.com).
 
+:::info[Enterprise availability]
+
+  Private cells are available for **enterprise customers** in all AWS-supported commercial regions. [Contact support](mailto:support@momentohq.com) to discuss setup and deployment options.
+
+:::
+
 <table className="customTable">
   <thead>
     <tr>
