@@ -1,0 +1,217 @@
+---
+sidebar_position: 1
+sidebar_label: RESP compatibility
+title: Momento RESP compatibility
+description: Learn how to connect any Valkey or Redis client to Momento Cache with RESP while gaining Momento's reliability, security, and managed operations.
+hide_title: true
+slug: /cache/resp
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Momento RESP compatibility
+
+Momento Cache now speaks RESP, so Valkey and Redis clients can connect without changing SDKs. This enables Valkey/Redis migrations with zero client changes. Point your client at a Momento RESP endpoint, run `AUTH` with a Momento token, and continue issuing the same `GET`/`SET` commands while the Momento control plane manages scaling, security, and operations.
+
+## How it works
+
+RESP (Redis Serialization Protocol) defines the wire format Valkey/Redis clients already use. Momento implements the same request/response structure behind its RESP endpoints, so pointing an existing client at `cache.<cell>.<region>.<partition>.prod.a.momentohq.com` over TLS is a drop-in change.
+
+:::info
+RESP connectivity is in early access for enterprise customers running on dedicated Momento partitions. [Contact us](https://www.gomomento.com/contact-us) to enable it.
+:::
+
+## Connect in minutes
+
+Momento uses the RESP `username` field to determine which cache or namespace the request targets; the `password` field carries your Momento token. Momento performs all real authentication and authorization using its control plane.
+
+Validate the setup with `valkey-cli`:
+
+```bash
+valkey-cli --tls \
+  -h cache.cell-4-us-west-2-1.prod.a.momentohq.com
+
+auth my-cache-name $MOMENTO_TOKEN
+set a b
+get a
+```
+
+- TLS is required; Momento RESP endpoints only accept encrypted connections.
+- `AUTH` maps `username` -> cache name (namespace support is rolling out) and `password` -> Momento API key or session token.
+- Both short-lived and long-lived Momento tokens work - no Valkey-native password/ACL setup required.
+- `redis-cli` works the same way; swap the binary name if that is the client you have installed.
+- Tooling docs: [valkey-cli reference](https://valkey.io/topics/cli/) and [redis-cli guide](https://redis.io/docs/latest/develop/tools/cli/).
+
+## Code it your way
+
+Use any RESP-compatible client that supports TLS. The examples below show Valkey GLIDE in each language alongside a widely used Redis client configured with the same endpoint, username, and Momento token.
+
+<Tabs>
+<TabItem value="python-glide" label="Python - Valkey GLIDE">
+
+```python
+import asyncio
+import os
+from glide import (
+    GlideClient,
+    GlideClientConfiguration,
+    NodeAddress,
+    ServerCredentials,
+)
+
+
+async def main():
+    config = GlideClientConfiguration(
+        addresses=[NodeAddress("cache.cell-4-us-west-2-1.prod.a.momentohq.com", 6379)],
+        use_tls=True,
+        credentials=ServerCredentials(
+            username="my-cache-name",
+            password=os.environ["MOMENTO_TOKEN"],
+        ),
+    )
+
+    client = await GlideClient.create(config)
+    await client.set("a", "b")
+    value = await client.get("a")
+    print(value)
+    await client.close()
+
+
+asyncio.run(main())
+```
+
+</TabItem>
+<TabItem value="python-redis" label="Python - redis-py">
+
+```python
+import os
+import redis
+
+client = redis.Redis(
+    host="cache.cell-4-us-west-2-1.prod.a.momentohq.com",
+    port=6379,
+    username="my-cache-name",
+    password=os.environ["MOMENTO_TOKEN"],
+    ssl=True,
+)
+
+client.set("a", "b")
+value = client.get("a")
+print(value)
+```
+
+</TabItem>
+<TabItem value="node-glide" label="Node.js - Valkey GLIDE">
+
+```ts
+import { GlideClient } from "@valkey/valkey-glide";
+
+const client = await GlideClient.createClient({
+  addresses: [{ host: "cache.cell-4-us-west-2-1.prod.a.momentohq.com", port: 6379 }],
+  useTLS: true,
+  credentials: {
+    username: "my-cache-name",
+    password: process.env.MOMENTO_TOKEN!,
+  },
+});
+
+await client.set("a", "b");
+const value = await client.get("a");
+console.log(value?.toString());
+
+await client.close();
+```
+
+</TabItem>
+<TabItem value="node-redis" label="Node.js - ioredis">
+
+```ts
+import IORedis from "ioredis";
+
+const client = new IORedis({
+  host: "cache.cell-4-us-west-2-1.prod.a.momentohq.com",
+  port: 6379,
+  username: "my-cache-name",
+  password: process.env.MOMENTO_TOKEN,
+  tls: {}, // enables TLS
+});
+
+await client.set("a", "b");
+const value = await client.get("a");
+console.log(value);
+
+await client.quit();
+```
+
+</TabItem>
+<TabItem value="java-glide" label="Java - Valkey GLIDE">
+
+```java
+import glide.api.GlideClient;
+import glide.api.models.configuration.GlideClientConfiguration;
+import glide.api.models.configuration.NodeAddress;
+import glide.api.models.configuration.ServerCredentials;
+
+GlideClientConfiguration config =
+    GlideClientConfiguration.builder()
+        .address(NodeAddress.builder()
+            .host("cache.cell-4-us-west-2-1.prod.a.momentohq.com")
+            .port(6379)
+            .build())
+        .useTLS(true)
+        .credentials(ServerCredentials.builder()
+            .username("my-cache-name")
+            .password(System.getenv("MOMENTO_TOKEN"))
+            .build())
+        .build();
+
+GlideClient client = GlideClient.createClient(config).get();
+client.set("a", "b").get();
+String value = client.get("a").get();
+System.out.println(value);
+client.close();
+```
+
+</TabItem>
+<TabItem value="java-redis" label="Java - Jedis">
+
+```java
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisShardInfo;
+
+JedisShardInfo shard =
+    new JedisShardInfo("cache.cell-4-us-west-2-1.prod.a.momentohq.com", 6379, true);
+shard.setUser("my-cache-name");
+shard.setPassword(System.getenv("MOMENTO_TOKEN"));
+
+try (Jedis client = new Jedis(shard)) {
+    client.set("a", "b");
+    String value = client.get("a");
+    System.out.println(value);
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Current command coverage
+
+Momento currently supports `GET` and `SET` with full Valkey/Redis semantics. Additional commands are actively being added. If your workload requires a specific RESP command, [let us know](https://www.gomomento.com/contact-us) what you need.
+
+## Why teams switch to Momento RESP
+
+Momento RESP removes many of the operational risks associated with running Redis or Valkey clusters. The Momento gateway absorbs connection storms and smooths out sudden traffic bursts, preventing storage nodes from being overloaded. Cluster maintenance such as resharding, node replacements, and topology updates happens transparently behind the gateway, so clients continue issuing commands without configuration changes.
+
+Security is improved through short-lived, fine-grained Momento tokens instead of static Redis passwords or ACL files. Every command is authorized before it reaches storage, and in-cluster scripting features like Lua remain disabled to prevent runaway CPU or memory failures. Workloads that need high-concurrency mutations can run in muFunctions/MAX, ensuring compute-heavy operations stay isolated from the cache.
+
+Operational overhead is also removed. Patching, failover, scaling, monitoring, and SLO management are handled by Momento's control plane. Applications keep using their existing RESP clients and GET/SET semantics, while the underlying system provides the reliability and durability needed for mission-critical workloads.
+
+## Common scenarios
+
+- Lift-and-shift existing Valkey/Redis applications without touching client code.
+- Handle seasonal or promotional spikes by letting the Momento gateway absorb connection storms.
+- Modernize gradually by keeping GET/SET semantics while offloading new logic to muFunctions/MAX.
+
+> **If you can run `valkey-cli` or `redis-cli`, you can run Momento** - keep your client code, gain enterprise-grade reliability.
+
