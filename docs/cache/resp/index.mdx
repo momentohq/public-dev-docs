@@ -18,13 +18,15 @@ Momento Cache now speaks RESP, so Valkey and Redis clients can connect without c
 
 RESP (Redis Serialization Protocol) defines the wire format Valkey/Redis clients already use. Momento implements the same request/response structure behind its RESP endpoints, so pointing an existing client at `cache.<cell>.<region>.<partition>.prod.a.momentohq.com` over TLS is a drop-in change.
 
+A complete list of regions and cells is available on the [regions page](/platform/regions) for availability in your area.
+
 :::info
 RESP connectivity is in early access for enterprise customers running on dedicated Momento partitions. [Contact us](https://www.gomomento.com/contact-us) to enable it.
 :::
 
 ## Connect in minutes
 
-Momento uses the RESP `username` field to determine which cache or namespace the request targets; the `password` field carries your Momento token. Momento performs all real authentication and authorization using its control plane.
+Momento uses the RESP `username` field to determine which cache or namespace the request targets; the `password` field carries your Momento token. Momento performs all real authentication and authorization using its control plane. See the [authentication and access control page](/cache/develop/api-reference/auth) for how API keys and session tokens work.
 
 Validate the setup with `valkey-cli`:
 
@@ -214,4 +216,3 @@ Operational overhead is also removed. Patching, failover, scaling, monitoring, a
 - Modernize gradually by keeping GET/SET semantics while offloading new logic to muFunctions/MAX.
 
 > **If you can run `valkey-cli` or `redis-cli`, you can run Momento** - keep your client code, gain enterprise-grade reliability.
-
