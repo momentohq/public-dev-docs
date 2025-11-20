@@ -67,6 +67,11 @@ Momento is a region-based service with availability all over the world. If you d
       <td><code>cell-1-eu-central-1-1</code></td>
     </tr>
     <tr>
+      <td>Europe (Stockholm)</td>
+      <td>eu-north-1</td>
+      <td><code>cell-1-eu-north-1-1</code></td>
+    </tr>
+    <tr>
       <td>Asia Pacific (Mumbai)</td>
       <td>ap-south-1</td>
       <td><code>cell-1-ap-south-1-1</code></td>
@@ -107,9 +112,9 @@ https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com
 
 More information about the HTTP interface is available in the [HTTP API reference](/cache/develop/api-reference/http-api).
 
-### RESP endpoints
+### RESP and SDK endpoints
 
-RESP connectivity uses the cell host without the `api.` prefix:
+RESP and SDK connectivity use the cell host without the `api.` prefix:
 
 ```
 https://cache.<cell-host>.prod.a.momentohq.com
