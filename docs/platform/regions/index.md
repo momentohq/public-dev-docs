@@ -32,59 +32,98 @@ Momento is a region-based service with availability all over the world. If you d
     <tr>
       <th>Region name</th>
       <th>Region</th>
-      <th>Endpoint</th>
+      <th>Cell name</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>US East (N. Virginia)</td>
       <td>us-east-1</td>
-      <td>https://api.cache.cell-us-east-1-1.prod.a.momentohq.com</td>
+      <td><code>cell-us-east-1-1</code></td>
     </tr>
     <tr>
       <td>US East (Ohio)</td>
       <td>us-east-2</td>
-      <td>https://api.cache.cell-1-us-east-2-1.prod.a.momentohq.com</td>
+      <td><code>cell-1-us-east-2-1</code></td>
     </tr>
     <tr>
       <td>US West (Oregon)</td>
       <td>us-west-2</td>
-      <td>https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com</td>
+      <td><code>cell-4-us-west-2-1</code></td>
     </tr>
     <tr>
       <td>Europe (Ireland)</td>
       <td>eu-west-1</td>
-      <td>https://api.cache.cell-1-eu-west-1-1.prod.a.momentohq.com</td>
+      <td><code>cell-1-eu-west-1-1</code></td>
     </tr>
     <tr>
       <td>Europe (London)</td>
       <td>eu-west-2</td>
-      <td>https://api.cache.cell-1-eu-west-2-1.prod.a.momentohq.com</td>
+      <td><code>cell-1-eu-west-2-1</code></td>
     </tr>
     <tr>
       <td>Europe (Frankfurt)</td>
       <td>eu-central-1</td>
-      <td>https://api.cache.cell-1-eu-central-1-1.prod.a.momentohq.com</td>
+      <td><code>cell-1-eu-central-1-1</code></td>
+    </tr>
+    <tr>
+      <td>Europe (Stockholm)</td>
+      <td>eu-north-1</td>
+      <td><code>cell-1-eu-north-1-1</code></td>
     </tr>
     <tr>
       <td>Asia Pacific (Mumbai)</td>
       <td>ap-south-1</td>
-      <td>https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com</td>
+      <td><code>cell-1-ap-south-1-1</code></td>
     </tr>
     <tr>
       <td>Asia Pacific (Tokyo)</td>
       <td>ap-northeast-1</td>
-      <td>https://api.cache.cell-ap-northeast-1-1.prod.a.momentohq.com</td>
+      <td><code>cell-ap-northeast-1-1</code></td>
     </tr>
     <tr>
       <td>Asia Pacific (Singapore)</td>
       <td>ap-southeast-1</td>
-      <td>https://api.cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com</td>
+      <td><code>cell-1-ap-southeast-1-1</code></td>
     </tr>
     <tr>
       <td>Asia Pacific (Sydney)</td>
       <td>ap-southeast-2</td>
-      <td>https://api.cache.cell-1-ap-southeast-2-1.prod.a.momentohq.com</td>
+      <td><code>cell-1-ap-southeast-2-1</code></td>
     </tr>
   </tbody>
 </table>
+
+## Accessing region-based resources
+
+### HTTP API endpoints
+
+Compose HTTP API endpoints using the following pattern:
+
+```
+https://api.cache.<cell-host>.prod.a.momentohq.com
+```
+
+Example (`us-west-2`):
+
+```
+https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com
+```
+
+More information about the HTTP interface is available in the [HTTP API reference](/cache/develop/api-reference/http-api).
+
+### RESP and SDK endpoints
+
+RESP and SDK connectivity use the cell host without the `api.` prefix:
+
+```
+https://cache.<cell-host>.prod.a.momentohq.com
+```
+
+Example (`ap-southeast-1`):
+
+```
+https://cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com
+```
+
+More information about RESP connectivity is available on the [RESP compatibility page](/cache/resp).

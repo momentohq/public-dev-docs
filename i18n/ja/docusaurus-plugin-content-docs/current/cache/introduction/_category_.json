@@ -1,9 +1,0 @@
-{
-    "label": "Introduction",
-    "position": 2,
-    "collapsible": true,
-    "collapsed": true,
-    "link": {
-        "description": "Introducing Momento Serverless Cache service."
-    }
-}

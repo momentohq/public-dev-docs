@@ -51,8 +51,10 @@ const REDIRECTS = {
     '/docs/how-it-works/caching-with-serverless': 'https://www.gomomento.com/blog/a-platform-for-everyone/',
 
     // caching-concepts
-    '/docs/category/caching-concepts': '/cache/introduction/common-caching-patterns',
-    '/docs/caching-concepts/caching-strategies-and-patterns': '/cache/introduction/common-caching-patterns',
+    '/docs/category/caching-concepts': '/cache/getting-started',
+    '/docs/caching-concepts/caching-strategies-and-patterns': '/cache/getting-started',
+    '/cache/introduction/common-caching-patterns': '/cache/getting-started',
+    '/cache/introduction/common-caching-strategies': '/cache/patterns/database-caching',
 
     // sdk "cheat sheets"
     '/develop/guides/cheat-sheets/momento-cache-go-cheat-sheet': '/platform/sdks/go/cache',
