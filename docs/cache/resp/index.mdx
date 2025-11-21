@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 55
 sidebar_label: RESP compatibility
 title: Momento RESP compatibility
 description: Learn how to connect any Valkey or Redis client to Momento Cache with RESP while gaining Momento's reliability, security, and managed operations.
@@ -31,8 +31,7 @@ Momento uses the RESP `username` field to determine which cache or namespace the
 Validate the setup with `valkey-cli`:
 
 ```bash
-valkey-cli --tls \
-  -h cache.cell-4-us-west-2-1.prod.a.momentohq.com
+valkey-cli --tls -h cache.cell-4-us-west-2-1.prod.a.momentohq.com
 
 auth my-cache-name $MOMENTO_TOKEN
 set a b
@@ -50,7 +49,7 @@ get a
 Use any RESP-compatible client that supports TLS. The examples below show Valkey GLIDE in each language alongside a widely used Redis client configured with the same endpoint, username, and Momento token.
 
 <Tabs>
-<TabItem value="python-glide" label="Python - Valkey GLIDE">
+<TabItem value="python-glide" label="Python - Valkey">
 
 ```python
 import asyncio
@@ -84,7 +83,7 @@ asyncio.run(main())
 ```
 
 </TabItem>
-<TabItem value="python-redis" label="Python - redis-py">
+<TabItem value="python-redis" label="Python - Redis">
 
 ```python
 import os
@@ -104,7 +103,7 @@ print(value)
 ```
 
 </TabItem>
-<TabItem value="node-glide" label="Node.js - Valkey GLIDE">
+<TabItem value="node-glide" label="Node - Valkey">
 
 ```ts
 import { GlideClient } from "@valkey/valkey-glide";
@@ -126,7 +125,7 @@ await client.close();
 ```
 
 </TabItem>
-<TabItem value="node-redis" label="Node.js - ioredis">
+<TabItem value="node-redis" label="Node - Redis">
 
 ```ts
 import IORedis from "ioredis";
@@ -147,7 +146,7 @@ await client.quit();
 ```
 
 </TabItem>
-<TabItem value="java-glide" label="Java - Valkey GLIDE">
+<TabItem value="java-glide" label="Java - Valkey">
 
 ```java
 import glide.api.GlideClient;
@@ -176,7 +175,7 @@ client.close();
 ```
 
 </TabItem>
-<TabItem value="java-redis" label="Java - Jedis">
+<TabItem value="java-redis" label="Java - Redis">
 
 ```java
 import redis.clients.jedis.Jedis;
@@ -215,4 +214,4 @@ Operational overhead is also removed. Patching, failover, scaling, monitoring, a
 - Handle seasonal or promotional spikes by letting the Momento gateway absorb connection storms.
 - Modernize gradually by keeping GET/SET semantics while offloading new logic to muFunctions/MAX.
 
-> **If you can run `valkey-cli` or `redis-cli`, you can run Momento** - keep your client code, gain enterprise-grade reliability.
+If you can run `valkey-cli` or `redis-cli`, you can run Momento - keep your client code, gain enterprise-grade reliability.
