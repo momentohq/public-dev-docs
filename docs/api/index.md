@@ -27,7 +27,7 @@ The Momento API prioritizes usage through our [extensive set of SDKs](/platform/
 
 The SDKs accept strongly-typed inputs for all commands, and allows strings and [binary data](https://en.wikipedia.org/wiki/Binary_data) for data values. Inputs are transmitted to Momento using [Protocol Buffers](https://en.wikipedia.org/wiki/Protocol_Buffers), which is the standard communication mechanism of gRPC.
 
-Momento also supports an HTTP API for a subset of operations for environments that do not support gRPC. When using the Momento SDK, communication is handled automatically with our services. The desired region is inferred from the provided API key or token, and sent to the proper location on your behalf. When using the HTTP API, you must provide the base URL for the region you wish to use. A complete list of base URLs for each region can be found here.
+Momento also supports an HTTP API for a subset of operations for environments that do not support gRPC. When using the Momento SDK, communication is handled automatically with our services. For API keys, provide both the key and the correct regional endpoint (cell URL) from the [regions page](/platform/regions). When using the HTTP API, you must provide the base URL for the region you wish to use. A complete list of base URLs for each region can be found here.
 
 ## Ready to get started?
 

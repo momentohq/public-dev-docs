@@ -1,0 +1,17 @@
+---
+sidebar_position: 2
+title: Authentication and access control with Momento
+pagination_prev: null
+sidebar_label: Authentication
+description: Discover how to authenticate with Momento and control access to resources.
+slug: /cache/authentication
+---
+
+Momento supports two credential types for Cache:
+
+- **API keys** (long-lived): one key works across all regions, but you must also configure the regional endpoint (cell URL). See the [API keys page](./api-keys.md) and the [regions page](/platform/regions) for endpoints.
+- **Session tokens** (short-lived): scoped credentials for data-plane access, created by the Auth client. See [tokens](./tokens/index.md).
+
+If you supply an API key without a regional endpoint, the SDK will fail with the error `Missing required property: endpoint`.
+
+![Table of differences between API keys and tokens](/img/api-keys-vs-tokens.png)

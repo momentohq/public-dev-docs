@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 40
 sidebar_label: Develop
 title: Developing applications with Momento SDKs
 description: Learn the core concepts for getting started with the Momento SDKs.

@@ -1,20 +1,23 @@
 ---
 sidebar_position: 4
-title: Permissions
+title: Token permissions
 sidebar_label: Permissions
-id: permissions
-description: Learn about the permissions available when creating your API keys and session tokens to control access to Momento resources.
+id: token-permissions
+description: Learn about the permissions available when creating your session tokens to control access to Momento resources.
 pagination_next: null
 hide_table_of_contents: true
+slug: /api/authentication/tokens/permissions
+redirect_from:
+  - /api/authentication/permissions
 ---
 
 # Permissions and access control
 
-When creating a session token or API key, you have the ability to limit permissions to specific namespaces, cache keys, cache key prefixes, and topics. This is made possible through the use of *permissions*. When creating a token, you define a set of permissions in a Scope object. Upon creation, the token will only be able to access the cache keys and topics indicated in the permission scope, along with performing specific operations (read, write, publish, subscribe, etc...). If a user attempts to perform an action outside the bounds of the permission scope, they will receive a `403 Unauthorized` status code.
+Session tokens can be scoped to specific namespaces, cache keys, cache key prefixes, and topics. Permissions do not apply to current API keys; they use roles. When creating a token, you define a set of permissions in a Scope object. Upon creation, the token will only be able to access the cache keys and topics indicated in the permission scope, along with performing specific operations (read, write, publish, subscribe, etc...). If a user attempts to perform an action outside the bounds of the permission scope, they will receive a `403 Unauthorized` status code.
 
 ## Scope
 
-API keys and tokens can be scoped to specific sets of permissions to limit access to resources. The scope object contains both cache permissions and topic permissions.
+Tokens can be scoped to specific sets of permissions to limit access to resources. The scope object contains both cache permissions and topic permissions.
 
 import SchemaView from '@site/src/components/SchemaView';
 import scopeSchema from '@site/src/data/schemas/permissions/scope.json';

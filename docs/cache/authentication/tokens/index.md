@@ -3,6 +3,7 @@ sidebar_position: 20
 title: Momento tokens for short-lived, limited scope permissions
 sidebar_label: Tokens
 description: Learn what Momento tokens are, how to create them, and how they are used.
+slug: /cache/authentication/tokens
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";
@@ -14,7 +15,7 @@ Tokens are short-lived, limited-scope values intended to be used in temporary si
 
 :::tip
 
-Not sure if you should be using an `API key` or a `token`? Check out our [authentication](./index.mdx) page for all the details!
+Not sure if you should be using an `API key` or a `token`? Check out our [authentication](../index.mdx) page for all the details!
 
 :::
 
@@ -32,13 +33,13 @@ It's up to you to limit the access of a token based on your system requirements.
 
 ## Creating a token
 
-Unlike our [API keys](./api-keys.md), the only way to create a token is through code. You cannot create them through the Momento console.
+Unlike our [API keys](../api-keys.md), the only way to create a token is through code. You cannot create them through the Momento console.
 
 Below are some examples to create tokens with different sets of permissions:
 
 <SdkExampleTabs snippetId={'API_GenerateDisposableToken'} />
 
-For detailed information on creating a token, please refer to the [API reference page](../api-reference/auth.md).
+For detailed information on creating a token, please refer to the [API reference page](../../develop/api-reference/auth.md).
 
 ## Expiration
 

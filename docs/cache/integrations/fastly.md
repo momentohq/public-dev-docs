@@ -33,11 +33,11 @@ After pressing the `Create` button you'll see the new `worker` cache in the list
 
 ![New cache](/img/console-caches-worker.png)
 
-Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento API key in the next step. 
+Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento API key in the next step.
 
-Navigate to the [API keys](https://consotle.gomomento.com/api_keys) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained key that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations, such as creating or deleting a cache. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
+Navigate to the [API keys](https://console.gomomento.com/keys) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained key that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations, such as creating or deleting a cache. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
 
-Choose the `Fine-Grained Access Key` key type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Key` is used for managing control plane operations. More information about Momento authentication can be found [here](/cache/develop/authentication/index.mdx). Hit the `Generate API Key` button.
+Choose the `Fine-Grained Access Key` key type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Key` is used for managing control plane operations. More information about Momento authentication can be found [here](/cache/authentication). Hit the `Generate API Key` button.
 
 ![Generate token](/img/fgac-worker-auth.png)
 
@@ -58,12 +58,12 @@ fastly profile create
 
 ## Deploying with Fastly
 
-Now it's time to configure and deploy the application to your Fastly account. As noted before, you need a copy of the Momento JavaScript SDK available in your repository. 
+Now it's time to configure and deploy the application to your Fastly account. As noted before, you need a copy of the Momento JavaScript SDK available in your repository.
 In this example, we'll deploy from a GitHub repository forked from [the original](https://github.com/momentohq/client-sdk-javascript).
 
 ![Fork SDK Repository](/img/github-fork-js-sdk.png)
 
-This repository contains a directory under `examples` for `fastly-compute` which contains the example code for interacting with your Momento Cache using the Momento HTTP API. 
+This repository contains a directory under `examples` for `fastly-compute` which contains the example code for interacting with your Momento Cache using the Momento HTTP API.
 
 Fastly Compute@Edge uses a file called `fastly.toml` to configure the local and deployed execution environments for your edge code. More information about Compute@Edge configuration can be found [on their website](https://developer.fastly.com/reference/compute/fastly-toml/).
 
@@ -89,7 +89,7 @@ You can set the variable `MOMENTO_BACKEND` to any string value. Make sure that y
 
 **Note**: for production environments, the Momento API Key should be saved in a [Fastly Secret Store](https://developer.fastly.com/reference/api/services/resources/secret-store/). However, this is a feature currently restricted to beta users, so this example saves the API key in a [Config Store](https://developer.fastly.com/reference/api/services/resources/config-store/) along with the other values specified in the `secrets.json` file.
 
-Next, you'll want to make sure the contents of your `secrets.json` file match the contents in the `fastly.toml` file. 
+Next, you'll want to make sure the contents of your `secrets.json` file match the contents in the `fastly.toml` file.
 
 Specifically, you'll want to make sure your HTTP endpoint and backend name is provided under the `[local_server]` heading. The local execution environment will use the information supplied under this heading to set up the appropriate backend and config store for your localhost server while you're developing.
 
@@ -108,7 +108,7 @@ Specifically, you'll want to make sure your HTTP endpoint and backend name is pr
       format = "json"
 ```
 
-Finally, you'll want to make sure all four variables in the `secrets.json` file are copied over to the items under the `[setup]` heading. Fastly will use the information supplied under this heading to create and initialize the appropriate backend and config store resources in the execution environment. 
+Finally, you'll want to make sure all four variables in the `secrets.json` file are copied over to the items under the `[setup]` heading. Fastly will use the information supplied under this heading to create and initialize the appropriate backend and config store resources in the execution environment.
 
 ```
 [setup]
@@ -144,9 +144,9 @@ Next, start the development server and navigate to [localhost:7676](http://local
 fastly compute serve
 ```
 
-The code in this example sets an item in the cache, gets it, deletes it, and returns an HTML response. 
+The code in this example sets an item in the cache, gets it, deletes it, and returns an HTML response.
 It uses the [`MomentoFetcher` class](https://github.com/momentohq/client-sdk-javascript/blob/main/examples/fastly-compute/src/index.ts#L98) which provides a small wrapper that adds some error handling to the basic fetch calls to the Momento HTTP API.
-   
+
 ```typescript
     const momento = new MomentoFetcher(authToken, httpEndpoint, backend);
 
@@ -168,7 +168,7 @@ It uses the [`MomentoFetcher` class](https://github.com/momentohq/client-sdk-jav
     });
 ```
 
-What you should see is a simple text response that matches: 
+What you should see is a simple text response that matches:
 
 ![Fastly example response](/img/deployed-fastly-response.png)
 

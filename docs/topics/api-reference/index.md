@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 20
 sidebar_label: API Reference
 title: Topics API reference
 description: Learn how to interact programmatically with the Momento Topics API.

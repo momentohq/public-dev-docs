@@ -60,7 +60,7 @@ The major components in concurrency tracking are:
 * **Device** - Each device or stream sends a heartbeat via [Momento Topics](/topics), which includes a unique session ID.
 * **Momento**
   * **Cache** - Stores recent heartbeats for each account in interval based cache dictionaries.
-  * **Auth** - Creates [session tokens](/cache/develop/authentication/tokens) for players, encoding the account id directly in the token.
+  * **Auth** - Creates [session tokens](/cache/authentication/tokens) for players, encoding the account id directly in the token.
 * **Account** - Represents the user account in your system.
 
 ## Building a concurrency tracker
