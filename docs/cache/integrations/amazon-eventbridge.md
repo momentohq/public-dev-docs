@@ -154,5 +154,3 @@ When that code runs, it will publish an event to the default event bus, the *Cac
 ## Try it out!
 
 This integration will continue to grow as our HTTP API gains more and more features. You can always come back here, [deploy the stack to your AWS account](https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=momento-api&templateURL=https://momento-developers.s3.amazonaws.com/api-destinations.yaml) and get the updated version automatically.
-
-If you have issues deploying the stack to your account or would like support for another region, feel free to [reach out on Discord](https://discord.com/invite/3HkAKjUZGq) and the team will be happy to help you.

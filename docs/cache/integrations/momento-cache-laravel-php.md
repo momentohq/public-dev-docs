@@ -91,4 +91,4 @@ The following Laravel cache operations are currently not supported.
 * forever
 * flush
 
-If you need these operations, please reach out to us, and we will work to prioritize adding them. You can file a [GitHub issue](https://github.com/momentohq/laravel-cache/issues), e-mail us at support@momentohq.com, or join our [Discord](https://discord.com/invite/3HkAKjUZGq).
+If you need these operations, please reach out to us, and we will work to prioritize adding them. You can file a [GitHub issue](https://github.com/momentohq/laravel-cache/issues), e-mail us at support@momentohq.com.

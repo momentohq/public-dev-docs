@@ -18,7 +18,7 @@ Momento Leaderboards is a serverless leaderboard service that supports tens of m
 
 :::info
 
-Leaderboard items will have a 7-day TTL by default. For persistence (unlimited TTL), please contact our team through the [contact form](https://www.gomomento.com/contact-us), on [Discord](https://discord.com/invite/3HkAKjUZGq), or by emailing support@momentohq.com.
+Leaderboard items will have a 7-day TTL by default. For persistence (unlimited TTL), please contact our team through the [contact form](https://www.gomomento.com/contact-us) or by emailing support@momentohq.com.
 
 :::
 
@@ -43,7 +43,7 @@ Click on the Create Cache button and create a cache using the cloud provider and
 
 ![Image of Momento console Create Cache form](@site/static/img/console-create-cache-form.png)
 
-Then follow our [step-by-step instructions](https://docs.momentohq.com/cache/develop/authentication/api-keys) to create an API key via the [Momento console](https://console.gomomento.com).
+Then follow our [step-by-step instructions](https://docs.momentohq.com/cache/authentication/api-keys) to create an API key via the [Momento console](https://console.gomomento.com).
 
 ### Step 2: Create a Momento Leaderboards
 
