@@ -16,7 +16,7 @@ When creating a token, you build a `PermissionScope` object.
 
 ### Roles
 
-Momento provides pre-built roles to use when creating your scope objects. dY`Ų
+Momento provides pre-built roles to use when creating your scope objects.
 
 #### Cache roles
 
