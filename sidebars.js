@@ -59,7 +59,7 @@ const sidebars = {
               label: 'Permissions',
               link: {
                 type: 'doc',
-                id: 'api/authentication/tokens/token-permissions'
+                id: 'api/authentication/tokens/permissions'
               },
               collapsed: false,
               collapsible: false,
