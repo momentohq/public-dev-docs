@@ -3,7 +3,6 @@ sidebar_position: 20
 title: Momento tokens for short-lived, limited scope permissions
 sidebar_label: Tokens
 description: Learn what Momento tokens are, how to create them, and how they are used.
-slug: /cache/authentication/tokens
 ---
 
 import { SdkExampleTabs } from "@site/src/components/SdkExampleTabs";

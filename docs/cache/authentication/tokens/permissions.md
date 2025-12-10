@@ -4,10 +4,6 @@ title: Token permissions and access control
 sidebar_label: Permissions
 description: Learn about the permissions available when creating your Momento tokens to control access to cache resources.
 pagination_next: null
-slug: /cache/authentication/tokens/permissions
-redirect_from:
-  - /cache/authentication/permissions
-  - /cache/develop/authentication/permissions
 ---
 
 # Permissions and access control for tokens

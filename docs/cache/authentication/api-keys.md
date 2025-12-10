@@ -2,7 +2,6 @@
 sidebar_position: 10
 title: API keys
 sidebar_label: API keys
-slug: /cache/authentication/api-keys
 description: How to use Momento API keys for cache workloads.
 ---
 # Momento API keys

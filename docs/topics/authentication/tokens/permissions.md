@@ -4,10 +4,6 @@ title: Token permissions and access control
 sidebar_label: Permissions
 description: Learn about the permissions available when creating your Momento tokens to control access to topics resources.
 pagination_next: null
-slug: /topics/authentication/tokens/permissions
-redirect_from:
-  - /topics/develop/authentication/tokens/permissions
-  - /topics/develop/authentication/permissions
 ---
 
 # Token permissions and access control

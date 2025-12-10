@@ -2,10 +2,6 @@
 sidebar_position: 10
 title: API keys
 sidebar_label: API keys
-slug: /topics/authentication/api-keys
-redirect_from:
-  - /topics/develop/authentication/api-keys
-  - /topics/develop/authentication/api-keys-v2
 description: How to use Momento API keys for topics workloads.
 ---
 
