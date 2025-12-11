@@ -38,7 +38,7 @@ Below are some examples to create tokens with different sets of permissions:
 
 <SdkExampleTabs snippetId={'API_GenerateDisposableToken'} />
 
-For detailed information on creating a token, please refer to the [API reference page](../../develop/api-reference/auth.md).
+For detailed information on creating a token, please refer to the [API reference page](/cache/develop/api-reference/auth).
 
 ## Expiration
 

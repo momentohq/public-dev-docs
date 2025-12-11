@@ -37,7 +37,7 @@ AWSを使って`worker`というキャッシュを作成します。現在、Mom
 
 [API keys](https://console.gomomento.com/api_keys)ページに移動し、キャッシュの作成に使用したクラウドプロバイダとリージョンを選択します。キャッシュはすでに作成されているので、ワーカーにキャッシュからの読み込みとキャッシュへの書き込みを許可し、キャッシュの作成や削除などのコントロールプレーン操作を許可しない、 fine-grained keyを使用します。これは特に、コントロールプレーンとデータプレーンの操作のセキュリティを別々に管理したい場合に便利です。
 
-`Fine-Grained Access Key` キータイプを選択し、ドロップダウンリストから `Cache Name` として `worker` を選択し、`Role Type` として `readwrite` を選択する。`Super User Key` はコントロールプレーンの操作を管理するために使用します。Momento 認証の詳細については [こちら](../develop/authentication/index.mdx) を参照してください。その後、`Generate API Key` ボタンを押します。
+`Fine-Grained Access Key` キータイプを選択し、ドロップダウンリストから `Cache Name` として `worker` を選択し、`Role Type` として `readwrite` を選択する。`Super User Key` はコントロールプレーンの操作を管理するために使用します。Momento 認証の詳細については [こちら](/cache/authentication) を参照してください。その後、`Generate API Key` ボタンを押します。
 
 ![Generate API Key](@site/static/img/fgac-worker-auth.png)
 
