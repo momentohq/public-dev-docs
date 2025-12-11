@@ -41,7 +41,7 @@ const REDIRECTS = {
     '/topics/patterns/running-background-tasks': '/topics/patterns/instant-messaging',
     '/topics/patterns/token-id-webhook': '/topics/patterns/instant-messaging',
     '/topics/integrations/lambda-handler': '/topics',
-    '/topics/webhooks/*': '/topics',
+    // '/topics/webhooks/*': '/topics',
 
     // Relocated Pages
     '/develop/datatypes': '/cache/develop/basics/datatypes',
@@ -100,7 +100,7 @@ const REDIRECTS = {
 
     // remove MVI
     '/vector-index': '/',
-    '/vector-index/*': '/',
+    // '/vector-index/*': '/',
 };
 
 // map<FROM,TO> - insert a redirect for each existing page with URL prefix <TO>, replacing with URL prefix <FROM>

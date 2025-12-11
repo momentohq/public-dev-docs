@@ -59,7 +59,7 @@ API 呼出しは [Momento Node.js SDK と同一](../nodejs/cheat-sheet.mdx)で�
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateApiKey'} />
 
-他にも、認可のための `PermissionScope` や、期限切れのトークンをどうやってリフレッシュするか、などを含めた Momento 認証トークンに関する情報は、[Momento 認証トークンを使う](../../authentication/index.mdx)をご覧下さい。
+他にも、認可のための `PermissionScope` や、期限切れのトークンをどうやってリフレッシュするか、などを含めた Momento 認証トークンに関する情報は、[Momento 認証トークンを使う](../../../authentication/index.mdx)をご覧下さい。
 
 ## よくある質問
 

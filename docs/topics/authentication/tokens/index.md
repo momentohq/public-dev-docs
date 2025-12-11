@@ -14,7 +14,7 @@ Tokens are short-lived, limited-scope values intended to be used in temporary si
 
 :::tip
 
-Not sure if you should be using an `API key` or a `token`? Check out our [authentication](../index.mdx) page for all the details!
+Not sure if you should be using an `API key` or a `token`? Check out our [authentication](/topics/authentication) page for all the details!
 
 :::
 
