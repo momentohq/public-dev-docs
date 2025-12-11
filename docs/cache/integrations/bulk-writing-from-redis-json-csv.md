@@ -15,7 +15,7 @@ Momento provides a bulk loading toolkit that simplifies extraction, validation, 
 
 In the above diagram, you can see the pipeline first normalizes (extracts) data sources into a common format, [JSON lines (JSON-L)](https://jsonlines.org/). Then checks are performed to identify data incompatible with Momento. Finally, the valid data is loaded into your cache.
 
-We encourage and welcome contributions to add more data sources. You can also request support for a particular data source by contacting us via [Discord](https://discord.com/invite/3HkAKjUZGq) or email [Momento support](mailto:support@momentohq.com).
+We encourage and welcome contributions to add more data sources. You can also request support for a particular data source by emailing [Momento support](mailto:support@momentohq.com).
 
 ## Setting up the toolset workflow
 

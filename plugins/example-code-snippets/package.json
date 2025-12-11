@@ -15,6 +15,7 @@
     "format": "eslint . --ext .ts --fix",
     "watch": "tsc -w",
     "build": "tsc",
+    "build:nolint": "tsc",
     "prepare-git-repos": "tsc && node ./dist/examples/bin/prepare-git-repos.js"
   },
   "author": "",

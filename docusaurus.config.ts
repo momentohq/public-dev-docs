@@ -15,11 +15,13 @@ const config = {
   organizationName: "momentohq",
   trailingSlash: false,
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.png",
   scripts: [],
   markdown: {
-    mermaid: true
+    mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+    },
   },
   themes: ['@docusaurus/theme-mermaid'],
 
@@ -134,8 +136,8 @@ const config = {
               title: "Community",
               items: [
                 {
-                  label: "Discord",
-                  to: "https://discord.gg/3HkAKjUZGq",
+                  label: 'LinkedIn',
+                  to: 'https://www.linkedin.com/company/momentohq/'
                 },
                 {
                   label: "Twitter",
