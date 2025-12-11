@@ -139,7 +139,7 @@ Accessing scalar values can be done via the [Momento HTTP API](/cache/develop/ap
 
 ## Restricting access with Momento auth tokens
 
-Another way to approach entitlements is by embedding access to content directly in [session tokens](/cache/develop/authentication/tokens). After your entitlements calculation is complete and you have a known list of media a user can access, you can grant explicit access to the content via a short-lived token.
+Another way to approach entitlements is by embedding access to content directly in [session tokens](/cache/authentication/tokens). After your entitlements calculation is complete and you have a known list of media a user can access, you can grant explicit access to the content via a short-lived token.
 
 If Momento Media Storage is being used as the [media origin](/media-storage/core-concepts/origin), fine-grained access control can be used to restrict access to content upon request.
 

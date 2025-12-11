@@ -40,9 +40,9 @@ Since all data in the Momento platform is stored securely by default, authorizat
 
 #### Using a token query parameter
 
-Live streams are short-lived by nature. As content is recorded, it is streamed to end users in the moment. After it plays, it's over and the segments aren't accessible unless the provider decides to make it available on demand. This use case is perfect for a [Momento session token](/cache/develop/authentication/tokens), which is created with a finite duration and limited scope permission set.
+Live streams are short-lived by nature. As content is recorded, it is streamed to end users in the moment. After it plays, it's over and the segments aren't accessible unless the provider decides to make it available on demand. This use case is perfect for a [Momento session token](/cache/authentication/tokens), which is created with a finite duration and limited scope permission set.
 
-Tokens used for live streaming should be generated with `readonly` access scoped to either a specific namespace or [key prefix](/cache/develop/authentication/permissions#item-level-restriction) to operate with least-privilege permissions. The path to segments or manifest files should match one of the examples below.
+Tokens used for live streaming should be generated with `readonly` access scoped to either a specific namespace or [key prefix](/cache/authentication/tokens/permissions#item-level-restriction) to operate with least-privilege permissions. The path to segments or manifest files should match one of the examples below.
 
 <Tabs>
 <TabItem value="hls-absolute" label="HLS - Absolute">
@@ -92,7 +92,7 @@ In the examples above, the placeholders resolve to the following values:
 
 ### Using a CDN with header forwarding
 
-In video on demand (VOD) workflows, requests for access to segments could come at any point in time, so using a short-lived token is not a possible solution. Instead, using a CDN like Amazon CloudFront or Cloudflare to forward your request with added headers is a viable alternative using a long-lived [Momento API key](/cache/develop/authentication/api-keys). This solution allows video players to make calls do your CDN without knowledge of a token or API key and have it automatically added for them on the server side.
+In video on demand (VOD) workflows, requests for access to segments could come at any point in time, so using a short-lived token is not a possible solution. Instead, using a CDN like Amazon CloudFront or Cloudflare to forward your request with added headers is a viable alternative using a long-lived [Momento API key](/cache/authentication/api-keys). This solution allows video players to make calls do your CDN without knowledge of a token or API key and have it automatically added for them on the server side.
 
 :::warning[Note]
 The solution above should include some sort of authentication mechanism or firewall support to prevent malicious attacks. It is potentially unsafe to expose data publicly without some form of auth

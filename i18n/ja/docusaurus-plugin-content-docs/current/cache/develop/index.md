@@ -32,6 +32,6 @@ Momentoの認証トークンを[AWS Secret Manager](https://aws.amazon.com/secre
 
 AWS Secrets Manager から認証情報を取得する例については、[Retrieving a Momento auth token from AWS Secrets Manager](/cache/integrations/aws-secrets-manager) を参照してください。
 
-Momento 認証に関する一般的な情報は、[認証のページ](./develop/authentication) を参照してください。
+Momento 認証に関する一般的な情報は、[認証のページ](/cache/authentication) を参照してください。
 
 詳細については、[レスポンスオブジェクト](./develop/api-reference/response-objects)のページや、使用しているSDKのドキュメント(左ナビの `Develop`->`SDKs` の下)を参照してください。

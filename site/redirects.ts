@@ -29,7 +29,8 @@ const REDIRECTS = {
     '/leaderboards/develop/language-support': '/leaderboards/language-support',
 
     // topics
-    '/topics/develop/integrations/aws-secrets-manager': '/topics/integrations/aws-secrets-manager',
+    '/topics/develop/integrations/aws-secrets-manager': '/topics',
+    '/topics/integrations/aws-secrets-manager': '/topics',
     '/introduction/momento-topics': '/topics',
     '/develop/api-reference/topics': '/topics/api-reference',
     '/topics/develop/api-reference': '/topics/api-reference',
@@ -63,6 +64,18 @@ const REDIRECTS = {
     '/develop/sdks/php/cheat-sheet': '/platform/sdks/php/cache',
     '/develop/guides/cheat-sheets/momento-cache-python-cheat-sheet': '/platform/sdks/python/cache',
     '/develop/sdks-integrations/deploying-javascript-web-sdk': '/platform/sdks/web',
+
+    // authentication page moves
+    '/cache/develop/authentication': '/cache/authentication',
+    '/cache/develop/authentication/api-keys': '/cache/authentication/api-keys',
+    '/cache/develop/authentication/tokens': '/cache/authentication/tokens',
+    '/cache/develop/authentication/permissions': '/cache/authentication/tokens/permissions',
+    '/topics/develop/authentication': '/topics/authentication',
+    '/topics/develop/authentication/api-keys': '/topics/authentication/api-keys',
+    '/topics/develop/authentication/tokens': '/topics/authentication/tokens',
+    '/topics/develop/authentication/tokens/permissions': '/topics/authentication/tokens/permissions',
+    '/topics/develop/authentication/permissions': '/topics/authentication/tokens/permissions',
+    '/api/authentication/permissions': '/api/authentication/tokens/permissions',
 
     // Dead Pages
     '/docs/overview': '/',
