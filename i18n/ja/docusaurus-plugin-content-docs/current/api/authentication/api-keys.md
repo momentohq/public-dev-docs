@@ -73,6 +73,6 @@ APIキーは、以下のような状況に適しています：
 * 月/年単位でローテーションされるような長寿命の鍵でも構わない。
 * 鍵は比較的広い権限を必要とする
 
-きめ細かいアクセス制御によるAPIキーまたはトークンの権限管理の詳細については、[permissions page](./permissions.mdx)を参照してください。
+きめ細かいアクセス制御によるAPIキーまたはトークンの権限管理の詳細については、[permissions page](./tokens/permissions)を参照してください。
 
 始める準備はできましたか？[Momentoコンソール](https://console.gomomento.com/tokens)にアクセスして、APIキーを取得してください！
