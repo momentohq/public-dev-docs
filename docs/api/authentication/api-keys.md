@@ -34,10 +34,12 @@ List active keys to view metadata (key ID, role, issuedAt, optional expiresAt, d
 ### Revoke
 Revoke a key to disable it immediately. If you set an expiry, rotate before it lapses to avoid outages.
 
-## Migrate from legacy API keys
+## Migrate from v1 API keys
 
 :::info
-Legacy API keys will continue working, but next time you rotate your keys, you'll be automatically upgraded to the new API key format. These keys require an endpoint to be provided in the credential provider, **resulting in a breaking change**. Below is the migration path from the old credential provider to the new provider.
+v1 API keys will continue working. The next time you create a new key in the console or via the Auth APIs, you'll receive the v2 format. v2 keys require you to provide an endpoint in the credential provider, **which is a breaking change**. Use the migration path below to move from the v1 credential provider to the v2 provider.
+
+If you do not see the function calls mentioned below, be sure to update your Momento package version!
 :::
 
 import Tabs from '@theme/Tabs';
@@ -47,7 +49,7 @@ import TabItem from '@theme/TabItem';
   <TabItem value="string" label="From String">
 
     ```javascript
-    // Legacy API keys
+    // v1 API keys
     credentialProvider = CredentialProvider.fromString(myApiKey);
 
     // New API keys
@@ -58,11 +60,11 @@ import TabItem from '@theme/TabItem';
   <TabItem value="env" label="From Environment Variable">
 
     ```javascript
-    // Legacy API keys
-    credentialProvider = CredentialProvider.fromEnvironmentVariable('MyEnvVar');
+    // v1 API keys
+    credentialProvider = CredentialProvider.fromEnvironmentVariable('MyApiKeyEnvVar');
 
     // New API keys
-    credentialProvider = CredentialProvider.fromEnvVarV2('MyEnvVar', endpoint);
+    credentialProvider = CredentialProvider.fromEnvVarV2('MyApiKeyEnvVar', 'MyEndpointEnvVar');
     ```
   </TabItem>
 </Tabs>
