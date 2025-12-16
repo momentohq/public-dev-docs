@@ -8,9 +8,9 @@
 <link rel="stylesheet" href="/stylex.css">
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var g=t.getElementsByTagName(a)[0],m=t.createElement(a);m.async=!0,m.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",g.parentNode.insertBefore(m,g)}(window,document,"script","dataLayer")</script>
-    <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.151e50d0.css">
-<script src="/assets/js/runtime~main.3714c4e1.js" defer="defer"></script>
-<script src="/assets/js/main.07652c2f.js" defer="defer"></script>
+    <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.50ce1593.css">
+<script src="/assets/js/runtime~main.d4917056.js" defer="defer"></script>
+<script src="/assets/js/main.f3834a89.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -22,7 +22,7 @@
 <p>After you have <a href="https://go.dev/doc/code#Command" target="_blank" rel="noopener noreferrer" class="">created your Go project</a>, install the Momento Go SDK.</p>
 <div class="language-cli codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-cli codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">go get github.com/momentohq/client-sdk-go</span><br></span></code></pre></div></div>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="set-up-your-api-key">Set up your API key<a href="#set-up-your-api-key" class="hash-link" aria-label="Direct link to Set up your API key" title="Direct link to Set up your API key" translate="no">​</a></h2>
-<p>You&#x27;ll need a <a class="" href="/cache/develop/authentication/api-keys">Momento API key</a> to authenticate with Momento.  You can get one from the <a href="https://console.gomomento.com/caches" target="_blank" rel="noopener noreferrer" class="">Momento Web Console</a>.
+<p>You&#x27;ll need a <a class="" href="/cache/authentication/api-keys">Momento API key</a> to authenticate with Momento.  You can get one from the <a href="https://console.gomomento.com/caches" target="_blank" rel="noopener noreferrer" class="">Momento Web Console</a>.
 Once you have your token, store it in an environment variable so that the Momento client can consume it:</p>
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">export MOMENTO_API_KEY=&lt;your Momento token here&gt;</span><br></span></code></pre></div></div>
 <p><strong>Note</strong>: it is best practice to put the token into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.</p>
