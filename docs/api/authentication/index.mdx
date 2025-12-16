@@ -26,41 +26,29 @@ keywords:
 
 # Authentication
 
-Both the Momento SDKs and HTTP API use API keys and session tokens to authenticate requests. You can create an API key through the [Momento console](https://console.gomomento.com). Session tokens are created through the Momento Auth client in the SDK. To decide whether your use case requires an API key or a session token, please reference the table below.
+Momento uses API keys and session tokens to authenticate requests. API keys are the default long-lived credential and work across all Momento regions. Every SDK client must be given both:
 
-<table className="customTable">
-  <thead>
-    <tr>
-      <th></th>
-      <th>API key</th>
-      <th>Session token</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td className="highlightRow">What it is</td>
-      <td>Key used to identify and authorize the API caller.</td>
-      <td>Token that represents a user or system during a short-lived session.</td>
-    </tr>
-    <tr>
-      <td className="highlightRow">Creation</td>
-      <td>Created one time via the Momento console. Can optionally expire and be refreshed.</td>
-      <td>Programmatically generated on authentication or specific system action. Short-lived and not renewable.</td>
-    </tr>
-    <tr>
-      <td className="highlightRow">Scope</td>
-      <td>Can be used to create session tokens, add or remove caches, and all data operations. Able to be scoped to a specific set of permissions.</td>
-      <td>Used for data operations only. Can be scoped to specific caches or topics.</td>
-    </tr>
-    <tr>
-      <td className="highlightRow">Security</td>
-      <td>Long-lived with high risk if compromised. Should be rotated regularly.</td>
-      <td>Max life of 1 hour. Limited only to data operations like read and write.</td>
-    </tr>
-    <tr>
-      <td className="highlightRow">Use cases</td>
-      <td>Building integrations, creating a token vending machine, and server-to-server authentication.</td>
-      <td>User authentication, browser sessions, and temporary access to data.</td>
-    </tr>
-  </tbody>
-</table>
+- the API key, and
+- the correct Momento regional endpoint (cell URL) for your deployment. See the [regions page](/platform/regions) to choose the right one.
+
+If you provide an API key without a regional endpoint, the SDK will fail fast with a clear error.
+
+## API keys
+
+API keys authorize access in any Momento region. They support roles so you can scope who can manage or use resources:
+
+- **Owner**: full access to all resources, including API keys and account membership.
+- **Operator**: full access to API/data resources; read-only for account membership.
+- **Viewer**: read-only access to all resources.
+
+Key management is available in the console and APIs:
+
+- Generate API keys with a chosen role and optional description. The full key string is shown once; Momento never stores plaintext keys.
+- List API keys to see active keys with metadata (key ID, role, issuedAt, optional expiresAt, description).
+- Revoke API keys to immediately disable use.
+
+If you need fine-grained, short-lived access for end users, issue disposable tokens instead of long-lived keys.
+
+## Session tokens
+
+Session tokens are short-lived and intended for data-plane access. Generate them with the Momento Auth client when you need temporary, scoped access to caches or topics. Use these for user sessions or browser-facing workflows.

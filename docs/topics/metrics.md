@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 60
 sidebar_label: Metrics
 title: Topic Metrics
 pagination_prev: null

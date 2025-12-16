@@ -44,7 +44,7 @@ sequenceDiagram
     Momento-->>-Browser: Broadcast reaction to all viewers
 ```
 
-まず、ブラウザは*token vending machine*と呼ばれるサーバーコンポーネントに認証トークンを要求します。このサーバーコンポーネントは、短命でスコープが限定された[session tokens](/cache/develop/authentication/tokens)の作成と配布を担当します。このトークンは短期間有効で、リアクションの送受信に必要なリソースへのアクセスのみを許可します。
+まず、ブラウザは*token vending machine*と呼ばれるサーバーコンポーネントに認証トークンを要求します。このサーバーコンポーネントは、短命でスコープが限定された[session tokens](/cache/authentication/tokens)の作成と配布を担当します。このトークンは短期間有効で、リアクションの送受信に必要なリソースへのアクセスのみを許可します。
 
 
 トークンを受け取ったプレイヤーは、どの絵文字が押されたかを示すメッセージを[Momento Topics](/topics)に公開します。Topicsは、リアクションを購読しているすべてのビデオプレーヤーに絵文字をブロードキャストします。
@@ -53,7 +53,7 @@ Momento Topicsによって呼び出されたブラウザのイベントハンド
 
 ## 前提条件
 
-* [Momento API key](/cache/develop/authentication/api-keys)
+* [Momento API key](/cache/authentication/api-keys)
 
 ## Step 1: トークン発行機の作成
 

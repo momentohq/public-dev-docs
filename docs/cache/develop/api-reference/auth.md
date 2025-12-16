@@ -304,9 +304,3 @@ const tokenResponse = await authClient.generateDisposableToken(
 
     Access tokens generated with the [GenerateApiKey](#generateapikey) API only control access to the Momento data plane APIs. A token for access to Momento's control plane APIs must be generated using the [Momento console](https://console.gomomento.com/).
 </details>
-
-:::tip
-
-If you have any questions not answered here, please jump on [our Discord server](https://discord.gg/3HkAKjUZGq) and ask our experts in the support channel.
-
-:::

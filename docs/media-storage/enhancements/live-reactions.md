@@ -46,7 +46,7 @@ sequenceDiagram
     Momento-->>-Browser: Broadcast reaction to all viewers
 ```
 
-First, the browser will request an auth token from a server component called a *token vending machine*, which is responsible for creating and distributing short-lived, limited scope [session tokens](/cache/develop/authentication/tokens). This token will be active for a short period of time and grants access only to the resources needed for sending and receiving reactions.
+First, the browser will request an auth token from a server component called a *token vending machine*, which is responsible for creating and distributing short-lived, limited scope [session tokens](/cache/authentication/tokens). This token will be active for a short period of time and grants access only to the resources needed for sending and receiving reactions.
 
 After the token is received, the player will publish a message to [Momento Topics](/topics) indicating which emoji was pressed. Topics will broadcast the emoji to all video players that subscribed for reactions.
 
@@ -54,7 +54,7 @@ The event handler in the browser invoked by Momento Topics then renders the emoj
 
 ## Prerequisites
 
-* A [Momento API key](/cache/develop/authentication/api-keys)
+* A [Momento API key](/cache/authentication/api-keys)
 
 ## Step 1: Building a token vending machine
 

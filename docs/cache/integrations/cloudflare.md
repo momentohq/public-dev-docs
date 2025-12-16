@@ -31,7 +31,7 @@ After pressing the `Create` button you'll see the new `worker` cache in the list
 
 Notice the region you created your cache in is also displayed in the list of caches. You'll need to make sure that you choose the same region when generating a Momento authentication token in the next step. Navigate to the [tokens](https://console.gomomento.com/tokens) page, and choose the cloud provider and region you used to create your cache. Since the cache is already created, we will use a fine-grained token that will allow the worker to read from and write to the cache; but will not allow it to do control plane operations such as delete. This is especially helpful if you want to manage the security of control plane and data plane operations separately.
 
-Choose the `Fine-Grained Access Token` token type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Token` is used for managing control plane operations. More information about Momento authentication can be found [here](/cache/develop/authentication/index.mdx). Hit the `Generate API Key` button.
+Choose the `Fine-Grained Access Token` token type, select `worker` as `Cache Name` from the drop down, and `readwrite` as `Role Type`. The `Super User Token` is used for managing control plane operations. More information about Momento authentication can be found [here](/cache/authentication). Hit the `Generate API Key` button.
 
 ![Generate token](/img/fgac-worker-auth.png)
 

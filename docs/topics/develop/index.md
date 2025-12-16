@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 40
 sidebar_label: Develop
 title: Developing applications with Momento SDKs
 description: Learn the core concepts for getting started with the Momento SDKs.
@@ -32,6 +32,6 @@ If you're storing your Momento API key in a secret manager such as [AWS Secret M
 
 For an example of how to retrieve credentials from AWS Secrets Manager, see [Retrieving a Momento auth token from AWS Secrets Manager](/cache/integrations/aws-secrets-manager.md).
 
-For general information on Momento authentication, see [our auth page](./develop/authentication).
+For general information on Momento authentication, see [our auth page](../authentication/index.mdx).
 
 For more information, see our [Response Objects](/topics/api-reference/response-objects) page, and the docs for the specific SDK that you are using (under `Develop`->`SDKs` in the left nav).

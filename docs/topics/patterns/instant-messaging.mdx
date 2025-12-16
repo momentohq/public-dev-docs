@@ -236,7 +236,7 @@ Subscribing for messages tells Momento whenever something is published to a spec
 
 ## Security
 
-Momento provides a [robust authorization mechanism](../develop/authentication/tokens) that limits consumers to specific resources and actions. When building an instant messaging feature, it is incredibly important to take scope into consideration so users do not intercept messages they shouldn't have access to.
+Momento provides a [robust authorization mechanism](../authentication/tokens/index.md) that limits consumers to specific resources and actions. When building an instant messaging feature, it is incredibly important to take scope into consideration so users do not intercept messages they shouldn't have access to.
 
 The pattern described above uses both cache and topic resources. Following the best practice recommended above by making the chat room match the topic name, we can create policies in a couple of different ways.
 

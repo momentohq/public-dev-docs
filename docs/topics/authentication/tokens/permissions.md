@@ -1,29 +1,24 @@
 ---
 sidebar_position: 30
-title: Permissions and access control
+title: Token permissions and access control
 sidebar_label: Permissions
-description: Learn about the permissions available when creating your API keys and tokens to control access to Momento resources.
+description: Learn about the permissions available when creating your Momento tokens to control access to topics resources.
 pagination_next: null
 ---
 
-# Permissions and access control
+# Token permissions and access control
 
 It's all fun and games until you can't access your resources. Speaking of accessing your resources, that's exactly what we're here to talk about - *stopping people from accessing things they shouldn't.*
 
-As a reminder, there are two primary forms of authentication in Momento:
-
-* [API keys](./api-keys.md): long-lived, durable values for programmatic usage
-* [Tokens](./tokens.md): short-lived, limited-scope values for temporary usage by individuals (users or devices)
-
-You can create API keys directly in the [Momento console](https://console.gomomento.com/tokens), but you are required to create tokens programmatically. Let's talk about the options you have when limiting the permission set for an API key or token using access control.
+Token permissions control what a disposable token can do and which data it can touch. API keys use roles; fine-grained permissions apply to tokens.
 
 ## Scope
 
-When creating an API key, you build a `PermissionScope` object. When creating a token, you create a `PermissionScope` object. These objects are mostly the same but with one big difference. First, the similarities.
+When creating a token, you build a `PermissionScope` object.
 
 ### Roles
 
-Momento provides pre-built roles to use when creating your scope objects. 👇
+Momento provides pre-built roles to use when creating your scope objects.
 
 #### Cache roles
 
@@ -147,4 +142,3 @@ If you want to grant access to a range of keys, you also have the option to use 
 ```
 
 Consumers of the token generated with this permission set would be allowed to read from any key that started with `MYTENANTID-`. Attempting to read from a key starting with a different tenant id would result in an authorization error being returned.
-

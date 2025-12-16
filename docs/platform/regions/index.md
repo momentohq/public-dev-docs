@@ -19,7 +19,7 @@ keywords:
 
 # Available regions
 
-Momento is a region-based service with availability all over the world. If you do not see a region you require, let’s discuss. Please [contact support](mailto:support@momentohq.com).
+Momento is a region-based service with availability all over the world. API keys work across all regions, but you must configure the correct endpoint (cell URL) for your deployment. See the [Authentication page](/api/authentication) for how to pair an API key with an endpoint. If you do not see a region you require, let's discuss. Please [contact support](mailto:support@momentohq.com).
 
 :::info[Enterprise availability]
 
