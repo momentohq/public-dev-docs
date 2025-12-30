@@ -112,18 +112,32 @@ https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com
 
 More information about the HTTP interface is available in the [HTTP API reference](/cache/develop/api-reference/http-api).
 
-### RESP and SDK endpoints
+### RESP endpoints
 
-RESP and SDK connectivity use the cell host without the `api.` prefix:
-
-```
-https://cache.<cell-host>.prod.a.momentohq.com
-```
-
-Example (`ap-southeast-1`):
+RESP connectivity use the cell host without the `api.` prefix:
 
 ```
-https://cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com
+cache.<cell-host>.prod.a.momentohq.com
+```
+
+### SDK endpoints
+SDK endpoints do not need any prefixes:
+
+```
+<cell-host>.prod.a.momentohq.com
+```
+
+### Examples
+For `ap-southeast-1`:
+
+RESP:
+```
+cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com
+```
+
+SDK:
+```
+cell-1-ap-southeast-1-1.prod.a.momentohq.com
 ```
 
 More information about RESP connectivity is available on the [RESP compatibility page](/cache/resp).
