@@ -49,6 +49,15 @@ Once you have your token, store it in an environment variable so that the Moment
 export MOMENTO_API_KEY=<your Momento token here>
 ```
 
+## Set up your Momento service endpoint
+
+You'll also need a Momento service endpoint. You can find a [list of them here](https://docs.momentohq.com/platform/regions).
+Once you have selected an endpoint, store it in an environment variable so that the Momento client can consume it:
+
+```
+export MOMENTO_ENDPOINT=<your service endpoint here>
+```
+
 ## Set up a CacheClient
 This code creates the CacheClient struct that each of the other functions requires.
 

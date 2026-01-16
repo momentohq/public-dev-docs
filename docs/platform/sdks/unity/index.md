@@ -40,6 +40,7 @@ Momento Unity Example can be found on Github: [momentohq/momento-unity-demo](htt
 1. **Unity Version:** Requires Unity 2022.3.9f1 or later
 2. **MomentoSdkUnity:** Requires v1.3.0 or later of the [MomentoSDKUnity package](https://github.com/momentohq/client-sdk-dotnet/releases)
 3. **Momento API Key:** You can get one from the [Momento Web Console](https://console.gomomento.com/).
+4. **Momento service endpoint:** You can find a [list of them here](https://docs.momentohq.com/platform/regions).
 
 ## Resources
 - [Momento Unity Demo on GitHub](https://github.com/momentohq/momento-unity-demo)

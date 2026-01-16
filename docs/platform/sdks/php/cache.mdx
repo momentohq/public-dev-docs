@@ -37,6 +37,7 @@ For more info, you can also see [the PHP SDK on GitHub](https://github.com/momen
 ### Prerequisites
 
 * A Momento API Key is required. You can generate one using [the Momento console](https://console.gomomento.com/).
+* A Momento service endpoint is required. You can find a [list of them here](https://docs.momentohq.com/platform/regions).
 * Installation of PHP 8.0 or higher
 * Installation of the [gRPC PHP extension](https://github.com/grpc/grpc/blob/master/src/php/README.md).
 * Installation of the [protobuf C extension](https://developers.google.com/google-ads/api/docs/client-libs/php/protobuf#c_implementation)
@@ -78,7 +79,7 @@ $KEY = "MyKey";
 $VALUE = "MyValue";
 
 // Setup
-$authProvider = CredentialProvider::fromEnvironmentVariable("MOMENTO_API_KEY");
+$authProvider = CredentialProvider::fromEnvironmentVariablesV2("MOMENTO_API_KEY", "MOMENTO_ENDPOINT");
 $configuration = Laptop::latest(new StderrLoggerFactory());
 $client = new CacheClient($configuration, $authProvider, $ITEM_DEFAULT_TTL_SECONDS);
 $logger = $configuration->getLoggerFactory()->getLogger("ex:");

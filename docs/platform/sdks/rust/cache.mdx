@@ -50,11 +50,20 @@ cargo add momento
 
 ## Set up your API key
 
-You'll need a Momento API key to authenticate with Momento.  You can get one from the [Momento Web Console](https://console.gomomento.com/caches).
+You'll need a Momento API key to authenticate with Momento.  You can get one from the [Momento Console](https://console.gomomento.com).
 Once you have your API key, store it in an environment variable so that the Momento client can consume it:
 
 ```
 export MOMENTO_API_KEY=<your Momento API key here>
+```
+
+## Set up your Momento service endpoint
+
+You'll also need a Momento service endpoint. You can find a [list of them here](https://docs.momentohq.com/platform/regions).
+Once you have selected an endpoint, store it in an environment variable so that the Momento client can consume it:
+
+```
+export MOMENTO_ENDPOINT=<your service endpoint here>
 ```
 
 ## Import libraries and instantiate a CacheClient object

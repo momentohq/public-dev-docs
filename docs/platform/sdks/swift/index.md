@@ -35,6 +35,7 @@ The Momento Swift SDK and source code are available via GitHub: [momentohq/clien
 
 - [Swift version 5](https://www.swift.org/install/) or higher is required.
 - A Momento API key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A Momento service endpoint is required. You can find a [list of them here](https://docs.momentohq.com/platform/regions).
 
 ## Resources
 

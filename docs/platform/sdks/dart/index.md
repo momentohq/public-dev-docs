@@ -43,6 +43,7 @@ Dart packages are published to [pub.dev as `momento`](https://pub.dev/packages/m
 
 - [Dart version 3](https://dart.dev/get-dart) or higher is required.
 - A Momento API key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A Momento service endpoint is required. You can find a [list of them here](https://docs.momentohq.com/platform/regions).
 
 ## Resources
 

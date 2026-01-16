@@ -39,7 +39,8 @@ The source code can be found on GitHub: [momentohq/client-sdk-rust](https://gith
 
 ## Requirements
 
-- A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A Momento API key is required; you can get one from the [Momento Console](https://console.gomomento.com/).
+- A Momento service endpoint is required. You can find a [list of them here](https://docs.momentohq.com/platform/regions).
 - A modern `cargo` tool chain is required; we love [rustup](https://rustup.rs/)!
 
 ## Resources

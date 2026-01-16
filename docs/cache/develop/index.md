@@ -22,15 +22,27 @@ Here is an example of how to construct a `CacheClient`:
 
 ## Instantiating credential providers using Momento API keys
 
-You need to provide a Momento API key when instantiating a Momento client. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). Once you have a token, provide it to Momento SDKs when you create an instance of `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider` object, either from an environment variable or from a String. Below is an example of how to instantiate `CredentialProvider` from an environment variable:
+You need to provide a Momento API key when instantiating a Momento client. If you don't have one yet, you can get one from the [Momento Web Console](https://console.gomomento.com/). 
 
-<SdkExampleTabs snippetId={'API_CredentialProviderFromEnvVar'} />
+You also need to provide a Momento service endpoint. You can find a [list of them here](https://docs.momentohq.com/platform/regions).
+
+Once you have an API key and an endpoint, provide it to Momento SDKs when you create an instance of `CredentialProvider`. There are convenient factory methods provided to construct a `CredentialProvider` object, either from an environment variable or from a String. Below is an example of how to instantiate `CredentialProvider` from the default environment variables `MOMENTO_API_KEY` and `MOMENTO_ENDPOINT`:
+
+<SdkExampleTabs snippetId={'API_CredentialProviderFromEnvVarV2Default'} />
+
+Alternately provide custom environment variable names:
+
+<SdkExampleTabs snippetId={'API_CredentialProviderFromEnvVarV2'} />
 
 If you're storing your Momento auth token in a secret manager such as [AWS Secret Manager](https://aws.amazon.com/secrets-manager/), [GCP Secret Manager](https://cloud.google.com/secret-manager), or a local config file, you must first retrieve the credentials from there and then instantiate a `CredentialProvider` from a string, like this:
 
-<SdkExampleTabs snippetId={'API_CredentialProviderFromString'} />
+<SdkExampleTabs snippetId={'API_CredentialProviderFromApiKeyV2'} />
 
 For an example of how to retrieve credentials from AWS Secrets Manager, see [Retrieving a Momento auth token from AWS Secrets Manager](/cache/integrations/aws-secrets-manager).
+
+If you have a disposable auth token or a v1 API key, you can instantiate a `CredentialProvider` like this:
+
+<SdkExampleTabs snippetId={'API_CredentialProviderFromDisposableToken'} />
 
 For general information on Momento authentication, see [our auth page](../authentication/index.mdx).
 

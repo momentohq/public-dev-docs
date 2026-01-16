@@ -55,6 +55,15 @@ export MOMENTO_API_KEY=<your Momento API key here>
 
 **Note**: it is best practice to put the API key into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
 
+## Set up your Momento service endpoint
+
+You'll also need a Momento service endpoint. You can find a [list of them here](https://docs.momentohq.com/platform/regions).
+Once you have selected an endpoint, store it in an environment variable so that the Momento client can consume it:
+
+```
+export MOMENTO_ENDPOINT=<your service endpoint here>
+```
+
 ## Import libraries and create a CacheClient object
 [This example file](https://github.com/momentohq/client-sdk-dotnet/blob/main/examples/MomentoUsage/Program.cs) pulls in the necessary imports, reads the API key from an environment variable, and instantiates the CacheClient that is used to interact with a cache.
 

@@ -52,9 +52,6 @@ Then follow our [step-by-step instructions](https://docs.momentohq.com/cache/aut
 // as many leaderboards as you wish
 const client = new PreviewLeaderboardClient({
   configuration: LeaderboardConfigurations.Laptop.v1(),
-  credentialProvider: CredentialProvider.fromEnvironmentVariable({
-    environmentVariableName: 'MOMENTO_API_KEY',
-  }),
 });
 
 // Create a new leaderboard with the given cache and leaderboard name

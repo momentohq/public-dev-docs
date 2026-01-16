@@ -68,6 +68,15 @@ export MOMENTO_API_KEY=<your Momento token here>
 
 **Note**: it is best practice to put the token into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
 
+## Get your Momento service endpoint
+
+You'll also need a Momento service endpoint. You can find a [list of them here](https://docs.momentohq.com/platform/regions).
+Once you have selected an endpoint, store it in an environment variable so that the Momento client can consume it:
+
+```
+export MOMENTO_ENDPOINT=<your service endpoint here>
+```
+
 ## Import libraries and create a TopicClient object
 This code sets up the main function, pulls in the necessary imports, and instantiates the TopicClient that will be used to interact with your pub/sub topic.
 

@@ -43,6 +43,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-javascript](https:
 
 - Node version [16 or higher](https://nodejs.org/en/download/) is required.
 - A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A Momento service endpoint is required. You can find a [list of them here](https://docs.momentohq.com/platform/regions).
 
 ## Resources
 
