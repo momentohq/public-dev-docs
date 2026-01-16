@@ -1,0 +1,101 @@
+---
+sidebar_position: 55
+sidebar_label: commands
+title: Momento RESP commands
+description: List of supported and unsupported RESP commands.
+hide_title: true
+slug: /cache/resp/commands
+---
+
+# Momento RESP commands
+
+Momento Valkey supports all core RESP commands according to
+the [Valkey 9.0 specification](https://valkey.io/commands/),
+except for cluster management, scripting, and mode-switching
+commands like pubsub or transactions.
+
+Extension modules like `valkey-search` are not currently
+supported. Please let us know if your workload requires a
+particular module!
+
+
+## List of unsupported commands
+
+| Command   | Category |
+| ---           | ---           |
+| ACL           | Management    |
+| ASKING        | Cluster       |
+| AUTH          | Connection    |
+| BGREWRITEAOF  | Management    |
+| BGSAVE        | Management    |
+| BLMOVE        | Blocking      |
+| BLMPOP        | Blocking      |
+| BLPOP         | Blocking      |
+| BRPOP         | Blocking      |
+| BRPOPLPUSH    | Blocking      |
+| BZMPOP        | Blocking      |
+| BZPOPMAX      | Blocking      |
+| BZPOPMIN      | Blocking      |
+| COPY          | Databases      |
+| CLIENT        | Connection    |
+| CLUSTER       | Management    |
+| COMMAND       | Management    |
+| COMMANDLOG    | Management    |
+| CONFIG        | Management    |
+| DBSIZE        | Management    |
+| DEBUG         | Management    |
+| DISCARD       | Transaction   |
+| DUMP          | Management    |
+| EVAL          | Scripting     |
+| EVALSHA       | Scripting     |
+| EVALSHA_RO    | Scripting     |
+| EVAL_RO       | Scripting     |
+| EXEC          | Transaction   |
+| FAILOVER      | Management    |
+| FCALL         | Scripting     |
+| FCALL_RO      | Scripting     |
+| FLUSHALL      | Management    |
+| FUNCTION      | Scripting     |
+| HELLO         | Connection    |
+| INFO          | Management    |
+| LASTSAVE      | Management    |
+| LATENCY       | Management    |
+| MEMORY        | Management    |
+| MIGRATE       | Management    |
+| MODULE        | Management    |
+| MONITOR       | Management    |
+| MOVE          | Databases     |
+| MULTI         | Transaction   |
+| OBJECT        | Management    |
+| PFDEBUG       | Management    |
+| PFSELFTEST    | Management    |
+| PSUBSCRIBE    | Pubsub        |
+| PSYNC         | Management    |
+| PUBLISH       | Pubsub        |
+| PUBSUB        | Pubsub        |
+| PUNSUBSCRIBE  | Pubsub        |
+| QUIT          | Connection    |
+| READONLY      | Management    |
+| READWRITE     | Management    |
+| REPLCONF      | Management    |
+| REPLICAOF     | Management    |
+| RESET         | Connection    |
+| RESTORE       | Management    |
+| RESTORE-ASKING   | Management |
+| ROLE          | Management    |
+| SAVE          | Management    |
+| SCRIPT        | Scripting     |
+| SELECT        | Databases     |
+| SHUTDOWN      | Management    |
+| SLAVEOF       | Management    |
+| SLOWLOG       | Management    |
+| SSUBSCRIBE    | Pubsub        |
+| SUBSCRIBE     | Pubsub        |
+| SUNSUBSCRIBE  | Pubsub        |
+| SWAPDB        | Management    |
+| SYNC          | Management    |
+| UNSUBSCRIBE   | Pubsub        |
+| UNWATCH       | Transaction   |
+| WAIT          | Management    |
+| WAITAOF       | Management    |
+| WATCH         | Transaction   |
