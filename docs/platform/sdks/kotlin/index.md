@@ -38,6 +38,7 @@ The source code can be found on GitHub: [momentohq/client-sdk-kotlin](https://gi
 ## Requirements
 
 - A Momento API Key is required; you can get one from the [Momento Web Console](https://console.gomomento.com/).
+- A Momento service endpoint is required. You can find a [list of them here](https://docs.momentohq.com/platform/regions).
 - At least the Java 11 run time installed, or Android 23+.
 - mvn or gradle for downloading the sdk.
 

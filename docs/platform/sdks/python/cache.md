@@ -58,6 +58,15 @@ export MOMENTO_API_KEY=<your Momento token here>
 
 **Note**: it is best practice to put the token into something like AWS Secret Manager or GCP Secret Manager instead of an environment variable for enhanced security, but we are using one here for demo purposes.
 
+## Set up your Momento service endpoint
+
+You'll also need a Momento service endpoint. You can find a [list of them here](https://docs.momentohq.com/platform/regions).
+Once you have selected an endpoint, store it in an environment variable so that the Momento client can consume it:
+
+```
+export MOMENTO_ENDPOINT=<your service endpoint here>
+```
+
 ## Import libraries and connect to return a CacheClient object
 
 This code sets up the class with the necessary imports, the class definition, and the CacheClient instantiation that each of the other functions will need to call.
