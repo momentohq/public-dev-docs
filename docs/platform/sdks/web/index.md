@@ -83,7 +83,7 @@ In either case, you will likely use the Node.js SDK to instantiate a Momento `Au
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_InstantiateAuthClient'} />
 
-Then you will use the `generateDisposableToken` API to create a disposable token that you can vend to the browser. These tokens are short-lived by default and they must expire within one hour.
+Then you will use the `generateDisposableToken` API to create a disposable token that you can vend to the browser. These tokens are short-lived by default.
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateDisposableToken'} />
 

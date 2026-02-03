@@ -42,7 +42,7 @@ For detailed information on creating a token, please refer to the [API reference
 
 ## Expiration
 
-Momento tokens are required to have an expiration time. The **maximum expiration time for a token is 1 hour**. When the token expiration time elapses, you will be required to create a new one.
+Momento tokens are required to have an expiration time. The **maximum expiration time for a token is 25 hours**. When the token expiration time elapses, you will be required to create a new one.
 
 If you attempt to make a call with an expired token, you will receive a `AUTHENTICATION_ERROR` response indicating the provided credentials could not connect to the service.
 
