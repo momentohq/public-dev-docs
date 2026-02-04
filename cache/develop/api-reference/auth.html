@@ -9,7 +9,7 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var g=t.getElementsByTagName(a)[0],m=t.createElement(a);m.async=!0,m.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",g.parentNode.insertBefore(m,g)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.50ce1593.css">
-<script src="/assets/js/runtime~main.33387252.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.f9e6e3b6.js" defer="defer"></script>
 <script src="/assets/js/main.e05ead99.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -65,12 +65,12 @@
 <div class="row"><div class="col col--4" style="padding-right:20px"><h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="generatedisposabletoken">GenerateDisposableToken<a href="#generatedisposabletoken" class="hash-link" aria-label="Direct link to GenerateDisposableToken" title="Direct link to GenerateDisposableToken" translate="no">​</a></h3><p>Generates a new disposable Momento auth token with the specified permissions and expiry.
 Disposable tokens differ from the usual Momento auth token in several key ways:</p><ul>
 <li class="">They cannot be generated in the console, they can only be generated programmatically. The token that&#x27;s used for the <code>generateDisposableToken</code> API call must be a token with Super User scope generated via the Momento console.</li>
-<li class="">They must expire within one hour.</li>
+<li class="">They must expire within 25 hours.</li>
 <li class="">They cannot be refreshed and thus do not come with a refresh token.</li>
 <li class="">Permissions are specified using DisposableTokenScope object.</li>
 </ul><h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-2">Parameters<a href="#parameters-2" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4><hr><ul>
 <li class=""><strong>scope</strong> - <a href="#disposabletokenscope-objects" class=""><em>DisposableTokenScope</em></a>: The permissions to grant to the new disposable token. Pre-built DisposableTokenScope objects are provided by the SDKs.</li>
-<li class=""><strong>expiresIn</strong> - <em>ExpiresIn object</em>: The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the ExpiresIn.minutes() or ExpiresIn.hours(1) methods. Disposable tokens must expire within 1 hour.</li>
+<li class=""><strong>expiresIn</strong> - <em>ExpiresIn object</em>: The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the ExpiresIn.minutes() or ExpiresIn.hours(1) methods. Disposable tokens must expire within 25 hours.</li>
 </ul><h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="optional-parameters">Optional Parameters<a href="#optional-parameters" class="hash-link" aria-label="Direct link to Optional Parameters" title="Direct link to Optional Parameters" translate="no">​</a></h4><hr><ul>
 <li class=""><strong>tokenId</strong> - <em>String</em>: A user-provided string that can help identify which messages were published with which disposable token.</li>
 </ul><h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-2">Returns<a href="#returns-2" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4><hr><p>One of the following:</p><ul>
