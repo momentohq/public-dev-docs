@@ -100,14 +100,14 @@ The auth APIs create and manage API keys and tokens for Momento services. These 
         Generates a new disposable Momento auth token with the specified permissions and expiry.
         Disposable tokens differ from the usual Momento auth token in several key ways:
           - They cannot be generated in the console, they can only be generated programmatically. The token that's used for the `generateDisposableToken` API call must be a token with Super User scope generated via the Momento console.
-          - They must expire within one hour.
+          - They must expire within 25 hours.
           - They cannot be refreshed and thus do not come with a refresh token.
           - Permissions are specified using DisposableTokenScope object.
 
         #### Parameters
         ----------------
         - **scope** - [*DisposableTokenScope*](#disposabletokenscope-objects): The permissions to grant to the new disposable token. Pre-built DisposableTokenScope objects are provided by the SDKs.
-        - **expiresIn** - *ExpiresIn object*: The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the ExpiresIn.minutes() or ExpiresIn.hours(1) methods. Disposable tokens must expire within 1 hour.
+        - **expiresIn** - *ExpiresIn object*: The number of seconds until the token expires or an ExpiresIn object representing a duration by calling the ExpiresIn.minutes() or ExpiresIn.hours(1) methods. Disposable tokens must expire within 25 hours.
 
         #### Optional Parameters
         ----------------
