@@ -497,48 +497,68 @@ To allow Momento to access your S3 bucket, you need to create an IAM role that M
 
 Below is a CloudFormation template that creates the required IAM role:
 
-```yaml
-AWSTemplateFormatVersion: "2010-09-09"
-Description: IAM Role that allows Momento to access your S3 bucket
-
-Parameters:
-  S3BucketName:
-    Type: String
-    Description: The name of the S3 bucket Momento will access
-
-Resources:
-  MomentoS3IamRole:
-    Type: AWS::IAM::Role
-    Properties:
-      RoleName: MomentoObjectStoreRole
-      Description: IAM Role that allows Momento to access S3
-      AssumeRolePolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          - Effect: Allow
-            Principal:
-              AWS: "arn:aws:iam::168253909317:root"
-            Action: "sts:AssumeRole"
-      Policies:
-        - PolicyName: MomentoS3Access
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Sid: AllowS3BucketAccess
-                Effect: Allow
-                Action:
-                  - "s3:GetObject"
-                  - "s3:PutObject"
-                  - "s3:DeleteObject"
-                  - "s3:ListBucket"
-                Resource:
-                  - !Sub "arn:aws:s3:::${S3BucketName}"
-                  - !Sub "arn:aws:s3:::${S3BucketName}/*"
-
-Outputs:
-  RoleArn:
-    Description: The ARN of the IAM role to use when creating the object store
-    Value: !GetAtt MomentoS3IamRole.Arn
+```json
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "IAM Role that allows Momento to access your S3 bucket",
+  "Parameters": {
+    "S3BucketName": {
+      "Type": "String",
+      "Description": "The name of the S3 bucket Momento will access"
+    }
+  },
+  "Resources": {
+    "MomentoS3IamRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": "MomentoObjectStoreRole",
+        "Description": "IAM Role that allows Momento to access S3",
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::168253909317:root"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "MomentoS3Access",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Sid": "AllowS3BucketAccess",
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:GetObject",
+                    "s3:PutObject",
+                    "s3:DeleteObject",
+                    "s3:ListBucket"
+                  ],
+                  "Resource": [
+                    { "Fn::Sub": "arn:aws:s3:::${S3BucketName}" },
+                    { "Fn::Sub": "arn:aws:s3:::${S3BucketName}/*" }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "RoleArn": {
+      "Description": "The ARN of the IAM role to use when creating the object store",
+      "Value": { "Fn::GetAtt": ["MomentoS3IamRole", "Arn"] }
+    }
+  }
+}
 ```
 
 ## Deploying the Template
@@ -548,7 +568,7 @@ You can deploy this template using the AWS CLI:
 ```bash
 aws cloudformation create-stack \
   --stack-name momento-object-store-role \
-  --template-body file://momento-iam-role.yaml \
+  --template-body file://momento-iam-role.json \
   --parameters ParameterKey=S3BucketName,ParameterValue=my-s3-bucket \
   --capabilities CAPABILITY_NAMED_IAM
 ```
