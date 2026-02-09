@@ -54,7 +54,7 @@ Creates a new Valkey Cluster or updates an existing one with the specified confi
 ```json
 {
   "description": "My production cluster",
-  "node_instance_type": "m6g.large",
+  "node_instance_type": "cache.m6g.large",
   "shard_count": 3,
   "replication_factor": 2,
   "enforce_shard_multi_az": true,
@@ -90,7 +90,7 @@ Creates a new Valkey Cluster or updates an existing one with the specified confi
 {
   "name": "my-cluster",
   "description": "My production cluster",
-  "node_instance_type": "m6g.large",
+  "node_instance_type": "cache.m6g.large",
   "shard_count": 3,
   "replication_factor": 2,
   "enforce_shard_multi_az": true,
@@ -195,7 +195,7 @@ Lists all Valkey Clusters in your account.
   {
     "name": "my-cluster",
     "description": "My production cluster",
-    "node_instance_type": "m6g.large",
+    "node_instance_type": "cache.m6g.large",
     "shard_count": 3,
     "replication_factor": 2,
     "enforce_shard_multi_az": true,
@@ -206,7 +206,7 @@ Lists all Valkey Clusters in your account.
   {
     "name": "dev-cluster",
     "description": "Development cluster",
-    "node_instance_type": "t4g.small",
+    "node_instance_type": "cache.t4g.small",
     "shard_count": 1,
     "replication_factor": 1,
     "enforce_shard_multi_az": false,
@@ -238,7 +238,7 @@ curl -X PUT -H "Authorization: <token>" \
   -H "Content-Type: application/json" \
   -d '{
     "description": "Production cluster",
-    "node_instance_type": "m6g.large",
+    "node_instance_type": "cache.m6g.large",
     "shard_count": 3,
     "replication_factor": 2,
     "enforce_shard_multi_az": true
@@ -253,7 +253,7 @@ curl -X PUT -H "Authorization: <token>" \
   -H "Content-Type: application/json" \
   -d '{
     "description": "Production cluster with custom placement",
-    "node_instance_type": "m6g.large",
+    "node_instance_type": "cache.m6g.large",
     "shard_count": 2,
     "replication_factor": 2,
     "enforce_shard_multi_az": true,
