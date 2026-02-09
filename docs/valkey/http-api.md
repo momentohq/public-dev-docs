@@ -115,7 +115,7 @@ Creates a new Valkey Cluster or updates an existing one with the specified confi
 | replication_factor | Integer | The number of replicas per shard. |
 | enforce_shard_multi_az | Boolean | Whether multi-AZ placement is enforced. |
 | shard_placements | Array | The placement configuration for each shard. |
-| status | String | The cluster status: `Creating`, `Active`, or `Deleting`. |
+| status | String | The cluster status: `Creating`, `Updating`, `Active`, or `Deleting`. |
 | errors | Array | Any errors associated with the cluster (e.g., `InstanceTypeNotAvailable`). |
 
 #### Error
