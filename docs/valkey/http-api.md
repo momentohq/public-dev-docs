@@ -71,7 +71,7 @@ Creates a new Valkey Cluster or updates an existing one with the specified confi
 | Field | Required? | Type | Description |
 |-------|-----------|------|-------------|
 | description | no | String | Optional description for the cluster. |
-| node_instance_type | yes | String | The instance type for cluster nodes. Use the [List Available Types](#list-available-cluster-types) endpoint to get valid options. |
+| node_instance_type | yes | String | The instance type for cluster nodes. |
 | shard_count | yes | Integer | The number of shards in the cluster. |
 | replication_factor | yes | Integer | The number of replicas per shard. |
 | enforce_shard_multi_az | yes | Boolean | Whether to enforce multi-AZ placement for shards. |
@@ -228,46 +228,6 @@ Lists all Valkey Clusters in your account.
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues.
 
-## List Available Cluster Types
-
-Lists the available node instance types for creating clusters.
-
-### Request
-
-- Path: /cluster/available-types
-- HTTP Method: GET
-
-#### Headers
-
-| Header&nbsp;name | Required? | Type   | Description                                                                                        |
-|------------------|-----------|--------|----------------------------------------------------------------------------------------------------|
-| Authorization    | yes       | String | The Momento API key, in string format, is used for authentication/authorization of the request.    |
-
-### Responses
-
-#### Success
-
-*Status Code: 200 OK*
-
-```json
-[
-  "t4g.small",
-  "t4g.medium",
-  "m6g.large",
-  "m6g.xlarge",
-  "r6g.large",
-  "r6g.xlarge"
-]
-```
-
-#### Error
-
-*Status Code: 401 Unauthorized*
-- This error type typically indicates that the Momento API key passed in is either invalid or expired.
-
-*Status Code: 500 Internal Server Error*
-- This error type typically indicates that the service is experiencing issues.
-
 ---
 
 # Examples
@@ -314,15 +274,6 @@ curl -X PUT -H "Authorization: <token>" \
     ]
   }' \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/cluster/my-cluster"
-```
-
-## List Available Instance Types
-
-Get the list of available node instance types:
-
-```bash
-curl -H "Authorization: <token>" \
-  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/cluster/available-types"
 ```
 
 ## List Clusters
