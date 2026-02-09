@@ -166,9 +166,6 @@ Deletes a Valkey Cluster.
 *Status Code: 401 Unauthorized*
 - This error type typically indicates that the Momento API key passed in is either invalid or expired.
 
-*Status Code: 404 Not Found*
-- The specified cluster does not exist.
-
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues.
 
