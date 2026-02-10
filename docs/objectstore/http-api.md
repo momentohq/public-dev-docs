@@ -199,6 +199,13 @@ Creates a new object store or updates an existing one with the specified configu
     "valkey_cluster": {
       "cluster_name": "my-valkey-cluster"
     }
+  },
+  "access_logging_config": {
+    "cloudwatch": {
+      "log_group_name": "/momento/objectstore/my-store",
+      "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoCloudWatchRole",
+      "region": "us-east-1"
+    }
   }
 }
 ```
@@ -207,8 +214,12 @@ Creates a new object store or updates an existing one with the specified configu
 |-------|-----------|------|-------------|
 | storage_config.s3.bucket_name | yes | String | The name of your S3 bucket. |
 | storage_config.s3.prefix | no | String | Optional prefix path within the bucket. |
-| storage_config.s3.iam_role_arn | yes | String | The ARN of the IAM role that Momento will assume to access your S3 bucket. See [Appendix: IAM Role Setup](#appendix-iam-role-setup). |
+| storage_config.s3.iam_role_arn | yes | String | The ARN of the IAM role that Momento will assume to access your S3 bucket. See [Appendix: S3 IAM Role Setup](#appendix-s3-iam-role-setup). |
 | cache_config.valkey_cluster.cluster_name | yes | String | The name of the Momento Valkey Cluster to use for caching. |
+| access_logging_config | no | Object | Optional configuration for access logging. |
+| access_logging_config.cloudwatch.log_group_name | yes | String | The CloudWatch Log Group name where access logs will be delivered. The log group must already exist. |
+| access_logging_config.cloudwatch.iam_role_arn | yes | String | The ARN of the IAM role that Momento will assume to write logs. See [Appendix: CloudWatch IAM Role Setup](#appendix-cloudwatch-iam-role-setup). |
+| access_logging_config.cloudwatch.region | yes | String | The AWS region where the CloudWatch Log Group is located. |
 
 ### Responses
 
@@ -229,6 +240,13 @@ Creates a new object store or updates an existing one with the specified configu
   "cache_config": {
     "valkey_cluster": {
       "cluster_name": "my-valkey-cluster"
+    }
+  },
+  "access_logging_config": {
+    "cloudwatch": {
+      "log_group_name": "/momento/objectstore/my-store",
+      "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoCloudWatchRole",
+      "region": "us-east-1"
     }
   }
 }
@@ -295,9 +313,20 @@ Retrieves the configuration details of an object store.
     "valkey_cluster": {
       "cluster_name": "my-valkey-cluster"
     }
+  },
+  "access_logging_config": {
+    "cloudwatch": {
+      "log_group_name": "/momento/objectstore/my-store",
+      "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoCloudWatchRole",
+      "region": "us-east-1"
+    }
   }
 }
 ```
+
+:::note
+The `access_logging_config` field is only present if access logging is configured for the object store.
+:::
 
 #### Error
 
@@ -460,6 +489,34 @@ curl -X PUT -H "Authorization: <token>" \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store"
 ```
 
+Create an object store with access logging enabled:
+
+```bash
+curl -X PUT -H "Authorization: <token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "storage_config": {
+      "s3": {
+        "bucket_name": "my-s3-bucket",
+        "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoObjectStoreRole"
+      }
+    },
+    "cache_config": {
+      "valkey_cluster": {
+        "cluster_name": "my-valkey-cluster"
+      }
+    },
+    "access_logging_config": {
+      "cloudwatch": {
+        "log_group_name": "/momento/objectstore/my-store",
+        "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoCloudWatchRole",
+        "region": "us-east-1"
+      }
+    }
+  }' \
+  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store"
+```
+
 ### List Object Stores
 
 List all object stores:
@@ -489,7 +546,43 @@ curl -X DELETE -H "Authorization: <token>" \
 
 ---
 
-# Appendix: IAM Role Setup
+# Access Log Format
+
+When access logging is enabled, Momento delivers logs to your CloudWatch Log Group. Each log entry is a JSON object with the following fields:
+
+```json
+{
+  "timestamp": 1707580800000,
+  "operation": "read",
+  "key": "images/logo.png",
+  "store": "my-store",
+  "status": "cache_hit",
+  "size": 15234
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| timestamp | Integer | Unix timestamp in milliseconds when the operation occurred. |
+| operation | String | The type of operation: `read` or `write`. |
+| key | String | The object key that was accessed. |
+| store | String | The name of the object store. |
+| status | String | The result of the operation (see below). |
+| size | Integer | The size of the object in bytes. Only present for successful operations. |
+
+### Status Values
+
+| Status | Description |
+|--------|-------------|
+| `ok` | Write operation completed successfully. |
+| `cache_hit` | Read operation found the object in the cache. |
+| `storage_hit` | Read operation found the object in S3 storage (cache miss). |
+| `miss` | Read operation did not find the object. |
+| `error` | The operation failed due to an error. |
+
+---
+
+# Appendix: S3 IAM Role Setup
 
 To allow Momento to access your S3 bucket, you need to create an IAM role that Momento can assume. This role must trust Momento's AWS account and have permissions to access your S3 bucket.
 
@@ -617,5 +710,133 @@ The role needs the following S3 permissions:
 :::tip[Security Best Practice]
 
 Always scope the IAM role permissions to the specific S3 bucket you want Momento to access. Avoid using `Resource: "*"` in production environments.
+
+:::
+
+---
+
+# Appendix: CloudWatch IAM Role Setup
+
+To enable access logging, you need to create an IAM role that allows Momento to write logs to your CloudWatch Log Group. The log group must already exist before creating the object store.
+
+## CloudFormation Template
+
+Below is a CloudFormation template that creates the required IAM role for CloudWatch access:
+
+```json
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "IAM Role that allows Momento to write access logs to CloudWatch",
+  "Parameters": {
+    "LogGroupName": {
+      "Type": "String",
+      "Description": "The CloudWatch Log Group name where Momento will write access logs"
+    }
+  },
+  "Resources": {
+    "MomentoCloudWatchIamRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": "MomentoCloudWatchRole",
+        "Description": "IAM Role that allows Momento to write access logs to CloudWatch",
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::168253909317:root"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "MomentoCloudWatchAccess",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Sid": "AllowLogGroupAccess",
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:DescribeLogGroups"
+                  ],
+                  "Resource": "*"
+                },
+                {
+                  "Sid": "AllowLogStreamAccess",
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": { "Fn::Sub": "arn:aws:logs:*:*:log-group:${LogGroupName}:*" }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "RoleArn": {
+      "Description": "The ARN of the IAM role to use for access logging",
+      "Value": { "Fn::GetAtt": ["MomentoCloudWatchIamRole", "Arn"] }
+    }
+  }
+}
+```
+
+## Deploying the Template
+
+First, create the CloudWatch Log Group:
+
+```bash
+aws logs create-log-group --log-group-name /momento/objectstore/my-store
+```
+
+Then deploy the CloudFormation template:
+
+```bash
+aws cloudformation create-stack \
+  --stack-name momento-cloudwatch-role \
+  --template-body file://momento-cloudwatch-role.json \
+  --parameters ParameterKey=LogGroupName,ParameterValue=/momento/objectstore/my-store \
+  --capabilities CAPABILITY_NAMED_IAM
+```
+
+After the stack is created, retrieve the role ARN:
+
+```bash
+aws cloudformation describe-stacks \
+  --stack-name momento-cloudwatch-role \
+  --query "Stacks[0].Outputs[?OutputKey=='RoleArn'].OutputValue" \
+  --output text
+```
+
+Use this ARN as the `access_logging_config.cloudwatch.iam_role_arn` when creating your object store.
+
+## Required CloudWatch Permissions
+
+The role needs the following CloudWatch Logs permissions:
+
+| Permission | Purpose |
+|------------|---------|
+| `logs:DescribeLogGroups` | Verify the log group exists |
+| `logs:CreateLogStream` | Create log streams for access logs |
+| `logs:PutLogEvents` | Write access log entries |
+
+:::tip[Log Retention]
+
+Consider setting a retention policy on your CloudWatch Log Group to manage storage costs:
+
+```bash
+aws logs put-retention-policy \
+  --log-group-name /momento/objectstore/my-store \
+  --retention-in-days 30
+```
 
 :::
