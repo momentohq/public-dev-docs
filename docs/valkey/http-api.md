@@ -55,7 +55,7 @@ Creates a new Valkey Cluster or updates an existing one with the specified confi
 {
   "description": "My production cluster",
   "node_instance_type": "cache.m6g.large",
-  "shard_count": 3,
+  "shard_count": 1,
   "replication_factor": 2,
   "enforce_shard_multi_az": true,
   "shard_placements": [
@@ -80,7 +80,7 @@ Creates a new Valkey Cluster or updates an existing one with the specified confi
 | shard_placements[].availability_zone | yes | String | The availability zone for the primary node. |
 | shard_placements[].replica_availability_zones | yes | Array | The availability zones for replica nodes. |
 
-### Responses
+### Response
 
 #### Success
 
@@ -91,7 +91,7 @@ Creates a new Valkey Cluster or updates an existing one with the specified confi
   "name": "my-cluster",
   "description": "My production cluster",
   "node_instance_type": "cache.m6g.large",
-  "shard_count": 3,
+  "shard_count": 1,
   "replication_factor": 2,
   "enforce_shard_multi_az": true,
   "shard_placements": [
@@ -153,7 +153,7 @@ Deletes a Valkey Cluster.
 |------------------|-----------|--------|----------------------------------------------------------------------------------------------------|
 | Authorization    | yes       | String | The Momento API key, in string format, is used for authentication/authorization of the request.    |
 
-### Responses
+### Response
 
 #### Success
 
@@ -184,7 +184,7 @@ Lists all Valkey Clusters in your account.
 |------------------|-----------|--------|----------------------------------------------------------------------------------------------------|
 | Authorization    | yes       | String | The Momento API key, in string format, is used for authentication/authorization of the request.    |
 
-### Responses
+### Response
 
 #### Success
 
