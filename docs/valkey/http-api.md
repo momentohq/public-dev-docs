@@ -27,9 +27,9 @@ The API Key must be provided in the `Authorization` header.
 
 The Control Plane API allows you to manage Valkey Clusters - creating, listing, and deleting them.
 
-## Create or Update Cluster
+## Create Cluster
 
-Creates a new Valkey Cluster or updates an existing one with the specified configuration.
+Creates a new Valkey Cluster with the specified configuration.
 
 ### Request
 
