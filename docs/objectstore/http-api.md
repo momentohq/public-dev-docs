@@ -375,6 +375,11 @@ Retrieves an object from the specified object store.
 | Header&nbsp;name | Required? | Type   | Description                                                                                        |
 |------------------|-----------|--------|----------------------------------------------------------------------------------------------------|
 | Authorization    | yes       | String | The Momento auth token, in string format, is used for authentication/authorization of the request. |
+| read-concern     | no        | String | Controls cache read behavior. Values: `balanced` (default) - reads from an AZ-aligned cache node if available; `consistent` - always reads from the primary cache node. |
+
+:::note
+Regardless of the `read-concern` value, Momento always falls back to S3 if the object is not found in the cache.
+:::
 
 ### Response
 
