@@ -23,148 +23,13 @@ The API Key must be provided in the `Authorization` header.
 
 ---
 
-# Data Plane API
-
-The Data Plane API allows you to store and retrieve objects from your object store.
-
-## Put Object
-
-Stores an object in the specified object store.
-
-### Request
-
-- Path: /objectstore/\{storeName\}/\{key\}
-- HTTP Method: PUT
-
-#### Body
-
-- Content-Type: application/octet-stream
-- The body of the request should contain the binary data to be stored.
-
-#### Path Parameters
-
-| Parameter&nbsp;name | Required? | Type            | Description                                                                           |
-|---------------------|-----------|-----------------|----------------------------------------------------------------------------------------|
-| storeName           | yes       | URL-safe string | The name of the object store to operate on.                                            |
-| key                 | yes       | String          | The key for the object. Supports hierarchical paths (e.g., `folder/subfolder/file.txt`). |
-
-#### Query Parameters
-
-| Parameter&nbsp;name | Required? | Type    | Description                                                                 |
-|---------------------|-----------|---------|-----------------------------------------------------------------------------|
-| ttl_seconds         | no        | Integer | Optional time-to-live in seconds. If not specified, the object persists indefinitely. |
-
-#### Headers
-
-| Header&nbsp;name | Required? | Type                 | Description                                                                                        |
-|------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
-| Authorization    | yes       | String               | The Momento auth token, in string format, is used for authentication/authorization of the request. |
-| mo-meta-*        | no        | String               | Custom metadata headers. Any header prefixed with `mo-meta-` will be stored with the object and returned on GET. The prefix is stripped when storing (e.g., `mo-meta-content-type` is stored as `content-type`). |
-
-:::info[Blocked Metadata Headers]
-
-For security reasons, certain metadata header names are blocked and will be ignored:
-- HTTP protocol headers: `content-length`, `transfer-encoding`, `connection`, `keep-alive`, `upgrade`, `trailer`, `te`
-- Security headers: `set-cookie`, `cookie`, `authorization`, `www-authenticate`, `content-security-policy`, `x-frame-options`, `strict-transport-security`
-- CORS headers: `access-control-allow-origin`, `access-control-allow-credentials`, etc.
-- Proxy headers: `host`, `x-forwarded-for`, `x-real-ip`, `via`, etc.
-
-:::
-
-### Responses
-
-#### Success
-
-*Status Code: 204 No Content*
-
-- The object was successfully stored.
-
-#### Error
-
-*Status Code: 400 Bad Request*
-- This error type typically indicates that the request was incorrectly specified. See the message body for further details.
-
-*Status Code: 401 Unauthorized*
-- This error type typically indicates that the Momento API key passed in is either invalid or expired. See the body of the message for further details.
-
-*Status Code: 403 Forbidden*
-- This error type typically indicates the Momento API key passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
-
-*Status Code: 404 Not Found*
-- "Store Not Found" indicates that the specified object store does not exist.
-
-*Status Code: 429 Too Many Requests*
-- This error type typically indicates that account limits were exceeded. See the message body for further details, or contact Momento support to request a limit increase.
-
-*Status Code: 500 Internal Server Error*
-- This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
-
-## Get Object
-
-Retrieves an object from the specified object store.
-
-### Request
-
-- Path: /objectstore/\{storeName\}/\{key\}
-- HTTP Method: GET
-
-#### Path Parameters
-
-| Parameter&nbsp;name | Required? | Type            | Description                                                                           |
-|---------------------|-----------|-----------------|----------------------------------------------------------------------------------------|
-| storeName           | yes       | URL-safe string | The name of the object store to operate on.                                            |
-| key                 | yes       | String          | The key for the object. Supports hierarchical paths (e.g., `folder/subfolder/file.txt`). |
-
-#### Headers
-
-| Header&nbsp;name | Required? | Type   | Description                                                                                        |
-|------------------|-----------|--------|----------------------------------------------------------------------------------------------------|
-| Authorization    | yes       | String | The Momento auth token, in string format, is used for authentication/authorization of the request. |
-
-### Responses
-
-#### Hit
-
-*Status Code: 200 OK*
-
-- Body: The binary data stored at the specified key.
-- Any custom metadata headers stored with the object will be returned as response headers.
-
-#### Miss
-
-*Status Code: 404 Not Found*
-
-- "Object not found." indicates that the key was not present in the object store.
-
-#### Error
-
-*Status Code: 400 Bad Request*
-- This error type typically indicates that the request was incorrectly specified. See the body of the message for further details.
-
-*Status Code: 401 Unauthorized*
-- This error type typically indicates that the Momento auth token passed in is either invalid or expired. See the body of the message for further details.
-
-*Status Code: 403 Forbidden*
-- This error type typically indicates the Momento auth token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
-
-*Status Code: 404 Not Found*
-- "Store Not Found" indicates that the specified object store does not exist.
-
-*Status Code: 429 Too Many Requests*
-- This error type typically indicates that account limits were exceeded. See the body of the message for further details, or contact Momento support to request a limit increase.
-
-*Status Code: 500 Internal Server Error*
-- This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
-
----
-
 # Control Plane API
 
 The Control Plane API allows you to manage object stores - creating, listing, describing, and deleting them.
 
-## Create or Update Object Store
+## Create Object Store
 
-Creates a new object store or updates an existing one with the specified configuration.
+Creates a new object store with the specified configuration.
 
 ### Request
 
@@ -215,13 +80,13 @@ Creates a new object store or updates an existing one with the specified configu
 | storage_config.s3.bucket_name | yes | String | The name of your S3 bucket. |
 | storage_config.s3.prefix | no | String | Optional prefix path within the bucket. |
 | storage_config.s3.iam_role_arn | yes | String | The ARN of the IAM role that Momento will assume to access your S3 bucket. See [Appendix: S3 IAM Role Setup](#appendix-s3-iam-role-setup). |
-| cache_config.valkey_cluster.cluster_name | yes | String | The name of the Momento Valkey Cluster to use for caching. |
+| cache_config.valkey_cluster.cluster_name | yes | String | The name of the Momento Valkey Cluster to use for caching. This must be the name of an existing cluster. |
 | access_logging_config | no | Object | Optional configuration for access logging. |
 | access_logging_config.cloudwatch.log_group_name | yes | String | The CloudWatch Log Group name where access logs will be delivered. The log group must already exist. |
 | access_logging_config.cloudwatch.iam_role_arn | yes | String | The ARN of the IAM role that Momento will assume to write logs. See [Appendix: CloudWatch IAM Role Setup](#appendix-cloudwatch-iam-role-setup). |
 | access_logging_config.cloudwatch.region | yes | String | The AWS region where the CloudWatch Log Group is located. |
 
-### Responses
+### Response
 
 #### Created
 
@@ -251,12 +116,6 @@ Creates a new object store or updates an existing one with the specified configu
   }
 }
 ```
-
-#### Updated
-
-*Status Code: 200 OK*
-
-- Returns the same response body as Created.
 
 #### Error
 
@@ -293,7 +152,7 @@ Retrieves the configuration details of an object store.
 |------------------|-----------|--------|----------------------------------------------------------------------------------------------------|
 | Authorization    | yes       | String | The Momento API key, in string format, is used for authentication/authorization of the request.    |
 
-### Responses
+### Response
 
 #### Success
 
@@ -360,7 +219,7 @@ Deletes an object store.
 |------------------|-----------|--------|----------------------------------------------------------------------------------------------------|
 | Authorization    | yes       | String | The Momento API key, in string format, is used for authentication/authorization of the request.    |
 
-### Responses
+### Response
 
 #### Success
 
@@ -394,7 +253,7 @@ Lists all object stores in your account.
 |------------------|-----------|--------|----------------------------------------------------------------------------------------------------|
 | Authorization    | yes       | String | The Momento API key, in string format, is used for authentication/authorization of the request.    |
 
-### Responses
+### Response
 
 #### Success
 
@@ -419,50 +278,143 @@ Lists all object stores in your account.
 
 ---
 
+# Data Plane API
+
+The Data Plane API allows you to store and retrieve objects from your object store.
+
+## Put Object
+
+Stores an object in the specified object store.
+
+### Request
+
+- Path: /objectstore/\{storeName\}/\{key\}
+- HTTP Method: PUT
+
+#### Body
+
+- Content-Type: application/octet-stream
+- The body of the request should contain the binary data to be stored.
+
+#### Path Parameters
+
+| Parameter&nbsp;name | Required? | Type            | Description                                                                           |
+|---------------------|-----------|-----------------|----------------------------------------------------------------------------------------|
+| storeName           | yes       | URL-safe string | The name of the object store to operate on.                                            |
+| key                 | yes       | String          | The key for the object. Supports hierarchical paths (e.g., `folder/subfolder/file.txt`). |
+
+#### Query Parameters
+
+| Parameter&nbsp;name | Required? | Type    | Description                                                                 |
+|---------------------|-----------|---------|-----------------------------------------------------------------------------|
+| ttl_seconds         | no        | Integer | Optional time-to-live in seconds. If not specified, the object persists indefinitely. |
+
+#### Headers
+
+| Header&nbsp;name | Required? | Type                 | Description                                                                                        |
+|------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
+| Authorization    | yes       | String               | The Momento auth token, in string format, is used for authentication/authorization of the request. |
+| mo-meta-*        | no        | String               | Custom metadata headers. Any header prefixed with `mo-meta-` will be stored with the object and returned on GET. The prefix is stripped when storing (e.g., `mo-meta-content-type` is stored as `content-type`). |
+
+:::info[Blocked Metadata Headers]
+
+For security reasons, certain metadata header names are blocked and will be ignored:
+- HTTP protocol headers: `content-length`, `transfer-encoding`, `connection`, `keep-alive`, `upgrade`, `trailer`, `te`
+- Security headers: `set-cookie`, `cookie`, `authorization`, `www-authenticate`, `content-security-policy`, `x-frame-options`, `strict-transport-security`
+- CORS headers: `access-control-allow-origin`, `access-control-allow-credentials`, etc.
+- Proxy headers: `host`, `x-forwarded-for`, `x-real-ip`, `via`, etc.
+
+:::
+
+### Response
+
+#### Success
+
+*Status Code: 204 No Content*
+
+- The object was successfully stored.
+
+#### Error
+
+*Status Code: 400 Bad Request*
+- This error type typically indicates that the request was incorrectly specified. See the message body for further details.
+
+*Status Code: 401 Unauthorized*
+- This error type typically indicates that the Momento API key passed in is either invalid or expired. See the body of the message for further details.
+
+*Status Code: 403 Forbidden*
+- This error type typically indicates the Momento API key passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
+
+*Status Code: 404 Not Found*
+- "Store Not Found" indicates that the specified object store does not exist.
+
+*Status Code: 429 Too Many Requests*
+- This error type typically indicates that account limits were exceeded. See the message body for further details, or contact Momento support to request a limit increase.
+
+*Status Code: 500 Internal Server Error*
+- This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
+
+## Get Object
+
+Retrieves an object from the specified object store.
+
+### Request
+
+- Path: /objectstore/\{storeName\}/\{key\}
+- HTTP Method: GET
+
+#### Path Parameters
+
+| Parameter&nbsp;name | Required? | Type            | Description                                                                           |
+|---------------------|-----------|-----------------|----------------------------------------------------------------------------------------|
+| storeName           | yes       | URL-safe string | The name of the object store to operate on.                                            |
+| key                 | yes       | String          | The key for the object. Supports hierarchical paths (e.g., `folder/subfolder/file.txt`). |
+
+#### Headers
+
+| Header&nbsp;name | Required? | Type   | Description                                                                                        |
+|------------------|-----------|--------|----------------------------------------------------------------------------------------------------|
+| Authorization    | yes       | String | The Momento auth token, in string format, is used for authentication/authorization of the request. |
+
+### Response
+
+#### Hit
+
+*Status Code: 200 OK*
+
+- Body: The binary data stored at the specified key.
+- Any custom metadata headers stored with the object will be returned as response headers.
+
+#### Miss
+
+*Status Code: 404 Not Found*
+
+- "Object not found." indicates that the key was not present in the object store.
+
+#### Error
+
+*Status Code: 400 Bad Request*
+- This error type typically indicates that the request was incorrectly specified. See the body of the message for further details.
+
+*Status Code: 401 Unauthorized*
+- This error type typically indicates that the Momento auth token passed in is either invalid or expired. See the body of the message for further details.
+
+*Status Code: 403 Forbidden*
+- This error type typically indicates the Momento auth token passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
+
+*Status Code: 404 Not Found*
+- "Store Not Found" indicates that the specified object store does not exist.
+
+*Status Code: 429 Too Many Requests*
+- This error type typically indicates that account limits were exceeded. See the body of the message for further details, or contact Momento support to request a limit increase.
+
+*Status Code: 500 Internal Server Error*
+- This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
+
+---
+
 # Examples
 
-## Data Plane Examples
-
-### Put Object
-
-Store a file at the path `images/logo.png` in the *my-store* object store:
-
-```bash
-curl -X PUT -H "Authorization: <token>" \
-  -H "Content-Type: application/octet-stream" \
-  --data-binary @logo.png \
-  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png"
-```
-
-Store with a TTL of 1 hour (3600 seconds):
-
-```bash
-curl -X PUT -H "Authorization: <token>" \
-  -H "Content-Type: application/octet-stream" \
-  --data-binary @logo.png \
-  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png?ttl_seconds=3600"
-```
-
-Store with custom metadata:
-
-```bash
-curl -X PUT -H "Authorization: <token>" \
-  -H "Content-Type: application/octet-stream" \
-  -H "mo-meta-content-type: image/png" \
-  -H "mo-meta-cache-control: max-age=86400" \
-  --data-binary @logo.png \
-  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png"
-```
-
-### Get Object
-
-Retrieve an object at the path `images/logo.png` from the *my-store* object store:
-
-```bash
-curl -H "Authorization: <token>" \
-  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png" \
-  --output logo.png
-```
 
 ## Control Plane Examples
 
@@ -542,6 +494,49 @@ Delete an object store:
 ```bash
 curl -X DELETE -H "Authorization: <token>" \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store"
+```
+
+## Data Plane Examples
+
+### Put Object
+
+Store a file at the path `images/logo.png` in the *my-store* object store:
+
+```bash
+curl -X PUT -H "Authorization: <token>" \
+  -H "Content-Type: application/octet-stream" \
+  --data-binary @logo.png \
+  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png"
+```
+
+Store with a TTL of 1 hour (3600 seconds):
+
+```bash
+curl -X PUT -H "Authorization: <token>" \
+  -H "Content-Type: application/octet-stream" \
+  --data-binary @logo.png \
+  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png?ttl_seconds=3600"
+```
+
+Store with custom metadata:
+
+```bash
+curl -X PUT -H "Authorization: <token>" \
+  -H "Content-Type: application/octet-stream" \
+  -H "mo-meta-content-type: image/png" \
+  -H "mo-meta-cache-control: max-age=86400" \
+  --data-binary @logo.png \
+  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png"
+```
+
+### Get Object
+
+Retrieve an object at the path `images/logo.png` from the *my-store* object store:
+
+```bash
+curl -H "Authorization: <token>" \
+  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png" \
+  --output logo.png
 ```
 
 ---
