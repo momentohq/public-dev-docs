@@ -71,6 +71,12 @@ Creates a new object store with the specified configuration.
       "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoCloudWatchRole",
       "region": "us-east-1"
     }
+  },
+  "metrics_config": {
+    "cloudwatch": {
+      "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoMetricsRole",
+      "region": "us-east-1"
+    }
   }
 }
 ```
@@ -85,6 +91,9 @@ Creates a new object store with the specified configuration.
 | access_logging_config.cloudwatch.log_group_name | yes | String | The CloudWatch Log Group name where access logs will be delivered. The log group must already exist. |
 | access_logging_config.cloudwatch.iam_role_arn | yes | String | The ARN of the IAM role that Momento will assume to write logs. See [Appendix: CloudWatch IAM Role Setup](#appendix-cloudwatch-iam-role-setup). |
 | access_logging_config.cloudwatch.region | yes | String | The AWS region where the CloudWatch Log Group is located. |
+| metrics_config | no | Object | Optional configuration for CloudWatch metrics delivery. See [CloudWatch Metrics](#cloudwatch-metrics). |
+| metrics_config.cloudwatch.iam_role_arn | yes | String | The ARN of the IAM role that Momento will assume to publish metrics. See [Appendix: CloudWatch Metrics IAM Role Setup](#appendix-cloudwatch-metrics-iam-role-setup). |
+| metrics_config.cloudwatch.region | yes | String | The AWS region where CloudWatch metrics will be published. |
 
 ### Response
 
@@ -111,6 +120,12 @@ Creates a new object store with the specified configuration.
     "cloudwatch": {
       "log_group_name": "/momento/objectstore/my-store",
       "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoCloudWatchRole",
+      "region": "us-east-1"
+    }
+  },
+  "metrics_config": {
+    "cloudwatch": {
+      "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoMetricsRole",
       "region": "us-east-1"
     }
   }
@@ -179,12 +194,18 @@ Retrieves the configuration details of an object store.
       "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoCloudWatchRole",
       "region": "us-east-1"
     }
+  },
+  "metrics_config": {
+    "cloudwatch": {
+      "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoMetricsRole",
+      "region": "us-east-1"
+    }
   }
 }
 ```
 
 :::note
-The `access_logging_config` field is only present if access logging is configured for the object store.
+The `access_logging_config` and `metrics_config` fields are only present if the respective features are configured for the object store.
 :::
 
 #### Error
@@ -474,6 +495,33 @@ curl -X PUT -H "Authorization: <token>" \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store"
 ```
 
+Create an object store with CloudWatch metrics enabled:
+
+```bash
+curl -X PUT -H "Authorization: <token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "storage_config": {
+      "s3": {
+        "bucket_name": "my-s3-bucket",
+        "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoObjectStoreRole"
+      }
+    },
+    "cache_config": {
+      "valkey_cluster": {
+        "cluster_name": "my-valkey-cluster"
+      }
+    },
+    "metrics_config": {
+      "cloudwatch": {
+        "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoMetricsRole",
+        "region": "us-east-1"
+      }
+    }
+  }' \
+  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store"
+```
+
 ### List Object Stores
 
 List all object stores:
@@ -582,6 +630,87 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 
 ---
 
+# CloudWatch Metrics
+
+When CloudWatch metrics are enabled for an object store, Momento publishes operational metrics directly to your AWS CloudWatch account. These metrics provide visibility into your object store's request patterns, data transfer, and latency.
+
+## Namespace
+
+All Object Store metrics are published under the CloudWatch namespace:
+
+```
+Momento/ObjectStore
+```
+
+## Dimensions
+
+| Dimension | Description |
+|-----------|-------------|
+| `ObjectStore` | The name of the object store. |
+| `AccountId` | Your Momento account ID. |
+| `Endpoint` | The Momento endpoint serving the request. |
+| `Api` | The API operation: `GetObject` or `PutObject`. |
+| `Result` | The result of the operation (only present in per-result metrics, see below). |
+
+## Metrics
+
+Metrics are emitted in two variants:
+
+### Aggregate metrics (without `Result` dimension)
+
+These metrics are emitted for every request, regardless of outcome. They include:
+
+| Metric | Unit | Description |
+|--------|------|-------------|
+| `Requests` | Count | Total number of requests. |
+| `Bytes` | Bytes | Total bytes transferred (object size for PutObject, response size for GetObject). |
+| `Latency` | Microseconds | End-to-end request latency. |
+
+### Per-result metrics (with `Result` dimension)
+
+These metrics are emitted with a `Result` dimension, allowing you to filter and alarm on specific outcomes. Only the `Requests` metric is emitted per result.
+
+| Metric | Unit | Description |
+|--------|------|-------------|
+| `Requests` | Count | Number of requests with this specific result. |
+
+### Result Values
+
+#### GetObject
+
+| Result | Description |
+|--------|-------------|
+| `CacheHit` | Object was found in the cache. |
+| `CacheHitExpired` | Object was found in the cache but had expired. |
+| `Miss` | Object was not found in either cache or storage. |
+| `StorageHit` | Object was not in cache but was found in S3 storage. |
+| `StorageHitExpired` | Object was found in S3 storage but had expired. |
+| `InternalError` | The request failed due to an internal error. |
+| `AuthorizationError` | The request was rejected due to insufficient permissions. |
+
+#### PutObject
+
+| Result | Description |
+|--------|-------------|
+| `Ok` | Object was successfully stored. |
+| `InternalError` | The request failed due to an internal error. |
+| `AuthorizationError` | The request was rejected due to insufficient permissions. |
+
+## Example CloudWatch Queries
+
+To view total request count for GetObject operations:
+
+- Namespace: `Momento/ObjectStore`
+- Metric: `Requests`
+- Dimensions: `Api = GetObject` (without `Result` dimension)
+- Statistic: `Sum`
+
+To view cache hit rate:
+
+- Compare `Requests` with `Result = CacheHit` against total `Requests` for `Api = GetObject`.
+
+---
+
 # Appendix: S3 IAM Role Setup
 
 To allow Momento to access your S3 bucket, you need to create an IAM role that Momento can assume. This role must trust Momento's AWS account and have permissions to access your S3 bucket.
@@ -614,7 +743,12 @@ Below is a CloudFormation template that creates the required IAM role:
               "Principal": {
                 "AWS": "arn:aws:iam::168253909317:root"
               },
-              "Action": "sts:AssumeRole"
+              "Action": "sts:AssumeRole",
+              "Condition": {
+                "StringEquals": {
+                  "sts:ExternalId": "<YOUR_ACCOUNT_ID>/objectstore/<YOUR_STORE_NAME>"
+                }
+              }
             }
           ]
         },
@@ -690,11 +824,18 @@ The key component is the trust policy that allows Momento's AWS account (`168253
       "Principal": {
         "AWS": "arn:aws:iam::168253909317:root"
       },
-      "Action": "sts:AssumeRole"
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "StringEquals": {
+          "sts:ExternalId": "<YOUR_ACCOUNT_ID>/objectstore/<YOUR_STORE_NAME>"
+        }
+      }
     }
   ]
 }
 ```
+
+Replace `<YOUR_ACCOUNT_ID>` with your Momento account ID and `<YOUR_STORE_NAME>` with the name of your object store. The external ID format is `{account_id}/objectstore/{store_name}`.
 
 ## Required S3 Permissions
 
@@ -747,7 +888,12 @@ Below is a CloudFormation template that creates the required IAM role for CloudW
               "Principal": {
                 "AWS": "arn:aws:iam::168253909317:root"
               },
-              "Action": "sts:AssumeRole"
+              "Action": "sts:AssumeRole",
+              "Condition": {
+                "StringEquals": {
+                  "sts:ExternalId": "<YOUR_ACCOUNT_ID>/objectstore/<YOUR_STORE_NAME>"
+                }
+              }
             }
           ]
         },
@@ -838,5 +984,131 @@ aws logs put-retention-policy \
   --log-group-name /momento/objectstore/my-store \
   --retention-in-days 30
 ```
+
+:::
+
+---
+
+# Appendix: CloudWatch Metrics IAM Role Setup
+
+To enable CloudWatch metrics delivery, you need to create an IAM role that allows Momento to publish metrics to your CloudWatch account.
+
+## CloudFormation Template
+
+Below is a CloudFormation template that creates the required IAM role for CloudWatch metrics:
+
+```json
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "IAM Role that allows Momento to publish Object Store metrics to CloudWatch",
+  "Resources": {
+    "MomentoMetricsIamRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": "MomentoMetricsRole",
+        "Description": "IAM Role that allows Momento to publish Object Store metrics to CloudWatch",
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::168253909317:root"
+              },
+              "Action": "sts:AssumeRole",
+              "Condition": {
+                "StringEquals": {
+                  "sts:ExternalId": "<YOUR_ACCOUNT_ID>/objectstore/<YOUR_STORE_NAME>"
+                }
+              }
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "MomentoCloudWatchMetricsAccess",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Sid": "AllowPutMetricData",
+                  "Effect": "Allow",
+                  "Action": [
+                    "cloudwatch:PutMetricData"
+                  ],
+                  "Resource": "*",
+                  "Condition": {
+                    "StringEquals": {
+                      "cloudwatch:namespace": "Momento/ObjectStore"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "RoleArn": {
+      "Description": "The ARN of the IAM role to use for CloudWatch metrics",
+      "Value": { "Fn::GetAtt": ["MomentoMetricsIamRole", "Arn"] }
+    }
+  }
+}
+```
+
+## Deploying the Template
+
+Deploy the CloudFormation template:
+
+```bash
+aws cloudformation create-stack \
+  --stack-name momento-metrics-role \
+  --template-body file://momento-metrics-role.json \
+  --capabilities CAPABILITY_NAMED_IAM
+```
+
+After the stack is created, retrieve the role ARN:
+
+```bash
+aws cloudformation describe-stacks \
+  --stack-name momento-metrics-role \
+  --query "Stacks[0].Outputs[?OutputKey=='RoleArn'].OutputValue" \
+  --output text
+```
+
+Use this ARN as the `metrics_config.cloudwatch.iam_role_arn` when creating your object store.
+
+## External ID
+
+The trust policy includes an `sts:ExternalId` condition for security. Replace `<YOUR_ACCOUNT_ID>` with your Momento account ID and `<YOUR_STORE_NAME>` with the name of your object store. The external ID format is:
+
+```
+{account_id}/objectstore/{store_name}
+```
+
+:::caution
+
+If you have multiple object stores, you will need to either create separate IAM roles for each store or use a wildcard in the external ID condition. For example:
+
+```json
+"sts:ExternalId": "<YOUR_ACCOUNT_ID>/objectstore/*"
+```
+
+:::
+
+## Required CloudWatch Permissions
+
+The role needs the following CloudWatch permissions:
+
+| Permission | Purpose |
+|------------|---------|
+| `cloudwatch:PutMetricData` | Publish metrics to CloudWatch |
+
+:::tip[Security Best Practice]
+
+The template uses a namespace condition (`cloudwatch:namespace: "Momento/ObjectStore"`) to ensure the role can only publish metrics to the `Momento/ObjectStore` namespace. This limits the scope of the permission.
 
 :::
