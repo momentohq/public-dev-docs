@@ -88,7 +88,7 @@ Creates a new Valkey Cluster with the specified configuration.
 
 #### Success
 
-*Status Code: 204 No Content*
+*Status Code: 202 Accepted*
 
 - The cluster creation has been accepted and is being processed asynchronously. Use the [Describe Cluster](#describe-cluster) endpoint to poll until the cluster status is `Active`.
 
