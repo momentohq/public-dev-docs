@@ -57,6 +57,16 @@ Creates a new Valkey Cluster with the specified configuration.
       "shard_index": 0,
       "availability_zone": "us-east-1a",
       "replica_availability_zones": ["us-east-1b", "us-east-1c"]
+    },
+    {
+      "shard_index": 1,
+      "availability_zone": "us-east-1a",
+      "replica_availability_zones": ["us-east-1b", "us-east-1c"]
+    },
+    {
+      "shard_index": 2,
+      "availability_zone": "us-east-1a",
+      "replica_availability_zones": ["us-east-1b", "us-east-1c"]
     }
   ]
 }
@@ -90,6 +100,16 @@ Creates a new Valkey Cluster with the specified configuration.
   "shard_placements": [
     {
       "shard_index": 0,
+      "availability_zone": "us-east-1a",
+      "replica_availability_zones": ["us-east-1b", "us-east-1c"]
+    },
+    {
+      "shard_index": 1,
+      "availability_zone": "us-east-1a",
+      "replica_availability_zones": ["us-east-1b", "us-east-1c"]
+    },
+    {
+      "shard_index": 2,
       "availability_zone": "us-east-1a",
       "replica_availability_zones": ["us-east-1b", "us-east-1c"]
     }
@@ -161,6 +181,16 @@ Retrieves the details of a specific Valkey Cluster.
   "shard_placements": [
     {
       "shard_index": 0,
+      "availability_zone": "us-east-1a",
+      "replica_availability_zones": ["us-east-1b", "us-east-1c"]
+    },
+    {
+      "shard_index": 1,
+      "availability_zone": "us-east-1a",
+      "replica_availability_zones": ["us-east-1b", "us-east-1c"]
+    },
+    {
+      "shard_index": 2,
       "availability_zone": "us-east-1a",
       "replica_availability_zones": ["us-east-1b", "us-east-1c"]
     }
@@ -509,7 +539,7 @@ Decreases the number of replicas per shard for an existing cluster.
 
 # Examples
 
-## Create Cluster
+## Example: Create Cluster
 
 Create a new Valkey Cluster with 3 shards and 2 replicas per shard:
 
@@ -545,15 +575,15 @@ curl -X POST -H "Authorization: <token>" \
       },
       {
         "shard_index": 1,
-        "availability_zone": "us-east-1b",
-        "replica_availability_zones": ["us-east-1a", "us-east-1c"]
+        "availability_zone": "us-east-1a",
+        "replica_availability_zones": ["us-east-1b", "us-east-1c"]
       }
     ]
   }' \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/ec-cluster"
 ```
 
-## Describe Cluster
+## Example: Describe Cluster
 
 Get details for a specific cluster:
 
@@ -562,7 +592,7 @@ curl -H "Authorization: <token>" \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/ec-cluster/my-cluster"
 ```
 
-## List Clusters
+## Example: List Clusters
 
 List all clusters in your account:
 
@@ -571,7 +601,7 @@ curl -H "Authorization: <token>" \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/ec-cluster"
 ```
 
-## Update Replication Group
+## Example: Update Replication Group
 
 Change the instance type:
 
@@ -584,7 +614,7 @@ curl -X POST -H "Authorization: <token>" \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/ec-cluster/my-cluster/replication-group"
 ```
 
-## Update Shard Configuration
+## Example: Update Shard Configuration
 
 Scale up from 3 shards to 5 shards:
 
@@ -609,7 +639,7 @@ curl -X POST -H "Authorization: <token>" \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/ec-cluster/my-cluster/shard-configuration"
 ```
 
-## Increase Replica Count
+## Example: Increase Replica Count
 
 Increase replicas from 2 to 3 per shard:
 
@@ -622,7 +652,7 @@ curl -X POST -H "Authorization: <token>" \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/ec-cluster/my-cluster/increase-replica-count"
 ```
 
-## Decrease Replica Count
+## Example: Decrease Replica Count
 
 Decrease replicas from 3 to 1 per shard:
 
@@ -635,7 +665,7 @@ curl -X POST -H "Authorization: <token>" \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/ec-cluster/my-cluster/decrease-replica-count"
 ```
 
-## Delete Cluster
+## Example: Delete Cluster
 
 Delete a cluster:
 
