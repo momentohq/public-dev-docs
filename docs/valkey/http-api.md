@@ -94,26 +94,10 @@ Creates a new Valkey Cluster with the specified configuration.
 {
   "name": "my-cluster",
   "node_instance_type": "cache.m6g.large",
-  "shard_count": 3,
-  "replication_factor": 2,
+  "shard_count": 0,
+  "replication_factor": 0,
   "enforce_shard_multi_az": true,
-  "shard_placements": [
-    {
-      "shard_index": 0,
-      "availability_zone": "us-east-1a",
-      "replica_availability_zones": ["us-east-1b", "us-east-1c"]
-    },
-    {
-      "shard_index": 1,
-      "availability_zone": "us-east-1a",
-      "replica_availability_zones": ["us-east-1b", "us-east-1c"]
-    },
-    {
-      "shard_index": 2,
-      "availability_zone": "us-east-1a",
-      "replica_availability_zones": ["us-east-1b", "us-east-1c"]
-    }
-  ],
+  "shard_placements": [],
   "status": "Creating"
 }
 ```
@@ -556,15 +540,13 @@ curl -X POST -H "Authorization: <token>" \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/ec-cluster"
 ```
 
-Create a cluster with explicit shard placements:
-
 ```bash
 curl -X POST -H "Authorization: <token>" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "my-cluster",
     "node_instance_type": "cache.m6g.large",
-    "shard_count": 2,
+    "shard_count": 3,
     "replication_factor": 2,
     "enforce_shard_multi_az": true,
     "shard_placements": [
@@ -575,6 +557,11 @@ curl -X POST -H "Authorization: <token>" \
       },
       {
         "shard_index": 1,
+        "availability_zone": "us-east-1a",
+        "replica_availability_zones": ["us-east-1b", "us-east-1c"]
+      },
+      {
+        "shard_index": 2,
         "availability_zone": "us-east-1a",
         "replica_availability_zones": ["us-east-1b", "us-east-1c"]
       }
