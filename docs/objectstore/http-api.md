@@ -244,7 +244,7 @@ Deletes an object store.
 
 #### Success
 
-*Status Code: 200 OK*
+*Status Code: 204 No Content*
 
 - The object store was successfully deleted.
 
