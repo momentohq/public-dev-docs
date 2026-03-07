@@ -251,9 +251,9 @@ Deletes a Valkey Cluster.
 
 #### Success
 
-*Status Code: 204 No Content*
+*Status Code: 202 Accepted*
 
-- The cluster was successfully deleted.
+- The cluster deletion has been accepted and is being processed asynchronously.
 
 #### Error
 
