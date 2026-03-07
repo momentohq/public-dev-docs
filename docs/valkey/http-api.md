@@ -88,29 +88,9 @@ Creates a new Valkey Cluster with the specified configuration.
 
 #### Success
 
-*Status Code: 201 Created*
+*Status Code: 202 Accepted*
 
-```json
-{
-  "name": "my-cluster",
-  "node_instance_type": "cache.m6g.large",
-  "shard_count": 0,
-  "replication_factor": 0,
-  "enforce_shard_multi_az": true,
-  "shard_placements": [],
-  "status": "Creating"
-}
-```
-
-| Field | Type | Description |
-|-------|------|-------------|
-| name | String | The name of the cluster. |
-| node_instance_type | String | The instance type for cluster nodes. |
-| shard_count | Integer | The number of shards. |
-| replication_factor | Integer | The number of replicas per shard. |
-| enforce_shard_multi_az | Boolean | Whether multi-AZ placement is enforced. |
-| shard_placements | Array | The placement configuration for each shard. |
-| status | String | The cluster status: `Creating`, `CreationFailed`, `Active`, `Updating`, or `Deleting`. |
+- The cluster creation has been accepted and is being processed asynchronously. Use the [Describe Cluster](#describe-cluster) endpoint to poll until the cluster status is `Active`.
 
 #### Error
 
@@ -271,9 +251,9 @@ Deletes a Valkey Cluster.
 
 #### Success
 
-*Status Code: 204 No Content*
+*Status Code: 202 Accepted*
 
-- The cluster was successfully deleted.
+- The cluster deletion has been accepted and is being processed asynchronously.
 
 #### Error
 
