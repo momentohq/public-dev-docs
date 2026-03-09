@@ -605,7 +605,8 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
   "key": "images/logo.png",
   "store": "my-store",
   "status": "cache_hit",
-  "size": 15234
+  "size": 15234,
+  "http_status_code": 200
 }
 ```
 
@@ -617,6 +618,7 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 | store | String | The name of the object store. |
 | status | String | The result of the operation (see below). |
 | size | Integer | The size of the object in bytes. Only present for successful operations. |
+| http_status_code | Integer | The HTTP status code returned for the operation (e.g. `200`, `204`, `403`, `404`, `500`). |
 
 ### Status Values
 
@@ -651,6 +653,7 @@ Momento/ObjectStore
 | `Endpoint` | The Momento endpoint serving the request. |
 | `Api` | The API operation: `GetObject` or `PutObject`. |
 | `Result` | The result of the operation (only present in per-result metrics, see below). |
+| `HttpStatusCode` | The HTTP status code returned for the operation (only present in per-result metrics, see below). |
 
 ## Metrics
 
@@ -666,9 +669,9 @@ These metrics are emitted for every request, regardless of outcome. They include
 | `Bytes` | Bytes | Total bytes transferred (object size for PutObject, response size for GetObject). |
 | `Latency` | Microseconds | End-to-end request latency. |
 
-### Per-result metrics (with `Result` dimension)
+### Per-result metrics (with `Result` and `HttpStatusCode` dimensions)
 
-These metrics are emitted with a `Result` dimension, allowing you to filter and alarm on specific outcomes. Only the `Requests` metric is emitted per result.
+These metrics are emitted with `Result` and `HttpStatusCode` dimensions, allowing you to filter and alarm on specific outcomes. Only the `Requests` metric is emitted per result.
 
 | Metric | Unit | Description |
 |--------|------|-------------|
@@ -678,23 +681,23 @@ These metrics are emitted with a `Result` dimension, allowing you to filter and 
 
 #### GetObject
 
-| Result | Description |
-|--------|-------------|
-| `CacheHit` | Object was found in the cache. |
-| `CacheHitExpired` | Object was found in the cache but had expired. |
-| `Miss` | Object was not found in either cache or storage. |
-| `StorageHit` | Object was not in cache but was found in S3 storage. |
-| `StorageHitExpired` | Object was found in S3 storage but had expired. |
-| `InternalError` | The request failed due to an internal error. |
-| `AuthorizationError` | The request was rejected due to insufficient permissions. |
+| Result | HttpStatusCode | Description |
+|--------|----------------|-------------|
+| `CacheHit` | `200` | Object was found in the cache. |
+| `CacheHitExpired` | `404` | Object was found in the cache but had expired. |
+| `Miss` | `404` | Object was not found in either cache or storage. |
+| `StorageHit` | `200` | Object was not in cache but was found in S3 storage. |
+| `StorageHitExpired` | `404` | Object was found in S3 storage but had expired. |
+| `InternalError` | `500` | The request failed due to an internal error. |
+| `AuthorizationError` | `403` | The request was rejected due to insufficient permissions. |
 
 #### PutObject
 
-| Result | Description |
-|--------|-------------|
-| `Ok` | Object was successfully stored. |
-| `InternalError` | The request failed due to an internal error. |
-| `AuthorizationError` | The request was rejected due to insufficient permissions. |
+| Result | HttpStatusCode | Description |
+|--------|----------------|-------------|
+| `Ok` | `204` | Object was successfully stored. |
+| `InternalError` | `500` | The request failed due to an internal error. |
+| `AuthorizationError` | `403` | The request was rejected due to insufficient permissions. |
 
 ## Example CloudWatch Queries
 
