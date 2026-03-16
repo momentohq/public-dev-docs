@@ -698,6 +698,7 @@ These metrics are emitted with `Result` and `HttpStatusCode` dimensions, allowin
 | `Ok` | `204` | Object was successfully stored. |
 | `InternalError` | `500` | The request failed due to an internal error. |
 | `AuthorizationError` | `403` | The request was rejected due to insufficient permissions. |
+| `BadRequest` | `400` | The request was rejected due to invalid `mo-tag-*` headers. |
 
 ## Example CloudWatch Queries
 
@@ -768,7 +769,8 @@ Below is a CloudFormation template that creates the required IAM role:
                     "s3:GetObject",
                     "s3:PutObject",
                     "s3:DeleteObject",
-                    "s3:ListBucket"
+                    "s3:ListBucket",
+                    "s3:PutObjectTagging"
                   ],
                   "Resource": [
                     { "Fn::Sub": "arn:aws:s3:::${S3BucketName}" },
