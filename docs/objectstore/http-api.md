@@ -336,14 +336,26 @@ Stores an object in the specified object store.
 |------------------|-----------|----------------------|----------------------------------------------------------------------------------------------------|
 | Authorization    | yes       | String               | The Momento auth token, in string format, is used for authentication/authorization of the request. |
 | mo-meta-*        | no        | String               | Custom metadata headers. Any header prefixed with `mo-meta-` will be stored with the object and returned on GET. The prefix is stripped when storing (e.g., `mo-meta-content-type` is stored as `content-type`). |
+| mo-tag-*         | no        | String               | S3 object tag headers. Any header prefixed with `mo-tag-` will be attached to the S3 object as a tag. The prefix is stripped when storing (e.g., `mo-tag-env` is stored as the tag key `env`). Tags are not returned on GET. |
 
 :::info[Blocked Metadata Headers]
 
-For security reasons, certain metadata header names are blocked and will be ignored:
+For security reasons, certain `mo-meta-*` header names are blocked and will be ignored:
 - HTTP protocol headers: `content-length`, `transfer-encoding`, `connection`, `keep-alive`, `upgrade`, `trailer`, `te`
 - Security headers: `set-cookie`, `cookie`, `authorization`, `www-authenticate`, `content-security-policy`, `x-frame-options`, `strict-transport-security`
 - CORS headers: `access-control-allow-origin`, `access-control-allow-credentials`, etc.
 - Proxy headers: `host`, `x-forwarded-for`, `x-real-ip`, `via`, etc.
+
+:::
+
+:::info[S3 Object Tag Constraints]
+
+`mo-tag-*` headers are subject to S3 tag constraints. Requests that violate these constraints will be rejected with a `400 Bad Request` response:
+- Maximum of **10 tags** per object.
+- Tag keys must be between **1 and 128 characters**.
+- Tag values must be between **0 and 256 characters**.
+- Tag keys may not use the reserved prefix `aws:`.
+- Both keys and values may only contain Unicode letters, digits, whitespace, and the following characters: `_ . : / = + - @`
 
 :::
 
@@ -578,6 +590,17 @@ curl -X PUT -H "Authorization: <token>" \
   -H "Content-Type: application/octet-stream" \
   -H "mo-meta-content-type: image/png" \
   -H "mo-meta-cache-control: max-age=86400" \
+  --data-binary @logo.png \
+  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png"
+```
+
+Store with S3 object tags:
+
+```bash
+curl -X PUT -H "Authorization: <token>" \
+  -H "Content-Type: application/octet-stream" \
+  -H "mo-tag-env: prod" \
+  -H "mo-tag-team: infra" \
   --data-binary @logo.png \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png"
 ```
