@@ -651,7 +651,9 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 | `cache_hit` | Read operation found the object in the cache. |
 | `storage_hit` | Read operation found the object in S3 storage (cache miss). |
 | `miss` | Read operation did not find the object. |
-| `error` | The operation failed due to an error. |
+| `bad_request` | Write operation was rejected due to invalid request parameters (e.g. invalid `mo-tag-*` headers). |
+| `authz_error` | The operation was rejected due to insufficient permissions. |
+| `internal_error` | The operation failed due to an internal error. |
 
 ---
 
