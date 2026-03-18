@@ -118,6 +118,7 @@ The following fields **can** be updated:
 
 **Response Body:**
 
+```json
 {
   "name": "my-store",
   "storage_config": {
