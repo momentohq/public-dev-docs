@@ -27,9 +27,20 @@ The API Key must be provided in the `Authorization` header.
 
 The Control Plane API allows you to manage object stores - creating, listing, describing, and deleting them.
 
-## Create Object Store
+## Create or Update Object Store
 
-Creates a new object store with the specified configuration.
+Creates a new object store with the specified configuration, or updates an existing one if it already exists.
+
+:::note
+The following fields are **immutable** once the object store has been created:
+- `storage_config` (**bucket_name**, **prefix**, and **region**)
+- `cache_config` (**cluster_name**)
+
+The following fields **can** be updated:
+- `storage_config.s3.iam_role_arn`
+- `access_logging_config`
+- `metrics_config`
+:::
 
 ### Request
 
@@ -97,9 +108,15 @@ Creates a new object store with the specified configuration.
 
 ### Response
 
-#### Created
+#### Success
 
 *Status Code: 201 Created*
+- Returned when a new object store is successfully created.
+
+*Status Code: 200 OK*
+- Returned when an existing object store is successfully updated.
+
+**Response Body:**
 
 ```json
 {
@@ -444,9 +461,9 @@ Regardless of the `read-concern` value, Momento always falls back to S3 if the o
 
 ## Control Plane Examples
 
-### Create Object Store
+### Create or Update Object Store
 
-Create a new object store:
+Create or update an object store:
 
 ```bash
 curl -X PUT -H "Authorization: <token>" \
