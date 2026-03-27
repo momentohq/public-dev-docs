@@ -40,6 +40,7 @@ The following fields **can** be updated:
 - `storage_config.s3.iam_role_arn`
 - `access_logging_config`
 - `metrics_config`
+- `object_store_limits`
 :::
 
 ### Request
@@ -88,6 +89,12 @@ The following fields **can** be updated:
       "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoMetricsRole",
       "region": "us-east-1"
     }
+  },
+  "object_store_limits": {
+    "read_operations_per_second": 100,
+    "write_operations_per_second": 100,
+    "read_bytes_per_second": 1048576,
+    "write_bytes_per_second": 1048576
   }
 }
 ```
@@ -105,6 +112,11 @@ The following fields **can** be updated:
 | metrics_config | no | Object | Optional configuration for CloudWatch metrics delivery. See [CloudWatch Metrics](#cloudwatch-metrics). |
 | metrics_config.cloudwatch.iam_role_arn | yes | String | The ARN of the IAM role that Momento will assume to publish metrics. See [Appendix: CloudWatch Metrics IAM Role Setup](#appendix-cloudwatch-metrics-iam-role-setup). |
 | metrics_config.cloudwatch.region | yes | String | The AWS region where CloudWatch metrics will be published. |
+| object_store_limits | no | Object | Optional throughput limits for data plane operations (Get Object and Put Object) on this object store. If omitted, defaults are applied. |
+| object_store_limits.read_operations_per_second | no | Integer | Maximum read requests per second. Default: `100`. |
+| object_store_limits.write_operations_per_second | no | Integer | Maximum write requests per second. Default: `100`. |
+| object_store_limits.read_bytes_per_second | no | Integer | Maximum bytes read per second. Default: `1048576` (1 MiB). |
+| object_store_limits.write_bytes_per_second | no | Integer | Maximum bytes written per second. Default: `1048576` (1 MiB). |
 
 ### Response
 
@@ -145,6 +157,12 @@ The following fields **can** be updated:
       "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoMetricsRole",
       "region": "us-east-1"
     }
+  },
+  "object_store_limits": {
+    "read_operations_per_second": 100,
+    "write_operations_per_second": 100,
+    "read_bytes_per_second": 1048576,
+    "write_bytes_per_second": 1048576
   }
 }
 ```
@@ -217,6 +235,12 @@ Retrieves the configuration details of an object store.
       "iam_role_arn": "arn:aws:iam::123456789012:role/MomentoMetricsRole",
       "region": "us-east-1"
     }
+  },
+  "object_store_limits": {
+    "read_operations_per_second": 100,
+    "write_operations_per_second": 100,
+    "read_bytes_per_second": 1048576,
+    "write_bytes_per_second": 1048576
   }
 }
 ```
@@ -398,8 +422,8 @@ For security reasons, certain `mo-meta-*` header names are blocked and will be i
 *Status Code: 404 Not Found*
 - "Store Not Found" indicates that the specified object store does not exist.
 
-*Status Code: 429 Too Many Requests*
-- This error type typically indicates that account limits were exceeded. See the message body for further details, or contact Momento support to request a limit increase.
+*Status Code: 503 Service Unavailable*
+- The request was rate limited. Either the operations per second limit (`{"message": "Request rate exceeded."}`) or the bytes per second limit (`{"message": "Throughput rate exceeded."}`) for the object store was exceeded. Retry after a brief pause or contact Momento support to request a limit increase.
 
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
@@ -460,8 +484,8 @@ Regardless of the `read-concern` value, Momento always falls back to S3 if the o
 *Status Code: 404 Not Found*
 - "Store Not Found" indicates that the specified object store does not exist.
 
-*Status Code: 429 Too Many Requests*
-- This error type typically indicates that account limits were exceeded. See the body of the message for further details, or contact Momento support to request a limit increase.
+*Status Code: 503 Service Unavailable*
+- The request was rate limited. Either the operations per second limit (`{"message": "Request rate exceeded."}`) or the bytes per second limit (`{"message": "Throughput rate exceeded."}`) for the object store was exceeded. Retry after a brief pause or contact Momento support to request a limit increase.
 
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
@@ -670,6 +694,8 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 | `miss` | Read operation did not find the object. |
 | `bad_request` | Write operation was rejected due to invalid request parameters (e.g. invalid `mo-tag-*` headers). |
 | `authz_error` | The operation was rejected due to insufficient permissions. |
+| `operations_rate_limited` | The operation was rejected because the object store's request rate limit was exceeded. |
+| `throughput_rate_limited` | The operation was rejected because the object store's bytes per second limit was exceeded. |
 | `internal_error` | The operation failed due to an internal error. |
 
 ---
@@ -732,6 +758,7 @@ These metrics are emitted with `Result` and `HttpStatusCode` dimensions, allowin
 | `StorageHitExpired` | `404` | Object was found in S3 storage but had expired. |
 | `InternalError` | `500` | The request failed due to an internal error. |
 | `AuthorizationError` | `403` | The request was rejected due to insufficient permissions. |
+| `LimitExceededError` | `503` | The request was rate limited (operations or throughput limit exceeded). |
 
 #### PutObject
 
@@ -741,6 +768,7 @@ These metrics are emitted with `Result` and `HttpStatusCode` dimensions, allowin
 | `InternalError` | `500` | The request failed due to an internal error. |
 | `AuthorizationError` | `403` | The request was rejected due to insufficient permissions. |
 | `BadRequest` | `400` | The request was rejected due to invalid `mo-tag-*` headers. |
+| `LimitExceededError` | `503` | The request was rate limited (operations or throughput limit exceeded). |
 
 ## Example CloudWatch Queries
 
