@@ -408,6 +408,12 @@ For security reasons, certain `mo-meta-*` header names are blocked and will be i
 
 - The object was successfully stored.
 
+#### Response Headers
+
+| Header&nbsp;name | Type   | Description                                                                 |
+|------------------|--------|-----------------------------------------------------------------------------|
+| mo-request-id    | String | A unique request identifier (UUIDv7). Useful for debugging and support requests. |
+
 #### Error
 
 *Status Code: 400 Bad Request*
@@ -463,6 +469,13 @@ Regardless of the `read-concern` value, Momento always falls back to S3 if the o
 
 - Body: The binary data stored at the specified key.
 - Any custom metadata headers stored with the object will be returned as response headers.
+
+#### Response Headers
+
+| Header&nbsp;name | Type   | Description                                                                 |
+|------------------|--------|-----------------------------------------------------------------------------|
+| mo-request-id    | String | A unique request identifier (UUIDv7). Useful for debugging and support requests. |
+| *custom metadata* | String | Custom metadata stored via `mo-meta-*` headers on PUT is returned with the prefix stripped. For example, if an object was stored with `mo-meta-content-type: image/png`, the GET response includes `content-type: image/png`. |
 
 #### Miss
 
@@ -670,7 +683,10 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
   "store": "my-store",
   "status": "cache_hit",
   "size": 15234,
-  "http_status_code": 200
+  "http_status_code": 200,
+  "object_age_us": 5000,
+  "total_time_us": 1234,
+  "request_id": "0192d4e5-6f78-7abc-9def-0123456789ab"
 }
 ```
 
@@ -683,6 +699,9 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 | status | String | The result of the operation (see below). |
 | size | Integer | The size of the object in bytes. Only present for successful operations. |
 | http_status_code | Integer | The HTTP status code returned for the operation (e.g. `200`, `204`, `403`, `404`, `500`). |
+| object_age_us | Integer | The age of the object in microseconds (time since the object was created). Only present for read operations that found the object (`cache_hit`, `storage_hit`, `cache_hit_expired`, `storage_hit_expired`). |
+| total_time_us | Integer | Server-side processing time in microseconds, excluding network transfer time between server and client. |
+| request_id | String | A unique request identifier (UUIDv7). Matches the `mo-request-id` response header. |
 
 ### Status Values
 
@@ -737,13 +756,14 @@ These metrics are emitted for every request, regardless of outcome. They include
 | `Bytes` | Bytes | Total bytes transferred (object size for PutObject, response size for GetObject). |
 | `Latency` | Microseconds | End-to-end request latency. |
 
-### Per-result metrics (with `Result` and `HttpStatusCode` dimensions)
+### Per-result metrics (with `Result` dimension)
 
-These metrics are emitted with `Result` and `HttpStatusCode` dimensions, allowing you to filter and alarm on specific outcomes. Only the `Requests` metric is emitted per result.
+These metrics are emitted with a `Result` dimension, allowing you to filter and alarm on specific outcomes.
 
-| Metric | Unit | Description |
-|--------|------|-------------|
-| `Requests` | Count | Number of requests with this specific result. |
+| Metric | Unit | Dimensions | Description |
+|--------|------|------------|-------------|
+| `Requests` | Count | `Result`, `HttpStatusCode` | Number of requests with this specific result. |
+| `ObjectAge` | Microseconds | `Result` | The age of the object at read time (time since the object was created). Only emitted for GetObject results that found the object: `CacheHit`, `StorageHit`, `CacheHitExpired`, `StorageHitExpired`. |
 
 ### Result Values
 
