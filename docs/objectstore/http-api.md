@@ -505,6 +505,28 @@ Regardless of the `read-concern` value, Momento always falls back to S3 if the o
 
 ---
 
+# CORS
+
+Momento Object Store includes built-in CORS (Cross-Origin Resource Sharing) support, enabling browser-based applications to interact with the API directly.
+
+CORS headers are automatically included on all Data Plane responses. No configuration is required.
+
+## CORS Headers
+
+| Header | Value |
+|--------|-------|
+| `Access-Control-Allow-Origin` | `*` |
+| `Access-Control-Allow-Methods` | `GET, PUT, OPTIONS, HEAD` |
+| `Access-Control-Allow-Headers` | `*` |
+| `Access-Control-Expose-Headers` | `*` |
+| `Access-Control-Max-Age` | `86400` (24 hours) |
+
+## Preflight Requests
+
+The API handles `OPTIONS` preflight requests automatically, responding with `204 No Content` and the CORS headers listed above. Browsers cache the preflight response for up to 24 hours, minimizing extra round trips.
+
+---
+
 # Examples
 
 
