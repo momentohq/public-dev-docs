@@ -428,7 +428,7 @@ For security reasons, certain `mo-meta-*` header names are blocked and will be i
 *Status Code: 404 Not Found*
 - "Store Not Found" indicates that the specified object store does not exist.
 
-*Status Code: 503 Service Unavailable*
+*Status Code: 429 Too Many Requests*
 - The request was rate limited. Either the operations per second limit (`{"message": "Request rate exceeded."}`) or the bytes per second limit (`{"message": "Throughput rate exceeded."}`) for the object store was exceeded. Retry after a brief pause or contact Momento support to request a limit increase.
 
 *Status Code: 500 Internal Server Error*
@@ -497,7 +497,7 @@ Regardless of the `read-concern` value, Momento always falls back to S3 if the o
 *Status Code: 404 Not Found*
 - "Store Not Found" indicates that the specified object store does not exist.
 
-*Status Code: 503 Service Unavailable*
+*Status Code: 429 Too Many Requests*
 - The request was rate limited. Either the operations per second limit (`{"message": "Request rate exceeded."}`) or the bytes per second limit (`{"message": "Throughput rate exceeded."}`) for the object store was exceeded. Retry after a brief pause or contact Momento support to request a limit increase.
 
 *Status Code: 500 Internal Server Error*
@@ -800,7 +800,7 @@ These metrics are emitted with a `Result` dimension, allowing you to filter and 
 | `StorageHitExpired` | `404` | Object was found in S3 storage but had expired. |
 | `InternalError` | `500` | The request failed due to an internal error. |
 | `AuthorizationError` | `403` | The request was rejected due to insufficient permissions. |
-| `LimitExceededError` | `503` | The request was rate limited (operations or throughput limit exceeded). |
+| `LimitExceededError` | `429` | The request was rate limited (operations or throughput limit exceeded). |
 
 #### PutObject
 
@@ -810,7 +810,7 @@ These metrics are emitted with a `Result` dimension, allowing you to filter and 
 | `InternalError` | `500` | The request failed due to an internal error. |
 | `AuthorizationError` | `403` | The request was rejected due to insufficient permissions. |
 | `BadRequest` | `400` | The request was rejected due to invalid `mo-tag-*` headers. |
-| `LimitExceededError` | `503` | The request was rate limited (operations or throughput limit exceeded). |
+| `LimitExceededError` | `429` | The request was rate limited (operations or throughput limit exceeded). |
 
 ## Example CloudWatch Queries
 
