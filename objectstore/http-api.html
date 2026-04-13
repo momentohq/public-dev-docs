@@ -9,7 +9,7 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var g=t.getElementsByTagName(a)[0],m=t.createElement(a);m.async=!0,m.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",g.parentNode.insertBefore(m,g)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.50ce1593.css">
-<script src="/assets/js/runtime~main.ddace499.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.71851eff.js" defer="defer"></script>
 <script src="/assets/js/main.92956a7b.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -217,7 +217,7 @@
 <ul>
 <li class="">&quot;Store Not Found&quot; indicates that the specified object store does not exist.</li>
 </ul>
-<p><em>Status Code: 503 Service Unavailable</em></p>
+<p><em>Status Code: 429 Too Many Requests</em></p>
 <ul>
 <li class="">The request was rate limited. Either the operations per second limit (<code>{&quot;message&quot;: &quot;Request rate exceeded.&quot;}</code>) or the bytes per second limit (<code>{&quot;message&quot;: &quot;Throughput rate exceeded.&quot;}</code>) for the object store was exceeded. Retry after a brief pause or contact Momento support to request a limit increase.</li>
 </ul>
@@ -268,7 +268,7 @@
 <ul>
 <li class="">&quot;Store Not Found&quot; indicates that the specified object store does not exist.</li>
 </ul>
-<p><em>Status Code: 503 Service Unavailable</em></p>
+<p><em>Status Code: 429 Too Many Requests</em></p>
 <ul>
 <li class="">The request was rate limited. Either the operations per second limit (<code>{&quot;message&quot;: &quot;Request rate exceeded.&quot;}</code>) or the bytes per second limit (<code>{&quot;message&quot;: &quot;Throughput rate exceeded.&quot;}</code>) for the object store was exceeded. Retry after a brief pause or contact Momento support to request a limit increase.</li>
 </ul>
@@ -341,9 +341,9 @@
 <table><thead><tr><th>Metric</th><th>Unit</th><th>Dimensions</th><th>Description</th></tr></thead><tbody><tr><td><code>Requests</code></td><td>Count</td><td><code>Result</code>, <code>HttpStatusCode</code></td><td>Number of requests with this specific result.</td></tr><tr><td><code>ObjectAge</code></td><td>Microseconds</td><td><code>Result</code></td><td>The age of the object at read time (time since the object was created). Only emitted for GetObject results that found the object: <code>CacheHit</code>, <code>StorageHit</code>, <code>CacheHitExpired</code>, <code>StorageHitExpired</code>.</td></tr></tbody></table>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="result-values">Result Values<a href="#result-values" class="hash-link" aria-label="Direct link to Result Values" title="Direct link to Result Values" translate="no">​</a></h3>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="getobject">GetObject<a href="#getobject" class="hash-link" aria-label="Direct link to GetObject" title="Direct link to GetObject" translate="no">​</a></h4>
-<table><thead><tr><th>Result</th><th>HttpStatusCode</th><th>Description</th></tr></thead><tbody><tr><td><code>CacheHit</code></td><td><code>200</code></td><td>Object was found in the cache.</td></tr><tr><td><code>CacheHitExpired</code></td><td><code>404</code></td><td>Object was found in the cache but had expired.</td></tr><tr><td><code>Miss</code></td><td><code>404</code></td><td>Object was not found in either cache or storage.</td></tr><tr><td><code>StorageHit</code></td><td><code>200</code></td><td>Object was not in cache but was found in S3 storage.</td></tr><tr><td><code>StorageHitExpired</code></td><td><code>404</code></td><td>Object was found in S3 storage but had expired.</td></tr><tr><td><code>InternalError</code></td><td><code>500</code></td><td>The request failed due to an internal error.</td></tr><tr><td><code>AuthorizationError</code></td><td><code>403</code></td><td>The request was rejected due to insufficient permissions.</td></tr><tr><td><code>LimitExceededError</code></td><td><code>503</code></td><td>The request was rate limited (operations or throughput limit exceeded).</td></tr></tbody></table>
+<table><thead><tr><th>Result</th><th>HttpStatusCode</th><th>Description</th></tr></thead><tbody><tr><td><code>CacheHit</code></td><td><code>200</code></td><td>Object was found in the cache.</td></tr><tr><td><code>CacheHitExpired</code></td><td><code>404</code></td><td>Object was found in the cache but had expired.</td></tr><tr><td><code>Miss</code></td><td><code>404</code></td><td>Object was not found in either cache or storage.</td></tr><tr><td><code>StorageHit</code></td><td><code>200</code></td><td>Object was not in cache but was found in S3 storage.</td></tr><tr><td><code>StorageHitExpired</code></td><td><code>404</code></td><td>Object was found in S3 storage but had expired.</td></tr><tr><td><code>InternalError</code></td><td><code>500</code></td><td>The request failed due to an internal error.</td></tr><tr><td><code>AuthorizationError</code></td><td><code>403</code></td><td>The request was rejected due to insufficient permissions.</td></tr><tr><td><code>LimitExceededError</code></td><td><code>429</code></td><td>The request was rate limited (operations or throughput limit exceeded).</td></tr></tbody></table>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="putobject">PutObject<a href="#putobject" class="hash-link" aria-label="Direct link to PutObject" title="Direct link to PutObject" translate="no">​</a></h4>
-<table><thead><tr><th>Result</th><th>HttpStatusCode</th><th>Description</th></tr></thead><tbody><tr><td><code>Ok</code></td><td><code>204</code></td><td>Object was successfully stored.</td></tr><tr><td><code>InternalError</code></td><td><code>500</code></td><td>The request failed due to an internal error.</td></tr><tr><td><code>AuthorizationError</code></td><td><code>403</code></td><td>The request was rejected due to insufficient permissions.</td></tr><tr><td><code>BadRequest</code></td><td><code>400</code></td><td>The request was rejected due to invalid <code>mo-tag-*</code> headers.</td></tr><tr><td><code>LimitExceededError</code></td><td><code>503</code></td><td>The request was rate limited (operations or throughput limit exceeded).</td></tr></tbody></table>
+<table><thead><tr><th>Result</th><th>HttpStatusCode</th><th>Description</th></tr></thead><tbody><tr><td><code>Ok</code></td><td><code>204</code></td><td>Object was successfully stored.</td></tr><tr><td><code>InternalError</code></td><td><code>500</code></td><td>The request failed due to an internal error.</td></tr><tr><td><code>AuthorizationError</code></td><td><code>403</code></td><td>The request was rejected due to insufficient permissions.</td></tr><tr><td><code>BadRequest</code></td><td><code>400</code></td><td>The request was rejected due to invalid <code>mo-tag-*</code> headers.</td></tr><tr><td><code>LimitExceededError</code></td><td><code>429</code></td><td>The request was rate limited (operations or throughput limit exceeded).</td></tr></tbody></table>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="example-cloudwatch-queries">Example CloudWatch Queries<a href="#example-cloudwatch-queries" class="hash-link" aria-label="Direct link to Example CloudWatch Queries" title="Direct link to Example CloudWatch Queries" translate="no">​</a></h2>
 <p>To view total request count for GetObject operations:</p>
 <ul>
