@@ -1,0 +1,9 @@
+{
+  "label": "Patterns",
+  "position": 40,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "description": "End-to-end patterns built on Momento Functions"
+  }
+}

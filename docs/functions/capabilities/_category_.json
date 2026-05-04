@@ -1,0 +1,9 @@
+{
+  "label": "Capabilities",
+  "position": 30,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "description": "Reach Momento, AWS, and external services from inside your Function"
+  }
+}
