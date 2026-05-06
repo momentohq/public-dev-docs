@@ -46,10 +46,12 @@ The CLI handles base64 encoding and the management call for you:
 momento preview function put-function \
    --cache-name "$MOMENTO_CACHE_NAME" \
    --name greet \
-   --wasm-file target/wasm32-wasip2/release/greet.wasm
+   --wasm-file target/wasm32-wasip2/release/greet.wasm \
+   --description "first cut of the greet handler" \
+   --env-var "GREETING=hello"
 ```
 
-Re-running `put-function` against an existing name updates the Function with a new version.
+Re-running `put-function` against an existing name uploads a new version. `--description` is recorded against that version and shows up in `list-function-versions` (see [Versions and pinning](#versions-and-pinning) below); `--env-var` can be passed multiple times to set Function environment variables.
 
 </TabItem>
 <TabItem value="http" label="HTTP API">
@@ -98,7 +100,7 @@ Of note, authorization is only applied to access to the Function. The Function e
 
 ## Updating and deleting
 
-To **update** a Function, run `put-function` again with the same name — the artifact is replaced atomically and new invocations pick up the new code immediately (well, within a few milliseconds anyway).
+To **update** a Function, run `put-function` again with the same name. Each call uploads a new **version**; the Function's **current version** points at whichever version invocations actually run. By default, the current version follows the latest upload. A fresh `put-function` is picked up within a few milliseconds. To freeze production on a known-good version while you iterate, see [Versions and pinning](#versions-and-pinning) below.
 
 To **delete** a Function, use the CLI:
 
@@ -114,6 +116,80 @@ Or the management API:
 curl -X DELETE \
   https://api.cache.$MOMENTO_CELL_HOSTNAME/functions/manage/$MOMENTO_CACHE_NAME/greet \
   -H "authorization: $MOMENTO_API_KEY"
+```
+
+## Versions and pinning
+
+Every `put-function` upload becomes a new **version** of that Function. Function versions are sequential integers, and are immutable once uploaded. Each carries its own description and environment variables. Updating variables is a new version! By default, a Function's **current version**, the one invocations actually run, automatically follows the latest upload. **Pinning** lets you decouple the two: keep production on a known-good version while you keep uploading new candidates. The ability to roll back to a good version in milliseconds is a core feature of the Functions experience.
+
+### Pin to a specific version
+
+<Tabs>
+<TabItem value="cli" label="Momento CLI">
+
+```bash
+momento preview function put-function-config \
+  --name greet \
+  --pin-version 7
+```
+
+After pinning, subsequent `put-function` calls still upload new versions, but invocations stay on version 7 until you change the config.
+
+</TabItem>
+<TabItem value="sdk" label="Rust SDK">
+
+```rust
+use momento::functions::{CurrentFunctionVersion, PutFunctionConfigRequest};
+
+let request = PutFunctionConfigRequest::from_function_name(cache_name, function_name)
+    .current_version(CurrentFunctionVersion::Pinned(7));
+function_client.send(request).await?;
+```
+
+`current_version` also accepts a plain integer (`.current_version(7)`) as a shorthand for `Pinned`.
+
+</TabItem>
+</Tabs>
+
+### Go back to following the latest version
+
+<Tabs>
+<TabItem value="cli" label="Momento CLI">
+
+```bash
+momento preview function put-function-config \
+  --name greet \
+  --use-latest-version
+```
+
+</TabItem>
+<TabItem value="sdk" label="Rust SDK">
+
+```rust
+use momento::functions::{CurrentFunctionVersion, PutFunctionConfigRequest};
+
+let request = PutFunctionConfigRequest::from_function_name(cache_name, function_name)
+    .current_version(CurrentFunctionVersion::Latest);
+function_client.send(request).await?;
+```
+
+</TabItem>
+</Tabs>
+
+### Listing functions and versions
+
+`list-functions` reports every Function in a cache along with its **latest** and **current** versions, the description of the active version, and when it was last uploaded:
+
+```bash
+momento preview function list-functions
+# Name: greet, ID: f-abcdefg, Latest Version: 12, Current Version: 7,
+# Description: "first cut of the greet handler", Last Uploaded: 2026-04-23T21:07:51Z
+```
+
+`list-function-versions` enumerates every version of a single Function with its description, WASM ID, and environment variables. It's helpful when you're trying to find a version to roll back to.
+
+```bash
+momento preview function list-function-versions --id f-abcdefg
 ```
 
 ## Configuring the Function environment
