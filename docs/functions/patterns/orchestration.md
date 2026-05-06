@@ -27,7 +27,7 @@ A typical RAG service has a backend that:
 
 * Holds the OpenAI API key and the vector-store API key.
 * Embeds the user's query via OpenAI.
-* Queries Turbopuffer / Pinecone / Valkey-vector for nearest neighbors.
+* Queries Turbopuffer / Pinecone for nearest neighbors.
 * Assembles a prompt and calls the model.
 * Caches anything cacheable in Redis or another in-memory store.
 
@@ -128,5 +128,5 @@ Embedding calls are cheap individually but add up. A typical RAG endpoint sees t
 The same trick works one layer up: hash the (prompt + retrieval-context) tuple and cache the model's response. This is most effective for deterministic, non-personalized prompts — FAQ answers, product summaries, code snippets. Skip the basic caching for personalized or stateful prompts where the response should reflect per-user context.
 
 :::tip
-A set of LLM-orchestration examples — embeddings, document indexing, query, and recommendation — is in [`examples/turbopuffer-*`](https://github.com/momentohq/functions/tree/main/examples) and [`examples/valkey-*`](https://github.com/momentohq/functions/tree/main/examples).
+A set of LLM-orchestration examples — embeddings, document indexing, query, and recommendation — is in [`examples/turbopuffer-*`](https://github.com/momentohq/functions/tree/main/examples).
 :::

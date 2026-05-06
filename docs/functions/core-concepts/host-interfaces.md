@@ -49,7 +49,6 @@ These reach into your AWS account using a federated IAM role you specify at invo
 ### General-purpose
 
 * [`momento-functions-http`](/functions/capabilities/http) - Outbound HTTP calls. The connection pool lives on the host.
-* [`momento-functions-valkey`](/functions/capabilities/valkey) - Talk to a Valkey cluster. You can do just about any request/reply command through this interface.
 * [`momento-functions-host-log`](/functions/capabilities/logging) - Configure log destinations: Momento Topics, AWS CloudWatch.
 
 ## What you import vs. what you use

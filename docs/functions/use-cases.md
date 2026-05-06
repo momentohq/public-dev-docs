@@ -37,7 +37,7 @@ Functions speeds you past the infrastructure to [orchestrate LLM workflows](/fun
 **How Functions fit**
 
 * **Managed connection pool** - The [`http`](/functions/capabilities/http) host interface keeps a connection pool *outside* your sandbox, so external API latency stays low even on the first request. You aren't making whole new connections for each invocation.
-* **Vector store support** - Examples for **Turbopuffer** and **Valkey vector search** help you make simple retrieval-augmented generation.
+* **Vector store support** - Examples for **Turbopuffer** help you make simple retrieval-augmented generation.
 * **Cache embeddings** - Hash a prompt, cache the embedding, skip calling your model provider on the next call.
 
 ## Browser-callable APIs without an API gateway

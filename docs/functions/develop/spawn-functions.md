@@ -66,7 +66,7 @@ momento-functions-bytes        = { version = "0" }
 momento-functions-guest-spawn  = { version = "0" }
 ```
 
-Spawn Functions can use most [host interfaces](/functions/core-concepts/host-interfaces) that a Web Function can — cache, HTTP, AWS, topics, valkey, logging. They can't return a body, and they can't use a WebEnvironment.
+Spawn Functions can use most [host interfaces](/functions/core-concepts/host-interfaces) that a Web Function can — cache, HTTP, AWS, topics, logging. They can't return a body, and they can't use a WebEnvironment.
 
 ## What spawn is not
 
