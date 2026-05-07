@@ -98,6 +98,7 @@ const config = {
         items: [
           { to: '/cache', label: 'Cache', position: 'left' },
           { to: '/topics', label: 'Topics', position: 'left' },
+          { to: '/functions/overview', label: 'Functions', position: 'left' },
           {
             to: '/platform', label: 'Platform', position: 'right'
           },
