@@ -152,6 +152,7 @@ Every `put-function` upload becomes a new **version** of that Function. Function
 
 ```bash
 momento preview function put-function-config \
+  --cache-name "$MOMENTO_CACHE_NAME" \
   --name greet \
   --pin-version 7
 ```
@@ -181,6 +182,7 @@ function_client.send(request).await?;
 
 ```bash
 momento preview function put-function-config \
+  --cache-name "$MOMENTO_CACHE_NAME" \
   --name greet \
   --use-latest-version
 ```
@@ -204,7 +206,8 @@ function_client.send(request).await?;
 `list-functions` reports every Function in a cache along with its **latest** and **current** versions, the description of the current version, and when the latest version was uploaded:
 
 ```bash
-momento preview function list-functions
+momento preview function list-functions \
+  --cache-name "$MOMENTO_CACHE_NAME"
 # Name: greet, ID: f-abcdefg, Latest Version: 12, Current Version: 7,
 # Description: "first cut of the greet handler", Last Uploaded: 2026-04-23T21:07:51Z
 ```
