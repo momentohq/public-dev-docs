@@ -90,6 +90,8 @@ momento preview function invoke-function \
   --data "{\"name\":\"`whoami`\"}"
 ```
 
+To test your users' less-privileged keys, you can pass the `--api-key $USER_API_KEY` argument.
+
 </TabItem>
 <TabItem value="http" label="HTTP API">
 
@@ -98,7 +100,7 @@ Send an HTTP request to the Function's invoke URL:
 ```bash
 curl \
   https://api.cache.$MOMENTO_CELL_HOSTNAME/functions/$MOMENTO_CACHE_NAME/greet \
-  -H "authorization: $MOMENTO_API_KEY" \
+  -H "authorization: $USER_API_KEY" \
   -H "Content-Type: application/json" \
   -d "{\"name\":\"`whoami`\"}"
 ```
