@@ -140,8 +140,7 @@ Functions are callable via the CLI or over HTTP at the same endpoint as the cach
 ```bash
 momento preview function invoke-function \
   --cache-name "$MOMENTO_CACHE_NAME" \
-  --name ping \
-  --data 'ping'
+  --name ping
 ```
 
 </TabItem>
@@ -150,8 +149,7 @@ momento preview function invoke-function \
 ```bash
 curl \
   https://api.cache.$MOMENTO_CELL_HOSTNAME/functions/$MOMENTO_CACHE_NAME/ping \
-  -H "authorization: $MOMENTO_API_KEY" \
-  -d 'ping'
+  -H "authorization: $MOMENTO_API_KEY"
 ```
 
 </TabItem>
