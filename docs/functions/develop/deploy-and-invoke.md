@@ -102,7 +102,10 @@ Of note, authorization is only applied to access to the Function. The Function e
 
 To **update** a Function, run `put-function` again with the same name. Each call uploads a new **version**; the Function's **current version** points at whichever version invocations actually run. By default, the current version follows the latest upload. A fresh `put-function` is picked up within a few milliseconds. To freeze production on a known-good version while you iterate, see [Versions and pinning](#versions-and-pinning) below.
 
-To **delete** a Function, use the CLI:
+To **delete** a Function, use the CLI or the management API:
+
+<Tabs>
+<TabItem value="cli" label="Momento CLI">
 
 ```bash
 momento preview function delete-function \
@@ -110,13 +113,17 @@ momento preview function delete-function \
   --name greet
 ```
 
-Or the management API:
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 ```bash
 curl -X DELETE \
   https://api.cache.$MOMENTO_CELL_HOSTNAME/functions/manage/$MOMENTO_CACHE_NAME/greet \
   -H "authorization: $MOMENTO_API_KEY"
 ```
+
+</TabItem>
+</Tabs>
 
 ## Versions and pinning
 
