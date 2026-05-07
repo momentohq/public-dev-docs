@@ -201,7 +201,7 @@ function_client.send(request).await?;
 
 ### Listing functions and versions
 
-`list-functions` reports every Function in a cache along with its **latest** and **current** versions, the description of the active version, and when it was last uploaded:
+`list-functions` reports every Function in a cache along with its **latest** and **current** versions, the description of the current version, and when the latest version was uploaded:
 
 ```bash
 momento preview function list-functions
