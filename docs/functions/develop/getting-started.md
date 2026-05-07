@@ -132,7 +132,20 @@ In the placeholders above:
 
 ## Invoke
 
-Functions are callable over HTTP at the same endpoint as the cache that hosts them.
+Functions are callable via the CLI or over HTTP at the same endpoint as the cache that hosts them.
+
+<Tabs>
+<TabItem value="cli" label="Momento CLI">
+
+```bash
+momento preview function invoke-function \
+  --cache-name "$MOMENTO_CACHE_NAME" \
+  --name ping \
+  --data 'ping'
+```
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 ```bash
 curl \
@@ -140,6 +153,9 @@ curl \
   -H "authorization: $MOMENTO_API_KEY" \
   -d 'ping'
 ```
+
+</TabItem>
+</Tabs>
 
 You should see `pong`.
 

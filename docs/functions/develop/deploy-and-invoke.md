@@ -80,7 +80,20 @@ The API key you use for management must have permission to manage Functions in t
 
 ## Invoke
 
-Invocation is an HTTP request to the Function's invoke URL:
+<Tabs>
+<TabItem value="cli" label="Momento CLI">
+
+```bash
+momento preview function invoke-function \
+  --cache-name "$MOMENTO_CACHE_NAME" \
+  --name greet \
+  --data "{\"name\":\"`whoami`\"}"
+```
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
+
+Send an HTTP request to the Function's invoke URL:
 
 ```bash
 curl \
@@ -89,6 +102,9 @@ curl \
   -H "Content-Type: application/json" \
   -d "{\"name\":\"`whoami`\"}"
 ```
+
+</TabItem>
+</Tabs>
 
 The body is whatever your handler expects — a JSON object if you used `Json<T>`, raw bytes of some sort if you used `Data`. The response body is whatever your handler returned.
 
