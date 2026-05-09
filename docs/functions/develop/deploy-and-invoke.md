@@ -80,15 +80,33 @@ The API key you use for management must have permission to manage Functions in t
 
 ## Invoke
 
-Invocation is an HTTP request to the Function's invoke URL:
+<Tabs>
+<TabItem value="cli" label="Momento CLI">
+
+```bash
+momento preview function invoke-function \
+  --cache-name "$MOMENTO_CACHE_NAME" \
+  --name greet \
+  --data "{\"name\":\"`whoami`\"}"
+```
+
+To test your users' less-privileged keys, you can pass the `--api-key $USER_API_KEY` argument.
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
+
+Send an HTTP request to the Function's invoke URL:
 
 ```bash
 curl \
   https://api.cache.$MOMENTO_CELL_HOSTNAME/functions/$MOMENTO_CACHE_NAME/greet \
-  -H "authorization: $MOMENTO_API_KEY" \
+  -H "authorization: $USER_API_KEY" \
   -H "Content-Type: application/json" \
   -d "{\"name\":\"`whoami`\"}"
 ```
+
+</TabItem>
+</Tabs>
 
 The body is whatever your handler expects — a JSON object if you used `Json<T>`, raw bytes of some sort if you used `Data`. The response body is whatever your handler returned.
 
@@ -102,7 +120,10 @@ Of note, authorization is only applied to access to the Function. The Function e
 
 To **update** a Function, run `put-function` again with the same name. Each call uploads a new **version**; the Function's **current version** points at whichever version invocations actually run. By default, the current version follows the latest upload. A fresh `put-function` is picked up within a few milliseconds. To freeze production on a known-good version while you iterate, see [Versions and pinning](#versions-and-pinning) below.
 
-To **delete** a Function, use the CLI:
+To **delete** a Function, use the CLI or the management API:
+
+<Tabs>
+<TabItem value="cli" label="Momento CLI">
 
 ```bash
 momento preview function delete-function \
@@ -110,13 +131,17 @@ momento preview function delete-function \
   --name greet
 ```
 
-Or the management API:
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 ```bash
 curl -X DELETE \
   https://api.cache.$MOMENTO_CELL_HOSTNAME/functions/manage/$MOMENTO_CACHE_NAME/greet \
   -H "authorization: $MOMENTO_API_KEY"
 ```
+
+</TabItem>
+</Tabs>
 
 ## Versions and pinning
 
@@ -129,6 +154,7 @@ Every `put-function` upload becomes a new **version** of that Function. Function
 
 ```bash
 momento preview function put-function-config \
+  --cache-name "$MOMENTO_CACHE_NAME" \
   --name greet \
   --pin-version 7
 ```
@@ -158,6 +184,7 @@ function_client.send(request).await?;
 
 ```bash
 momento preview function put-function-config \
+  --cache-name "$MOMENTO_CACHE_NAME" \
   --name greet \
   --use-latest-version
 ```
@@ -178,10 +205,11 @@ function_client.send(request).await?;
 
 ### Listing functions and versions
 
-`list-functions` reports every Function in a cache along with its **latest** and **current** versions, the description of the active version, and when it was last uploaded:
+`list-functions` reports every Function in a cache along with its **latest** and **current** versions, the description of the current version, and when the latest version was uploaded:
 
 ```bash
-momento preview function list-functions
+momento preview function list-functions \
+  --cache-name "$MOMENTO_CACHE_NAME"
 # Name: greet, ID: f-abcdefg, Latest Version: 12, Current Version: 7,
 # Description: "first cut of the greet handler", Last Uploaded: 2026-04-23T21:07:51Z
 ```
