@@ -100,6 +100,9 @@ const config = {
           { to: '/topics', label: 'Topics', position: 'left' },
           { to: '/functions/overview', label: 'Functions', position: 'left' },
           {
+            href: 'https://www.gomomento.com/', html: 'Home', position: 'right', target: '_self'
+          },
+          {
             to: '/platform', label: 'Platform', position: 'right'
           },
           {
