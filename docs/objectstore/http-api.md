@@ -112,7 +112,7 @@ The following fields **can** be updated:
 | metrics_config | no | Object | Optional configuration for CloudWatch metrics delivery. See [CloudWatch Metrics](#cloudwatch-metrics). |
 | metrics_config.cloudwatch.iam_role_arn | yes | String | The ARN of the IAM role that Momento will assume to publish metrics. See [Appendix: CloudWatch Metrics IAM Role Setup](#appendix-cloudwatch-metrics-iam-role-setup). |
 | metrics_config.cloudwatch.region | yes | String | The AWS region where CloudWatch metrics will be published. |
-| object_store_limits | no | Object | Optional throughput limits for data plane operations (Get Object, Put Object, and Delete Object) on this object store. If omitted, defaults are applied. |
+| object_store_limits | no | Object | Optional throughput limits for some data plane operations (Get Object and Put Object) on this object store. If omitted, defaults are applied. |
 | object_store_limits.read_operations_per_second | no | Integer | Maximum read requests per second. Default: `100`. |
 | object_store_limits.write_operations_per_second | no | Integer | Maximum write requests per second. Default: `100`. |
 | object_store_limits.read_bytes_per_second | no | Integer | Maximum bytes read per second. Default: `1048576` (1 MiB). |
@@ -551,7 +551,7 @@ Deletes an object from the specified object store.
 - "Store Not Found" indicates that the specified object store does not exist.
 
 *Status Code: 429 Too Many Requests*
-- The request was rate limited. The operations per second limit for the object store was exceeded. (DeleteObject does not have a bytes throughput.) Retry after a brief pause or contact Momento support to request a limit increase.
+- The request was rate limited. The operations per second limit for the object store was exceeded. (DeleteObject is not subject to the bytes per second limit / throughput rate limit, because it does not retrieve or return the actual object.) Retry after a brief pause or contact Momento support to request a limit increase.
 
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
