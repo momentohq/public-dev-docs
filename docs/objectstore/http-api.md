@@ -762,7 +762,7 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 ```json
 {
   "timestamp": 1707580800000,
-  "operation": "read",
+  "operation": "get_object",
   "key": "images/logo.png",
   "store": "my-store",
   "status": "cache_hit",
@@ -777,7 +777,7 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 | Field | Type | Description |
 |-------|------|-------------|
 | timestamp | Integer | Unix timestamp in milliseconds when the operation occurred. |
-| operation | String | The type of operation: `read`, `write`, or `delete`. |
+| operation | String | The operation: `get_object`, `put_object`, or `delete_object`. |
 | key | String | The object key that was accessed. |
 | store | String | The name of the object store. |
 | status | String | The result of the operation (see below). |
@@ -791,7 +791,7 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 
 | Status | Description |
 |--------|-------------|
-| `ok` | Write (or delete) operation completed successfully. |
+| `ok` | Write operation completed successfully. |
 | `cache_hit` | Read operation found the object in the cache. |
 | `storage_hit` | Read operation found the object in S3 storage (cache miss). |
 | `miss` | Read operation did not find the object. |
