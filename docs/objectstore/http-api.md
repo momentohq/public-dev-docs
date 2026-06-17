@@ -112,7 +112,7 @@ The following fields **can** be updated:
 | metrics_config | no | Object | Optional configuration for CloudWatch metrics delivery. See [CloudWatch Metrics](#cloudwatch-metrics). |
 | metrics_config.cloudwatch.iam_role_arn | yes | String | The ARN of the IAM role that Momento will assume to publish metrics. See [Appendix: CloudWatch Metrics IAM Role Setup](#appendix-cloudwatch-metrics-iam-role-setup). |
 | metrics_config.cloudwatch.region | yes | String | The AWS region where CloudWatch metrics will be published. |
-| object_store_limits | no | Object | Optional throughput limits for data plane operations (Get Object and Put Object) on this object store. If omitted, defaults are applied. |
+| object_store_limits | no | Object | Optional throughput limits for some data plane operations (Get Object and Put Object) on this object store. If omitted, defaults are applied. |
 | object_store_limits.read_operations_per_second | no | Integer | Maximum read requests per second. Default: `100`. |
 | object_store_limits.write_operations_per_second | no | Integer | Maximum write requests per second. Default: `100`. |
 | object_store_limits.read_bytes_per_second | no | Integer | Maximum bytes read per second. Default: `1048576` (1 MiB). |
@@ -503,6 +503,59 @@ Regardless of the `read-concern` value, Momento always falls back to S3 if the o
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
 
+## Delete Object
+
+Deletes an object from the specified object store.
+
+### Request
+
+- Path: /objectstore/\{storeName\}/\{key\}
+- HTTP Method: DELETE
+
+#### Path Parameters
+
+| Parameter&nbsp;name | Required? | Type            | Description                                                                           |
+|---------------------|-----------|-----------------|----------------------------------------------------------------------------------------|
+| storeName           | yes       | URL-safe string | The name of the object store to operate on.                                            |
+| key                 | yes       | String          | The key for the object. Supports hierarchical paths (e.g., `folder/subfolder/file.txt`). |
+
+#### Headers
+
+| Header&nbsp;name | Required? | Type   | Description                                                                                        |
+|------------------|-----------|--------|----------------------------------------------------------------------------------------------------|
+| Authorization    | yes       | String | The Momento auth token, in string format, is used for authentication/authorization of the request. |
+
+### Response
+
+#### Success
+
+*Status Code: 204 No Content*
+
+- The object was successfully deleted (or already did not exist).
+
+#### Response Headers
+
+| Header&nbsp;name | Type   | Description                                                                 |
+|------------------|--------|-----------------------------------------------------------------------------|
+| mo-request-id    | String | A unique request identifier (UUIDv7). Useful for debugging and support requests. |
+
+#### Error
+
+*Status Code: 401 Unauthorized*
+- This error type typically indicates that the Momento API key passed in is either invalid or expired. See the body of the message for further details.
+
+*Status Code: 403 Forbidden*
+- This error type typically indicates the Momento API key passed in does not grant the required access to the resources you attempted. See the body of the message for further details.
+
+*Status Code: 404 Not Found*
+- "Store Not Found" indicates that the specified object store does not exist.
+
+*Status Code: 429 Too Many Requests*
+- The request was rate limited. The operations per second limit for the object store was exceeded. (DeleteObject is not subject to the bytes per second limit / throughput rate limit, because it does not retrieve or return the actual object.) Retry after a brief pause or contact Momento support to request a limit increase.
+
+*Status Code: 500 Internal Server Error*
+- This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
+
 ---
 
 # CORS
@@ -516,7 +569,7 @@ CORS headers are automatically included on all Data Plane responses. No configur
 | Header | Value |
 |--------|-------|
 | `Access-Control-Allow-Origin` | `*` |
-| `Access-Control-Allow-Methods` | `GET, PUT, OPTIONS, HEAD` |
+| `Access-Control-Allow-Methods` | `GET, PUT, DELETE, OPTIONS, HEAD` |
 | `Access-Control-Allow-Headers` | `*` |
 | `Access-Control-Expose-Headers` | `*` |
 | `Access-Control-Max-Age` | `86400` (24 hours) |
@@ -691,6 +744,15 @@ curl -H "Authorization: <token>" \
   --output logo.png
 ```
 
+### Delete Object
+
+Delete an object at the path `images/logo.png` from the *my-store* object store:
+
+```bash
+curl -X DELETE -H "Authorization: <token>" \
+  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png"
+```
+
 ---
 
 # Access Log Format
@@ -700,7 +762,7 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 ```json
 {
   "timestamp": 1707580800000,
-  "operation": "read",
+  "operation": "get_object",
   "key": "images/logo.png",
   "store": "my-store",
   "status": "cache_hit",
@@ -715,7 +777,7 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 | Field | Type | Description |
 |-------|------|-------------|
 | timestamp | Integer | Unix timestamp in milliseconds when the operation occurred. |
-| operation | String | The type of operation: `read` or `write`. |
+| operation | String | The operation: `get_object`, `put_object`, or `delete_object`. |
 | key | String | The object key that was accessed. |
 | store | String | The name of the object store. |
 | status | String | The result of the operation (see below). |
@@ -760,7 +822,7 @@ Momento/ObjectStore
 | `ObjectStore` | The name of the object store. |
 | `AccountId` | Your Momento account ID. |
 | `Endpoint` | The Momento endpoint serving the request. |
-| `Api` | The API operation: `GetObject` or `PutObject`. |
+| `Api` | The API operation: `GetObject`, `PutObject`, or `DeleteObject`. |
 | `Result` | The result of the operation (only present in per-result metrics, see below). |
 | `HttpStatusCode` | The HTTP status code returned for the operation (only present in per-result metrics, see below). |
 
@@ -770,12 +832,12 @@ Metrics are emitted in two variants:
 
 ### Aggregate metrics (without `Result` dimension)
 
-These metrics are emitted for every request, regardless of outcome. They include:
+These metrics are emitted regardless of the request's outcome. They include:
 
 | Metric | Unit | Description |
 |--------|------|-------------|
 | `Requests` | Count | Total number of requests. |
-| `Bytes` | Bytes | Total bytes transferred (object size for PutObject, response size for GetObject). |
+| `Bytes` | Bytes | Total bytes transferred (object size for PutObject, response size for GetObject, not emitted by DeleteObject). |
 | `Latency` | Microseconds | End-to-end request latency. |
 
 ### Per-result metrics (with `Result` dimension)
@@ -811,6 +873,15 @@ These metrics are emitted with a `Result` dimension, allowing you to filter and 
 | `AuthorizationError` | `403` | The request was rejected due to insufficient permissions. |
 | `BadRequest` | `400` | The request was rejected due to invalid `mo-tag-*` headers. |
 | `LimitExceededError` | `429` | The request was rate limited (operations or throughput limit exceeded). |
+
+#### DeleteObject
+
+| Result | HttpStatusCode | Description |
+|--------|----------------|-------------|
+| `Ok` | `204` | Object was successfully deleted. |
+| `InternalError` | `500` | The request failed due to an internal error. |
+| `AuthorizationError` | `403` | The request was rejected due to insufficient permissions. |
+| `LimitExceededError` | `429` | The request was rate limited (operations limit exceeded). |
 
 ## Example CloudWatch Queries
 
