@@ -378,6 +378,7 @@ Stores an object in the specified object store.
 | Authorization    | yes       | String               | The Momento auth token, in string format, is used for authentication/authorization of the request. |
 | mo-meta-*        | no        | String               | Custom metadata headers. Any header prefixed with `mo-meta-` will be stored with the object and returned on GET. The prefix is stripped when storing (e.g., `mo-meta-content-type` is stored as `content-type`). |
 | mo-tag-*         | no        | String               | S3 object tag headers. Any header prefixed with `mo-tag-` will be attached to the S3 object as a tag. The prefix is stripped when storing (e.g., `mo-tag-env` is stored as the tag key `env`). Tags are not returned on GET. |
+| mo-persistence         | no        | String               | S3 object tag headers. This header determines whether the object is stored in S3. Values: `durable` (default) - stored to cache and S3; `ephemeral` - stored only in cache and cannot be retrieved after TTL. |
 
 :::info[Blocked Metadata Headers]
 
@@ -732,6 +733,16 @@ curl -X PUT -H "Authorization: <token>" \
   -H "mo-tag-team: infra" \
   --data-binary @logo.png \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png"
+```
+
+Store in cache only, inaccessible after 1 minute:
+
+```bash
+curl -X PUT -H "Authorization: <token>" \
+  -H "Content-Type: application/octet-stream" \
+  -H "mo-persistence: ephemeral" \
+  --data-binary @logo.png \
+  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png?ttl_seconds=60"
 ```
 
 ### Get Object
