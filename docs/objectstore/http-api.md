@@ -886,7 +886,7 @@ These metrics are emitted with a `Result` dimension, allowing you to filter and 
 | `Ok` | `204` | Object was successfully stored. |
 | `InternalError` | `500` | The request failed due to an internal error. |
 | `AuthorizationError` | `403` | The request was rejected due to insufficient permissions. |
-| `BadRequest` | `400` | The request was rejected due to invalid `mo-tag-*` headers or an invalid `mo-persistence` header. |
+| `BadRequest` | `400` | The request was rejected due to invalid `mo-tag-*` headers. |
 | `LimitExceededError` | `429` | The request was rate limited (operations or throughput limit exceeded). |
 
 #### DeleteObject
