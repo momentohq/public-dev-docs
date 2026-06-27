@@ -779,7 +779,6 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
   "timestamp": 1707580800000,
   "operation": "get_object",
   "key": "images/logo.png",
-  "persistence_header": "durable",
   "persist": true,
   "store": "my-store",
   "status": "cache_hit",
@@ -796,7 +795,6 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 | timestamp | Integer | Unix timestamp in milliseconds when the operation occurred. |
 | operation | String | The operation: `get_object`, `put_object`, or `delete_object`. |
 | key | String | The object key that was accessed. |
-| persistence_header | String | For `put_object`, the `mo-persistence` header that you specified. If the header is not specified, the header is not ASCII-parseable, or the operation is not `put_object`, this field is excluded from the access log. |
 | persist | String | For `put_object`, whether the object will be written to storage (`true` for `durable` default, `false` if the `mo-persistence: ephemeral` header is specified). Otherwise, this field is excluded from the access log. |
 | persist | String | The object key that was accessed. |
 | store | String | The name of the object store. |
