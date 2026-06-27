@@ -795,8 +795,7 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 | timestamp | Integer | Unix timestamp in milliseconds when the operation occurred. |
 | operation | String | The operation: `get_object`, `put_object`, or `delete_object`. |
 | key | String | The object key that was accessed. |
-| persist | String | For `put_object`, whether the object will be written to storage (`true` for `durable` default, `false` if the `mo-persistence: ephemeral` header is specified). Otherwise, this field is excluded from the access log. |
-| persist | String | The object key that was accessed. |
+| persist | Bool | For `put_object`, whether the object will be written to storage (`true` for `durable` default, `false` if the `mo-persistence: ephemeral` header is specified). Otherwise, this field is excluded from the access log. |
 | store | String | The name of the object store. |
 | status | String | The result of the operation (see below). |
 | size | Integer | The size of the object in bytes. Only present for successful operations. |
