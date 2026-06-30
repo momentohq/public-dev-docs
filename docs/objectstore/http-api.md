@@ -369,7 +369,9 @@ Stores an object in the specified object store.
 
 | Parameter&nbsp;name | Required? | Type    | Description                                                                 |
 |---------------------|-----------|---------|-----------------------------------------------------------------------------|
-| ttl_seconds         | no        | Integer | Optional time-to-live in seconds. If not specified, the object persists indefinitely. |
+| ttl_seconds         | no        | Integer | Optional time-to-live in seconds. If the `mo-persistence: ephemeral` header is specified, the default and maximum is 10 minutes. Otherwise, the default is that object persists indefinitely. |
+
+[//]: # (TODO Keep an eye on whether this default TTL has been changed in the source code.)
 
 #### Headers
 
@@ -378,6 +380,9 @@ Stores an object in the specified object store.
 | Authorization    | yes       | String               | The Momento auth token, in string format, is used for authentication/authorization of the request. |
 | mo-meta-*        | no        | String               | Custom metadata headers. Any header prefixed with `mo-meta-` will be stored with the object and returned on GET. The prefix is stripped when storing (e.g., `mo-meta-content-type` is stored as `content-type`). |
 | mo-tag-*         | no        | String               | S3 object tag headers. Any header prefixed with `mo-tag-` will be attached to the S3 object as a tag. The prefix is stripped when storing (e.g., `mo-tag-env` is stored as the tag key `env`). Tags are not returned on GET. |
+| mo-persistence         | no        | String               | S3 object tag headers. This header determines whether the object is stored in S3. Values: `durable` (default) - stored to cache and S3; `ephemeral` - stored only in cache and cannot be retrieved after TTL (or 10 minutes, whichever is less). |
+
+[//]: # (TODO Keep an eye on whether this default TTL has been changed in the source code.)
 
 :::info[Blocked Metadata Headers]
 
@@ -734,6 +739,16 @@ curl -X PUT -H "Authorization: <token>" \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png"
 ```
 
+Store in cache only, inaccessible after 1 minute:
+
+```bash
+curl -X PUT -H "Authorization: <token>" \
+  -H "Content-Type: application/octet-stream" \
+  -H "mo-persistence: ephemeral" \
+  --data-binary @logo.png \
+  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/objectstore/my-store/images/logo.png?ttl_seconds=60"
+```
+
 ### Get Object
 
 Retrieve an object at the path `images/logo.png` from the *my-store* object store:
@@ -764,6 +779,7 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
   "timestamp": 1707580800000,
   "operation": "get_object",
   "key": "images/logo.png",
+  "persistence": "durable",
   "store": "my-store",
   "status": "cache_hit",
   "size": 15234,
@@ -779,6 +795,7 @@ When access logging is enabled, Momento delivers logs to your CloudWatch Log Gro
 | timestamp | Integer | Unix timestamp in milliseconds when the operation occurred. |
 | operation | String | The operation: `get_object`, `put_object`, or `delete_object`. |
 | key | String | The object key that was accessed. |
+| persistence | String | For `put_object`, whether the object is `durable` (will be written to S3 storage) or `ephemeral` (cache-only). Otherwise, this field is excluded from the access log. |
 | store | String | The name of the object store. |
 | status | String | The result of the operation (see below). |
 | size | Integer | The size of the object in bytes. Only present for successful operations. |
