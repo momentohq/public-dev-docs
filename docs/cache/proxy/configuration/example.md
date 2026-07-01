@@ -85,7 +85,8 @@ backup = "momento-proxy.cmd.old"
 # trigger log rotation when the file grows beyond this size (in bytes). Set this
 # option to '0' to disable log rotation.
 max_size = 1073741824
-# specify the sampling ratio, 1 in N commands will be logged. Setting to '0'
-# will disable command logging.
+# specify the sampling ratio, 1 in N commands will be logged. Must be greater
+# than 0 (a value of '0' will cause a divide-by-zero panic). To disable
+# command logging, comment out the 'file' option above instead.
 sample = 100
 ```
