@@ -11,7 +11,7 @@ unlisted: true
 
 Momento provides an HTTP API interface for managing Capacity Pools. This API lets you create, describe, update, list, and delete Capacity Pools programmatically.
 
-A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. You choose the instance type, shard count, replicas per shard, and availability zone (AZ) placement. Momento owns the underlying lifecycle and health of the pool. Each pool hosts one or more [Databases](/database/http-api), which share the pool's compute and memory.
+A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. You choose the instance type, shard count, replicas per shard, and availability zone (AZ) placement. Momento owns the underlying lifecycle and health of the pool. Each pool hosts one or more [Databases](/product/cache/database/http-api), which share the pool's compute and memory.
 
 :::tip[Info]
 
