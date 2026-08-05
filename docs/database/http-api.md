@@ -5,11 +5,13 @@ description: HTTP API reference for Momento Databases.
 unlisted: true
 ---
 
+<!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/database -->
+
 # HTTP API Reference for Momento Databases
 
-Momento provides an HTTP API interface for managing Databases. This API allows you to create, describe, list, and delete Databases programmatically.
+Momento provides an HTTP API interface for managing Databases. This API lets you create, describe, list, and delete Databases programmatically.
 
-A **Database** is a logical database pinned to exactly one [Capacity Pool](/capacity-pool/http-api). Multiple databases share the compute and memory of their Pool. A Database is identified by its name and the name of the Capacity Pool it belongs to.
+A **Database** is a logical cache pinned to exactly one [Capacity Pool](/capacity-pool/http-api). Multiple Databases share the compute and memory of their Pool. A Database is identified by its name and the name of the Capacity Pool it belongs to.
 
 :::tip[Info]
 
@@ -27,7 +29,7 @@ The API Key must be provided in the `Authorization` header.
 
 # Database API
 
-The Database API allows you to manage Databases - creating, describing, listing, and deleting them. Each Database is pinned to exactly one Capacity Pool. There is no update operation; a Database has no mutable fields.
+The Database API lets you create, describe, list, and delete Databases. Each Database is pinned to exactly one Capacity Pool. There is no update operation; a Database has no mutable fields.
 
 ## Create Database
 
