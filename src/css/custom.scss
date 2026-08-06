@@ -638,3 +638,17 @@ code span {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
+/* Note admonitions: pastel blue so they stand out. Docusaurus' default 'note' is a near-white
+   'secondary' alert. Global — affects every :::note across the docs. */
+.theme-admonition.theme-admonition-note {
+  --ifm-alert-background-color: #eaf3fe;
+  --ifm-alert-background-color-highlight: rgba(59, 130, 196, 0.12);
+  --ifm-alert-border-color: #3b82c4;
+  --ifm-alert-foreground-color: var(--ifm-font-color-base);
+}
+[data-theme="dark"] .theme-admonition.theme-admonition-note {
+  --ifm-alert-background-color: #16263c;
+  --ifm-alert-border-color: #4a90d9;
+  --ifm-alert-foreground-color: var(--ifm-font-color-base);
+}
