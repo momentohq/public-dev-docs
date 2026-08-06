@@ -631,3 +631,10 @@ code span {
 .theme-doc-sidebar-menu .sidebar-group-primary > .menu__list {
   padding-left: 0;
 }
+
+/* Compact the page entries under the product (Momento Cache): tighter vertical padding
+   (the group/product headers keep the default spacing as anchors). */
+.theme-doc-sidebar-menu .sidebar-group-product > .menu__list .menu__link {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
