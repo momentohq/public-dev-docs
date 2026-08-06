@@ -41,7 +41,8 @@
           },
           "product/cache/reliability",
           "product/cache/pricing"
-        ]
+        ],
+        "className": "sidebar-group-product"
       }
     ],
     "className": "sidebar-group-primary"

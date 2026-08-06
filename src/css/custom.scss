@@ -184,8 +184,10 @@ code span {
 }
 
 .theme-doc-sidebar-container>div {
-  padding: 80px 16px 0 16px;
-  width: 323px;
+  padding: 80px 8px 0 8px;
+  /* Fill the sidebar column (--doc-sidebar-width) instead of the old fixed 323px, which
+     overflowed the 250px rail and got clipped/covered by the main content on the right. */
+  width: 100%;
 }
 
 .sidebar-title {
@@ -612,4 +614,13 @@ code span {
 .theme-doc-sidebar-menu .sidebar-group-primary > .menu__list-item-collapsible:hover,
 .theme-doc-sidebar-menu .sidebar-group-primary > .menu__link:hover {
   background-color: var(--ifm-color-emphasis-300);
+}
+
+/* Bold the primary (deployment-model, e.g. Cloud) and product (e.g. Momento Cache) group labels
+   so the top IA levels anchor the tree. The generator tags them .sidebar-group-primary/-product. */
+.theme-doc-sidebar-menu .sidebar-group-primary > .menu__list-item-collapsible > .menu__link,
+.theme-doc-sidebar-menu .sidebar-group-primary > .menu__link,
+.theme-doc-sidebar-menu .sidebar-group-product > .menu__list-item-collapsible > .menu__link,
+.theme-doc-sidebar-menu .sidebar-group-product > .menu__link {
+  font-weight: 700;
 }
