@@ -1,6 +1,6 @@
 ---
-sidebar_label: HTTP API
-title: HTTP API for Momento Databases
+sidebar_label: Database API
+title: Database API
 description: HTTP API reference for Momento Databases.
 ---
 
@@ -10,7 +10,7 @@ description: HTTP API reference for Momento Databases.
 
 Momento provides an HTTP API interface for managing Databases. This API lets you create, describe, list, and delete Databases programmatically.
 
-A **Database** is a logical cache pinned to exactly one [Capacity Pool](/product/cache/capacity-pool/http-api). Multiple Databases share the compute and memory of their Pool. A Database is identified by its name and the name of the Capacity Pool it belongs to.
+A **Database** is a logical cache pinned to exactly one [Capacity Pool](/product/cache/api-reference/capacity-pool). Multiple Databases share the compute and memory of their Pool. A Database is identified by its name and the name of the Capacity Pool it belongs to.
 
 :::tip[Info]
 

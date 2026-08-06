@@ -600,3 +600,16 @@ code span {
 .highlightRow {
   background-color: var(--table-highlight-row) !important;
 }
+
+/* Primary IA groups in the docs sidebar (deployment-model level, e.g. Cloud). The nav generator
+   (Momento KB projection) tags top-level categories with .sidebar-group-primary. Theme-aware
+   light grey via Infima emphasis tokens. */
+.theme-doc-sidebar-menu .sidebar-group-primary > .menu__list-item-collapsible,
+.theme-doc-sidebar-menu .sidebar-group-primary > .menu__link {
+  background-color: var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius);
+}
+.theme-doc-sidebar-menu .sidebar-group-primary > .menu__list-item-collapsible:hover,
+.theme-doc-sidebar-menu .sidebar-group-primary > .menu__link:hover {
+  background-color: var(--ifm-color-emphasis-300);
+}

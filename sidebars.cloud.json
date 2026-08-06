@@ -35,14 +35,15 @@
             "collapsible": true,
             "collapsed": false,
             "items": [
-              "product/cache/capacity-pool/http-api",
-              "product/cache/database/http-api"
+              "product/cache/api-reference/capacity-pool",
+              "product/cache/api-reference/database"
             ]
           },
           "product/cache/reliability",
           "product/cache/pricing"
         ]
       }
-    ]
+    ],
+    "className": "sidebar-group-primary"
   }
 ]

@@ -69,4 +69,4 @@ You are now reading and writing against a managed Valkey Database.
 
 - Learn the model: [Capacity Pool](/product/cache/concepts/capacity-pool) and [Database](/product/cache/concepts/database).
 - Check which commands are available: [Valkey compatibility](/product/cache/concepts/valkey-compatibility).
-- Automate provisioning: [control-plane API reference](/product/cache/capacity-pool/http-api).
+- Automate provisioning: [control-plane API reference](/product/cache/api-reference/capacity-pool).

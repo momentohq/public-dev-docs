@@ -37,4 +37,4 @@ by changing the pool, not the Database.
 
 To connect, point a Valkey client at the pool's gateway endpoint with your Database's
 credentials. See [Connectivity and the gateway](/product/cache/concepts/connectivity-and-gateway) and the
-[control-plane API reference](/product/cache/database/http-api).
+[control-plane API reference](/product/cache/api-reference/database).

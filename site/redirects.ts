@@ -103,8 +103,8 @@ const REDIRECTS = {
     '/vector-index/*': '/',
 
     // Momento Cache (dedicated-capacity) docs relocated under the /product/ prefix
-    '/capacity-pool/http-api': '/product/cache/capacity-pool/http-api',
-    '/database/http-api': '/product/cache/database/http-api',
+    '/capacity-pool/http-api': '/product/cache/api-reference/capacity-pool',
+    '/database/http-api': '/product/cache/api-reference/database',
 };
 
 // map<FROM,TO> - insert a redirect for each existing page with URL prefix <TO>, replacing with URL prefix <FROM>

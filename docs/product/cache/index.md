@@ -53,7 +53,7 @@ standard Valkey client. Isolation is guaranteed at the
 The [quickstart](/product/cache/getting-started) walks through provisioning a Capacity Pool, creating a
 Database, and connecting a client.
 
-For the control-plane API, see the [reference](/product/cache/capacity-pool/http-api).
+For the control-plane API, see the [reference](/product/cache/api-reference/capacity-pool).
 
 ## Availability
 

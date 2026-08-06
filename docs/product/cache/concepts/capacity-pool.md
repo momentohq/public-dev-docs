@@ -44,7 +44,7 @@ attempting to converge to the target configuration.
 To resolve a capacity diagnostic, update
 the pool's configuration (for example, choose a different instance type or zones). The control
 plane will adjust provisioning to match the new configuration. See
-[the API reference](/product/cache/capacity-pool/http-api) for available diagnostic fields.
+[the API reference](/product/cache/api-reference/capacity-pool) for available diagnostic fields.
 
 ## Databases exist within a Capacity Pool
 

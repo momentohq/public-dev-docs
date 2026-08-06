@@ -10,7 +10,7 @@ description: Scale, monitor, and delete a Capacity Pool from the console or the 
 
 This page covers common management operations for a [Capacity Pool](/product/cache/concepts/capacity-pool),
 such as scaling, monitoring, and deleting it. Each activity can be performed in the console or
-via the [control-plane API](/product/cache/capacity-pool/http-api).
+via the [control-plane API](/product/cache/api-reference/capacity-pool).
 
 ## Scale a pool
 
