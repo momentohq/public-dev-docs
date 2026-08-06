@@ -2,7 +2,6 @@
 sidebar_label: Overview
 title: Momento Cache
 description: Fully-managed, dedicated Valkey. Provision isolated capacity and connect any Valkey client through a managed gateway.
-unlisted: true
 ---
 
 <!-- Projects: cache2/overview/what-is-cache2, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/shared-gateway, cache2/interfaces/control-plane-api -->

@@ -1,0 +1,48 @@
+[
+  {
+    "type": "category",
+    "label": "Cloud",
+    "collapsible": true,
+    "collapsed": false,
+    "items": [
+      {
+        "type": "category",
+        "label": "Momento Cache",
+        "collapsible": true,
+        "collapsed": false,
+        "items": [
+          "product/cache/index",
+          "product/cache/getting-started",
+          {
+            "type": "category",
+            "label": "Concepts",
+            "collapsible": true,
+            "collapsed": false,
+            "items": [
+              "product/cache/concepts/capacity-pool",
+              "product/cache/concepts/database",
+              "product/cache/concepts/provisioning-and-sizing",
+              "product/cache/concepts/connectivity-and-gateway",
+              "product/cache/concepts/isolation",
+              "product/cache/concepts/valkey-compatibility"
+            ]
+          },
+          "product/cache/manage/pools",
+          "product/cache/connect/clients",
+          {
+            "type": "category",
+            "label": "API reference",
+            "collapsible": true,
+            "collapsed": false,
+            "items": [
+              "product/cache/capacity-pool/http-api",
+              "product/cache/database/http-api"
+            ]
+          },
+          "product/cache/reliability",
+          "product/cache/pricing"
+        ]
+      }
+    ]
+  }
+]

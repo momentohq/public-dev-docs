@@ -2,7 +2,6 @@
 sidebar_label: HTTP API
 title: HTTP API for Momento Databases
 description: HTTP API reference for Momento Databases.
-unlisted: true
 ---
 
 <!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/database -->

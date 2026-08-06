@@ -2,7 +2,6 @@
 sidebar_label: Reliability
 title: Momento Cache reliability
 description: How Momento Cache delivers high availability through replication, multi-AZ placement, and managed operation.
-unlisted: true
 ---
 
 <!-- Projects: cache2/concepts/capacity-pool, cache2/concepts/provisioning-modes, cache2/capabilities/sizing-and-isolation-guidance -->

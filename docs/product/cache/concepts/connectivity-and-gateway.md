@@ -2,7 +2,6 @@
 sidebar_label: Connectivity and the gateway
 title: Connectivity and the gateway
 description: Connect to a Database through the managed gateway with a standard Valkey client.
-unlisted: true
 ---
 
 <!-- Projects: cache2/concepts/shared-gateway, cache2/capabilities/valkey-compatibility -->

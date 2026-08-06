@@ -2,7 +2,6 @@
 sidebar_label: Valkey compatibility
 title: Valkey compatibility
 description: Supported and unsupported Valkey commands and protocol details for Momento Cache.
-unlisted: true
 ---
 
 <!-- Projects: cache2/capabilities/valkey-compatibility -->

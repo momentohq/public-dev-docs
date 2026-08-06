@@ -2,7 +2,6 @@
 sidebar_label: Isolation
 title: Isolation
 description: Momento Cache isolates workloads at the Capacity Pool boundary.
-unlisted: true
 ---
 
 <!-- Projects: cache2/concepts/capacity-pool, cache2/concepts/database, cache2/capabilities/sizing-and-isolation-guidance -->

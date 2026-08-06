@@ -2,7 +2,6 @@
 sidebar_label: Pricing
 title: Momento Cache pricing
 description: How Momento Cache pricing works across client traffic, capacity, and cloud data transfer.
-unlisted: true
 ---
 
 <!-- Projects: cache2/pricing/pricing -->

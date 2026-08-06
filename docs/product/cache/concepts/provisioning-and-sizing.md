@@ -2,7 +2,6 @@
 sidebar_label: Provisioning and sizing
 title: Provisioning and sizing
 description: Size a Capacity Pool with Cluster (by instance) or Flex (by capacity) provisioning.
-unlisted: true
 ---
 
 <!-- Projects: cache2/concepts/provisioning-modes, cache2/capabilities/sizing-and-isolation-guidance -->

@@ -2,7 +2,6 @@
 sidebar_label: Capacity Pool
 title: Capacity Pool
 description: A Capacity Pool is the dedicated Valkey capacity you provision and Momento operates.
-unlisted: true
 ---
 
 <!-- Projects: cache2/concepts/capacity-pool, cache2/concepts/provisioning-modes -->

@@ -2,7 +2,6 @@
 sidebar_label: Connect a client
 title: Connect a client
 description: Connect to a Momento Cache Database with valkey-cli, ioredis, redis-py, or go-redis.
-unlisted: true
 ---
 
 <!-- Projects: cache2/capabilities/valkey-compatibility, cache2/concepts/shared-gateway -->

@@ -2,7 +2,6 @@
 sidebar_label: HTTP API
 title: HTTP API for Momento Capacity Pools
 description: HTTP API reference for Momento Capacity Pools.
-unlisted: true
 ---
 
 <!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/capacity-pool, cache2/concepts/provisioning-modes -->

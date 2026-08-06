@@ -2,7 +2,6 @@
 sidebar_label: Database
 title: Database
 description: A Database is a logical cache that runs on a Capacity Pool.
-unlisted: true
 ---
 
 <!-- Projects: cache2/concepts/database -->

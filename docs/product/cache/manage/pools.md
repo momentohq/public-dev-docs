@@ -2,7 +2,6 @@
 sidebar_label: Manage Capacity Pools
 title: Manage Capacity Pools
 description: Scale, monitor, and delete a Capacity Pool from the console or the control-plane API.
-unlisted: true
 ---
 
 <!-- Projects: cache2/concepts/capacity-pool, cache2/interfaces/control-plane-api -->
