@@ -624,3 +624,10 @@ code span {
 .theme-doc-sidebar-menu .sidebar-group-product > .menu__link {
   font-weight: 700;
 }
+
+/* Flatten the product level up to its parent group: zero the indent on the group's child list so
+   the product (e.g. Momento Cache) aligns with the group (Cloud); this also shifts the product's
+   whole subtree left by one indentation level. */
+.theme-doc-sidebar-menu .sidebar-group-primary > .menu__list {
+  padding-left: 0;
+}
