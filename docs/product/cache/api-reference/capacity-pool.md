@@ -1,15 +1,16 @@
 ---
-sidebar_label: HTTP API
-title: HTTP API for Momento Capacity Pools
+sidebar_label: Capacity Pool API
+title: Capacity Pool API
 description: HTTP API reference for Momento Capacity Pools.
-unlisted: true
 ---
+
+<!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/capacity-pool, cache2/concepts/provisioning-modes -->
 
 # HTTP API Reference for Momento Capacity Pools
 
 Momento provides an HTTP API interface for managing Capacity Pools. This API lets you create, describe, update, list, and delete Capacity Pools programmatically.
 
-A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. You choose the instance type, shard count, replicas per shard, and availability zone (AZ) placement. Momento owns the underlying lifecycle and health of the pool. Each pool hosts one or more [Databases](/database/http-api), which share the pool's compute and memory.
+A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. You choose the instance type, shard count, replicas per shard, and availability zone (AZ) placement. Momento owns the underlying lifecycle and health of the pool. Each pool hosts one or more [Databases](/product/cache/api-reference/database), which share the pool's compute and memory.
 
 :::tip[Info]
 
@@ -27,11 +28,11 @@ The API Key must be provided in the `Authorization` header.
 
 # Capacity Pool API
 
-The Capacity Pool API allows you to manage Capacity Pools - creating, describing, updating, listing, and deleting them.
+The Capacity Pool API lets you create, describe, update, list, and delete Capacity Pools.
 
 ## Provisioning
 
-A Capacity Pool's capacity is described by a `provisioning` object. The object nests its configuration under a single key that names the provisioning mode. Currently the only supported mode is `explicit`, where you specify the exact instance type, shard count, replicas per shard, and AZ placement.
+A Capacity Pool's capacity is described by a `provisioning` object. The object nests its configuration under a single key that names the provisioning mode. This reference documents `explicit` mode, in which you specify the instance type, shard count, replicas per shard, and AZ placement.
 
 ```json
 {
@@ -59,8 +60,10 @@ A Capacity Pool has its own lifecycle `status`, surfaced at describe time:
 | Status | Description |
 |--------|-------------|
 | creating | The pool has been accepted and its backing capacity is being provisioned asynchronously. |
-| active | The pool is fully provisioned and ready to serve databases. |
+| active | The pool is fully provisioned and ready to serve Databases. |
 | deleting | The pool is being torn down. |
+
+These three values are the pool's complete status set. A pool stays `active` while its capacity converges to a requested change; there is no separate `scaling` or `updating` status. Progress, or a condition that blocks the change, surfaces as a [diagnostic](#diagnostics).
 
 ## Diagnostics
 
@@ -68,7 +71,9 @@ Every Capacity Pool response includes a `diagnostics` field: an array of custome
 
 [Describe Capacity Pool](#describe-capacity-pool) returns active conditions plus recently-resolved ones; [List Capacity Pools](#list-capacity-pools) returns only active conditions.
 
-Each diagnostic nests its details under a single key that names the kind of condition. Currently the only kind is `insufficient_capacity`:
+Each diagnostic nests its details under a single key that names the kind of condition. Two kinds are defined.
+
+The `insufficient_capacity` kind is raised when Momento cannot provision the requested capacity:
 
 ```json
 {
@@ -93,6 +98,36 @@ The fields of an `insufficient_capacity` diagnostic:
 | availability_zones | Array\<String\> | The availability zones the condition has been observed in during this episode. |
 | first_observed_epoch_seconds | Integer | When the condition was first observed, in seconds since the Unix epoch. |
 | last_observed_epoch_seconds | Integer | The most recent time the condition was observed. For an active diagnostic, how recently it was confirmed still in effect; for a resolved one, the last failure before it cleared. |
+| resolved_epoch_seconds | Integer | When the condition resolved, in seconds since the Unix epoch. Present only on a `resolved` diagnostic. |
+
+The `scale_blocked_by_utilization` kind is raised when a requested change to a pool cannot be applied given the pool's current utilization (for example, a shard-count or instance-type change that the capacity check rejects):
+
+```json
+{
+  "scale_blocked_by_utilization": {
+    "state": "active",
+    "reason": "does_not_fit",
+    "requested": {
+      "instance_type": "r7g.xlarge",
+      "shard_count": 6,
+      "replicas_per_shard": 1,
+      "zones": ["us-east-1a", "us-east-1b"]
+    },
+    "first_observed_epoch_seconds": 1719360000,
+    "last_observed_epoch_seconds": 1719363600
+  }
+}
+```
+
+The fields of a `scale_blocked_by_utilization` diagnostic:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| state | String | Whether the condition is currently in effect (`active`) or recently cleared (`resolved`). |
+| reason | String | Why the change was blocked: the requested capacity does not fit the pool's current utilization, or the fit could not be verified. |
+| requested | Object | The requested provisioning that was blocked, in the same shape as the pool's `provisioning`. See [Provisioning](#provisioning). |
+| first_observed_epoch_seconds | Integer | When the condition was first observed, in seconds since the Unix epoch. |
+| last_observed_epoch_seconds | Integer | The most recent time the condition was observed. |
 | resolved_epoch_seconds | Integer | When the condition resolved, in seconds since the Unix epoch. Present only on a `resolved` diagnostic. |
 
 ---
@@ -316,7 +351,7 @@ Lists all Capacity Pools owned by your account.
 
 Updates the provisioning of an existing Capacity Pool. The request body contains only the fields to change; any subset of the fields is valid. The configuration is nested under the same mode key as the pool's current provisioning (`explicit`); within it, a present field overwrites and an absent field is left unchanged.
 
-The update is applied asynchronously — the pool's backing capacity converges to the new provisioning (adding or removing replicas, rolling instance types, and so on) after the response is returned.
+The update is applied asynchronously. The pool's backing capacity converges to the new provisioning (adding or removing replicas, rolling instance types, and so on) after the response is returned. The pool stays `active` while it converges; see [Status](#status).
 
 ### Request
 
@@ -438,7 +473,7 @@ A Capacity Pool cannot be deleted while it still has Databases pinned to it. Del
 *Status Code: 401 Unauthorized*
 - This error type typically indicates that the Momento API key passed in is either invalid or expired.
 
-*Status Code: 409 Precondition Failed*
+*Status Code: 409 Conflict*
 - The pool still has Databases pinned to it and cannot be deleted.
 
 *Status Code: 500 Internal Server Error*
