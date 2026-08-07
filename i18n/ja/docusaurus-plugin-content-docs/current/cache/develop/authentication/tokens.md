@@ -30,7 +30,7 @@ Momento トークンは、*データプレーン* API 操作へのアクセス�
 
 <SdkExampleTabs snippetId={'API_GenerateDisposableToken'} />
 
-トークン作成の詳細については、[APIリファレンスページ](../api-reference/auth.md)を参照してください。
+トークン作成の詳細については、[APIリファレンスページ](/platform/authentication)を参照してください。
 
 ## 有効期限
 

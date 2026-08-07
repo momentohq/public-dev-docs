@@ -43,7 +43,7 @@ Click on the Create Cache button and create a cache using the cloud provider and
 
 ![Image of Momento console Create Cache form](@site/static/img/console-create-cache-form.png)
 
-Then follow our [step-by-step instructions](https://docs.momentohq.com/cache/authentication/api-keys) to create an API key via the [Momento console](https://console.gomomento.com).
+Then follow our [step-by-step instructions](https://docs.momentohq.com/platform/authentication/api-keys) to create an API key via the [Momento console](https://console.gomomento.com).
 
 ### Step 2: Create a Momento Leaderboards
 

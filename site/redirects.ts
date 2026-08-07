@@ -22,7 +22,7 @@ const REDIRECTS = {
     '/develop/api-reference/collections/dictionary': '/cache/develop/api-reference/dictionary-collections',
     '/develop/api-reference/collections/list': '/cache/develop/api-reference/list-collections',
     '/develop/api-reference/collections/sets': '/cache/develop/api-reference/set-collections',
-    '/develop/api-reference/auth-tokens': '/cache/develop/api-reference/auth',
+    '/develop/api-reference/auth-tokens': '/platform/authentication',
 
     // leaderboards
     '/leaderboards/develop/api-reference': '/leaderboards/api-reference',
@@ -65,17 +65,40 @@ const REDIRECTS = {
     '/develop/guides/cheat-sheets/momento-cache-python-cheat-sheet': '/platform/sdks/python/cache',
     '/develop/sdks-integrations/deploying-javascript-web-sdk': '/platform/sdks/web',
 
-    // authentication page moves
-    '/cache/develop/authentication': '/cache/authentication',
-    '/cache/develop/authentication/api-keys': '/cache/authentication/api-keys',
-    '/cache/develop/authentication/tokens': '/cache/authentication/tokens',
-    '/cache/develop/authentication/permissions': '/cache/authentication/tokens/permissions',
-    '/topics/develop/authentication': '/topics/authentication',
-    '/topics/develop/authentication/api-keys': '/topics/authentication/api-keys',
-    '/topics/develop/authentication/tokens': '/topics/authentication/tokens',
-    '/topics/develop/authentication/tokens/permissions': '/topics/authentication/tokens/permissions',
-    '/topics/develop/authentication/permissions': '/topics/authentication/tokens/permissions',
-    '/api/authentication/permissions': '/api/authentication/tokens/permissions',
+    // Cross-product consolidation: auth / account / api -> Platform (decision 0012 / T-0036).
+    // Canonical homes now live under /platform/**; every historical path 301s STRAIGHT to
+    // canonical (no chains). Keep these so external inbound links keep landing.
+    // -- Authentication (consolidated from the cache / topics / api trees) --
+    '/cache/authentication': '/platform/authentication',
+    '/cache/authentication/api-keys': '/platform/authentication/api-keys',
+    '/cache/authentication/tokens': '/platform/authentication/tokens',
+    '/cache/authentication/tokens/permissions': '/platform/authentication/roles-and-permissions',
+    '/topics/authentication': '/platform/authentication',
+    '/topics/authentication/api-keys': '/platform/authentication/api-keys',
+    '/topics/authentication/tokens': '/platform/authentication/tokens',
+    '/topics/authentication/tokens/permissions': '/platform/authentication/roles-and-permissions',
+    '/api/authentication': '/platform/authentication',
+    '/api/authentication/api-keys': '/platform/authentication/api-keys',
+    '/api/authentication/tokens': '/platform/authentication/tokens',
+    '/api/authentication/tokens/permissions': '/platform/authentication/roles-and-permissions',
+    '/cache/develop/api-reference/auth': '/platform/authentication',
+    '/topics/api-reference/auth': '/platform/authentication',
+    // -- older develop/* auth paths (repointed straight to canonical; no chains) --
+    '/cache/develop/authentication': '/platform/authentication',
+    '/cache/develop/authentication/api-keys': '/platform/authentication/api-keys',
+    '/cache/develop/authentication/tokens': '/platform/authentication/tokens',
+    '/cache/develop/authentication/permissions': '/platform/authentication/roles-and-permissions',
+    '/topics/develop/authentication': '/platform/authentication',
+    '/topics/develop/authentication/api-keys': '/platform/authentication/api-keys',
+    '/topics/develop/authentication/tokens': '/platform/authentication/tokens',
+    '/topics/develop/authentication/tokens/permissions': '/platform/authentication/roles-and-permissions',
+    '/topics/develop/authentication/permissions': '/platform/authentication/roles-and-permissions',
+    '/api/authentication/permissions': '/platform/authentication/roles-and-permissions',
+    // -- API overview + account management / sharing --
+    '/api': '/platform/api',
+    '/account-management/api-keys-http-api': '/platform/authentication/api-keys',
+    '/account-management/roles-http-api': '/platform/authentication/roles-and-permissions',
+    '/account-sharing': '/platform/account-management',
 
     // Dead Pages
     '/docs/overview': '/',

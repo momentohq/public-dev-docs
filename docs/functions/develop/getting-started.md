@@ -34,7 +34,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup target add wasm32-wasip2
 ```
 
-You also need a Momento API key for the cache that will host your Function. If you don't have one, follow the [authentication guide](/cache/authentication/api-keys).
+You also need a Momento API key for the cache that will host your Function. If you don't have one, follow the [authentication guide](/platform/authentication/api-keys).
 
 ## Create a project
 
