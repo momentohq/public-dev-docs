@@ -67,14 +67,14 @@ export default function Home(): JSX.Element {
                     bus</Translate></Link></li>
                   <li><Link to="/topics/patterns/instant-messaging">Send instant messages</Link></li>
                   <li><Link to="/topics/api-reference/http-api">Publish over HTTP</Link></li>
-                  <li><Link to="/topics/authentication/tokens">Create session tokens</Link></li>
+                  <li><Link to="/platform/authentication/tokens">Create session tokens</Link></li>
                 </ul>
               </div>
               <div>
                 <h2><Translate id="forDevelopers">For developers</Translate></h2>
                 <ul className={styles.columnList}>
                   <li><Link to="/platform/sdks"><Translate id="availableSDKs">Available SDKs</Translate></Link></li>
-                  <li><Link to="/cache/authentication"><Translate id="authenticationAndAccessControl">Authentication
+                  <li><Link to="/platform/authentication"><Translate id="authenticationAndAccessControl">Authentication
                     and access control</Translate></Link></li>
                   <li><Link to="/cache/develop/basics/error-handling-production-readiness"><Translate
                       id="properlyHandlingErrorsInMomento">Properly handling errors in Momento</Translate></Link></li>
@@ -171,7 +171,7 @@ export default function Home(): JSX.Element {
             <p className={styles.highlightedDescription}>
               <Translate id="momentoAccountSharingFeature">Momento now supports account sharing, making it easy to manage and collaborate with your team. Simplify access and improve workflows with our new account-sharing functionality. Learn more about how to set it up and use it effectively.</Translate>
             </p>
-            <Link to="/account-sharing" className={styles.learnMoreLink}>
+            <Link to="/platform/account-management" className={styles.learnMoreLink}>
               <Translate id="learnMore">Learn More</Translate>
             </Link>
           </div>

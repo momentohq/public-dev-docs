@@ -42,7 +42,7 @@ Functions speeds you past the infrastructure to [orchestrate LLM workflows](/fun
 
 ## Browser-callable APIs without an API gateway
 
-Functions are covered by the same [auth tokens](/cache/authentication/tokens) as the rest of Momento: Your users' browsers and mobile apps can invoke them directly. There's no API Gateway, no WAF, no load balancer, and no Lambda to operate — see [proxying](/functions/patterns/proxying) for end-to-end examples.
+Functions are covered by the same [auth tokens](/platform/authentication/tokens) as the rest of Momento: Your users' browsers and mobile apps can invoke them directly. There's no API Gateway, no WAF, no load balancer, and no Lambda to operate — see [proxying](/functions/patterns/proxying) for end-to-end examples.
 
 **How Functions fit**
 

@@ -86,7 +86,7 @@ APIコールは[Momento Node.js SDK](/platform/sdks/nodejs/cache.mdx)と同じ�
 
 <SdkExampleCodeBlock language={'javascript'} snippetId={'API_GenerateDisposableToken'} />
 
-`DisposableTokenScope` や認可のためのパーミッションオブジェクトなど、Momento トークンの詳細については、[Auth API リファレンス](/cache/develop/api-reference/auth.md#generatedisposabletoken-api) を参照してください。
+`DisposableTokenScope` や認可のためのパーミッションオブジェクトなど、Momento トークンの詳細については、[Auth API リファレンス](/platform/authentication#generatedisposabletoken-api) を参照してください。
 
 ## FAQ
 

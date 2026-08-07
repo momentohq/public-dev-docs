@@ -16,7 +16,7 @@ keywords:
 
 # Vending disposable Momento tokens
 
-The [`momento-functions-token`](/functions/core-concepts/host-interfaces) crate lets your Function mint short-lived, scoped [disposable Momento tokens](/cache/authentication/tokens). This collapses a token-vending-machine architecture — Lambda + API Gateway + IAM — into one short Function.
+The [`momento-functions-token`](/functions/core-concepts/host-interfaces) crate lets your Function mint short-lived, scoped [disposable Momento tokens](/platform/authentication/tokens). This collapses a token-vending-machine architecture — Lambda + API Gateway + IAM — into one short Function.
 
 ## Add the dependency
 
@@ -75,7 +75,7 @@ fn vend(_payload: Data) -> WebResult<WebResponse> {
 
 When writing a token vending Function, consider:
 
-* **`Permissions`** this shares the shape of the [authentication API](/cache/authentication/tokens) — cache + item restrictions, topic + prefix restrictions, read-only/read-write/publish-only roles. Remember that permissions are for Functions _access_: The Function can do anything though.
+* **`Permissions`** this shares the shape of the [authentication API](/platform/authentication/tokens) — cache + item restrictions, topic + prefix restrictions, read-only/read-write/publish-only roles. Remember that permissions are for Functions _access_: The Function can do anything though.
 * **Duration** is in seconds. Keep it as short as makes sense for your application!
 * **`token_id`** is a small payload baked into the JWT Momento signs. Put a user id, a content id, or a small JSON object in here; the receiving Function can read it back via `WebEnvironment::load().token_metadata()` (see [Environment and metadata](/functions/capabilities/environment)).
 

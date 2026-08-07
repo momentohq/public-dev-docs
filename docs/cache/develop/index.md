@@ -44,6 +44,6 @@ If you have a disposable auth token or a v1 API key, you can instantiate a `Cred
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromDisposableToken'} />
 
-For general information on Momento authentication, see [our auth page](../authentication/index.mdx).
+For general information on Momento authentication, see [our auth page](/platform/authentication).
 
 For more information, see our [Response Objects](./develop/api-reference/response-objects) page, and the docs for the specific SDK that you are using (under `Develop`->`SDKs` in the left nav).

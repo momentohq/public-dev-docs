@@ -1,0 +1,35 @@
+---
+sidebar_label: Account management
+title: Account management
+description: Managing members of a Momento account and the roles that gate their access.
+---
+
+<!-- Projects: cross-product/account-management -->
+
+# Account management
+
+A Momento **account** has one or more **members**. Each member holds a
+[system role](/platform/authentication/roles-and-permissions) — **Owner**, **Operator**, or
+**Viewer** — that gates what they can do across the account, auth, and resource categories. Roles are
+assigned explicitly to members.
+
+## Members and invitations
+
+An **Owner** can:
+
+- **Invite** a user to the account. An invitation is pending until the user accepts it; the invite
+  defaults to the **Viewer** role.
+- **Change the role** of another member.
+- **Remove** a member.
+
+No member can change their own role, and an account always keeps at least one Owner.
+
+## Switching accounts
+
+A user can belong to several accounts and **switch** the active account in the console. After
+switching, the session reflects the permissions of the role held in the newly-active account.
+
+## Roles
+
+The roles that gate account membership are the same platform-wide system roles used everywhere else.
+See [roles and permissions](/platform/authentication/roles-and-permissions) for what each role can do.

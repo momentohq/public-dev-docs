@@ -1,0 +1,43 @@
+---
+sidebar_label: Authentication
+title: Authentication and access control
+description: How you authenticate with Momento and control access to your resources.
+---
+
+<!-- Projects: cross-product/authentication, cross-product/roles-and-permissions -->
+
+# Authentication and access control
+
+Momento separates two concerns:
+
+- **Authentication** — proving *who* a caller is, by presenting a **credential**.
+- **Authorization** — deciding *what* that caller may do, through **roles and permissions**.
+
+This is a platform-wide model: the same credentials and access controls apply across Momento
+products behind the shared gateway.
+
+## Credentials
+
+You authenticate by presenting one of two credential types:
+
+- **[API keys](./api-keys.md)** — long-lived credentials. A modern (v2) API key is valid across all
+  regions and is individually trackable and revocable; it is bound to a **role** for authorization.
+- **[Tokens](./tokens.md)** — short-lived credentials that carry their permissions inline and must
+  expire. They are ideal for handing scoped, temporary access to clients.
+
+A credential authenticates the caller regardless of protocol — RESP, gRPC, protosocket, or the
+HTTP API are all transports for the same authenticated identity.
+
+## Authorization
+
+What a credential can do is governed by a **permission set**, surfaced through
+**[roles and permissions](./roles-and-permissions.md)**: the predefined system roles
+(Owner / Operator / Viewer) and account-defined custom roles.
+
+## Connecting
+
+To make a call you provide your credential and target a **regional endpoint** (cell URL); the
+region base URL is shown in the console. For Momento Cache over RESP, connect with a standard
+Valkey or Redis client in standalone mode over TLS and authenticate with
+`AUTH <username> <password>`, where the **username is the Database name** and the **password is a
+Momento API token**. See [API keys](./api-keys.md) for endpoint configuration.

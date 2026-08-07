@@ -9,11 +9,11 @@
         "anyOf": [
           {
             "$ref": "Cache permission",
-            "link": "/api/authentication/permissions#cache-permission"
+            "link": "/platform/authentication/permissions#cache-permission"
           },
           {
             "$ref": "Topic permission",
-            "link": "/api/authentication/permissions#topic-permission"
+            "link": "/platform/authentication/permissions#topic-permission"
           }
         ]
       }

@@ -43,7 +43,7 @@ Momento Leaderboardsは、より効率的なメモリフットプリントを持
 
 ![Image of Momento console Create Cache form](@site/static/img/console-create-cache-form.png)
 
-次に、[ステップバイステップの手順](https://docs.momentohq.com/cache/authentication/api-keys)に従って、[Momentoコンソール](https://console.gomomento.com)からAPIキーを作成します。
+次に、[ステップバイステップの手順](https://docs.momentohq.com/platform/authentication/api-keys)に従って、[Momentoコンソール](https://console.gomomento.com)からAPIキーを作成します。
 
 ### Step 2: Momento Leaderboards の作成
 

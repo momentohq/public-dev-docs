@@ -30,6 +30,6 @@ Momentoクライアントをインスタンス化する際に、Momento APIキ�
 
 <SdkExampleTabs snippetId={'API_CredentialProviderFromString'} />
 
-Momento 認証に関する一般的な情報は、[認証のページ](/topics/authentication) を参照してください。
+Momento 認証に関する一般的な情報は、[認証のページ](/platform/authentication) を参照してください。
 
 詳細については、[レスポンスオブジェクト](/topics/api-reference/response-objects)のページや、使用しているSDKのドキュメント(左ナビの `Develop`->`SDKs` の下)を参照してください。

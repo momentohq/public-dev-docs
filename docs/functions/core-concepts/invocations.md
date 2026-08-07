@@ -87,7 +87,7 @@ Spawn is right for **fire-and-forget** work: warming a cache, fanning out a noti
 
 Each invocation carries the same auth context as any other Momento request. The Function can read:
 
-* **Token metadata** (`token_id`) - A small payload you embed when generating the [auth token](/cache/authentication/tokens) used to invoke. Useful for identifying the caller without a separate session lookup.
+* **Token metadata** (`token_id`) - A small payload you embed when generating the [auth token](/platform/authentication/tokens) used to invoke. Useful for identifying the caller without a separate session lookup.
 * **Environment** - Function-scoped configuration values you set at deploy time.
 
 Web Functions have an extra `WebEnvironment::load()` available to them with more web invocation metadata like headers, query string, and path — see [Environment and metadata](/functions/capabilities/environment).

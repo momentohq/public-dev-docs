@@ -112,7 +112,7 @@ The body is whatever your handler expects — a JSON object if you used `Json<T>
 
 ## Authorization for callers
 
-Callers authenticate with a Momento API key, the same way they would against any other Momento HTTP endpoint. For browser-callable Functions, generate [short-lived disposable tokens](/cache/authentication/tokens) with permissions scoped only to the Function they need to call — see the [token vending](/functions/capabilities/tokens) page for an end-to-end pattern.
+Callers authenticate with a Momento API key, the same way they would against any other Momento HTTP endpoint. For browser-callable Functions, generate [short-lived disposable tokens](/platform/authentication/tokens) with permissions scoped only to the Function they need to call — see the [token vending](/functions/capabilities/tokens) page for an end-to-end pattern.
 
 Of note, authorization is only applied to access to the Function. The Function executes with a privileged role from Momento's point of view. If certain callers are allowed to do certain things and others are not, that is, if *you* have extra authorization constraints, you need to apply them via the trusted `WebEnvironment::token_metadata`.
 
