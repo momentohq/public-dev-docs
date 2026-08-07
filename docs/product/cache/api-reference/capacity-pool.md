@@ -100,19 +100,17 @@ The fields of an `insufficient_capacity` diagnostic:
 | last_observed_epoch_seconds | Integer | The most recent time the condition was observed. For an active diagnostic, how recently it was confirmed still in effect; for a resolved one, the last failure before it cleared. |
 | resolved_epoch_seconds | Integer | When the condition resolved, in seconds since the Unix epoch. Present only on a `resolved` diagnostic. |
 
-The `scale_blocked_by_utilization` kind is raised when a requested change to a pool cannot be applied given the pool's current utilization (for example, a shard-count or instance-type change that the capacity check rejects):
+The `scale_blocked_by_utilization` kind is raised when a requested change to a pool is rejected by the capacity safety check — the pool's current data no longer fits the requested configuration, or its usage can't currently be verified. The request is retried automatically and applies once it fits (or is superseded by another update):
 
 ```json
 {
   "scale_blocked_by_utilization": {
     "state": "active",
-    "reason": "does_not_fit",
-    "requested": {
-      "instance_type": "r7g.xlarge",
-      "shard_count": 6,
-      "replicas_per_shard": 1,
-      "zones": ["us-east-1a", "us-east-1b"]
-    },
+    "message": "The requested configuration is smaller than the pool's current data; retrying until it fits.",
+    "requested_shard_count": 6,
+    "requested_instance_type": "r7g.xlarge",
+    "data_approx": "42 GB",
+    "capacity_approx": "32 GB",
     "first_observed_epoch_seconds": 1719360000,
     "last_observed_epoch_seconds": 1719363600
   }
@@ -124,8 +122,11 @@ The fields of a `scale_blocked_by_utilization` diagnostic:
 | Field | Type | Description |
 |-------|------|-------------|
 | state | String | Whether the condition is currently in effect (`active`) or recently cleared (`resolved`). |
-| reason | String | Why the change was blocked: the requested capacity does not fit the pool's current utilization, or the fit could not be verified. |
-| requested | Object | The requested provisioning that was blocked, in the same shape as the pool's `provisioning`. See [Provisioning](#provisioning). |
+| message | String | A human-readable summary suitable for surfacing directly to the customer. |
+| requested_shard_count | Integer | The requested shard count that isn't landing. |
+| requested_instance_type | String | The requested instance type that isn't landing. |
+| data_approx | String | A rounded total of the pool's current data. Present only when the data doesn't fit; absent when usage can't be verified. |
+| capacity_approx | String | A rounded total of what the requested configuration can hold. Present only when the data doesn't fit. |
 | first_observed_epoch_seconds | Integer | When the condition was first observed, in seconds since the Unix epoch. |
 | last_observed_epoch_seconds | Integer | The most recent time the condition was observed. |
 | resolved_epoch_seconds | Integer | When the condition resolved, in seconds since the Unix epoch. Present only on a `resolved` diagnostic. |

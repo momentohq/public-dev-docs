@@ -41,7 +41,7 @@ Momento Cache has two primitives:
 - A **[Capacity Pool](/product/cache/concepts/capacity-pool)** is the dedicated Valkey capacity you
   provision. You size it (by instance for Cluster, or by capacity for Flex) and choose its
   availability zones; Momento provisions and operates the underlying cluster.
-- A **[Database](/product/cache/concepts/database)** is a logical cache that runs on a Capacity Pool. You
+- A **[Database](/product/cache/concepts/database)** is a logical container that runs on a Capacity Pool. You
   can run several Databases on one pool; they share its compute and memory.
 
 You reach a Database through a [shared gateway](/product/cache/concepts/connectivity-and-gateway) using a

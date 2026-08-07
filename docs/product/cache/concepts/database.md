@@ -1,14 +1,14 @@
 ---
 sidebar_label: Database
 title: Database
-description: A Database is a logical cache that runs on a Capacity Pool.
+description: A Database is a logical container that runs on a Capacity Pool.
 ---
 
 <!-- Projects: cache2/concepts/database -->
 
 # Database
 
-A Database is a logical cache that runs on a [Capacity Pool](/product/cache/concepts/capacity-pool). It is the logical
+A Database is a logical container that runs on a [Capacity Pool](/product/cache/concepts/capacity-pool). It is the logical
 container for your keys and values. You connect to a Database with a standard Valkey or Redis client
 through the [shared gateway](/product/cache/concepts/connectivity-and-gateway).
 
