@@ -54,7 +54,7 @@ Add `.cargo/config.toml` so you don't have to pass `--target` on every build:
 target = "wasm32-wasip2"
 ```
 
-### Configure `Cargo.toml`
+### Configure Cargo.toml
 
 A minimal web Function needs the bytes host crate (for payloads) and guest-web host crate (for the `invoke!` macro). Tell cargo to produce a `cdylib` to get the right `.wasm` output:
 

@@ -40,7 +40,7 @@ This is a reasonable place for upstream API keys, region selectors, model identi
 Environment variables are visible to anyone who can read your Function's configuration. Use roles or [Secrets Manager](/functions/capabilities/aws) for security-critical credentials you need to rotate or audit independently.
 :::
 
-## `WebEnvironment::load()`
+## WebEnvironment::load()
 
 Per-invocation context comes from `WebEnvironment::load()`. The same object exposes:
 
