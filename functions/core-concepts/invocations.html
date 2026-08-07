@@ -9,8 +9,8 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var g=t.getElementsByTagName(a)[0],m=t.createElement(a);m.async=!0,m.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",g.parentNode.insertBefore(m,g)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.4dea463d.css">
-<script src="/assets/js/runtime~main.401c97a6.js" defer="defer"></script>
-<script src="/assets/js/main.dfd25a4b.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.9bc01c00.js" defer="defer"></script>
+<script src="/assets/js/main.a9c091e0.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -36,7 +36,7 @@
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="identity-and-metadata-per-invocation">Identity and metadata per invocation<a href="#identity-and-metadata-per-invocation" class="hash-link" aria-label="Direct link to Identity and metadata per invocation" title="Direct link to Identity and metadata per invocation" translate="no">​</a></h2>
 <p>Each invocation carries the same auth context as any other Momento request. The Function can read:</p>
 <ul>
-<li class=""><strong>Token metadata</strong> (<code>token_id</code>) - A small payload you embed when generating the <a class="" href="/cache/authentication/tokens">auth token</a> used to invoke. Useful for identifying the caller without a separate session lookup.</li>
+<li class=""><strong>Token metadata</strong> (<code>token_id</code>) - A small payload you embed when generating the <a class="" href="/platform/authentication/tokens">auth token</a> used to invoke. Useful for identifying the caller without a separate session lookup.</li>
 <li class=""><strong>Environment</strong> - Function-scoped configuration values you set at deploy time.</li>
 </ul>
 <p>Web Functions have an extra <code>WebEnvironment::load()</code> available to them with more web invocation metadata like headers, query string, and path — see <a class="" href="/functions/capabilities/environment">Environment and metadata</a>.</p>
