@@ -847,7 +847,7 @@ Momento/ObjectStore
 
 Metrics are emitted in two variants:
 
-### Aggregate metrics (without `Result` dimension)
+### Aggregate metrics (without Result dimension)
 
 These metrics are emitted regardless of the request's outcome. They include:
 
@@ -857,7 +857,7 @@ These metrics are emitted regardless of the request's outcome. They include:
 | `Bytes` | Bytes | Total bytes transferred (object size for PutObject, response size for GetObject, not emitted by DeleteObject). |
 | `Latency` | Microseconds | End-to-end request latency. |
 
-### Per-result metrics (with `Result` dimension)
+### Per-result metrics (with Result dimension)
 
 These metrics are emitted with a `Result` dimension, allowing you to filter and alarm on specific outcomes.
 

@@ -20,14 +20,14 @@ details:
 Check [Valkey compatibility](/product/cache/concepts/valkey-compatibility) for the supported commands before
 you port a workload. Below are examples with some of the most common clients.
 
-## `valkey-cli`
+## valkey-cli
 
 ```sh
 valkey-cli -h <endpoint> -p 6379 --tls \
   --user <database-name> --pass <api-token>
 ```
 
-## Node.js (`ioredis`)
+## Node.js (ioredis)
 
 ```js
 import Redis from "ioredis";
@@ -41,7 +41,7 @@ const client = new Redis({
 });
 ```
 
-## Python (`redis-py`)
+## Python (redis-py)
 
 ```python
 import redis
@@ -55,7 +55,7 @@ client = redis.Redis(
 )
 ```
 
-## Go (`go-redis`)
+## Go (go-redis)
 
 ```go
 client := redis.NewClient(&redis.Options{

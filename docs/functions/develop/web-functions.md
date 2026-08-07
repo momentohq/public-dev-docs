@@ -58,7 +58,7 @@ fn greet(Json(request): Json<Request>) -> Json<Response> {
 
 If decoding fails, a 400 is returned to the caller without running your handler.
 
-## Status codes, headers, and `WebResponse`
+## Status codes, headers, and WebResponse
 
 When you need more control over the response — error codes, custom headers, content type — return a `WebResponse`. Use `WebResult` for fallible handlers:
 
@@ -123,7 +123,7 @@ fn echo_details(Json(request): Json<Request>) -> WebResult<WebResponse> {
 
 `WebEnvironment` also exposes `function_name()`, `query_parameters()`, etc. See [Environment and metadata](/functions/capabilities/environment) for the full surface.
 
-## Offloaded bytes with `Data`
+## Offloaded bytes with Data
 
 If your Function is a thin proxy — pass the body upstream, return the upstream response body — keep it as `Data` end-to-end. The bytes never enter your sandbox:
 

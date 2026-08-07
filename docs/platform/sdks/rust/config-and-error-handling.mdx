@@ -55,7 +55,7 @@ most common factory functions for creating a `CredentialProvider` are:
 Most APIs return a `MomentoResult`, which is just a type alias for `Result<T, MomentoError>`. You
 can use a `match` statement to handle the `Result` or use the `?` operator to propagate errors.
 
-## Enum Response Types, Type Coercion via `into` and `try_into`
+## Enum Response Types, Type Coercion via into and try_into
 
 Many APIs may have more than one type of response that they can return. For example, `CacheClient::get`
 may return a cache hit or a cache miss. These response are represented as enums, which you can
