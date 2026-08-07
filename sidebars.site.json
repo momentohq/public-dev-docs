@@ -1,0 +1,279 @@
+[
+  {
+    "type": "category",
+    "label": "Cloud",
+    "collapsible": true,
+    "collapsed": false,
+    "items": [
+      {
+        "type": "category",
+        "label": "Momento Cache",
+        "collapsible": true,
+        "collapsed": false,
+        "items": [
+          "product/cache/index",
+          "product/cache/getting-started",
+          {
+            "type": "category",
+            "label": "Concepts",
+            "collapsible": true,
+            "collapsed": false,
+            "items": [
+              "product/cache/concepts/capacity-pool",
+              "product/cache/concepts/database",
+              "product/cache/concepts/provisioning-and-sizing",
+              "product/cache/concepts/connectivity-and-gateway",
+              "product/cache/concepts/isolation",
+              "product/cache/concepts/valkey-compatibility"
+            ]
+          },
+          "product/cache/manage/pools",
+          "product/cache/connect/clients",
+          {
+            "type": "category",
+            "label": "API reference",
+            "collapsible": true,
+            "collapsed": false,
+            "items": [
+              "product/cache/api-reference/capacity-pool",
+              "product/cache/api-reference/database"
+            ]
+          },
+          "product/cache/reliability",
+          "product/cache/pricing"
+        ],
+        "className": "sidebar-group-product"
+      }
+    ],
+    "className": "sidebar-group-primary"
+  },
+  {
+    "type": "category",
+    "label": "Self-Hosted",
+    "collapsible": true,
+    "collapsed": true,
+    "items": [
+      {
+        "type": "category",
+        "label": "Valkey Operator",
+        "collapsible": true,
+        "collapsed": false,
+        "items": [
+          "self-hosted/valkey-operator/index",
+          "self-hosted/valkey-operator/why-this-operator",
+          {
+            "type": "category",
+            "label": "Getting started",
+            "collapsible": true,
+            "collapsed": false,
+            "items": [
+              "self-hosted/valkey-operator/getting-started/index",
+              "self-hosted/valkey-operator/getting-started/prerequisites",
+              "self-hosted/valkey-operator/getting-started/installation",
+              "self-hosted/valkey-operator/getting-started/quickstart",
+              "self-hosted/valkey-operator/getting-started/glossary"
+            ]
+          },
+          {
+            "type": "category",
+            "label": "Concepts",
+            "collapsible": true,
+            "collapsed": false,
+            "items": [
+              "self-hosted/valkey-operator/concepts/index",
+              "self-hosted/valkey-operator/concepts/resource-model",
+              "self-hosted/valkey-operator/concepts/architecture",
+              "self-hosted/valkey-operator/concepts/reconciliation",
+              "self-hosted/valkey-operator/concepts/pod-management",
+              "self-hosted/valkey-operator/concepts/data-durability"
+            ]
+          },
+          {
+            "type": "category",
+            "label": "For product teams",
+            "collapsible": true,
+            "collapsed": false,
+            "items": [
+              "self-hosted/valkey-operator/team-guide/index",
+              "self-hosted/valkey-operator/team-guide/provisioning",
+              "self-hosted/valkey-operator/team-guide/connecting",
+              "self-hosted/valkey-operator/team-guide/scaling",
+              "self-hosted/valkey-operator/team-guide/changing-configuration"
+            ]
+          },
+          {
+            "type": "category",
+            "label": "For platform teams",
+            "collapsible": true,
+            "collapsed": false,
+            "items": [
+              "self-hosted/valkey-operator/platform-guide/index",
+              "self-hosted/valkey-operator/platform-guide/curating-images-and-configs",
+              "self-hosted/valkey-operator/platform-guide/multi-tenancy-and-rbac",
+              "self-hosted/valkey-operator/platform-guide/valkey-upgrades",
+              "self-hosted/valkey-operator/platform-guide/operator-upgrades",
+              "self-hosted/valkey-operator/platform-guide/kubernetes-maintenance",
+              "self-hosted/valkey-operator/platform-guide/monitoring",
+              "self-hosted/valkey-operator/platform-guide/logging"
+            ]
+          },
+          {
+            "type": "category",
+            "label": "Operations",
+            "collapsible": true,
+            "collapsed": false,
+            "items": [
+              "self-hosted/valkey-operator/operations/index",
+              "self-hosted/valkey-operator/operations/failure-modes",
+              "self-hosted/valkey-operator/operations/zone-aware-placement",
+              "self-hosted/valkey-operator/operations/sizing",
+              "self-hosted/valkey-operator/operations/benchmarking",
+              "self-hosted/valkey-operator/operations/troubleshooting",
+              "self-hosted/valkey-operator/operations/uninstall"
+            ]
+          },
+          {
+            "type": "category",
+            "label": "Security model",
+            "collapsible": true,
+            "collapsed": false,
+            "items": [
+              "self-hosted/valkey-operator/security/index",
+              "self-hosted/valkey-operator/security/tls",
+              "self-hosted/valkey-operator/security/acls",
+              "self-hosted/valkey-operator/security/rbac",
+              "self-hosted/valkey-operator/security/networking"
+            ]
+          },
+          {
+            "type": "category",
+            "label": "Reference",
+            "collapsible": true,
+            "collapsed": false,
+            "items": [
+              "self-hosted/valkey-operator/reference/index",
+              "self-hosted/valkey-operator/reference/cluster-status",
+              "self-hosted/valkey-operator/reference/forced-settings",
+              "self-hosted/valkey-operator/reference/labels-annotations",
+              "self-hosted/valkey-operator/reference/operator-configuration",
+              "self-hosted/valkey-operator/reference/examples",
+              {
+                "type": "category",
+                "label": "API reference",
+                "collapsible": true,
+                "collapsed": false,
+                "items": [
+                  "self-hosted/valkey-operator/reference/api/index",
+                  "self-hosted/valkey-operator/reference/api/valkeyimage",
+                  "self-hosted/valkey-operator/reference/api/valkeyconfig",
+                  "self-hosted/valkey-operator/reference/api/valkeyrole",
+                  "self-hosted/valkey-operator/reference/api/valkeycluster",
+                  "self-hosted/valkey-operator/reference/api/valkeynode"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "category",
+            "label": "Support",
+            "collapsible": true,
+            "collapsed": false,
+            "items": [
+              "self-hosted/valkey-operator/support/index",
+              "self-hosted/valkey-operator/support/compatibility",
+              "self-hosted/valkey-operator/support/faq",
+              "self-hosted/valkey-operator/support/what-we-test",
+              "self-hosted/valkey-operator/support/getting-support"
+            ]
+          },
+          "self-hosted/valkey-operator/roadmap"
+        ],
+        "className": "sidebar-group-product"
+      }
+    ],
+    "className": "sidebar-group-primary"
+  },
+  {
+    "type": "category",
+    "label": "Platform",
+    "collapsible": true,
+    "collapsed": false,
+    "items": [
+      {
+        "type": "link",
+        "label": "Authentication",
+        "href": "/platform/authentication"
+      },
+      {
+        "type": "link",
+        "label": "Account management",
+        "href": "/platform/account-management"
+      },
+      {
+        "type": "link",
+        "label": "API",
+        "href": "/platform/api"
+      },
+      {
+        "type": "link",
+        "label": "Available Regions",
+        "href": "/platform/regions"
+      },
+      {
+        "type": "link",
+        "label": "Clients and SDKs",
+        "href": "/platform/sdks"
+      },
+      {
+        "type": "link",
+        "label": "Quotas and Limits",
+        "href": "/platform/limits/auth"
+      }
+    ],
+    "className": "sidebar-group-primary"
+  },
+  {
+    "type": "category",
+    "label": "Other",
+    "collapsible": true,
+    "collapsed": true,
+    "items": [
+      {
+        "type": "link",
+        "label": "Momento Cache (Serverless)",
+        "href": "/cache"
+      },
+      {
+        "type": "link",
+        "label": "Topics",
+        "href": "/topics"
+      },
+      {
+        "type": "link",
+        "label": "Functions",
+        "href": "/functions/overview"
+      },
+      {
+        "type": "link",
+        "label": "Leaderboards",
+        "href": "/leaderboards"
+      },
+      {
+        "type": "link",
+        "label": "Media Storage",
+        "href": "/media-storage/overview"
+      },
+      {
+        "type": "link",
+        "label": "Object Store",
+        "href": "/objectstore/http-api"
+      },
+      {
+        "type": "link",
+        "label": "Cloud Linter",
+        "href": "/cloud-linter"
+      }
+    ],
+    "className": "sidebar-group-primary"
+  }
+]
