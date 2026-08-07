@@ -10,7 +10,7 @@ description: HTTP API reference for Momento Capacity Pools.
 
 Momento provides an HTTP API interface for managing Capacity Pools. This API lets you create, describe, update, list, and delete Capacity Pools programmatically.
 
-A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. You choose the instance type, shard count, replicas per shard, and availability zone (AZ) placement. Momento owns the underlying lifecycle and health of the pool. Each pool hosts one or more [Databases](/product/cache/api-reference/database), which share the pool's compute and memory.
+A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. You choose how the pool is sized — either **explicit** mode, in which you specify the exact instance type, shard count, and replicas per shard, or **managed** mode, in which you give capacity and replication *bounds* and Momento sizes the pool within them — along with availability zone (AZ) placement. Momento owns the underlying lifecycle and health of the pool. Each pool hosts one or more [Databases](/product/cache/api-reference/database), which share the pool's compute and memory.
 
 :::tip[Info]
 
@@ -32,7 +32,18 @@ The Capacity Pool API lets you create, describe, update, list, and delete Capaci
 
 ## Provisioning
 
-A Capacity Pool's capacity is described by a `provisioning` object. The object nests its configuration under a single key that names the provisioning mode. This reference documents `explicit` mode, in which you specify the instance type, shard count, replicas per shard, and AZ placement.
+A Capacity Pool's capacity is described by a `provisioning` object. The object nests its configuration under a single key that names the provisioning **mode**. Exactly one mode key must be provided, and unknown fields are rejected. Two modes are available:
+
+- [**`explicit`**](#explicit-mode) (Cluster) — you specify the instance type, shard count, replicas per shard, and AZ placement directly.
+- [**`managed`**](#managed-mode) (Flex) — you specify capacity and replication *bounds*, and Momento sizes the pool within them.
+
+A pool's mode is fixed when it is created. Switching an existing pool between modes is not supported today.
+
+In both modes, `zones` are availability-zone **IDs** (for example, `use1-az1`), not zone names — an AZ ID maps to the same physical zone across accounts.
+
+### Explicit mode
+
+In `explicit` mode you specify the pool's shape directly:
 
 ```json
 {
@@ -40,7 +51,7 @@ A Capacity Pool's capacity is described by a `provisioning` object. The object n
     "instance_type": "r7g.xlarge",
     "shard_count": 3,
     "replicas_per_shard": 1,
-    "zones": ["us-east-1a", "us-east-1b"]
+    "zones": ["use1-az1", "use1-az2"]
   }
 }
 ```
@@ -51,7 +62,40 @@ A Capacity Pool's capacity is described by a `provisioning` object. The object n
 | explicit.instance_type | yes | String | The instance type for the pool's nodes (for example, `r7g.xlarge`). |
 | explicit.shard_count | yes | Integer | The number of shards in the pool. |
 | explicit.replicas_per_shard | yes | Integer | The number of replicas per shard. |
-| explicit.zones | yes | Array\<String\> | The availability zones across which the pool's nodes are placed. Must contain at least one zone. |
+| explicit.zones | yes | Array\<String\> | The availability-zone IDs across which the pool's nodes are placed. Must contain at least one zone. |
+
+### Managed mode
+
+In `managed` mode you specify bounds for capacity and replication, and Momento sizes the pool within them. Set a dimension's minimum equal to its maximum to pin it to an exact value:
+
+```json
+{
+  "managed": {
+    "capacity": {
+      "min_gb": 32,
+      "max_gb": 128
+    },
+    "replication": {
+      "min_replicas_per_shard": 1,
+      "max_replicas_per_shard": 2
+    },
+    "zones": ["use1-az1", "use1-az2"]
+  }
+}
+```
+
+| Field | Required? | Type | Description |
+|-------|-----------|------|-------------|
+| managed | yes | Object | The managed-mode provisioning configuration. Exactly one mode key must be provided. |
+| managed.capacity | yes | Object | The pool's capacity bounds, in GB. |
+| managed.capacity.min_gb | yes | Integer | The minimum capacity, in GB. Set equal to `max_gb` to pin capacity. |
+| managed.capacity.max_gb | yes | Integer | The maximum capacity, in GB. |
+| managed.replication | yes | Object | The pool's replication bounds. |
+| managed.replication.min_replicas_per_shard | yes | Integer | The minimum replicas per shard. Set equal to the maximum to pin replication. |
+| managed.replication.max_replicas_per_shard | yes | Integer | The maximum replicas per shard. |
+| managed.zones | yes | Array\<String\> | The availability-zone IDs across which the pool's nodes are placed. Must contain at least one zone. |
+
+Because managed capacity is quantized to the configurations available in the cell, the capacity you are granted may exceed `min_gb`. The concrete capacity and replication a managed pool has right now are reported in the response fields [`current_capacity_gb` and `current_replicas_per_shard`](#describe-capacity-pool).
 
 ## Status
 
@@ -79,9 +123,9 @@ The `insufficient_capacity` kind is raised when Momento cannot provision the req
 {
   "insufficient_capacity": {
     "state": "active",
-    "message": "Insufficient r7g.xlarge capacity in us-east-1a.",
+    "message": "Insufficient r7g.xlarge capacity in use1-az1.",
     "instance_type": "r7g.xlarge",
-    "availability_zones": ["us-east-1a"],
+    "availability_zones": ["use1-az1"],
     "first_observed_epoch_seconds": 1719360000,
     "last_observed_epoch_seconds": 1719363600
   }
@@ -157,6 +201,8 @@ Creates a new Capacity Pool with the specified provisioning. The pool is created
 
 #### Request Body
 
+An `explicit`-mode pool:
+
 ```json
 {
   "provisioning": {
@@ -164,7 +210,21 @@ Creates a new Capacity Pool with the specified provisioning. The pool is created
       "instance_type": "r7g.xlarge",
       "shard_count": 3,
       "replicas_per_shard": 1,
-      "zones": ["us-east-1a", "us-east-1b"]
+      "zones": ["use1-az1", "use1-az2"]
+    }
+  }
+}
+```
+
+A `managed`-mode pool:
+
+```json
+{
+  "provisioning": {
+    "managed": {
+      "capacity": { "min_gb": 32, "max_gb": 128 },
+      "replication": { "min_replicas_per_shard": 1, "max_replicas_per_shard": 2 },
+      "zones": ["use1-az1", "use1-az2"]
     }
   }
 }
@@ -172,7 +232,7 @@ Creates a new Capacity Pool with the specified provisioning. The pool is created
 
 | Field | Required? | Type | Description |
 |-------|-----------|------|-------------|
-| provisioning | yes | Object | The provisioning configuration for the pool. See [Provisioning](#provisioning). |
+| provisioning | yes | Object | The provisioning configuration for the pool. All fields of the chosen mode are required at create. See [Provisioning](#provisioning). |
 
 ### Responses
 
@@ -188,7 +248,7 @@ Creates a new Capacity Pool with the specified provisioning. The pool is created
       "instance_type": "r7g.xlarge",
       "shard_count": 3,
       "replicas_per_shard": 1,
-      "zones": ["us-east-1a", "us-east-1b"]
+      "zones": ["use1-az1", "use1-az2"]
     }
   },
   "status": "creating",
@@ -202,6 +262,8 @@ Creates a new Capacity Pool with the specified provisioning. The pool is created
 | provisioning | Object | The pool's provisioning configuration. See [Provisioning](#provisioning). |
 | status | String | The pool's lifecycle status. See [Status](#status). |
 | diagnostics | Array | Customer-actionable conditions affecting the pool. Empty when there is nothing to surface. See [Diagnostics](#diagnostics). |
+| current_capacity_gb | Integer | **Managed pools only.** The capacity, in GB, the pool concretely has right now within its requested bounds. Omitted for explicit pools. |
+| current_replicas_per_shard | Integer | **Managed pools only.** The replicas per shard the pool concretely has right now within its requested bounds. Omitted for explicit pools. |
 
 #### Error
 
@@ -249,6 +311,8 @@ Retrieves the details of a specific Capacity Pool.
 
 *Status Code: 200 OK*
 
+An `explicit`-mode pool:
+
 ```json
 {
   "name": "prod-us-east-1",
@@ -257,7 +321,7 @@ Retrieves the details of a specific Capacity Pool.
       "instance_type": "r7g.xlarge",
       "shard_count": 3,
       "replicas_per_shard": 1,
-      "zones": ["us-east-1a", "us-east-1b"]
+      "zones": ["use1-az1", "use1-az2"]
     }
   },
   "status": "active",
@@ -265,7 +329,26 @@ Retrieves the details of a specific Capacity Pool.
 }
 ```
 
-The `status` field reflects the pool's lifecycle status (`creating` / `active` / `deleting`). The `diagnostics` field is derived from the underlying capacity at read time; Describe returns active conditions plus recently-resolved ones. See [Diagnostics](#diagnostics).
+A `managed`-mode pool additionally reports the capacity and replication it concretely has right now via `current_capacity_gb` and `current_replicas_per_shard`:
+
+```json
+{
+  "name": "flex-us-east-1",
+  "provisioning": {
+    "managed": {
+      "capacity": { "min_gb": 32, "max_gb": 128 },
+      "replication": { "min_replicas_per_shard": 1, "max_replicas_per_shard": 2 },
+      "zones": ["use1-az1", "use1-az2"]
+    }
+  },
+  "status": "active",
+  "diagnostics": [],
+  "current_capacity_gb": 64,
+  "current_replicas_per_shard": 1
+}
+```
+
+The `status` field reflects the pool's lifecycle status (`creating` / `active` / `deleting`). The `diagnostics` field is derived from the underlying capacity at read time; Describe returns active conditions plus recently-resolved ones. See [Diagnostics](#diagnostics). For managed pools, `current_capacity_gb` and `current_replicas_per_shard` report the concrete capacity and replication within the requested bounds; both are omitted for explicit pools.
 
 #### Error
 
@@ -311,24 +394,25 @@ Lists all Capacity Pools owned by your account.
           "instance_type": "r7g.xlarge",
           "shard_count": 3,
           "replicas_per_shard": 1,
-          "zones": ["us-east-1a", "us-east-1b"]
+          "zones": ["use1-az1", "use1-az2"]
         }
       },
       "status": "active",
       "diagnostics": []
     },
     {
-      "name": "dev-us-east-1",
+      "name": "flex-us-east-1",
       "provisioning": {
-        "explicit": {
-          "instance_type": "r7g.large",
-          "shard_count": 1,
-          "replicas_per_shard": 1,
-          "zones": ["us-east-1a"]
+        "managed": {
+          "capacity": { "min_gb": 32, "max_gb": 128 },
+          "replication": { "min_replicas_per_shard": 1, "max_replicas_per_shard": 2 },
+          "zones": ["use1-az1"]
         }
       },
       "status": "active",
-      "diagnostics": []
+      "diagnostics": [],
+      "current_capacity_gb": 64,
+      "current_replicas_per_shard": 1
     }
   ]
 }
@@ -350,9 +434,9 @@ Lists all Capacity Pools owned by your account.
 
 ## Update Capacity Pool
 
-Updates the provisioning of an existing Capacity Pool. The request body contains only the fields to change; any subset of the fields is valid. The configuration is nested under the same mode key as the pool's current provisioning (`explicit`); within it, a present field overwrites and an absent field is left unchanged.
+Updates the provisioning of an existing Capacity Pool. The request body contains only the fields to change; any subset of the fields is valid. The configuration is nested under the same mode key as the pool's current provisioning (`explicit` or `managed`); within it, a present field overwrites and an absent field is left unchanged. A pool's mode cannot be changed by an update.
 
-The update is applied asynchronously. The pool's backing capacity converges to the new provisioning (adding or removing replicas, rolling instance types, and so on) after the response is returned. The pool stays `active` while it converges; see [Status](#status).
+The update is applied asynchronously. The pool's backing capacity converges to the new provisioning (adding or removing replicas, rolling instance types, resizing within managed bounds, and so on) after the response is returned. The pool stays `active` while it converges; see [Status](#status).
 
 ### Request
 
@@ -374,6 +458,8 @@ The update is applied asynchronously. The pool's backing capacity converges to t
 
 #### Request Body
 
+For an `explicit`-mode pool (here, raising replicas per shard):
+
 ```json
 {
   "provisioning": {
@@ -384,14 +470,28 @@ The update is applied asynchronously. The pool's backing capacity converges to t
 }
 ```
 
+For a `managed`-mode pool, a present `capacity` or `replication` replaces that dimension's bounds in full (here, raising the capacity ceiling):
+
+```json
+{
+  "provisioning": {
+    "managed": {
+      "capacity": { "min_gb": 32, "max_gb": 256 }
+    }
+  }
+}
+```
+
 | Field | Required? | Type | Description |
 |-------|-----------|------|-------------|
-| provisioning | yes | Object | The provisioning configuration to change, nested under the mode key. |
-| provisioning.explicit | yes | Object | The explicit-mode fields to change. Must match the pool's current mode. |
+| provisioning | yes | Object | The provisioning configuration to change, nested under the mode key. Must match the pool's current mode. |
 | provisioning.explicit.instance_type | no | String | If present, the new instance type for the pool's nodes. |
 | provisioning.explicit.shard_count | no | Integer | If present, the new number of shards. |
 | provisioning.explicit.replicas_per_shard | no | Integer | If present, the new number of replicas per shard. |
 | provisioning.explicit.zones | no | Array\<String\> | If non-empty, replaces the pool's zone set. An empty or absent value leaves the zones unchanged. |
+| provisioning.managed.capacity | no | Object | If present, replaces the capacity bounds (`min_gb`, `max_gb`) in full. |
+| provisioning.managed.replication | no | Object | If present, replaces the replication bounds (`min_replicas_per_shard`, `max_replicas_per_shard`) in full. |
+| provisioning.managed.zones | no | Array\<String\> | If non-empty, replaces the pool's zone set. An empty or absent value leaves the zones unchanged. |
 
 ### Responses
 
@@ -409,7 +509,7 @@ Returns the updated pool in the same shape as the [Describe Capacity Pool](#desc
       "instance_type": "r7g.xlarge",
       "shard_count": 3,
       "replicas_per_shard": 2,
-      "zones": ["us-east-1a", "us-east-1b"]
+      "zones": ["use1-az1", "use1-az2"]
     }
   },
   "status": "active",
@@ -484,7 +584,7 @@ A Capacity Pool cannot be deleted while it still has Databases pinned to it. Del
 
 # Examples
 
-## Example: Create Capacity Pool
+## Example: Create an explicit-mode Capacity Pool
 
 Create a new Capacity Pool with 3 shards and 1 replica per shard across two AZs:
 
@@ -497,11 +597,30 @@ curl -X POST -H "Authorization: <token>" \
         "instance_type": "r7g.xlarge",
         "shard_count": 3,
         "replicas_per_shard": 1,
-        "zones": ["us-east-1a", "us-east-1b"]
+        "zones": ["use1-az1", "use1-az2"]
       }
     }
   }' \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/capacity_pool/prod-us-east-1"
+```
+
+## Example: Create a managed-mode Capacity Pool
+
+Create a Capacity Pool that Momento sizes between 32 GB and 128 GB, with 1–2 replicas per shard:
+
+```bash
+curl -X POST -H "Authorization: <token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "provisioning": {
+      "managed": {
+        "capacity": { "min_gb": 32, "max_gb": 128 },
+        "replication": { "min_replicas_per_shard": 1, "max_replicas_per_shard": 2 },
+        "zones": ["use1-az1", "use1-az2"]
+      }
+    }
+  }' \
+  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/capacity_pool/flex-us-east-1"
 ```
 
 ## Example: Describe Capacity Pool
