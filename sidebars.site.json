@@ -86,7 +86,8 @@
               "self-hosted/valkey-operator/concepts/reconciliation",
               "self-hosted/valkey-operator/concepts/pod-management",
               "self-hosted/valkey-operator/concepts/data-durability"
-            ]
+            ],
+            "key": "valkey-operator-concepts"
           },
           {
             "type": "category",
@@ -169,7 +170,8 @@
                   "self-hosted/valkey-operator/reference/api/valkeyrole",
                   "self-hosted/valkey-operator/reference/api/valkeycluster",
                   "self-hosted/valkey-operator/reference/api/valkeynode"
-                ]
+                ],
+                "key": "valkey-operator-api-reference"
               }
             ]
           },
@@ -227,7 +229,7 @@
       {
         "type": "link",
         "label": "Quotas and Limits",
-        "href": "/platform/limits/auth"
+        "href": "/auth/limits"
       }
     ],
     "className": "sidebar-group-primary"
