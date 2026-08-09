@@ -45,7 +45,7 @@
         "className": "sidebar-group-product"
       }
     ],
-    "className": "sidebar-group-primary"
+    "className": "sidebar-group-primary sidebar-group-cloud"
   },
   {
     "type": "category",
@@ -193,7 +193,7 @@
         "className": "sidebar-group-product"
       }
     ],
-    "className": "sidebar-group-primary"
+    "className": "sidebar-group-primary sidebar-group-self-hosted"
   },
   {
     "type": "category",
@@ -232,7 +232,7 @@
         "href": "/auth/limits"
       }
     ],
-    "className": "sidebar-group-primary"
+    "className": "sidebar-group-primary sidebar-group-platform"
   },
   {
     "type": "category",
@@ -276,6 +276,6 @@
         "href": "/cloud-linter"
       }
     ],
-    "className": "sidebar-group-primary"
+    "className": "sidebar-group-primary sidebar-group-other"
   }
 ]
