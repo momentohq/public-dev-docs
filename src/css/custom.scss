@@ -658,13 +658,12 @@ code span {
   .sidebar-group-cloud       { @include sidebar-group-tint(#eaf3fe, #dbeafb, #3b82c4); }
   .sidebar-group-self-hosted { @include sidebar-group-tint(#e8f7ee, #d5f0e0, #27ae60); }
   .sidebar-group-platform    { @include sidebar-group-tint(#fdf6e0, #f7ecc6, #d4a72c); }
-  .sidebar-group-other       { @include sidebar-group-tint(#eaf3fe, #dbeafb, #3b82c4); }
+  /* Other intentionally keeps the neutral grey (.sidebar-group-primary) — no tint. */
 }
 [data-theme="dark"] .theme-doc-sidebar-menu {
   .sidebar-group-cloud       { @include sidebar-group-tint(#15263b, #1c3350, #4a90d9); }
   .sidebar-group-self-hosted { @include sidebar-group-tint(#15301e, #1c4028, #3fae6a); }
   .sidebar-group-platform    { @include sidebar-group-tint(#2d2911, #3c3618, #c9a227); }
-  .sidebar-group-other       { @include sidebar-group-tint(#15263b, #1c3350, #4a90d9); }
 }
 
 /* Note admonitions: pastel blue so they stand out. Docusaurus' default 'note' is a near-white
