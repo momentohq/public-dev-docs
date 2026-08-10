@@ -9,8 +9,11 @@
   margin-top: 1rem;
 }
 
-/* Let the DocSearch button fill the sidebar width rather than sit at its navbar size. */
+/* Let the DocSearch button fill the sidebar width rather than sit at its navbar size.
+   DocSearch ships it as content-box, so width:100% would exclude its padding and border and
+   overflow the rail. */
 .searchWrapper :global(.DocSearch-Button) {
+  box-sizing: border-box;
   width: 100%;
   margin: 0;
 }

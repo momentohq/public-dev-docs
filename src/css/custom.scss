@@ -156,6 +156,13 @@ code span {
   font-size: 16px;
 }
 
+/* The navbar only renders on mobile now (see src/theme/Navbar); on desktop it is an empty
+   placeholder kept solely so theme-common's useTOCHighlight can measure a height. Collapse it
+   to nothing so it occupies no space. */
+.navbar--emptied {
+  display: none;
+}
+
 /* The navbar only renders on mobile now (see src/theme/Navbar), so its chrome is scoped to
    the mobile breakpoint. */
 @media (max-width: 996px) {
@@ -198,8 +205,10 @@ code span {
 
 .theme-doc-sidebar-container>div {
   /* Was padding-top: 80px to clear the old fixed navbar; the sidebar now starts at the top
-     of the viewport and supplies its own header padding (SidebarHeader). */
-  padding: 0 8px;
+     of the viewport and supplies its own header padding (SidebarHeader). The horizontal
+     padding is applied on the menu itself rather than here, so it isn't inherited by the
+     sidebar's own header/footer blocks (which would push them past the rail's width). */
+  padding: 0;
   /* Fill the sidebar column (--doc-sidebar-width) instead of the old fixed 323px, which
      overflowed the 250px rail and got clipped/covered by the main content on the right. */
   width: 100%;

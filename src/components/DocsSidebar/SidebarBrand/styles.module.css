@@ -12,22 +12,29 @@
   opacity: 0.8;
 }
 
+.logoWrapper {
+  display: block;
+  width: 100%;
+}
+
 .logo {
   display: block;
   width: 100%;
   height: auto;
 }
 
-/* Justifying the letters across the full width tracks the label out to exactly the logo's
-   width without relying on a font-specific letter-spacing value. The small top margin keeps
-   the two readable as separate words while still clearly grouped as one mark. */
+/* The label is scaled to the logo's width in JS (see index.tsx); the font-size here is the
+   authored starting point that the fit measures from. inline-block matters: it shrink-wraps
+   the text so the fit can measure the text's natural width (a block would just report the
+   container's). A hair of tracking keeps it feeling like a wordmark rather than body copy.
+   The small top margin leaves the two readable as separate words while still clearly grouped
+   as one mark. */
 .wordmark {
-  display: flex;
-  justify-content: space-between;
+  display: inline-block;
   margin-top: 0.25rem;
-  font-size: 1.15rem;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1;
-  text-transform: none;
+  letter-spacing: 0.01em;
   white-space: nowrap;
 }

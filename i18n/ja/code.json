@@ -381,5 +381,17 @@
   "learnMore": {
     "message": "詳細を見る",
     "description": "Learn more"
+  },
+  "sidebar.brand.documentation": {
+    "message": "ドキュメント",
+    "description": "The word locked up under the logo at the top of the sidebar"
+  },
+  "sidebar.localeToggle.ariaLabel": {
+    "message": "言語を切り替える",
+    "description": "ARIA label for the sidebar language switcher"
+  },
+  "sidebar.localeToggle.title": {
+    "message": "言語を切り替える",
+    "description": "Tooltip for the sidebar language switcher"
   }
 }
