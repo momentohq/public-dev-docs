@@ -88,10 +88,12 @@ const config = {
        }, **/
 
       navbar: {
-        // The navbar is only rendered on mobile (see src/theme/Navbar) — on desktop this
-        // chrome lives in the left sidebar instead. These items are what the mobile drawer
-        // shows; the locale switcher and color mode toggle moved to the sidebar footer, and
-        // search moved to the sidebar header.
+        // The navbar is only rendered on mobile (see src/theme/Navbar). On desktop all this
+        // chrome lives in the left sidebar instead. There are no navbar items: the product
+        // links the old top nav carried are reachable through the docs sidebar, and the
+        // locale switcher and color mode toggle live in the sidebar footer. Search lives in
+        // the sidebar header. The mobile drawer therefore shows only the docs sidebar on doc
+        // pages (the "Back to main menu" link is hidden there via the swizzled SecondaryMenu).
         title: "",
         logo: {
           alt: "Momento Logo",
@@ -99,21 +101,7 @@ const config = {
           srcDark: "img/momento-docs-logo-white.svg",
           href: "/"
         },
-        items: [
-          { to: '/cache', label: 'Cache', position: 'left' },
-          { to: '/topics', label: 'Topics', position: 'left' },
-          { to: '/functions/overview', label: 'Functions', position: 'left' },
-          {
-            href: 'https://www.gomomento.com/', html: 'Home', position: 'right', target: '_self'
-          },
-          {
-            to: '/platform', label: 'Platform', position: 'right'
-          },
-          {
-            type: 'localeDropdown',
-            position: 'right',
-          },
-        ],
+        items: [],
       },
       footer: {
         style: "dark",
