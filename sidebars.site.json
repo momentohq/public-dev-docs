@@ -28,7 +28,9 @@
             ]
           },
           "product/cache/manage/pools",
+          "product/cache/manage/databases",
           "product/cache/connect/clients",
+          "product/cache/security",
           {
             "type": "category",
             "label": "API reference",
