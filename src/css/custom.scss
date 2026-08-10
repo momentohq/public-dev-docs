@@ -629,6 +629,27 @@ code span {
   background-color: var(--table-highlight-row) !important;
 }
 
+/* The docs home page (docs/index.mdx) renders the landing page inside the docs layout so it
+   gets the left sidebar nav. Strip the per-doc chrome (breadcrumbs, pagination, edit link)
+   and let the content run full-bleed as it did when it was a standalone page. */
+.docs-doc-id-index {
+  .theme-doc-breadcrumbs,
+  .theme-doc-footer,
+  .pagination-nav {
+    display: none;
+  }
+
+  main > .container {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .theme-doc-markdown > .row > .col {
+    max-width: 100% !important;
+    padding: 0;
+  }
+}
+
 /* Primary IA groups in the docs sidebar (deployment-model level, e.g. Cloud). The nav generator
    (Momento KB projection) tags top-level categories with .sidebar-group-primary. Theme-aware
    light grey via Infima emphasis tokens. */

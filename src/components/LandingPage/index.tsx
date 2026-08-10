@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Layout from '@theme/Layout';
 import { IoOpenOutline } from "react-icons/io5";
 import { CardGrid } from '@site/src/components/CardGrid';
 import { LinkCard } from '@site/src/components/LinkCard';
 import Translate from '@docusaurus/Translate';
 
-import styles from './index.module.css';
+import styles from './styles.module.css';
 import Link from '@docusaurus/Link';
 
 function RotatingHeader() {
@@ -37,10 +36,13 @@ function RotatingHeader() {
   );
 }
 
-export default function Home(): JSX.Element {
+/**
+ * The docs landing page content. This used to be a standalone `src/pages/index.tsx` with its
+ * own <Layout>; it is now rendered from the `/` doc (docs/index.mdx) so that the home page
+ * gets the left sidebar nav. The surrounding Layout is supplied by the docs route.
+ */
+export default function LandingPage(): JSX.Element {
   return (
-    <Layout
-      description="Description will go into a meta tag in <head />">
       <main className={styles.content}>
         <img className={styles.headerBackground} src="/img/acorn-grid-background.svg"  alt={"acorn-grid"}/>
         <div className={styles.contentContainer}>
@@ -177,6 +179,5 @@ export default function Home(): JSX.Element {
           </div>
         </div>
       </main>
-    </Layout>
   );
 }

@@ -3,7 +3,7 @@ import { RotatingHeader } from '@site/src/components/RotatingHeader';
 import Layout from '@theme/Layout';
 import { CardGrid } from '@site/src/components/CardGrid';
 import { LinkCard } from '@site/src/components/LinkCard';
-import styles from './index.module.css';
+import styles from '@site/src/components/LandingPage/styles.module.css';
 
 
 export default function Home(): JSX.Element {
