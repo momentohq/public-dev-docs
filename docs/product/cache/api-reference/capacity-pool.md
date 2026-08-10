@@ -8,7 +8,7 @@ description: HTTP API reference for Momento Capacity Pools.
 
 # HTTP API Reference for Momento Capacity Pools
 
-Momento provides an HTTP API interface for managing Capacity Pools. This API lets you create, describe, update, list, and delete Capacity Pools programmatically.
+Momento provides an HTTP API interface for managing Capacity Pools. This API lets you create, describe, update, list, and delete Capacity Pools programmatically, and scrape their utilization metrics.
 
 A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. You choose how the pool is sized — either **explicit** mode, in which you specify the exact instance type, shard count, and replicas per shard, or **managed** mode, in which you give capacity and replication *bounds* and Momento sizes the pool within them — along with availability zone (AZ) placement. Momento owns the underlying lifecycle and health of the pool. Each pool hosts one or more [Databases](/product/cache/api-reference/database), which share the pool's compute and memory.
 
@@ -28,7 +28,7 @@ The API Key must be provided in the `Authorization` header.
 
 # Capacity Pool API
 
-The Capacity Pool API lets you create, describe, update, list, and delete Capacity Pools.
+The Capacity Pool API lets you create, describe, update, list, and delete Capacity Pools, and scrape their utilization metrics.
 
 ## Provisioning
 
@@ -582,6 +582,83 @@ A Capacity Pool cannot be deleted while it still has Databases pinned to it. Del
 
 ---
 
+## Capacity Pool Metrics
+
+Returns real-time utilization metrics for the Capacity Pools in your account, in [Prometheus exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/). This endpoint is **account-scoped**: it takes no pool name and returns one block of samples per pool, so a single request covers all of your pools. Point a Prometheus-compatible scraper at it, or fetch it directly with `curl`.
+
+### Request
+
+- Path: /capacity_pool/metrics
+- HTTP Method: GET
+
+#### Headers
+
+| Header&nbsp;name | Required? | Type   | Description                                                                                        |
+|------------------|-----------|--------|-----------------------------------------------------------------------------------------------------|
+| Authorization    | yes       | String | The Momento API key, in string format, is used for authentication/authorization of the request. A key with read access is sufficient. |
+
+### Responses
+
+#### Success
+
+*Status Code: 200 OK*
+
+The response `Content-Type` is `text/plain; version=0.0.4` (the Prometheus text exposition format). The body carries one set of samples per Capacity Pool. Every sample is labeled with `account_id`, `endpoint` (the serving cell), and `pool_name`:
+
+```text
+# HELP capacity_pool_memory_used_bytes Bytes of a pool's Valkey maxmemory eviction ceiling in use.
+# TYPE capacity_pool_memory_used_bytes gauge
+# HELP capacity_pool_memory_maxmemory_bytes A pool's Valkey maxmemory eviction ceiling.
+# TYPE capacity_pool_memory_maxmemory_bytes gauge
+# HELP capacity_pool_memory_utilization_ratio Fraction of a pool's Valkey maxmemory eviction ceiling in use.
+# TYPE capacity_pool_memory_utilization_ratio gauge
+# HELP capacity_pool_evictions_total Total keys evicted for a pool
+# TYPE capacity_pool_evictions_total counter
+# HELP capacity_pool_host_cpu_usage_ratio CPU utilization for a pool, 0.0-1.0.
+# TYPE capacity_pool_host_cpu_usage_ratio gauge
+# HELP capacity_pool_host_network_rx_utilization_ratio Network receive utilization for a pool, 0.0-1.0.
+# TYPE capacity_pool_host_network_rx_utilization_ratio gauge
+# HELP capacity_pool_host_network_tx_utilization_ratio Network transmit utilization for a pool, 0.0-1.0.
+# TYPE capacity_pool_host_network_tx_utilization_ratio gauge
+capacity_pool_memory_used_bytes{account_id="acct-1a2b",endpoint="cell-1-us-east-1-1",pool_name="prod-us-east-1"} 12884901888
+capacity_pool_memory_maxmemory_bytes{account_id="acct-1a2b",endpoint="cell-1-us-east-1-1",pool_name="prod-us-east-1"} 34359738368
+capacity_pool_memory_utilization_ratio{account_id="acct-1a2b",endpoint="cell-1-us-east-1-1",pool_name="prod-us-east-1"} 0.375
+capacity_pool_evictions_total{account_id="acct-1a2b",endpoint="cell-1-us-east-1-1",pool_name="prod-us-east-1"} 421
+capacity_pool_host_cpu_usage_ratio{account_id="acct-1a2b",endpoint="cell-1-us-east-1-1",pool_name="prod-us-east-1"} 0.22
+capacity_pool_host_network_rx_utilization_ratio{account_id="acct-1a2b",endpoint="cell-1-us-east-1-1",pool_name="prod-us-east-1"} 0.14
+capacity_pool_host_network_tx_utilization_ratio{account_id="acct-1a2b",endpoint="cell-1-us-east-1-1",pool_name="prod-us-east-1"} 0.09
+```
+
+The exposed metrics:
+
+| Metric | Type | Description |
+|--------|------|-------------|
+| capacity_pool_memory_used_bytes | gauge | Bytes of the pool's Valkey `maxmemory` eviction ceiling in use. |
+| capacity_pool_memory_maxmemory_bytes | gauge | The pool's Valkey `maxmemory` eviction ceiling. |
+| capacity_pool_memory_utilization_ratio | gauge | Fraction of the eviction ceiling in use, computed as `used / maxmemory`. |
+| capacity_pool_evictions_total | counter | Total keys evicted for the pool. |
+| capacity_pool_host_cpu_usage_ratio | gauge | Host CPU utilization (0.0–1.0). Emitted only when a reading is available. |
+| capacity_pool_host_network_rx_utilization_ratio | gauge | Host network receive utilization (0.0–1.0). Emitted only when a reading is available. |
+| capacity_pool_host_network_tx_utilization_ratio | gauge | Host network transmit utilization (0.0–1.0). Emitted only when a reading is available. |
+
+The `# HELP` and `# TYPE` header lines are always present, even when your account has no pools (in which case no sample lines follow). The three `capacity_pool_host_*` metrics appear only when a reading is available.
+
+#### Error
+
+*Status Code: 401 Unauthorized*
+- This error type typically indicates that the Momento API key passed in is either invalid or expired.
+
+*Status Code: 403 Forbidden*
+- This error type typically indicates the Momento API key passed in does not grant the required access.
+
+*Status Code: 429 Too Many Requests*
+- The request was throttled. Reduce your scrape frequency and retry.
+
+*Status Code: 500 Internal Server Error*
+- This error type typically indicates that the service is experiencing issues.
+
+---
+
 # Examples
 
 ## Example: Create an explicit-mode Capacity Pool
@@ -665,4 +742,13 @@ Delete a Capacity Pool (all of its Databases must be deleted first):
 ```bash
 curl -X DELETE -H "Authorization: <token>" \
   "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/capacity_pool/prod-us-east-1"
+```
+
+## Example: Scrape Capacity Pool metrics
+
+Fetch utilization metrics for all Capacity Pools in your account:
+
+```bash
+curl -H "Authorization: <token>" \
+  "https://api.cache.cell-1-us-east-1-1.prod.a.momentohq.com/capacity_pool/metrics"
 ```
