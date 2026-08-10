@@ -653,7 +653,14 @@ code span {
     padding: 0 !important;
   }
 
-  .theme-doc-markdown > .row > .col {
+  /* Infima's .row carries negative side margins that its .col padding normally cancels out.
+     The landing page runs edge to edge with no column padding, so zero the gutters too —
+     otherwise the row hangs 40px past the container and the page scrolls sideways. */
+  main > .container > .row {
+    margin: 0;
+  }
+
+  main > .container > .row > .col {
     max-width: 100% !important;
     padding: 0;
   }
