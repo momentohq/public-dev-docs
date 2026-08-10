@@ -72,8 +72,8 @@ In `managed` mode you specify bounds for capacity and replication, and Momento s
 {
   "managed": {
     "capacity": {
-      "min_gb": 32,
-      "max_gb": 128
+      "min_gib": 32,
+      "max_gib": 128
     },
     "replication": {
       "min_replicas_per_shard": 1,
@@ -87,15 +87,15 @@ In `managed` mode you specify bounds for capacity and replication, and Momento s
 | Field | Required? | Type | Description |
 |-------|-----------|------|-------------|
 | managed | yes | Object | The managed-mode provisioning configuration. Exactly one mode key must be provided. |
-| managed.capacity | yes | Object | The pool's capacity bounds, in GB. |
-| managed.capacity.min_gb | yes | Integer | The minimum capacity, in GB. Set equal to `max_gb` to pin capacity. |
-| managed.capacity.max_gb | yes | Integer | The maximum capacity, in GB. |
+| managed.capacity | yes | Object | The pool's capacity bounds, in GiB. |
+| managed.capacity.min_gib | yes | Integer | The minimum capacity, in GiB. Set equal to `max_gib` to pin capacity. |
+| managed.capacity.max_gib | yes | Integer | The maximum capacity, in GiB. |
 | managed.replication | yes | Object | The pool's replication bounds. |
 | managed.replication.min_replicas_per_shard | yes | Integer | The minimum replicas per shard. Set equal to the maximum to pin replication. |
 | managed.replication.max_replicas_per_shard | yes | Integer | The maximum replicas per shard. |
 | managed.zones | yes | Array\<String\> | The availability-zone IDs across which the pool's nodes are placed. Must contain at least one zone. |
 
-Because managed capacity is quantized to the configurations available in the cell, the capacity you are granted may exceed `min_gb`. The concrete capacity and replication a managed pool has right now are reported in the response fields [`current_capacity_gb` and `current_replicas_per_shard`](#describe-capacity-pool).
+Because managed capacity is quantized to the configurations available in the cell, the capacity you are granted may exceed `min_gib`. The concrete capacity and replication a managed pool has right now are reported in the response fields [`current_capacity_gib` and `current_replicas_per_shard`](#describe-capacity-pool).
 
 ## Status
 
@@ -115,7 +115,7 @@ Every Capacity Pool response includes a `diagnostics` field: an array of custome
 
 [Describe Capacity Pool](#describe-capacity-pool) returns active conditions plus recently-resolved ones; [List Capacity Pools](#list-capacity-pools) returns only active conditions.
 
-Each diagnostic nests its details under a single key that names the kind of condition. Two kinds are defined.
+Each diagnostic nests its details under a single key that names the kind of condition. Three kinds are defined.
 
 The `insufficient_capacity` kind is raised when Momento cannot provision the requested capacity:
 
@@ -175,6 +175,33 @@ The fields of a `scale_blocked_by_utilization` diagnostic:
 | last_observed_epoch_seconds | Integer | The most recent time the condition was observed. |
 | resolved_epoch_seconds | Integer | When the condition resolved, in seconds since the Unix epoch. Present only on a `resolved` diagnostic. |
 
+The `capacity_limit_reached` kind is raised when a managed pool's utilization calls for growth but the pool is already at its configured maximum capacity. It remains active until you raise the ceiling or usage drops:
+
+```json
+{
+  "capacity_limit_reached": {
+    "state": "active",
+    "message": "The pool has reached its configured capacity limit.",
+    "max_gib": 128,
+    "utilization_percent": 92,
+    "first_observed_epoch_seconds": 1719360000,
+    "last_observed_epoch_seconds": 1719363600
+  }
+}
+```
+
+The fields of a `capacity_limit_reached` diagnostic:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| state | String | Whether the condition is currently in effect (`active`) or recently cleared (`resolved`). |
+| message | String | A human-readable summary suitable for surfacing directly to the customer. |
+| max_gib | Integer | The configured capacity ceiling, in GiB, that the pool has reached. |
+| utilization_percent | Integer | Utilization of the fullest part of the pool, as a percentage of granted capacity. |
+| first_observed_epoch_seconds | Integer | When the condition was first observed, in seconds since the Unix epoch. |
+| last_observed_epoch_seconds | Integer | The most recent time the condition was observed. |
+| resolved_epoch_seconds | Integer | When the condition resolved, in seconds since the Unix epoch. Present only on a `resolved` diagnostic. |
+
 ---
 
 ## Create Capacity Pool
@@ -222,7 +249,7 @@ A `managed`-mode pool:
 {
   "provisioning": {
     "managed": {
-      "capacity": { "min_gb": 32, "max_gb": 128 },
+      "capacity": { "min_gib": 32, "max_gib": 128 },
       "replication": { "min_replicas_per_shard": 1, "max_replicas_per_shard": 2 },
       "zones": ["use1-az1", "use1-az2"]
     }
@@ -262,7 +289,7 @@ A `managed`-mode pool:
 | provisioning | Object | The pool's provisioning configuration. See [Provisioning](#provisioning). |
 | status | String | The pool's lifecycle status. See [Status](#status). |
 | diagnostics | Array | Customer-actionable conditions affecting the pool. Empty when there is nothing to surface. See [Diagnostics](#diagnostics). |
-| current_capacity_gb | Integer | **Managed pools only.** The capacity, in GB, the pool concretely has right now within its requested bounds. Omitted for explicit pools. |
+| current_capacity_gib | Integer | **Managed pools only.** The capacity, in GiB, the pool concretely has right now within its requested bounds. Omitted for explicit pools. |
 | current_replicas_per_shard | Integer | **Managed pools only.** The replicas per shard the pool concretely has right now within its requested bounds. Omitted for explicit pools. |
 
 #### Error
@@ -329,26 +356,26 @@ An `explicit`-mode pool:
 }
 ```
 
-A `managed`-mode pool additionally reports the capacity and replication it concretely has right now via `current_capacity_gb` and `current_replicas_per_shard`:
+A `managed`-mode pool additionally reports the capacity and replication it concretely has right now via `current_capacity_gib` and `current_replicas_per_shard`:
 
 ```json
 {
   "name": "flex-us-east-1",
   "provisioning": {
     "managed": {
-      "capacity": { "min_gb": 32, "max_gb": 128 },
+      "capacity": { "min_gib": 32, "max_gib": 128 },
       "replication": { "min_replicas_per_shard": 1, "max_replicas_per_shard": 2 },
       "zones": ["use1-az1", "use1-az2"]
     }
   },
   "status": "active",
   "diagnostics": [],
-  "current_capacity_gb": 64,
+  "current_capacity_gib": 64,
   "current_replicas_per_shard": 1
 }
 ```
 
-The `status` field reflects the pool's lifecycle status (`creating` / `active` / `deleting`). The `diagnostics` field is derived from the underlying capacity at read time; Describe returns active conditions plus recently-resolved ones. See [Diagnostics](#diagnostics). For managed pools, `current_capacity_gb` and `current_replicas_per_shard` report the concrete capacity and replication within the requested bounds; both are omitted for explicit pools.
+The `status` field reflects the pool's lifecycle status (`creating` / `active` / `deleting`). The `diagnostics` field is derived from the underlying capacity at read time; Describe returns active conditions plus recently-resolved ones. See [Diagnostics](#diagnostics). For managed pools, `current_capacity_gib` and `current_replicas_per_shard` report the concrete capacity and replication within the requested bounds; both are omitted for explicit pools.
 
 #### Error
 
@@ -404,14 +431,14 @@ Lists all Capacity Pools owned by your account.
       "name": "flex-us-east-1",
       "provisioning": {
         "managed": {
-          "capacity": { "min_gb": 32, "max_gb": 128 },
+          "capacity": { "min_gib": 32, "max_gib": 128 },
           "replication": { "min_replicas_per_shard": 1, "max_replicas_per_shard": 2 },
           "zones": ["use1-az1"]
         }
       },
       "status": "active",
       "diagnostics": [],
-      "current_capacity_gb": 64,
+      "current_capacity_gib": 64,
       "current_replicas_per_shard": 1
     }
   ]
@@ -476,7 +503,7 @@ For a `managed`-mode pool, a present `capacity` or `replication` replaces that d
 {
   "provisioning": {
     "managed": {
-      "capacity": { "min_gb": 32, "max_gb": 256 }
+      "capacity": { "min_gib": 32, "max_gib": 256 }
     }
   }
 }
@@ -489,7 +516,7 @@ For a `managed`-mode pool, a present `capacity` or `replication` replaces that d
 | provisioning.explicit.shard_count | no | Integer | If present, the new number of shards. |
 | provisioning.explicit.replicas_per_shard | no | Integer | If present, the new number of replicas per shard. |
 | provisioning.explicit.zones | no | Array\<String\> | If non-empty, replaces the pool's zone set. An empty or absent value leaves the zones unchanged. |
-| provisioning.managed.capacity | no | Object | If present, replaces the capacity bounds (`min_gb`, `max_gb`) in full. |
+| provisioning.managed.capacity | no | Object | If present, replaces the capacity bounds (`min_gib`, `max_gib`) in full. |
 | provisioning.managed.replication | no | Object | If present, replaces the replication bounds (`min_replicas_per_shard`, `max_replicas_per_shard`) in full. |
 | provisioning.managed.zones | no | Array\<String\> | If non-empty, replaces the pool's zone set. An empty or absent value leaves the zones unchanged. |
 
@@ -691,7 +718,7 @@ curl -X POST -H "Authorization: <token>" \
   -d '{
     "provisioning": {
       "managed": {
-        "capacity": { "min_gb": 32, "max_gb": 128 },
+        "capacity": { "min_gib": 32, "max_gib": 128 },
         "replication": { "min_replicas_per_shard": 1, "max_replicas_per_shard": 2 },
         "zones": ["use1-az1", "use1-az2"]
       }
