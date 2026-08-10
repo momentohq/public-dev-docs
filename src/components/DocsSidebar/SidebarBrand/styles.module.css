@@ -1,40 +1,16 @@
-/* Logo + "Documentation" lockup. Both are sized off the same width so the label always
-   tracks the logo's width and the pair reads as one wordmark. */
+/* The "Momento Docs" wordmark at the top of the sidebar. The SVG carries its own aspect
+   ratio (749x79); sizing by width keeps it crisp and lets it shrink with the sidebar. */
 .brand {
   display: block;
-  width: var(--momento-sidebar-brand-width);
-  color: var(--momento-sidebar-brand-color);
+  padding: 0.25rem 0;
 }
 
 .brand:hover {
-  color: var(--momento-sidebar-brand-color);
-  text-decoration: none;
   opacity: 0.8;
 }
 
-.logoWrapper {
-  display: block;
-  width: 100%;
-}
-
-.logo {
+.wordmark {
   display: block;
   width: 100%;
   height: auto;
-}
-
-/* The label is scaled to the logo's width in JS (see index.tsx); the font-size here is the
-   authored starting point that the fit measures from. inline-block matters: it shrink-wraps
-   the text so the fit can measure the text's natural width (a block would just report the
-   container's). A hair of tracking keeps it feeling like a wordmark rather than body copy.
-   The small top margin leaves the two readable as separate words while still clearly grouped
-   as one mark. */
-.wordmark {
-  display: inline-block;
-  margin-top: 0.25rem;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
 }
