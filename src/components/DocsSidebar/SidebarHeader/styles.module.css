@@ -1,0 +1,16 @@
+/* Fixed block at the top of the sidebar column; the nav below it does the scrolling, so this
+   must not grow or shrink. */
+.sidebarHeader {
+  flex-shrink: 0;
+  padding: 1rem 0.75rem 0.75rem;
+}
+
+.searchWrapper {
+  margin-top: 1rem;
+}
+
+/* Let the DocSearch button fill the sidebar width rather than sit at its navbar size. */
+.searchWrapper :global(.DocSearch-Button) {
+  width: 100%;
+  margin: 0;
+}

@@ -1,0 +1,9 @@
+/* Pinned to the bottom of the sidebar column: two icon-sized controls in a row. */
+.sidebarFooter {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid var(--ifm-toc-border-color);
+}

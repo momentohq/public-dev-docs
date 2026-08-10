@@ -88,6 +88,10 @@ const config = {
        }, **/
 
       navbar: {
+        // The navbar is only rendered on mobile (see src/theme/Navbar) — on desktop this
+        // chrome lives in the left sidebar instead. These items are what the mobile drawer
+        // shows; the locale switcher and color mode toggle moved to the sidebar footer, and
+        // search moved to the sidebar header.
         title: "",
         logo: {
           alt: "Momento Logo",

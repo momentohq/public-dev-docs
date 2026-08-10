@@ -1,0 +1,32 @@
+/* Logo + "Documentation" lockup. Both elements are sized off a single width variable so the
+   label always tracks the logo's width and the pair reads as one wordmark. */
+.brand {
+  display: block;
+  width: var(--momento-sidebar-brand-width);
+  color: var(--momento-sidebar-brand-color);
+}
+
+.brand:hover {
+  color: var(--momento-sidebar-brand-color);
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Tracked out to span the logo width. The negative right margin absorbs the trailing
+   letter-spacing so the label stays flush with the logo's right edge. */
+.wordmark {
+  display: block;
+  margin-top: 0.2rem;
+  margin-right: -0.105em;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.105em;
+  white-space: nowrap;
+}

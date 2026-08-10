@@ -79,6 +79,9 @@ h4 {
   --container-background-color: #ffffff;
   --table-highlight-row: #f0f0f0;
   --doc-sidebar-width: 250px !important;
+  /* Width of the sidebar logo lockup; the "Documentation" label is tracked out to match it. */
+  --momento-sidebar-brand-width: 170px;
+  --momento-sidebar-brand-color: var(--ifm-color-primary);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -94,6 +97,8 @@ h4 {
   --footer-text: #25392b;
   --container-background-color: var(--ifm-background-color);
   --table-highlight-row: #2B2B2D;
+  /* The primary color goes bright green in dark mode, which is too loud for the wordmark. */
+  --momento-sidebar-brand-color: var(--ifm-font-color-base);
 }
 
 @media (min-width: 997px) {
@@ -101,6 +106,10 @@ h4 {
     --ifm-spacing-horizontal: 2.5rem;
     --ifm-spacing-vertical: 2.25rem;
     --ifm-navbar-padding-horizontal: 2rem;
+    /* The top navbar is not rendered on desktop (see src/theme/Navbar). Zeroing its height
+       collapses the offsets the theme derives from it: the sidebar container's negative
+       margin-top, the sticky TOC's top offset, and the main content's top padding. */
+    --ifm-navbar-height: 0px;
   }
 
   main {
@@ -147,28 +156,32 @@ code span {
   font-size: 16px;
 }
 
-.navbar {
-  height: 60px;
-  padding: 10px 40px;
-  box-shadow: none;
-  border-bottom: 1px solid rgba(37, 57, 43, 0.15);
-}
+/* The navbar only renders on mobile now (see src/theme/Navbar), so its chrome is scoped to
+   the mobile breakpoint. */
+@media (max-width: 996px) {
+  .navbar {
+    height: 60px;
+    padding: 10px 40px;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(37, 57, 43, 0.15);
+  }
 
-.navbar__logo {
-  flex: 0 0 auto;
-  height: 1.5rem;
-  margin-right: 0.5rem;
-  margin-bottom: .4rem;
-}
+  .navbar__logo {
+    flex: 0 0 auto;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: .4rem;
+  }
 
-.navbar__items .navbar__link {
-  font-weight: 500;
-  color: var(--ifm-color-primary);
-}
+  .navbar__items .navbar__link {
+    font-weight: 500;
+    color: var(--ifm-color-primary);
+  }
 
-.navbar__items .navbar__link.navbar__link--active {
-  border-bottom: 2px solid var(--ifm-color-primary);
-  padding-bottom: 3px;
+  .navbar__items .navbar__link.navbar__link--active {
+    border-bottom: 2px solid var(--ifm-color-primary);
+    padding-bottom: 3px;
+  }
 }
 
 .table-of-contents__link--active {
@@ -184,7 +197,9 @@ code span {
 }
 
 .theme-doc-sidebar-container>div {
-  padding: 80px 8px 0 8px;
+  /* Was padding-top: 80px to clear the old fixed navbar; the sidebar now starts at the top
+     of the viewport and supplies its own header padding (SidebarHeader). */
+  padding: 0 8px;
   /* Fill the sidebar column (--doc-sidebar-width) instead of the old fixed 323px, which
      overflowed the 250px rail and got clipped/covered by the main content on the right. */
   width: 100%;
@@ -390,12 +405,23 @@ code span {
 
 .table-of-contents {
   border: none !important;
+  /* Infima gives every <li> a margin of --ifm-toc-padding-vertical (0.5rem) on top of the
+     link padding below, which stacks up to a very loose list. Scope the variable down and
+     zero the per-item vertical margin so entries sit at the same rhythm as the left-hand
+     sidebar's .menu__list-item (4px gaps, ~5-9px link padding). */
+  --ifm-toc-padding-vertical: 0.25rem;
+
+  li {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
   li a {
     color: var(--ifm-color-primary);
-    padding: 8px;
+    padding: 4px 8px;
     border-radius: 8px;
     font-weight: 500;
+    line-height: 1.3;
 
     &:hover {
       background: rgba(37, 57, 43, 0.05);
