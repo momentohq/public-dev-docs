@@ -1,5 +1,5 @@
-/* Logo + "Documentation" lockup. Both elements are sized off a single width variable so the
-   label always tracks the logo's width and the pair reads as one wordmark. */
+/* Logo + "Documentation" lockup. Both are sized off the same width so the label always
+   tracks the logo's width and the pair reads as one wordmark. */
 .brand {
   display: block;
   width: var(--momento-sidebar-brand-width);
@@ -18,15 +18,16 @@
   height: auto;
 }
 
-/* Tracked out to span the logo width. The negative right margin absorbs the trailing
-   letter-spacing so the label stays flush with the logo's right edge. */
+/* Justifying the letters across the full width tracks the label out to exactly the logo's
+   width without relying on a font-specific letter-spacing value. The small top margin keeps
+   the two readable as separate words while still clearly grouped as one mark. */
 .wordmark {
-  display: block;
-  margin-top: 0.2rem;
-  margin-right: -0.105em;
-  font-size: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
   line-height: 1;
-  letter-spacing: 0.105em;
+  text-transform: none;
   white-space: nowrap;
 }
