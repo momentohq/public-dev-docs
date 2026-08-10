@@ -1,0 +1,8 @@
+{
+  "name": "momento docs (astro)",
+  "image": "debian",
+  "features": {
+    "ghcr.io/dc-powertools/features/node:latest": {}
+  },
+  "forwardPorts": [3000]
+}

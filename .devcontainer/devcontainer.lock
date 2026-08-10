@@ -1,0 +1,47 @@
+{
+  "dccVersion": "0.0.33",
+  "features": [
+    {
+      "direct": true,
+      "options": {},
+      "ref": "ghcr.io/dc-powertools/features/sudo:latest",
+      "resolved": "sha256:97abfd8f2e9e8213f95f5fe2e44b0fa77400c119a2cba5a228cba0ff2dc04ac6"
+    },
+    {
+      "direct": true,
+      "options": {},
+      "ref": "ghcr.io/dc-powertools/features/git:latest",
+      "resolved": "sha256:06881580e20dc3f2fd50addab8d66bec2c2411bd75410fb2db126917c9da94c1"
+    },
+    {
+      "direct": true,
+      "options": {},
+      "ref": "ghcr.io/dc-powertools/features/node:latest",
+      "resolved": "sha256:df3b2930ddc4f4b9ce622892ba0a1d4fd1dff1ed50313331fbc6f9f98c87d8a1"
+    },
+    {
+      "direct": true,
+      "options": {},
+      "ref": "ghcr.io/dc-powertools/features/playwright:latest",
+      "resolved": "sha256:1db7e77df91c9913b5b95c7ffb5f1aab10a33b434e3f3d53542706efe99ff37d"
+    },
+    {
+      "direct": true,
+      "options": {},
+      "ref": "ghcr.io/dc-powertools/features/codex:latest",
+      "resolved": "sha256:5837b425b44d2a1f1c59d0b897a9d80a7921b83981e85044f65d791a4ffb64c4"
+    },
+    {
+      "direct": true,
+      "options": {},
+      "ref": "ghcr.io/dc-powertools/features/claude:latest",
+      "resolved": "sha256:21311d1c6f6691cb7aa0d70598e27d7b6c7d9fde0aad8f097a963044c9c8a9c1"
+    },
+    {
+      "direct": true,
+      "options": {},
+      "ref": "ghcr.io/dc-powertools/features/mo:latest",
+      "resolved": "sha256:c8be6d8830ef044ee30f2decfbaedb6ca4f9c57e438fa917f5f236457285b2a4"
+    }
+  ]
+}
