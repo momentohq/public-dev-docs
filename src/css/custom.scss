@@ -681,13 +681,14 @@ code span {
   .sidebar-group-cloud       { @include sidebar-group-tint(#eaf3fe, #dbeafb, #3b82c4); }
   .sidebar-group-self-hosted { @include sidebar-group-tint(#e8f7ee, #d5f0e0, #27ae60); }
   .sidebar-group-platform    { @include sidebar-group-tint(#fdf6e0, #f7ecc6, #d4a72c); }
-  .sidebar-group-other       { @include sidebar-group-tint(#f0eef4, #e6e2f0, #8a7ca8); }
+  .sidebar-group-other       { @include sidebar-group-tint(var(--ifm-color-emphasis-200), var(--ifm-color-emphasis-300), var(--ifm-color-emphasis-400)); }
 }
 [data-theme="dark"] .theme-doc-sidebar-menu {
   .sidebar-group-cloud       { @include sidebar-group-tint(#15263b, #1c3350, #4a90d9); }
   .sidebar-group-self-hosted { @include sidebar-group-tint(#15301e, #1c4028, #3fae6a); }
   .sidebar-group-platform    { @include sidebar-group-tint(#2d2911, #3c3618, #c9a227); }
-  .sidebar-group-other       { @include sidebar-group-tint(#2a2533, #38323f, #a896c8); }
+  /* Other uses Infima emphasis tokens (var(--ifm-color-emphasis-200)) which auto-adapt to dark
+     mode — no dark override needed. Matches the home-page "Other Products" card. */
 }
 
 /* Note admonitions: pastel blue so they stand out. Docusaurus' default 'note' is a near-white
