@@ -321,6 +321,14 @@ code span {
   }
 }
 
+/* The unified hierarchy can add one breadcrumb level. Let the trail wrap on narrow screens so
+   long English labels do not widen the document beyond the mobile viewport. */
+@media (max-width: 996px) {
+  .breadcrumbs {
+    flex-wrap: wrap;
+  }
+}
+
 .pagination-nav {
   .pagination-nav__link {
     border: 1px solid #c9cdca;
