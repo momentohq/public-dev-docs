@@ -1,5 +1,5 @@
 {
-  "name": "momento docs (astro)",
+  "name": "momento docs (node)",
   "image": "debian",
   "features": {
     "ghcr.io/dc-powertools/features/node:latest": {},
