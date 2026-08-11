@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 sidebar_label: Cache
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Getting started with Momento Cache in Python
 description: Learn the basic building blocks for writing Python code to interact with Momento Cache.
 keywords:

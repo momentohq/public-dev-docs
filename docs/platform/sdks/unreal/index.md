@@ -2,7 +2,7 @@
 sidebar_position: 4
 pagination_prev: null
 sidebar_label: Unreal (C++)
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know the Momento SDK for Unreal
 description: The Momento SDK for Unreal allows you to create server-side applications with Unreal Engine, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
 keywords:

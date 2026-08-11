@@ -2,7 +2,7 @@
 sidebar_position: 7
 pagination_prev: null
 sidebar_label: Swift
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know The Momento Swift SDK for iOS
 description: The Momento Swift SDK allows you to build native apps for iOS devices, and take advantage of caching and pub-sub features without the need for server-side infrastructure. Find resources and examples here!
 keywords:

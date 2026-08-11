@@ -2,7 +2,7 @@
 sidebar_position: 4
 pagination_prev: null
 sidebar_label: .NET
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know the Momento .NET SDK
 description: The Momento .NET SDK allows you to create server-side applications in C#, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
 keywords:

@@ -2,7 +2,7 @@
 sidebar_position: 6
 pagination_prev: null
 sidebar_label: Kotlin
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know The Momento Kotlin SDK for Android and JVM
 description: The Momento Kotlin SDK allows you to build native apps for Android devices, and take advantage of caching and pub-sub features without the need for server-side infrastructure. You can also target the JVM to build server-side applications. Find resources and examples here!
 keywords:

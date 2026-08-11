@@ -2,7 +2,7 @@
 sidebar_position: 6
 pagination_prev: null
 sidebar_label: Java
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know the Momento Java SDK
 description: The Momento Java SDK allows you to create server-side applications, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
 keywords:

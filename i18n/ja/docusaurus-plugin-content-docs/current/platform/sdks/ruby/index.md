@@ -2,7 +2,7 @@
 sidebar_position: 8
 pagination_prev: null
 sidebar_label: Ruby
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know the Momento Ruby SDK
 description: The Momento Ruby SDK allows you to create server-side applications, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
 keywords:

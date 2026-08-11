@@ -2,7 +2,7 @@
 sidebar_position: 7
 pagination_prev: null
 sidebar_label: Dart
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know The Momento Dart SDK for Flutter
 description: The Momento Dart SDK allows you to build Flutter client applications, and take advantage of caching and pub-sub features without the need for server-side infrastructure. You can target browsers, iOS, and Android from a single code base. Find resources and examples here!
 keywords:

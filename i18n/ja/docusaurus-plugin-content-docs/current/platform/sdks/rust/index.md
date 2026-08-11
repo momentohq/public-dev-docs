@@ -2,7 +2,7 @@
 sidebar_position: 6
 pagination_prev: null
 sidebar_label: Rust
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know The Momento Rust SDK
 description: The Momento Rust SDK allows you to take advantage of caching and pub-sub features without the need for server-side infrastructure. Find resources and examples here!
 keywords:

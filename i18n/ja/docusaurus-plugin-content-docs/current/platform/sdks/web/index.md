@@ -2,7 +2,7 @@
 sidebar_position: 2
 pagination_prev: null
 sidebar_label: JS Web SDK
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know the Momento Web SDK
 description: The Momento Web SDK allows you to create rich browser applications in TypeScript or JavaScript, and take advantage of caching and pub-sub features without the need for server-side infrastructure. Find resources and examples here!
 keywords:

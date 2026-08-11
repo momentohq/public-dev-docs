@@ -2,7 +2,7 @@
 sidebar_position: 1
 pagination_prev: null
 sidebar_label: Node.js
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know the Momento Node.js SDK
 description: The Momento Node.js SDK allows you to create server-side applications in TypeScript or JavaScript, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
 keywords:
