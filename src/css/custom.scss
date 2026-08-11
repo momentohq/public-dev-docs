@@ -75,7 +75,7 @@ h4 {
   --ifm-link-color: #00a070;
   --ifm-font-family-monospace: "Manrope";
   --ifm-font-family-base: "Manrope";
-  --footer-text: #ffffff;
+  --custom-table-header-text: #ffffff;
   --container-background-color: #ffffff;
   --table-highlight-row: #f0f0f0;
   --doc-sidebar-width: 250px !important;
@@ -91,7 +91,7 @@ h4 {
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-  --footer-text: #25392b;
+  --custom-table-header-text: #25392b;
   --container-background-color: var(--ifm-background-color);
   --table-highlight-row: #2B2B2D;
 }
@@ -120,14 +120,6 @@ code span {
 }
 
 @media (max-width: 997px) {
-  .footer .container {
-    flex-direction: column !important;
-
-    .footer__bottom {
-      order: 3;
-    }
-  }
-
   .navbar__logo {
     flex: 0 0 auto;
     height: 1.5rem;
@@ -157,6 +149,9 @@ code span {
 .navbar--emptied {
   display: none;
 }
+
+/* The footer is swizzled (src/theme/Footer) to mirror the marketing site footer; the old
+   Infima .footer overrides below have been removed in favor of that component's own styles. */
 
 /* The navbar only renders on mobile now (see src/theme/Navbar), so its chrome is scoped to
    the mobile breakpoint. */
@@ -279,57 +274,6 @@ code span {
   height: 1rem;
   width: 1rem;
   background: var(--ifm-menu-link-sublist-icon) 50% / 1.75rem 1.75rem;
-}
-
-.footer {
-  background: var(--ifm-color-primary);
-  padding: 2em var(--ifm-footer-padding-horizontal) 1em;
-
-  .container {
-    display: flex;
-    flex-direction: row;
-
-    .row {
-      order: 2;
-    }
-  }
-
-  .footer__bottom {
-    order: 1;
-    margin-right: auto;
-
-    img {
-      width: 218px;
-      max-width: none;
-      margin-top: 0;
-    }
-  }
-
-  .footer__copyright {
-    font-size: .9rem;
-    font-weight: 400;
-    color: var(--footer-text);
-    margin-top: 4px;
-  }
-
-  .footer__col {
-    min-width: 260px;
-  }
-
-  .footer__items {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .footer__title {
-    margin-bottom: 4px;
-    color: var(--footer-text);
-  }
-
-  .footer__link-item {
-    color: var(--footer-text);
-    font-size: .9rem;
-  }
 }
 
 .breadcrumbs {
@@ -639,7 +583,7 @@ code span {
   text-align: left;
   border-bottom: 1px solid #ccc;
   background-color: var(--ifm-color-primary);
-  color: var(--footer-text);
+  color: var(--custom-table-header-text);
 }
 .customTable td {
   text-align: left;
