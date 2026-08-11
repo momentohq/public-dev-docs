@@ -189,27 +189,29 @@ code span {
   padding-top: 0 !important;
 }
 
-.theme-doc-sidebar-container {
-  border: none !important;
-}
-
 /* Hide the left-hand docs sidebar's scrollbar while keeping it scrollable. The sidebar's
    scroll container is the <nav class="menu thin-scrollbar"> inside .theme-doc-sidebar-container
    (Docusaurus theme-classic's DocSidebar/Desktop/Content). The `thin-scrollbar` Infima utility
    gives it a visible thin scrollbar (scrollbar-width: thin + ::-webkit-scrollbar styling), and
    the theme's .menu style sets scrollbar-gutter: stable to reserve room for that rail. Hide the
    rail across browsers and release the gutter so no empty gap remains. */
-.theme-doc-sidebar-container .menu {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge legacy */
-  scrollbar-gutter: auto !important; /* undo theme's `stable` */
+@media (min-width: 997px) {
+  @supports (scrollbar-gutter: stable) {
+    .theme-doc-sidebar-container .menu {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge legacy */
+      scrollbar-gutter: auto; /* undo theme's `stable` */
+      padding: 0.5rem;
 
-  &::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-    display: none; /* Chrome, Safari, modern Edge */
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        display: none; /* Chrome, Safari, modern Edge */
+      }
+    }
   }
 }
+
 
 .theme-doc-sidebar-container>div {
   /* Was padding-top: 80px to clear the old fixed navbar; the sidebar now starts at the top
