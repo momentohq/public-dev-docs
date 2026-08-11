@@ -23,16 +23,16 @@ When a page refers to "the HTTP API," check which surface it means.
 
 Protocol support differs by product. The table summarizes current data-plane support. An API key and
 the regional endpoint shown in the console provide the connection details for the selected product
-and protocol.
+and protocol. `✓` indicates support; `✗` indicates no support.
 
 | Product | gRPC | HTTP API | RESP | protosocket |
 | --- | --- | --- | --- | --- |
-| **Momento Cache (Cluster and Flex)** | Not supported | Not supported | Supported | Not supported |
-| **Momento Cache (Serverless)** | Supported | Supported | Not supported | Supported |
-| **Momento Topics** | Supported | Supported | Not supported | Not supported |
-| **Momento Functions** | Supported | Supported | Not supported | Not supported |
-| **Momento Leaderboards** | Supported | Not supported | Not supported | Not supported |
-| **Momento Object Store** | Not supported | Supported | Not supported | Not supported |
+| **Momento Cache (Cluster and Flex)** | ✗ | ✗ | ✓ | ✗ |
+| **Momento Cache (Serverless)** | ✓ | ✓ | ✗ | ✓ |
+| **Momento Topics** | ✓ | ✓ | ✗ | ✗ |
+| **Momento Functions** | ✓ | ✓ | ✗ | ✗ |
+| **Momento Leaderboards** | ✓ | ✗ | ✗ | ✗ |
+| **Momento Object Store** | ✗ | ✓ | ✗ | ✗ |
 
 The matrix describes data-plane protocols only. The `/cache/…` HTTP routes belong to Momento Cache
 (Serverless), not Cluster or Flex.
