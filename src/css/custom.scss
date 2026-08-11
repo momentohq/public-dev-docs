@@ -631,10 +631,9 @@ code span {
   background-color: var(--ifm-color-emphasis-200);
   border-radius: var(--ifm-global-radius);
 }
-.theme-doc-sidebar-menu .sidebar-group-primary > .menu__list-item-collapsible:hover,
-.theme-doc-sidebar-menu .sidebar-group-primary > .menu__link:hover {
-  background-color: var(--ifm-color-emphasis-300);
-}
+/* No background-color change on hover for top-level groups (owner-directed): visual feedback
+   is provided by the left accent bar instead (see sidebar-group-tint below). Each group has
+   its own tint class (cloud/self-hosted/platform/other) that pins the background on hover. */
 
 /* Bold the primary (deployment-model, e.g. Cloud) and product (e.g. Momento Cache) group labels
    so the top IA levels anchor the tree. The generator tags them .sidebar-group-primary/-product. */
@@ -660,30 +659,35 @@ code span {
 }
 
 /* Slight per-group coloration on the top-level deployment-model categories (T-0043):
-   Cloud = blue, Self-Hosted = green, Platform = yellow, Other = blue. A subtle tinted header
-   background + a left accent bar, overriding the neutral grey above. Theme-aware. The generator
+   Cloud = blue, Self-Hosted = green, Platform = yellow, Other = neutral grey. A subtle tinted
+   header background; the left accent bar is hidden in the normal state and shown on hover to
+   provide visual feedback without changing the background color. Theme-aware. The generator
    tags each group with .sidebar-group-<name> alongside .sidebar-group-primary (ia/site.json). */
 @mixin sidebar-group-tint($bg, $bg-hover, $accent) {
   > .menu__list-item-collapsible,
+  > .menu__list-item-collapsible > .menu__link,
   > .menu__link {
     background-color: $bg;
-    box-shadow: inset 3px 0 0 0 $accent;
+    box-shadow: inset 3px 0 0 0 transparent;
   }
   > .menu__list-item-collapsible:hover,
+  > .menu__list-item-collapsible > .menu__link:hover,
   > .menu__link:hover {
-    background-color: $bg-hover;
+    background-color: $bg !important;
+    box-shadow: inset 3px 0 0 0 $accent;
   }
 }
 .theme-doc-sidebar-menu {
   .sidebar-group-cloud       { @include sidebar-group-tint(#eaf3fe, #dbeafb, #3b82c4); }
   .sidebar-group-self-hosted { @include sidebar-group-tint(#e8f7ee, #d5f0e0, #27ae60); }
   .sidebar-group-platform    { @include sidebar-group-tint(#fdf6e0, #f7ecc6, #d4a72c); }
-  /* Other intentionally keeps the neutral grey (.sidebar-group-primary) — no tint. */
+  .sidebar-group-other       { @include sidebar-group-tint(#f0eef4, #e6e2f0, #8a7ca8); }
 }
 [data-theme="dark"] .theme-doc-sidebar-menu {
   .sidebar-group-cloud       { @include sidebar-group-tint(#15263b, #1c3350, #4a90d9); }
   .sidebar-group-self-hosted { @include sidebar-group-tint(#15301e, #1c4028, #3fae6a); }
   .sidebar-group-platform    { @include sidebar-group-tint(#2d2911, #3c3618, #c9a227); }
+  .sidebar-group-other       { @include sidebar-group-tint(#2a2533, #38323f, #a896c8); }
 }
 
 /* Note admonitions: pastel blue so they stand out. Docusaurus' default 'note' is a near-white
