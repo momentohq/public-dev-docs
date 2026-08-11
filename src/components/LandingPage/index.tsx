@@ -16,7 +16,6 @@ import Link from '@docusaurus/Link';
 export default function LandingPage(): JSX.Element {
   return (
     <main className={styles.content}>
-      <img className={styles.headerBackground} src="/img/acorn-grid-background.svg" alt={'acorn-grid'} />
       <div className={styles.contentContainer}>
         {/* Hero */}
         <div className={styles.headerSection}>
@@ -35,8 +34,13 @@ export default function LandingPage(): JSX.Element {
         {/* Cloud / Self-Hosted — two labeled container cards, side by side */}
         <div className={styles.section}>
           <div className={styles.topCards}>
-            <div className={styles.categoryCard}>
+            <div className={`${styles.categoryCard} ${styles.categoryCardCloud}`}>
               <h2 className={styles.categoryCardTitle}>Cloud</h2>
+              <p className={styles.categoryCardBlurb}>
+                <Translate id="homeCloudBlurb">
+                  Managed infrastructure on Momento Cloud, with no operations required.
+                </Translate>
+              </p>
               <Link className={styles.productCard} to="/product/cache">
                 <span className={styles.productCardTitle}>Momento Cache</span>
                 <span className={styles.productCardDesc}>
@@ -45,8 +49,14 @@ export default function LandingPage(): JSX.Element {
                 </span>
               </Link>
             </div>
-            <div className={styles.categoryCard}>
+            <div className={`${styles.categoryCard} ${styles.categoryCardSelfHosted}`}>
               <h2 className={styles.categoryCardTitle}>Self-Hosted</h2>
+              <p className={styles.categoryCardBlurb}>
+                <Translate id="homeSelfHostedBlurb">
+                  The Momento Valkey platform toolkit for teams running Valkey on their own
+                  infrastructure.
+                </Translate>
+              </p>
               <Link className={styles.productCard} to="/self-hosted/valkey-operator">
                 <span className={styles.productCardTitle}>Valkey Operator</span>
                 <span className={styles.productCardDesc}>
@@ -61,7 +71,7 @@ export default function LandingPage(): JSX.Element {
         {/* Other (legacy) products — full-width labeled container, 3-column inner grid */}
         <div className={styles.section}>
           <div className={styles.categoryCard}>
-            <h2 className={styles.categoryCardTitle}>Other</h2>
+            <h2 className={styles.categoryCardTitle}>Other Products</h2>
             <div className={styles.categoryCardGrid}>
               <Link className={styles.productCard} to="/cache">
                 <span className={styles.productCardTitle}>Momento Cache (Serverless)</span>

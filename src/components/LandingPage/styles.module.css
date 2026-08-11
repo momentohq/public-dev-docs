@@ -7,7 +7,7 @@
   justify-content: center;
   position: relative;
   z-index: 1;
-  padding: 3rem 0 4rem;
+  padding: 0 0 4rem;
   flex: 1;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .headerSection {
-  padding: 0rem 1rem 1rem;
+  padding: 0 0 1rem;
 }
 
 .headerDescription {
@@ -50,7 +50,8 @@
   max-width: 630px;
 }
 
-/* Labeled container card — an outer card with a heading and an inner content area. */
+/* Labeled container card — an outer card with a heading and an inner content area.
+   Neutral by default (Other); per-category tint classes add the sidebar-matching background. */
 .categoryCard {
   border: 1px solid var(--ifm-color-emphasis-300, #c9cdca);
   border-radius: 8px;
@@ -58,11 +59,38 @@
   background-color: var(--ifm-background-color, #fff);
 }
 
+/* Per-category tints, matching the left-sidebar group colors (decision 0013 r3). */
+.categoryCardCloud {
+  background-color: #eaf3fe;
+  border-color: #dbeafb;
+}
+
+.categoryCardSelfHosted {
+  background-color: #e8f7ee;
+  border-color: #d5f0e0;
+}
+
+[data-theme='dark'] .categoryCardCloud {
+  background-color: #15263b;
+  border-color: #1c3350;
+}
+
+[data-theme='dark'] .categoryCardSelfHosted {
+  background-color: #15301e;
+  border-color: #1c4028;
+}
+
 .categoryCardTitle {
   font-size: 1.15rem;
   font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.categoryCardBlurb {
+  font-size: 0.95rem;
+  line-height: 1.4;
   margin: 0 0 1rem;
-  text-transform: capitalize;
+  color: var(--ifm-color-emphasis-700, #555);
 }
 
 /* Two side-by-side labeled cards (Cloud / Self-Hosted). */
@@ -72,14 +100,15 @@
   gap: 1.5rem;
 }
 
-/* Inner product card — a link styled as a card. */
+/* Inner product card — a link styled as a card (no border-radius). */
 .productCard {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
   padding: 1rem;
   border: 1px solid var(--ifm-color-emphasis-300, #c9cdca);
-  border-radius: 6px;
+  border-radius: 0;
+  background-color: var(--ifm-background-color, #fff);
   text-decoration: none;
   color: inherit;
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
@@ -121,7 +150,7 @@
 }
 
 .section {
-  margin: 1.5em 2em 0;
+  margin: 1.5em 0 0;
 }
 
 .sectionTitle {
@@ -209,7 +238,7 @@
   }
 
   .section {
-    margin: 0 1em;
+    margin: 0;
   }
 
   .subsectionDetail {
