@@ -65,16 +65,53 @@
   text-transform: capitalize;
 }
 
-.categoryCardInner {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+/* Two side-by-side labeled cards (Cloud / Self-Hosted). */
+.topCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
 }
 
+/* Inner product card — a link styled as a card. */
+.productCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300, #c9cdca);
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.productCard:hover {
+  border-color: var(--ifm-color-primary, #25c2a0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.productCardTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.productCardDesc {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--ifm-color-emphasis-700, #555);
+}
+
+/* Other — full-width 3-column inner grid. */
 .categoryCardGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+}
+
+@media (max-width: 996px) {
+  .topCards {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
