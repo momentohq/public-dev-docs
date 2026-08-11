@@ -243,39 +243,705 @@
     "collapsed": true,
     "items": [
       {
-        "type": "link",
+        "type": "category",
         "label": "Momento Cache (Serverless)",
-        "href": "/cache"
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "cache/index",
+          "cache/getting-started",
+          {
+            "type": "category",
+            "label": "Learn",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "category",
+                "label": "How it works",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "cache/learn/how-it-works/cache-eviction-vs-expiration",
+                  "cache/learn/how-it-works/expire-data-with-ttl",
+                  "cache/learn/how-it-works/read-concern"
+                ],
+                "key": "cache-how-it-works"
+              },
+              {
+                "type": "category",
+                "label": "Cache concepts course",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "cache/learn/courses/cache-concepts/index",
+                  "cache/learn/courses/cache-concepts/cache-eviction-vs-cache-expiration",
+                  "cache/learn/courses/cache-concepts/common-caching-use-cases",
+                  "cache/learn/courses/cache-concepts/time-to-live",
+                  "cache/learn/courses/cache-concepts/why-use-serverless-services"
+                ],
+                "key": "cache-concepts-course"
+              }
+            ],
+            "key": "cache-learn"
+          },
+          {
+            "type": "category",
+            "label": "Develop",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "cache/develop/index",
+              {
+                "type": "category",
+                "label": "Basics",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "cache/develop/basics/client-configuration-objects",
+                  "cache/develop/basics/datatypes",
+                  "cache/develop/basics/error-handling-production-readiness"
+                ],
+                "key": "cache-basics"
+              },
+              {
+                "type": "category",
+                "label": "API reference",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "cache/develop/api-reference/index",
+                  "cache/develop/api-reference/collection-ttl",
+                  "cache/develop/api-reference/dictionary-collections",
+                  "cache/develop/api-reference/list-collections",
+                  "cache/develop/api-reference/set-collections",
+                  "cache/develop/api-reference/sorted-set-collections",
+                  "cache/develop/api-reference/response-objects",
+                  "cache/develop/api-reference/http-api"
+                ],
+                "key": "cache-serverless-api-reference"
+              },
+              {
+                "type": "category",
+                "label": "Guides",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "cache/develop/guides/working-with-files-cache",
+                  "cache/develop/guides/working-with-time-series-data"
+                ],
+                "key": "cache-guides"
+              },
+              "cache/develop/language-support/language-support"
+            ],
+            "key": "cache-develop"
+          },
+          {
+            "type": "category",
+            "label": "SDKs",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "category",
+                "label": "Dart",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/dart/cache"
+                ],
+                "key": "cache-sdk-dart"
+              },
+              {
+                "type": "category",
+                "label": ".NET",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/dotnet/cache"
+                ],
+                "key": "cache-sdk-dotnet"
+              },
+              {
+                "type": "category",
+                "label": "Elixir",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/elixir/cache"
+                ],
+                "key": "cache-sdk-elixir"
+              },
+              {
+                "type": "category",
+                "label": "Go",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/go/cache"
+                ],
+                "key": "cache-sdk-go"
+              },
+              {
+                "type": "category",
+                "label": "Java",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/java/cache"
+                ],
+                "key": "cache-sdk-java"
+              },
+              {
+                "type": "category",
+                "label": "Kotlin",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/kotlin/cache"
+                ],
+                "key": "cache-sdk-kotlin"
+              },
+              {
+                "type": "category",
+                "label": "Node.js",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/nodejs/cache",
+                  "platform/sdks/nodejs/compression"
+                ],
+                "key": "cache-sdk-nodejs"
+              },
+              {
+                "type": "category",
+                "label": "PHP",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/php/cache"
+                ],
+                "key": "cache-sdk-php"
+              },
+              {
+                "type": "category",
+                "label": "Python",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/python/cache"
+                ],
+                "key": "cache-sdk-python"
+              },
+              {
+                "type": "category",
+                "label": "Rust",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/rust/cache"
+                ],
+                "key": "cache-sdk-rust"
+              },
+              {
+                "type": "category",
+                "label": "Swift",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/swift/cache"
+                ],
+                "key": "cache-sdk-swift"
+              }
+            ],
+            "key": "cache-sdks"
+          },
+          {
+            "type": "category",
+            "label": "How-to guides",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "cache/how-to/rate-limiter"
+            ],
+            "key": "cache-how-to"
+          },
+          {
+            "type": "category",
+            "label": "Patterns",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "cache/patterns/api-caching",
+              "cache/patterns/database-caching"
+            ],
+            "key": "cache-patterns"
+          },
+          {
+            "type": "category",
+            "label": "Integrations",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "cache/integrations/amazon-eventbridge",
+              "cache/integrations/aws-secrets-manager",
+              "cache/integrations/bulk-writing-from-redis-json-csv",
+              "cache/integrations/cloudflare",
+              "cache/integrations/deno",
+              "cache/integrations/drupal-integration",
+              "cache/integrations/fastly",
+              "cache/integrations/momento-cache-laravel-php",
+              "cache/integrations/netlify-integration",
+              "cache/integrations/redis-client-compatibility",
+              "cache/integrations/sequelize",
+              "cache/integrations/terraform",
+              "cache/integrations/unity-integration",
+              "cache/integrations/vercel-integration"
+            ],
+            "key": "cache-integrations"
+          },
+          {
+            "type": "category",
+            "label": "Manage",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "cache/manage/limits",
+              "cache/manage/metrics_in_the_console",
+              "cache/manage/operations"
+            ],
+            "key": "cache-manage"
+          },
+          {
+            "type": "category",
+            "label": "RESP compatibility",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "cache/resp/index",
+              "cache/resp/commands"
+            ],
+            "key": "cache-resp"
+          },
+          {
+            "type": "category",
+            "label": "Proxy",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "cache/proxy/index",
+              {
+                "type": "category",
+                "label": "Configuration",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "cache/proxy/configuration/index",
+                  "cache/proxy/configuration/example",
+                  "cache/proxy/configuration/sidecar"
+                ],
+                "key": "cache-proxy-configuration"
+              }
+            ],
+            "key": "cache-proxy"
+          }
+        ],
+        "key": "other-cache-serverless",
+        "className": "sidebar-group-product"
       },
       {
-        "type": "link",
+        "type": "category",
         "label": "Topics",
-        "href": "/topics"
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "topics/index",
+          "topics/metrics",
+          "topics/limits",
+          {
+            "type": "category",
+            "label": "Develop",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "topics/develop/index",
+              "topics/develop/language-support/language-support",
+              "topics/develop/guides/building-and-deploying-topics-listeners-on-aws"
+            ],
+            "key": "topics-develop"
+          },
+          {
+            "type": "category",
+            "label": "SDKs",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "category",
+                "label": "Dart",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/dart/topics"
+                ],
+                "key": "topics-sdk-dart"
+              },
+              {
+                "type": "category",
+                "label": ".NET",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/dotnet/topics"
+                ],
+                "key": "topics-sdk-dotnet"
+              },
+              {
+                "type": "category",
+                "label": "Go",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/go/topics"
+                ],
+                "key": "topics-sdk-go"
+              },
+              {
+                "type": "category",
+                "label": "Java",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/java/topics"
+                ],
+                "key": "topics-sdk-java"
+              },
+              {
+                "type": "category",
+                "label": "Kotlin",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/kotlin/topics"
+                ],
+                "key": "topics-sdk-kotlin"
+              },
+              {
+                "type": "category",
+                "label": "Node.js",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/nodejs/topics"
+                ],
+                "key": "topics-sdk-nodejs"
+              },
+              {
+                "type": "category",
+                "label": "Python",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/python/topics"
+                ],
+                "key": "topics-sdk-python"
+              },
+              {
+                "type": "category",
+                "label": "Rust",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/rust/topics"
+                ],
+                "key": "topics-sdk-rust"
+              },
+              {
+                "type": "category",
+                "label": "Swift",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "platform/sdks/swift/topics"
+                ],
+                "key": "topics-sdk-swift"
+              }
+            ],
+            "key": "topics-sdks"
+          },
+          {
+            "type": "category",
+            "label": "API reference",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "topics/api-reference/index",
+              "topics/api-reference/response-objects",
+              "topics/api-reference/http-api"
+            ],
+            "key": "topics-api-reference"
+          },
+          {
+            "type": "category",
+            "label": "Patterns",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "topics/patterns/instant-messaging"
+            ],
+            "key": "topics-patterns"
+          }
+        ],
+        "key": "other-topics",
+        "className": "sidebar-group-product"
       },
       {
-        "type": "link",
+        "type": "category",
         "label": "Functions",
-        "href": "/functions/overview"
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "functions/overview",
+          "functions/use-cases",
+          {
+            "type": "category",
+            "label": "Core concepts",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "functions/core-concepts/architecture",
+              "functions/core-concepts/invocations",
+              "functions/core-concepts/cold-starts",
+              "functions/core-concepts/host-interfaces"
+            ],
+            "key": "functions-core-concepts"
+          },
+          {
+            "type": "category",
+            "label": "Develop",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "functions/develop/getting-started",
+              "functions/develop/web-functions",
+              "functions/develop/spawn-functions",
+              "functions/develop/deploy-and-invoke"
+            ],
+            "key": "functions-develop"
+          },
+          {
+            "type": "category",
+            "label": "Capabilities",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "functions/capabilities/cache",
+              "functions/capabilities/http",
+              "functions/capabilities/tokens",
+              "functions/capabilities/aws",
+              "functions/capabilities/logging",
+              "functions/capabilities/environment",
+              "functions/capabilities/topics"
+            ],
+            "key": "functions-capabilities"
+          },
+          {
+            "type": "category",
+            "label": "Patterns",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "functions/patterns/caching",
+              "functions/patterns/orchestration",
+              "functions/patterns/proxying"
+            ],
+            "key": "functions-patterns"
+          }
+        ],
+        "key": "other-functions",
+        "className": "sidebar-group-product"
       },
       {
-        "type": "link",
+        "type": "category",
         "label": "Leaderboards",
-        "href": "/leaderboards"
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "leaderboards/index",
+          {
+            "type": "category",
+            "label": "API reference",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "leaderboards/api-reference/index",
+              "leaderboards/api-reference/response-objects"
+            ],
+            "key": "leaderboards-api-reference"
+          },
+          "leaderboards/language-support/language-support",
+          "leaderboards/limits",
+          {
+            "type": "category",
+            "label": "Patterns",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "leaderboards/patterns/map-id-to-string"
+            ],
+            "key": "leaderboards-patterns"
+          }
+        ],
+        "key": "other-leaderboards",
+        "className": "sidebar-group-product"
       },
       {
-        "type": "link",
+        "type": "category",
         "label": "Media Storage",
-        "href": "/media-storage/overview"
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "media-storage/media-storage-index",
+          "media-storage/overview",
+          "media-storage/use-cases",
+          {
+            "type": "category",
+            "label": "Concurrency",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "media-storage/concurrency/account-level",
+              "media-storage/concurrency/devices"
+            ],
+            "key": "media-storage-concurrency"
+          },
+          {
+            "type": "category",
+            "label": "Core concepts",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "media-storage/core-concepts/abr-ladder",
+              "media-storage/core-concepts/origin",
+              "media-storage/core-concepts/segments",
+              "media-storage/core-concepts/zero-buffer-rate"
+            ],
+            "key": "media-storage-core-concepts"
+          },
+          {
+            "type": "category",
+            "label": "Enhancements",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "media-storage/enhancements/heartbeats",
+              "media-storage/enhancements/live-reactions",
+              "media-storage/enhancements/viewer-metrics"
+            ],
+            "key": "media-storage-enhancements"
+          },
+          {
+            "type": "category",
+            "label": "Entitlements",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "media-storage/entitlements/about",
+              "media-storage/entitlements/real-time-updates"
+            ],
+            "key": "media-storage-entitlements"
+          },
+          {
+            "type": "category",
+            "label": "Performance",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "media-storage/performance/optimizing-delivery",
+              {
+                "type": "category",
+                "label": "Adaptive bitrates",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "media-storage/performance/adaptive-bitrates/how-it-works",
+                  "media-storage/performance/adaptive-bitrates/hls",
+                  "media-storage/performance/adaptive-bitrates/dash"
+                ],
+                "key": "media-storage-adaptive-bitrates"
+              }
+            ],
+            "key": "media-storage-performance"
+          },
+          {
+            "type": "category",
+            "label": "Streaming",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "media-storage/streaming/overview",
+              "media-storage/streaming/decoding-video",
+              {
+                "type": "category",
+                "label": "Capture",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "media-storage/streaming/capture/rtmp"
+                ],
+                "key": "media-storage-capture"
+              },
+              {
+                "type": "category",
+                "label": "Live streaming",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "media-storage/streaming/live-streaming/how-it-works",
+                  "media-storage/streaming/live-streaming/glass-to-glass-latency",
+                  "media-storage/streaming/live-streaming/how-to-medialive-cloudfront"
+                ],
+                "key": "media-storage-live-streaming"
+              },
+              {
+                "type": "category",
+                "label": "Video on demand",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  "media-storage/streaming/video-on-demand/media-storage"
+                ],
+                "key": "media-storage-video-on-demand"
+              }
+            ],
+            "key": "media-storage-streaming"
+          }
+        ],
+        "key": "other-media-storage",
+        "className": "sidebar-group-product"
       },
       {
-        "type": "link",
+        "type": "category",
         "label": "Object Store",
-        "href": "/objectstore/http-api"
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "objectstore/http-api"
+        ],
+        "key": "other-object-store",
+        "className": "sidebar-group-product"
       },
       {
-        "type": "link",
+        "type": "category",
         "label": "Cloud Linter",
-        "href": "/cloud-linter"
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "cloud-linter/index",
+          "cloud-linter/getting-started"
+        ],
+        "key": "other-cloud-linter",
+        "className": "sidebar-group-product"
       }
     ],
     "className": "sidebar-group-primary sidebar-group-other"
