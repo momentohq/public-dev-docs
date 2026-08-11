@@ -278,6 +278,6 @@
         "href": "/cloud-linter"
       }
     ],
-    "className": "sidebar-group-other"
+    "className": "sidebar-group-primary sidebar-group-other"
   }
 ]
