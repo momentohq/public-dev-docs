@@ -59,6 +59,12 @@
   margin-bottom: .75em;
 }
 
+.sectionLead {
+  font-size: 1.05rem;
+  margin: 0 0 1em;
+  max-width: 760px;
+}
+
 .subsectionTitle {
   margin: .5em 0 1em;
 }
