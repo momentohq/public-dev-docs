@@ -21,33 +21,25 @@ When a page refers to "the HTTP API," check which surface it means.
 
 ## Protocol availability by product
 
-Protocol support differs by product. The table summarizes data-plane availability unless a cell
-states **Control plane only**. An API key and the regional endpoint shown in the console provide the
-connection details for the selected product and protocol.
+Protocol support differs by product. The table summarizes current data-plane support. An API key and
+the regional endpoint shown in the console provide the connection details for the selected product
+and protocol.
 
 | Product | gRPC | HTTP API | RESP | protosocket |
 | --- | --- | --- | --- | --- |
-| **Momento Cache (Cluster and Flex)** | Unconfirmed | Not available | Available | Unconfirmed |
-| **Momento Cache (Serverless)** | Available | Available at `/cache/…` | Not available | Available |
-| **Momento Topics** | Available | Available at `/topics/…` | Not available | Not available |
-| **Momento Functions** | Available | Available at `/functions/…` | Not available | Not available |
-| **Momento Leaderboards** | Available | Not available | Not available | Not available |
-| **Momento Object Store** | Control plane only | Available at `/objectstore` | Not available | Not available |
-| **DynamoDB accelerator** | Not available | DynamoDB-compatible | Not available | Not available |
+| **Momento Cache (Cluster and Flex)** | Not supported | Not supported | Supported | Not supported |
+| **Momento Cache (Serverless)** | Supported | Supported | Not supported | Supported |
+| **Momento Topics** | Supported | Supported | Not supported | Not supported |
+| **Momento Functions** | Supported | Supported | Not supported | Not supported |
+| **Momento Leaderboards** | Supported | Not supported | Not supported | Not supported |
+| **Momento Object Store** | Not supported | Supported | Not supported | Not supported |
 
-For Momento Cache (Cluster and Flex), RESP is the confirmed data-plane protocol. Its HTTP data-plane
-API is planned but not available. Whether Cluster and Flex Databases support gRPC or protosocket is
-unconfirmed. The `/cache/…` HTTP routes belong to Momento Cache (Serverless), not Cluster or Flex.
+The matrix describes data-plane protocols only. The `/cache/…` HTTP routes belong to Momento Cache
+(Serverless), not Cluster or Flex.
 
 HTTP data-plane routes include a product-specific path such as `/cache/…`, `/topics/…`, or
 `/functions/…`. The product path keeps those APIs distinct even when they use the same regional HTTP
 endpoint.
-
-## Legacy Momento Valkey Clusters
-
-The legacy Momento Valkey Clusters API is distinct from Momento Cache (Serverless), Cluster, and
-Flex. It is feature-flagged for selected enterprise customers and is not generally supported, so its
-API reference remains hidden from the public navigation.
 
 ## Distinct HTTP-API surfaces
 
