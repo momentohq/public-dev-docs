@@ -20,9 +20,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 # NOTE: temporarily commenting out the following lines due to unknown issues with the translation tool.
 #
 #      - run: |
