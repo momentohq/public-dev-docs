@@ -137,6 +137,11 @@
 .productCardTitle {
   font-size: 1.05rem;
   font-weight: 700;
+  color: var(--ifm-font-color-base);
+}
+
+.productCard:hover .productCardTitle {
+  color: var(--ifm-font-color-base);
 }
 
 .productCardDesc {
