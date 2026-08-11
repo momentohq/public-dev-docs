@@ -3,7 +3,7 @@ title: Momento regions
 description: View the available regions for the Momento Platform
 pagination_next: null
 hide_title: true
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 keywords:
   - momento
   - cache

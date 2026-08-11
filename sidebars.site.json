@@ -25,7 +25,8 @@
               "product/cache/concepts/connectivity-and-gateway",
               "product/cache/concepts/isolation",
               "product/cache/concepts/valkey-compatibility"
-            ]
+            ],
+            "key": "cloud-momento-cache-concepts"
           },
           "product/cache/manage/pools",
           "product/cache/manage/databases",
@@ -39,14 +40,17 @@
             "items": [
               "product/cache/api-reference/capacity-pool",
               "product/cache/api-reference/database"
-            ]
+            ],
+            "key": "cloud-momento-cache-api-reference"
           },
           "product/cache/reliability",
           "product/cache/pricing"
         ],
+        "key": "cloud-momento-cache",
         "className": "sidebar-group-product"
       }
     ],
+    "key": "cloud",
     "className": "sidebar-group-primary sidebar-group-cloud"
   },
   {
@@ -74,7 +78,8 @@
               "self-hosted/valkey-operator/getting-started/installation",
               "self-hosted/valkey-operator/getting-started/quickstart",
               "self-hosted/valkey-operator/getting-started/glossary"
-            ]
+            ],
+            "key": "self-hosted-valkey-operator-getting-started"
           },
           {
             "type": "category",
@@ -102,7 +107,8 @@
               "self-hosted/valkey-operator/team-guide/connecting",
               "self-hosted/valkey-operator/team-guide/scaling",
               "self-hosted/valkey-operator/team-guide/changing-configuration"
-            ]
+            ],
+            "key": "self-hosted-valkey-operator-for-product-teams"
           },
           {
             "type": "category",
@@ -118,7 +124,8 @@
               "self-hosted/valkey-operator/platform-guide/kubernetes-maintenance",
               "self-hosted/valkey-operator/platform-guide/monitoring",
               "self-hosted/valkey-operator/platform-guide/logging"
-            ]
+            ],
+            "key": "self-hosted-valkey-operator-for-platform-teams"
           },
           {
             "type": "category",
@@ -133,7 +140,8 @@
               "self-hosted/valkey-operator/operations/benchmarking",
               "self-hosted/valkey-operator/operations/troubleshooting",
               "self-hosted/valkey-operator/operations/uninstall"
-            ]
+            ],
+            "key": "self-hosted-valkey-operator-operations"
           },
           {
             "type": "category",
@@ -146,7 +154,8 @@
               "self-hosted/valkey-operator/security/acls",
               "self-hosted/valkey-operator/security/rbac",
               "self-hosted/valkey-operator/security/networking"
-            ]
+            ],
+            "key": "self-hosted-valkey-operator-security-model"
           },
           {
             "type": "category",
@@ -175,7 +184,8 @@
                 ],
                 "key": "valkey-operator-api-reference"
               }
-            ]
+            ],
+            "key": "self-hosted-valkey-operator-reference"
           },
           {
             "type": "category",
@@ -188,13 +198,16 @@
               "self-hosted/valkey-operator/support/faq",
               "self-hosted/valkey-operator/support/what-we-test",
               "self-hosted/valkey-operator/support/getting-support"
-            ]
+            ],
+            "key": "self-hosted-valkey-operator-support"
           },
           "self-hosted/valkey-operator/roadmap"
         ],
+        "key": "self-hosted-valkey-operator",
         "className": "sidebar-group-product"
       }
     ],
+    "key": "self-hosted",
     "className": "sidebar-group-primary sidebar-group-self-hosted"
   },
   {
@@ -203,37 +216,241 @@
     "collapsible": true,
     "collapsed": true,
     "items": [
+      "platform/index",
       {
-        "type": "link",
+        "type": "category",
         "label": "Authentication",
-        "href": "/platform/authentication"
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "platform/authentication/index",
+          "platform/authentication/api-keys",
+          "platform/authentication/tokens",
+          "platform/authentication/roles-and-permissions"
+        ],
+        "key": "platform-authentication",
+        "className": "sidebar-group-product"
+      },
+      "platform/account-management/index",
+      "platform/api/index",
+      "platform/regions/index",
+      {
+        "type": "category",
+        "label": "Connectivity",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "platform/connectivity/private-link"
+        ],
+        "key": "platform-connectivity",
+        "className": "sidebar-group-product"
       },
       {
-        "type": "link",
-        "label": "Account management",
-        "href": "/platform/account-management"
-      },
-      {
-        "type": "link",
-        "label": "API",
-        "href": "/platform/api"
-      },
-      {
-        "type": "link",
-        "label": "Available Regions",
-        "href": "/platform/regions"
-      },
-      {
-        "type": "link",
+        "type": "category",
         "label": "Clients and SDKs",
-        "href": "/platform/sdks"
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "platform/sdks/index",
+          "language_support",
+          {
+            "type": "category",
+            "label": "Dart",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/dart/index"
+            ],
+            "key": "platform-sdk-dart"
+          },
+          {
+            "type": "category",
+            "label": ".NET",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/dotnet/index",
+              "platform/sdks/dotnet/observability"
+            ],
+            "key": "platform-sdk-dotnet"
+          },
+          {
+            "type": "category",
+            "label": "Elixir",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/elixir/index"
+            ],
+            "key": "platform-sdk-elixir"
+          },
+          {
+            "type": "category",
+            "label": "Go",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/go/index"
+            ],
+            "key": "platform-sdk-go"
+          },
+          {
+            "type": "category",
+            "label": "Java",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/java/index"
+            ],
+            "key": "platform-sdk-java"
+          },
+          {
+            "type": "category",
+            "label": "Kotlin",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/kotlin/index"
+            ],
+            "key": "platform-sdk-kotlin"
+          },
+          {
+            "type": "category",
+            "label": "Node.js",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/nodejs/index",
+              "platform/sdks/nodejs/config-and-error-handling",
+              "platform/sdks/nodejs/observability",
+              "platform/sdks/nodejs/style-guide"
+            ],
+            "key": "platform-sdk-nodejs"
+          },
+          {
+            "type": "category",
+            "label": "PHP",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/php/index"
+            ],
+            "key": "platform-sdk-php"
+          },
+          {
+            "type": "category",
+            "label": "Python",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/python/index"
+            ],
+            "key": "platform-sdk-python"
+          },
+          {
+            "type": "category",
+            "label": "Ruby",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/ruby/index"
+            ],
+            "key": "platform-sdk-ruby"
+          },
+          {
+            "type": "category",
+            "label": "Rust",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/rust/index",
+              "platform/sdks/rust/config-and-error-handling"
+            ],
+            "key": "platform-sdk-rust"
+          },
+          {
+            "type": "category",
+            "label": "Swift",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/swift/index"
+            ],
+            "key": "platform-sdk-swift"
+          },
+          {
+            "type": "category",
+            "label": "Unity",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/unity/index"
+            ],
+            "key": "platform-sdk-unity"
+          },
+          {
+            "type": "category",
+            "label": "Unreal Engine",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/unreal/index"
+            ],
+            "key": "platform-sdk-unreal"
+          },
+          {
+            "type": "category",
+            "label": "Web",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "platform/sdks/web/index"
+            ],
+            "key": "platform-sdk-web"
+          }
+        ],
+        "key": "platform-clients-and-sdks",
+        "className": "sidebar-group-product"
       },
       {
-        "type": "link",
+        "type": "category",
         "label": "Quotas and Limits",
-        "href": "/auth/limits"
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "platform/limits/auth",
+          {
+            "type": "link",
+            "label": "Cache",
+            "href": "/cache/manage/limits"
+          },
+          {
+            "type": "link",
+            "label": "Topics",
+            "href": "/topics/limits"
+          },
+          {
+            "type": "link",
+            "label": "Leaderboards",
+            "href": "/leaderboards/limits"
+          }
+        ],
+        "key": "platform-quotas-and-limits",
+        "className": "sidebar-group-product"
+      },
+      {
+        "type": "category",
+        "label": "Support",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "support/support-media-events"
+        ],
+        "key": "platform-support",
+        "className": "sidebar-group-product"
       }
     ],
+    "key": "platform",
     "className": "sidebar-group-primary sidebar-group-platform"
   },
   {
@@ -944,6 +1161,7 @@
         "className": "sidebar-group-product"
       }
     ],
+    "key": "other",
     "className": "sidebar-group-primary sidebar-group-other"
   }
 ]

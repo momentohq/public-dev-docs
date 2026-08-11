@@ -2,7 +2,7 @@
 sidebar_position: 5
 pagination_prev: null
 sidebar_label: Go
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know the Momento Go SDK
 description: The Momento Go SDK allows you to create server-side applications, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
 keywords:

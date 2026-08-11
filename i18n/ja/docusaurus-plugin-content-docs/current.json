@@ -30,5 +30,413 @@
   "sidebar.tutorialSidebar.category.Manage": {
     "message": "管理",
     "description": "The label for category Manage"
+  },
+  "sidebar.siteSidebar.category.cloud": {
+    "message": "クラウド",
+    "description": "The label for category 'Cloud' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cloud-momento-cache": {
+    "message": "Momento Cache",
+    "description": "The label for category 'Momento Cache' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cloud-momento-cache-concepts": {
+    "message": "コンセプト",
+    "description": "The label for category 'Concepts' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cloud-momento-cache-api-reference": {
+    "message": "APIリファレンス",
+    "description": "The label for category 'API reference' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.self-hosted": {
+    "message": "セルフホスト",
+    "description": "The label for category 'Self-Hosted' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.self-hosted-valkey-operator": {
+    "message": "Valkey Operator",
+    "description": "The label for category 'Valkey Operator' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.self-hosted-valkey-operator-getting-started": {
+    "message": "はじめに",
+    "description": "The label for category 'Getting started' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.valkey-operator-concepts": {
+    "message": "コンセプト",
+    "description": "The label for category 'Concepts' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.self-hosted-valkey-operator-for-product-teams": {
+    "message": "プロダクトチーム向け",
+    "description": "The label for category 'For product teams' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.self-hosted-valkey-operator-for-platform-teams": {
+    "message": "プラットフォームチーム向け",
+    "description": "The label for category 'For platform teams' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.self-hosted-valkey-operator-operations": {
+    "message": "運用",
+    "description": "The label for category 'Operations' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.self-hosted-valkey-operator-security-model": {
+    "message": "セキュリティモデル",
+    "description": "The label for category 'Security model' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.self-hosted-valkey-operator-reference": {
+    "message": "リファレンス",
+    "description": "The label for category 'Reference' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.valkey-operator-api-reference": {
+    "message": "APIリファレンス",
+    "description": "The label for category 'API reference' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.self-hosted-valkey-operator-support": {
+    "message": "サポート",
+    "description": "The label for category 'Support' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform": {
+    "message": "プラットフォーム",
+    "description": "The label for category 'Platform' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-authentication": {
+    "message": "認証",
+    "description": "The label for category 'Authentication' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-connectivity": {
+    "message": "接続",
+    "description": "The label for category 'Connectivity' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-clients-and-sdks": {
+    "message": "クライアントとSDK",
+    "description": "The label for category 'Clients and SDKs' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-dart": {
+    "message": "Dart",
+    "description": "The label for category 'Dart' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-dotnet": {
+    "message": ".NET",
+    "description": "The label for category '.NET' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-elixir": {
+    "message": "Elixir",
+    "description": "The label for category 'Elixir' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-go": {
+    "message": "Go",
+    "description": "The label for category 'Go' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-java": {
+    "message": "Java",
+    "description": "The label for category 'Java' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-kotlin": {
+    "message": "Kotlin",
+    "description": "The label for category 'Kotlin' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-nodejs": {
+    "message": "Node.js",
+    "description": "The label for category 'Node.js' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-php": {
+    "message": "PHP",
+    "description": "The label for category 'PHP' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-python": {
+    "message": "Python",
+    "description": "The label for category 'Python' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-ruby": {
+    "message": "Ruby",
+    "description": "The label for category 'Ruby' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-rust": {
+    "message": "Rust",
+    "description": "The label for category 'Rust' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-swift": {
+    "message": "Swift",
+    "description": "The label for category 'Swift' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-unity": {
+    "message": "Unity",
+    "description": "The label for category 'Unity' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-unreal": {
+    "message": "Unreal Engine",
+    "description": "The label for category 'Unreal Engine' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-sdk-web": {
+    "message": "Web",
+    "description": "The label for category 'Web' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-quotas-and-limits": {
+    "message": "クォータと制限",
+    "description": "The label for category 'Quotas and Limits' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.platform-support": {
+    "message": "サポート",
+    "description": "The label for category 'Support' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.other": {
+    "message": "その他",
+    "description": "The label for category 'Other' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.other-cache-serverless": {
+    "message": "Momento Cache (Serverless)",
+    "description": "The label for category 'Momento Cache (Serverless)' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-learn": {
+    "message": "学ぶ",
+    "description": "The label for category 'Learn' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-how-it-works": {
+    "message": "仕組み",
+    "description": "The label for category 'How it works' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-concepts-course": {
+    "message": "キャッシュコンセプトコース",
+    "description": "The label for category 'Cache concepts course' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-develop": {
+    "message": "開発",
+    "description": "The label for category 'Develop' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-basics": {
+    "message": "基本",
+    "description": "The label for category 'Basics' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-serverless-api-reference": {
+    "message": "APIリファレンス",
+    "description": "The label for category 'API reference' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-guides": {
+    "message": "ガイド",
+    "description": "The label for category 'Guides' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-sdks": {
+    "message": "SDK",
+    "description": "The label for category 'SDKs' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-sdk-dart": {
+    "message": "Dart",
+    "description": "The label for category 'Dart' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-sdk-dotnet": {
+    "message": ".NET",
+    "description": "The label for category '.NET' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-sdk-elixir": {
+    "message": "Elixir",
+    "description": "The label for category 'Elixir' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-sdk-go": {
+    "message": "Go",
+    "description": "The label for category 'Go' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-sdk-java": {
+    "message": "Java",
+    "description": "The label for category 'Java' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-sdk-kotlin": {
+    "message": "Kotlin",
+    "description": "The label for category 'Kotlin' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-sdk-nodejs": {
+    "message": "Node.js",
+    "description": "The label for category 'Node.js' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-sdk-php": {
+    "message": "PHP",
+    "description": "The label for category 'PHP' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-sdk-python": {
+    "message": "Python",
+    "description": "The label for category 'Python' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-sdk-rust": {
+    "message": "Rust",
+    "description": "The label for category 'Rust' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-sdk-swift": {
+    "message": "Swift",
+    "description": "The label for category 'Swift' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-how-to": {
+    "message": "ハウツーガイド",
+    "description": "The label for category 'How-to guides' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-patterns": {
+    "message": "パターン",
+    "description": "The label for category 'Patterns' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-integrations": {
+    "message": "インテグレーション",
+    "description": "The label for category 'Integrations' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-manage": {
+    "message": "管理",
+    "description": "The label for category 'Manage' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-resp": {
+    "message": "RESP互換性",
+    "description": "The label for category 'RESP compatibility' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-proxy": {
+    "message": "プロキシ",
+    "description": "The label for category 'Proxy' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.cache-proxy-configuration": {
+    "message": "設定",
+    "description": "The label for category 'Configuration' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.other-topics": {
+    "message": "Topics",
+    "description": "The label for category 'Topics' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-develop": {
+    "message": "開発",
+    "description": "The label for category 'Develop' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-sdks": {
+    "message": "SDK",
+    "description": "The label for category 'SDKs' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-sdk-dart": {
+    "message": "Dart",
+    "description": "The label for category 'Dart' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-sdk-dotnet": {
+    "message": ".NET",
+    "description": "The label for category '.NET' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-sdk-go": {
+    "message": "Go",
+    "description": "The label for category 'Go' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-sdk-java": {
+    "message": "Java",
+    "description": "The label for category 'Java' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-sdk-kotlin": {
+    "message": "Kotlin",
+    "description": "The label for category 'Kotlin' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-sdk-nodejs": {
+    "message": "Node.js",
+    "description": "The label for category 'Node.js' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-sdk-python": {
+    "message": "Python",
+    "description": "The label for category 'Python' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-sdk-rust": {
+    "message": "Rust",
+    "description": "The label for category 'Rust' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-sdk-swift": {
+    "message": "Swift",
+    "description": "The label for category 'Swift' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-api-reference": {
+    "message": "APIリファレンス",
+    "description": "The label for category 'API reference' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.topics-patterns": {
+    "message": "パターン",
+    "description": "The label for category 'Patterns' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.other-functions": {
+    "message": "Functions",
+    "description": "The label for category 'Functions' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.functions-core-concepts": {
+    "message": "コアコンセプト",
+    "description": "The label for category 'Core concepts' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.functions-develop": {
+    "message": "開発",
+    "description": "The label for category 'Develop' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.functions-capabilities": {
+    "message": "機能",
+    "description": "The label for category 'Capabilities' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.functions-patterns": {
+    "message": "パターン",
+    "description": "The label for category 'Patterns' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.other-leaderboards": {
+    "message": "Leaderboards",
+    "description": "The label for category 'Leaderboards' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.leaderboards-api-reference": {
+    "message": "APIリファレンス",
+    "description": "The label for category 'API reference' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.leaderboards-patterns": {
+    "message": "パターン",
+    "description": "The label for category 'Patterns' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.other-media-storage": {
+    "message": "Media Storage",
+    "description": "The label for category 'Media Storage' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.media-storage-concurrency": {
+    "message": "同時実行",
+    "description": "The label for category 'Concurrency' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.media-storage-core-concepts": {
+    "message": "コアコンセプト",
+    "description": "The label for category 'Core concepts' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.media-storage-enhancements": {
+    "message": "拡張機能",
+    "description": "The label for category 'Enhancements' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.media-storage-entitlements": {
+    "message": "エンタイトルメント",
+    "description": "The label for category 'Entitlements' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.media-storage-performance": {
+    "message": "パフォーマンス",
+    "description": "The label for category 'Performance' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.media-storage-adaptive-bitrates": {
+    "message": "アダプティブビットレート",
+    "description": "The label for category 'Adaptive bitrates' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.media-storage-streaming": {
+    "message": "ストリーミング",
+    "description": "The label for category 'Streaming' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.media-storage-capture": {
+    "message": "キャプチャ",
+    "description": "The label for category 'Capture' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.media-storage-live-streaming": {
+    "message": "ライブストリーミング",
+    "description": "The label for category 'Live streaming' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.media-storage-video-on-demand": {
+    "message": "ビデオオンデマンド",
+    "description": "The label for category 'Video on demand' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.other-object-store": {
+    "message": "Object Store",
+    "description": "The label for category 'Object Store' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.category.other-cloud-linter": {
+    "message": "Cloud Linter",
+    "description": "The label for category 'Cloud Linter' in sidebar 'siteSidebar'"
+  },
+  "sidebar.siteSidebar.link.Cache": {
+    "message": "Cache",
+    "description": "The label for link 'Cache' in sidebar 'siteSidebar', linking to '/cache/manage/limits'"
+  },
+  "sidebar.siteSidebar.link.Topics": {
+    "message": "Topics",
+    "description": "The label for link 'Topics' in sidebar 'siteSidebar', linking to '/topics/limits'"
+  },
+  "sidebar.siteSidebar.link.Leaderboards": {
+    "message": "Leaderboards",
+    "description": "The label for link 'Leaderboards' in sidebar 'siteSidebar', linking to '/leaderboards/limits'"
   }
 }

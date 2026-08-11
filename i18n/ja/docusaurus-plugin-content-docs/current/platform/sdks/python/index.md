@@ -2,7 +2,7 @@
 sidebar_position: 3
 pagination_prev: null
 sidebar_label: Python
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know the Momento Python SDK
 description: The Momento Python SDK allows you to create server-side applications using either synchronous or asyncio APIs, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
 keywords:

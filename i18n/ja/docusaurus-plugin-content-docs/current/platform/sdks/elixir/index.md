@@ -1,7 +1,7 @@
 ---
 sidebar_position: 7
 pagination_prev: null
-displayed_sidebar: platformSidebar
+displayed_sidebar: siteSidebar
 title: Get to know the Momento Elixir SDK
 description: The Momento Elixir SDK allows you to create server-side applications, and take advantage of Momento's caching and pub-sub features. Find resources and examples here!
 keywords:
