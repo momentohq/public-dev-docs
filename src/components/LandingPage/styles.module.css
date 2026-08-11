@@ -116,7 +116,7 @@
   padding: 1rem;
   border: 1px solid var(--ifm-color-emphasis-300, #c9cdca);
   border-radius: 0;
-  background-color: var(--ifm-background-color, #fff);
+  background-color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   color: inherit;
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
@@ -125,6 +125,13 @@
 .productCard:hover {
   border-color: var(--ifm-color-primary, #25c2a0);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+}
+
+/* In dark mode, a translucent dark surface reads correctly over the tinted
+   container cards (white-60% would be blindingly light). */
+[data-theme='dark'] .productCard {
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .productCardTitle {
