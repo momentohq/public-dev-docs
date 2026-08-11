@@ -7,7 +7,7 @@
   justify-content: center;
   position: relative;
   z-index: 1;
-  padding: 3rem 0 4rem;
+  padding: 0 0 4rem;
   flex: 1;
 }
 
@@ -41,7 +41,11 @@
 }
 
 .headerSection {
-  padding: 0rem 1rem 1rem;
+  padding: 0 0 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .headerDescription {
@@ -50,13 +54,137 @@
   max-width: 630px;
 }
 
+/* Labeled container card — an outer card with a heading and an inner content area.
+   Neutral by default (Other); per-category tint classes add the sidebar-matching background. */
+.categoryCard {
+  border: 1px solid var(--ifm-color-emphasis-300, #c9cdca);
+  padding: 1.25rem;
+  background-color: var(--ifm-background-color, #fff);
+}
+
+/* Per-category tints, matching the left-sidebar group colors (decision 0013 r3). */
+.categoryCardCloud {
+  background-color: #eaf3fe;
+  border-color: #dbeafb;
+}
+
+.categoryCardSelfHosted {
+  background-color: #e8f7ee;
+  border-color: #d5f0e0;
+}
+
+/* Other — neutral grey, matching the sidebar's neutral group (Other keeps the
+   default emphasis-grey tint, per decision 0013 r3). Uses Infima emphasis tokens
+   so it adapts to dark mode automatically. */
+.categoryCardOther {
+  background-color: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .categoryCardCloud {
+  background-color: #15263b;
+  border-color: #1c3350;
+}
+
+[data-theme='dark'] .categoryCardSelfHosted {
+  background-color: #15301e;
+  border-color: #1c4028;
+}
+
+.categoryCardTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.categoryCardBlurb {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0 0 1rem;
+  color: var(--ifm-color-emphasis-700, #555);
+}
+
+/* Two side-by-side labeled cards (Cloud / Self-Hosted). */
+.topCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* Inner product card — a link styled as a card (no border-radius). */
+.productCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300, #c9cdca);
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.productCard:hover {
+  border-color: var(--ifm-color-primary, #25c2a0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+}
+
+/* In dark mode, a translucent dark surface reads correctly over the tinted
+   container cards (white-60% would be blindingly light). */
+[data-theme='dark'] .productCard {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.productCardTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ifm-font-color-base);
+}
+
+.productCard:hover .productCardTitle {
+  color: var(--ifm-font-color-base);
+}
+
+.productCardDesc {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--ifm-color-emphasis-700, #555);
+}
+
+/* Other — full-width 3-column inner grid. */
+.categoryCardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 996px) {
+  .topCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .categoryCardGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .section {
-  margin: 1.5em 2em 0;
+  margin: 1.5em 0 0;
 }
 
 .sectionTitle {
   font-size: 28px;
   margin-bottom: .75em;
+}
+
+.sectionLead {
+  font-size: 1.05rem;
+  margin: 0 0 1em;
+  max-width: 760px;
 }
 
 .subsectionTitle {
@@ -76,6 +204,7 @@
 
 .header {
   font-size: 60px;
+
 }
 
 .rotatingHeader {
@@ -133,7 +262,7 @@
   }
 
   .section {
-    margin: 0 1em;
+    margin: 0;
   }
 
   .subsectionDetail {
