@@ -3,13 +3,13 @@
     "type": "category",
     "label": "Cloud",
     "collapsible": true,
-    "collapsed": false,
+    "collapsed": true,
     "items": [
       {
         "type": "category",
         "label": "Momento Cache",
         "collapsible": true,
-        "collapsed": false,
+        "collapsed": true,
         "items": [
           "product/cache/index",
           "product/cache/getting-started",
@@ -17,7 +17,7 @@
             "type": "category",
             "label": "Concepts",
             "collapsible": true,
-            "collapsed": false,
+            "collapsed": true,
             "items": [
               "product/cache/concepts/capacity-pool",
               "product/cache/concepts/database",
@@ -35,7 +35,7 @@
             "type": "category",
             "label": "API reference",
             "collapsible": true,
-            "collapsed": false,
+            "collapsed": true,
             "items": [
               "product/cache/api-reference/capacity-pool",
               "product/cache/api-reference/database"
@@ -59,7 +59,7 @@
         "type": "category",
         "label": "Valkey Operator",
         "collapsible": true,
-        "collapsed": false,
+        "collapsed": true,
         "items": [
           "self-hosted/valkey-operator/index",
           "self-hosted/valkey-operator/why-this-operator",
@@ -67,7 +67,7 @@
             "type": "category",
             "label": "Getting started",
             "collapsible": true,
-            "collapsed": false,
+            "collapsed": true,
             "items": [
               "self-hosted/valkey-operator/getting-started/index",
               "self-hosted/valkey-operator/getting-started/prerequisites",
@@ -80,7 +80,7 @@
             "type": "category",
             "label": "Concepts",
             "collapsible": true,
-            "collapsed": false,
+            "collapsed": true,
             "items": [
               "self-hosted/valkey-operator/concepts/index",
               "self-hosted/valkey-operator/concepts/resource-model",
@@ -95,7 +95,7 @@
             "type": "category",
             "label": "For product teams",
             "collapsible": true,
-            "collapsed": false,
+            "collapsed": true,
             "items": [
               "self-hosted/valkey-operator/team-guide/index",
               "self-hosted/valkey-operator/team-guide/provisioning",
@@ -108,7 +108,7 @@
             "type": "category",
             "label": "For platform teams",
             "collapsible": true,
-            "collapsed": false,
+            "collapsed": true,
             "items": [
               "self-hosted/valkey-operator/platform-guide/index",
               "self-hosted/valkey-operator/platform-guide/curating-images-and-configs",
@@ -124,7 +124,7 @@
             "type": "category",
             "label": "Operations",
             "collapsible": true,
-            "collapsed": false,
+            "collapsed": true,
             "items": [
               "self-hosted/valkey-operator/operations/index",
               "self-hosted/valkey-operator/operations/failure-modes",
@@ -139,7 +139,7 @@
             "type": "category",
             "label": "Security model",
             "collapsible": true,
-            "collapsed": false,
+            "collapsed": true,
             "items": [
               "self-hosted/valkey-operator/security/index",
               "self-hosted/valkey-operator/security/tls",
@@ -152,7 +152,7 @@
             "type": "category",
             "label": "Reference",
             "collapsible": true,
-            "collapsed": false,
+            "collapsed": true,
             "items": [
               "self-hosted/valkey-operator/reference/index",
               "self-hosted/valkey-operator/reference/cluster-status",
@@ -164,7 +164,7 @@
                 "type": "category",
                 "label": "API reference",
                 "collapsible": true,
-                "collapsed": false,
+                "collapsed": true,
                 "items": [
                   "self-hosted/valkey-operator/reference/api/index",
                   "self-hosted/valkey-operator/reference/api/valkeyimage",
@@ -181,7 +181,7 @@
             "type": "category",
             "label": "Support",
             "collapsible": true,
-            "collapsed": false,
+            "collapsed": true,
             "items": [
               "self-hosted/valkey-operator/support/index",
               "self-hosted/valkey-operator/support/compatibility",
@@ -201,7 +201,7 @@
     "type": "category",
     "label": "Platform",
     "collapsible": true,
-    "collapsed": false,
+    "collapsed": true,
     "items": [
       {
         "type": "link",
