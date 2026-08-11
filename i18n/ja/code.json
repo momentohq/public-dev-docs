@@ -381,5 +381,13 @@
   "learnMore": {
     "message": "詳細を見る",
     "description": "Learn more"
+  },
+  "sidebar.localeToggle.ariaLabel": {
+    "message": "言語を切り替える",
+    "description": "ARIA label for the sidebar language switcher"
+  },
+  "sidebar.localeToggle.title": {
+    "message": "言語を切り替える",
+    "description": "Tooltip for the sidebar language switcher"
   }
 }

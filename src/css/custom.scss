@@ -75,7 +75,7 @@ h4 {
   --ifm-link-color: #00a070;
   --ifm-font-family-monospace: "Manrope";
   --ifm-font-family-base: "Manrope";
-  --footer-text: #ffffff;
+  --custom-table-header-text: #ffffff;
   --container-background-color: #ffffff;
   --table-highlight-row: #f0f0f0;
   --doc-sidebar-width: 250px !important;
@@ -91,7 +91,7 @@ h4 {
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-  --footer-text: #25392b;
+  --custom-table-header-text: #25392b;
   --container-background-color: var(--ifm-background-color);
   --table-highlight-row: #2B2B2D;
 }
@@ -101,6 +101,10 @@ h4 {
     --ifm-spacing-horizontal: 2.5rem;
     --ifm-spacing-vertical: 2.25rem;
     --ifm-navbar-padding-horizontal: 2rem;
+    /* The top navbar is not rendered on desktop (see src/theme/Navbar). Zeroing its height
+       collapses the offsets the theme derives from it: the sidebar container's negative
+       margin-top, the sticky TOC's top offset, and the main content's top padding. */
+    --ifm-navbar-height: 0px;
   }
 
   main {
@@ -116,14 +120,6 @@ code span {
 }
 
 @media (max-width: 997px) {
-  .footer .container {
-    flex-direction: column !important;
-
-    .footer__bottom {
-      order: 3;
-    }
-  }
-
   .navbar__logo {
     flex: 0 0 auto;
     height: 1.5rem;
@@ -147,28 +143,42 @@ code span {
   font-size: 16px;
 }
 
-.navbar {
-  height: 60px;
-  padding: 10px 40px;
-  box-shadow: none;
-  border-bottom: 1px solid rgba(37, 57, 43, 0.15);
+/* The navbar only renders on mobile now (see src/theme/Navbar); on desktop it is an empty
+   placeholder kept solely so theme-common's useTOCHighlight can measure a height. Collapse it
+   to nothing so it occupies no space. */
+.navbar--emptied {
+  display: none;
 }
 
-.navbar__logo {
-  flex: 0 0 auto;
-  height: 1.5rem;
-  margin-right: 0.5rem;
-  margin-bottom: .4rem;
-}
+/* The footer is swizzled (src/theme/Footer) to mirror the marketing site footer; the old
+   Infima .footer overrides below have been removed in favor of that component's own styles. */
 
-.navbar__items .navbar__link {
-  font-weight: 500;
-  color: var(--ifm-color-primary);
-}
+/* The navbar only renders on mobile now (see src/theme/Navbar), so its chrome is scoped to
+   the mobile breakpoint. */
+@media (max-width: 996px) {
+  .navbar {
+    height: 60px;
+    padding: 10px 40px;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(37, 57, 43, 0.15);
+  }
 
-.navbar__items .navbar__link.navbar__link--active {
-  border-bottom: 2px solid var(--ifm-color-primary);
-  padding-bottom: 3px;
+  .navbar__logo {
+    flex: 0 0 auto;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: .4rem;
+  }
+
+  .navbar__items .navbar__link {
+    font-weight: 500;
+    color: var(--ifm-color-primary);
+  }
+
+  .navbar__items .navbar__link.navbar__link--active {
+    border-bottom: 2px solid var(--ifm-color-primary);
+    padding-bottom: 3px;
+  }
 }
 
 .table-of-contents__link--active {
@@ -183,8 +193,30 @@ code span {
   border: none !important;
 }
 
+/* Hide the left-hand docs sidebar's scrollbar while keeping it scrollable. The sidebar's
+   scroll container is the <nav class="menu thin-scrollbar"> inside .theme-doc-sidebar-container
+   (Docusaurus theme-classic's DocSidebar/Desktop/Content). The `thin-scrollbar` Infima utility
+   gives it a visible thin scrollbar (scrollbar-width: thin + ::-webkit-scrollbar styling), and
+   the theme's .menu style sets scrollbar-gutter: stable to reserve room for that rail. Hide the
+   rail across browsers and release the gutter so no empty gap remains. */
+.theme-doc-sidebar-container .menu {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge legacy */
+  scrollbar-gutter: auto !important; /* undo theme's `stable` */
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none; /* Chrome, Safari, modern Edge */
+  }
+}
+
 .theme-doc-sidebar-container>div {
-  padding: 80px 8px 0 8px;
+  /* Was padding-top: 80px to clear the old fixed navbar; the sidebar now starts at the top
+     of the viewport and supplies its own header padding (SidebarHeader). The horizontal
+     padding is applied on the menu itself rather than here, so it isn't inherited by the
+     sidebar's own header/footer blocks (which would push them past the rail's width). */
+  padding: 0;
   /* Fill the sidebar column (--doc-sidebar-width) instead of the old fixed 323px, which
      overflowed the 250px rail and got clipped/covered by the main content on the right. */
   width: 100%;
@@ -242,57 +274,6 @@ code span {
   height: 1rem;
   width: 1rem;
   background: var(--ifm-menu-link-sublist-icon) 50% / 1.75rem 1.75rem;
-}
-
-.footer {
-  background: var(--ifm-color-primary);
-  padding: 2em var(--ifm-footer-padding-horizontal) 1em;
-
-  .container {
-    display: flex;
-    flex-direction: row;
-
-    .row {
-      order: 2;
-    }
-  }
-
-  .footer__bottom {
-    order: 1;
-    margin-right: auto;
-
-    img {
-      width: 218px;
-      max-width: none;
-      margin-top: 0;
-    }
-  }
-
-  .footer__copyright {
-    font-size: .9rem;
-    font-weight: 400;
-    color: var(--footer-text);
-    margin-top: 4px;
-  }
-
-  .footer__col {
-    min-width: 260px;
-  }
-
-  .footer__items {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .footer__title {
-    margin-bottom: 4px;
-    color: var(--footer-text);
-  }
-
-  .footer__link-item {
-    color: var(--footer-text);
-    font-size: .9rem;
-  }
 }
 
 .breadcrumbs {
@@ -390,12 +371,23 @@ code span {
 
 .table-of-contents {
   border: none !important;
+  /* Infima gives every <li> a margin of --ifm-toc-padding-vertical (0.5rem) on top of the
+     link padding below, which stacks up to a very loose list. Scope the variable down and
+     zero the per-item vertical margin so entries sit at the same rhythm as the left-hand
+     sidebar's .menu__list-item (4px gaps, ~5-9px link padding). */
+  --ifm-toc-padding-vertical: 0.25rem;
+
+  li {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
   li a {
     color: var(--ifm-color-primary);
-    padding: 8px;
+    padding: 4px 8px;
     border-radius: 8px;
     font-weight: 500;
+    line-height: 1.3;
 
     &:hover {
       background: rgba(37, 57, 43, 0.05);
@@ -591,7 +583,7 @@ code span {
   text-align: left;
   border-bottom: 1px solid #ccc;
   background-color: var(--ifm-color-primary);
-  color: var(--footer-text);
+  color: var(--custom-table-header-text);
 }
 .customTable td {
   text-align: left;
@@ -601,6 +593,34 @@ code span {
 }
 .highlightRow {
   background-color: var(--table-highlight-row) !important;
+}
+
+/* The docs home page (docs/index.mdx) renders the landing page inside the docs layout so it
+   gets the left sidebar nav. Strip the per-doc chrome (breadcrumbs, pagination, edit link)
+   and let the content run full-bleed as it did when it was a standalone page. */
+.docs-doc-id-index {
+  .theme-doc-breadcrumbs,
+  .theme-doc-footer,
+  .pagination-nav {
+    display: none;
+  }
+
+  main > .container {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  /* Infima's .row carries negative side margins that its .col padding normally cancels out.
+     The landing page runs edge to edge with no column padding, so zero the gutters too —
+     otherwise the row hangs 40px past the container and the page scrolls sideways. */
+  main > .container > .row {
+    margin: 0;
+  }
+
+  main > .container > .row > .col {
+    max-width: 100% !important;
+    padding: 0;
+  }
 }
 
 /* Primary IA groups in the docs sidebar (deployment-model level, e.g. Cloud). The nav generator

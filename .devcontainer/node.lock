@@ -1,0 +1,17 @@
+{
+  "dccVersion": "0.0.33",
+  "features": [
+    {
+      "direct": true,
+      "options": {},
+      "ref": "ghcr.io/dc-powertools/features/node:latest",
+      "resolved": "sha256:df3b2930ddc4f4b9ce622892ba0a1d4fd1dff1ed50313331fbc6f9f98c87d8a1"
+    },
+    {
+      "direct": true,
+      "options": {},
+      "ref": "ghcr.io/dc-powertools/features/git:latest",
+      "resolved": "sha256:06881580e20dc3f2fd50addab8d66bec2c2411bd75410fb2db126917c9da94c1"
+    }
+  ]
+}

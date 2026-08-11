@@ -1,0 +1,19 @@
+/* Fixed block at the top of the sidebar column; the nav below it does the scrolling, so this
+   must not grow or shrink. */
+.sidebarHeader {
+  flex-shrink: 0;
+  padding: 1rem 0.75rem 0.75rem;
+}
+
+.searchWrapper {
+  margin-top: 1rem;
+}
+
+/* Let the DocSearch button fill the sidebar width rather than sit at its navbar size.
+   DocSearch ships it as content-box, so width:100% would exclude its padding and border and
+   overflow the rail. */
+.searchWrapper :global(.DocSearch-Button) {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+}

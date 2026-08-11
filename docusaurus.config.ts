@@ -88,6 +88,12 @@ const config = {
        }, **/
 
       navbar: {
+        // The navbar is only rendered on mobile (see src/theme/Navbar). On desktop all this
+        // chrome lives in the left sidebar instead. There are no navbar items: the product
+        // links the old top nav carried are reachable through the docs sidebar, and the
+        // locale switcher and color mode toggle live in the sidebar footer. Search lives in
+        // the sidebar header. The mobile drawer therefore shows only the docs sidebar on doc
+        // pages (the "Back to main menu" link is hidden there via the swizzled SecondaryMenu).
         title: "",
         logo: {
           alt: "Momento Logo",
@@ -95,90 +101,11 @@ const config = {
           srcDark: "img/momento-docs-logo-white.svg",
           href: "/"
         },
-        items: [
-          { to: '/cache', label: 'Cache', position: 'left' },
-          { to: '/topics', label: 'Topics', position: 'left' },
-          { to: '/functions/overview', label: 'Functions', position: 'left' },
-          {
-            href: 'https://www.gomomento.com/', html: 'Home', position: 'right', target: '_self'
-          },
-          {
-            to: '/platform', label: 'Platform', position: 'right'
-          },
-          {
-            type: 'localeDropdown',
-            position: 'right',
-          },
-        ],
+        items: [],
       },
-      footer: {
-        style: "dark",
-        logo: {
-          alt: "Momento Logo",
-          src: "img/momento-logo-white.svg",
-          srcDark: "img/momento-logo-forest.svg"
-        },
-        copyright: `Copyright © 2022 - ${new Date().getFullYear()} Momento, Inc.`,
-        links: [
-          {
-            title: "Sites",
-            items: [
-              {
-                label: 'Dev docs',
-                to: '/',
-              },
-              {
-                label: 'Momento',
-                to: 'https://www.gomomento.com/',
-              },
-            ],
-          },
-          {
-            title: "Community",
-            items: [
-              {
-                label: 'LinkedIn',
-                to: 'https://www.linkedin.com/company/momentohq/'
-              },
-              {
-                label: "Twitter",
-                to: "https://twitter.com/momentohq",
-              },
-            ],
-          },
-          {
-            title: "More",
-            items: [
-              {
-                label: "Contact us",
-                to: "https://www.gomomento.com/contact-us",
-              },
-              {
-                label: "Blog",
-                to: "https://www.gomomento.com/blog",
-              },
-              {
-                label: "GitHub",
-                to: "https://github.com/momentohq",
-              },
-            ],
-          },
-          /** Commenting this out for now as it is messing with the formatting and with the menu it may not be needed anyhow.
-           {
-           title: "Language",
-           items: [
-           {
-           label: "English",
-           to: "https://docs.momentohq.com/",
-           },
-           {
-           label: "日本語",
-           to: "https://docs.momentohq.com/ja/",
-           },
-           ],
-           }, **/
-        ],
-      },
+      // The footer is swizzled (src/theme/Footer) to mirror the marketing site footer
+      // (gomomento.com). Its content lives in src/data/marketingFooter.ts, not here, so
+      // there is no `footer` themeConfig block.
       prism: {
         additionalLanguages: ["java", "kotlin", "rust", "csharp", "php", "elixir", "swift", "dart"],
         theme: themes.github,

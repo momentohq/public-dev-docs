@@ -1,0 +1,172 @@
+/*
+ * Footer styles, ported from the marketing site (gomomento.com).
+ *
+ * The marketing site scopes its footer CSS via Astro's data-astro-cid-e77awp6a attribute
+ * and reads design tokens (--color-bg, --color-link, --space-*, --text-detail, …) that it
+ * defines on its [data-surface="primary"] surface. Here we inline the resolved token values
+ * from that surface so the footer is self-contained and does not depend on the docs site's
+ * Infima variables.
+ *
+ * Token values (resolved from the marketing site's oklch palette, [data-surface=primary]):
+ *   --mft-bg:            #203625  (primary-500, the dark green footer surface)
+ *   --mft-border:        #8fa994  (primary-300)
+ *   --mft-text-muted:    #8fa994  (primary-300)
+ *   --mft-link:          #8fa994  (primary-300)
+ *   --mft-link-hover:    #d7ff51  (highlight-300, the yellow-green hover)
+ *   --mft-accent:        #c7e3cd  (primary-100, group headings)
+ *
+ * Spacing/typography tokens (matching the marketing site's :root):
+ *   --mft-space-1: .5rem   --mft-space-2: 1rem
+ *   --mft-space-3: 1.5rem  --mft-space-4: 2rem  --mft-space-8: 4rem
+ *   --mft-content-width: 1080px
+ *   --mft-text-detail: .95rem   --mft-leading-label: 1.25   --mft-weight-title: 800
+ *
+ * The marketing site's font is Manrope for headings; the docs site already loads Manrope
+ * globally, so group headings inherit it.
+ */
+
+.siteFooter {
+  --mft-bg: #203625;
+  --mft-border: #8fa994;
+  --mft-text-muted: #8fa994;
+  --mft-link: #8fa994;
+  --mft-link-hover: #d7ff51;
+  --mft-accent: #c7e3cd;
+
+  --mft-space-1: 0.5rem;
+  --mft-space-2: 1rem;
+  --mft-space-3: 1.5rem;
+  --mft-space-4: 2rem;
+  --mft-space-8: 4rem;
+
+  --mft-content-width: 1080px;
+  --mft-text-detail: 0.95rem;
+  --mft-leading-label: 1.25;
+  --mft-weight-title: 800;
+
+  background-color: var(--mft-bg);
+  color: #fff;
+  font-family: "Manrope", "Inter", Arial, sans-serif;
+}
+
+.footerInner {
+  display: grid;
+  gap: var(--mft-space-4);
+  margin-inline: auto;
+  max-width: var(--mft-content-width);
+  padding: var(--mft-space-8) var(--mft-space-2) var(--mft-space-4);
+}
+
+/* ── Logo row ───────────────────────────────────────────────────────────────
+ * The marketing site pairs the logo with a locale switcher here (flex + space-between).
+ * We drop the switcher, so the row is just the logo. The flex layout is kept so the
+ * structure matches and a future sync could re-add a right-aligned element. */
+.footerLogoRow {
+  align-items: center;
+  display: flex;
+  gap: var(--mft-space-4);
+  justify-content: space-between;
+}
+
+.footerLogoLink {
+  display: inline-flex;
+  flex: 0 0 auto;
+  text-decoration: none;
+}
+
+.footerLogo {
+  display: block;
+  height: auto;
+  width: 9.375rem; /* 150px — matches the marketing site */
+}
+
+/* ── Nav: four link groups ────────────────────────────────────────────────── */
+.footerNav {
+  display: grid;
+  gap: var(--mft-space-4);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.footerGroup {
+  min-width: 0;
+}
+
+.footerGroupTitle {
+  color: var(--mft-accent);
+  font-size: var(--mft-text-detail);
+  font-weight: var(--mft-weight-title);
+  line-height: var(--mft-leading-label);
+  margin: 0 0 var(--mft-space-2);
+}
+
+.footerLinkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: var(--mft-space-1);
+}
+
+.footerLinkItem {
+  /* matches the marketing site's bare <li> (list--marker-none); no bullet, no indent */
+}
+
+.footerLink {
+  color: var(--mft-link);
+  font-size: var(--mft-text-detail);
+  line-height: var(--mft-leading-label);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.footerLink:hover {
+  color: var(--mft-link-hover);
+  text-decoration: none;
+}
+
+/* ── Bottom bar: copyright (legal links omitted) ──────────────────────────── */
+.footerBottom {
+  align-items: center;
+  border-top: 1px solid var(--mft-border);
+  color: var(--mft-text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mft-space-2);
+  justify-content: space-between;
+  padding-top: var(--mft-space-3);
+}
+
+.footerCopyright {
+  font-size: var(--mft-text-detail);
+  line-height: var(--mft-leading-label);
+  margin: 0;
+}
+
+/* ── Responsive breakpoints (match the marketing site) ────────────────────── */
+@media (max-width: 900px) {
+  .footerLogoRow {
+    flex-direction: column;
+    gap: var(--mft-space-2);
+  }
+
+  .footerNav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .footerInner {
+    padding-block: var(--mft-space-4);
+  }
+
+  .footerNav {
+    grid-template-columns: 1fr;
+  }
+
+  .footerBottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

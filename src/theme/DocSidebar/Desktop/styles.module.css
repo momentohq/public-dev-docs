@@ -1,0 +1,17 @@
+/* Swizzled from @docusaurus/theme-classic's DocSidebar/Desktop styles. The `padding-top:
+   var(--ifm-navbar-height)` of the original is gone: with the navbar removed the sidebar
+   starts at the top of the viewport. `.sidebarHidden` is still required — DocRootLayoutSidebar
+   drives the collapse animation's final state through it. */
+@media (min-width: 997px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: var(--doc-sidebar-width);
+  }
+
+  .sidebarHidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

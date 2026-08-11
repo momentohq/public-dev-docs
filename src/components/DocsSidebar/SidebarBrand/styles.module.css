@@ -1,0 +1,16 @@
+/* The "Momento Docs" wordmark at the top of the sidebar. The SVG carries its own aspect
+   ratio (749x79); sizing by width keeps it crisp and lets it shrink with the sidebar. */
+.brand {
+  display: block;
+  padding: 0.25rem 0;
+}
+
+.brand:hover {
+  opacity: 0.8;
+}
+
+.wordmark {
+  display: block;
+  width: 100%;
+  height: auto;
+}

@@ -1,0 +1,70 @@
+/* Icon-only locale switcher with a small pop-up list. The menu opens upward because this
+   lives at the very bottom of the sidebar. CSS-only (hover/focus-within) so it needs no
+   client state, matching the icon-button footprint of the color mode toggle beside it. */
+.localeToggle {
+  position: relative;
+  display: flex;
+}
+
+.localeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--momento-sidebar-brand-color);
+  transition: background var(--ifm-transition-fast);
+}
+
+.localeButton:hover {
+  background: var(--ifm-color-emphasis-200);
+}
+
+.localeIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.localeMenu {
+  position: absolute;
+  bottom: calc(100% + 0.25rem);
+  left: 0;
+  z-index: var(--ifm-z-index-dropdown);
+  min-width: 8rem;
+  margin: 0;
+  padding: 0.25rem;
+  list-style: none;
+  background-color: var(--ifm-dropdown-background-color);
+  border-radius: var(--ifm-global-radius);
+  box-shadow: var(--ifm-global-shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--ifm-transition-fast), visibility var(--ifm-transition-fast);
+}
+
+.localeToggle:hover .localeMenu,
+.localeToggle:focus-within .localeMenu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.localeMenu a {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  color: var(--ifm-dropdown-link-color);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.localeMenu a:hover {
+  background-color: var(--ifm-dropdown-hover-background-color);
+  text-decoration: none;
+}
+
+.localeItemActive {
+  color: var(--ifm-link-color);
+  font-weight: 600;
+}
