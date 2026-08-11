@@ -24,9 +24,10 @@ export default function LandingPage(): JSX.Element {
           </h1>
           <p className={styles.headerDescription}>
             <Translate id="homeHeroSubtitle">
-              Momento gives you fast, simple data infrastructure — fully managed in the Momento
-              Cloud, or self-hosted on your own Kubernetes with the Momento Valkey platform
-              toolkit. Pick the path that fits your team and get building.
+              Momento's real-time data fabric accelerates web-scale applications.
+              Ship faster and better infrastructure with routing, caching, and
+              compute designed for enterprise-grade reliability and sub-millisecond
+              latency at millions of RPS.
             </Translate>
           </p>
         </div>
@@ -38,14 +39,14 @@ export default function LandingPage(): JSX.Element {
               <h2 className={styles.categoryCardTitle}>Cloud</h2>
               <p className={styles.categoryCardBlurb}>
                 <Translate id="homeCloudBlurb">
-                  Managed infrastructure on Momento Cloud, with no operations required.
+                  Fully-managed infrastructure, no operations required.
                 </Translate>
               </p>
               <Link className={styles.productCard} to="/product/cache">
                 <span className={styles.productCardTitle}>Momento Cache</span>
                 <span className={styles.productCardDesc}>
-                  Fully managed, dedicated Valkey in the Momento Cloud. Provision isolated
-                  capacity and connect with standard Valkey or Redis clients.
+                  Provision dedicated Valkey clusters hosted and operated by
+                  Momento. Connect with any standard Valkey or Redis client.
                 </span>
               </Link>
             </div>
@@ -53,15 +54,14 @@ export default function LandingPage(): JSX.Element {
               <h2 className={styles.categoryCardTitle}>Self-Hosted</h2>
               <p className={styles.categoryCardBlurb}>
                 <Translate id="homeSelfHostedBlurb">
-                  The Momento Valkey platform toolkit for teams running Valkey on their own
-                  infrastructure.
+                  Deploy to your own cloud with the Platform Engineering Toolkit.
                 </Translate>
               </p>
               <Link className={styles.productCard} to="/self-hosted/valkey-operator">
                 <span className={styles.productCardTitle}>Valkey Operator</span>
                 <span className={styles.productCardDesc}>
-                  Run Valkey on your own Kubernetes. A production-grade operator for
-                  provisioning, scaling, zone-aware placement, upgrades, and monitoring.
+                  Run Valkey on Kubernetes. A production-grade operator for
+                  provisioning, scaling, upgrades, and monitoring.
                 </span>
               </Link>
             </div>
@@ -72,6 +72,11 @@ export default function LandingPage(): JSX.Element {
         <div className={styles.section}>
           <div className={`${styles.categoryCard} ${styles.categoryCardOther}`}>
             <h2 className={styles.categoryCardTitle}>Other Products</h2>
+            <p className={styles.categoryCardBlurb}>
+              <Translate id="homeOtherBlurb">
+                Explore Momento's full suite of products for moving, transforming, and storing real-time data.
+              </Translate>
+            </p>
             <div className={styles.categoryCardGrid}>
               <Link className={styles.productCard} to="/cache">
                 <span className={styles.productCardTitle}>Momento Cache (Serverless)</span>
@@ -87,7 +92,7 @@ export default function LandingPage(): JSX.Element {
               </Link>
               <Link className={styles.productCard} to="/functions/overview">
                 <span className={styles.productCardTitle}>Functions</span>
-                <span className={styles.productCardDesc}>Run WASM functions to extend routing logic.</span>
+                <span className={styles.productCardDesc}>Run WASM functions.</span>
               </Link>
               <Link className={styles.productCard} to="/media-storage/overview">
                 <span className={styles.productCardTitle}>Media Storage</span>

@@ -42,6 +42,10 @@
 
 .headerSection {
   padding: 0 0 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .headerDescription {
@@ -54,7 +58,6 @@
    Neutral by default (Other); per-category tint classes add the sidebar-matching background. */
 .categoryCard {
   border: 1px solid var(--ifm-color-emphasis-300, #c9cdca);
-  border-radius: 8px;
   padding: 1.25rem;
   background-color: var(--ifm-background-color, #fff);
 }
@@ -201,6 +204,7 @@
 
 .header {
   font-size: 60px;
+
 }
 
 .rotatingHeader {
