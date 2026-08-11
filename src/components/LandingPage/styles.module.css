@@ -70,6 +70,14 @@
   border-color: #d5f0e0;
 }
 
+/* Other — neutral grey, matching the sidebar's neutral group (Other keeps the
+   default emphasis-grey tint, per decision 0013 r3). Uses Infima emphasis tokens
+   so it adapts to dark mode automatically. */
+.categoryCardOther {
+  background-color: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
 [data-theme='dark'] .categoryCardCloud {
   background-color: #15263b;
   border-color: #1c3350;

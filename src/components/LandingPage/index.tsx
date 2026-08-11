@@ -70,7 +70,7 @@ export default function LandingPage(): JSX.Element {
 
         {/* Other (legacy) products — full-width labeled container, 3-column inner grid */}
         <div className={styles.section}>
-          <div className={styles.categoryCard}>
+          <div className={`${styles.categoryCard} ${styles.categoryCardOther}`}>
             <h2 className={styles.categoryCardTitle}>Other Products</h2>
             <div className={styles.categoryCardGrid}>
               <Link className={styles.productCard} to="/cache">
