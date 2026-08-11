@@ -50,6 +50,39 @@
   max-width: 630px;
 }
 
+/* Labeled container card — an outer card with a heading and an inner content area. */
+.categoryCard {
+  border: 1px solid var(--ifm-color-emphasis-300, #c9cdca);
+  border-radius: 8px;
+  padding: 1.25rem;
+  background-color: var(--ifm-background-color, #fff);
+}
+
+.categoryCardTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  text-transform: capitalize;
+}
+
+.categoryCardInner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.categoryCardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .categoryCardGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .section {
   margin: 1.5em 2em 0;
 }

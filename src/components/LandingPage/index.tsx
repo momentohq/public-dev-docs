@@ -4,7 +4,6 @@ import { LinkCard } from '@site/src/components/LinkCard';
 import Translate from '@docusaurus/Translate';
 
 import styles from './styles.module.css';
-import Link from '@docusaurus/Link';
 
 /**
  * The docs landing page content, rendered from the `/` doc (docs/index.mdx) so the
@@ -31,119 +30,40 @@ export default function LandingPage(): JSX.Element {
           </p>
         </div>
 
-        {/* Two-audience product cards */}
+        {/* Cloud / Self-Hosted — two labeled container cards, side by side */}
         <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>
-            <Translate id="homeChooseYourPath">Choose your path</Translate>
-          </h2>
-          <div className={styles.productWrapper}>
-            <CardGrid>
-              <LinkCard
-                alignItems="center"
-                title="Momento Cache"
-                link="/product/cache"
-                description="Fully managed, dedicated Valkey in the Momento Cloud. Provision isolated capacity and connect with standard Valkey or Redis clients."
-                icon="/img/cache/momento-cache-brand-icon.svg"
-              />
-              <LinkCard
-                alignItems="center"
-                title="Valkey Operator"
-                link="/self-hosted/valkey-operator"
-                description="Run Valkey on your own Kubernetes. A production-grade operator for provisioning, scaling, zone-aware placement, upgrades, and monitoring."
-              />
-            </CardGrid>
-          </div>
-        </div>
-
-        {/* Cloud quick links */}
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>
-            <Translate id="homeCloudTitle">Cloud</Translate>
-          </h2>
-          <p className={styles.sectionLead}>
-            <Translate id="homeCloudLead">
-              Managed infrastructure on Momento Cloud — no operations required. Today's flagship
-              is Momento Cache, available in Flex and Cluster variants.
-            </Translate>
-          </p>
-          <div className={styles.desktopOnly}>
-            <div className={styles.columns}>
-              <div>
-                <h2 className={styles.subsectionTitle}>Momento Cache</h2>
-                <ul className={styles.columnList}>
-                  <li><Link to="/product/cache/getting-started">Getting started</Link></li>
-                  <li><Link to="/product/cache/concepts/provisioning-and-sizing">Concepts</Link></li>
-                  <li><Link to="/product/cache/pricing">Pricing</Link></li>
-                  <li><Link to="/product/cache/api-reference/capacity-pool">API reference</Link></li>
-                </ul>
+          <CardGrid>
+            <div className={styles.categoryCard}>
+              <h2 className={styles.categoryCardTitle}>Cloud</h2>
+              <div className={styles.categoryCardInner}>
+                <LinkCard
+                  alignItems="center"
+                  title="Momento Cache"
+                  link="/product/cache"
+                  description="Fully managed, dedicated Valkey in the Momento Cloud. Provision isolated capacity and connect with standard Valkey or Redis clients."
+                  icon="/img/cache/momento-cache-brand-icon.svg"
+                />
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Self-Hosted quick links */}
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>
-            <Translate id="homeSelfHostedTitle">Self-Hosted</Translate>
-          </h2>
-          <p className={styles.sectionLead}>
-            <Translate id="homeSelfHostedLead">
-              The Momento Valkey platform toolkit for teams running Valkey on their own
-              infrastructure. Start with the Valkey Operator.
-            </Translate>
-          </p>
-          <div className={styles.desktopOnly}>
-            <div className={styles.columns}>
-              <div>
-                <h2 className={styles.subsectionTitle}>Valkey Operator</h2>
-                <ul className={styles.columnList}>
-                  <li><Link to="/self-hosted/valkey-operator/getting-started/quickstart">Getting started</Link></li>
-                  <li><Link to="/self-hosted/valkey-operator/concepts">Concepts</Link></li>
-                  <li><Link to="/self-hosted/valkey-operator/operations">Operations</Link></li>
-                  <li><Link to="/self-hosted/valkey-operator/security">Security model</Link></li>
-                </ul>
+            <div className={styles.categoryCard}>
+              <h2 className={styles.categoryCardTitle}>Self-Hosted</h2>
+              <div className={styles.categoryCardInner}>
+                <LinkCard
+                  alignItems="center"
+                  title="Valkey Operator"
+                  link="/self-hosted/valkey-operator"
+                  description="Run Valkey on your own Kubernetes. A production-grade operator for provisioning, scaling, zone-aware placement, upgrades, and monitoring."
+                />
               </div>
             </div>
-          </div>
+          </CardGrid>
         </div>
 
-        {/* Platform quick links */}
+        {/* Other (legacy) products — full-width labeled container, 3-column inner grid */}
         <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>
-            <Translate id="homePlatformTitle">Platform</Translate>
-          </h2>
-          <p className={styles.sectionLead}>
-            <Translate id="homePlatformLead">
-              Cross-product concerns shared across Momento services.
-            </Translate>
-          </p>
-          <div className={styles.desktopOnly}>
-            <div className={styles.columns}>
-              <div>
-                <ul className={styles.columnList}>
-                  <li><Link to="/platform/authentication">Authentication</Link></li>
-                  <li><Link to="/platform/account-management">Account management</Link></li>
-                  <li><Link to="/platform/api">API</Link></li>
-                </ul>
-              </div>
-              <div>
-                <ul className={styles.columnList}>
-                  <li><Link to="/platform/regions">Available regions</Link></li>
-                  <li><Link to="/platform/sdks">Clients and SDKs</Link></li>
-                  <li><Link to="/auth/limits">Quotas and limits</Link></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Other (legacy) products */}
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>
-            <Translate id="homeOtherTitle">Other products</Translate>
-          </h2>
-          <div className={styles.productWrapper}>
-            <CardGrid variant="dense">
+          <div className={styles.categoryCard}>
+            <h2 className={styles.categoryCardTitle}>Other</h2>
+            <div className={styles.categoryCardGrid}>
               <LinkCard alignItems="center" title="Momento Cache (Serverless)" link="/cache" description="The original serverless cache." />
               <LinkCard alignItems="center" title="Topics" link="/topics" description="Low-latency ephemeral event bus." />
               <LinkCard alignItems="center" title="Leaderboards" link="/leaderboards" description="Massive, durable sorted sets." />
@@ -151,7 +71,7 @@ export default function LandingPage(): JSX.Element {
               <LinkCard alignItems="center" title="Media Storage" link="/media-storage/overview" description="Media storage and streaming." />
               <LinkCard alignItems="center" title="Object Store" link="/objectstore/http-api" description="Serverless object storage." />
               <LinkCard alignItems="center" title="Cloud Linter" link="/cloud-linter" description="AWS cost and governance auditing." />
-            </CardGrid>
+            </div>
           </div>
         </div>
       </div>
