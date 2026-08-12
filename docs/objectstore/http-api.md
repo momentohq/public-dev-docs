@@ -2,7 +2,6 @@
 sidebar_label: HTTP API
 title: HTTP API for Momento Object Store
 description: HTTP API reference for Momento Object Store.
-unlisted: true
 ---
 
 # HTTP API Reference for Momento Object Store

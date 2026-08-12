@@ -47,7 +47,7 @@ The first argument is the topic name. The second is the message body. Use `topic
 
 ### Fan-out notifications
 
-A single inbound request needs to notify many subscribers — chat presence, leaderboards, viewer counts. Publish once and let every subscriber pull the message. The [device heartbeat pattern in media-storage](/media-storage/concurrency/devices) is a complete example of this style.
+A single inbound request needs to notify many subscribers — chat presence, leaderboards, viewer counts. Publish once and let every subscriber pull the message. The [Object Store device heartbeat pattern](/objectstore/concurrency/devices) is a complete example of this style.
 
 ### Structured logging
 

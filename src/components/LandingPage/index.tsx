@@ -94,13 +94,9 @@ export default function LandingPage(): JSX.Element {
                 <span className={styles.productCardTitle}>Functions</span>
                 <span className={styles.productCardDesc}>Run WASM functions.</span>
               </Link>
-              <Link className={styles.productCard} to="/media-storage/overview">
-                <span className={styles.productCardTitle}>Media Storage</span>
-                <span className={styles.productCardDesc}>Media storage and streaming.</span>
-              </Link>
-              <Link className={styles.productCard} to="/objectstore/http-api">
+              <Link className={styles.productCard} to="/objectstore/overview">
                 <span className={styles.productCardTitle}>Object Store</span>
-                <span className={styles.productCardDesc}>Serverless object storage.</span>
+                <span className={styles.productCardDesc}>Object storage and streaming.</span>
               </Link>
               <Link className={styles.productCard} to="/cloud-linter">
                 <span className={styles.productCardTitle}>Cloud Linter</span>

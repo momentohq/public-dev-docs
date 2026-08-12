@@ -107,7 +107,7 @@ The response carries the new narrowly-scoped token, which the client then uses f
 
 ## Patterns that build on this
 
-* **Per-content tokens for media** - Mint a token scoped to a key prefix matching one piece of content. See [the entitlements page](/media-storage/entitlements/about) for how this works for streaming media.
+* **Per-content tokens for media** - Mint a token scoped to a key prefix matching one piece of content. See [the entitlements page](/objectstore/entitlements/about) for how this works for streaming media.
 * **Per-session tokens for chat** - Mint a topic publish-only token scoped to one chat room.
 * **Token metadata for caller identity** - Stuff the user id into `token_id` so downstream Functions can identify the caller without a session lookup.
 

@@ -1014,23 +1014,24 @@
       },
       {
         "type": "category",
-        "label": "Media Storage",
+        "label": "Object Store",
         "collapsible": true,
         "collapsed": true,
         "items": [
-          "media-storage/media-storage-index",
-          "media-storage/overview",
-          "media-storage/use-cases",
+          "objectstore/overview",
+          "objectstore/capabilities",
+          "objectstore/use-cases",
+          "objectstore/http-api",
           {
             "type": "category",
             "label": "Concurrency",
             "collapsible": true,
             "collapsed": true,
             "items": [
-              "media-storage/concurrency/account-level",
-              "media-storage/concurrency/devices"
+              "objectstore/concurrency/account-level",
+              "objectstore/concurrency/devices"
             ],
-            "key": "media-storage-concurrency"
+            "key": "objectstore-concurrency"
           },
           {
             "type": "category",
@@ -1038,12 +1039,12 @@
             "collapsible": true,
             "collapsed": true,
             "items": [
-              "media-storage/core-concepts/abr-ladder",
-              "media-storage/core-concepts/origin",
-              "media-storage/core-concepts/segments",
-              "media-storage/core-concepts/zero-buffer-rate"
+              "objectstore/core-concepts/abr-ladder",
+              "objectstore/core-concepts/origin",
+              "objectstore/core-concepts/segments",
+              "objectstore/core-concepts/zero-buffer-rate"
             ],
-            "key": "media-storage-core-concepts"
+            "key": "objectstore-core-concepts"
           },
           {
             "type": "category",
@@ -1051,11 +1052,11 @@
             "collapsible": true,
             "collapsed": true,
             "items": [
-              "media-storage/enhancements/heartbeats",
-              "media-storage/enhancements/live-reactions",
-              "media-storage/enhancements/viewer-metrics"
+              "objectstore/enhancements/heartbeats",
+              "objectstore/enhancements/live-reactions",
+              "objectstore/enhancements/viewer-metrics"
             ],
-            "key": "media-storage-enhancements"
+            "key": "objectstore-enhancements"
           },
           {
             "type": "category",
@@ -1063,10 +1064,10 @@
             "collapsible": true,
             "collapsed": true,
             "items": [
-              "media-storage/entitlements/about",
-              "media-storage/entitlements/real-time-updates"
+              "objectstore/entitlements/about",
+              "objectstore/entitlements/real-time-updates"
             ],
-            "key": "media-storage-entitlements"
+            "key": "objectstore-entitlements"
           },
           {
             "type": "category",
@@ -1074,21 +1075,21 @@
             "collapsible": true,
             "collapsed": true,
             "items": [
-              "media-storage/performance/optimizing-delivery",
+              "objectstore/performance/optimizing-delivery",
               {
                 "type": "category",
                 "label": "Adaptive bitrates",
                 "collapsible": true,
                 "collapsed": true,
                 "items": [
-                  "media-storage/performance/adaptive-bitrates/how-it-works",
-                  "media-storage/performance/adaptive-bitrates/hls",
-                  "media-storage/performance/adaptive-bitrates/dash"
+                  "objectstore/performance/adaptive-bitrates/how-it-works",
+                  "objectstore/performance/adaptive-bitrates/hls",
+                  "objectstore/performance/adaptive-bitrates/dash"
                 ],
-                "key": "media-storage-adaptive-bitrates"
+                "key": "objectstore-adaptive-bitrates"
               }
             ],
-            "key": "media-storage-performance"
+            "key": "objectstore-performance"
           },
           {
             "type": "category",
@@ -1096,17 +1097,17 @@
             "collapsible": true,
             "collapsed": true,
             "items": [
-              "media-storage/streaming/overview",
-              "media-storage/streaming/decoding-video",
+              "objectstore/streaming/overview",
+              "objectstore/streaming/decoding-video",
               {
                 "type": "category",
                 "label": "Capture",
                 "collapsible": true,
                 "collapsed": true,
                 "items": [
-                  "media-storage/streaming/capture/rtmp"
+                  "objectstore/streaming/capture/rtmp"
                 ],
-                "key": "media-storage-capture"
+                "key": "objectstore-capture"
               },
               {
                 "type": "category",
@@ -1114,11 +1115,11 @@
                 "collapsible": true,
                 "collapsed": true,
                 "items": [
-                  "media-storage/streaming/live-streaming/how-it-works",
-                  "media-storage/streaming/live-streaming/glass-to-glass-latency",
-                  "media-storage/streaming/live-streaming/how-to-medialive-cloudfront"
+                  "objectstore/streaming/live-streaming/how-it-works",
+                  "objectstore/streaming/live-streaming/glass-to-glass-latency",
+                  "objectstore/streaming/live-streaming/how-to-medialive-cloudfront"
                 ],
-                "key": "media-storage-live-streaming"
+                "key": "objectstore-live-streaming"
               },
               {
                 "type": "category",
@@ -1126,24 +1127,13 @@
                 "collapsible": true,
                 "collapsed": true,
                 "items": [
-                  "media-storage/streaming/video-on-demand/media-storage"
+                  "objectstore/streaming/video-on-demand/object-storage"
                 ],
-                "key": "media-storage-video-on-demand"
+                "key": "objectstore-video-on-demand"
               }
             ],
-            "key": "media-storage-streaming"
+            "key": "objectstore-streaming"
           }
-        ],
-        "key": "other-media-storage",
-        "className": "sidebar-group-product"
-      },
-      {
-        "type": "category",
-        "label": "Object Store",
-        "collapsible": true,
-        "collapsed": true,
-        "items": [
-          "objectstore/http-api"
         ],
         "key": "other-object-store",
         "className": "sidebar-group-product"
