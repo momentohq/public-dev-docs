@@ -128,6 +128,10 @@ const REDIRECTS = {
     // Momento Cache (dedicated-capacity) docs relocated under the /product/ prefix
     '/capacity-pool/http-api': '/product/cache/api-reference/capacity-pool',
     '/database/http-api': '/product/cache/api-reference/database',
+
+    // Legacy product paths consolidated into the canonical Object Store tree.
+    '/media-storage': '/objectstore',
+    '/media-storage/streaming/video-on-demand/media-storage': '/objectstore/streaming/video-on-demand/object-storage',
 };
 
 // map<FROM,TO> - insert a redirect for each existing page with URL prefix <TO>, replacing with URL prefix <FROM>
@@ -140,7 +144,8 @@ const REDIRECT_PREFIXES = Object.entries({
     '/develop/integrations/': '/cache/integrations/',
     '/develop/sdks-integrations/': '/cache/integrations/',
     '/sdks/': '/platform/sdks/',
-    '/develop/sdks/': '/platform/sdks/'
+    '/develop/sdks/': '/platform/sdks/',
+    '/media-storage/': '/objectstore/'
 });
 
 const createRedirect = (existingPath) => {

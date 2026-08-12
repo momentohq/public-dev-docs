@@ -375,47 +375,43 @@
     "message": "パターン",
     "description": "The label for category 'Patterns' in sidebar 'siteSidebar'"
   },
-  "sidebar.siteSidebar.category.other-media-storage": {
-    "message": "Media Storage",
-    "description": "The label for category 'Media Storage' in sidebar 'siteSidebar'"
-  },
-  "sidebar.siteSidebar.category.media-storage-concurrency": {
+  "sidebar.siteSidebar.category.objectstore-concurrency": {
     "message": "同時実行",
     "description": "The label for category 'Concurrency' in sidebar 'siteSidebar'"
   },
-  "sidebar.siteSidebar.category.media-storage-core-concepts": {
+  "sidebar.siteSidebar.category.objectstore-core-concepts": {
     "message": "コアコンセプト",
     "description": "The label for category 'Core concepts' in sidebar 'siteSidebar'"
   },
-  "sidebar.siteSidebar.category.media-storage-enhancements": {
+  "sidebar.siteSidebar.category.objectstore-enhancements": {
     "message": "拡張機能",
     "description": "The label for category 'Enhancements' in sidebar 'siteSidebar'"
   },
-  "sidebar.siteSidebar.category.media-storage-entitlements": {
+  "sidebar.siteSidebar.category.objectstore-entitlements": {
     "message": "エンタイトルメント",
     "description": "The label for category 'Entitlements' in sidebar 'siteSidebar'"
   },
-  "sidebar.siteSidebar.category.media-storage-performance": {
+  "sidebar.siteSidebar.category.objectstore-performance": {
     "message": "パフォーマンス",
     "description": "The label for category 'Performance' in sidebar 'siteSidebar'"
   },
-  "sidebar.siteSidebar.category.media-storage-adaptive-bitrates": {
+  "sidebar.siteSidebar.category.objectstore-adaptive-bitrates": {
     "message": "アダプティブビットレート",
     "description": "The label for category 'Adaptive bitrates' in sidebar 'siteSidebar'"
   },
-  "sidebar.siteSidebar.category.media-storage-streaming": {
+  "sidebar.siteSidebar.category.objectstore-streaming": {
     "message": "ストリーミング",
     "description": "The label for category 'Streaming' in sidebar 'siteSidebar'"
   },
-  "sidebar.siteSidebar.category.media-storage-capture": {
+  "sidebar.siteSidebar.category.objectstore-capture": {
     "message": "キャプチャ",
     "description": "The label for category 'Capture' in sidebar 'siteSidebar'"
   },
-  "sidebar.siteSidebar.category.media-storage-live-streaming": {
+  "sidebar.siteSidebar.category.objectstore-live-streaming": {
     "message": "ライブストリーミング",
     "description": "The label for category 'Live streaming' in sidebar 'siteSidebar'"
   },
-  "sidebar.siteSidebar.category.media-storage-video-on-demand": {
+  "sidebar.siteSidebar.category.objectstore-video-on-demand": {
     "message": "ビデオオンデマンド",
     "description": "The label for category 'Video on demand' in sidebar 'siteSidebar'"
   },
