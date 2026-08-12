@@ -7,7 +7,7 @@ import styles from '@site/src/components/LandingPage/styles.module.css';
 /**
  * The Momento Object Store landing page content. This used to be a standalone
  * `src/pages/objectstore.tsx` with its own <Layout>; it is now rendered from the
- * `/objectstore` doc so that the page gets the left sidebar nav. The surrounding Layout is
+ * `/objectstore/overview` doc so that the page gets the left sidebar nav. The surrounding Layout is
  * supplied by the docs route.
  */
 export default function ObjectStoreLandingPage(): ReactNode {
@@ -25,7 +25,7 @@ export default function ObjectStoreLandingPage(): ReactNode {
             <div>
               <h2>Learn</h2>
               <ul className={styles.columnList}>
-                <li><a href="/objectstore/overview">Why Momento Object Store?</a></li>
+                <li><a href="/objectstore/capabilities">Why Momento Object Store?</a></li>
                 <li><a href="/objectstore/streaming/overview">About video streaming</a></li>
                 <li><a href="/objectstore/streaming/live-streaming/glass-to-glass-latency">Reducing glass to glass latency</a></li>
                 <li><a href="/objectstore/core-concepts/abr-ladder">How bitrates affect performance</a></li>

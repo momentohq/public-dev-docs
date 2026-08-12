@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-sidebar_label: Momento Object Store
+sidebar_label: Key Capabilities
 title: Object Store
 description: Discover the world's first purpose-built media origin service designed for zero buffer rates
 hide_title: true

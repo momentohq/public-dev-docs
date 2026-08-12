@@ -1018,8 +1018,8 @@
         "collapsible": true,
         "collapsed": true,
         "items": [
-          "objectstore/objectstore-index",
           "objectstore/overview",
+          "objectstore/capabilities",
           "objectstore/use-cases",
           "objectstore/http-api",
           {

@@ -130,7 +130,9 @@ const REDIRECTS = {
     '/database/http-api': '/product/cache/api-reference/database',
 
     // Legacy product paths consolidated into the canonical Object Store tree.
-    '/media-storage': '/objectstore',
+    '/objectstore': '/objectstore/overview',
+    '/media-storage': '/objectstore/overview',
+    '/media-storage/overview': '/objectstore/capabilities',
     '/media-storage/streaming/video-on-demand/media-storage': '/objectstore/streaming/video-on-demand/object-storage',
 };
 
@@ -151,7 +153,8 @@ const REDIRECT_PREFIXES = Object.entries({
 const createRedirect = (existingPath) => {
     const redirects = REDIRECT_PREFIXES
         .filter(([_from, to]) => existingPath.startsWith(to))
-        .map(([from, to]) => from + existingPath.slice(to.length));
+        .map(([from, to]) => from + existingPath.slice(to.length))
+        .filter((from) => !(from in REDIRECTS));
 
     return redirects;
 };
