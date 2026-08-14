@@ -444,6 +444,7 @@
         "collapsible": true,
         "collapsed": true,
         "items": [
+          "support/plans",
           "support/support-media-events"
         ],
         "key": "platform-support",
