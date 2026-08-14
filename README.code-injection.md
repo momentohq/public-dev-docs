@@ -17,8 +17,8 @@ So without further ado, let's talk about how this actually works.
 
 - Define code in example repos
 - Add <SdkExampleCodeBlock> or <SdkExampleTabs> blocks to the dev docs
-- Run `yarn start` to start a local server hosting the docs and test your changes
-- Run `yarn clear && yarn build` to do a complete build of the docs, which will produce output at the end telling you which
+- Run `npm start` to start a local server hosting the docs and test your changes
+- Run `npm run clear && npm run build` to do a complete build of the docs, which will produce output at the end telling you which
   languages are missing examples.
 
 ## Defining example code in the repos
@@ -130,17 +130,17 @@ The next time the docs website is built it should automatically pick up your cha
 - Get your SDK PR reviewed and merged
 - In the dev docs repo, add a new `<SdkExampleCodeBlock>` or `<SdkExampleTabs>` tag, using your chosen
   `snippetId`, in the appropriate markdown file.
-- Run `yarn start` to test the docs site locally and make sure your change shows up.
+- Run `npm start` to test the docs site locally and make sure your change shows up.
 - Create a docs PR and get it reviewed and merged. The subsequent build/deploy will include your change.
 
 ### How do I see which languages are missing examples?
 
-Run `yarn clear && yarn build`.  The output at the end of the command will list all the languages and the
+Run `npm run clear && npm run build`.  The output at the end of the command will list all the languages and the
 count of examples they are missing.
 
 ### How do I debug if something is going wrong?
 
 Honestly, the easiest thing to do is to go add `console.log` statements to the plugin code in
-`plugins/example-code-snippets` and then run `yarn build` to see the output.  Can also be useful to
-do `yarn build |tee yarn-build-output.txt` so you can more easily search through the output if your
+`plugins/example-code-snippets` and then run `npm run build` to see the output.  Can also be useful to
+do `npm run build |tee build-output.txt` so you can more easily search through the output if your
 log statement is in a particularly verbose location.
