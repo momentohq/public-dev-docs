@@ -2,7 +2,7 @@ import React, { type ReactNode } from 'react';
 import styles from './styles.module.css';
 
 /**
- * The Momento Media Event Support Plan page content. This used to be a standalone
+ * The Live Event Support Plan page content. This used to be a standalone
  * `src/pages/support/media-events.tsx` with its own <Layout>; it is now rendered from the
  * `/support/media-events` doc so that the page gets the left sidebar nav. The surrounding
  * Layout is supplied by the docs route.
@@ -10,10 +10,10 @@ import styles from './styles.module.css';
 export default function MediaEventSupportPlan(): ReactNode {
   return (
     <div className={styles.container}>
-      <h1 className={styles.h1}>Momento Media Event Support Plan</h1>
+      <h1 className={styles.h1}>Live Event Support Plan</h1>
       <section className={styles.section}>
         <p>
-          <strong>Purpose:</strong> The Momento Media Event Support Plan is a high-value support tier tailored for mission-critical media workflows—such as live sports, global entertainment broadcasts, and major product launches—where low latency, high availability, and expert operational excellence are non-negotiable. This plan ensures your most important events run smoothly with proven reliability and expert guidance at every stage.
+          <strong>Purpose:</strong> The Live Event Support Plan is a high-value support tier tailored for mission-critical media workflows—such as live sports, global entertainment broadcasts, and major product launches—where low latency, high availability, and expert operational excellence are non-negotiable. This plan ensures your most important events run smoothly with proven reliability and expert guidance at every stage.
         </p>
       </section>
 
