@@ -44,7 +44,8 @@
             "key": "cloud-momento-cache-api-reference"
           },
           "product/cache/reliability",
-          "product/cache/pricing"
+          "product/cache/pricing",
+          "product/cache/support-plans"
         ],
         "key": "cloud-momento-cache",
         "className": "sidebar-group-product"
