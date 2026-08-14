@@ -35,8 +35,8 @@ time-to-resolution guarantee.
 - **S3:** A minor feature is broadly inoperable.
 
 A business day is 9:00 a.m.–5:00 p.m. Pacific Time, Monday through Friday, excluding United States
-federal holidays and Momento company holidays. Contact your Momento account team to confirm the
-coverage schedule for S1 and S2 response targets.
+federal holidays and Momento company holidays. S1 and S2 response clocks run continuously, 24
+hours per day and 7 days per week.
 
 When requesting support, provide reasonable details about the issue, reasonable access to the
 affected environment when necessary, and reasonable cooperation during diagnosis and resolution.
@@ -64,6 +64,3 @@ Production entitlements.
 | Deployment | Cloud | — | BYOC and self-hosted |
 | Metrics | Console | CloudWatch and Prometheus | Request logs |
 | Networking | Public gateway | — | VPC Peering, Transit Gateway, and PrivateLink |
-
-The compliance labels reproduce the plan matrix; ask your Momento account team which reports,
-agreements, eligibility requirements, and legal commitments apply to your organization.
