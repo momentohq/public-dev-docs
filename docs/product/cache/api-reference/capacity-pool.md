@@ -10,7 +10,7 @@ description: HTTP API reference for Momento Capacity Pools.
 
 Momento provides an HTTP API interface for managing Capacity Pools. This API lets you create, describe, update, list, and delete Capacity Pools programmatically, and scrape their utilization metrics.
 
-A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. You choose how the pool is sized — either **explicit** mode, in which you specify the exact instance type, shard count, and replicas per shard, or **managed** mode, in which you give capacity and replication *bounds* and Momento sizes the pool within them — along with availability zone (AZ) placement. Momento owns the underlying lifecycle and health of the pool. Each pool hosts one or more [Databases](/product/cache/api-reference/database), which share the pool's compute and memory.
+A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. You choose how the pool is sized — either **explicit** mode, in which you specify the exact instance type, shard count, and replicas per shard, or **managed** mode, in which you give capacity and replication *bounds* and Momento sizes the pool within them — along with availability zone (AZ) placement. Momento owns the underlying lifecycle and health of the pool. Each pool can host [Databases](/product/cache/api-reference/database), which share the pool's compute and memory.
 
 :::tip[Info]
 
@@ -144,7 +144,7 @@ The fields of an `insufficient_capacity` diagnostic:
 | last_observed_epoch_seconds | Integer | The most recent time the condition was observed. For an active diagnostic, how recently it was confirmed still in effect; for a resolved one, the last failure before it cleared. |
 | resolved_epoch_seconds | Integer | When the condition resolved, in seconds since the Unix epoch. Present only on a `resolved` diagnostic. |
 
-The `scale_blocked_by_utilization` kind is raised when a requested change to a pool is rejected by the capacity safety check — the pool's current data no longer fits the requested configuration, or its usage can't currently be verified. The request is retried automatically and applies once it fits (or is superseded by another update):
+The `scale_blocked_by_utilization` kind is raised at propagation time when an update that passed request-time preflight can no longer be applied — the pool's current data no longer fits the requested configuration, or its usage can't currently be verified. The stored request is retried automatically and applies once it fits (or is superseded by another update):
 
 ```json
 {
@@ -306,6 +306,9 @@ A `managed`-mode pool:
 *Status Code: 409 Already Exists*
 - A Capacity Pool with the specified name already exists.
 
+*Status Code: 429 Too Many Requests*
+- Creating the pool would exceed the account's capacity limit in this region.
+
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
 
@@ -382,6 +385,9 @@ The `status` field reflects the pool's lifecycle status (`creating` / `active` /
 *Status Code: 401 Unauthorized*
 - This error type typically indicates that the Momento API key passed in is either invalid or expired.
 
+*Status Code: 403 Forbidden*
+- This error type typically indicates the Momento API key passed in does not grant the required access.
+
 *Status Code: 404 Not Found*
 - The specified Capacity Pool does not exist.
 
@@ -392,7 +398,7 @@ The `status` field reflects the pool's lifecycle status (`creating` / `active` /
 
 ## List Capacity Pools
 
-Lists all Capacity Pools owned by your account.
+Lists all Capacity Pools owned by your account in the region served by this API endpoint.
 
 ### Request
 
@@ -454,6 +460,9 @@ Lists all Capacity Pools owned by your account.
 *Status Code: 401 Unauthorized*
 - This error type typically indicates that the Momento API key passed in is either invalid or expired.
 
+*Status Code: 403 Forbidden*
+- This error type typically indicates the Momento API key passed in does not grant the required access.
+
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues.
 
@@ -463,7 +472,9 @@ Lists all Capacity Pools owned by your account.
 
 Updates the provisioning of an existing Capacity Pool. The request body contains only the fields to change; any subset of the fields is valid. The configuration is nested under the same mode key as the pool's current provisioning (`explicit` or `managed`); within it, a present field overwrites and an absent field is left unchanged. A pool's mode cannot be changed by an update.
 
-The update is applied asynchronously. The pool's backing capacity converges to the new provisioning (adding or removing replicas, rolling instance types, resizing within managed bounds, and so on) after the response is returned. The pool stays `active` while it converges; see [Status](#status).
+An accepted update is applied asynchronously. The pool's backing capacity converges to the new provisioning (adding or removing replicas, rolling instance types, resizing within managed bounds, and so on) after the response is returned. The pool stays `active` while it converges; see [Status](#status).
+
+For an active explicit-mode pool, a capacity-reducing request is preflighted against fresh working-set telemetry before the requested provisioning is stored. If the data would not fit, or usage cannot be verified, the API rejects the PATCH with `409 Precondition Failed`. Adjust the target shape or retry; a rejected request is not queued. An accepted update can still report `scale_blocked_by_utilization` if conditions change before propagation.
 
 ### Request
 
@@ -558,6 +569,12 @@ Returns the updated pool in the same shape as the [Describe Capacity Pool](#desc
 *Status Code: 404 Not Found*
 - The specified Capacity Pool does not exist.
 
+*Status Code: 409 Precondition Failed*
+- The requested explicit-mode shrink cannot be verified as safe, or the current data would not fit. The update was not stored.
+
+*Status Code: 429 Too Many Requests*
+- The update would exceed the account's capacity limit in this region.
+
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues.
 
@@ -601,6 +618,9 @@ A Capacity Pool cannot be deleted while it still has Databases pinned to it. Del
 *Status Code: 401 Unauthorized*
 - This error type typically indicates that the Momento API key passed in is either invalid or expired.
 
+*Status Code: 403 Forbidden*
+- This error type typically indicates the Momento API key passed in does not grant the required access.
+
 *Status Code: 409 Conflict*
 - The pool still has Databases pinned to it and cannot be deleted.
 
@@ -611,7 +631,7 @@ A Capacity Pool cannot be deleted while it still has Databases pinned to it. Del
 
 ## Capacity Pool Metrics
 
-Returns real-time utilization metrics for the Capacity Pools in your account, in [Prometheus exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/). This endpoint is **account-scoped**: it takes no pool name and returns one block of samples per pool, so a single request covers all of your pools. Point a Prometheus-compatible scraper at it, or fetch it directly with `curl`.
+Returns real-time utilization metrics for the Capacity Pools in your account and the region served by this API endpoint, in [Prometheus exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/). The endpoint takes no pool name and returns one block of samples per pool in that region. Query each regional endpoint for an all-region view. Point a Prometheus-compatible scraper at it, or fetch it directly with `curl`.
 
 ### Request
 
@@ -668,7 +688,7 @@ The exposed metrics:
 | capacity_pool_host_network_rx_utilization_ratio | gauge | Host network receive utilization (0.0–1.0). Emitted only when a reading is available. |
 | capacity_pool_host_network_tx_utilization_ratio | gauge | Host network transmit utilization (0.0–1.0). Emitted only when a reading is available. |
 
-The `# HELP` and `# TYPE` header lines are always present, even when your account has no pools (in which case no sample lines follow). The three `capacity_pool_host_*` metrics appear only when a reading is available.
+The `# HELP` and `# TYPE` header lines are always present, even when your account has no pools in the selected region (in which case no sample lines follow). The three `capacity_pool_host_*` metrics appear only when a reading is available.
 
 #### Error
 
@@ -738,7 +758,7 @@ curl -H "Authorization: <token>" \
 
 ## Example: List Capacity Pools
 
-List all Capacity Pools in your account:
+List all Capacity Pools in your account for the selected region:
 
 ```bash
 curl -H "Authorization: <token>" \
@@ -773,7 +793,7 @@ curl -X DELETE -H "Authorization: <token>" \
 
 ## Example: Scrape Capacity Pool metrics
 
-Fetch utilization metrics for all Capacity Pools in your account:
+Fetch utilization metrics for all Capacity Pools in your account for the selected region:
 
 ```bash
 curl -H "Authorization: <token>" \

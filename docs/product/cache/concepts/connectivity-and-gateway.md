@@ -26,7 +26,8 @@ millions of RPS.
 
 ## Connecting to a Database
 
-Point your preferred client at the pool's gateway endpoint over TLS and authenticate:
+Point your preferred client at the region's RESP endpoint over TLS and authenticate. Databases in
+one region share this gateway host; authentication selects the target Database and its backing Pool.
 
 - **Username** is the Database name.
 - **Password** is a Momento API token (created in the console).

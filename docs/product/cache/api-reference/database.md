@@ -32,7 +32,8 @@ The Database API lets you create, describe, list, and delete Databases. Each Dat
 
 ## Create Database
 
-Creates a new Database pinned to the specified Capacity Pool.
+Creates a new Database pinned to the specified Capacity Pool. The Pool must exist in the selected
+region and have active backing capacity.
 
 ### Request
 
@@ -85,7 +86,9 @@ Creates a new Database pinned to the specified Capacity Pool.
 #### Error
 
 *Status Code: 400 Bad Request*
-- "Invalid Argument" indicates the request body contains invalid configuration. See the message body for further details.
+- "Invalid Argument" indicates the request body contains invalid configuration, the specified
+  Capacity Pool does not exist, or its backing capacity is not ready. Retry a provisioning Pool
+  once it is `active`.
 
 *Status Code: 401 Unauthorized*
 - This error type typically indicates that the Momento API key passed in is either invalid or expired.
@@ -93,11 +96,11 @@ Creates a new Database pinned to the specified Capacity Pool.
 *Status Code: 403 Forbidden*
 - This error type typically indicates the Momento API key passed in does not grant the required access.
 
-*Status Code: 404 Not Found*
-- The specified Capacity Pool does not exist.
-
 *Status Code: 409 Already Exists*
 - A Database with the specified name already exists.
+
+*Status Code: 429 Too Many Requests*
+- The account-wide or per-Pool Database limit has been reached.
 
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues.
@@ -143,6 +146,9 @@ Retrieves the details of a specific Database.
 *Status Code: 401 Unauthorized*
 - This error type typically indicates that the Momento API key passed in is either invalid or expired.
 
+*Status Code: 403 Forbidden*
+- This error type typically indicates the Momento API key passed in does not grant the required access.
+
 *Status Code: 404 Not Found*
 - The specified Database does not exist.
 
@@ -153,7 +159,8 @@ Retrieves the details of a specific Database.
 
 ## List Databases
 
-Lists all Databases owned by your account, across all Capacity Pools.
+Lists all Databases owned by your account across all Capacity Pools in the region served by this
+API endpoint.
 
 ### Request
 
@@ -196,6 +203,9 @@ Lists all Databases owned by your account, across all Capacity Pools.
 *Status Code: 401 Unauthorized*
 - This error type typically indicates that the Momento API key passed in is either invalid or expired.
 
+*Status Code: 403 Forbidden*
+- This error type typically indicates the Momento API key passed in does not grant the required access.
+
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues.
 
@@ -235,6 +245,9 @@ Deletes a Database. The Database is removed synchronously; its underlying resour
 *Status Code: 401 Unauthorized*
 - This error type typically indicates that the Momento API key passed in is either invalid or expired.
 
+*Status Code: 403 Forbidden*
+- This error type typically indicates the Momento API key passed in does not grant the required access.
+
 *Status Code: 404 Not Found*
 - The specified Database does not exist.
 
@@ -269,7 +282,7 @@ curl -H "Authorization: <token>" \
 
 ## Example: List Databases
 
-List all Databases in your account:
+List all Databases in your account for the selected region:
 
 ```bash
 curl -H "Authorization: <token>" \

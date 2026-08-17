@@ -4,7 +4,7 @@ title: Momento Cache
 description: Fully-managed, dedicated Valkey. Provision isolated capacity and connect any Valkey client through a managed gateway.
 ---
 
-<!-- Projects: cache2/overview/what-is-cache2, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/shared-gateway, cache2/interfaces/control-plane-api -->
+<!-- Projects: cache2/overview/what-is-cache2, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/shared-gateway, cache2/interfaces/momento-cli, cache2/interfaces/control-plane-api -->
 
 # Overview
 
@@ -21,7 +21,8 @@ infrastructure, you do not manage nodes, failover, or upgrades.
 Momento Cache comes in two variants that differ only in how you size capacity:
 
 - **Cluster**: configure instance type, shard count, and replica count
-- **Flex**: configure storage size in GB and select a performance profile
+- **Flex**: configure capacity and replication bounds; Momento automatically sizes the topology
+  within them
 
 Both run the same Valkey engine, the same gateway, and the same isolation model, so the rest of
 this documentation applies to both. Documentation for the Serverless variant of Momento Cache is
@@ -50,8 +51,9 @@ standard Valkey client. Isolation is guaranteed at the
 
 ## Get started
 
-The [quickstart](/product/cache/getting-started) walks through provisioning a Capacity Pool, creating a
-Database, and connecting a client.
+The [quickstart](/product/cache/getting-started) uses the preview Momento CLI to provision a Capacity
+Pool, create a Database, and connect a client. See [Momento CLI (preview)](/product/cache/manage/cli)
+for the complete management command set and its current limitations.
 
 For the control-plane API, see the [reference](/product/cache/api-reference/capacity-pool).
 

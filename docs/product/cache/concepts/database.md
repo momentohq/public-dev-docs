@@ -35,6 +35,7 @@ by changing the pool, not the Database.
 
 ## Connecting
 
-To connect, point a Valkey client at the pool's gateway endpoint with your Database's
-credentials. See [Connectivity and the gateway](/product/cache/concepts/connectivity-and-gateway) and the
+To connect, point a Valkey client at the region's RESP endpoint with your Database's credentials.
+Databases in one region share this gateway host; the Database name selects the target at
+authentication time. See [Connectivity and the gateway](/product/cache/concepts/connectivity-and-gateway) and the
 [control-plane API reference](/product/cache/api-reference/database).
