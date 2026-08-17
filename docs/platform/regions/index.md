@@ -110,9 +110,15 @@ Example (`us-west-2`):
 https://api.cache.cell-4-us-west-2-1.prod.a.momentohq.com
 ```
 
-More information about the HTTP interface is available in the [HTTP API reference](/cache/develop/api-reference/http-api).
+Momento Cache control-plane operations are documented in the
+[Capacity Pool API](/product/cache/api-reference/capacity-pool) and
+[Database API](/product/cache/api-reference/database). The
+[Serverless Cache HTTP API](/cache/develop/api-reference/http-api) covers Serverless data-plane
+commands.
 
-### RESP endpoints
+### RESP and SDK endpoints
+
+#### RESP endpoints
 
 RESP connectivity use the cell host without the `api.` prefix:
 
@@ -120,7 +126,7 @@ RESP connectivity use the cell host without the `api.` prefix:
 cache.<cell-host>.prod.a.momentohq.com
 ```
 
-### SDK endpoints
+#### SDK endpoints
 SDK endpoints do not need any prefixes:
 
 ```

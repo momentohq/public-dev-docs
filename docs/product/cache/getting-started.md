@@ -46,7 +46,7 @@ API token to use as your password. Copy the token; treat it as a secret.
 
 Your connection details are:
 
-- **Host:** the pool's gateway endpoint
+- **Host:** the region's RESP endpoint
 - **Port:** `6379` with TLS
 - **Username:** your Database name
 - **Password:** your Momento API token

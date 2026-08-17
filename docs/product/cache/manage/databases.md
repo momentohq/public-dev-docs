@@ -19,12 +19,13 @@ Database runs on, scale its [Pool](/product/cache/manage/pools) instead.
 
 ## Create a Database
 
-Create a Database on an existing Pool. The Pool must already exist; the Database is pinned to it for
-its lifetime and cannot move to another Pool.
+Create a Database on an existing, `active` Pool in the selected region. The Database is pinned to
+that Pool for its lifetime and cannot move to another Pool.
 
-1. Choose the target Capacity Pool and a Database name that is unique within your account.
+1. Choose the target Capacity Pool and a Database name that is unique for your account in the
+   selected region.
 2. Create the Database (console, or `POST /database/{name}` with `{ "pool_name": "<pool>" }`).
-3. Connect a client to the Database through the pool's gateway endpoint. See
+3. Connect a client to the Database through the region's RESP endpoint. See
    [Connect a client](/product/cache/connect/clients).
 
 The Database name is how clients select it at connection time: the name is the `AUTH` username, and one
@@ -33,9 +34,10 @@ credential model.
 
 ## List and inspect Databases
 
-List every Database in your account across all Pools (console, or `GET /database`). Each entry reports
-the Database name and the name of the Pool it is pinned to. Describe a single Database (`GET
-/database/{name}`) to read the same details for one container.
+The console aggregates Databases across configured regions. `GET /database` lists every Database
+for your account in the region served by that API endpoint. Each entry reports the Database name
+and the name of the Pool it is pinned to. Describe a single Database (`GET /database/{name}`) to
+read the same details for one container in that region.
 
 ## Delete a Database
 

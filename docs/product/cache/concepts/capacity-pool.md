@@ -14,12 +14,12 @@ reconciliation, and health. A Capacity Pool is the isolation boundary of Momento
 
 ## Sizing a pool
 
-When you create a Capacity Pool, you specify the physical shape of the capacity:
+When you create a Capacity Pool, choose one sizing mode:
 
-- **Instance type** for the nodes.
-- **Shard count**, the number of Valkey shards.
-- **Replicas per shard**, for redundancy and read capacity.
-- **Availability zones** for placement.
+- **Cluster (explicit)**: specify instance type, shard count, replicas per shard, and availability
+  zones.
+- **Flex (managed)**: specify capacity and replication bounds plus availability zones. Momento
+  chooses and automatically resizes the backing topology within those bounds.
 
 See [Provisioning and sizing](/product/cache/concepts/provisioning-and-sizing) for how to choose these values and
 for the sizing modes the service supports.
