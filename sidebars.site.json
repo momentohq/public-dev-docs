@@ -13,6 +13,7 @@
         "items": [
           "product/cache/index",
           "product/cache/getting-started",
+          "product/cache/manage/cli",
           {
             "type": "category",
             "label": "Concepts",
