@@ -12,7 +12,7 @@ Connect to a [Database](/product/cache/concepts/database) with any standard Valk
 through the [shared gateway](/product/cache/concepts/connectivity-and-gateway). Use these connection
 details:
 
-- **Host:** the pool's gateway endpoint
+- **Host:** the region's RESP endpoint (shared by Databases in that region)
 - **Port:** `6379`, TLS enabled
 - **Username:** your Database name
 - **Password:** a Momento API token

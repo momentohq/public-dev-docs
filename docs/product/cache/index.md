@@ -21,7 +21,8 @@ infrastructure, you do not manage nodes, failover, or upgrades.
 Momento Cache comes in two variants that differ only in how you size capacity:
 
 - **Cluster**: configure instance type, shard count, and replica count
-- **Flex**: configure storage size in GB and select a performance profile
+- **Flex**: configure capacity and replication bounds; Momento automatically sizes the topology
+  within them
 
 Both run the same Valkey engine, the same gateway, and the same isolation model, so the rest of
 this documentation applies to both. Documentation for the Serverless variant of Momento Cache is

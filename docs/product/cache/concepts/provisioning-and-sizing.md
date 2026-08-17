@@ -29,22 +29,21 @@ You keep full control of the topology and its cost.
 
 A Flex pool abstracts over instances. Instead of naming instance types and counts, you choose:
 
-- **Capacity in GB** for the pool.
-- The **standard** or **performance** profile, which controls the ratio of compute to storage. Choose
-  a profile based on whether your workload is memory-bound or compute-bound.
-- **Replica count**, the number of replicas of each shard for redundancy and read
-  capacity.
+- **Minimum and maximum capacity in GiB** for the pool. Set the bounds equal to pin capacity.
+- **Minimum and maximum replicas per shard** for redundancy and read capacity. Set the bounds equal
+  to pin replication.
 - **Availability zones** the pool may use. Choose more than one for production.
 
-Momento maps your capacity and profile to instances and manages the topology for you. Flex suits
-teams that want predictable sizing and good defaults without managing instance topology.
+Momento maps these bounds to available configurations and automatically grows or shrinks the
+topology within the capacity range as memory utilization changes. Flex suits teams that want
+capacity-oriented sizing without managing instance topology.
 
 ## Choosing a shape
 
 - **Shards** determine how the keyspace and throughput scale horizontally. Add shards for more
   memory and aggregate throughput.
-- **Replica count** adds redundancy and read capacity. Use at least one replica per shard
-  for production.
+- **Replica count** adds redundancy and read capacity. Use at least one replica per shard for
+  production. Flex expresses this choice as replication bounds.
 - **Zones** control where the pool may run. Momento automatically distributes nodes across the
   configured zones for you. Choose two or more zones for production so that an outage in one zone
   does not take the pool down.
