@@ -1,7 +1,7 @@
 ---
 sidebar_label: Momento CLI (preview)
 title: Manage Momento Cache with the CLI (preview)
-description: Preview CLI commands for creating, inspecting, updating, listing, and deleting Momento Cache Capacity Pools and Databases.
+description: Preview CLI commands for Capacity Pool lifecycle operations and Database creation, inspection, listing, and deletion.
 ---
 
 <!-- Projects: cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/provisioning-modes -->
