@@ -4,7 +4,7 @@ title: Provisioning and sizing
 description: Size a Capacity Pool with Cluster (by instance) or Flex (by capacity) provisioning.
 ---
 
-<!-- Projects: cache2/concepts/provisioning-modes, cache2/capabilities/sizing-and-isolation-guidance -->
+<!-- Projects: cache2/concepts/provisioning-modes, cache2/concepts/capacity-and-usage, cache2/capabilities/sizing-and-isolation-guidance -->
 
 # Provisioning and sizing
 
@@ -37,6 +37,11 @@ A Flex pool abstracts over instances. Instead of naming instance types and count
 Momento maps these bounds to available configurations and automatically grows or shrinks the
 topology within the capacity range as memory utilization changes. Flex suits teams that want
 capacity-oriented sizing without managing instance topology.
+
+Pool capacity is the configured Valkey `maxmemory` per primary shard multiplied by the number of
+primary shards. Replicas do not add capacity. Flex usage, which is the billable quantity, includes
+deployed `maxmemory` on both primaries and replicas. Memory utilization measures live
+`used_memory` relative to `maxmemory`; it is not another capacity value.
 
 ## Choosing a shape
 

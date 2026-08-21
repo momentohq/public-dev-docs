@@ -9,9 +9,9 @@ description: Provision a Capacity Pool, create a Database, and connect a Valkey 
 # Getting started
 
 :::note[Preview]
-The Capacity Pool and Database commands are in preview. Their names and output may change before
-general availability. The supporting Capacity Pools console workflow is currently a private
-preview and is not enabled in the production console for every account.
+Momento Cache (Cluster and Flex) is available in limited preview, and the Capacity Pool and
+Database command groups are also in preview. [Sign in or sign up in the Momento
+console](https://console.gomomento.com/) and select **Request access** before following this guide.
 :::
 
 This quickstart takes you from nothing to running Valkey commands against a managed Database in
@@ -20,7 +20,7 @@ connection endpoint from the console.
 
 You need:
 
-- A Momento account with access to the Momento Cache private preview.
+- A Momento account with access to the Momento Cache limited preview.
 - The [Momento CLI](https://github.com/momentohq/momento-cli#installation).
 - `valkey-cli` (or `redis-cli`).
 - Valid availability-zone IDs for the region where you will create the Pool.
@@ -31,8 +31,7 @@ In the Momento console, create or retrieve an API key and copy the endpoint iden
 region where you want to create the Pool. The console is the authority for this identifier; do not
 derive it from a copied hostname table.
 
-If the Capacity Pools preview or endpoint identifier is not visible in your console, contact your
-Momento representative before continuing.
+If you do not have preview access, select **Request access** in the console before continuing.
 
 Configure a named CLI profile and enter the API key and endpoint identifier when prompted:
 
@@ -48,7 +47,7 @@ Create a Flex Pool with capacity and replication bounds. The example uses two US
 availability-zone IDs; replace them with valid AZ IDs for the region selected by your profile.
 
 ```sh
-momento preview pool create-pool \
+momento preview pool create \
   --profile cache-quickstart \
   --name quickstart-pool \
   --capacity-gib 32..128 \
@@ -64,12 +63,12 @@ within those bounds. To create a **Cluster (explicit)** Pool instead, provide `-
 Provisioning runs in the background. Check the lifecycle status until it is `active`:
 
 ```sh
-momento preview pool get-status \
+momento preview pool describe \
   --profile cache-quickstart \
   --name quickstart-pool
 ```
 
-If provisioning is blocked, `list-pools` includes diagnostics. The service keeps retrying an
+If provisioning is blocked, `list` includes diagnostics. The service keeps retrying an
 accepted configuration; see [Manage Capacity Pools](/product/cache/manage/pools#read-diagnostics).
 
 ## 3. Create a Database
@@ -77,9 +76,9 @@ accepted configuration; see [Manage Capacity Pools](/product/cache/manage/pools#
 Once the Pool is `active`, create a Database on it:
 
 ```sh
-momento preview database create-database \
+momento preview database create \
   --profile cache-quickstart \
-  --database-name quickstart-db \
+  --name quickstart-db \
   --pool-name quickstart-pool
 ```
 
@@ -87,7 +86,7 @@ Database creation is immediate because the Pool's capacity already exists.
 
 ## 4. Get your connection details
 
-In the private-preview console, open **Capacity Pools**, select `quickstart-pool`, and open its
+In the limited-preview console, open **Capacity Pools**, select `quickstart-pool`, and open its
 **Databases** tab. Copy the **RESP endpoint** shown there. Every Database in that region shares the
 endpoint.
 
@@ -120,11 +119,11 @@ You are now reading and writing against a managed Valkey Database.
 Delete the Database before its Pool:
 
 ```sh
-momento preview database delete-database \
+momento preview database delete \
   --profile cache-quickstart \
-  --database-name quickstart-db
+  --name quickstart-db
 
-momento preview pool delete-pool \
+momento preview pool delete \
   --profile cache-quickstart \
   --name quickstart-pool
 ```

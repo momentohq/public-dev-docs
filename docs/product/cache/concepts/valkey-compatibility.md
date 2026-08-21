@@ -18,6 +18,9 @@ Connect to Momento Cache with standard Valkey and Redis clients over RESP. The
 set of commands. Unsupported commands are rejected with the RESP error `-Command not allowed`.
 Check this page to verify compatibility before migrating a workload.
 
+Momento Cache runs Valkey 9.1.1 in production. The gateway's supported-command contract below,
+not the upstream version alone, determines compatibility.
+
 ## Supported
 
 The service supports all common Valkey data types and operations:

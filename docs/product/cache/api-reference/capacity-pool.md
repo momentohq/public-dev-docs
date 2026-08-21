@@ -4,13 +4,26 @@ title: Capacity Pool API
 description: HTTP API reference for Momento Capacity Pools.
 ---
 
-<!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/capacity-pool, cache2/concepts/provisioning-modes -->
+<!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/capacity-pool, cache2/concepts/capacity-and-usage, cache2/concepts/provisioning-modes, cache2/capabilities/onboarding-flow -->
 
 # HTTP API Reference for Momento Capacity Pools
 
-Momento provides an HTTP API interface for managing Capacity Pools. This API lets you create, describe, update, list, and delete Capacity Pools programmatically, and scrape their utilization metrics.
+Momento provides an HTTP API interface for managing Capacity Pools. This API lets you create,
+describe, update, list, and delete Capacity Pools programmatically, discover available capacity
+offerings, and scrape their utilization metrics.
 
-A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. You choose how the pool is sized — either **explicit** mode, in which you specify the exact instance type, shard count, and replicas per shard, or **managed** mode, in which you give capacity and replication *bounds* and Momento sizes the pool within them — along with availability zone (AZ) placement. Momento owns the underlying lifecycle and health of the pool. Each pool can host [Databases](/product/cache/api-reference/database), which share the pool's compute and memory.
+A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. Pool capacity is
+configured Valkey `maxmemory` per primary shard multiplied by the number of primary shards;
+replicas do not add Pool capacity. You choose how the Pool is sized, either **explicit** mode
+(Cluster), in which you specify the exact instance type, shard count, and replicas per shard, or
+**managed** mode (Flex), in which you give capacity and replication *bounds* and Momento sizes the
+Pool within them. Momento owns the underlying lifecycle and health of the Pool. Each Pool can host
+[Databases](/product/cache/api-reference/database), which share its compute and memory.
+
+:::note[Limited preview]
+Momento Cache is available in limited preview. [Sign in or sign up in the Momento
+console](https://console.gomomento.com/) and select **Request access** before calling this API.
+:::
 
 :::tip[Info]
 
@@ -28,7 +41,8 @@ The API Key must be provided in the `Authorization` header.
 
 # Capacity Pool API
 
-The Capacity Pool API lets you create, describe, update, list, and delete Capacity Pools, and scrape their utilization metrics.
+The Capacity Pool API lets you create, describe, update, list, and delete Capacity Pools, discover
+the capacity offerings available to your account, and scrape utilization metrics.
 
 ## Provisioning
 
@@ -79,7 +93,8 @@ In `managed` mode you specify bounds for capacity and replication, and Momento s
       "min_replicas_per_shard": 1,
       "max_replicas_per_shard": 2
     },
-    "zones": ["use1-az1", "use1-az2"]
+    "zones": ["use1-az1", "use1-az2"],
+    "family": "general"
   }
 }
 ```
@@ -94,8 +109,46 @@ In `managed` mode you specify bounds for capacity and replication, and Momento s
 | managed.replication.min_replicas_per_shard | yes | Integer | The minimum replicas per shard. Set equal to the maximum to pin replication. |
 | managed.replication.max_replicas_per_shard | yes | Integer | The maximum replicas per shard. |
 | managed.zones | yes | Array\<String\> | The availability-zone IDs across which the pool's nodes are placed. Must contain at least one zone. |
+| managed.family | no | String | The capacity family to use. When omitted, the Pool resolves to the cell default. The resolved family is always present in managed-mode responses. |
 
-Because managed capacity is quantized to the configurations available in the cell, the capacity you are granted may exceed `min_gib`. The concrete capacity and replication a managed pool has right now are reported in the response fields [`current_capacity_gib` and `current_replicas_per_shard`](#describe-capacity-pool).
+Because managed capacity is quantized to the configurations available in the cell, the capacity
+you are granted may exceed `min_gib`. The last settled allocation is reported by
+`current_capacity_gib`; `target_capacity_gib` reports the allocation the Pool is converging to and
+differs only while a scale is in flight. Both fields use the same Pool-capacity quantity.
+`current_replicas_per_shard` reports settled replication.
+
+## Capacity offering discovery
+
+Discovery responses are scoped to the calling account and the region served by the API endpoint.
+Use them to determine the managed families and Cluster instance types the account can select.
+
+### List managed capacity families
+
+`GET /capacity_pool/families` returns:
+
+| Field | Type | Description |
+| --- | --- | --- |
+| families | Array | The managed capacity families the calling account may select. |
+| families[].name | String | The family name accepted by `provisioning.managed.family`. |
+| families[].is_default | Boolean | Whether this is the cell's current default family. |
+| families[].min_capacity_gib | Integer | The smallest granted Pool capacity offered by the family, in GiB. |
+| families[].max_capacity_gib | Integer | The largest granted Pool capacity offered by the family, in GiB. |
+
+### List Cluster instance types
+
+`GET /capacity_pool/instance_types` returns an `instance_types` array containing the instance types
+the calling account may provision in explicit mode. The array is sorted and is empty when the cell
+offers no Capacity Pool instance types.
+
+### Select or reset a managed family
+
+Set `provisioning.managed.family` to a family name when creating a managed Pool to pin that family.
+If you omit the field, the Pool resolves and pins the cell's current default. A later default change
+does not silently move an existing Pool.
+
+On update, pass `{ "family": { "name": "<family>" } }` under `provisioning.managed` to pin a
+named family. Pass `{ "family": "cell_default" }` to re-resolve and pin the then-current cell
+default.
 
 ## Status
 
@@ -291,6 +344,7 @@ A `managed`-mode pool:
 | diagnostics | Array | Customer-actionable conditions affecting the pool. Empty when there is nothing to surface. See [Diagnostics](#diagnostics). |
 | current_capacity_gib | Integer | **Managed pools only.** The capacity, in GiB, the pool concretely has right now within its requested bounds. Omitted for explicit pools. |
 | current_replicas_per_shard | Integer | **Managed pools only.** The replicas per shard the pool concretely has right now within its requested bounds. Omitted for explicit pools. |
+| target_capacity_gib | Integer | **Managed pools only.** The Pool capacity the service is converging to. Equal to `current_capacity_gib` except while a scale is in flight. |
 
 #### Error
 
@@ -378,7 +432,12 @@ A `managed`-mode pool additionally reports the capacity and replication it concr
 }
 ```
 
-The `status` field reflects the pool's lifecycle status (`creating` / `active` / `deleting`). The `diagnostics` field is derived from the underlying capacity at read time; Describe returns active conditions plus recently-resolved ones. See [Diagnostics](#diagnostics). For managed pools, `current_capacity_gib` and `current_replicas_per_shard` report the concrete capacity and replication within the requested bounds; both are omitted for explicit pools.
+The `status` field reflects the pool's lifecycle status (`creating` / `active` / `deleting`). The
+`diagnostics` field is derived from the underlying capacity at read time; Describe returns active
+conditions plus recently-resolved ones. See [Diagnostics](#diagnostics). For managed Pools,
+`current_capacity_gib` and `current_replicas_per_shard` report the last settled allocation, while
+`target_capacity_gib` reports the Pool capacity being applied. These fields are omitted for
+explicit Pools.
 
 #### Error
 
@@ -474,7 +533,11 @@ Updates the provisioning of an existing Capacity Pool. The request body contains
 
 An accepted update is applied asynchronously. The pool's backing capacity converges to the new provisioning (adding or removing replicas, rolling instance types, resizing within managed bounds, and so on) after the response is returned. The pool stays `active` while it converges; see [Status](#status).
 
-For an active explicit-mode pool, a capacity-reducing request is preflighted against fresh working-set telemetry before the requested provisioning is stored. If the data would not fit, or usage cannot be verified, the API rejects the PATCH with `409 Precondition Failed`. Adjust the target shape or retry; a rejected request is not queued. An accepted update can still report `scale_blocked_by_utilization` if conditions change before propagation.
+For an active explicit-mode pool, a capacity-reducing request is preflighted against fresh memory
+utilization telemetry before the requested provisioning is stored. If the data would not fit, or
+usage cannot be verified, the API rejects the PATCH with `409 Precondition Failed`. Adjust the
+target shape or retry; a rejected request is not queued. An accepted update can still report
+`scale_blocked_by_utilization` if conditions change before propagation.
 
 ### Request
 
@@ -530,6 +593,7 @@ For a `managed`-mode pool, a present `capacity` or `replication` replaces that d
 | provisioning.managed.capacity | no | Object | If present, replaces the capacity bounds (`min_gib`, `max_gib`) in full. |
 | provisioning.managed.replication | no | Object | If present, replaces the replication bounds (`min_replicas_per_shard`, `max_replicas_per_shard`) in full. |
 | provisioning.managed.zones | no | Array\<String\> | If non-empty, replaces the pool's zone set. An empty or absent value leaves the zones unchanged. |
+| provisioning.managed.family | no | Object or String | `{ "name": "<family>" }` pins a named family; `"cell_default"` re-resolves and pins the current cell default. |
 
 ### Responses
 

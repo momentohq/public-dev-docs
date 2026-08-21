@@ -10,7 +10,8 @@ description: Preview CLI commands for creating, inspecting, updating, listing, a
 
 :::note[Preview]
 The `momento preview pool` and `momento preview database` command groups are in preview. Their names,
-arguments, and output may change before general availability.
+arguments, and output may change. Momento Cache (Cluster and Flex) is available in limited preview;
+[sign in or sign up in the console](https://console.gomomento.com/) and select **Request access**.
 :::
 
 Use the Momento CLI for common Capacity Pool and Database lifecycle operations. The commands target
@@ -23,8 +24,8 @@ Install the CLI using the instructions in the
 
 In the Momento console, create or retrieve an API key and copy the endpoint identifier for the
 region you want to manage. The console is the authority for endpoint identifiers. If the endpoint
-identifier is not visible, contact your Momento representative for private-preview access rather
-than constructing a hostname from a static list.
+identifier is not visible, request preview access in the console rather than constructing a
+hostname from a static list.
 
 Save the API key and endpoint identifier in a named profile:
 
@@ -37,15 +38,15 @@ The examples below pass `--profile cache-preview`. You may instead use the defau
 
 ## Choose a management surface
 
-| Workflow | CLI (preview) | Console (private preview) |
+| Workflow | CLI (preview) | Console (limited preview) |
 | --- | --- | --- |
 | Create a Cluster or Flex Pool | Yes | Yes |
 | List Pools across regions | One selected region | Aggregates configured regions |
-| Inspect Pool status | `get-status` | Overview with configuration and diagnostics |
+| Inspect Pool status and configuration | `describe` | Overview with configuration and diagnostics |
 | Update a Pool | Yes | Yes |
 | Read Pool metrics | Not available | Point-in-time Metrics tab |
 | Create, list, and delete Databases | Yes | Yes, within a Pool |
-| Describe one Database | Not available | Pool-scoped row; no standalone page |
+| Describe one Database | Yes | Pool-scoped row; no standalone page |
 | Copy the RESP endpoint | Not available | Databases tab |
 | Delete a non-empty Pool | Rejected | Rejected |
 
@@ -62,7 +63,7 @@ Create a **Cluster (explicit)** Pool by specifying the instance type, shard coun
 count, and availability-zone IDs:
 
 ```sh
-momento preview pool create-pool \
+momento preview pool create \
   --profile cache-preview \
   --name orders-cluster \
   --instance-type r7g.xlarge \
@@ -74,7 +75,7 @@ momento preview pool create-pool \
 Create a **Flex (managed)** Pool by specifying capacity and replication bounds:
 
 ```sh
-momento preview pool create-pool \
+momento preview pool create \
   --profile cache-preview \
   --name orders-flex \
   --capacity-gib 32..128 \
@@ -88,10 +89,10 @@ lifecycle status, and provisioning configuration.
 
 ### Inspect and list Capacity Pools
 
-Read one Pool's lifecycle status:
+Inspect one Pool's status, configuration, and diagnostics:
 
 ```sh
-momento preview pool get-status \
+momento preview pool describe \
   --profile cache-preview \
   --name orders-flex
 ```
@@ -99,11 +100,12 @@ momento preview pool get-status \
 List every Pool in the profile's selected region:
 
 ```sh
-momento preview pool list-pools --profile cache-preview
+momento preview pool list --profile cache-preview
 ```
 
-`get-status` prints only the name and status. `list-pools` also prints provisioning and active
-diagnostics. The CLI does not aggregate regions; select another endpoint/profile to inspect another
+`describe` and `list` print provisioning, current and target Flex capacity where applicable, and
+diagnostics. Current and target are settled and in-flight values of the same Pool-capacity
+quantity. The CLI does not aggregate regions; select another endpoint/profile to inspect another
 region.
 
 ### Update a Capacity Pool
@@ -114,27 +116,27 @@ the Pool.
 Raise a Flex Pool's capacity ceiling:
 
 ```sh
-momento preview pool update-pool \
+momento preview pool update \
   --profile cache-preview \
   --name orders-flex \
-  --mode managed \
+  --mode flex \
   --capacity-gib 32..256
 ```
 
 Change the shard count and replicas for a Cluster Pool:
 
 ```sh
-momento preview pool update-pool \
+momento preview pool update \
   --profile cache-preview \
   --name orders-cluster \
-  --mode explicit \
+  --mode cluster \
   --shard-count 4 \
   --replicas-per-shard 2
 ```
 
 An update requires at least one changed field. You can also replace the zone set with `--zones`.
-Cluster-only fields are rejected with `--mode managed`; `--capacity-gib` is rejected with
-`--mode explicit`. See [Manage Capacity Pools](/product/cache/manage/pools) for scaling guards and
+Cluster-only fields are rejected with `--mode flex`; `--capacity-gib` is rejected with
+`--mode cluster`. See [Manage Capacity Pools](/product/cache/manage/pools) for scaling guards and
 diagnostics.
 
 ### Delete a Capacity Pool
@@ -142,7 +144,7 @@ diagnostics.
 Delete every Database pinned to the Pool first, then run:
 
 ```sh
-momento preview pool delete-pool \
+momento preview pool delete \
   --profile cache-preview \
   --name orders-flex
 ```
@@ -157,9 +159,9 @@ Pool enters `deleting` before it is removed.
 The target Pool must be `active`:
 
 ```sh
-momento preview database create-database \
+momento preview database create \
   --profile cache-preview \
-  --database-name orders \
+  --name orders \
   --pool-name orders-flex
 ```
 
@@ -168,18 +170,27 @@ The CLI prints the Database name and backing Pool.
 ### List Databases
 
 ```sh
-momento preview database list-databases --profile cache-preview
+momento preview database list --profile cache-preview
 ```
 
-The command lists the Database name and Pool for every Database in the selected region. The CLI
-does not provide a command to describe one Database.
+The command lists the Database name and Pool for every Database in the selected region.
+
+### Describe a Database
+
+```sh
+momento preview database describe \
+  --profile cache-preview \
+  --name orders
+```
+
+The command prints the Database name and backing Pool.
 
 ### Delete a Database
 
 ```sh
-momento preview database delete-database \
+momento preview database delete \
   --profile cache-preview \
-  --database-name orders
+  --name orders
 ```
 
 Deletion is synchronous in the control plane; underlying resource reclamation follows

@@ -4,11 +4,16 @@ title: Database API
 description: HTTP API reference for Momento Databases.
 ---
 
-<!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/database -->
+<!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/database, cache2/capabilities/onboarding-flow -->
 
 # HTTP API Reference for Momento Databases
 
 Momento provides an HTTP API interface for managing Databases. This API lets you create, describe, list, and delete Databases programmatically.
+
+:::note[Limited preview]
+Momento Cache is available in limited preview. [Sign in or sign up in the Momento
+console](https://console.gomomento.com/) and select **Request access** before calling this API.
+:::
 
 A **Database** is a logical container pinned to exactly one [Capacity Pool](/product/cache/api-reference/capacity-pool). Multiple Databases share the compute and memory of their Pool. A Database is identified by its name and the name of the Capacity Pool it belongs to.
 

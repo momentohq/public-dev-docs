@@ -4,13 +4,18 @@ title: Momento Cache
 description: Fully-managed, dedicated Valkey. Provision isolated capacity and connect any Valkey client through a managed gateway.
 ---
 
-<!-- Projects: cache2/overview/what-is-cache2, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/shared-gateway, cache2/interfaces/momento-cli, cache2/interfaces/control-plane-api -->
+<!-- Projects: cache2/overview/what-is-cache2, cache2/capabilities/onboarding-flow, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/shared-gateway, cache2/interfaces/momento-cli, cache2/interfaces/control-plane-api -->
 
 # Overview
 
 Momento Cache is a fully-managed, dedicated Valkey cluster. Provision isolated capacity
 operated by Momento, then connect with any Valkey or Redis client through a managed gateway.
 An HTTP API for RESP commands is planned.
+
+:::note[Limited preview]
+Momento Cache (Cluster and Flex) is available in limited preview. [Sign in or sign up in the
+Momento console](https://console.gomomento.com/) and select **Request access** to get started.
+:::
 
 Unlike a multi-tenant serverless cache, Momento Cache gives you a dedicated backend sized to
 your workload, with isolation at the capacity pool boundary. Unlike running Valkey on your own
@@ -59,4 +64,6 @@ For the control-plane API, see the [reference](/product/cache/api-reference/capa
 
 ## Availability
 
-Momento Cache runs on AWS today. Support for additional clouds is planned.
+Momento Cache runs on AWS today. Support for additional clouds is planned. Cluster and Flex are
+available together in limited preview through the [Request access](https://console.gomomento.com/)
+flow.
