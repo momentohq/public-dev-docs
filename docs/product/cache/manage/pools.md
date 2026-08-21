@@ -4,7 +4,7 @@ title: Manage Capacity Pools
 description: Create, inspect, scale, monitor, and delete a Capacity Pool with the preview CLI or limited-preview console.
 ---
 
-<!-- Projects: cache2/concepts/capacity-pool, cache2/concepts/capacity-and-usage, cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/interfaces/control-plane-api -->
+<!-- Projects: cache2/concepts/capacity-pool, cache2/concepts/capacity-and-usage, cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/interfaces/control-plane-api, cache2/constraints/service-limits, cache2/capabilities/capacity-pool-metrics -->
 
 # Manage Capacity Pools
 
@@ -25,6 +25,8 @@ Pool capacity is configured Valkey `maxmemory` per primary shard multiplied by t
 primary shards. Replicas do not add Pool capacity. Flex usage includes deployed `maxmemory` on
 primaries and replicas; Cluster usage is the deployed instance type and count. Memory utilization
 is the separate ratio of live `used_memory` to deployed `maxmemory`.
+
+Review the default [service limits](/product/cache/manage/limits) before you create or scale a Pool.
 
 ## Create a Pool
 
@@ -104,6 +106,9 @@ by the caller.
 The CLI does not expose Pool metrics. In the limited-preview console, select a Pool and open its
 **Metrics** tab. It shows point-in-time memory, CPU, network receive/transmit, and eviction values
 from the latest scrape; it does not show historical charts.
+
+For the seven-metric Prometheus scrape and the six-metric conditional CloudWatch contract, see
+[Capacity Pool metrics](/product/cache/manage/metrics).
 
 ## Delete a Pool
 

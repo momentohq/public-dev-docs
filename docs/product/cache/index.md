@@ -62,6 +62,13 @@ for the complete management command set and its current limitations.
 
 For the control-plane API, see the [reference](/product/cache/api-reference/capacity-pool).
 
+## Manage and secure Momento Cache
+
+Use the management guides to operate [Capacity Pools](/product/cache/manage/pools) and
+[Databases](/product/cache/manage/databases). Review the default [service limits](/product/cache/manage/limits)
+and [Capacity Pool metrics](/product/cache/manage/metrics), then scope credentials with the
+[security guidance](/product/cache/security).
+
 ## Availability
 
 Momento Cache runs on AWS today. Support for additional clouds is planned. Cluster and Flex are

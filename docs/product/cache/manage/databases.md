@@ -4,7 +4,7 @@ title: Manage Databases
 description: Create, list, connect to, and delete Databases with the preview CLI or limited-preview console.
 ---
 
-<!-- Projects: cache2/concepts/database, cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/interfaces/control-plane-api -->
+<!-- Projects: cache2/concepts/database, cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/interfaces/control-plane-api, cache2/constraints/service-limits, cache2/constraints/database-fgac -->
 
 # Manage Databases
 
@@ -39,6 +39,10 @@ that Pool for its lifetime and cannot move to another Pool.
 The Database name is how clients select it at connection time: the name is the `AUTH` username, and
 one connection serves exactly one Database. See [Security](/product/cache/security) for the
 connection credential model.
+
+Database creation is subject to the account and per-Pool [service limits](/product/cache/manage/limits).
+Use a named-Database permission when the client should not reach other Databases; see
+[Database command permissions](/product/cache/security#database-command-permissions).
 
 ## List and inspect Databases
 

@@ -4,7 +4,7 @@ title: Manage Momento Cache with the CLI (preview)
 description: Preview CLI commands for Capacity Pool lifecycle operations and Database creation, inspection, listing, and deletion.
 ---
 
-<!-- Projects: cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/provisioning-modes -->
+<!-- Projects: cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/provisioning-modes, cache2/constraints/service-limits, cache2/capabilities/capacity-pool-metrics -->
 
 # Manage Momento Cache with the CLI
 
@@ -54,6 +54,11 @@ Use the CLI for the common management path. Use the console when you need an agg
 view, diagnostics, point-in-time metrics, or the RESP endpoint. The
 [HTTP API references](/product/cache/api-reference/capacity-pool) document the lower-level surface,
 including Database Describe and the metrics scrape that the CLI does not expose.
+
+The CLI reports errors when a create or capacity-increasing update exceeds a
+[service limit](/product/cache/manage/limits). Use the
+[Metrics guide](/product/cache/manage/metrics) for the Prometheus and conditional CloudWatch
+contracts that are outside the CLI.
 
 ## Capacity Pool commands
 

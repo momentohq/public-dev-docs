@@ -4,7 +4,7 @@ title: Capacity Pool API
 description: HTTP API reference for Momento Capacity Pools.
 ---
 
-<!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/capacity-pool, cache2/concepts/capacity-and-usage, cache2/concepts/provisioning-modes, cache2/capabilities/onboarding-flow -->
+<!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/capacity-pool, cache2/concepts/capacity-and-usage, cache2/concepts/provisioning-modes, cache2/capabilities/onboarding-flow, cache2/constraints/service-limits, cache2/capabilities/capacity-pool-metrics -->
 
 # HTTP API Reference for Momento Capacity Pools
 
@@ -361,7 +361,8 @@ A `managed`-mode pool:
 - A Capacity Pool with the specified name already exists.
 
 *Status Code: 429 Too Many Requests*
-- Creating the pool would exceed the account's capacity limit in this region.
+- Creating the pool would exceed the account's capacity limit. See
+  [Service limits](/product/cache/manage/limits).
 
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
@@ -637,7 +638,8 @@ Returns the updated pool in the same shape as the [Describe Capacity Pool](#desc
 - The requested explicit-mode shrink cannot be verified as safe, or the current data would not fit. The update was not stored.
 
 *Status Code: 429 Too Many Requests*
-- The update would exceed the account's capacity limit in this region.
+- The update would exceed the account's capacity limit. See
+  [Service limits](/product/cache/manage/limits).
 
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues.
@@ -696,6 +698,9 @@ A Capacity Pool cannot be deleted while it still has Databases pinned to it. Del
 ## Capacity Pool Metrics
 
 Returns real-time utilization metrics for the Capacity Pools in your account and the region served by this API endpoint, in [Prometheus exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/). The endpoint takes no pool name and returns one block of samples per pool in that region. Query each regional endpoint for an all-region view. Point a Prometheus-compatible scraper at it, or fetch it directly with `curl`.
+
+See [Capacity Pool metrics](/product/cache/manage/metrics) for the seven Prometheus metrics and the
+separate six-metric conditional CloudWatch contract.
 
 ### Request
 

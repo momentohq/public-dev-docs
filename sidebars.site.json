@@ -13,7 +13,20 @@
         "items": [
           "product/cache/index",
           "product/cache/getting-started",
-          "product/cache/manage/cli",
+          {
+            "type": "category",
+            "label": "Manage",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              "product/cache/manage/cli",
+              "product/cache/manage/pools",
+              "product/cache/manage/databases",
+              "product/cache/manage/limits",
+              "product/cache/manage/metrics"
+            ],
+            "key": "cloud-momento-cache-manage"
+          },
           {
             "type": "category",
             "label": "Concepts",
@@ -29,8 +42,6 @@
             ],
             "key": "cloud-momento-cache-concepts"
           },
-          "product/cache/manage/pools",
-          "product/cache/manage/databases",
           "product/cache/connect/clients",
           "product/cache/security",
           {

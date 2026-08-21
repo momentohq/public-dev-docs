@@ -4,7 +4,7 @@ title: Valkey compatibility
 description: Supported and unsupported Valkey commands and protocol details for Momento Cache.
 ---
 
-<!-- Projects: cache2/capabilities/valkey-compatibility -->
+<!-- Projects: cache2/capabilities/valkey-compatibility, cache2/constraints/database-fgac -->
 
 # Valkey compatibility
 
@@ -17,6 +17,12 @@ Connect to Momento Cache with standard Valkey and Redis clients over RESP. The
 [shared gateway](/product/cache/concepts/connectivity-and-gateway) supports a specific
 set of commands. Unsupported commands are rejected with the RESP error `-Command not allowed`.
 Check this page to verify compatibility before migrating a workload.
+
+This allowlist is separate from credential permissions. An allowlisted, modeled command that the
+credential cannot run returns
+`-NOPERM this user has no permissions to run the '<command>' command`. Parser-unknown commands can
+instead return the ordinary Valkey unknown-command response. See
+[Database command permissions](/product/cache/security#database-command-permissions).
 
 Momento Cache runs Valkey 9.1.1 in production. The gateway's supported-command contract below,
 not the upstream version alone, determines compatibility.
