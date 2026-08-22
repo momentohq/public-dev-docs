@@ -4,11 +4,16 @@ title: Database API
 description: HTTP API reference for Momento Databases.
 ---
 
-<!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/database -->
+<!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/database, cache2/capabilities/onboarding-flow, cache2/constraints/service-limits, cache2/constraints/database-fgac -->
 
 # HTTP API Reference for Momento Databases
 
 Momento provides an HTTP API interface for managing Databases. This API lets you create, describe, list, and delete Databases programmatically.
+
+:::note[Limited preview]
+Momento Cache is available in limited preview. [Sign in or sign up in the Momento
+console](https://console.gomomento.com/) and select **Request access** before calling this API.
+:::
 
 A **Database** is a logical container pinned to exactly one [Capacity Pool](/product/cache/api-reference/capacity-pool). Multiple Databases share the compute and memory of their Pool. A Database is identified by its name and the name of the Capacity Pool it belongs to.
 
@@ -23,6 +28,9 @@ The Momento platform is region-based with endpoints specific to each region. To 
 You will need a Momento API Key generated via the [Momento console](https://console.gomomento.com/key). Momento API Keys control access to the Momento services and can be set to expire.
 
 The API Key must be provided in the `Authorization` header.
+
+Use [Database permissions](/product/cache/security#database-command-permissions) to scope data-plane
+commands independently of control-plane API access.
 
 ---
 
@@ -100,7 +108,8 @@ region and have active backing capacity.
 - A Database with the specified name already exists.
 
 *Status Code: 429 Too Many Requests*
-- The account-wide or per-Pool Database limit has been reached.
+- The account-wide or per-Pool Database limit has been reached. See
+  [Service limits](/product/cache/manage/limits).
 
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues.

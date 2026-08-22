@@ -4,7 +4,7 @@ title: Capacity Pool
 description: A Capacity Pool is the dedicated Valkey capacity you provision and Momento operates.
 ---
 
-<!-- Projects: cache2/concepts/capacity-pool, cache2/concepts/provisioning-modes -->
+<!-- Projects: cache2/concepts/capacity-pool, cache2/concepts/capacity-and-usage, cache2/concepts/provisioning-modes, cache2/constraints/service-limits, cache2/capabilities/capacity-pool-metrics -->
 
 # Capacity Pool
 
@@ -26,9 +26,17 @@ for the sizing modes the service supports.
 
 ## Managing capacity
 
+Pool capacity is the configured Valkey `maxmemory` on each primary shard multiplied by the number
+of primary shards. Replicas do not add Pool capacity. Memory utilization is a separate measurement
+of live `used_memory` relative to deployed `maxmemory`.
+
 You can change a pool's size after creation by updating its configuration. Momento converges
 the running cluster to the new shape. Scaling behavior and safeguards are covered in
 [Manage Capacity Pools](/product/cache/manage/pools).
+
+The default account admission limit is 500 GiB of Pool capacity. See [Service limits](/product/cache/manage/limits)
+for the admission and usage distinction. See [Capacity Pool metrics](/product/cache/manage/metrics)
+for memory, eviction, CPU, and network observations.
 
 ## Lifecycle
 

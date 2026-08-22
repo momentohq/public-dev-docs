@@ -1,10 +1,10 @@
 ---
 sidebar_label: Manage Databases
 title: Manage Databases
-description: Create, list, connect to, and delete Databases with the preview CLI or private-preview console.
+description: Create, list, connect to, and delete Databases with the preview CLI or limited-preview console.
 ---
 
-<!-- Projects: cache2/concepts/database, cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/interfaces/control-plane-api -->
+<!-- Projects: cache2/concepts/database, cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/interfaces/control-plane-api, cache2/constraints/service-limits, cache2/constraints/database-fgac -->
 
 # Manage Databases
 
@@ -14,8 +14,9 @@ compute and memory. This page covers creating, listing, connecting to, and delet
 the [Momento CLI](/product/cache/manage/cli) or console.
 
 :::note[Preview availability]
-The Database CLI commands are in preview. The Capacity Pools console workflow is a private preview
-and is not enabled in production for every account.
+Momento Cache is available in limited preview, and its Database CLI command group is also in
+preview. [Sign in or sign up in the console](https://console.gomomento.com/) and select
+**Request access**.
 :::
 
 A Database is a metadata object: creating one allocates a slot on its Pool, and deleting one
@@ -29,9 +30,8 @@ that Pool for its lifetime and cannot move to another Pool.
 
 1. Choose the target Capacity Pool and a Database name that is unique for your account in the
    selected region.
-2. Run `momento preview database create-database --database-name <database> --pool-name <pool>
-   --profile <profile>`.
-3. In the private-preview console, you can instead open **Capacity Pools**, select the Pool, open
+2. Run `momento preview database create --name <database> --pool-name <pool> --profile <profile>`.
+3. In the limited-preview console, you can instead open **Capacity Pools**, select the Pool, open
    **Databases**, choose **Create Database**, and enter the name.
 4. Connect a client to the Database through the region's RESP endpoint. See
    [Connect a client](/product/cache/connect/clients).
@@ -40,10 +40,15 @@ The Database name is how clients select it at connection time: the name is the `
 one connection serves exactly one Database. See [Security](/product/cache/security) for the
 connection credential model.
 
+Database creation is subject to the account and per-Pool [service limits](/product/cache/manage/limits).
+Use a named-Database permission when the client should not reach other Databases; see
+[Database command permissions](/product/cache/security#database-command-permissions).
+
 ## List and inspect Databases
 
-`momento preview database list-databases --profile <profile>` lists every Database and backing Pool
-in the profile's selected region. The CLI does not provide Database Describe.
+`momento preview database list --profile <profile>` lists every Database and backing Pool in the
+profile's selected region. Use `momento preview database describe --name <database> --profile <profile>`
+to inspect one Database.
 
 The console aggregates Databases across configured regions. Search the Capacity Pools overview by
 Database name to find its Pool, then open that Pool's **Databases** tab. Databases do not have
@@ -52,7 +57,7 @@ standalone console detail pages. The lower-level API can
 
 ## Get the connection endpoint
 
-In the private-preview console, open the Pool's **Databases** tab and copy the RESP endpoint. All
+In the limited-preview console, open the Pool's **Databases** tab and copy the RESP endpoint. All
 Databases in that region share it. The console does not vend a credential from this tab; create or
 retrieve the API key/token separately through Key Management.
 
@@ -62,7 +67,7 @@ Delete removes the Database and frees its slot on the Pool. Deletion is synchron
 plane; the underlying resources are reclaimed afterward.
 
 1. Confirm no client depends on the Database.
-2. Run `momento preview database delete-database --database-name <database> --profile <profile>`,
+2. Run `momento preview database delete --name <database> --profile <profile>`,
    or use the delete action beside the Database on the console's **Databases** tab and confirm.
 
 :::note

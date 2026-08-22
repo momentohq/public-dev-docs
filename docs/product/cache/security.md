@@ -4,7 +4,7 @@ title: Security
 description: Transport security and credential management for Momento Cache — TLS connections, API keys, and connection credentials.
 ---
 
-<!-- Projects: cache2/concepts/shared-gateway, cross-product/authentication, cross-product/roles-and-permissions -->
+<!-- Projects: cache2/concepts/shared-gateway, cache2/constraints/database-fgac, cross-product/authentication, cross-product/roles-and-permissions -->
 
 # Security
 
@@ -44,6 +44,29 @@ Two kinds of credential reach the two surfaces:
   connection; there is no `SELECT` to switch Databases on an open connection.
 
 Both surfaces accept the same family of Momento credentials, described next.
+
+## Database command permissions
+
+A credential can grant read, write, or read-and-write command access to every Database or to one
+named Database. The exact Database permission JSON and system-role grants are documented in
+[Roles and permissions](/platform/authentication/roles-and-permissions#momento-cache-database-permissions).
+Database permissions do not support key or key-prefix selectors.
+
+The gateway checks two separate boundaries when you run a command:
+
+1. The Database command allowlist determines whether Momento Cache supports the command. A command
+   outside the allowlist returns `-Command not allowed`.
+2. For an allowlisted, modeled command, the credential must have the required Database permission.
+   A permission denial returns
+   `-NOPERM this user has no permissions to run the '<command>' command`.
+
+Read commands require `read`, write commands require `write`, and commands classified as both
+require both permissions in one matching named-Database or all-Databases rule. A no-keyspace
+command still requires a rule that matches the connected Database.
+
+Authentication binds the connection to the Database named in the `AUTH` username. Authorization
+evaluates the credential against that same Database; it does not switch the connection to a
+different Database.
 
 ## Managing credentials
 
