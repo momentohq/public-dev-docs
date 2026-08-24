@@ -9,7 +9,7 @@ unlisted: true
 
 Momento provides an HTTP API for managing the roles on your account. A **role** is a named set of permissions that you assign to account members and [API keys](/platform/authentication/api-keys-http-api) to control what they can do.
 
-This page is the low-level HTTP schema reference for those operations. [Roles and permissions explains the authentication concepts associated with this API](/platform/authentication/roles-and-permissions), including permission sets, roles, and how credentials receive permissions.
+This page contains brief explanations of necessary terms. See [roles and permissions](/platform/authentication/roles-and-permissions) to learn more about concepts related to authentication, including permission sets, roles, and how credentials bind permissions.
 
 There are two kinds of role:
 
