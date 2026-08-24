@@ -9,7 +9,7 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.19ed51bd.css">
-<script src="/assets/js/runtime~main.2a09f900.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.c98d6194.js" defer="defer"></script>
 <script src="/assets/js/main.dc1a2f62.js" defer="defer"></script>
 </head>
 <body>
@@ -63,14 +63,17 @@ diagnostics. Current and target are settled and in-flight values of the same Poo
 quantity. The CLI does not aggregate regions; select another endpoint/profile to inspect another
 region.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="update-a-capacity-pool">Update a Capacity Pool<a href="#update-a-capacity-pool" class="hash-link" aria-label="Direct link to Update a Capacity Pool" title="Direct link to Update a Capacity Pool" translate="no">​</a></h3>
-<p>Every update supplies the Pool&#x27;s existing implementation mode. The mode is not a request to convert
-the Pool.</p>
+<p>The CLI infers Cluster mode from <code>--instance-type</code> or <code>--shard-count</code> and Flex mode from
+<code>--capacity-gib</code>. When an update changes only shared fields—<code>--replicas-per-shard</code>, <code>--zones</code>, or
+both—supply the Pool&#x27;s existing <code>--mode cluster|flex</code>. The mode selects how to interpret the update;
+it is not a request to convert the Pool.</p>
 <p>Raise a Flex Pool&#x27;s capacity ceiling:</p>
 <div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">momento preview pool update \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --profile cache-preview \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --name orders-flex \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --mode flex \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --capacity-gib 32..256</span><br></div></code></pre></div></div>
 <p>Change the shard count and replicas for a Cluster Pool:</p>
 <div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">momento preview pool update \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --profile cache-preview \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --name orders-cluster \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --mode cluster \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --shard-count 4 \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --replicas-per-shard 2</span><br></div></code></pre></div></div>
 <p>An update requires at least one changed field. You can also replace the zone set with <code>--zones</code>.
-Cluster-only fields are rejected with <code>--mode flex</code>; <code>--capacity-gib</code> is rejected with
+The examples include explicit modes for clarity, but their mode-specific fields are sufficient for
+inference. Cluster-only fields are rejected with <code>--mode flex</code>; <code>--capacity-gib</code> is rejected with
 <code>--mode cluster</code>. See <a class="" href="/product/cache/manage/pools">Manage Capacity Pools</a> for scaling guards and
 diagnostics.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="delete-a-capacity-pool">Delete a Capacity Pool<a href="#delete-a-capacity-pool" class="hash-link" aria-label="Direct link to Delete a Capacity Pool" title="Direct link to Delete a Capacity Pool" translate="no">​</a></h3>

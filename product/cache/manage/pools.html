@@ -9,7 +9,7 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.19ed51bd.css">
-<script src="/assets/js/runtime~main.2a09f900.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.c98d6194.js" defer="defer"></script>
 <script src="/assets/js/main.dc1a2f62.js" defer="defer"></script>
 </head>
 <body>
@@ -56,8 +56,10 @@ cannot be reached, the console preserves results from the others and identifies 
 shard count, replicas per shard, or zones. For a Flex Pool, you can change capacity bounds,
 replication bounds, or zones. A Pool cannot switch between Cluster and Flex after creation.</p>
 <ol>
-<li class="">With the CLI, run <code>momento preview pool update</code> with the Pool&#x27;s current <code>--mode cluster|flex</code> and the
-fields to change. In the console, open the Pool&#x27;s <strong>Overview</strong> tab and select <strong>Edit</strong>.</li>
+<li class="">With the CLI, run <code>momento preview pool update</code> with the fields to change. The CLI infers
+Cluster from <code>--instance-type</code> or <code>--shard-count</code> and Flex from <code>--capacity-gib</code>; include the
+Pool&#x27;s current <code>--mode cluster|flex</code> when changing only replicas or zones. In the console, open
+the Pool&#x27;s <strong>Overview</strong> tab and select <strong>Edit</strong>.</li>
 <li class="">Review the before-and-after shape and the stated impact before you apply.</li>
 <li class="">Apply. The Pool stays <code>active</code> while the service converges the cluster to the new shape.
 Progress, or a propagation-time blocking issue such as insufficient capacity, is surfaced as a
