@@ -61,8 +61,10 @@ Scaling is an edit to the Pool's configuration. For a Cluster Pool, you can chan
 shard count, replicas per shard, or zones. For a Flex Pool, you can change capacity bounds,
 replication bounds, or zones. A Pool cannot switch between Cluster and Flex after creation.
 
-1. With the CLI, run `momento preview pool update` with the Pool's current `--mode cluster|flex` and the
-   fields to change. In the console, open the Pool's **Overview** tab and select **Edit**.
+1. With the CLI, run `momento preview pool update` with the fields to change. The CLI infers
+   Cluster from `--instance-type` or `--shard-count` and Flex from `--capacity-gib`; include the
+   Pool's current `--mode cluster|flex` when changing only replicas or zones. In the console, open
+   the Pool's **Overview** tab and select **Edit**.
 2. Review the before-and-after shape and the stated impact before you apply.
 3. Apply. The Pool stays `active` while the service converges the cluster to the new shape.
    Progress, or a propagation-time blocking issue such as insufficient capacity, is surfaced as a

@@ -115,8 +115,10 @@ region.
 
 ### Update a Capacity Pool
 
-Every update supplies the Pool's existing implementation mode. The mode is not a request to convert
-the Pool.
+The CLI infers Cluster mode from `--instance-type` or `--shard-count` and Flex mode from
+`--capacity-gib`. When an update changes only shared fields—`--replicas-per-shard`, `--zones`, or
+both—supply the Pool's existing `--mode cluster|flex`. The mode selects how to interpret the update;
+it is not a request to convert the Pool.
 
 Raise a Flex Pool's capacity ceiling:
 
@@ -140,7 +142,8 @@ momento preview pool update \
 ```
 
 An update requires at least one changed field. You can also replace the zone set with `--zones`.
-Cluster-only fields are rejected with `--mode flex`; `--capacity-gib` is rejected with
+The examples include explicit modes for clarity, but their mode-specific fields are sufficient for
+inference. Cluster-only fields are rejected with `--mode flex`; `--capacity-gib` is rejected with
 `--mode cluster`. See [Manage Capacity Pools](/product/cache/manage/pools) for scaling guards and
 diagnostics.
 
