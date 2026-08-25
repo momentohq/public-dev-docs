@@ -68,8 +68,15 @@ momento preview pool get-status \
   --name quickstart-pool
 ```
 
-If provisioning is blocked, `list` includes diagnostics. The service keeps retrying an
-accepted configuration; see [Manage Capacity Pools](/product/cache/manage/pools#read-diagnostics).
+If provisioning is blocked, view diagnostics:
+
+```sh
+momento preview pool describe \
+  --profile cache-quickstart \
+  --name quickstart-pool
+```
+
+The service keeps retrying an accepted configuration; see [Manage Capacity Pools](/product/cache/manage/pools#read-diagnostics).
 
 ## 3. Create a Database
 
@@ -86,12 +93,10 @@ Database creation is immediate because the Pool's capacity already exists.
 
 ## 4. Get your connection details
 
-In the limited-preview console, open **Capacity Pools**, select `quickstart-pool`, and open its
-**Databases** tab. Copy the **RESP endpoint** shown there. Every Database in that region shares the
-endpoint.
+On database creation, you will get a sample RESP command. If you ever need it again, you can `describe` your database or visit the Momento **Capacity Pools** console.
 
-The Database panel does not vend a credential. Use the API key you created through Key Management,
-or another appropriate Momento credential, as the password and treat it as a secret.
+The Database CLI and panel do not vend a credential. Use the API key you created through Key Management,
+or another appropriate Momento credential and treat it as a secret.
 
 Your connection details are:
 
