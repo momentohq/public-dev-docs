@@ -42,7 +42,7 @@ The examples below pass `--profile cache-preview`. You may instead use the defau
 | --- | --- | --- |
 | Create a Cluster or Flex Pool | Yes | Yes |
 | List Pools across regions | One selected region | Aggregates configured regions |
-| Inspect Pool status and configuration | `describe` | Overview with configuration and diagnostics |
+| Inspect Pool status and configuration | Yes | Overview with configuration and diagnostics |
 | Update a Pool | Yes | Yes |
 | Read Pool metrics | Not available | Point-in-time Metrics tab |
 | Create, list, and delete Databases | Yes | Yes, within a Pool |
@@ -93,6 +93,14 @@ such as `use1-az1`, not account-specific names such as `us-east-1a`. Create prin
 lifecycle status, and provisioning configuration.
 
 ### Inspect and list Capacity Pools
+
+Get one Pool's lifecycle status:
+
+```sh
+momento preview pool get-status \
+  --profile cache-preview \
+  --name orders-flex
+```
 
 Inspect one Pool's status, configuration, and diagnostics:
 

@@ -49,7 +49,7 @@ The Pool appears with `creating` status while capacity is provisioned.
 ## List and inspect Pools
 
 Use `momento preview pool list --profile <profile>` to list Pools, provisioning, and active
-diagnostics in the profile's region. Use `describe --name <pool>` to inspect one Pool.
+diagnostics in the profile's region. Use `describe --name <pool>` to inspect one Pool's full details or `get-status --name <pool>` to simply poll its lifecycle status.
 
 The console aggregates configured regions. Use its region filter or search by Pool, region, or
 Database name, then select a Pool to open its Overview, Databases, and Metrics tabs. If one region

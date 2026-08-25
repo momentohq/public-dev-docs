@@ -63,7 +63,7 @@ within those bounds. To create a **Cluster (explicit)** Pool instead, provide `-
 Provisioning runs in the background. Check the lifecycle status until it is `active`:
 
 ```sh
-momento preview pool describe \
+momento preview pool get-status \
   --profile cache-quickstart \
   --name quickstart-pool
 ```
