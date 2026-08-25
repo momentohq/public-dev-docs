@@ -13,9 +13,9 @@ through the [shared gateway](/product/cache/concepts/connectivity-and-gateway). 
 details:
 
 - **Host:** the region's RESP endpoint (shared by Databases in that region)
-- **Port:** `6379`, TLS enabled
+- **Port:** `6379` (default) with TLS
 - **Username:** your Database name
-- **Password:** a Momento API token
+- **Password** (`VALKEYCLI_AUTH`): a Momento API key or token
 
 In the private-preview console, open **Capacity Pools**, select the Pool, and copy the RESP endpoint
 from its **Databases** tab. The endpoint is shared by every Database in that region. Retrieve the
@@ -27,8 +27,10 @@ you port a workload. Below are examples with some of the most common clients.
 ## valkey-cli
 
 ```sh
-valkey-cli -h <endpoint> -p 6379 --tls \
-  --user <database-name> --pass <api-token>
+VALKEYCLI_AUTH=$MOMENTO_API_KEY \
+  valkey-cli --tls \
+  -h <endpoint> \
+  --user <database-name>
 ```
 
 ## Node.js (ioredis)
