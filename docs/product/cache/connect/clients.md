@@ -22,7 +22,7 @@ You can get your RESP endpoint in either of two ways:
 - In the limited-preview console, open the **Capacity Pools** panel, select your Pool, and open its **Databases** tab.
 
 The Database CLI and panel do not vend a credential. Use the API key you created through Key Management,
-or another appropriate Momento credential and treat it as a secret.
+or another appropriate Momento credential, as the password and treat it as a secret.
 
 Check [Valkey compatibility](/product/cache/concepts/valkey-compatibility) for the supported commands before
 you port a workload. Below are examples with some of the most common clients.
