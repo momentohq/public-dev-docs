@@ -103,15 +103,15 @@ Your connection details are:
 - **Host:** the region's RESP endpoint
 - **Port:** `6379` (default) with TLS
 - **Username:** your Database name
-- **Password** (`VALKEYCLI_AUTH`): your Momento API key or token
+- **Password:** your Momento API key or token
 
 ## 5. Connect and run a command
 
 ```sh
-VALKEYCLI_AUTH=$MOMENTO_API_KEY \
-  valkey-cli --tls \
+valkey-cli --tls \
   -h <resp-endpoint> \
-  --user quickstart-db
+  --user quickstart-db \
+  --pass $MOMENTO_API_KEY
 
 > SET greeting "hello"
 OK
