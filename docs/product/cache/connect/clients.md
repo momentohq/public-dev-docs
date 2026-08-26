@@ -17,7 +17,7 @@ details:
 - **Username:** your Database name
 - **Password** (`VALKEYCLI_AUTH`): a Momento API key or token
 
-In the private-preview console, open **Capacity Pools**, select the Pool, and copy the RESP endpoint
+In the limited-preview console, open **Capacity Pools**, select the Pool, and copy the RESP endpoint
 from its **Databases** tab. The endpoint is shared by every Database in that region. Retrieve the
 credential separately through Key Management; the Database tab does not vend one.
 
