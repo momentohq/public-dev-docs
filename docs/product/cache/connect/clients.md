@@ -15,7 +15,7 @@ details:
 - **Host:** the region's RESP endpoint (shared by Databases in that region)
 - **Port:** `6379` (default) with TLS
 - **Username:** your Database name
-- **Password:** a Momento API key or token
+- **Password:** a Momento API token
 
 In the limited-preview console, open **Capacity Pools**, select the Pool, and copy the RESP endpoint
 from its **Databases** tab. The endpoint is shared by every Database in that region. Retrieve the

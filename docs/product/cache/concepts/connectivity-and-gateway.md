@@ -30,7 +30,7 @@ Point your preferred client at the region's RESP endpoint over TLS and authentic
 one region share this gateway host; authentication selects the target Database and its backing Pool.
 
 - **Username** is the Database name.
-- **Password** is a Momento API key, created in the console.
+- **Password** is a Momento API token (created in the console).
 
 ```sh
 valkey-cli --tls \
