@@ -13,7 +13,9 @@ Each API key is tied to a [role](/platform/authentication/roles-http-api), which
 
 :::tip[Info]
 
-This is a global, account-level API served from a single endpoint. Unlike the region-based cache endpoints, it is not tied to a specific cell or region.
+This is a global, account-level API served from a single endpoint: `https://mga.registry.prod.a.momentohq.com`. 
+
+Unlike the region-based cache endpoints, it is not tied to a specific cell or region.
 
 :::
 
