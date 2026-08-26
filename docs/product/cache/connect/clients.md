@@ -30,7 +30,16 @@ you port a workload. Below are examples with some of the most common clients.
 valkey-cli --tls \
   -h <endpoint> \
   --user <database-name> \
-  --pass $MOMENTO_API_KEY
+  --pass <api-token>
+```
+
+The Valkey CLI can also read your `VALKEYCLI_AUTH` environment variable, for example:
+
+```sh
+VALKEYCLI_AUTH=<api-token> \
+  valkey-cli --tls \
+  -h <endpoint> \
+  --user <database-name>
 ```
 
 ## Node.js (ioredis)
