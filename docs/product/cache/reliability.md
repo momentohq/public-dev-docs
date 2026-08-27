@@ -8,15 +8,15 @@ description: Conditions for high availability through replication and multi-AZ p
 
 # Reliability
 
-A Capacity Pool is capable of high availability (HA) when it has at least one replica per shard
-and spans at least two availability zones. A zero-replica or single-zone Pool is not HA. HA is
-configuration guidance, not a service guarantee, API setting, or one exact topology.
+A high-availability (HA) configuration should have at least one replica per shard and span
+at least two availability zones. A high-availability configuration can still result in data
+loss due to catastrophic events, such as a full region outage at the cloud service provider.
 
 ## Replication
 
 Each shard in a [Capacity Pool](/product/cache/concepts/capacity-pool) can have zero, one, or more replica
 nodes in addition to the active primary node. At least one healthy replica per shard makes the
-Pool capable of failing over when a primary node is lost.
+Pool capable of failing over when a primary node becomes unavailable.
 
 ## Multi-AZ placement
 
@@ -33,7 +33,6 @@ upgrades through managed rolling operations.
 
 ## Automatic Rolling Updates
 
-Changes to a Pool's configuration, including instance-type upgrades, use a rolling,
-make-before-break update. The service works one shard at a time, bringing up a replacement and
-waiting for it to become healthy before removing the old node. This design preserves healthy
-capacity during the update without making a no-disruption guarantee.
+Changing some configurations like instance type triggers a rolling update. The service works
+one shard at a time, adding a healthy replacement before removing an old node. This approach
+minimizes disruption during the change.

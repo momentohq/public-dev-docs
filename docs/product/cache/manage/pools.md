@@ -18,13 +18,17 @@ groups are also in preview. [Sign in or sign up in the console](https://console.
 and select **Request access**.
 :::
 
-The product variants map to the implementation mode names: **Cluster (explicit)** and **Flex
-(managed)**. Current preview console builds may show only `Explicit` or `Managed` in some controls.
+## Available capacity and usage
 
-Available capacity is configured Valkey `maxmemory` per primary shard multiplied by the number of
-primary shards. Replicas do not add available capacity. Flex usage includes deployed `maxmemory` on
-primaries and replicas; Cluster usage is the deployed instance type and count. Memory utilization
-is the separate ratio of live `used_memory` to deployed `maxmemory`.
+The available capacity for a pool is the sum of Valkey's `maxmemory` as configured across all
+primary shards. Replicas enable failover and improve read throughput, but do not increase
+a pool's available capacity.
+
+A Cluster pool measures usage for billing purposes by counting the number of deployed instances
+of each type.
+
+A Flex pool measures usage for billing purposes as the sum of Valkey's `maxmemory` across _all_
+deployed nodes, including both primaries and replicas.
 
 Review the default [service limits](/product/cache/manage/limits) before you create or scale a Pool.
 
@@ -57,35 +61,28 @@ cannot be reached, the console preserves results from the others and identifies 
 
 ## Scale a Pool
 
-Scaling is an edit to the Pool's configuration. For a Cluster Pool, you can change instance type,
-shard count, replicas per shard, or zones. For a Flex Pool, you can change capacity bounds,
-replication bounds, or zones. A Pool cannot switch between Cluster and Flex after creation.
+Scale a pool by editing the Pool's configuration. Run the CLI command `momento preview pool update`,
+or open the pool's resource detail page in the console.
 
-1. With the CLI, run `momento preview pool update` with the fields to change. The CLI infers
-   Cluster from `--instance-type` or `--shard-count` and Flex from `--capacity-gib`; include the
-   Pool's current `--mode cluster|flex` when changing only replicas or zones. In the console, open
-   the Pool's **Overview** tab and select **Edit**.
-2. Review the before-and-after shape and the stated impact before you apply.
-3. Apply. The Pool stays `active` while the service converges the cluster to the new shape.
-   Progress, or a propagation-time blocking issue such as insufficient capacity, is surfaced as a
-   diagnostic.
+For a Cluster Pool, you can change instance type, shard count, replicas per shard, or zones. For
+a Flex Pool, you can change capacity bounds, replication bounds, or zones. A Pool cannot switch
+between Cluster and Flex after creation.
 
-The CLI accepts only the fields you want to change; the console submits the reviewed configuration
-from its edit form. Mode and region are fixed. A Flex bounds update replaces both bounds for that
-dimension. Increasing primary shards adds available capacity; increasing replicas adds redundancy
-and billable usage without adding available capacity. Changing the instance type triggers a
-rolling, make-before-break update. The service works one shard at a time, adding a healthy
-replacement before removing an old node. This design preserves healthy capacity during the
-change without making a no-disruption guarantee.
+After applying changes to a pool, it will continue to emit an `active` status while it converges
+the cluster to the new shape. Progress or blocking issues such as insufficient capacity are
+surfaced as diagnostics.
 
-For Flex, `current_capacity_gib` is the last settled allocation. `target_capacity_gib` is the
-allocation the Pool is converging to and differs only while a scale is in flight. They are current
-and target values of the same available-capacity quantity. The literal field names remain the
-current interface identifiers for this quantity.
+Changing some configurations like instance type triggers a rolling update. The service works
+one shard at a time, adding a healthy replacement before removing an old node. This approach
+minimizes disruption during the change.
 
-For an active Cluster Pool, a capacity-reducing request is checked against fresh memory telemetry
-before the update is stored. If the current data would not fit, or usage cannot be verified, the
-request is rejected; adjust the target shape or retry after usage can be verified. The
+For a Flex Pool, `current_capacity_gib` is the last settled available capacity. `target_capacity_gib`
+is the available capacity to which the Pool is converging. These values differ only while the
+cluster is actively scaling.
+
+A capacity-reducing request is checked against recent memory telemetry before the update is stored.
+If the current quantity of data would not fit, the request is rejected. Adjust the target capacity
+or reduce the amount of stored data, then re-submit the configuration change. The
 [HTTP reference](/product/cache/api-reference/capacity-pool#update-capacity-pool) documents the
 underlying `409 Precondition Failed` response.
 

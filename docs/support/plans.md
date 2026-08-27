@@ -35,26 +35,24 @@ A support response target measures the elapsed time from when you submit a reque
 channel included in your plan until a Momento staff member acknowledges it. It is not a
 time-to-resolution guarantee.
 
-A business day is 9:00 a.m.–5:00 p.m. Pacific Time, Monday through Friday, excluding United States
-federal holidays and Momento company holidays. Production has one acknowledgement target of one
-business day for every request, regardless of severity. Only Enterprise varies its target by
-severity, and only Enterprise S1 and S2 response clocks run continuously, 24 hours per day and 7
-days per week.
-
-## Issue severity
-
-Requests can be categorized by the severity of their impact on your product. Only Enterprise's
-response target varies by this classification:
-
-- **S1:** The product is broadly inoperable.
-- **S2:** A major feature is broadly inoperable.
-- **S3:** A minor feature is broadly inoperable.
+The business day is defined as 9:00 a.m.–5:00 p.m. Pacific Time, Monday through Friday,
+excluding United States federal holidays and Momento company holidays.
 
 When requesting support, provide reasonable details about the issue, reasonable access to the
 affected environment when necessary, and reasonable cooperation during diagnosis and resolution.
 
 If an ongoing support issue is determined to be abandoned, Momento may downgrade the issue's
 severity level or close it entirely.
+
+### Issue severity
+
+Enterprise support requests are categorized by the severity of their impact on your product:
+
+- **S1:** The product is broadly inoperable.
+- **S2:** A major feature is broadly inoperable.
+- **S3:** A minor feature is broadly inoperable.
+
+The severity of the issue determines the appropriate response target for support.
 
 ## Pricing details
 

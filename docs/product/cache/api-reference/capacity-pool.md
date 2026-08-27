@@ -12,9 +12,11 @@ Momento provides an HTTP API interface for managing Capacity Pools. This API let
 describe, update, list, and delete Capacity Pools programmatically, discover available capacity
 offerings, and scrape their utilization metrics.
 
-A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. Available capacity
-is configured Valkey `maxmemory` per primary shard multiplied by the number of primary shards;
-replicas do not add available capacity. You choose how the Pool is sized, either **explicit** mode
+A **Capacity Pool** is a provisioned unit of dedicated Valkey capacity. The available capacity
+for a pool is the sum of Valkey's `maxmemory` as configured across all primary shards. Replicas
+enable failover and improve read throughput, but do not increase a pool's available capacity.
+
+You choose how the Pool is sized, either **explicit** mode
 (Cluster), in which you specify the exact instance type, shard count, and replicas per shard, or
 **managed** mode (Flex), in which you give capacity and replication *bounds* and Momento sizes the
 Pool within them. Momento owns the underlying lifecycle and health of the Pool. Each Pool can host

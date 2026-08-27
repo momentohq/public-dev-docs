@@ -8,13 +8,26 @@ description: Size a Capacity Pool with Cluster (by instance) or Flex (by capacit
 
 # Provisioning and sizing
 
-You size a [Capacity Pool](/product/cache/concepts/capacity-pool) when you create it. Momento Cache offers two ways
-to size a pool, corresponding to its two variants: **Cluster** (size by instance) and **Flex**
-(size by available capacity in GiB). You choose one when you create the Pool.
+Momento Cache offers two ways to size a [Capacity Pool](/product/cache/concepts/capacity-pool):
+
+- **Cluster**, sized by instance
+- **Flex**, sized by GiB
+
+A pool's capacity model is specified during creation. The selected capacity model cannot be
+changed after the pool is created. However, the pool's capacity parameters can be reconfigured
+at any time after creation.
+
+## Choosing a variant
+
+Use **Cluster** when you plan capacity and cost at the instance level and want full control of
+the topology. Use **Flex** when you would rather size by GiB and let Momento manage low-level
+configuration. The two are otherwise the same service with the same Valkey, the same gateway,
+and the same capabilities.
 
 ## Cluster: size by instance
 
-A Cluster pool takes four inputs:
+Cluster sizing provides low-level control over cluster topology in order to fully optimize
+performance and cost. A Cluster pool takes four inputs:
 
 - **Instance type** for the nodes.
 - **Shard count**, the number of Valkey shards the keyspace is split across.
@@ -22,13 +35,16 @@ A Cluster pool takes four inputs:
   capacity.
 - **Availability zones** the pool may use. Choose more than one for production.
 
-Cluster sizing exists because teams that plan capacity and cost at the instance level need it.
-You keep full control of the topology and its cost. Cluster requires at least one primary shard,
-permits zero replicas, and starts with the `t4g.micro` instance type.
+Cluster configuration permits a minimum of one primary shard and zero replicas, although this may
+result in data loss.
+
+A Cluster pool measures usage for billing purposes by counting the number of deployed instances
+of each type.
 
 ## Flex: size by capacity
 
-A Flex pool abstracts over instances. Instead of naming instance types and counts, you choose:
+Flex sizing provides powerful, streamlined capacity management. A Flex pool abstracts away
+instances and topology management. Instead, you choose:
 
 - **Minimum and maximum available capacity in GiB** for the pool. Set the bounds equal to pin
   capacity.
@@ -37,48 +53,31 @@ A Flex pool abstracts over instances. Instead of naming instance types and count
 - **Availability zones** the pool may use. Choose more than one for production.
 
 Momento maps these bounds to available configurations and automatically grows or shrinks the
-topology within the capacity range as memory utilization changes. Flex requires at least three
-primary shards and permits zero replicas. Flex offers **Standard** and **Performance** capacity
-families; Performance provides more throughput. Flex suits teams that want capacity-oriented
-sizing without managing instance topology.
+topology within the specified range as memory utilization changes. Flex configuration requires at least three primary shards. It permits zero replicas, although this may result in data loss.
 
-Available capacity is the configured Valkey `maxmemory` per primary shard multiplied by the number
-of primary shards. Replicas do not add available capacity. Flex usage includes deployed
-`maxmemory` on both primaries and replicas, while Cluster usage counts every deployed instance.
-Memory utilization measures live `used_memory` relative to `maxmemory`; it is not another capacity
-value.
+Flex offers **Standard** and **Performance** capacity families. The Performance family provides
+roughly twice as much throughput and compute as the Standard family.
 
-Flex allocates `maxmemory` from instance-spec RAM as follows:
+The available capacity for a pool is the sum of Valkey's `maxmemory` as configured across all
+primary shards. Replicas enable failover and improve read throughput, but do not increase
+a pool's available capacity.
 
-| Instance-spec RAM | Valkey `maxmemory` |
-| ---: | ---: |
-| 1 GiB | 0.375 GiB |
-| 2 GiB | 1 GiB |
-| 4 GiB | 2 GiB |
+A Flex pool measures usage for billing purposes as the sum of Valkey's `maxmemory` across _all_
+deployed nodes, including both primaries and replicas.
 
-These are the special cases at or below 4 GiB. Above 4 GiB, `maxmemory` is five-eighths of
-instance-spec RAM. The exact instance-family composition and full allocation ladder are not part
-of the public sizing model.
+## Choosing the shape of a pool 
 
-## Choosing a shape
+When configuring a Capacity Pool, consider how each property affects overall performance:
 
 - **Shards** determine how the keyspace and throughput scale horizontally. Add shards for more
   memory and aggregate throughput.
-- **Replica count** adds redundancy and read capacity. Flex expresses this choice as replication
-  bounds.
+- **Replica count** adds redundancy and read capacity.
 - **Zones** control where the pool may run. Momento automatically distributes nodes across the
   configured zones for you.
 
-A configuration described as high availability (HA) has at least one replica per shard and spans
-at least two availability zones. A zero-replica or single-zone Pool is not HA. HA is configuration
-guidance, not a service guarantee, API setting, or one exact topology.
+A high-availability (HA) configuration should have at least one replica per shard and span
+at least two availability zones. A high-availability configuration can still result in data
+loss due to catastrophic events, such as a full region outage at the cloud service provider.
 
-You can change any of these after creation by updating the pool. See
+A capacity pool's configuration can be updated at any time after creation. See
 [Manage Capacity Pools](/product/cache/manage/pools).
-
-## Choosing a variant
-
-Use **Cluster** when you plan capacity and cost at the instance level and want full control of
-the topology. Use **Flex** when you would rather size by GiB and let Momento manage low-level
-configuration. The two are otherwise the same service with the same Valkey, the same gateway,
-and the same capabilities.
