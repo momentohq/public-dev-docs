@@ -57,9 +57,12 @@ standalone console detail pages. The lower-level API can
 
 ## Get the connection endpoint
 
-In the limited-preview console, open the Pool's **Databases** tab and copy the RESP endpoint. All
-Databases in that region share it. The console does not vend a credential from this tab; create or
-retrieve the API key/token separately through Key Management.
+You can get a sample RESP command in either of two ways:
+- In the preview CLI, `create` or `describe` your database.
+- In the limited-preview console, open the **Capacity Pools** panel, select your Pool, and open its **Databases** tab.
+
+The Database CLI and panel do not vend a credential. Use the API key you created through Key Management,
+or another appropriate Momento credential, as the password and treat it as a secret.
 
 ## Delete a Database
 

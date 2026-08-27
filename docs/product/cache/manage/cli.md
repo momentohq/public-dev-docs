@@ -42,18 +42,18 @@ The examples below pass `--profile cache-preview`. You may instead use the defau
 | --- | --- | --- |
 | Create a Cluster or Flex Pool | Yes | Yes |
 | List Pools across regions | One selected region | Aggregates configured regions |
-| Inspect Pool status and configuration | `describe` | Overview with configuration and diagnostics |
+| Inspect Pool status, configuration, and diagnostics | Yes | Yes |
 | Update a Pool | Yes | Yes |
 | Read Pool metrics | Not available | Point-in-time Metrics tab |
 | Create, list, and delete Databases | Yes | Yes, within a Pool |
 | Describe one Database | Yes | Pool-scoped row; no standalone page |
-| Copy the RESP endpoint | Not available | Databases tab |
+| Copy the RESP endpoint / Valkey command | `database describe` | Databases tab |
 | Delete a non-empty Pool | Rejected | Rejected |
 
 Use the CLI for the common management path. Use the console when you need an aggregated regional
-view, diagnostics, point-in-time metrics, or the RESP endpoint. The
+view or point-in-time metrics. The
 [HTTP API references](/product/cache/api-reference/capacity-pool) document the lower-level surface,
-including Database Describe and the metrics scrape that the CLI does not expose.
+including the metrics scrape that the CLI does not expose.
 
 The CLI reports errors when a create or capacity-increasing update exceeds a
 [service limit](/product/cache/manage/limits). Use the
@@ -93,6 +93,14 @@ such as `use1-az1`, not account-specific names such as `us-east-1a`. Create prin
 lifecycle status, and provisioning configuration.
 
 ### Inspect and list Capacity Pools
+
+Get one Pool's lifecycle status:
+
+```sh
+momento preview pool get-status \
+  --profile cache-preview \
+  --name orders-flex
+```
 
 Inspect one Pool's status, configuration, and diagnostics:
 

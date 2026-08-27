@@ -33,8 +33,10 @@ one region share this gateway host; authentication selects the target Database a
 - **Password** is a Momento API token (created in the console).
 
 ```sh
-valkey-cli -h <gateway-endpoint> -p 6379 --tls \
-  --user <database-name> --pass <momento-api-token>
+valkey-cli --tls \
+  -h <gateway-endpoint> \
+  --user <database-name> \
+  --pass $MOMENTO_API_KEY
 ```
 
 Always use a client configured for standalone valkey, not cluster mode. The gateway masks
