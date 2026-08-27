@@ -6,14 +6,36 @@ description: Managing members of a Momento account and the roles that gate their
 
 <!-- Projects: cross-product/account-management -->
 
-# Account management
+# Account membership
 
-A Momento **account** has one or more **members**. Each member holds a
-[system role](/platform/authentication/roles-and-permissions) — **Owner**, **Operator**, or
-**Viewer** — that gates what they can do across the account, auth, and resource categories. Roles are
-assigned explicitly to members.
+A Momento **account** has one or more **members**.
+
+Each member associated with an account is explicitly assigned exactly one
+[role](/platform/authentication/roles-and-permissions). The role may be a standard system role
+(**Owner**, **Operator**, or **Viewer**) or a custom account-owned role.
+
+A member's role gates what the member can do across the account. At a high level, actions are
+categorized into sets by what they operate on: account, auth, or resource.
+
+## Switching accounts
+
+A user can belong to several accounts. In the console, the active account is always visible in
+order to confirm the context of any action.
+
+The user can **switch** the active account in the console. After switching, the session reflects
+the permissions of the role held in the newly-active account.
+
+An API key or access token is tied to a single account, whose identifier is embedded in the
+credential. Therefore, it is not possible to switch accounts with an API key or access token.
 
 ## Members and invitations
+
+Users become members of an account by accepting an invitation to join the account.
+
+Each pending invitation holds exactly one account-linked
+[role](/platform/authentication/roles-and-permissions), which may be a system role or a custom role.
+When a user accepts an invitation and joins an account, the user is assigned the role that the
+invitation contains.
 
 An **Owner** can:
 
@@ -23,9 +45,10 @@ An **Owner** can:
 - **Change the role** of another member.
 - **Remove** a member.
 
-Membership changes are authorized by the **Owner role itself**. Account-management permissions cover
-reading and listing account information; they do not grant access to invite, remove, change roles,
-or revoke invitations. No member can change their own role.
+Membership changes can only be authorized by an Account's **Owner**. Account-management permissions
+granted to other roles cover only reading and listing account information. It is not possible to
+grant a non-Owner role permission to invite, remove, change roles, or revoke invitations. No member
+can change their own role.
 
 ## Owner safeguards and leaving
 
@@ -33,16 +56,6 @@ An account always keeps at least one Owner. The last Owner cannot be removed or 
 role.
 
 An Owner cannot use the console's **Leave** action while they hold the Owner role. Another Owner must
-first change their role to Operator or Viewer. This also means the sole Owner cannot leave until
+first change their role to a non-Owner role. This also means the sole Owner cannot leave until
 another Owner has joined the account. A non-last Owner can be removed as long as another Owner
 remains.
-
-## Switching accounts
-
-A user can belong to several accounts and **switch** the active account in the console. After
-switching, the session reflects the permissions of the role held in the newly-active account.
-
-## Roles
-
-The roles that gate account membership are the same platform-wide system roles used everywhere else.
-See [roles and permissions](/platform/authentication/roles-and-permissions) for what each role can do.

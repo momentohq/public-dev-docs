@@ -4,7 +4,7 @@ title: Valkey compatibility
 description: Supported and unsupported Valkey commands and protocol details for Momento Cache.
 ---
 
-<!-- Projects: cache2/capabilities/valkey-compatibility, cache2/constraints/database-fgac -->
+<!-- Projects: cache2/capabilities/valkey-compatibility, cache2/constraints/database-fgac, cross-product/authentication -->
 
 # Valkey compatibility
 

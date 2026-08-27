@@ -4,7 +4,7 @@ title: Getting started with Momento Cache
 description: Provision a Capacity Pool, create a Database, and connect a Valkey client to Momento Cache.
 ---
 
-<!-- Projects: cache2/capabilities/onboarding-flow, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/capabilities/valkey-compatibility, cache2/interfaces/momento-cli, cache2/interfaces/console -->
+<!-- Projects: cache2/capabilities/onboarding-flow, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/managed-autoscaling, cache2/concepts/capacity-pool-lifecycle-and-diagnostics, cache2/capabilities/valkey-compatibility, cache2/interfaces/data-plane-connection, cross-product/authentication, cache2/interfaces/momento-cli, cache2/interfaces/console -->
 
 # Getting started
 

@@ -4,7 +4,7 @@ title: Tokens
 description: Short-lived, scoped Momento credentials for data-plane access.
 ---
 
-<!-- Projects: cross-product/authentication -->
+<!-- Projects: cross-product/authentication, cross-product/credential-authorization-binding -->
 
 # Tokens
 

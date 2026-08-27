@@ -18,7 +18,7 @@ single plan covers every Momento service in every account associated with your o
 | Price | — | $500 / month <br/>or 10% of spend | $5,000 / month <br/>or 15% of spend |
 | Minimum commitment | — | 3 months | 1 year |
 | Service SLA | best effort | 99.9% | 99.99% |
-| Support SLA | none | S1: 2 hours<br/>S2: 8 hours<br/>S3: 2 business days | S1: 1 hour<br/>S2: 4 hours<br/>S3: 1 business day |
+| Support SLA | none | 1 business day | S1: 1 hour<br/>S2: 4 hours<br/>S3: 1 business day |
 | Support channels | GitHub | email | Slack, phone |
 | Compliance | GDPR | SOC 2 Type 2 | HIPAA |
 | SSO | Google IdP | Google IdP | Google IdP |
@@ -35,23 +35,24 @@ A support response target measures the elapsed time from when you submit a reque
 channel included in your plan until a Momento staff member acknowledges it. It is not a
 time-to-resolution guarantee.
 
-A business day is 9:00 a.m.–5:00 p.m. Pacific Time, Monday through Friday, excluding United States
-federal holidays and Momento company holidays. S1 and S2 response clocks run continuously, 24
-hours per day and 7 days per week.
-
-## Issue severity
-
-Issues are categorized by the severity of their impact on your product:
-
-- **S1:** The product is broadly inoperable.
-- **S2:** A major feature is broadly inoperable.
-- **S3:** A minor feature is broadly inoperable.
+The business day is defined as 9:00 a.m.–5:00 p.m. Pacific Time, Monday through Friday,
+excluding United States federal holidays and Momento company holidays.
 
 When requesting support, provide reasonable details about the issue, reasonable access to the
 affected environment when necessary, and reasonable cooperation during diagnosis and resolution.
 
 If an ongoing support issue is determined to be abandoned, Momento may downgrade the issue's
 severity level or close it entirely.
+
+### Issue severity
+
+Enterprise support requests are categorized by the severity of their impact on your product:
+
+- **S1:** The product is broadly inoperable.
+- **S2:** A major feature is broadly inoperable.
+- **S3:** A minor feature is broadly inoperable.
+
+The severity of the issue determines the appropriate response target for support.
 
 ## Pricing details
 

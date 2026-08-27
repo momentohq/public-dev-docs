@@ -4,7 +4,7 @@ title: Capacity Pool API
 description: HTTP API reference for Momento Capacity Pools.
 ---
 
-<!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/capacity-pool, cache2/concepts/capacity-and-usage, cache2/concepts/provisioning-modes, cache2/capabilities/onboarding-flow, cache2/constraints/service-limits, cache2/capabilities/capacity-pool-metrics -->
+<!-- Projects: cache2/interfaces/control-plane-api, cache2/interfaces/capacity-pool-api, cache2/interfaces/capacity-pool-diagnostics-api, cache2/interfaces/capacity-pool-offering-discovery-api, cache2/concepts/capacity-pool, cache2/concepts/capacity-and-usage, cache2/concepts/provisioning-modes, cache2/concepts/capacity-pool-lifecycle-and-diagnostics, cache2/concepts/managed-autoscaling, cache2/capabilities/onboarding-flow, cache2/constraints/service-limits, cache2/capabilities/capacity-pool-metrics -->
 
 # HTTP API Reference for Momento Capacity Pools
 
@@ -12,9 +12,11 @@ Momento provides an HTTP API interface for managing Capacity Pools. This API let
 describe, update, list, and delete Capacity Pools programmatically, discover available capacity
 offerings, and scrape their utilization metrics.
 
-A **Capacity Pool** is a customer-provisioned unit of dedicated Valkey capacity. Pool capacity is
-configured Valkey `maxmemory` per primary shard multiplied by the number of primary shards;
-replicas do not add Pool capacity. You choose how the Pool is sized, either **explicit** mode
+A **Capacity Pool** is a provisioned unit of dedicated Valkey capacity. The available capacity
+for a pool is the sum of Valkey's `maxmemory` as configured across all primary shards. Replicas
+enable failover and improve read throughput, but do not increase a pool's available capacity.
+
+You choose how the Pool is sized, either **explicit** mode
 (Cluster), in which you specify the exact instance type, shard count, and replicas per shard, or
 **managed** mode (Flex), in which you give capacity and replication *bounds* and Momento sizes the
 Pool within them. Momento owns the underlying lifecycle and health of the Pool. Each Pool can host
@@ -80,7 +82,8 @@ In `explicit` mode you specify the pool's shape directly:
 
 ### Managed mode
 
-In `managed` mode you specify bounds for capacity and replication, and Momento sizes the pool within them. Set a dimension's minimum equal to its maximum to pin it to an exact value:
+In `managed` mode you specify bounds for available capacity and replication, and Momento sizes the
+Pool within them. Set a dimension's minimum equal to its maximum to pin it to an exact value:
 
 ```json
 {
@@ -102,19 +105,19 @@ In `managed` mode you specify bounds for capacity and replication, and Momento s
 | Field | Required? | Type | Description |
 |-------|-----------|------|-------------|
 | managed | yes | Object | The managed-mode provisioning configuration. Exactly one mode key must be provided. |
-| managed.capacity | yes | Object | The pool's capacity bounds, in GiB. |
-| managed.capacity.min_gib | yes | Integer | The minimum capacity, in GiB. Set equal to `max_gib` to pin capacity. |
-| managed.capacity.max_gib | yes | Integer | The maximum capacity, in GiB. |
+| managed.capacity | yes | Object | The Pool's available-capacity bounds, in GiB. |
+| managed.capacity.min_gib | yes | Integer | The minimum requested available capacity, in GiB. Set equal to `max_gib` to pin capacity. |
+| managed.capacity.max_gib | yes | Integer | The maximum requested available capacity, in GiB. |
 | managed.replication | yes | Object | The pool's replication bounds. |
 | managed.replication.min_replicas_per_shard | yes | Integer | The minimum replicas per shard. Set equal to the maximum to pin replication. |
 | managed.replication.max_replicas_per_shard | yes | Integer | The maximum replicas per shard. |
 | managed.zones | yes | Array\<String\> | The availability-zone IDs across which the pool's nodes are placed. Must contain at least one zone. |
 | managed.family | no | String | The capacity family to use. When omitted, the Pool resolves to the cell default. The resolved family is always present in managed-mode responses. |
 
-Because managed capacity is quantized to the configurations available in the cell, the capacity
-you are granted may exceed `min_gib`. The last settled allocation is reported by
+Because managed available capacity is quantized to the configurations available in the cell, the
+available capacity you are granted may exceed `min_gib`. The last settled allocation is reported by
 `current_capacity_gib`; `target_capacity_gib` reports the allocation the Pool is converging to and
-differs only while a scale is in flight. Both fields use the same Pool-capacity quantity.
+differs only while a scale is in flight. Both fields use the same available-capacity quantity.
 `current_replicas_per_shard` reports settled replication.
 
 ## Capacity offering discovery
@@ -131,8 +134,8 @@ Use them to determine the managed families and Cluster instance types the accoun
 | families | Array | The managed capacity families the calling account may select. |
 | families[].name | String | The family name accepted by `provisioning.managed.family`. |
 | families[].is_default | Boolean | Whether this is the cell's current default family. |
-| families[].min_capacity_gib | Integer | The smallest granted Pool capacity offered by the family, in GiB. |
-| families[].max_capacity_gib | Integer | The largest granted Pool capacity offered by the family, in GiB. |
+| families[].min_capacity_gib | Integer | The smallest granted available capacity offered by the family, in GiB. |
+| families[].max_capacity_gib | Integer | The largest granted available capacity offered by the family, in GiB. |
 
 ### List Cluster instance types
 
@@ -342,9 +345,9 @@ A `managed`-mode pool:
 | provisioning | Object | The pool's provisioning configuration. See [Provisioning](#provisioning). |
 | status | String | The pool's lifecycle status. See [Status](#status). |
 | diagnostics | Array | Customer-actionable conditions affecting the pool. Empty when there is nothing to surface. See [Diagnostics](#diagnostics). |
-| current_capacity_gib | Integer | **Managed pools only.** The capacity, in GiB, the pool concretely has right now within its requested bounds. Omitted for explicit pools. |
+| current_capacity_gib | Integer | **Managed pools only.** The available capacity, in GiB, the Pool concretely has right now within its requested bounds. Omitted for explicit pools. |
 | current_replicas_per_shard | Integer | **Managed pools only.** The replicas per shard the pool concretely has right now within its requested bounds. Omitted for explicit pools. |
-| target_capacity_gib | Integer | **Managed pools only.** The Pool capacity the service is converging to. Equal to `current_capacity_gib` except while a scale is in flight. |
+| target_capacity_gib | Integer | **Managed pools only.** The available capacity the service is converging to. Equal to `current_capacity_gib` except while a scale is in flight. |
 
 #### Error
 
@@ -414,7 +417,8 @@ An `explicit`-mode pool:
 }
 ```
 
-A `managed`-mode pool additionally reports the capacity and replication it concretely has right now via `current_capacity_gib` and `current_replicas_per_shard`:
+A `managed`-mode Pool additionally reports its settled available capacity and replication through
+`current_capacity_gib` and `current_replicas_per_shard`:
 
 ```json
 {
@@ -437,7 +441,7 @@ The `status` field reflects the pool's lifecycle status (`creating` / `active` /
 `diagnostics` field is derived from the underlying capacity at read time; Describe returns active
 conditions plus recently-resolved ones. See [Diagnostics](#diagnostics). For managed Pools,
 `current_capacity_gib` and `current_replicas_per_shard` report the last settled allocation, while
-`target_capacity_gib` reports the Pool capacity being applied. These fields are omitted for
+`target_capacity_gib` reports the available capacity being applied. These fields are omitted for
 explicit Pools.
 
 #### Error
@@ -799,7 +803,8 @@ curl -X POST -H "Authorization: <token>" \
 
 ## Example: Create a managed-mode Capacity Pool
 
-Create a Capacity Pool that Momento sizes between 32 GB and 128 GB, with 1–2 replicas per shard:
+Create a Capacity Pool with available capacity between 32 GiB and 128 GiB, with 1–2 replicas per
+shard:
 
 ```bash
 curl -X POST -H "Authorization: <token>" \

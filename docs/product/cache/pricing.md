@@ -1,46 +1,44 @@
 ---
 sidebar_label: Pricing
 title: Momento Cache pricing
-description: How Momento Cache pricing works — a single, capacity-based charge for your cluster.
+description: Rates and billable quantities for Momento Cache Cluster, Flex, and data transfer.
 ---
 
-<!-- Projects: cache2/pricing/pricing, cache2/concepts/capacity-and-usage -->
+<!-- Projects: cache2/pricing/pricing, cache2/pricing/pricing-analysis, cache2/concepts/capacity-and-usage, cache2/concepts/capacity-sizing-and-minima -->
 
 # Pricing
 
-Momento Cache uses simple, capacity-based pricing: you pay for the size of your cluster and
-nothing else. There are no separate charges for connections, request traffic, or data
-transfer — including cross-AZ traffic, which is included in the capacity price.
+Momento Cache pricing combines data transfer with the capacity used by Cluster or Flex. There is
+no separate request-count or connection-time charge.
 
-## Capacity
+## Rates
 
-For Flex, Pool capacity is the configured Valkey `maxmemory` on each primary shard multiplied by
-the number of primary shards. Replicas do not add Pool capacity. Billable Flex usage includes the
-configured `maxmemory` on every deployed primary and replica.
+| Dimension | Billable quantity | Price | Included amount |
+| --- | --- | ---: | ---: |
+| Data transfer | ingress + egress | $0.05/GB | 200 GB per month |
+| Cluster capacity | aggregate instance-hours | instance list price × 1.25 | — |
+| Flex Standard capacity | sum of `maxmemory` across all nodes | $0.018/GiB-hour | — |
+| Flex Performance capacity | sum of `maxmemory` across all nodes | $0.027/GiB-hour | — |
 
-For Cluster, usage is the type and count of every deployed instance, including replicas. See
-[Provisioning and sizing](/product/cache/concepts/provisioning-and-sizing) for how the variants map
-to a Pool shape.
+*pricing for us-east-1, may vary by region.*
 
-| Variant | Billable usage | Price |
-| --- | --- | ---: |
-| Flex | Aggregate deployed Valkey `maxmemory` across primary and replica nodes | $30.00 per GiB-month |
-| Cluster | Every deployed instance | AWS instance list price × 3.6 |
+All usage across an account is counted towards the included amount. Multi-account organizations
+and enterprise-tier accounts are not eligible for included usage.
 
-Memory utilization is separate from capacity and billable usage. It measures live `used_memory`
-relative to deployed `maxmemory`.
+## Measuring usage
 
-## Examples
+**Flex usage** measures usage for billing purposes as the sum of Valkey's `maxmemory` across _all_
+deployed nodes, including both primaries and replicas. A Flex Pool with `S` shards, `R` replicas
+per shard, `M` GiB of `maxmemory` per node, and `H` billable hours uses `M × S × (1 + R) × H`
+GiB-hours.
 
-- **Cluster example:** one `t4g.small` primary with no replica costs
-  `$0.0168/hour × 3.6 = $0.06048/hour`, or about **$43.55** for an illustrative 720-hour month.
-- **Flex HA example:** three 1-GiB primary shards with one replica per shard provide **3 GiB of
-  Pool capacity** and use **6 billable GiB**, for **$180/month**.
+**Cluster usage** measures usage for billing purposes by counting the number of deployed instances
+of each type, including both primaries and replicas.
 
-These are compact pricing examples, not statements about the smallest possible deployment.
+## Worked examples
 
-## How this maps to your usage
+**Cluster:** The `t4g.micro` instance type has an AWS list price of `$0.0084/hour` in us-east-1. With a single shard and no replicas, the charge for one node is `$0.0084 × 1.25 = $0.0105/hour`. Running this pool for 30 days would cost `$0.0105 × 720 = $7.56`.
 
-- Flex replicas increase billable usage without increasing Pool capacity.
-- Cluster shards and replicas add deployed instances and therefore increase Cluster usage.
-- Flex usage and Cluster instance usage follow the deployed shape over time.
+**Flex:** A 3-GiB pool with three shards and two replicas per shard will consume `3 GiB × (1 primary + 2 replicas) = 9 GiB` of usage per hour. When using the "performance" capacity family, this costs `9 × $0.027 = $0.243/hour`. Running this pool for 30 days would cost `$0.243 × 720 = $174.96`.
+
+*pricing for us-east-1, may vary by region.*

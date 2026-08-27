@@ -4,7 +4,7 @@ title: Connectivity and the gateway
 description: Connect to a Database through the managed gateway with a standard Valkey client.
 ---
 
-<!-- Projects: cache2/concepts/shared-gateway, cache2/capabilities/valkey-compatibility -->
+<!-- Projects: cache2/concepts/shared-gateway, cache2/interfaces/data-plane-connection, cache2/capabilities/valkey-compatibility, cross-product/authentication -->
 
 # Connectivity and the gateway
 

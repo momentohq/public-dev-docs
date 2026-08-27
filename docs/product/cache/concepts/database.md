@@ -4,7 +4,7 @@ title: Database
 description: A Database is a logical container that runs on a Capacity Pool.
 ---
 
-<!-- Projects: cache2/concepts/database -->
+<!-- Projects: cache2/concepts/database, cache2/concepts/shared-gateway, cache2/interfaces/data-plane-connection, cross-product/authentication -->
 
 # Database
 

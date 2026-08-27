@@ -4,7 +4,7 @@ title: Security
 description: Transport security and credential management for Momento Cache — TLS connections, API keys, and connection credentials.
 ---
 
-<!-- Projects: cache2/concepts/shared-gateway, cache2/constraints/database-fgac, cross-product/authentication, cross-product/roles-and-permissions -->
+<!-- Projects: cache2/concepts/shared-gateway, cache2/interfaces/data-plane-connection, cache2/constraints/database-fgac, cross-product/authentication, cross-product/roles-and-permissions, cross-product/credential-authorization-binding -->
 
 # Security
 

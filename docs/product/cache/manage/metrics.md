@@ -4,7 +4,7 @@ title: Capacity Pool metrics
 description: Prometheus and Amazon CloudWatch metrics for Momento Cache Capacity Pools.
 ---
 
-<!-- Projects: cache2/capabilities/capacity-pool-metrics, cache2/interfaces/control-plane-api, cache2/concepts/capacity-and-usage -->
+<!-- Projects: cache2/capabilities/capacity-pool-metrics, cache2/interfaces/control-plane-api, cache2/concepts/capacity-and-usage, cache2/capabilities/onboarding-flow -->
 
 # Capacity Pool metrics
 
@@ -53,7 +53,7 @@ under the namespace `Momento/Cache`. Every datum has exactly these dimensions:
 | Metric | CloudWatch unit | Meaning |
 | --- | --- | --- |
 | `PoolMemoryUsedBytes` | Bytes | Sum of Valkey memory in use on primary shards. |
-| `PoolMemoryProvisionedBytes` | Bytes | Sum of Valkey `maxmemory` on primary shards. This is allocated Pool capacity, not replica-inclusive Flex usage. |
+| `PoolMemoryProvisionedBytes` | Bytes | Sum of Valkey `maxmemory` on primary shards. This is available capacity, not replica-inclusive Flex usage. |
 | `PoolEvictions` | Count | Keys evicted during the reporting interval, calculated from primary-shard counter deltas. |
 | `PoolCpuUtilization` | Percent | Host CPU utilization across primary and replica nodes. |
 | `PoolNetworkReceiveUtilization` | Percent | Receive rate relative to aggregate baseline bandwidth across primary and replica nodes. |
