@@ -9,7 +9,7 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.19ed51bd.css">
-<script src="/assets/js/runtime~main.a0feb8c6.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.9bd3f78a.js" defer="defer"></script>
 <script src="/assets/js/main.dc1a2f62.js" defer="defer"></script>
 </head>
 <body>
@@ -31,13 +31,14 @@ chooses and automatically resizes the backing topology within those bounds.</li>
 <p>See <a class="" href="/product/cache/concepts/provisioning-and-sizing">Provisioning and sizing</a> for how to choose these values and
 for the sizing modes the service supports.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="managing-capacity">Managing capacity<a href="#managing-capacity" class="hash-link" aria-label="Direct link to Managing capacity" title="Direct link to Managing capacity" translate="no">​</a></h2>
-<p>Pool capacity is the configured Valkey <code>maxmemory</code> on each primary shard multiplied by the number
-of primary shards. Replicas do not add Pool capacity. Memory utilization is a separate measurement
-of live <code>used_memory</code> relative to deployed <code>maxmemory</code>.</p>
+<p>Available capacity is the configured Valkey <code>maxmemory</code> on each primary shard multiplied by the
+number of primary shards. Replicas do not add available capacity. Flex usage includes deployed
+<code>maxmemory</code> on both primary and replica nodes. Cluster usage counts every deployed instance.
+Memory utilization is the separate ratio of live <code>used_memory</code> to deployed <code>maxmemory</code>.</p>
 <p>You can change a pool&#x27;s size after creation by updating its configuration. Momento converges
 the running cluster to the new shape. Scaling behavior and safeguards are covered in
 <a class="" href="/product/cache/manage/pools">Manage Capacity Pools</a>.</p>
-<p>The default account admission limit is 500 GiB of Pool capacity. See <a class="" href="/product/cache/manage/limits">Service limits</a>
+<p>The default account admission limit is 500 GiB of available capacity. See <a class="" href="/product/cache/manage/limits">Service limits</a>
 for the admission and usage distinction. See <a class="" href="/product/cache/manage/metrics">Capacity Pool metrics</a>
 for memory, eviction, CPU, and network observations.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="lifecycle">Lifecycle<a href="#lifecycle" class="hash-link" aria-label="Direct link to Lifecycle" title="Direct link to Lifecycle" translate="no">​</a></h2>
