@@ -9,7 +9,7 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.19ed51bd.css">
-<script src="/assets/js/runtime~main.cde96171.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a0feb8c6.js" defer="defer"></script>
 <script src="/assets/js/main.dc1a2f62.js" defer="defer"></script>
 </head>
 <body>
@@ -47,28 +47,27 @@ within those bounds. To create a <strong>Cluster (explicit)</strong> Pool instea
 <code>--shard-count</code>, and pass a single value to <code>--replicas-per-shard</code>. See
 <a class="" href="/product/cache/manage/cli#create-a-capacity-pool">Momento CLI (preview)</a>.</p>
 <p>Provisioning runs in the background. Check the lifecycle status until it is <code>active</code>:</p>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">momento preview pool get-status \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --profile cache-quickstart \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --name quickstart-pool</span><br></div></code></pre></div></div>
+<p>If provisioning is blocked, view diagnostics:</p>
 <div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">momento preview pool describe \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --profile cache-quickstart \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --name quickstart-pool</span><br></div></code></pre></div></div>
-<p>If provisioning is blocked, <code>list</code> includes diagnostics. The service keeps retrying an
-accepted configuration; see <a class="" href="/product/cache/manage/pools#read-diagnostics">Manage Capacity Pools</a>.</p>
+<p>The service keeps retrying an accepted configuration; see <a class="" href="/product/cache/manage/pools#read-diagnostics">Manage Capacity Pools</a>.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-create-a-database">3. Create a Database<a href="#3-create-a-database" class="hash-link" aria-label="Direct link to 3. Create a Database" title="Direct link to 3. Create a Database" translate="no">​</a></h2>
 <p>Once the Pool is <code>active</code>, create a Database on it:</p>
 <div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">momento preview database create \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --profile cache-quickstart \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --name quickstart-db \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --pool-name quickstart-pool</span><br></div></code></pre></div></div>
 <p>Database creation is immediate because the Pool&#x27;s capacity already exists.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-get-your-connection-details">4. Get your connection details<a href="#4-get-your-connection-details" class="hash-link" aria-label="Direct link to 4. Get your connection details" title="Direct link to 4. Get your connection details" translate="no">​</a></h2>
-<p>In the limited-preview console, open <strong>Capacity Pools</strong>, select <code>quickstart-pool</code>, and open its
-<strong>Databases</strong> tab. Copy the <strong>RESP endpoint</strong> shown there. Every Database in that region shares the
-endpoint.</p>
-<p>The Database panel does not vend a credential. Use the API key you created through Key Management,
+<p>On database creation, you will get a sample RESP command. If you ever need it again, you can <code>describe</code> your database OR in the limited-preview console, you can open the <strong>Capacity Pools</strong> panel, select your Pool, and open its <strong>Databases</strong> tab.</p>
+<p>The Database CLI and panel do not vend a credential. Use the API key you created through Key Management,
 or another appropriate Momento credential, as the password and treat it as a secret.</p>
 <p>Your connection details are:</p>
 <ul>
 <li class=""><strong>Host:</strong> the region&#x27;s RESP endpoint</li>
-<li class=""><strong>Port:</strong> <code>6379</code> with TLS</li>
+<li class=""><strong>Port:</strong> <code>6379</code> (default) with TLS</li>
 <li class=""><strong>Username:</strong> your Database name</li>
 <li class=""><strong>Password:</strong> your Momento API key or token</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-connect-and-run-a-command">5. Connect and run a command<a href="#5-connect-and-run-a-command" class="hash-link" aria-label="Direct link to 5. Connect and run a command" title="Direct link to 5. Connect and run a command" translate="no">​</a></h2>
-<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">valkey-cli -h &lt;resp-endpoint&gt; -p 6379 --tls \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --user quickstart-db --pass &lt;momento-api-key&gt;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">&gt; SET greeting &quot;hello&quot;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">OK</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">&gt; GET greeting</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">&quot;hello&quot;</span><br></div></code></pre></div></div>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">valkey-cli --tls \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -h &lt;resp-endpoint&gt; \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --user quickstart-db \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --pass $MOMENTO_API_KEY</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">&gt; SET greeting &quot;hello&quot;</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">OK</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">&gt; GET greeting</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">&quot;hello&quot;</span><br></div></code></pre></div></div>
 <p>You are now reading and writing against a managed Valkey Database.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="6-clean-up">6. Clean up<a href="#6-clean-up" class="hash-link" aria-label="Direct link to 6. Clean up" title="Direct link to 6. Clean up" translate="no">​</a></h2>
 <p>Delete the Database before its Pool:</p>

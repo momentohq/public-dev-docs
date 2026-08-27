@@ -9,7 +9,7 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/ja/assets/css/styles.028e69c0.css">
-<script src="/ja/assets/js/runtime~main.bc193ab2.js" defer="defer"></script>
+<script src="/ja/assets/js/runtime~main.9bbd4e08.js" defer="defer"></script>
 <script src="/ja/assets/js/main.d98fb88f.js" defer="defer"></script>
 </head>
 <body>
@@ -36,7 +36,7 @@ one region share this gateway host; authentication selects the target Database a
 <li class=""><strong>Username</strong> is the Database name.</li>
 <li class=""><strong>Password</strong> is a Momento API token (created in the console).</li>
 </ul>
-<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">valkey-cli -h &lt;gateway-endpoint&gt; -p 6379 --tls \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --user &lt;database-name&gt; --pass &lt;momento-api-token&gt;</span><br></div></code></pre></div></div>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">valkey-cli --tls \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  -h &lt;gateway-endpoint&gt; \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --user &lt;database-name&gt; \</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  --pass $MOMENTO_API_KEY</span><br></div></code></pre></div></div>
 <p>Always use a client configured for standalone valkey, not cluster mode. The gateway masks
 underlying cluster topology, presenting it as if it were a single standalone node.</p>
 <p>One connection serves exactly one Database specified by the username. RESP database
