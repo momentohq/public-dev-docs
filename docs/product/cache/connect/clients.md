@@ -4,7 +4,7 @@ title: Connect a client
 description: Connect to a Momento Cache Database with valkey-cli, ioredis, redis-py, or go-redis.
 ---
 
-<!-- Projects: cache2/capabilities/valkey-compatibility, cache2/concepts/shared-gateway, cache2/interfaces/console -->
+<!-- Projects: cache2/capabilities/valkey-compatibility, cache2/concepts/shared-gateway, cache2/interfaces/data-plane-connection, cross-product/authentication, cache2/interfaces/console, cache2/capabilities/onboarding-flow -->
 
 # Connect a client
 

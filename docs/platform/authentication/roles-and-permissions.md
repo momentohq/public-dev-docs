@@ -4,7 +4,7 @@ title: Roles and permissions
 description: How Momento authorizes what a credential can do — permission sets, system roles, and custom roles.
 ---
 
-<!-- Projects: cross-product/roles-and-permissions, cache2/constraints/database-fgac -->
+<!-- Projects: cross-product/roles-and-permissions, cross-product/credential-authorization-binding, cache2/constraints/database-fgac -->
 
 # Roles and permissions
 

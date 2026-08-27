@@ -18,7 +18,7 @@ single plan covers every Momento service in every account associated with your o
 | Price | — | $500 / month <br/>or 10% of spend | $5,000 / month <br/>or 15% of spend |
 | Minimum commitment | — | 3 months | 1 year |
 | Service SLA | best effort | 99.9% | 99.99% |
-| Support SLA | none | S1: 2 hours<br/>S2: 8 hours<br/>S3: 2 business days | S1: 1 hour<br/>S2: 4 hours<br/>S3: 1 business day |
+| Support SLA | none | 1 business day | S1: 1 hour<br/>S2: 4 hours<br/>S3: 1 business day |
 | Support channels | GitHub | email | Slack, phone |
 | Compliance | GDPR | SOC 2 Type 2 | HIPAA |
 | SSO | Google IdP | Google IdP | Google IdP |
@@ -36,12 +36,15 @@ channel included in your plan until a Momento staff member acknowledges it. It i
 time-to-resolution guarantee.
 
 A business day is 9:00 a.m.–5:00 p.m. Pacific Time, Monday through Friday, excluding United States
-federal holidays and Momento company holidays. S1 and S2 response clocks run continuously, 24
-hours per day and 7 days per week.
+federal holidays and Momento company holidays. Production has one acknowledgement target of one
+business day for every request, regardless of severity. Only Enterprise varies its target by
+severity, and only Enterprise S1 and S2 response clocks run continuously, 24 hours per day and 7
+days per week.
 
 ## Issue severity
 
-Issues are categorized by the severity of their impact on your product:
+Requests can be categorized by the severity of their impact on your product. Only Enterprise's
+response target varies by this classification:
 
 - **S1:** The product is broadly inoperable.
 - **S2:** A major feature is broadly inoperable.

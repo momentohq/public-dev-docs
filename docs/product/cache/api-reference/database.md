@@ -4,7 +4,7 @@ title: Database API
 description: HTTP API reference for Momento Databases.
 ---
 
-<!-- Projects: cache2/interfaces/control-plane-api, cache2/concepts/database, cache2/capabilities/onboarding-flow, cache2/constraints/service-limits, cache2/constraints/database-fgac -->
+<!-- Projects: cache2/interfaces/control-plane-api, cache2/interfaces/database-api, cache2/concepts/database, cache2/capabilities/onboarding-flow, cache2/constraints/service-limits, cache2/constraints/database-fgac -->
 
 # HTTP API Reference for Momento Databases
 

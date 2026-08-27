@@ -4,7 +4,7 @@ title: API keys
 description: Long-lived Momento credentials — how they work, and how to manage them.
 ---
 
-<!-- Projects: cross-product/authentication -->
+<!-- Projects: cross-product/authentication, cross-product/credential-authorization-binding -->
 
 # API keys
 

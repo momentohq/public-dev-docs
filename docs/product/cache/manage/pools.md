@@ -4,7 +4,7 @@ title: Manage Capacity Pools
 description: Create, inspect, scale, monitor, and delete a Capacity Pool with the preview CLI or limited-preview console.
 ---
 
-<!-- Projects: cache2/concepts/capacity-pool, cache2/concepts/capacity-and-usage, cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/interfaces/control-plane-api, cache2/constraints/service-limits, cache2/capabilities/capacity-pool-metrics -->
+<!-- Projects: cache2/concepts/capacity-pool, cache2/concepts/capacity-and-usage, cache2/concepts/managed-autoscaling, cache2/concepts/capacity-pool-lifecycle-and-diagnostics, cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/capabilities/onboarding-flow, cache2/interfaces/control-plane-api, cache2/interfaces/capacity-pool-api, cache2/interfaces/capacity-pool-diagnostics-api, cache2/constraints/service-limits, cache2/capabilities/capacity-pool-metrics -->
 
 # Manage Capacity Pools
 
@@ -21,8 +21,8 @@ and select **Request access**.
 The product variants map to the implementation mode names: **Cluster (explicit)** and **Flex
 (managed)**. Current preview console builds may show only `Explicit` or `Managed` in some controls.
 
-Pool capacity is configured Valkey `maxmemory` per primary shard multiplied by the number of
-primary shards. Replicas do not add Pool capacity. Flex usage includes deployed `maxmemory` on
+Available capacity is configured Valkey `maxmemory` per primary shard multiplied by the number of
+primary shards. Replicas do not add available capacity. Flex usage includes deployed `maxmemory` on
 primaries and replicas; Cluster usage is the deployed instance type and count. Memory utilization
 is the separate ratio of live `used_memory` to deployed `maxmemory`.
 
@@ -72,14 +72,16 @@ replication bounds, or zones. A Pool cannot switch between Cluster and Flex afte
 
 The CLI accepts only the fields you want to change; the console submits the reviewed configuration
 from its edit form. Mode and region are fixed. A Flex bounds update replaces both bounds for that
-dimension. Increasing primary shards adds Pool capacity; increasing replicas adds redundancy and
-billable usage without adding Pool capacity. Changing the instance type triggers a rolling update.
-The service gracefully replaces each node, one at a time, adding a new healthy node before removing
-an old one so that the Pool continues to handle requests without disruption.
+dimension. Increasing primary shards adds available capacity; increasing replicas adds redundancy
+and billable usage without adding available capacity. Changing the instance type triggers a
+rolling, make-before-break update. The service works one shard at a time, adding a healthy
+replacement before removing an old node. This design preserves healthy capacity during the
+change without making a no-disruption guarantee.
 
 For Flex, `current_capacity_gib` is the last settled allocation. `target_capacity_gib` is the
 allocation the Pool is converging to and differs only while a scale is in flight. They are current
-and target values of the same Pool-capacity quantity.
+and target values of the same available-capacity quantity. The literal field names remain the
+current interface identifiers for this quantity.
 
 For an active Cluster Pool, a capacity-reducing request is checked against fresh memory telemetry
 before the update is stored. If the current data would not fit, or usage cannot be verified, the

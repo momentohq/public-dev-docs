@@ -4,7 +4,7 @@ title: Manage Momento Cache with the CLI (preview)
 description: Preview CLI commands for Capacity Pool lifecycle operations and Database creation, inspection, listing, and deletion.
 ---
 
-<!-- Projects: cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/provisioning-modes, cache2/constraints/service-limits, cache2/capabilities/capacity-pool-metrics -->
+<!-- Projects: cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/capabilities/onboarding-flow, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/provisioning-modes, cache2/concepts/managed-autoscaling, cache2/concepts/capacity-pool-lifecycle-and-diagnostics, cache2/constraints/service-limits, cache2/capabilities/capacity-pool-metrics -->
 
 # Manage Momento Cache with the CLI
 
@@ -117,7 +117,7 @@ momento preview pool list --profile cache-preview
 ```
 
 `describe` and `list` print provisioning, current and target Flex capacity where applicable, and
-diagnostics. Current and target are settled and in-flight values of the same Pool-capacity
+diagnostics. Current and target are settled and in-flight values of the same available-capacity
 quantity. The CLI does not aggregate regions; select another endpoint/profile to inspect another
 region.
 

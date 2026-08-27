@@ -4,7 +4,7 @@ title: Momento Cache
 description: Fully-managed, dedicated Valkey. Provision isolated capacity and connect any Valkey client through a managed gateway.
 ---
 
-<!-- Projects: cache2/overview/what-is-cache2, cache2/capabilities/onboarding-flow, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/shared-gateway, cache2/interfaces/momento-cli, cache2/interfaces/control-plane-api -->
+<!-- Projects: cache2/overview/what-is-cache2, cache2/overview/public-roadmap-highlights, cache2/capabilities/onboarding-flow, cache2/concepts/capacity-pool, cache2/concepts/database, cache2/concepts/shared-gateway, cache2/concepts/managed-autoscaling, cache2/concepts/capacity-pool-lifecycle-and-diagnostics, cache2/interfaces/momento-cli, cache2/interfaces/control-plane-api, cache2/constraints/service-limits, cache2/capabilities/capacity-pool-metrics -->
 
 # Overview
 
@@ -37,8 +37,8 @@ available [here](/cache).
 
 Use Momento Cache when you want managed Valkey with dedicated, predictable capacity: a
 replacement for ElastiCache, MemoryDB, or Memorystore, or managed Valkey on a cloud where you
-run today. You get standard Valkey compatibility and multi-AZ resilience without operating the
-cluster yourself.
+run today. A Pool configured with at least one replica per shard and at least two availability
+zones is capable of multi-AZ resilience without requiring you to operate the cluster yourself.
 
 ## The model
 

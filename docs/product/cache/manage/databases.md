@@ -4,7 +4,7 @@ title: Manage Databases
 description: Create, list, connect to, and delete Databases with the preview CLI or limited-preview console.
 ---
 
-<!-- Projects: cache2/concepts/database, cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/interfaces/control-plane-api, cache2/constraints/service-limits, cache2/constraints/database-fgac -->
+<!-- Projects: cache2/concepts/database, cache2/interfaces/data-plane-connection, cross-product/authentication, cache2/interfaces/momento-cli, cache2/interfaces/console, cache2/capabilities/onboarding-flow, cache2/interfaces/control-plane-api, cache2/interfaces/database-api, cache2/constraints/service-limits, cache2/constraints/database-fgac -->
 
 # Manage Databases
 
