@@ -4,7 +4,7 @@ title: Momento Cache reliability
 description: Conditions for high availability through replication and multi-AZ placement.
 ---
 
-<!-- Projects: cache2/concepts/capacity-pool, cache2/concepts/provisioning-modes, cache2/concepts/capacity-pool-lifecycle-and-diagnostics, cache2/capabilities/sizing-and-isolation-guidance -->
+<!-- Projects: cache2/concepts/capacity-pool, cache2/concepts/provisioning-modes, cache2/concepts/capacity-sizing-and-minima, cache2/concepts/capacity-pool-lifecycle-and-diagnostics, cache2/capabilities/sizing-and-isolation-guidance -->
 
 # Reliability
 
