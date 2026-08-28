@@ -13,13 +13,11 @@ Basic support is included. Follow this workflow to request activation of a paid 
 
 ## Before you begin
 
-1. For this AWS Marketplace-billed path,
-   [set up AWS Marketplace billing](/platform/how-to/aws-marketplace-billing). Do not purchase a
-   support-plan dimension from the Marketplace listing.
-2. Review the current [support plans, prices, commitments, and response targets](/support/plans),
-   then choose Production or Enterprise.
-3. [Locate the Momento Account ID](/platform/how-to/locate-account-id) for the account that the
-   request concerns.
+1. Review the current [support plans](/support/plans) and decide whether the Production or
+   Enterprise support plan will satisfy your requirements.
+2. Set up [AWS Marketplace billing](/platform/how-to/aws-marketplace-billing). Do not purchase a
+   support plan through the Marketplace listing.
+3. Locate your [Momento Account ID](/platform/how-to/locate-account-id).
 
 ## Request activation
 
@@ -36,7 +34,7 @@ registration request described in [Set up AWS Marketplace billing](/platform/how
 
 :::note
 
-Submitting the email only requests activation. This workflow does not specify a processing time or
-billing-effective date.
+Submitting the email only requests activation. Allow one or more business days to activate
+the support plan.
 
 :::
