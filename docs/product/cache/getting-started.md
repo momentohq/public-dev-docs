@@ -9,9 +9,9 @@ description: Provision a Capacity Pool, create a Database, and connect a Valkey 
 # Getting started
 
 :::note[Preview]
-Momento Cache (Cluster and Flex) is available in limited preview, and the Capacity Pool and
-Database command groups are also in preview. [Sign in or sign up in the Momento
-console](https://console.gomomento.com/) and select **Request access** before following this guide.
+Momento Cache (Cluster and Flex) is available in limited preview. To request access, ensure that you have set up
+[AWS Marketplace billing](/platform/how-to/aws-marketplace-billing). Then, email Momento Support with the subject
+line "[ACCESS] enable Momento Cache" and include your [Momento Account ID](/platform/how-to/locate-account-id).
 :::
 
 This quickstart takes you from nothing to running Valkey commands against a managed Database in
