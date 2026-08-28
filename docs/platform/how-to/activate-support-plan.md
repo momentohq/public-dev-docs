@@ -9,11 +9,12 @@ description: Request activation of Production or Enterprise support for your Mom
 # Request activation of a Momento support plan
 
 Basic support is included. Follow this workflow to request activation of a paid **Production** or
-**Enterprise** support plan.
+**Enterprise** support plan when you use AWS Marketplace billing.
 
 ## Before you begin
 
-1. [Set up AWS Marketplace billing](/platform/how-to/aws-marketplace-billing). Do not purchase a
+1. For this AWS Marketplace-billed path,
+   [set up AWS Marketplace billing](/platform/how-to/aws-marketplace-billing). Do not purchase a
    support-plan dimension from the Marketplace listing.
 2. Review the current [support plans, prices, commitments, and response targets](/support/plans),
    then choose Production or Enterprise.

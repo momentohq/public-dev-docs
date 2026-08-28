@@ -29,7 +29,7 @@ single plan covers every Momento service in every account associated with your o
 
 Higher-tier plans include all features of the plans below them.
 
-To purchase Production or Enterprise support, follow the
+If you use AWS Marketplace billing to purchase Production or Enterprise support, follow the
 [support-plan activation instructions](/platform/how-to/activate-support-plan). Basic support is
 included and does not require activation.
 
