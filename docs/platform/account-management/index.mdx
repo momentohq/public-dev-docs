@@ -4,7 +4,7 @@ title: Account management
 description: Managing members of a Momento account and the roles that gate their access.
 ---
 
-<!-- Projects: cross-product/account-management -->
+<!-- Projects: cross-product/account-management; cross-product/account-identification -->
 
 # Account membership
 
@@ -27,6 +27,12 @@ the permissions of the role held in the newly-active account.
 
 An API key or access token is tied to a single account, whose identifier is embedded in the
 credential. Therefore, it is not possible to switch accounts with an API key or access token.
+
+## Account identifiers
+
+Each account has a unique Account ID that begins with `a-`. Its editable Account Name is not a
+substitute when Momento needs to identify a specific account. Follow
+[Locate your Momento Account ID](/platform/how-to/locate-account-id) to copy it from the console.
 
 ## Members and invitations
 

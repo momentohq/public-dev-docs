@@ -71,7 +71,8 @@ For the purposes of this tutorial, configure one live video channel for an [adap
 
 Momento Object Store is currently restricted to private preview access by key design partners. To create a storage namespace, please ensure that you have successfully logged in to the [Momento Console](https://console.gomomento.com/) once to initialize your account. Then, contact `support@momentohq.com` or your support representative with the following information to create a storage namespace:
 
-- **account id**: Locate your account id in the dropdown in the upper right corner of the [console](https://console.gomomento.com/) (`a-xxxxxxxxxxxx`).
+- **account id**: Follow [Locate your Momento Account ID](/platform/how-to/locate-account-id) and
+  copy the `a-xxxxxxxxxxxx` value for the target account.
 - **namespace id**: The desired id for the new storage namespace. This guide uses `live-origin`.
 - **AWS region**: The AWS region for the new storage namespace. This guide uses `us-west-1`. Once AZ-alignment becomes available, you will also need to specify two AZs within the region.
 - **hot storage capacity**: This determines how much stream data will be held in low-latency storage. Estimate required capacity by adding up the size of all segments and multiplying by the number of segments to keep in hot storage. For example, keeping 5 minutes of the example bitrate ladder in hot storage requires `(850+500+250)Kib * 300/2.5 ≈ 200 MiB`.

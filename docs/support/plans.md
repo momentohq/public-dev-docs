@@ -4,7 +4,7 @@ title: Momento support plans
 description: Compare Basic, Production, and Enterprise support plans across Momento services.
 ---
 
-<!-- Projects: cross-product/support-plans -->
+<!-- Projects: cross-product/support-plans; cross-product/support-plan-activation -->
 
 # Support plans
 
@@ -28,6 +28,10 @@ single plan covers every Momento service in every account associated with your o
 | Networking | public gateway | public gateway | VPC Peering, Transit Gateway, PrivateLink |
 
 Higher-tier plans include all features of the plans below them.
+
+To purchase Production or Enterprise support, follow the
+[support-plan activation instructions](/platform/how-to/activate-support-plan). Basic support is
+included and does not require activation.
 
 ## Issue response targets
 
