@@ -1039,7 +1039,9 @@ The key component is the trust policy that allows Momento's AWS account (`168253
 }
 ```
 
-Replace `<YOUR_ACCOUNT_ID>` with your Momento account ID and `<YOUR_STORE_NAME>` with the name of your object store. The external ID format is `{account_id}/objectstore/{store_name}`.
+Replace `<YOUR_ACCOUNT_ID>` with [your Momento Account ID](/platform/how-to/locate-account-id) and
+`<YOUR_STORE_NAME>` with the name of your object store. The external ID format is
+`{account_id}/objectstore/{store_name}`.
 
 ## Required S3 Permissions
 
