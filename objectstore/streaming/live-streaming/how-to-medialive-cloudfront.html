@@ -9,8 +9,8 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.19ed51bd.css">
-<script src="/assets/js/runtime~main.9bd3f78a.js" defer="defer"></script>
-<script src="/assets/js/main.dc1a2f62.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.ab9b56f3.js" defer="defer"></script>
+<script src="/assets/js/main.0ce12b2d.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -41,7 +41,8 @@
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-create-a-storage-namespace-in-your-momento-account">1. Create a storage namespace in your Momento account<a href="#1-create-a-storage-namespace-in-your-momento-account" class="hash-link" aria-label="Direct link to 1. Create a storage namespace in your Momento account" title="Direct link to 1. Create a storage namespace in your Momento account" translate="no">​</a></h2>
 <p>Momento Object Store is currently restricted to private preview access by key design partners. To create a storage namespace, please ensure that you have successfully logged in to the <a href="https://console.gomomento.com/" target="_blank" rel="noopener noreferrer" class="">Momento Console</a> once to initialize your account. Then, contact <code>support@momentohq.com</code> or your support representative with the following information to create a storage namespace:</p>
 <ul>
-<li class=""><strong>account id</strong>: Locate your account id in the dropdown in the upper right corner of the <a href="https://console.gomomento.com/" target="_blank" rel="noopener noreferrer" class="">console</a> (<code>a-xxxxxxxxxxxx</code>).</li>
+<li class=""><strong>account id</strong>: Follow <a class="" href="/platform/how-to/locate-account-id">Locate your Momento Account ID</a> and
+copy the <code>a-xxxxxxxxxxxx</code> value for the target account.</li>
 <li class=""><strong>namespace id</strong>: The desired id for the new storage namespace. This guide uses <code>live-origin</code>.</li>
 <li class=""><strong>AWS region</strong>: The AWS region for the new storage namespace. This guide uses <code>us-west-1</code>. Once AZ-alignment becomes available, you will also need to specify two AZs within the region.</li>
 <li class=""><strong>hot storage capacity</strong>: This determines how much stream data will be held in low-latency storage. Estimate required capacity by adding up the size of all segments and multiplying by the number of segments to keep in hot storage. For example, keeping 5 minutes of the example bitrate ladder in hot storage requires <code>(850+500+250)Kib * 300/2.5 ≈ 200 MiB</code>.</li>
