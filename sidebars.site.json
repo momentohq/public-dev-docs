@@ -244,6 +244,19 @@
         "className": "sidebar-group-product"
       },
       "platform/account-management/index",
+      {
+        "type": "category",
+        "label": "How To",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          "platform/how-to/locate-account-id",
+          "platform/how-to/aws-marketplace-billing",
+          "platform/how-to/activate-support-plan"
+        ],
+        "key": "platform-how-to",
+        "className": "sidebar-group-product"
+      },
       "platform/api/index",
       "platform/regions/index",
       {
