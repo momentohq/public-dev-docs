@@ -9,9 +9,8 @@ description: Preview CLI commands for Capacity Pool lifecycle operations and Dat
 # Manage Momento Cache with the CLI
 
 :::note[Preview]
-The `momento preview pool` and `momento preview database` command groups are in preview. Their names,
-arguments, and output may change. Momento Cache (Cluster and Flex) is available in limited preview;
-[sign in or sign up in the console](https://console.gomomento.com/) and select **Request access**.
+Momento Cache (Cluster and Flex) is available in limited preview. [Request access](/product/cache/getting-started#request-preview-access)
+before using these commands.
 :::
 
 Use the Momento CLI for common Capacity Pool and Database lifecycle operations. The commands target
@@ -22,10 +21,8 @@ one region through the endpoint identifier in your selected profile.
 Install the CLI using the instructions in the
 [Momento CLI repository](https://github.com/momentohq/momento-cli#installation).
 
-In the Momento console, create or retrieve an API key and copy the endpoint identifier for the
-region you want to manage. The console is the authority for endpoint identifiers. If the endpoint
-identifier is not visible, request preview access in the console rather than constructing a
-hostname from a static list.
+In the Momento console, create or retrieve an API key and copy the endpoint 
+identifier for the region you want to manage.
 
 Save the API key and endpoint identifier in a named profile:
 
@@ -47,7 +44,7 @@ The examples below pass `--profile cache-preview`. You may instead use the defau
 | Read Pool metrics | Not available | Point-in-time Metrics tab |
 | Create, list, and delete Databases | Yes | Yes, within a Pool |
 | Describe one Database | Yes | Pool-scoped row; no standalone page |
-| Copy the RESP endpoint / Valkey command | `database describe` | Databases tab |
+| Copy the RESP endpoint | `database describe` | Databases tab |
 | Delete a non-empty Pool | Rejected | Rejected |
 
 Use the CLI for the common management path. Use the console when you need an aggregated regional

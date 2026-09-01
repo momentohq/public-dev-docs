@@ -19,7 +19,7 @@ Initialize the SDK with an
 
 HTTP APIs can be used directly without an SDK. Check the API page for each service to find information about authentication headers.
 
-## Protocol availability by product
+## Data-plane protocol availability by product
 
 The following table summarizes current protocol support by service.
 

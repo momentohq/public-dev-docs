@@ -26,10 +26,10 @@ Every sample has `pool_name`, `account_id`, and `endpoint` labels.
 
 | Metric | Type and unit | Meaning |
 | --- | --- | --- |
-| `capacity_pool_memory_used_bytes` | Gauge, bytes | Valkey memory in use across primary shards. |
-| `capacity_pool_memory_maxmemory_bytes` | Gauge, bytes | Valkey `maxmemory` across primary shards. |
+| `capacity_pool_memory_used_bytes` | Gauge, bytes | Valkey memory in use across primary nodes. |
+| `capacity_pool_memory_maxmemory_bytes` | Gauge, bytes | Valkey `maxmemory` across primary nodes. |
 | `capacity_pool_memory_utilization_ratio` | Gauge, 0.0–1.0 ratio | Memory used divided by `maxmemory`. |
-| `capacity_pool_evictions_total` | Counter, cumulative keys | Total keys evicted across primary shards. |
+| `capacity_pool_evictions_total` | Counter, cumulative keys | Total keys evicted across primary nodes. |
 | `capacity_pool_host_cpu_usage_ratio` | Gauge, 0.0–1.0 ratio | Host CPU utilization across primary and replica nodes. |
 | `capacity_pool_host_network_rx_utilization_ratio` | Gauge, 0.0–1.0 ratio | Host network receive utilization across primary and replica nodes. |
 | `capacity_pool_host_network_tx_utilization_ratio` | Gauge, 0.0–1.0 ratio | Host network transmit utilization across primary and replica nodes. |
@@ -52,8 +52,8 @@ under the namespace `Momento/Cache`. Every datum has exactly these dimensions:
 
 | Metric | CloudWatch unit | Meaning |
 | --- | --- | --- |
-| `PoolMemoryUsedBytes` | Bytes | Sum of Valkey memory in use on primary shards. |
-| `PoolMemoryProvisionedBytes` | Bytes | Sum of Valkey `maxmemory` on primary shards. This is available capacity, not replica-inclusive Flex usage. |
+| `PoolMemoryUsedBytes` | Bytes | Sum of Valkey memory in use on primary nodes. |
+| `PoolMemoryProvisionedBytes` | Bytes | Sum of Valkey `maxmemory` on primary nodes. This is available capacity, not replica-inclusive Flex usage. |
 | `PoolEvictions` | Count | Keys evicted during the reporting interval, calculated from primary-shard counter deltas. |
 | `PoolCpuUtilization` | Percent | Host CPU utilization across primary and replica nodes. |
 | `PoolNetworkReceiveUtilization` | Percent | Receive rate relative to aggregate baseline bandwidth across primary and replica nodes. |

@@ -9,10 +9,17 @@ description: Provision a Capacity Pool, create a Database, and connect a Valkey 
 # Getting started
 
 :::note[Preview]
-Momento Cache (Cluster and Flex) is available in limited preview. To request access, ensure that you have set up
-[AWS Marketplace billing](/platform/how-to/aws-marketplace-billing). Then, email Momento Support with the subject
-line "[ACCESS] enable Momento Cache" and include your [Momento Account ID](/platform/how-to/locate-account-id).
+Momento Cache (Cluster and Flex) is available in limited preview. [Request access](#request-preview-access) before following this guide.
 :::
+
+## Request preview access
+
+1. Set up [AWS Marketplace billing](/platform/how-to/aws-marketplace-billing).
+2. Email [Momento Support](mailto:support@momentohq.com) with the subject
+   **[ACCESS] enable Momento Cache**. Include your
+   [Momento Account ID](/platform/how-to/locate-account-id).
+
+Allow one or more business days for the request to be processed.
 
 This quickstart takes you from nothing to running Valkey commands against a managed Database in
 Momento Cache. You will use the Momento CLI for each management operation, then retrieve the
@@ -28,10 +35,7 @@ You need:
 ## 1. Configure a CLI profile
 
 In the Momento console, create or retrieve an API key and copy the endpoint identifier for the
-region where you want to create the Pool. The console is the authority for this identifier; do not
-derive it from a copied hostname table.
-
-If you do not have preview access, select **Request access** in the console before continuing.
+region where you want to create the Pool.
 
 Configure a named CLI profile and enter the API key and endpoint identifier when prompted:
 
@@ -93,7 +97,9 @@ Database creation is immediate because the Pool's capacity already exists.
 
 ## 4. Get your connection details
 
-On database creation, you will get a sample RESP command. If you ever need it again, you can `describe` your database OR in the limited-preview console, you can open the **Capacity Pools** panel, select your Pool, and open its **Databases** tab.
+In the limited-preview console, open **Capacity Pools**, select your Pool, and open its
+**Databases** tab. Copy the account-visible RESP endpoint shown there. The console is the
+authoritative source for the endpoint; do not construct it from a region or cell name.
 
 The Database CLI and panel do not vend a credential. Use the API key you created through Key Management,
 or another appropriate Momento credential, as the password and treat it as a secret.

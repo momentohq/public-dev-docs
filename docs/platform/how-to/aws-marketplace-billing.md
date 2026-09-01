@@ -82,9 +82,10 @@ If the number of units you consume in a month does not exceed the amount include
 
 In order to facilitate billing through the AWS Marketplace, Momento's various pricing plans are normalized into "Momento Units". A Momento Unit costs $1, and reflects $1 of resources consumed during the month.
 
-Momento Units most commonly represent consumption of on-demand resources through our standard pay-as-you-go model. Consumption of data transfer or operations is metered at the appropriate rate and then converted into Momento units.
+Momento Units most commonly represent consumption of on-demand resources through our standard pay-as-you-go model. Consumption of data transfer or provisioned capacity is metered at the appropriate rate and then converted into Momento units. For billing purposes, Momento units are rounded up to the nearest whole integer.
 
-For example, if you consume 10 million operations at the on-demand price of $1 per million operations, this is normalized to 10 Momento Units. Your AWS Marketplace bill would reflect the remaining 9 Momento Units under "Additional Usage Fees".
+For example, 10 GiB of Flex Standard capacity used continuously for 30 days costs
+`10 GiB × 720 hours × $0.018/GiB-hour = $129.60`, which rounds to 130 Momento Units.
 
 Other types of services, including provisioned capacity or various add-on features, can also be normalized to Momento Units following the same conversion process. For example, the deployment of an enterprise network connection that costs $100 per month would be normalized to 100 Momento Units.
 

@@ -8,11 +8,6 @@ description: Supported and unsupported Valkey commands and protocol details for 
 
 # Valkey compatibility
 
-:::note
-The supported command set is configured per Database. Confirm the canonical published list
-before relying on this page.
-:::
-
 Connect to Momento Cache with standard Valkey and Redis clients over RESP. The
 [shared gateway](/product/cache/concepts/connectivity-and-gateway) supports a specific
 set of commands. Unsupported commands are rejected with the RESP error `-Command not allowed`.
@@ -24,8 +19,8 @@ credential cannot run returns
 instead return the ordinary Valkey unknown-command response. See
 [Database command permissions](/product/cache/security#database-command-permissions).
 
-Momento Cache runs Valkey 9.1.1 in production. The gateway's supported-command contract below,
-not the upstream version alone, determines compatibility.
+Momento Cache runs Valkey 9. The gateway's supported-command contract below, not the upstream
+version alone, determines compatibility.
 
 ## Supported
 
@@ -35,21 +30,25 @@ The service supports all common Valkey data types and operations:
 - Hashes, including per-field TTLs.
 - Lists (non-blocking), sets, and sorted sets, including type-specific scans.
 - Bitmaps, geo reads, and HyperLogLog.
-- Streams (non-blocking).
-- Server-side scripting (`EVAL`, `EVALSHA`, `FCALL`, `FUNCTION`, `SCRIPT`).
+- Non-blocking streams.
 - Key management such as `DEL`, `EXPIRE`, `TTL`, `TYPE`, `UNLINK`.
 
 ## Not supported
 
-The following feature families are not available:
+The following categorized list names common exclusions. It is not an exhaustive list of every
+unsupported upstream Valkey command.
 
 - **Transactions:** `MULTI`, `EXEC`, `DISCARD`, `WATCH`, `UNWATCH`.
-- **Pub/Sub:** `SUBSCRIBE`, `PUBLISH`, and related commands, and keyspace notifications.
-- **Blocking commands:** `BLPOP`, `BRPOP`, `BLMOVE`, `WAIT`, and blocking `XREAD`.
-- **Database switching:** `SELECT`. One connection serves one Database (see below).
-- **Cursor and cross-key operations:** `SCAN` (use `HSCAN`, `SSCAN`, `ZSCAN` instead), `SORT`,
-  `RENAME`, `COPY`, `RANDOMKEY`, and most cross-key `*STORE` writes.
-- **Client naming:** `CLIENT` name commands and `HELLO ... SETNAME`.
+- **Pub/Sub:** `SUBSCRIBE`, `PSUBSCRIBE`, `SSUBSCRIBE`, `PUBLISH`, `SPUBLISH`, `PUBSUB`,
+  `UNSUBSCRIBE`, `PUNSUBSCRIBE`, `SUNSUBSCRIBE`.
+- **Blocking commands:** `BLMOVE`, `BLMPOP`, `BLPOP`, `BRPOP`,
+  `BRPOPLPUSH`, `BZMPOP`, `BZPOPMAX`, `BZPOPMIN`, `WAIT`, `WAITAOF`, `XREAD`, `XREADGROUP`.
+- **Database switching:** `SELECT`. One connection serves one Database.
+- **Scripting:** `EVAL`, `EVALSHA`, `EVAL_RO`, `EVALSHA_RO`, `FCALL`, `FCALL_RO`, `FUNCTION`,
+  `SCRIPT`.
+- **Other notable exclusions:** `SCAN`, `SORT`, `RENAME`, `RENAMENX`, `COPY`, `RANDOMKEY`,
+  `CLIENT`, `SUNIONSTORE`, `SINTERSTORE`, `SDIFFSTORE`, `ZUNIONSTORE`, `ZINTERSTORE`, and
+  `ZDIFFSTORE`. Use `HSCAN`, `SSCAN`, or `ZSCAN` instead of top-level `SCAN`.
 
 ## Protocol
 
