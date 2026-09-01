@@ -116,12 +116,10 @@ Momento Cache control-plane operations are documented in the
 [Serverless Cache HTTP API](/cache/develop/api-reference/http-api) covers Serverless data-plane
 commands.
 
-### Momento Cache Cluster and Flex RESP endpoints
+### Momento Cache RESP endpoints
 
-Retrieve the account-visible RESP endpoint from the Momento console. Open **Capacity Pools**,
-select your Pool, and open its **Databases** tab. Do not derive the endpoint from the cell names in
-this table. See [Connect a client](/product/cache/connect/clients) for the complete connection
-workflow.
+Retrieve the RESP endpoint for a Database from the Momento console. Open **Capacity Pools**,
+select a Pool, and open its **Databases** tab. See [Connect a client](/product/cache/connect/clients) for more specific instructions with common Redis or Valkey clients.
 
 ### Serverless SDK endpoints
 

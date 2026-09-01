@@ -9,8 +9,7 @@ description: Provision a Capacity Pool, create a Database, and connect a Valkey 
 # Getting started
 
 :::note[Preview]
-Momento Cache (Cluster and Flex) is available in limited preview. Complete the
-[preview access workflow](#request-preview-access) before starting the quickstart.
+Momento Cache (Cluster and Flex) is available in limited preview. [Request access](#request-preview-access) before following this guide.
 :::
 
 ## Request preview access
@@ -36,9 +35,7 @@ You need:
 ## 1. Configure a CLI profile
 
 In the Momento console, create or retrieve an API key and copy the endpoint identifier for the
-region where you want to create the Pool. The console is the authority for this identifier; do not
-derive it from a copied hostname table. If your account is not enabled, complete the
-[preview access workflow](#request-preview-access) before continuing.
+region where you want to create the Pool.
 
 Configure a named CLI profile and enter the API key and endpoint identifier when prompted:
 

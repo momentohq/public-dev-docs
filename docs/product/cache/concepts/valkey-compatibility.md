@@ -19,7 +19,7 @@ credential cannot run returns
 instead return the ordinary Valkey unknown-command response. See
 [Database command permissions](/product/cache/security#database-command-permissions).
 
-Momento Cache runs Valkey 9.0.3. The gateway's supported-command contract below, not the upstream
+Momento Cache runs Valkey 9. The gateway's supported-command contract below, not the upstream
 version alone, determines compatibility.
 
 ## Supported
@@ -30,7 +30,7 @@ The service supports all common Valkey data types and operations:
 - Hashes, including per-field TTLs.
 - Lists (non-blocking), sets, and sorted sets, including type-specific scans.
 - Bitmaps, geo reads, and HyperLogLog.
-- A stream subset for writes, ranges, pending entries, claims, and consumer-group administration.
+- Non-blocking streams.
 - Key management such as `DEL`, `EXPIRE`, `TTL`, `TYPE`, `UNLINK`.
 
 ## Not supported
@@ -41,7 +41,7 @@ unsupported upstream Valkey command.
 - **Transactions:** `MULTI`, `EXEC`, `DISCARD`, `WATCH`, `UNWATCH`.
 - **Pub/Sub:** `SUBSCRIBE`, `PSUBSCRIBE`, `SSUBSCRIBE`, `PUBLISH`, `SPUBLISH`, `PUBSUB`,
   `UNSUBSCRIBE`, `PUNSUBSCRIBE`, `SUNSUBSCRIBE`.
-- **Blocking operations and stream polling reads:** `BLMOVE`, `BLMPOP`, `BLPOP`, `BRPOP`,
+- **Blocking commands:** `BLMOVE`, `BLMPOP`, `BLPOP`, `BRPOP`,
   `BRPOPLPUSH`, `BZMPOP`, `BZPOPMAX`, `BZPOPMIN`, `WAIT`, `WAITAOF`, `XREAD`, `XREADGROUP`.
 - **Database switching:** `SELECT`. One connection serves one Database.
 - **Scripting:** `EVAL`, `EVALSHA`, `EVAL_RO`, `EVALSHA_RO`, `FCALL`, `FCALL_RO`, `FUNCTION`,

@@ -26,15 +26,9 @@ for the sizing modes the service supports.
 
 ## Managing capacity
 
-Available capacity is the configured Valkey `maxmemory` on each primary shard multiplied by the
-number of primary shards. Replicas do not add available capacity. Flex usage includes deployed
-`maxmemory` on both primary and replica nodes. Cluster usage counts every deployed instance.
-Memory utilization is the separate ratio of live `used_memory` to deployed `maxmemory`.
-
-For Cluster, each node reserves roughly 37% of memory for process and nondata overhead. The
-remaining five-eighths is configured as Valkey `maxmemory`. See
-[Provisioning and sizing](/product/cache/concepts/provisioning-and-sizing#cluster-size-by-instance)
-for the sizing relationship.
+The available capacity for a pool is the sum of Valkey's `maxmemory` as configured across all
+primary nodes. Replicas enable failover and improve read throughput, but do not increase
+a pool's available capacity.
 
 You can change a pool's size after creation by updating its configuration. Momento converges
 the running cluster to the new shape. Scaling behavior and safeguards are covered in

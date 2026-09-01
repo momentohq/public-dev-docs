@@ -14,9 +14,7 @@ compute and memory. This page covers creating, listing, connecting to, and delet
 the [Momento CLI](/product/cache/manage/cli) or console.
 
 :::note[Preview availability]
-Momento Cache is available in limited preview, and its Database CLI command group is also in
-preview. Complete the
-[preview access workflow](/product/cache/getting-started#request-preview-access) before creating a
+Momento Cache (Cluster and Flex) is available in limited preview. [Request access](/product/cache/getting-started#request-preview-access) before creating a
 Database.
 :::
 

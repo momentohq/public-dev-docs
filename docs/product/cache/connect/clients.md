@@ -17,16 +17,14 @@ details:
 - **Username:** your Database name
 - **Password:** a Momento API token
 
-In the limited-preview console, open **Capacity Pools**, select your Pool, and open its
-**Databases** tab. Copy the account-visible RESP endpoint shown there. The console is the
-authoritative source for the endpoint; do not construct it from a region or cell name. The preview
-CLI's `database describe` command may also display a sample connection command.
+Retrieve the RESP endpoint for a Database from the Momento console. Open **Capacity Pools**,
+select a Pool, and open its **Databases** tab. Copy the account-visible RESP endpoint shown there.
+The CLI command `database describe` may also display a sample connection command with the RESP
+endpoint.
 
-The Database CLI and panel do not vend a credential. Use the API key you created through Key Management,
-or another appropriate Momento credential, as the password and treat it as a secret.
-
-Check [Valkey compatibility](/product/cache/concepts/valkey-compatibility) for the supported commands before
-you port a workload. Below are examples with some of the most common clients.
+Check [Valkey compatibility](/product/cache/concepts/valkey-compatibility) to understand which
+RESP commands are supported. Below are examples with some of the most common Redis and Valkey
+clients.
 
 ## valkey-cli
 

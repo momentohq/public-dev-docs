@@ -13,7 +13,7 @@ describe, update, list, and delete Capacity Pools programmatically, discover ava
 offerings, and scrape their utilization metrics.
 
 A **Capacity Pool** is a provisioned unit of dedicated Valkey capacity. The available capacity
-for a pool is the sum of Valkey's `maxmemory` as configured across all primary shards. Replicas
+for a pool is the sum of Valkey's `maxmemory` as configured across all primary nodes. Replicas
 enable failover and improve read throughput, but do not increase a pool's available capacity.
 
 You choose how the Pool is sized, either **explicit** mode
@@ -23,9 +23,7 @@ Pool within them. Momento owns the underlying lifecycle and health of the Pool. 
 [Databases](/product/cache/api-reference/database), which share its compute and memory.
 
 :::note[Limited preview]
-Momento Cache is available in limited preview. Complete the
-[preview access workflow](/product/cache/getting-started#request-preview-access) before calling
-this API.
+Momento Cache is available in limited preview. [Request access](/product/cache/getting-started#request-preview-access) before calling this API.
 :::
 
 :::tip[Info]
@@ -86,10 +84,9 @@ In `explicit` mode you specify the pool's shape directly:
 In `managed` mode you specify bounds for available capacity and replication, and Momento sizes the
 Pool within them. Set a dimension's minimum equal to its maximum to pin it to an exact value:
 
-Flex offers **Standard** and **Performance** capacity families. Performance provides more
-throughput and compute than Standard. API requests use the exact family name returned by
-[capacity offering discovery](#capacity-offering-discovery); do not infer a wire value from the
-public family label.
+Flex offers **Standard** and **Performance** capacity families. The Performance family provides
+additional throughput and compute. Use the [discovery API](#capacity-offering-discovery) to
+confirm which families are available in a region.
 
 ```json
 {
@@ -103,7 +100,7 @@ public family label.
       "max_replicas_per_shard": 2
     },
     "zones": ["use1-az1", "use1-az2"],
-    "family": "general"
+    "family": "standard"
   }
 }
 ```
@@ -140,8 +137,8 @@ Use them to determine the managed families and Cluster instance types the accoun
 | families | Array | The managed capacity families the calling account may select. |
 | families[].name | String | The family name accepted by `provisioning.managed.family`. |
 | families[].is_default | Boolean | Whether this is the cell's current default family. |
-| families[].min_capacity_gib | Integer | The lower endpoint of the granted available-capacity range, in GiB. |
-| families[].max_capacity_gib | Integer | The upper endpoint of the granted available-capacity range, in GiB. |
+| families[].min_capacity_gib | Integer | The minimum supported capacity range, in GiB. |
+| families[].max_capacity_gib | Integer | The maximum supported capacity range, in GiB. |
 
 ### List Cluster instance types
 

@@ -13,8 +13,7 @@ operated by Momento, then connect with any Valkey or Redis client through a mana
 An HTTP API for RESP commands is planned.
 
 :::note[Limited preview]
-Momento Cache (Cluster and Flex) is available in limited preview. Complete the
-[preview access workflow](/product/cache/getting-started#request-preview-access) to get started.
+Momento Cache (Cluster and Flex) is available in limited preview. [Request access](/product/cache/getting-started#request-preview-access) to get started.
 :::
 
 Unlike a multi-tenant serverless cache, Momento Cache gives you a dedicated backend sized to
