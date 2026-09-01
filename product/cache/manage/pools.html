@@ -9,8 +9,8 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.19ed51bd.css">
-<script src="/assets/js/runtime~main.b89ecf22.js" defer="defer"></script>
-<script src="/assets/js/main.0ce12b2d.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.d27b6df2.js" defer="defer"></script>
+<script src="/assets/js/main.6ce3d086.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -20,12 +20,11 @@
 <p>This page covers common management operations for a
 <a class="" href="/product/cache/concepts/capacity-pool">Capacity Pool</a> with the
 <a class="" href="/product/cache/manage/cli">Momento CLI</a> or console.</p>
-<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>Preview availability</div><div class="admonitionContent_BuS1"><p>Momento Cache is available in limited preview, and its Capacity Pool and Database CLI command
-groups are also in preview. <a href="https://console.gomomento.com/" target="_blank" rel="noopener noreferrer" class="">Sign in or sign up in the console</a>
-and select <strong>Request access</strong>.</p></div></div>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>Preview availability</div><div class="admonitionContent_BuS1"><p>Momento Cache (Cluster and Flex) is available in limited preview. <a class="" href="/product/cache/getting-started#request-preview-access">Request access</a> before creating a
+Pool.</p></div></div>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="available-capacity-and-usage">Available capacity and usage<a href="#available-capacity-and-usage" class="hash-link" aria-label="Direct link to Available capacity and usage" title="Direct link to Available capacity and usage" translate="no">​</a></h2>
 <p>The available capacity for a pool is the sum of Valkey&#x27;s <code>maxmemory</code> as configured across all
-primary shards. Replicas enable failover and improve read throughput, but do not increase
+primary nodes. Replicas enable failover and improve read throughput, but do not increase
 a pool&#x27;s available capacity.</p>
 <p>A Cluster pool measures usage for billing purposes by counting the number of deployed instances
 of each type.</p>
@@ -41,8 +40,8 @@ commands.</p>
 <ol>
 <li class="">Open <strong>Capacity Pools</strong> and select <strong>Create pool</strong>.</li>
 <li class="">Choose the region, enter the Pool name, and choose Cluster (explicit) or Flex (managed).</li>
-<li class="">For Cluster, enter instance type, shard count, and replicas per shard. For Flex, enter minimum
-and maximum GiB plus minimum and maximum replicas per shard.</li>
+<li class="">For Cluster, enter instance type, shard count, and replicas per shard. For Flex, enter the
+capacity and replica ranges.</li>
 <li class="">Add one or more availability-zone IDs and create the Pool.</li>
 </ol>
 <p>The current form exposes these fields directly; it does not provide Production or Dev/Test presets.

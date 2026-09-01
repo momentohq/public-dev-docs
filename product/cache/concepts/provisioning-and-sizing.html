@@ -9,8 +9,8 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.19ed51bd.css">
-<script src="/assets/js/runtime~main.b89ecf22.js" defer="defer"></script>
-<script src="/assets/js/main.0ce12b2d.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.d27b6df2.js" defer="defer"></script>
+<script src="/assets/js/main.6ce3d086.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -40,26 +40,32 @@ performance and cost. A Cluster pool takes four inputs:</p>
 capacity.</li>
 <li class=""><strong>Availability zones</strong> the pool may use. Choose more than one for production.</li>
 </ul>
-<p>Cluster configuration permits a minimum of one primary shard and zero replicas, although this may
-result in data loss.</p>
+<p>Cluster supports up to 100 primary nodes and up to five replicas per shard. A configuration
+without replicas may result in data loss. Use the <a class="" href="/product/cache/api-reference/capacity-pool#capacity-offering-discovery">discovery API</a>
+to confirm which instance types available to your account and region.</p>
+<p>Each Cluster node has an advertised amount of memory dedicated to Valkey. The
+<code>reserved-memory-percent</code> parameter reserves a portion of that memory for nondata overhead such
+as output buffers and memory loss due to fragmentation. Valkey <code>maxmemory</code> is set to the
+advertised memory minus the reserve. For example, with 13.5 GB of advertised memory and a 25% reserve, <code>maxmemory</code> is about 10.1 GB.</p>
 <p>A Cluster pool measures usage for billing purposes by counting the number of deployed instances
 of each type.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="flex-size-by-capacity">Flex: size by capacity<a href="#flex-size-by-capacity" class="hash-link" aria-label="Direct link to Flex: size by capacity" title="Direct link to Flex: size by capacity" translate="no">​</a></h2>
 <p>Flex sizing provides powerful, streamlined capacity management. A Flex pool abstracts away
 instances and topology management. Instead, you choose:</p>
 <ul>
-<li class=""><strong>Minimum and maximum available capacity in GiB</strong> for the pool. Set the bounds equal to pin
-capacity.</li>
-<li class=""><strong>Minimum and maximum replicas per shard</strong> for redundancy and read capacity. Set the bounds equal
-to pin replication.</li>
+<li class=""><strong>Capacity range in GiB</strong> for the Pool. Set the bounds equal to pin capacity at a specific value.</li>
+<li class=""><strong>Replica range per shard</strong> for redundancy and read capacity. Set the bounds equal to pin
+replication at a specific value.</li>
 <li class=""><strong>Availability zones</strong> the pool may use. Choose more than one for production.</li>
 </ul>
 <p>Momento maps these bounds to available configurations and automatically grows or shrinks the
-topology within the specified range as memory utilization changes. Flex configuration requires at least three primary shards. It permits zero replicas, although this may result in data loss.</p>
+topology within the specified range as memory utilization changes. Flex supports three or more
+primary nodes and zero or more replicas per shard. A configuration without replicas may result in
+data loss.</p>
 <p>Flex offers <strong>Standard</strong> and <strong>Performance</strong> capacity families. The Performance family provides
-roughly twice as much throughput and compute as the Standard family.</p>
+more throughput and compute than the Standard family.</p>
 <p>The available capacity for a pool is the sum of Valkey&#x27;s <code>maxmemory</code> as configured across all
-primary shards. Replicas enable failover and improve read throughput, but do not increase
+primary nodes. Replicas enable failover and improve read throughput, but do not increase
 a pool&#x27;s available capacity.</p>
 <p>A Flex pool measures usage for billing purposes as the sum of Valkey&#x27;s <code>maxmemory</code> across <em>all</em>
 deployed nodes, including both primaries and replicas.</p>
