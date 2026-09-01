@@ -23,8 +23,9 @@ Pool within them. Momento owns the underlying lifecycle and health of the Pool. 
 [Databases](/product/cache/api-reference/database), which share its compute and memory.
 
 :::note[Limited preview]
-Momento Cache is available in limited preview. [Sign in or sign up in the Momento
-console](https://console.gomomento.com/) and select **Request access** before calling this API.
+Momento Cache is available in limited preview. Complete the
+[preview access workflow](/product/cache/getting-started#request-preview-access) before calling
+this API.
 :::
 
 :::tip[Info]
@@ -85,6 +86,11 @@ In `explicit` mode you specify the pool's shape directly:
 In `managed` mode you specify bounds for available capacity and replication, and Momento sizes the
 Pool within them. Set a dimension's minimum equal to its maximum to pin it to an exact value:
 
+Flex offers **Standard** and **Performance** capacity families. Performance provides more
+throughput and compute than Standard. API requests use the exact family name returned by
+[capacity offering discovery](#capacity-offering-discovery); do not infer a wire value from the
+public family label.
+
 ```json
 {
   "managed": {
@@ -134,8 +140,8 @@ Use them to determine the managed families and Cluster instance types the accoun
 | families | Array | The managed capacity families the calling account may select. |
 | families[].name | String | The family name accepted by `provisioning.managed.family`. |
 | families[].is_default | Boolean | Whether this is the cell's current default family. |
-| families[].min_capacity_gib | Integer | The smallest granted available capacity offered by the family, in GiB. |
-| families[].max_capacity_gib | Integer | The largest granted available capacity offered by the family, in GiB. |
+| families[].min_capacity_gib | Integer | The lower endpoint of the granted available-capacity range, in GiB. |
+| families[].max_capacity_gib | Integer | The upper endpoint of the granted available-capacity range, in GiB. |
 
 ### List Cluster instance types
 

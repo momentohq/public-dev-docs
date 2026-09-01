@@ -31,6 +31,11 @@ number of primary shards. Replicas do not add available capacity. Flex usage inc
 `maxmemory` on both primary and replica nodes. Cluster usage counts every deployed instance.
 Memory utilization is the separate ratio of live `used_memory` to deployed `maxmemory`.
 
+For Cluster, each node reserves roughly 37% of memory for process and nondata overhead. The
+remaining five-eighths is configured as Valkey `maxmemory`. See
+[Provisioning and sizing](/product/cache/concepts/provisioning-and-sizing#cluster-size-by-instance)
+for the sizing relationship.
+
 You can change a pool's size after creation by updating its configuration. Momento converges
 the running cluster to the new shape. Scaling behavior and safeguards are covered in
 [Manage Capacity Pools](/product/cache/manage/pools).

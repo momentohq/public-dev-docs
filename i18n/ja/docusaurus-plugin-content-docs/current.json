@@ -275,10 +275,6 @@
     "message": "管理",
     "description": "The label for category 'Manage' in sidebar 'siteSidebar'"
   },
-  "sidebar.siteSidebar.category.cache-resp": {
-    "message": "RESP互換性",
-    "description": "The label for category 'RESP compatibility' in sidebar 'siteSidebar'"
-  },
   "sidebar.siteSidebar.category.cache-proxy": {
     "message": "プロキシ",
     "description": "The label for category 'Proxy' in sidebar 'siteSidebar'"

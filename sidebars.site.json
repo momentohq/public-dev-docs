@@ -757,17 +757,6 @@
           },
           {
             "type": "category",
-            "label": "RESP compatibility",
-            "collapsible": true,
-            "collapsed": true,
-            "items": [
-              "cache/resp/index",
-              "cache/resp/commands"
-            ],
-            "key": "cache-resp"
-          },
-          {
-            "type": "category",
             "label": "Proxy",
             "collapsible": true,
             "collapsed": true,

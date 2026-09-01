@@ -116,17 +116,15 @@ Momento Cache control-plane operations are documented in the
 [Serverless Cache HTTP API](/cache/develop/api-reference/http-api) covers Serverless data-plane
 commands.
 
-### RESP and SDK endpoints
+### Momento Cache Cluster and Flex RESP endpoints
 
-#### RESP endpoints
+Retrieve the account-visible RESP endpoint from the Momento console. Open **Capacity Pools**,
+select your Pool, and open its **Databases** tab. Do not derive the endpoint from the cell names in
+this table. See [Connect a client](/product/cache/connect/clients) for the complete connection
+workflow.
 
-RESP connectivity use the cell host without the `api.` prefix:
+### Serverless SDK endpoints
 
-```
-cache.<cell-host>.prod.a.momentohq.com
-```
-
-#### SDK endpoints
 SDK endpoints do not need any prefixes:
 
 ```
@@ -136,14 +134,7 @@ SDK endpoints do not need any prefixes:
 ### Examples
 For `ap-southeast-1`:
 
-RESP:
-```
-cache.cell-1-ap-southeast-1-1.prod.a.momentohq.com
-```
-
 SDK:
 ```
 cell-1-ap-southeast-1-1.prod.a.momentohq.com
 ```
-
-More information about RESP connectivity is available on the [RESP compatibility page](/cache/resp).

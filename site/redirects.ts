@@ -129,6 +129,10 @@ const REDIRECTS = {
     '/capacity-pool/http-api': '/product/cache/api-reference/capacity-pool',
     '/database/http-api': '/product/cache/api-reference/database',
 
+    // Retired Serverless-era RESP pages now point directly to the Cluster/Flex owners.
+    '/cache/resp': '/product/cache/connect/clients',
+    '/cache/resp/commands': '/product/cache/concepts/valkey-compatibility',
+
     // Legacy product paths consolidated into the canonical Object Store tree.
     '/objectstore': '/objectstore/overview',
     '/media-storage': '/objectstore/overview',

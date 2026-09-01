@@ -13,8 +13,8 @@ operated by Momento, then connect with any Valkey or Redis client through a mana
 An HTTP API for RESP commands is planned.
 
 :::note[Limited preview]
-Momento Cache (Cluster and Flex) is available in limited preview. [Sign in or sign up in the
-Momento console](https://console.gomomento.com/) and select **Request access** to get started.
+Momento Cache (Cluster and Flex) is available in limited preview. Complete the
+[preview access workflow](/product/cache/getting-started#request-preview-access) to get started.
 :::
 
 Unlike a multi-tenant serverless cache, Momento Cache gives you a dedicated backend sized to
@@ -72,5 +72,5 @@ and [Capacity Pool metrics](/product/cache/manage/metrics), then scope credentia
 ## Availability
 
 Momento Cache runs on AWS today. Support for additional clouds is planned. Cluster and Flex are
-available together in limited preview through the [Request access](https://console.gomomento.com/)
-flow.
+available together in limited preview through the
+[Marketplace and support-email access workflow](/product/cache/getting-started#request-preview-access).

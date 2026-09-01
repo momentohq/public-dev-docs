@@ -20,7 +20,7 @@ and churn. The gateway also provides a stable endpoint that masks topology chang
 Valkey cluster.
 
 The gateway offloads a variety of traffic responsibilities from the Valkey cluster, such as
-connection pooling, routing, rate limiting, public TLS termination, HTTP request translation,
+connection pooling, routing, rate limiting, public TLS termination, protocol translation,
 auth, and more. This helps to efficiently scale a Valkey cluster to millions of clients and
 millions of RPS.
 

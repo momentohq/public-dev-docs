@@ -17,9 +17,10 @@ details:
 - **Username:** your Database name
 - **Password:** a Momento API token
 
-You can get your RESP endpoint in either of two ways:
-- In the preview CLI, `describe` your database.
-- In the limited-preview console, open the **Capacity Pools** panel, select your Pool, and open its **Databases** tab.
+In the limited-preview console, open **Capacity Pools**, select your Pool, and open its
+**Databases** tab. Copy the account-visible RESP endpoint shown there. The console is the
+authoritative source for the endpoint; do not construct it from a region or cell name. The preview
+CLI's `database describe` command may also display a sample connection command.
 
 The Database CLI and panel do not vend a credential. Use the API key you created through Key Management,
 or another appropriate Momento credential, as the password and treat it as a secret.

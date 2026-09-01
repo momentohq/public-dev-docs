@@ -35,8 +35,13 @@ performance and cost. A Cluster pool takes four inputs:
   capacity.
 - **Availability zones** the pool may use. Choose more than one for production.
 
-Cluster configuration permits a minimum of one primary shard and zero replicas, although this may
-result in data loss.
+Cluster supports one to 100 primary shards and zero to five replicas per shard. A configuration
+without replicas may result in data loss. Available Cluster instance types include `t4g.micro`;
+use capacity offering discovery to view the instance types available to your account and region.
+
+Each Cluster node reserves roughly 37% of its memory for process and nondata overhead. The
+remaining five-eighths is configured as Valkey `maxmemory` and contributes to the Pool's available
+capacity. This reserve is fixed and is not customer-configurable.
 
 A Cluster pool measures usage for billing purposes by counting the number of deployed instances
 of each type.
@@ -46,17 +51,18 @@ of each type.
 Flex sizing provides powerful, streamlined capacity management. A Flex pool abstracts away
 instances and topology management. Instead, you choose:
 
-- **Minimum and maximum available capacity in GiB** for the pool. Set the bounds equal to pin
-  capacity.
-- **Minimum and maximum replicas per shard** for redundancy and read capacity. Set the bounds equal
-  to pin replication.
+- **Available-capacity range in GiB** for the Pool. Set the bounds equal to pin capacity.
+- **Replica range per shard** for redundancy and read capacity. Set the bounds equal to pin
+  replication.
 - **Availability zones** the pool may use. Choose more than one for production.
 
 Momento maps these bounds to available configurations and automatically grows or shrinks the
-topology within the specified range as memory utilization changes. Flex configuration requires at least three primary shards. It permits zero replicas, although this may result in data loss.
+topology within the specified range as memory utilization changes. Flex supports three or more
+primary shards and zero or more replicas per shard. A configuration without replicas may result in
+data loss.
 
 Flex offers **Standard** and **Performance** capacity families. The Performance family provides
-roughly twice as much throughput and compute as the Standard family.
+more throughput and compute than the Standard family.
 
 The available capacity for a pool is the sum of Valkey's `maxmemory` as configured across all
 primary shards. Replicas enable failover and improve read throughput, but do not increase

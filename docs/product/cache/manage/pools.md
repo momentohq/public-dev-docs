@@ -14,8 +14,9 @@ This page covers common management operations for a
 
 :::note[Preview availability]
 Momento Cache is available in limited preview, and its Capacity Pool and Database CLI command
-groups are also in preview. [Sign in or sign up in the console](https://console.gomomento.com/)
-and select **Request access**.
+groups are also in preview. Complete the
+[preview access workflow](/product/cache/getting-started#request-preview-access) before creating a
+Pool.
 :::
 
 ## Available capacity and usage
@@ -25,7 +26,9 @@ primary shards. Replicas enable failover and improve read throughput, but do not
 a pool's available capacity.
 
 A Cluster pool measures usage for billing purposes by counting the number of deployed instances
-of each type.
+of each type. Each node reserves roughly 37% of memory for process and nondata overhead; see
+[Provisioning and sizing](/product/cache/concepts/provisioning-and-sizing#cluster-size-by-instance)
+for how the remaining five-eighths contributes to available capacity.
 
 A Flex pool measures usage for billing purposes as the sum of Valkey's `maxmemory` across _all_
 deployed nodes, including both primaries and replicas.
@@ -43,8 +46,8 @@ In the limited-preview console:
 
 1. Open **Capacity Pools** and select **Create pool**.
 2. Choose the region, enter the Pool name, and choose Cluster (explicit) or Flex (managed).
-3. For Cluster, enter instance type, shard count, and replicas per shard. For Flex, enter minimum
-   and maximum GiB plus minimum and maximum replicas per shard.
+3. For Cluster, enter instance type, shard count, and replicas per shard. For Flex, enter the
+   available-capacity and replica ranges.
 4. Add one or more availability-zone IDs and create the Pool.
 
 The current form exposes these fields directly; it does not provide Production or Dev/Test presets.
