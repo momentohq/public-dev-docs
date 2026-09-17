@@ -25,8 +25,31 @@ with a missing-endpoint error. The region base URL is shown in the console, and 
 Because modern API keys are tracked, you can:
 
 - **List** your outstanding keys,
-- **Describe** a key to see its metadata, and
+- **Describe** a key to see its metadata,
+- **Refresh** a key to rotate it onto a fresh credential, and
 - **Revoke** a key — after which it stops authenticating.
+
+## Rotating keys
+
+An expiring key is issued with a **refresh token** alongside it. The refresh token is a credential
+for one job only: exchanging it for a successor key with the same role and description. That lets an
+application rotate its own credential on a schedule instead of waiting for an operator to mint a
+replacement by hand.
+
+The shape of a rotation:
+
+- Each refresh token can be spent **once**. The exchange hands back both a new key and a new refresh
+  token.
+- A refresh token expires **with its key**, so rotate before the key expires.
+- The successor inherits the lifetime the original key was issued with, measured from the moment of
+  the refresh. You can ask for a shorter one, but never a longer one.
+- Refreshing does **not** revoke the key it replaces. Both stay live, which gives you a window to
+  roll the new key across a fleet before revoking the old one.
+
+You can opt out at generation time if you would rather a key never be rotatable, and keys that never
+expire are never given a refresh token at all.
+
+See the [API Keys HTTP API](./api-keys-http-api.md) for the request and response details.
 
 ## Key versions
 
