@@ -7,7 +7,7 @@ unlisted: true
 
 # HTTP API Reference for Momento API Keys
 
-Momento provides an HTTP API for managing the API keys on your account. This API lets you generate, list, and revoke API keys programmatically, without going through the [Momento console](https://console.gomomento.com/api-keys).
+Momento provides an HTTP API for managing the API keys on your account. This API lets you generate, list, refresh, and revoke API keys programmatically, without going through the [Momento console](https://console.gomomento.com/api-keys).
 
 Each API key is tied to a [role](/platform/authentication/roles-http-api), which determines what the key is allowed to do. See the [Roles HTTP API](/platform/authentication/roles-http-api) for how to create and manage the roles referenced here.
 
@@ -46,7 +46,7 @@ All errors share a common JSON body:
 
 # API Keys API
 
-The API Keys API lets you generate new API keys, list the keys that exist on your account, and revoke a key.
+The API Keys API lets you generate new API keys, list the keys that exist on your account, refresh a key, and revoke a key.
 
 ## API key object
 
@@ -72,6 +72,12 @@ Operations that return key metadata use a common shape. The plaintext key materi
 | expires_at_epoch_seconds | Integer | When the key expires, in seconds since the Unix epoch. Omitted for keys that never expire. |
 | issued_at_epoch_seconds | Integer | When the key was generated, in seconds since the Unix epoch. |
 
+## Refresh tokens
+
+Every expiring key is issued a **refresh token** alongside it, unless you opt out with `exclude_refresh_token`. A refresh token can be used exactly once, through [Refresh API Key](#refresh-api-key), for a successor key with the same role and description.
+
+Refresh tokens are credentials and should be stored securely (e.g. in a secrets manager). They expire when the original key does, so make sure to rotate before they expire.
+
 ---
 
 ## Generate API Key
@@ -96,7 +102,8 @@ Generates a new API key with the specified role, description, and expiry. The pl
 {
   "role_id": "cicd-role",
   "description": "For deploying to CI/CD environments",
-  "expiry": 1719363600
+  "expiry": 1719363600,
+  "exclude_refresh_token": false
 }
 ```
 
@@ -105,6 +112,7 @@ Generates a new API key with the specified role, description, and expiry. The pl
 | role_id | yes | String | The identifier of the [role](/platform/authentication/roles-http-api) to assign to the key. |
 | description | yes | String | A human-readable description for the key. |
 | expiry | yes | String or Integer | When the key should expire. Either the literal string `"never"`, or an integer number of seconds since the Unix epoch at which the key expires. |
+| exclude_refresh_token | no | Boolean | Set to `true` to generate the key without a [refresh token](#refresh-tokens). Defaults to `false`. Keys with `"expiry": "never"` are never given a refresh token. |
 
 ### Responses
 
@@ -115,6 +123,7 @@ Generates a new API key with the specified role, description, and expiry. The pl
 ```json
 {
   "api_key": "api-key",
+  "refresh_token": "refresh-token",
   "key_info": {
     "key_id": "api-key-id",
     "account_id": "account-id",
@@ -129,6 +138,7 @@ Generates a new API key with the specified role, description, and expiry. The pl
 | Field | Type | Description |
 |-------|------|-------------|
 | api_key | String | The plaintext API key. This is the only time it is returned; store it securely. |
+| refresh_token | String | A single-use token for [refreshing](#refresh-api-key) this key. Omitted when the key never expires or when the request set `exclude_refresh_token` to `true`. Like the API key, this is the only time it is returned; store it securely. |
 | key_info | Object | Metadata about the generated key. See [API key object](#api-key-object). |
 
 #### Error
@@ -146,7 +156,95 @@ Generates a new API key with the specified role, description, and expiry. The pl
 - No role with the specified `role_id` exists on the account.
 
 *Status Code: 429 Too Many Requests*
-- The request was throttled. Retry after a short delay.
+- The account has reached its limit on the number of API keys, or the request was throttled. Revoke a key you no longer need, or retry after a short delay.
+
+*Status Code: 500 Internal Server Error*
+- This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
+
+---
+
+## Refresh API Key
+
+Exchanges a [refresh token](#refresh-tokens) for a new API key carrying the same role and description as the key it succeeds. The plaintext `api_key` and the next `refresh_token` are both returned **once**; store them securely, exactly as you would a freshly generated key.
+
+Refreshing does **not** revoke the key being replaced. The old key keeps working until it expires or you [revoke](#revoke-api-key) it, which gives you a window to roll the new key out across a fleet before the old one goes away.
+
+:::caution
+
+A refresh token can be spent exactly once and must be used before the original key expires.
+
+:::
+
+### Request
+
+- Path: /api-keys/refresh
+- HTTP Method: POST
+
+#### Headers
+
+| Header&nbsp;name | Required? | Type   | Description                                                                                        |
+|------------------|-----------|--------|-----------------------------------------------------------------------------------------------------|
+| Authorization    | yes       | String | The refresh token returned from when the key was generated or last refreshed. This endpoint authenticates with the refresh token, **not** with an API key. |
+| Content-Type     | no        | String | Must be `application/json` when a request body is sent.                                            |
+
+#### Request Body
+
+The body is optional. Send no body at all, or an empty `{}`, to keep the same lifetime as the original key.
+
+```json
+{
+  "expiration_epoch_seconds": 1719363600
+}
+```
+
+| Field | Required? | Type | Description |
+|-------|-----------|------|-------------|
+| expiration_epoch_seconds | no | Integer | When the new key should expire, in seconds since the Unix epoch. It may only shorten the lifetime: it must be in the future, and no later than the time of the refresh plus the full lifetime the key being refreshed was originally issued with. When omitted, the new key gets that full lifetime measured from the time of the refresh. |
+
+Because each successor's lifetime becomes the ceiling for the refresh after it, shortening a key's lifetime here also caps every later rotation in the chain.
+
+### Responses
+
+#### Success
+
+*Status Code: 200 OK*
+
+```json
+{
+  "api_key": "api-key",
+  "refresh_token": "refresh-token",
+  "key_info": {
+    "key_id": "new-api-key-id",
+    "account_id": "account-id",
+    "description": "For deploying to CI/CD environments",
+    "role_id": "cicd-role",
+    "expires_at_epoch_seconds": 1721955600,
+    "issued_at_epoch_seconds": 1719363600
+  },
+  "previous_key_id": "api-key-id"
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| api_key | String | The plaintext API key for the successor key. This is the only time it is returned; store it securely. |
+| refresh_token | String | The single-use refresh token for rotating the successor key. This is the only time it is returned; store it securely. |
+| key_info | Object | Metadata about the successor key. See [API key object](#api-key-object). |
+| previous_key_id | String | The `key_id` of the key that was refreshed. [Revoke](#revoke-api-key) it once the new key is in place everywhere. |
+
+#### Error
+
+*Status Code: 400 Bad Request*
+- The request body is invalid — for example, malformed JSON, or an `expiration_epoch_seconds` that is in the past or later than the original key's lifetime allows. See the message body for further details.
+
+*Status Code: 401 Unauthorized*
+- The credential in the `Authorization` header is missing, malformed, expired, or is not a refresh token. An API key or session token cannot be used here and a refresh token cannot be used on any other endpoint. This status is also returned when the key the token refreshes has been revoked.
+
+*Status Code: 403 Forbidden*
+- The refresh token has already been used or the account is locked.
+
+*Status Code: 429 Too Many Requests*
+- The account has reached its limit on the number of API keys or the request was throttled. When the key limit is the cause, the refresh token is **not** spent — revoke a key you no longer need and retry with the same token.
 
 *Status Code: 500 Internal Server Error*
 - This error type typically indicates that the service is experiencing issues. Contact Momento support for further assistance.
@@ -297,7 +395,7 @@ curl -X POST -H "Authorization: <token>" \
   "https://mga.registry.prod.a.momentohq.com/api-keys"
 ```
 
-Generate a key that expires at a specific time (seconds since the Unix epoch):
+Generate a key that expires at a specific time (seconds since the Unix epoch). The response also carries a `refresh_token` for rotating it later:
 
 ```bash
 curl -X POST -H "Authorization: <token>" \
@@ -308,6 +406,47 @@ curl -X POST -H "Authorization: <token>" \
     "expiry": 1719363600
   }' \
   "https://mga.registry.prod.a.momentohq.com/api-keys"
+```
+
+Generate an expiring key that cannot be rotated by opting out of the refresh token:
+
+```bash
+curl -X POST -H "Authorization: <token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "role_id": "cicd-role",
+    "description": "Temporary key for the Q3 data migration",
+    "expiry": 1719363600,
+    "exclude_refresh_token": true
+  }' \
+  "https://mga.registry.prod.a.momentohq.com/api-keys"
+```
+
+## Example: Refresh an API Key
+
+Rotate a key, giving the successor the same lifetime the original was issued with. The refresh token goes in the `Authorization` header and no body is needed:
+
+```bash
+curl -X POST -H "Authorization: <refresh-token>" \
+  "https://mga.registry.prod.a.momentohq.com/api-keys/refresh"
+```
+
+Rotate a key and give the successor a shorter lifetime:
+
+```bash
+curl -X POST -H "Authorization: <refresh-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "expiration_epoch_seconds": 1719363600
+  }' \
+  "https://mga.registry.prod.a.momentohq.com/api-keys/refresh"
+```
+
+Once the new key is deployed everywhere, revoke the key it replaced using the `previous_key_id` from the refresh response:
+
+```bash
+curl -X DELETE -H "Authorization: <token>" \
+  "https://mga.registry.prod.a.momentohq.com/api-keys/previous-key-id"
 ```
 
 ## Example: List API Keys
