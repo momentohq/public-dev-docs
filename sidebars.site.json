@@ -237,8 +237,10 @@
         "items": [
           "platform/authentication/index",
           "platform/authentication/api-keys",
+          "platform/authentication/api-keys-http-api",
           "platform/authentication/tokens",
-          "platform/authentication/roles-and-permissions"
+          "platform/authentication/roles-and-permissions",
+          "platform/authentication/roles-http-api"
         ],
         "key": "platform-authentication",
         "className": "sidebar-group-product"

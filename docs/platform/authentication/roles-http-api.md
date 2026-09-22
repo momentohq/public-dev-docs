@@ -2,7 +2,6 @@
 sidebar_label: Roles HTTP API
 title: HTTP API for Momento Roles
 description: HTTP API reference for managing custom roles and permissions programmatically.
-unlisted: true
 ---
 
 # HTTP API Reference for Momento Roles
