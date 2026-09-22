@@ -2,7 +2,6 @@
 sidebar_label: API Keys HTTP API
 title: HTTP API for Momento API Keys
 description: HTTP API reference for managing Momento API keys programmatically.
-unlisted: true
 ---
 
 # HTTP API Reference for Momento API Keys
