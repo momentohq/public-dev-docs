@@ -18,6 +18,7 @@ pagination_next: null
 
 - [Terraform](https://developer.hashicorp.com/terraform/install)がインストールされている
 - [Momento Console](https://console.gomomento.com)で作成できるMomento APIキー
+- You'll also need a Momento serverless endpoint, which you can choose from [our list](/platform/regions).
 
 ## Example Terraform Project
 
@@ -43,7 +44,8 @@ MomentoのAPIキーを提供するには、`provider`ブロックに次のよう
 
 ```hcl
 provider "momento" {
-  api_key = "your-api-key"
+  v2_api_key = "your-api-key"
+  v2_api_endpoint = "your-api-endpoint"
 }
 ```
 
@@ -51,6 +53,7 @@ provider "momento" {
 
 ```bash
 export MOMENTO_API_KEY="your-api-key"
+export MOMENTO_ENDPOINT="your-api-endpoint"
 ```
 
 以下のコマンドを実行して、"example "という名前のMomento Cacheを作成し、削除します：

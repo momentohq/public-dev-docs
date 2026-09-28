@@ -25,9 +25,11 @@ Unlike the region-based cache endpoints, it is not tied to a specific cell or re
 
 ## Authentication
 
-You will need a Momento API Key that grants auth-management access on your account. API Keys control access to Momento services and can be set to expire.
+You will need a v2 Momento API Key that grants auth-management access on your account. API Keys control access to Momento services and can be set to expire.
 
 The API Key must be provided in the `Authorization` header.
+
+Our Momento roles API does not accept disposable tokens or legacy API Keys.
 
 ## Error responses
 

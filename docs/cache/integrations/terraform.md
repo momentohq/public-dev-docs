@@ -18,6 +18,7 @@ In this tutorial, we will walk through a basic Terraform project that creates an
 
 - [Terraform](https://developer.hashicorp.com/terraform/install) is installed.
 - You'll need a Momento API key, which you can create in the [Momento Console](https://console.gomomento.com)
+- You'll also need a Momento serverless endpoint, which you can choose from [our list](/platform/regions).
 
 ## Example Terraform Project
 
@@ -43,14 +44,16 @@ To provide your Momento API key, you can include it in the `provider` block like
 
 ```hcl
 provider "momento" {
-  api_key = "your-api-key"
+  v2_api_key = "your-api-key"
+  v2_api_endpoint = "your-api-endpoint"
 }
 ```
 
-Or you can set an environment variable:
+Or you can set environment variables:
 
 ```bash
 export MOMENTO_API_KEY="your-api-key"
+export MOMENTO_ENDPOINT="your-api-endpoint"
 ```
 
 Run the following commands to create and delete a Momento Cache named "example":
