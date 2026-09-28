@@ -4,6 +4,9 @@ title: Managing Momento Roles
 description: Reference for managing custom roles and permissions programmatically.
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Manage Momento Roles
 
 Momento provides an HTTP API for managing the roles on your account. A **role** is a named set of permissions that you assign to account members and [API keys](/platform/authentication/api-keys-http-api) to control what they can do.
@@ -27,9 +30,18 @@ Unlike the region-based cache endpoints, it is not tied to a specific cell or re
 
 You will need a v2 Momento API Key that grants auth-management access on your account. API Keys control access to Momento services and can be set to expire.
 
+Our Momento roles API does not accept disposable tokens or legacy API Keys.
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
+
 The API Key must be provided in the `Authorization` header.
 
-Our Momento roles API does not accept disposable tokens or legacy API Keys.
+</TabItem>
+</Tabs>
 
 ## Error responses
 
@@ -241,13 +253,19 @@ The following permission set exercises every rule type, selector variant, and th
 
 ---
 
-# Roles API
+# Roles Management
 
-The Roles API lets you list the roles on your account and create, update, and delete custom roles.
+The Roles API and CLI let you list the roles on your account and create, update, and delete custom roles.
 
 ## List Roles
 
 Lists the roles on your account, with pagination. You can optionally filter by role type.
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 ### Request
 
@@ -319,6 +337,9 @@ Lists the roles on your account, with pagination. You can optionally filter by r
 | roles | Array | The roles on the account for this page. Each entry has the shape described in [Role object](#role-object). |
 | next_token | String | A pagination token for fetching the next page. Present only when more roles are available; pass it as the `next_token` query parameter on the next call. |
 
+</TabItem>
+</Tabs>
+
 #### Error
 
 *Status Code: 400 Bad Request*
@@ -341,6 +362,12 @@ Lists the roles on your account, with pagination. You can optionally filter by r
 ## Create Custom Role
 
 Creates a new custom role with the specified permission set.
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 ### Request
 
@@ -406,6 +433,9 @@ Returns the created role in the [Role object](#role-object) shape, including its
 }
 ```
 
+</TabItem>
+</Tabs>
+
 #### Error
 
 *Status Code: 400 Bad Request*
@@ -431,6 +461,12 @@ Returns the created role in the [Role object](#role-object) shape, including its
 ## Update Custom Role
 
 Updates an existing custom role, replacing its name, description, and permission set with the values in the request body. System roles cannot be updated.
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 ### Request
 
@@ -485,6 +521,9 @@ The request body has the same shape as [Create Custom Role](#create-custom-role)
 
 Returns the updated role in the [Role object](#role-object) shape.
 
+</TabItem>
+</Tabs>
+
 #### Error
 
 *Status Code: 400 Bad Request*
@@ -513,6 +552,12 @@ Returns the updated role in the [Role object](#role-object) shape.
 ## Delete Custom Role
 
 Deletes a custom role. A role can only be deleted once nothing references it. If the role is still assigned to any account members, pending invitations, or API keys, the delete is **blocked** and the response lists what is still using it. System roles cannot be deleted.
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 ### Request
 
@@ -580,6 +625,9 @@ When the delete was blocked because the role is still in use, the response lists
 | invitations | Array | Present when `status` is `blocked`. The pending invitations still assigned to the role. |
 | api_keys | Array | Present when `status` is `blocked`. The API keys still assigned to the role. Each entry has the shape described in the [API Keys HTTP API](/platform/authentication/api-keys-http-api#api-key-object). |
 
+</TabItem>
+</Tabs>
+
 To delete a blocked role, reassign or remove everything listed in the response, then retry the delete.
 
 #### Error
@@ -610,14 +658,29 @@ To delete a blocked role, reassign or remove everything listed in the response, 
 
 List only the custom roles on your account:
 
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
+
 ```bash
 curl -H "Authorization: <token>" \
   "https://mga.registry.prod.a.momentohq.com/roles?type=custom&limit=50"
 ```
 
+</TabItem>
+</Tabs>
+
 ## Example: Create a Custom Role
 
 Create a role with read/write access to a single cache:
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 ```bash
 curl -X POST -H "Authorization: <token>" \
@@ -639,9 +702,18 @@ curl -X POST -H "Authorization: <token>" \
   "https://mga.registry.prod.a.momentohq.com/roles"
 ```
 
+</TabItem>
+</Tabs>
+
 ## Example: Update a Custom Role
 
 Broaden the role to cover all caches:
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 ```bash
 curl -X PUT -H "Authorization: <token>" \
@@ -663,7 +735,16 @@ curl -X PUT -H "Authorization: <token>" \
   "https://mga.registry.prod.a.momentohq.com/roles/cicd-role"
 ```
 
+</TabItem>
+</Tabs>
+
 ## Example: Delete a Custom Role
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 Delete a role by its `role_id`:
 
@@ -671,3 +752,6 @@ Delete a role by its `role_id`:
 curl -X DELETE -H "Authorization: <token>" \
   "https://mga.registry.prod.a.momentohq.com/roles/cicd-role"
 ```
+
+</TabItem>
+</Tabs>
