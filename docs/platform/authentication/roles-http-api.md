@@ -106,7 +106,7 @@ Each rule is an object tagged by a `type` field. The other fields depend on the 
 | `account_management` | `read`, `list` | — |
 | `auth_management` | `read`, `write`, `list` | `items` (must be `"*"`) |
 | `resource_management` | `read`, `write`, `list` | `resources` (must be `"*"`) |
-| `database` | `read`, `write` | `databases` |
+| `database` | `read`, `write` | `databases`, `items` |
 | `cache` | `read`, `write`, `list` | `caches`, `items` |
 | `topic` | `read`, `write`, `list` | `caches`, `topics` |
 | `store` | `read`, `write`, `list` | `stores`, `items` |
@@ -120,11 +120,11 @@ The `databases`, `caches`, `stores`, `topics`, `functions`, and `items` fields a
 |----------|----------|--------------|---------|
 | Name | `"*"` | `{ "name": "my-cache" }` | `databases`, `caches`, `stores` |
 | Name or prefix | `"*"` | `{ "name": "my-topic" }` or `{ "prefix": "room-" }` | `topics`, `functions` |
-| Item | `"*"` | `{ "key": "my-key" }` or `{ "key_prefix": "public/" }` | cache/store `items` |
+| Item | `"*"` | `{ "key": "my-key" }` or `{ "key_prefix": "public/" }` | database/cache/store `items` |
 
 The `items` field on an `auth_management` rule and the `resources` field on a `resource_management` rule must always be the wildcard `"*"`.
 
-A Database rule's `permissions` array contains `"read"`, `"write"`, or both. Its `databases` selector is `"*"` or an object with exactly one `name`. Database rules do not have an item, key, or key-prefix selector.
+A Database rule's `permissions` array contains `"read"`, `"write"`, or both.
 
 #### Rule examples
 
@@ -145,23 +145,25 @@ Read-only access to keys under a prefix in a single cache:
 }
 ```
 
-Read and write access to all Momento Cache Databases:
+Read and write access to all Momento Cache Databases and their items:
 
 ```json
 {
   "type": "database",
   "permissions": ["read", "write"],
-  "databases": "*"
+  "databases": "*",
+  "items": "*"
 }
 ```
 
-Read-only access to one named Database:
+Read-only access to all keys under a prefix in a single named Database:
 
 ```json
 {
   "type": "database",
   "permissions": ["read"],
-  "databases": { "name": "orders" }
+  "databases": { "name": "orders" },
+  "items": { "key_prefix": "orders:2026-" }
 }
 ```
 
@@ -213,8 +215,9 @@ The following permission set exercises every rule type, selector variant, and th
     { "type": "account_management",  "permissions": ["read", "list"] },
     { "type": "auth_management",     "permissions": ["read", "write", "list"], "items": "*" },
     { "type": "resource_management", "permissions": ["read", "write", "list"], "resources": "*" },
-    { "type": "database", "permissions": ["read", "write"], "databases": "*" },
-    { "type": "database", "permissions": ["read"],          "databases": { "name": "orders" } },
+    { "type": "database", "permissions": ["read", "write"],         "databases": "*",                  "items": "*" },
+    { "type": "database", "permissions": ["read"],                  "databases": { "name": "orders" }, "items": { "key_prefix": "orders:2026-" } },
+    { "type": "database", "permissions": ["write"],                 "databases": { "name": "orders" }, "items": { "key": "orders:pending" } },
     { "type": "cache",    "permissions": ["read", "write", "list"], "caches": "*",                    "items": "*" },
     { "type": "cache",    "permissions": ["read"],                  "caches": { "name": "prod-cache" }, "items": { "key_prefix": "public/" } },
     { "type": "cache",    "permissions": ["write"],                 "caches": { "name": "prod-cache" }, "items": { "key": "feature-flags" } },
