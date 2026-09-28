@@ -240,7 +240,7 @@
           "platform/authentication/api-keys-http-api",
           "platform/authentication/tokens",
           "platform/authentication/roles-and-permissions",
-          "platform/authentication/roles-http-api"
+          "platform/authentication/roles-management"
         ],
         "key": "platform-authentication",
         "className": "sidebar-group-product"

@@ -1,10 +1,10 @@
 ---
-sidebar_label: Roles HTTP API
-title: HTTP API for Momento Roles
-description: HTTP API reference for managing custom roles and permissions programmatically.
+sidebar_label: Manage Roles
+title: Managing Momento Roles
+description: Reference for managing custom roles and permissions programmatically.
 ---
 
-# HTTP API Reference for Momento Roles
+# Manage Momento Roles
 
 Momento provides an HTTP API for managing the roles on your account. A **role** is a named set of permissions that you assign to account members and [API keys](/platform/authentication/api-keys-http-api) to control what they can do.
 

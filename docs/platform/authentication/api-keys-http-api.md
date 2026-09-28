@@ -8,7 +8,7 @@ description: HTTP API reference for managing Momento API keys programmatically.
 
 Momento provides an HTTP API for managing the API keys on your account. This API lets you generate, list, refresh, and revoke API keys programmatically, without going through the [Momento console](https://console.gomomento.com/api-keys).
 
-Each API key is tied to a [role](/platform/authentication/roles-http-api), which determines what the key is allowed to do. See the [Roles HTTP API](/platform/authentication/roles-http-api) for how to create and manage the roles referenced here.
+Each API key is tied to a [role](/platform/authentication/roles-management), which determines what the key is allowed to do. See the [Roles API/CLI](/platform/authentication/roles-management) for how to create and manage the roles referenced here.
 
 :::tip[Info]
 
@@ -67,7 +67,7 @@ Operations that return key metadata use a common shape. The plaintext key materi
 | key_id | String | The unique identifier for the key. Use this value to revoke the key. |
 | account_id | String | The account the key belongs to. |
 | description | String | The description supplied when the key was generated. |
-| role_id | String | The identifier of the [role](/platform/authentication/roles-http-api) that determines the key's permissions. |
+| role_id | String | The identifier of the [role](/platform/authentication/roles-management) that determines the key's permissions. |
 | expires_at_epoch_seconds | Integer | When the key expires, in seconds since the Unix epoch. Omitted for keys that never expire. |
 | issued_at_epoch_seconds | Integer | When the key was generated, in seconds since the Unix epoch. |
 
@@ -108,7 +108,7 @@ Generates a new API key with the specified role, description, and expiry. The pl
 
 | Field | Required? | Type | Description |
 |-------|-----------|------|-------------|
-| role_id | yes | String | The identifier of the [role](/platform/authentication/roles-http-api) to assign to the key. |
+| role_id | yes | String | The identifier of the [role](/platform/authentication/roles-management) to assign to the key. |
 | description | yes | String | A human-readable description for the key. |
 | expiry | yes | String or Integer | When the key should expire. Either the literal string `"never"`, or an integer number of seconds since the Unix epoch at which the key expires. |
 | exclude_refresh_token | no | Boolean | Set to `true` to generate the key without a [refresh token](#refresh-tokens). Defaults to `false`. Keys with `"expiry": "never"` are never given a refresh token. |
