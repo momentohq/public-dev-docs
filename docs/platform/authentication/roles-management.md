@@ -68,7 +68,7 @@ Every role is represented by the same JSON shape:
 
 ```json
 {
-  "role_id": "analytics-readonly-role",
+  "role_id": "r-12345",
   "role_name": "analytics-readonly-role",
   "role_type": "custom",
   "description": "Read-only access for the analytics team",
@@ -296,7 +296,7 @@ Lists the roles on your account, with pagination. You can optionally filter by r
 {
   "roles": [
     {
-      "role_id": "cicd-role",
+      "role_id": "r-abcdefg",
       "role_name": "cicd-role",
       "role_type": "custom",
       "description": "For deploying to CI/CD environments",
@@ -312,7 +312,7 @@ Lists the roles on your account, with pagination. You can optionally filter by r
       }
     },
     {
-      "role_id": "analytics-readonly-role",
+      "role_id": "r-12345",
       "role_name": "analytics-readonly-role",
       "role_type": "custom",
       "description": "Read-only access for the analytics team",
@@ -416,7 +416,7 @@ Returns the created role in the [Role object](#role-object) shape, including its
 
 ```json
 {
-  "role_id": "cicd-role",
+  "role_id": "r-abcdefg",
   "role_name": "cicd-role",
   "role_type": "custom",
   "description": "For deploying to CI/CD environments",
@@ -598,12 +598,12 @@ When the delete was blocked because the role is still in use, the response lists
 {
   "status": "blocked",
   "account_members": [
-    { "user_name": "jane@example.com", "role_id": "cicd-role", "role_name": "cicd-role" }
+    { "user_name": "jane@example.com", "role_id": "r-abcdefg", "role_name": "cicd-role" }
   ],
   "invitations": [
     {
       "id": "invitation-id",
-      "account_member": { "user_name": "sam@example.com", "role_id": "cicd-role", "role_name": "cicd-role" }
+      "account_member": { "user_name": "sam@example.com", "role_id": "r-abcdefg", "role_name": "cicd-role" }
     }
   ],
   "api_keys": [
@@ -611,7 +611,7 @@ When the delete was blocked because the role is still in use, the response lists
       "key_id": "api-key-id",
       "account_id": "account-id",
       "description": "For deploying to CI/CD environments",
-      "role_id": "cicd-role",
+      "role_id": "r-abcdefg",
       "issued_at_epoch_seconds": 1719360000
     }
   ]
@@ -732,7 +732,7 @@ curl -X PUT -H "Authorization: <token>" \
       ]
     }
   }' \
-  "https://mga.registry.prod.a.momentohq.com/roles/cicd-role"
+  "https://mga.registry.prod.a.momentohq.com/roles/r-abcdefg"
 ```
 
 </TabItem>
@@ -750,7 +750,7 @@ Delete a role by its `role_id`:
 
 ```bash
 curl -X DELETE -H "Authorization: <token>" \
-  "https://mga.registry.prod.a.momentohq.com/roles/cicd-role"
+  "https://mga.registry.prod.a.momentohq.com/roles/r-abcdefg"
 ```
 
 </TabItem>

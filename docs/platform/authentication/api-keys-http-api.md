@@ -56,7 +56,7 @@ Operations that return key metadata use a common shape. The plaintext key materi
   "key_id": "api-key-id",
   "account_id": "account-id",
   "description": "For deploying to CI/CD environments",
-  "role_id": "cicd-role",
+  "role_id": "r-abcdefg",
   "expires_at_epoch_seconds": 1719363600,
   "issued_at_epoch_seconds": 1719360000
 }
@@ -99,7 +99,7 @@ Generates a new API key with the specified role, description, and expiry. The pl
 
 ```json
 {
-  "role_id": "cicd-role",
+  "role_id": "r-abcdefg",
   "description": "For deploying to CI/CD environments",
   "expiry": 1719363600,
   "exclude_refresh_token": false
@@ -127,7 +127,7 @@ Generates a new API key with the specified role, description, and expiry. The pl
     "key_id": "api-key-id",
     "account_id": "account-id",
     "description": "For deploying to CI/CD environments",
-    "role_id": "cicd-role",
+    "role_id": "r-abcdefg",
     "expires_at_epoch_seconds": 1719363600,
     "issued_at_epoch_seconds": 1719360000
   }
@@ -216,7 +216,7 @@ Because each successor's lifetime becomes the ceiling for the refresh after it, 
     "key_id": "new-api-key-id",
     "account_id": "account-id",
     "description": "For deploying to CI/CD environments",
-    "role_id": "cicd-role",
+    "role_id": "r-abcdefg",
     "expires_at_epoch_seconds": 1721955600,
     "issued_at_epoch_seconds": 1719363600
   },
@@ -285,7 +285,7 @@ Lists the API keys on your account, with pagination. The plaintext key material 
       "key_id": "api-key-id-1",
       "account_id": "account-id",
       "description": "For deploying to CI/CD environments",
-      "role_id": "cicd-role",
+      "role_id": "r-abcdefg",
       "expires_at_epoch_seconds": 1719363600,
       "issued_at_epoch_seconds": 1719360000
     },
@@ -387,7 +387,7 @@ Generate a key that never expires:
 curl -X POST -H "Authorization: <token>" \
   -H "Content-Type: application/json" \
   -d '{
-    "role_id": "cicd-role",
+    "role_id": "r-abcdefg",
     "description": "For deploying to CI/CD environments",
     "expiry": "never"
   }' \
@@ -400,7 +400,7 @@ Generate a key that expires at a specific time (seconds since the Unix epoch). T
 curl -X POST -H "Authorization: <token>" \
   -H "Content-Type: application/json" \
   -d '{
-    "role_id": "cicd-role",
+    "role_id": "r-abcdefg",
     "description": "Temporary key for the Q3 data migration",
     "expiry": 1719363600
   }' \
@@ -413,7 +413,7 @@ Generate an expiring key that cannot be rotated by opting out of the refresh tok
 curl -X POST -H "Authorization: <token>" \
   -H "Content-Type: application/json" \
   -d '{
-    "role_id": "cicd-role",
+    "role_id": "r-abcdefg",
     "description": "Temporary key for the Q3 data migration",
     "expiry": 1719363600,
     "exclude_refresh_token": true
