@@ -1,6 +1,6 @@
 ---
 sidebar_label: Manage Roles
-title: Managing Momento Roles
+title: Manage Momento Roles
 description: Reference for managing custom roles and permissions programmatically.
 ---
 
@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # Manage Momento Roles
 
-Momento provides an HTTP API for managing the roles on your account. A **role** is a named set of permissions that you assign to account members and [API keys](/platform/authentication/api-keys-http-api) to control what they can do.
+Momento provides a CLI and an HTTP API for managing the roles on your account. A **role** is a named set of permissions that you assign to account members and [API keys](/platform/authentication/api-keys-http-api) to control what they can do.
 
 This page contains brief explanations of necessary terms. See [roles and permissions](/platform/authentication/roles-and-permissions) to learn more about concepts related to authentication, including permission sets, roles, and how credentials bind permissions.
 
@@ -30,10 +30,12 @@ Unlike the region-based cache endpoints, it is not tied to a specific cell or re
 
 You will need a v2 Momento API Key that grants auth-management access on your account. API Keys control access to Momento services and can be set to expire.
 
-Our Momento roles API does not accept disposable tokens or legacy API Keys.
+Our Momento roles API (and roles CLI) does not accept disposable tokens or legacy API Keys.
 
 <Tabs groupId="interface">
 <TabItem value="cli" label="Momento CLI">
+
+The CLI will use your default profile (created via `momento configure`), or you can specify a `--profile`.
 
 </TabItem>
 <TabItem value="http" label="HTTP API">
@@ -42,6 +44,8 @@ The API Key must be provided in the `Authorization` header.
 
 </TabItem>
 </Tabs>
+
+---
 
 ## Error responses
 
@@ -59,6 +63,8 @@ All errors share a common JSON body:
 | code | String | A short, machine-readable label for the error class (for example, `Bad Request`, `NotFound`, `PermissionDenied`). |
 | message | String | A human-readable description of the error. |
 | err | String | An optional additional error metadata string, present only for some errors. |
+
+The CLI formats these errors in plaintext for you.
 
 ---
 
@@ -92,6 +98,8 @@ Every role is represented by the same JSON shape:
 | role_type | String | Either `system` (built-in) or `custom` (user-defined). |
 | description | String | An optional description of the role. Omitted when the role has no description. |
 | permissions | Object | The role's permission set. See [Permission set](#permission-set). |
+
+The CLI formats the role object in plaintext for you.
 
 ---
 
@@ -219,7 +227,7 @@ Conditions constrain when the permission set applies. Currently the only support
 |-------|------|-------------|
 | ip_filter.allowed_cidr_ranges | Array\<String\> | The CIDR ranges from which requests are allowed. Each entry must be a valid CIDR range, including a prefix length (for example, `10.0.0.0/8`, not `10.0.0.1`). |
 
-#### Full permission set example
+### Full permission set example
 
 The following permission set exercises every rule type, selector variant, and the IP filter condition:
 
@@ -259,15 +267,29 @@ The Roles API and CLI let you list the roles on your account and create, update,
 
 ## List Roles
 
-Lists the roles on your account, with pagination. You can optionally filter by role type.
+Lists the roles on your account, with pagination.
+
+### Request
 
 <Tabs groupId="interface">
 <TabItem value="cli" label="Momento CLI">
 
+```sh
+momento role list
+```
+
+The CLI lists only your custom roles. (To list system roles, use the HTTP API.)
+
+You can `--limit` how many custom roles are fetched on each page:
+
+```sh
+momento role list --limit 5
+```
+
+- `--limit` must be between 1 and 100, inclusive. Defaults to 100 when omitted.
+
 </TabItem>
 <TabItem value="http" label="HTTP API">
-
-### Request
 
 - Path: /roles
 - HTTP Method: GET
@@ -286,9 +308,42 @@ Lists the roles on your account, with pagination. You can optionally filter by r
 |------------------|-----------|--------|-----------------------------------------------------------------------------------------------------|
 | Authorization    | yes       | String | The Momento API key, in string format, is used for authentication/authorization of the request.    |
 
+</TabItem>
+</Tabs>
+
 ### Responses
 
 #### Success
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+```
+Name: cicd-role
+ID: r-abcdefg
+Description: For deploying to CI/CD environments
+Rules:
+- Cache: prod-cache
+  Keys: all
+  Allowed actions: Read, Write
+Conditions: (none)
+
+Name: analytics-readonly-role
+ID: r-12345
+Description: Read-only access for the analytics team
+Rules:
+- Caches (all)
+  Keys: all
+  Allowed actions: Read, List
+Conditions: (none)
+
+View more? [y]
+```
+
+The CLI will prompt you until it's listed all your roles.
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 *Status Code: 200 OK*
 
@@ -363,13 +418,34 @@ Lists the roles on your account, with pagination. You can optionally filter by r
 
 Creates a new custom role with the specified permission set.
 
+### Request
+
 <Tabs groupId="interface">
 <TabItem value="cli" label="Momento CLI">
 
+```sh
+momento role create --name cicd-role \
+  --description "For deploying to CI/CD environments" \
+  --permission-set '{
+    "rules": [
+      {
+        "type": "cache",
+        "permissions": ["read", "write"],
+        "caches": { "name": "prod-cache" },
+        "items": "*"
+      }
+    ]
+  }'
+```
+
+| Argument | Required? | Type | Description |
+|-------|-----------|------|-------------|
+| name | yes | String | A human-readable name for the role. |
+| description | no | String | An optional description of the role. |
+| permission-set | yes | Object | The role's permission set. See [Permission set](#permission-set). |
+
 </TabItem>
 <TabItem value="http" label="HTTP API">
-
-### Request
 
 - Path: /roles
 - HTTP Method: POST
@@ -406,9 +482,31 @@ Creates a new custom role with the specified permission set.
 | description | no | String | An optional description of the role. |
 | permissions | yes | Object | The role's permission set. See [Permission set](#permission-set). |
 
+</TabItem>
+</Tabs>
+
 ### Responses
 
 #### Success
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+```
+Creating custom role!
+
+Name: cicd-role
+ID: r-abcdefg
+Description: For deploying to CI/CD environments
+Rules:
+- Cache: prod-cache
+  Keys: all
+  Allowed actions: Read, Write
+Conditions: (none)
+```
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 *Status Code: 200 OK*
 
@@ -460,15 +558,57 @@ Returns the created role in the [Role object](#role-object) shape, including its
 
 ## Update Custom Role
 
-Updates an existing custom role, replacing its name, description, and permission set with the values in the request body. System roles cannot be updated.
+Updates an existing custom role's name, description, and/or permission set. System roles cannot be updated.
+
+### Request
 
 <Tabs groupId="interface">
 <TabItem value="cli" label="Momento CLI">
 
+Specify the role by its current name:
+
+```sh
+momento role update --name cicd-role \
+  --description "For deploying to CI/CD environments across all caches" \
+  --permission-set '{
+    "rules": [
+      {
+        "type": "cache",
+        "permissions": ["read", "write"],
+        "caches": "*",
+        "items": "*"
+      }
+    ]
+  }'
+```
+
+Or you can specify the role by its ID:
+
+```sh
+momento role update --id r-abcdefg \
+  --description "For deploying to CI/CD environments across all caches" \
+  --permission-set '{
+    "rules": [
+      {
+        "type": "cache",
+        "permissions": ["read", "write"],
+        "caches": "*",
+        "items": "*"
+      }
+    ]
+  }'
+```
+
+| Argument | Required? | Type | Description |
+|-------|-----------|------|-------------|
+| name | yes (or id) | String | The current name for the role. |
+| id | yes (or name) | String | The ID for the role. |
+| rename | no | String | The new name for the role. If omitted, the role's existing name is left unchanged. |
+| description | no | String | The new description for the role. If omitted, the role's existing description is left unchanged. |
+| permission-set | no | Object | The new permission set for the role. See [Permission set](#permission-set). If omitted, the role's existing permission set is left unchanged. |
+
 </TabItem>
 <TabItem value="http" label="HTTP API">
-
-### Request
 
 - Path: /roles/\{role_id\}
 - HTTP Method: PUT
@@ -513,9 +653,31 @@ The request body has the same shape as [Create Custom Role](#create-custom-role)
 | description | no | String | The new description for the role. If omitted, the role's existing description is left unchanged. |
 | permissions | yes | Object | The new permission set for the role. See [Permission set](#permission-set). |
 
+</TabItem>
+</Tabs>
+
 ### Responses
 
 #### Success
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+```
+Updating custom role!
+
+Name: cicd-role
+ID: r-abcdefg
+Description: For deploying to CI/CD environments across all caches
+Rules:
+- Caches (all)
+  Keys: all
+  Allowed actions: Read, Write
+Conditions: (none)
+```
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 *Status Code: 200 OK*
 
@@ -553,13 +715,23 @@ Returns the updated role in the [Role object](#role-object) shape.
 
 Deletes a custom role. A role can only be deleted once nothing references it. If the role is still assigned to any account members, pending invitations, or API keys, the delete is **blocked** and the response lists what is still using it. System roles cannot be deleted.
 
+### Request
+
 <Tabs groupId="interface">
 <TabItem value="cli" label="Momento CLI">
 
+```sh
+momento role delete --name cicd-role
+```
+
+Or you can specify the role by its ID:
+
+```sh
+momento role delete --id r-abcdefg
+```
+
 </TabItem>
 <TabItem value="http" label="HTTP API">
-
-### Request
 
 - Path: /roles/\{role_id\}
 - HTTP Method: DELETE
@@ -576,7 +748,44 @@ Deletes a custom role. A role can only be deleted once nothing references it. If
 |------------------|-----------|--------|-----------------------------------------------------------------------------------------------------|
 | Authorization    | yes       | String | The Momento API key, in string format, is used for authentication/authorization of the request.    |
 
+</TabItem>
+</Tabs>
+
 ### Responses
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+#### Success
+
+When the role was deleted:
+
+```
+Deleted custom role cicd-role (ID r-abcdefg)!
+```
+
+#### Error
+
+When the delete was blocked because the role is still in use, the response lists every member, invitation, and API key that still references it:
+
+```
+ERROR: Couldn't delete custom role cicd-role (ID r-abcdefg) because it's still in use:
+
+Account Members:
+- jane@example.com
+Invited Account Members:
+- sam@example.com
+API Keys:
+- Key ID: api-key-id
+  Account ID: account-id
+  Description: For deploying to CI/CD environments
+  Issued At: 2024-06-26 00:00:00 UTC
+```
+
+To delete a blocked role, reassign or remove everything listed in the response, then retry the delete.
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
 
 #### Success
 
@@ -625,12 +834,12 @@ When the delete was blocked because the role is still in use, the response lists
 | invitations | Array | Present when `status` is `blocked`. The pending invitations still assigned to the role. |
 | api_keys | Array | Present when `status` is `blocked`. The API keys still assigned to the role. Each entry has the shape described in the [API Keys HTTP API](/platform/authentication/api-keys-http-api#api-key-object). |
 
-</TabItem>
-</Tabs>
-
 To delete a blocked role, reassign or remove everything listed in the response, then retry the delete.
 
 #### Error
+
+</TabItem>
+</Tabs>
 
 *Status Code: 401 Unauthorized*
 - This error type typically indicates that the Momento API key passed in is either invalid or expired.
@@ -661,10 +870,14 @@ List only the custom roles on your account:
 <Tabs groupId="interface">
 <TabItem value="cli" label="Momento CLI">
 
+```sh
+momento role list --limit 50
+```
+
 </TabItem>
 <TabItem value="http" label="HTTP API">
 
-```bash
+```sh
 curl -H "Authorization: <token>" \
   "https://mga.registry.prod.a.momentohq.com/roles?type=custom&limit=50"
 ```
@@ -679,10 +892,25 @@ Create a role with read/write access to a single cache:
 <Tabs groupId="interface">
 <TabItem value="cli" label="Momento CLI">
 
+```sh
+momento role create --name cicd-role \
+  --description "For deploying to CI/CD environments" \
+  --permission-set '{
+    "rules": [
+      {
+        "type": "cache",
+        "permissions": ["read", "write"],
+        "caches": { "name": "prod-cache" },
+        "items": "*"
+      }
+    ]
+  }'
+```
+
 </TabItem>
 <TabItem value="http" label="HTTP API">
 
-```bash
+```sh
 curl -X POST -H "Authorization: <token>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -712,14 +940,91 @@ Broaden the role to cover all caches:
 <Tabs groupId="interface">
 <TabItem value="cli" label="Momento CLI">
 
+```sh
+momento role update --name cicd-role \
+  --permission-set '{
+    "rules": [
+      {
+        "type": "cache",
+        "permissions": ["read", "write"],
+        "caches": "*",
+        "items": "*"
+      }
+    ]
+  }'
+```
+
+Or you can specify the role by its ID:
+
+```sh
+momento role update --id r-abcdefg \
+  --permission-set '{
+    "rules": [
+      {
+        "type": "cache",
+        "permissions": ["read", "write"],
+        "caches": "*",
+        "items": "*"
+      }
+    ]
+  }'
+```
+
 </TabItem>
 <TabItem value="http" label="HTTP API">
 
-```bash
+Specify the role by its `role_id` in the path:
+
+```sh
 curl -X PUT -H "Authorization: <token>" \
   -H "Content-Type: application/json" \
   -d '{
     "role_name": "cicd-role",
+    "description": "For deploying to CI/CD environments across all caches",
+    "permissions": {
+      "rules": [
+        {
+          "type": "cache",
+          "permissions": ["read", "write"],
+          "caches": "*",
+          "items": "*"
+        }
+      ]
+    }
+  }' \
+  "https://mga.registry.prod.a.momentohq.com/roles/r-abcdefg"
+```
+
+</TabItem>
+</Tabs>
+
+## Example: Rename a Custom Role
+
+<Tabs groupId="interface">
+<TabItem value="cli" label="Momento CLI">
+
+Specify the role by its current name:
+
+```sh
+momento role update --name cicd-role --rename cache-manager
+```
+
+Or you can specify the role by its ID:
+
+```sh
+momento role update --id r-abcdefg --rename cache-manager
+```
+
+</TabItem>
+<TabItem value="http" label="HTTP API">
+
+Specify the role by its `role_id` in the path:
+
+```sh
+curl -X PUT -H "Authorization: <token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "role_name": "cache-manager",
     "description": "For deploying to CI/CD environments across all caches",
     "permissions": {
       "rules": [
@@ -743,12 +1048,19 @@ curl -X PUT -H "Authorization: <token>" \
 <Tabs groupId="interface">
 <TabItem value="cli" label="Momento CLI">
 
+Delete a role by its name or ID:
+
+```sh
+momento role delete --name cicd-role
+momento role delete --id r-abcdefg
+```
+
 </TabItem>
 <TabItem value="http" label="HTTP API">
 
 Delete a role by its `role_id`:
 
-```bash
+```sh
 curl -X DELETE -H "Authorization: <token>" \
   "https://mga.registry.prod.a.momentohq.com/roles/r-abcdefg"
 ```
