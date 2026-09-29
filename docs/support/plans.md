@@ -4,7 +4,7 @@ title: Momento support plans
 description: Compare Basic, Production, and Enterprise support plans across Momento services.
 ---
 
-<!-- Projects: cross-product/support-plans; cross-product/support-plan-activation -->
+<!-- Projects: cross-product/support-plans; cross-product/support-plan-activation; cross-product/rapid-response -->
 
 # Support plans
 
@@ -31,6 +31,9 @@ Higher-tier plans include all features of the plans below them.
 
 Basic support is included and does not require activation. To purchase Production or Enterprise
 support, you must [activate a support plan](/platform/how-to/activate-support-plan).
+
+Enterprise customers can add [Rapid Response](/support/rapid-response) for 24/7,
+15-minute acknowledgement of S1 issues.
 
 ## Issue response targets
 
