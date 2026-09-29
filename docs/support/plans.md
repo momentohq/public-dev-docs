@@ -15,25 +15,23 @@ single plan covers every Momento service in every account associated with your o
 
 |  | Basic | Production | Enterprise |
 | --- | --- | --- | --- |
-| Price | — | $500 / month <br/>or 10% of spend | $5,000 / month <br/>or 15% of spend |
-| Minimum commitment | — | 3 months | 1 year |
-| Service SLA | best effort | 99.9% | 99.99% |
-| Support SLA | none | 1 business day | S1: 1 hour<br/>S2: 4 hours<br/>S3: 1 business day |
-| Support channels | GitHub | email | Slack, phone |
-| Compliance | GDPR | SOC 2 Type 2 | HIPAA |
-| SSO | Google IdP | Google IdP | Google IdP |
-| Team roles | — | owner, operator, viewer | custom roles |
-| Deployment | cloud | cloud | BYOC, self-hosted |
-| Metrics | console | CloudWatch, Prometheus | request logs |
-| Networking | public gateway | public gateway | VPC Peering, Transit Gateway, PrivateLink |
+| **Price** | — | $500 / month <br/>or 10% of spend | $5,000 / month <br/>or 15% of spend |
+| **Minimum commitment** | — | 3 months | 1 year |
+| **Service SLA** | best effort | 99.9% | 99.99% |
+| **Support SLA** | none | 1 business day | S1: 1 hour<br/>S2: 4 hours<br/>S3: 1 business day |
+| **Support channels** | GitHub | email | Slack, phone |
+| **Compliance** | GDPR | SOC 2 Type 2 | HIPAA |
+| **SSO** | Google IdP | Google IdP | Google IdP |
+| **Team roles** | — | owner, operator, viewer | custom roles |
+| **Deployment** | cloud | cloud | BYOC, self-hosted |
+| **Metrics** | console | CloudWatch, Prometheus | request logs |
+| **Networking** | public gateway | public gateway | VPC Peering, Transit Gateway, PrivateLink |
+| **Add-Ons** | — | — | [Rapid Response](/support/rapid-response) |
 
 Higher-tier plans include all features of the plans below them.
 
 Basic support is included and does not require activation. To purchase Production or Enterprise
 support, you must [activate a support plan](/platform/how-to/activate-support-plan).
-
-Enterprise customers can add [Rapid Response](/support/rapid-response) for 24/7,
-15-minute acknowledgement of S1 issues.
 
 ## Issue response targets
 
@@ -59,6 +57,9 @@ Enterprise support requests are categorized by the severity of their impact on y
 - **S3:** A minor feature is broadly inoperable.
 
 The severity of the issue determines the appropriate response target for support.
+
+Enterprise customers can add [Rapid Response](/support/rapid-response) for 24/7,
+15-minute acknowledgement of S1 issues.
 
 ## Pricing details
 
