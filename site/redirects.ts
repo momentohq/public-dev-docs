@@ -98,6 +98,7 @@ const REDIRECTS = {
     '/api': '/platform/api',
     '/account-management/api-keys-http-api': '/platform/authentication/api-keys',
     '/account-management/roles-http-api': '/platform/authentication/roles-and-permissions',
+    '/platform/authentication/roles-http-api': '/platform/authentication/roles-management',
     '/account-sharing': '/platform/account-management',
 
     // Dead Pages
