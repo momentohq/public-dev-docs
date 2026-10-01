@@ -9,8 +9,8 @@
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-  // The sole docs navigation. Generated from readme/project/projection/ia/site.json via
-  // outputs/gen-sidebar.mjs; do not hand-edit sidebars.site.json.
+  // The sole docs navigation. Edit sidebars.site.json directly, preserving order,
+  // keys and class names. Run npm run nav:check before building.
   siteSidebar: require("./sidebars.site.json")
 };
 
