@@ -9,8 +9,8 @@
 <!-- Google Tag Manager -->
     <script>!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src="https://www.googletagmanager.com/gtm.js?id=GTM-THBDHDQ",m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer")</script>
     <!-- End Google Tag Manager --><link rel="stylesheet" href="/assets/css/styles.19ed51bd.css">
-<script src="/assets/js/runtime~main.50395aee.js" defer="defer"></script>
-<script src="/assets/js/main.6da70c07.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.ad7c4f14.js" defer="defer"></script>
+<script src="/assets/js/main.e02bfbb8.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -20,9 +20,9 @@
 <p>This section explains how the Momento Valkey Operator works and why it is designed the way it is. Read it when you want to understand the system. For step-by-step instructions, use the <a class="" href="/self-hosted/valkey-operator/platform-guide">platform team guide</a> and <a class="" href="/self-hosted/valkey-operator/team-guide">product team guide</a>.</p>
 <p>The pages build on each other, but each stands alone:</p>
 <ul>
-<li class=""><strong><a class="" href="/self-hosted/valkey-operator/concepts/resource-model">Resource model</a></strong> — the five custom resources, why the model is split into a cluster-scoped &quot;menu&quot; (images, configs, roles) and namespaced clusters, and how that split gives platform teams governance through nothing more than Kubernetes RBAC. Start here.</li>
-<li class=""><strong><a class="" href="/self-hosted/valkey-operator/concepts/architecture">Architecture</a></strong> — the runtime picture: a single operator deployment running four independent control loops, the chain of Kubernetes objects it creates and owns, how clients discover cluster topology, and what the operator deliberately does not manage.</li>
-<li class=""><strong><a class="" href="/self-hosted/valkey-operator/concepts/reconciliation">Reconciliation</a></strong> — the cluster state machine, the <code>targetSpec</code> snapshot semantics, and the one-action-per-tick model that makes every change observable and bounded in blast radius. Owns the canonical table of which spec changes trigger a rolling replacement.</li>
+<li class=""><strong><a class="" href="/self-hosted/valkey-operator/concepts/resource-model">Resource model</a></strong> — the custom resources, why the model is split into a cluster-scoped &quot;menu&quot; (images, configs, roles) and namespaced clusters, and how that split gives platform teams governance through nothing more than Kubernetes RBAC. Start here.</li>
+<li class=""><strong><a class="" href="/self-hosted/valkey-operator/concepts/architecture">Architecture</a></strong> — the runtime picture: a single operator deployment and its control loops, the chain of Kubernetes objects it creates and owns, how clients discover cluster topology, and what the operator deliberately does not manage.</li>
+<li class=""><strong><a class="" href="/self-hosted/valkey-operator/concepts/reconciliation">Reconciliation</a></strong> — the cluster state machine, spec immutability during creation, and the one-action-per-tick model that makes every change observable and bounded in blast radius. Owns the canonical table of which spec changes trigger a rolling replacement.</li>
 <li class=""><strong><a class="" href="/self-hosted/valkey-operator/concepts/pod-management">Pod management</a></strong> — why the operator manages bare pods directly instead of using StatefulSets or Deployments, and what an experienced Kubernetes user will notice as a result.</li>
 <li class=""><strong><a class="" href="/self-hosted/valkey-operator/concepts/data-durability">Data durability</a></strong> — the storage model stated plainly: Valkey data is in-memory, and durability comes from replication, failover, and placement, not from disks. Read this before making availability promises to your users.</li>
 </ul>
