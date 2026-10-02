@@ -4,12 +4,14 @@ description: What the Momento Valkey Operator does, who it is for, and where to 
 sidebar_position: 1
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Momento Valkey Operator
 
 The Momento Valkey Operator runs sharded Valkey clusters on Kubernetes. This page explains what it does, how it splits responsibility between two personas, and where to go next depending on what you're trying to do.
 
 :::note
-These docs describe operator release v0.6.0.
+These docs describe operator release v0.9.0.
 :::
 
 ## What the operator does
@@ -18,13 +20,15 @@ The operator turns a small set of custom resources into running Valkey clusters 
 
 Everything the operator does is driven by custom resources, not imperative commands. You declare what you want: a cluster's topology, a config's settings, an image allowlist entry. The operator's control loops then drive the running state toward it, one small step at a time. See [Reconciliation](concepts/reconciliation.md) for how that works.
 
+Configure [autoscaling](team-guide/autoscaling.md) to adjust shards from live utilization. The operator also retains memory usage records for billing; [Usage metering](platform-guide/usage-metering.md) explains how to export them.
+
 ## Two personas, one governance model
 
 The operator is built around a split between two personas, enforced through Kubernetes RBAC rather than through any custom policy engine. The **platform team** curates a cluster-scoped menu: which Valkey images are allowed to run (`ValkeyImage`), which configuration profiles exist (`ValkeyConfig`), and which reusable ACL permission sets are available (`ValkeyRole`). Because these resources are cluster-scoped, the platform team can grant every namespace read-only visibility into the menu while keeping write access to themselves.
 
 The **product team** provisions Valkey clusters by creating `ValkeyCluster` resources in their own namespace, choosing a config from the menu and stating topology. `ValkeyCluster` is namespace-scoped, so a product team can create any number of clusters in a namespace they control, but every cluster they create is built only from images, configs, and roles the platform team has already approved. This is the whole governance model: no admission webhooks, no external policy service; only which resources live at which scope, and who has write access to each.
 
-The five resource kinds split cleanly along that boundary. A product team writes only `ValkeyCluster`; everything it references lives in the platform team's cluster-scoped menu, and the operator manages `ValkeyNode` resources on the team's behalf:
+The configuration and cluster resources follow that boundary. A product team writes only `ValkeyCluster`; everything it references lives in the platform team's cluster-scoped menu, and the operator manages `ValkeyNode` resources on the team's behalf:
 
 ```mermaid
 %%{init: {"flowchart": {"curve": "linear"}}}%%

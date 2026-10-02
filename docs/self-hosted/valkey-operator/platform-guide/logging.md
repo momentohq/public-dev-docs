@@ -4,9 +4,11 @@ description: "The operator's log contract: JSON structure, level control, what g
 sidebar_position: 8
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Logging
 
-This page is the log contract for the Momento Valkey Operator and the Valkey pods it manages: where logs go, what each line contains, and how to control verbosity. It is written for platform teams wiring log pipelines and alerts. Logs are the operator's only observability surface (it exposes no metrics or health endpoint), so [Monitoring](monitoring.md) builds directly on this page.
+This page is the log contract for the Momento Valkey Operator and the Valkey pods it manages: where logs go, what each line contains, and how to control verbosity. It is written for platform teams wiring log pipelines and alerts. Logs complement cluster status, certificate conditions, node utilization samples, and autoscaling Events, so [Monitoring](monitoring.md) builds directly on this page.
 
 ## The contract
 
@@ -49,14 +51,14 @@ At `info`, expect a steady heartbeat plus one line per action taken:
 
 - **Per-tick heartbeats.** Each cluster produces `ACL reconcile tick` and `TLS reconcile tick` lines every 30 seconds, and an `active tick` line (with shard and node counts) from the cluster's main loop. This steady rhythm is a health signal in itself: [Monitoring](monitoring.md) recommends alerting when it stops.
 - **Actions.** One line per resource created or step taken: `creating Pod for node`, `creating headless Service`, `cluster meet issued`, `failover to up-to-date replica for rolling upgrade`, `cluster formed, transitioning to Active`.
-- **Diagnostics you will search for.** Scheduling problems log `bootstrap blocked: pod cannot be scheduled` with the scheduler's own reason. Failover handling logs `primary unhealthy but replicas exist, waiting for auto-failover` and, when quorum is lost, `no quorum — issued TAKEOVER on replica`. TLS validation failures log `TLS Secret validation failed, setting cluster Invalid` with the same reason text that lands in `status.message`.
+- **Diagnostics you will search for.** Scheduling problems log `bootstrap blocked: pod cannot be scheduled` with the scheduler's own reason. Failover handling logs `primary unhealthy but replicas exist, waiting for auto-failover` and, when quorum is lost, `no quorum — issued TAKEOVER on replica`. TLS validation failures have a reason in status.message; creation failures report Failed, while recoverable running-cluster problems report Invalid.
 - **Retryable errors at `WARN`.** Best-effort paths log and retry rather than fail, for example `ACL LOAD failed, will retry next tick` and `reconcile error, requeuing`. A persistent stream of the same `WARN` line is a problem worth investigating; a single occurrence usually is not. [Troubleshooting](../operations/troubleshooting.md) maps the common ones to causes.
 - **`ERROR` is rare**: invalid operator configuration at startup and internal invariant violations.
 
-Two absences to plan around:
+Startup and event visibility:
 
 - **No startup banner.** The operator logs no version or "starting up" line; the first output is whatever reconcile activity occurs. Verify a rollout with `kubectl rollout status`, not by waiting for a boot message.
-- **No Kubernetes Events.** The operator never emits Events, so `kubectl describe valkeycluster` shows none from the operator and event-based tooling sees nothing. Everything is in the log stream (and, for TLS validation failures, in `status.message`).
+Autoscaling decisions produce Kubernetes Events on the cluster. Inspect them alongside logs and status; see [Autoscaling](../team-guide/autoscaling.md#watch-the-target-and-decisions).
 
 The operator never writes passwords into log messages; missing-credential conditions log key names only.
 

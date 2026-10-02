@@ -4,31 +4,19 @@ description: "How the Momento Valkey Operator changes things: cluster states, on
 sidebar_position: 4
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Reconciliation
 
 This page explains how the Momento Valkey Operator turns a `ValkeyCluster` spec into a running Valkey cluster and keeps it that way: the states you can observe, how the operator paces changes, and (most importantly for day-2 operations) [what happens when you edit a live cluster's spec](#what-happens-when-you-change-the-spec). Read it before planning upgrades, scaling, or maintenance.
 
 ## The cluster state machine
 
-A `ValkeyCluster` reports one of three observable states in `status.state`:
+A ValkeyCluster reports Creating during bootstrap, Active when formed, and Updating during a rolling change. Invalid marks a recoverable problem on a running cluster; Failed marks a terminal creation failure. [Cluster status](../reference/cluster-status.md) defines the states and recovery actions.
 
-| State | Meaning |
-|---|---|
-| `Creating` | The initial state. The operator is bootstrapping the Valkey cluster: creating nodes, forming the topology, assigning slots, attaching replicas. |
-| `Active` | Steady state. All ongoing change (scaling, rebalancing, rolling replacement, failure recovery) happens while the cluster reports `Active`. |
-| `Invalid` | The referenced TLS Secret failed validation. Reconciliation of the cluster is paused until the Secret validates. |
+## Spec immutability during creation
 
-:::note
-The schema also defines an `Updating` value. It is reserved and not currently reported: rolling upgrades and other changes run entirely under `Active`. See [Cluster status](../reference/cluster-status.md) for the full status schema.
-:::
-
-`Invalid` has exactly one trigger: TLS Secret validation failure. On every reconciliation pass of a TLS-enabled cluster, the operator validates the referenced Secret: it must exist, contain the expected keys, hold a well-formed certificate, and cover the required DNS names. Any failure sets `status.state: Invalid` with the specific reason in `status.message`. Recovery is automatic: once the Secret validates again (you create the missing Secret, fix its contents, or point `tls.secretRef` at a valid one), the operator resets the cluster and it returns to `Active` within a few reconciliation passes. You never need to recreate the `ValkeyCluster` resource. See [TLS](../security/tls.md) for the validation rules.
-
-## targetSpec, spec snapshots and deferred edits
-
-When the operator begins a transition (entering `Creating`), it snapshots the spec into `status.targetSpec` and drives the bootstrap **topology** (shard count and replicas per shard) toward that snapshot, not toward the live spec. Topology edits you make while the transition is in flight are deferred, not lost: once the transition completes and `targetSpec` is cleared, the next reconciliation pass picks up the current spec and acts on it. Non-topology fields (`configRef` resolution, `placement`, `tls.secretRef`, `acl`) are read live on every pass even during bootstrap, but each node's own spec is fixed when that node is created, so live edits shape only nodes not yet created.
-
-This has one consequence worth internalizing: a spec mistake made at creation generally cannot be corrected by editing the spec while the cluster is still `Creating`: deferred topology edits don't apply until bootstrap ends, and live-read fields don't repair nodes already created under the old values. Fixes *outside* the spec do take effect immediately (for example, creating a `ValkeyImage` or `ValkeyConfig` that a reference points to) because references are resolved live on every pass. Spec-level mistakes require deleting and recreating the cluster. See the wedged-bootstrap entry in [Troubleshooting](../operations/troubleshooting.md).
+Spec edits are rejected at admission until the cluster reaches Active. Correct external prerequisites, such as missing referenced resources, before retrying. A creation failure reported as Failed requires deletion and recreation after the cause is fixed. See [Troubleshooting](../operations/troubleshooting.md).
 
 ## One action per tick
 
@@ -95,25 +83,25 @@ When any node's spec is outdated, the operator rolls the Valkey cluster **strict
 3. If the primary is outdated, issue **exactly one** coordinated failover onto an up-to-date replica. The failover command performs a clean handoff: the replica is promoted only after it has caught up with the primary.
 4. Retire the demoted, outdated former primary as an excess replica.
 
-The result: clients see at most one failover per shard per roll, the shard never drops below its replica target because new capacity joins before old capacity leaves, and only one shard is in motion at any moment. The cluster reports `Active` throughout.
+The result: clients see at most one failover per shard per roll, the shard never drops below its replica target because new capacity joins before old capacity leaves, and only one shard is in motion at any moment. A rolling change is represented by Updating; see [Cluster status](../reference/cluster-status.md).
 
 ## The bootstrap sequence
 
 A new `ValkeyCluster` moves from `Creating` to `Active` through a fixed sequence, one step per tick:
 
-1. **Snapshot.** The spec is captured into `status.targetSpec` (see above).
+1. **Begin creation.** The cluster spec is frozen until Active.
 2. **Create nodes.** One `ValkeyNode` per tick, spread evenly across shard indices, until `shards × (1 + replicasPerShard)` exist. Each node brings up its own configuration and pod.
 3. **Wait for pods.** Bootstrap does not proceed until every pod is running with an IP address. An unschedulable pod (for example, unsatisfiable placement) makes bootstrap wait: it logs the scheduler's reason and holds, rather than proceeding with a partial topology. See [Troubleshooting](../operations/troubleshooting.md) for stuck-`Creating` diagnosis.
 4. **Cluster meet.** Nodes are introduced to the topology one per tick through a seed node, and any stale member from a previous incarnation is forgotten.
 5. **Assign slots.** Slot assignment is gated on consensus: every node must agree on how many slots are currently assigned before the operator hands out more. It then assigns contiguous slot ranges to one designated primary per tick.
 6. **Attach replicas.** One replica per tick is attached to the primary of its shard.
-7. **Verify and activate.** Nodes flip from `Joining` to `Active` lifecycle, and the cluster is marked `Active` only when every node reports a healthy cluster view, **all 16384 slots are assigned**, the shard count matches the target, and every slot-holding primary has its full replica count. `targetSpec` is cleared and any deferred edits are picked up.
+7. **Verify and activate.** Nodes flip from `Joining` to `Active` lifecycle, and the cluster is marked `Active` only when every node reports a healthy cluster view, **all 16384 slots are assigned**, the shard count matches the target, and every slot-holding primary has its full replica count. The cluster spec can then be edited.
 
 Full slot coverage is the operator's universal invariant: bootstrap, scaling, upgrades, and failure recovery all converge on all 16384 slots assigned.
 
 ## Deletion
 
-Deleting a `ValkeyCluster` tears down everything it created, with nothing left behind. Finalizers (`valkey.gomomento.com/cleanup` on the cluster, `valkey.gomomento.com/node-cleanup` on each node) gate the deletion, and every dependent object (`ValkeyNode` resources, pods, per-node ConfigMaps, the ACL ConfigMap, the auth Secret, and the headless Service) carries an owner reference to the cluster, so Kubernetes garbage collection cascades the removal. Teardown is scoped to the cluster's namespace.
+Deleting a ValkeyCluster tears down its serving resources. Its ValkeyMeteringRecord remains in the operator namespace for export and billing; see [Usage metering](../platform-guide/usage-metering.md). Finalizers (`valkey.gomomento.com/cleanup` on the cluster, `valkey.gomomento.com/node-cleanup` on each node) gate the deletion, and every dependent object (`ValkeyNode` resources, pods, per-node ConfigMaps, the ACL ConfigMap, the auth Secret, and the headless Service) carries an owner reference to the cluster, so Kubernetes garbage collection cascades the removal. Teardown is scoped to the cluster's namespace.
 
 Deletion does not interact with the Valkey protocol: there is no flush or drain. Pods terminate with their resources, and because storage is ephemeral, the data is gone. See [Data durability](data-durability.md).
 

@@ -4,6 +4,8 @@ description: Symptom-first diagnosis and remediation for common Momento Valkey O
 sidebar_position: 6
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Troubleshooting
 
 This page diagnoses and resolves the problems you are most likely to hit operating the Momento Valkey Operator: stuck cluster states, pods that won't schedule, TLS and ACL failures, and an unhealthy operator. It is written for the on-call engineer who needs to go from symptom to fix. For the theory behind failure recovery, see [Failure modes](failure-modes.md); for the full state machine, see [Cluster status](../reference/cluster-status.md).
@@ -13,10 +15,10 @@ This page diagnoses and resolves the problems you are most likely to hit operati
 Before working a specific symptom below, gather the same four signals every time:
 
 ```bash
-# Cluster state and a one-line reason (when Invalid)
+# Cluster state and explanatory message
 kubectl get valkeycluster -n my-app
 
-# Full status: targetSpec (if bootstrapping) and status.message
+# Full status, conditions, message, and events
 kubectl describe valkeycluster my-cluster -n my-app
 
 # Per-node lifecycle: Joining / Active / Leaving
@@ -26,13 +28,11 @@ kubectl get valkeynodes -n my-app
 kubectl -n valkey-operator logs deployment/valkey-operator
 ```
 
-`kubectl get valkeycluster` shows the `STATE` column: `Creating`, `Active`, or `Invalid` in practice (the schema also defines `Updating`, but the current release never reports it; a cluster mid-change shows `Active`); `kubectl describe` or `kubectl get valkeycluster -o yaml` surfaces `status.message`, which is populated on `Invalid` with the exact validation failure. The operator emits one JSON log line per reconcile action, filtered by the `RUST_LOG` environment variable on its Deployment (`info` by default); [Logging](../platform-guide/logging.md) explains the format and how to filter by cluster. See [Cluster status](../reference/cluster-status.md) for what each state and column means.
-
-Know where explanations surface: **TLS validation failures are the only errors written to `status.message`**, and the operator emits no Kubernetes Events at all. Every other diagnosis below (missing references, ACL problems, connection failures) is explained only in the operator logs, so expect `kubectl describe` to look uninformative even when the logs name the exact problem.
+The STATE column shows Creating, Active, Updating, Invalid, or Failed. Inspect status.message for the cause of running-cluster problems or creation failure, and status.conditions for certificate-expiry warnings. Autoscaling decisions also produce Kubernetes Events. Operator logs provide additional diagnostics; see [Logging](../platform-guide/logging.md) and [Cluster status](../reference/cluster-status.md).
 
 ## Cluster stuck in Creating
 
-A cluster that has been `Creating` for longer than a few reconcile ticks usually has one of three causes. (A fourth is an unpullable image: the operator trusts a `ValkeyImage`'s `repository:tag` verbatim, so a typo there shows up as pods in `ImagePullBackOff`.)
+For a cluster that remains Creating, check references and pod scheduling. An unpullable image can also leave pods in ImagePullBackOff. If the state becomes Failed, follow the creation-failure procedure below.
 
 | Cause | How to confirm | Fix |
 |---|---|---|
@@ -42,38 +42,29 @@ A cluster that has been `Creating` for longer than a few reconcile ticks usually
 
 ## A wedged bootstrap can't be fixed by editing
 
-:::info
-During bootstrap, the operator works the cluster's **topology** from a snapshot (`status.targetSpec`) taken the moment the cluster enters `Creating`. Edits to `shards` or `replicasPerShard` while still `Creating` are deferred until bootstrap finishes, so a wrong topology value cannot be corrected by editing. Other spec fields (`configRef`, `placement`, `tls.secretRef`, `acl`) are read live on every reconcile, but they only shape **nodes that have not been created yet**. Node specs are immutable once created, so editing `placement` mid-bootstrap does not fix a node already stuck `Pending` under the old placement. Mid-bootstrap edits can also leave a cluster with nodes built from two different configurations.
-:::
+The cluster spec is frozen while Creating; edits are rejected at admission until Active. External fixes, such as creating a missing referenced config or adding node capacity, can unblock bootstrap. If the creation spec itself is wrong, delete and recreate the cluster with the corrected spec.
 
-External fixes still work while `Creating`: creating a missing `ValkeyImage` or `ValkeyConfig` unblocks bootstrap immediately, because references resolve live on every reconcile; no recreate needed (see the table above). But a mistake in the spec itself (a wrong topology value, or an unsatisfiable `placement` already stamped onto stuck nodes) requires **deleting and recreating** the `ValkeyCluster`; that is the reliable path. See [`targetSpec` snapshot semantics](../reference/cluster-status.md#targetspec-snapshot-semantics).
+## Cluster shows Failed
+
+Failed is a terminal creation failure. Read status.message for the cause. Common causes include a missing or invalid TLS Secret and an image whose binary is below the supported Valkey 9.0.1 floor.
+
+Correct the prerequisite, then delete and recreate the cluster to retry. For TLS, the Secret must exist and be valid before creation. Failed does not recover through an in-place spec edit.
 
 ## Cluster shows Invalid
 
-`Invalid` has exactly one trigger: the TLS Secret referenced by `spec.tls.secretRef` failed validation. The operator checks it on every reconcile and writes the specific failure to `status.message`. The messages, verbatim (with `<secret>` standing for the Secret name):
+Invalid is a recoverable problem on an already running cluster, commonly a broken or expired TLS Secret. It is never entered during creation. Read status.message, repair or rotate the Secret, and the cluster returns to Active automatically. See [TLS](../security/tls.md) for Secret requirements and rotation.
 
-| `status.message` | What it means |
-|---|---|
-| `TLS Secret "<secret>" not found in namespace "<namespace>"` | `spec.tls.secretRef` names a Secret that doesn't exist in the cluster's namespace |
-| `TLS Secret "<secret>" has no data` | The Secret exists but is empty |
-| `TLS Secret "<secret>" missing required key "<key>"` | A required key (`tls.crt`, `tls.key`, or `ca.crt`) is absent from the Secret |
-| `TLS Secret "<secret>": tls.crt is not valid PEM` | The certificate data is malformed |
-| `TLS Secret "<secret>": tls.crt is not a valid X.509 certificate` | The PEM block doesn't parse as a certificate |
-| `TLS cert in Secret "<secret>" missing SAN "<name>"` | The certificate's SAN list is missing `{cluster}.{namespace}.svc.cluster.local` or the wildcard `*.{cluster}.{namespace}.svc.cluster.local`; the message names the one it expected |
+## TLS clients fail or a certificate is nearing expiry
 
-Fix the Secret in place: patch it with corrected data, or point `spec.tls.secretRef` at a valid one. Recovery is automatic: once validation passes, the operator resets the state to `Creating`, and a previously-formed cluster passes through bootstrap as a no-op back to `Active`. No `ValkeyCluster` edit or recreation is needed. See [TLS](../security/tls.md).
+Inspect CertificateExpiringSoon in status.conditions. It becomes True within 30 days of expiry while the cluster remains Active. An expired or broken Secret on a running cluster can cause Invalid.
 
-## TLS clients fail while the cluster shows Active
-
-If clients get TLS handshake or certificate errors but `kubectl get valkeycluster` reports `Active`, the certificate has expired. Certificate expiry is a **warn-only** check: the operator logs it but never sets `Invalid`, so the cluster keeps reporting healthy while connections fail.
-
-**Check:**
+Check the certificate's expiry:
 
 ```bash
 kubectl get secret <tls-secret-name> -n my-app -o jsonpath='{.data.tls\.crt}' | base64 -d | openssl x509 -noout -enddate
 ```
 
-**Fix:** rotate the leaf certificate by updating `tls.crt` (and `tls.key`) in the Secret. See [TLS](../security/tls.md) for the rotation procedure and for setting up expiry monitoring; the operator does not alert on this for you.
+Rotate the leaf certificate by updating tls.crt and tls.key in the Secret. Verify that clients use the correct CA bundle and hostname. See [TLS](../security/tls.md) for rotation and cert-manager renewal, and [Monitoring](../platform-guide/monitoring.md) for alerting.
 
 ## Pods stuck Pending
 
@@ -121,7 +112,7 @@ A `ValkeyCluster` (or `ValkeyNode`) stuck in `Terminating` is waiting on its fin
 If the operator was fully uninstalled, reinstall it from the release artifacts (the Deployment no longer exists, so scaling it does nothing):
 
 ```bash
-kubectl apply -f https://github.com/momentohq/valkey-operator/releases/download/v0.6.0/operator.yaml
+kubectl apply -f https://github.com/momentohq/valkey-operator/releases/download/v0.9.0/operator.yaml
 kubectl -n valkey-operator rollout status deployment/valkey-operator
 ```
 

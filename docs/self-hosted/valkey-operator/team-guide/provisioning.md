@@ -4,6 +4,8 @@ description: Discover the config menu, apply a ValkeyCluster, watch it reach Act
 sidebar_position: 2
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Provisioning a cluster
 
 This guide walks through provisioning a Valkey cluster with the Momento Valkey Operator as a product team: finding out what your platform team has made available, applying a `ValkeyCluster`, and watching it come up. It also covers the decisions you need to get right before you apply it, because a few of them can't be changed afterward.
@@ -62,7 +64,7 @@ Watch the cluster come up:
 kubectl -n my-app get valkeycluster my-cluster -w
 ```
 
-A new cluster starts in `Creating` while the operator forms the topology: creating nodes, assigning hash slots, attaching replicas. It moves to `Active` once the cluster is fully formed and serving. You might also see `Invalid` if a referenced TLS Secret fails validation; the operator recovers automatically once the Secret is fixed. For the full state definitions and transition rules, see [Cluster status](../reference/cluster-status.md).
+A new cluster starts in `Creating` while the operator forms the topology: creating nodes, assigning hash slots, attaching replicas. It moves to `Active` once the cluster is fully formed and serving. A missing or invalid TLS Secret during creation, or an image binary below the supported floor, can cause Failed. Correct the prerequisite, then delete and recreate to retry. Spec edits are rejected while Creating. For the full state definitions and transition rules, see [Cluster status](../reference/cluster-status.md).
 
 ## Reading cluster status
 
@@ -104,9 +106,9 @@ kubectl -n my-app get valkeynodes
 
 ```text
 NAME               CLUSTER      IMAGE                LIFECYCLE
-my-cluster-1a2b3   my-cluster   valkey/valkey:9.0.0  Active
-my-cluster-4c5d6   my-cluster   valkey/valkey:9.0.0  Active
-my-cluster-7e8f9   my-cluster   valkey/valkey:9.0.0  Joining
+my-cluster-1a2b3   my-cluster   valkey/valkey:9.0.1  Active
+my-cluster-4c5d6   my-cluster   valkey/valkey:9.0.1  Active
+my-cluster-7e8f9   my-cluster   valkey/valkey:9.0.1  Joining
 ```
 
 `ValkeyNode` is read-only for product teams, useful for observing bootstrap and rollout progress, but not something you create or edit directly.

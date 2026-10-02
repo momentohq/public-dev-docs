@@ -4,6 +4,8 @@ description: "Install the Momento Valkey Operator and run your first Valkey clus
 sidebar_position: 1
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Getting started
 
 This section takes you from an empty Kubernetes cluster to a running, sharded Valkey cluster managed by the Momento Valkey Operator. It is written for both personas: the platform team evaluating or installing the operator, and product teams who want to see a cluster working end to end.
@@ -11,7 +13,7 @@ This section takes you from an empty Kubernetes cluster to a running, sharded Va
 Work through the first three pages in order:
 
 - **[Prerequisites](prerequisites.md)** — version floors, required access, optional dependencies, and what the operator deliberately does not need. Includes a Pod Security Standards note you should read before choosing namespaces.
-- **[Installation](installation.md)** — install the CRDs and the operator from the v0.6.0 release artifacts, understand what lands in your Kubernetes cluster, and verify the rollout.
+- **[Installation](installation.md)** — install the CRDs and the operator from the v0.9.0 release artifacts, understand what lands in your Kubernetes cluster, and verify the rollout.
 - **[Quickstart](quickstart.md)** — the hands-on tutorial: register an image, define a config, provision a three-shard Valkey cluster, connect to it, scale it to four shards, and tear it down.
 - **[Glossary](glossary.md)** — the Valkey terms and operator vocabulary these docs use, including the three meanings of the word "cluster". Keep it open in a tab if either Valkey or this operator is new to you.
 

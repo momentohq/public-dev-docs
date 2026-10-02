@@ -1,16 +1,18 @@
 ---
 title: API reference overview
-description: The five custom resources served by the Momento Valkey Operator, with conventions for reading the per-resource reference pages.
+description: The custom resources served by the Momento Valkey Operator, with conventions for reading the per-resource reference pages.
 sidebar_position: 1
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # API reference overview
 
-This section documents every custom resource served by the Momento Valkey Operator: each field, its type, defaults, and the validation the API server enforces. It describes the API shipped with operator release v0.6.0.
+This section describes the Momento Valkey Operator custom resources, their fields, and operational behavior. Use kubectl explain against your installed CRDs for the complete schema.
 
-All five resources belong to API group and version `valkey.gomomento.com/v1alpha1`. None define short names, so use the full resource name with `kubectl` (for example, `kubectl get valkeyclusters`).
+All resources belong to API group and version `valkey.gomomento.com/v1alpha1`. None define short names, so use the full resource name with `kubectl` (for example, `kubectl get valkeyclusters`).
 
-## The five resources
+## Resources
 
 | Kind | Scope | Who touches it | Purpose |
 |---|---|---|---|
@@ -19,6 +21,7 @@ All five resources belong to API group and version `valkey.gomomento.com/v1alpha
 | [`ValkeyRole`](valkeyrole.md) | Cluster | Platform team | Reusable set of Valkey ACL command and category permissions, referenced from ACL bindings. |
 | [`ValkeyCluster`](valkeycluster.md) | Namespaced | Product team | The provisioning interface: picks a config from the menu and declares topology, placement, TLS, and per-cluster ACLs. |
 | [`ValkeyNode`](valkeynode.md) | Namespaced | Operator only (read-only for users) | Operator-internal representation of a single Valkey cluster member. |
+| [ValkeyMeteringRecord](valkeymeteringrecord.md) | Namespaced, in the operator namespace | Operator writes; platform team exports/releases | Retained memory usage record for billing. |
 
 For an explanation of why the API is split this way and how the cluster-scoped menu resources implement governance, see [Resource model](../../concepts/resource-model.md).
 

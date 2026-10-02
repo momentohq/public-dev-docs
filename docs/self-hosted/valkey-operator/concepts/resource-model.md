@@ -1,16 +1,18 @@
 ---
 title: Resource model
-description: The five custom resources of the Momento Valkey Operator, why the model splits a cluster-scoped menu from namespaced clusters, and how references resolve between them.
+description: The custom resources of the Momento Valkey Operator, why the model splits a cluster-scoped menu from namespaced clusters, and how references resolve between them.
 sidebar_position: 2
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Resource model
 
-This page explains the five custom resources the Momento Valkey Operator installs, why the model is split the way it is, and how the split turns ordinary Kubernetes RBAC into a governance mechanism. It is for both personas: platform teams own most of these resources; product teams interact with exactly one.
+This page explains the custom resources the Momento Valkey Operator installs, why the model is split the way it is, and how the split turns ordinary Kubernetes RBAC into a governance mechanism. It is for both personas: platform teams own most of these resources; product teams interact with exactly one.
 
-## Five resources, one API group
+## Resources in one API group
 
-All five resources live in the API group `valkey.gomomento.com/v1alpha1`. Four are user-facing; one is operator-internal.
+All resources live in the API group valkey.gomomento.com/v1alpha1. The platform menu and team cluster interface are accompanied by operator-managed node and billing records.
 
 | Kind | Scope | Purpose |
 |---|---|---|
@@ -19,8 +21,9 @@ All five resources live in the API group `valkey.gomomento.com/v1alpha1`. Four a
 | `ValkeyRole` | Cluster | Reusable ACL permission template (command and category rules) |
 | `ValkeyCluster` | Namespaced | A product team's request for a Valkey cluster: config choice plus topology |
 | `ValkeyNode` | Namespaced | Operator-internal record of a single Valkey cluster member; read-only for users |
+| ValkeyMeteringRecord | Namespaced, in the operator namespace | Provisioned memory over time for billing; retained after cluster deletion |
 
-Full field-by-field schemas live in the API reference: [`ValkeyImage`](../reference/api/valkeyimage.md), [`ValkeyConfig`](../reference/api/valkeyconfig.md), [`ValkeyRole`](../reference/api/valkeyrole.md), [`ValkeyCluster`](../reference/api/valkeycluster.md), [`ValkeyNode`](../reference/api/valkeynode.md).
+Resource reference pages describe each kind: [`ValkeyImage`](../reference/api/valkeyimage.md), [`ValkeyConfig`](../reference/api/valkeyconfig.md), [`ValkeyRole`](../reference/api/valkeyrole.md), [`ValkeyCluster`](../reference/api/valkeycluster.md), [`ValkeyNode`](../reference/api/valkeynode.md), [ValkeyMeteringRecord](../reference/api/valkeymeteringrecord.md).
 
 ## Why the model is split this way
 
@@ -28,7 +31,7 @@ A single "cluster" resource with an image field would work mechanically, but it 
 
 ### ValkeyImage, the allowlist
 
-A `ValkeyImage` names a container image (`repository` + `tag`) and the Valkey version it provides. It is not a convenience alias; it is an allowlist. Every Valkey cluster's configuration must ultimately resolve to a `ValkeyImage` by name, and the operator resolves that reference on every reconcile. If no `ValkeyImage` with that name exists, resolution fails and the Valkey cluster cannot run. Removing an image from the allowlist therefore blocks new use of it; adding one is the only way to permit it.
+A `ValkeyImage` names a container image (`repository` + `tag`) and the Valkey version it provides. It is not a convenience alias; it is an allowlist. Every Valkey cluster's configuration must ultimately resolve to a `ValkeyImage` by name, and the operator resolves that reference on every reconcile. If no `ValkeyImage` with that name exists, resolution fails and the Valkey cluster cannot run. Adding an image is how you permit it. Referenced images are protected from deletion until their referencing configs are gone.
 
 Because the reference is by name and resolved live, upgrades are also governed here: repointing a config at a new `ValkeyImage` rolls every Valkey cluster that references it. See [Managing Valkey upgrades](../platform-guide/valkey-upgrades.md).
 
@@ -45,8 +48,8 @@ metadata:
   name: valkey-9-0
 spec:
   repository: valkey/valkey
-  tag: 9.0.0
-  version: 9.0.0
+  tag: 9.0.1
+  version: 9.0.1
 ---
 apiVersion: valkey.gomomento.com/v1alpha1
 kind: ValkeyConfig
@@ -103,6 +106,10 @@ Everything else (pods, ConfigMaps, Secrets, the Service, slot assignment, failov
 For each Valkey cluster member, the operator creates a `ValkeyNode` resource recording that node's fully resolved state: the exact image, resources, rendered settings, and placement. Its spec is immutable by design: when anything about a node needs to change, the operator creates a replacement node and retires the old one rather than mutating it in place. This is the mechanism behind rolling replacement (see [Reconciliation](reconciliation.md) and [Pod management](pod-management.md)).
 
 You can see `ValkeyNode` resources with `kubectl get valkeynodes`, and reading them is useful for observing lifecycle transitions (`Joining`, `Active`, `Leaving`). Do not create or edit them; they exist for the operator, not for users.
+
+## ValkeyMeteringRecord, retained billing records
+
+The operator writes one ValkeyMeteringRecord per cluster in its own namespace. It tracks provisioned memory over time and remains after cluster deletion. Export and release records through [Usage metering](../platform-guide/usage-metering.md).
 
 ## Scoping as the governance mechanism
 

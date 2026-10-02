@@ -4,6 +4,8 @@ description: A hands-on tutorial that provisions, connects to, scales, and tears
 sidebar_position: 4
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Quickstart
 
 This tutorial takes you from an installed Momento Valkey Operator to a running, connected, scaled Valkey cluster. It assumes you have completed [Installation](installation.md) and have `cluster-admin` access to the Kubernetes cluster, and it takes roughly 15 to 20 minutes.
@@ -14,7 +16,7 @@ This tutorial has you play both personas. Steps 1 and 2 (registering an image an
 
 ## 1. Register a Valkey image
 
-`ValkeyImage` is the allowlist of container images clusters are permitted to run. Register Valkey 9.0.0:
+`ValkeyImage` is the allowlist of container images clusters are permitted to run. Register Valkey 9.0.1:
 
 ```bash
 kubectl apply -f - <<'EOF'
@@ -24,14 +26,16 @@ metadata:
   name: valkey-9-0
 spec:
   repository: valkey/valkey
-  tag: "9.0.0"
-  version: "9.0.0"
+  tag: "9.0.1"
+  version: "9.0.1"
 EOF
 ```
 
 ```bash
 kubectl get valkeyimage valkey-9-0
 ```
+
+The version must be full MAJOR.MINOR.PATCH and at least 9.0.1. The running binary is also checked against the supported floor before joining; an unsupported binary causes Failed.
 
 ## 2. Create a config
 
@@ -57,6 +61,8 @@ EOF
 ```bash
 kubectl get valkeyconfig standard
 ```
+
+The valkey map accepts ordinary settings. Operator-managed authentication, ACLs, TLS, and include directives are rejected at admission; use the structured security fields instead.
 
 ## 3. Provision a cluster
 
@@ -135,7 +141,7 @@ Watch it again:
 kubectl -n my-app get valkeycluster -w
 ```
 
-`STATE` stays `Active` throughout (scaling is a live operation, not a separate state), and the `SHARDS` column shows the updated desired count immediately, since it reflects the spec. The real progress signal is the node list: the operator brings up the added shard's nodes and migrates a share of the existing hash slots onto them so all four shards end up balanced. Meanwhile, existing shards keep serving. Watch the nodes converge:
+A scale or reshard can report Updating, and the `SHARDS` column shows the updated desired count immediately, since it reflects the spec. The real progress signal is the node list: the operator brings up the added shard's nodes and migrates a share of the existing hash slots onto them so all four shards end up balanced. Meanwhile, existing shards keep serving. Watch the nodes converge:
 
 ```bash
 kubectl -n my-app get valkeynodes -w
@@ -158,6 +164,8 @@ kubectl -n my-app delete valkeycluster my-cluster
 ```
 
 This cascades: the Service, the auth Secret, the ACL ConfigMap, and every `ValkeyNode` (and its pod and ConfigMap) go with it. The namespace `my-app`, the `standard` `ValkeyConfig`, and the `valkey-9-0` `ValkeyImage` are **not** deleted: they're independent, cluster-scoped (or, for the namespace, unrelated) resources, and stay available for the next cluster you provision.
+
+The cluster's metering record remains in the operator namespace after deletion. [Export it before releasing it](../platform-guide/usage-metering.md).
 
 ## Where to go next
 

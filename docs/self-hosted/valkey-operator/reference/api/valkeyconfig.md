@@ -4,6 +4,8 @@ description: Reference for the ValkeyConfig custom resource, the cluster-scoped 
 sidebar_position: 3
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # ValkeyConfig
 
 `ValkeyConfig` tells the Momento Valkey Operator how the nodes of a Valkey cluster are configured: which image they run, their resources, Valkey settings, and platform-level ACL bindings. Platform teams curate a menu of these cluster-scoped resources; product teams select one by name in `ValkeyCluster.spec.configRef`. See [Curating images and configs](../../platform-guide/curating-images-and-configs.md) for authoring guidance.
@@ -26,7 +28,7 @@ All spec fields are optional, but a usable config must provide `imageRef` either
 | `imageRef` | string | No | — | none | Name of a [`ValkeyImage`](valkeyimage.md). If omitted, the base config referenced by `baseRef` (or a config further up the chain) must provide it. |
 | `baseRef` | string | No | — | none | Name of another `ValkeyConfig` to inherit from. Fields set on this config override the base. See [Inheritance](#inheritance). |
 | `resources` | object ([`ValkeyResources`](#valkeyresources)) | No | — | none | Resource requirements for each Valkey pod. |
-| `valkey` | map of string to string | No | — | none | Valkey configuration key-value pairs, written into each node's configuration. Some cluster-critical settings are always injected by the operator and override values set here: see [Forced settings](../forced-settings.md). |
+| `valkey` | map of string to string | No | — | Operator-managed authentication, ACL, TLS, and include directives are rejected at admission. | Valkey configuration key-value pairs, written into each node's configuration. Some cluster-critical settings are always injected by the operator and override values set here: see [Forced settings](../forced-settings.md). |
 | `acl` | array of [`AclBinding`](#aclbinding) | No | — | Max 64 entries. Admission rule: no two entries may share a `username` ("duplicate username in ACL bindings"). | Platform-level ACL user bindings, applied to every cluster that uses this config. Cluster-level bindings are additive but cannot reuse usernames defined here. See [ACLs](../../security/acls.md). |
 
 ### Inheritance

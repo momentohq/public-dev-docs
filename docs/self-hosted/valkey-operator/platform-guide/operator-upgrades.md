@@ -4,6 +4,8 @@ description: Apply new release artifacts, what happens to running clusters while
 sidebar_position: 5
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Upgrading the operator
 
 This guide covers upgrading the Momento Valkey Operator itself (the controller Deployment and its CRDs) as opposed to upgrading the Valkey engine version running inside your clusters (see [Managing Valkey upgrades](valkey-upgrades.md)).
@@ -13,8 +15,8 @@ This guide covers upgrading the Momento Valkey Operator itself (the controller D
 Apply the new release's CRDs and operator manifest, then confirm the rollout completes:
 
 ```bash
-kubectl apply -f https://github.com/momentohq/valkey-operator/releases/download/v0.6.0/crds.json
-kubectl apply -f https://github.com/momentohq/valkey-operator/releases/download/v0.6.0/operator.yaml
+kubectl apply -f https://github.com/momentohq/valkey-operator/releases/download/v0.9.0/crds.json
+kubectl apply -f https://github.com/momentohq/valkey-operator/releases/download/v0.9.0/operator.yaml
 kubectl -n valkey-operator rollout status deployment/valkey-operator
 ```
 

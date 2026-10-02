@@ -4,6 +4,8 @@ description: Complete, runnable manifests for the common shapes of menu resource
 sidebar_position: 6
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Example manifests
 
 Complete manifests for the shapes you'll create most often, collected in one place so you can start from a working example instead of assembling fields from reference tables. Each sample states its prerequisites; all of them use the same names as the rest of these docs (namespace `my-app`, cluster `my-cluster`, configs `standard` and `large`, image `valkey-9-0`).
@@ -27,8 +29,8 @@ metadata:
   name: valkey-9-0
 spec:
   repository: valkey/valkey
-  tag: "9.0.0"
-  version: "9.0.0"
+  tag: "9.0.1"
+  version: "9.0.1"
 ```
 
 ### Base config

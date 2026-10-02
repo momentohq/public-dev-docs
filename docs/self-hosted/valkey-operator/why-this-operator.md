@@ -4,6 +4,8 @@ description: The top factual benefits of the Momento Valkey Operator, grounded i
 sidebar_position: 2
 ---
 
+<!-- Projects: self-hosted-operator-operations -->
+
 # Why this operator
 
 This page states the Momento Valkey Operator's top benefits factually, each grounded in behavior documented elsewhere in these docs. It does not compare against named products; where useful, it anchors a claim against typical expectations for operators of stateful systems on Kubernetes.
@@ -34,7 +36,7 @@ With required zone spread, every shard's members are guaranteed to land across d
 
 ## Predictable, observable reconciliation
 
-Where many controllers reconcile by re-evaluating and applying a full desired state, this operator takes at most one corrective action per reconciliation pass, then requeues. A cluster's formation is snapshotted into `status.targetSpec`, and every node's join/leave progress is visible through its `ValkeyNode` resource, so a platform team can watch a change happen step by step rather than treating the operator as a black box. This bounds the blast radius of any single mistake or fault to one small step. See [Reconciliation](concepts/reconciliation.md).
+Where many controllers reconcile by re-evaluating and applying a full desired state, this operator takes at most one corrective action per reconciliation pass, then requeues. The cluster spec is frozen during Creating, and every node's join/leave progress is visible through its `ValkeyNode` resource, so a platform team can watch a change happen step by step rather than treating the operator as a black box. This bounds the blast radius of any single mistake or fault to one small step. See [Reconciliation](concepts/reconciliation.md).
 
 ## An honest operations story
 

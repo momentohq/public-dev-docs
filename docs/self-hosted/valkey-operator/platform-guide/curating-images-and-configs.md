@@ -4,6 +4,8 @@ description: "How to build the platform menu: register allowlisted images, autho
 sidebar_position: 2
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Curating images and configs
 
 This guide walks through building the menu product teams choose from with the Momento Valkey Operator. It covers registering allowlisted Valkey images with `ValkeyImage`, and authoring a `ValkeyConfig` catalog, including base-and-variant configs via `baseRef`. It is for platform teams; product teams only read what you publish here.
@@ -19,21 +21,21 @@ metadata:
   name: valkey-9-0
 spec:
   repository: valkey/valkey
-  tag: "9.0.0"
-  version: "9.0.0"
+  tag: "9.0.1"
+  version: "9.0.1"
 ```
 
 Apply one `ValkeyImage` per version you are willing to run.
 
 ### What the operator validates, and what it trusts
 
-The allowlist check is existence, nothing more: at every reconcile the operator resolves the config chain's `imageRef` to a `ValkeyImage` by name, joins `repository` and `tag` into an image string, and puts that string verbatim into pod specs. It never contacts a registry, parses the tag, or inspects the image, and it never reads `version`: that field is informational, surfaced as a printer column for humans, and nothing checks that the image actually contains the Valkey version it declares. Curation is therefore entirely your responsibility. Register exact, pinned tags of images you have verified meet the [Valkey version floor](../support/compatibility.md); avoid mutable tags such as `latest`, which make "what is running" unanswerable and can silently violate the floor on the next pod replacement.
+The image must be registered, and its version must be full MAJOR.MINOR.PATCH and at least 9.0.1. Older declared versions are rejected at admission. The operator also checks the running binary against the floor before a node joins; an unsupported binary causes creation to report Failed.
+
+Register exact, pinned tags of images you have verified meet the [Valkey version floor](../support/compatibility.md). Avoid mutable tags such as latest, which can change the binary on the next pod replacement.
 
 The operator also sets no `imagePullPolicy` and no `imagePullSecrets` on the pods, so kubelet defaults apply. If your images live in a private registry, supply pull credentials through the tenant namespace's default ServiceAccount or your nodes' registry configuration.
 
-:::warning
-Do not remove a `ValkeyImage` while any config still references it, directly or through a `baseRef` chain. Config resolution runs at the start of every reconciliation, so a missing image does not just block new configs: it halts **all** reconciliation for every cluster on a config that still points at it: no scaling, no ACL or TLS updates, no self-healing, until the image is restored. Running pods keep serving, but the clusters are unmanaged in the meantime. Remove an image only after no config in the menu references it.
-:::
+A ValkeyImage referenced by a ValkeyConfig is protected from deletion. A delete request marks it for deletion, but release waits until the last referencing config is gone. Migrate clusters to replacement configs and retire the old configs before retiring their image.
 
 ## Author a base config
 
@@ -90,7 +92,7 @@ Config resolution runs on every reconcile, not once at admission: editing a base
 
 ## What curated configs cannot override
 
-A fixed set of Valkey settings (cluster mode, the client port, file paths, replication identity, and more) is injected by the operator after your config resolves. It always wins over anything in the `valkey` map. Design your menu around this: don't spend menu space trying to set `cluster-enabled` or `port`. Don't assume the operator rejects settings it doesn't force: anything else in the `valkey` map passes through unchecked. See [Forced settings](../reference/forced-settings.md) for the exact list.
+A fixed set of Valkey settings (cluster mode, the client port, file paths, replication identity, and more) is injected by the operator after your config resolves. It always wins over anything in the `valkey` map. Design your menu around this: don't spend menu space trying to set `cluster-enabled` or `port`. Authentication directives (including requirepass and primaryauth), ACL directives (aclfile and user), TLS directives (tls-*), and include are rejected at admission. Review other ordinary Valkey settings before publishing a config. See [Forced settings](../reference/forced-settings.md) for the exact list.
 
 ## Menu design patterns
 

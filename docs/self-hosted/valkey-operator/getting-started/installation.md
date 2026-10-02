@@ -1,25 +1,27 @@
 ---
 title: Installation
-description: Install the Momento Valkey Operator from the v0.6.0 release artifacts, understand what it creates, and verify the rollout.
+description: Install the Momento Valkey Operator from the v0.9.0 release artifacts, understand what it creates, and verify the rollout.
 sidebar_position: 3
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Installation
 
-This page installs the Momento Valkey Operator from the v0.6.0 GitHub release artifacts and verifies the rollout. It assumes the `cluster-admin` access described in [Prerequisites](prerequisites.md).
+This page installs the Momento Valkey Operator from the v0.9.0 GitHub release artifacts and verifies the rollout. It assumes the `cluster-admin` access described in [Prerequisites](prerequisites.md).
 
 ## 1. Apply the CRDs
 
 ```bash
-kubectl apply -f https://github.com/momentohq/valkey-operator/releases/download/v0.6.0/crds.json
+kubectl apply -f https://github.com/momentohq/valkey-operator/releases/download/v0.9.0/crds.json
 ```
 
-This registers all five custom resource definitions: `ValkeyImage`, `ValkeyConfig`, `ValkeyRole`, `ValkeyCluster`, and `ValkeyNode`.
+This registers the custom resource definitions, including ValkeyImage, ValkeyConfig, ValkeyRole, ValkeyCluster, ValkeyMeteringRecord, and the internal ValkeyNode.
 
 ## 2. Deploy the operator
 
 ```bash
-kubectl apply -f https://github.com/momentohq/valkey-operator/releases/download/v0.6.0/operator.yaml
+kubectl apply -f https://github.com/momentohq/valkey-operator/releases/download/v0.9.0/operator.yaml
 ```
 
 The operator image is pulled from Docker Hub at `gomomento/valkey-operator`.
@@ -54,7 +56,7 @@ Confirm the CRDs registered:
 kubectl get crd | grep valkey.gomomento.com
 ```
 
-You should see five entries: `valkeyimages`, `valkeyconfigs`, `valkeyroles`, `valkeyclusters`, and `valkeynodes`, all under `valkey.gomomento.com`.
+You should see entries for valkeyimages, valkeyconfigs, valkeyroles, valkeyclusters, valkeymeteringrecords, and valkeynodes, all under `valkey.gomomento.com`.
 
 ## Next steps
 
