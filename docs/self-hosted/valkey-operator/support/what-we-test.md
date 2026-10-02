@@ -4,9 +4,13 @@ description: The behaviors the operator's test suites verify, on real clusters a
 sidebar_position: 4
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # What we test
 
-This page states which operator behaviors are verified by automated tests, and which are not. It exists so you can calibrate the claims in these docs: [Compatibility](compatibility.md) distinguishes supported from tested, and this page is the "tested" side of that line, including its limits.
+This page records the test coverage documented for operator v0.6.0. It is a historical coverage snapshot, not a test audit of v0.9.0. Current operational behavior, including frozen creation specs and Failed creation states, is described in [Cluster status](../reference/cluster-status.md).
+
+This page states which operator behaviors were verified by those automated tests, and which were not. It exists so you can calibrate the claims in these docs: [Compatibility](compatibility.md) distinguishes supported from tested, and this page is the "tested" side of that line, including its limits.
 
 ## How the operator is tested
 
@@ -24,7 +28,7 @@ Nearly every scenario below asserts the same safety invariant at convergence: al
 ### Bootstrap
 
 - Clusters across a matrix of one to four shards and zero to two replicas per shard reach `Active` with full slot coverage, the exact expected node count, and every node a full member. **Real-cluster** for representative shapes, including healthy replication on every primary.
-- Spec edits made while a cluster is still `Creating` are deferred, not lost: bootstrap completes with its snapshotted spec, then the edit is applied. See [Reconciliation](../concepts/reconciliation.md).
+- In v0.6.0, creation-time spec edits were deferred until bootstrap completed. In v0.9.0, edits during Creating are rejected at admission; see [Cluster status](../reference/cluster-status.md).
 
 ### Scaling
 
@@ -50,7 +54,7 @@ Nearly every scenario below asserts the same safety invariant at convergence: al
 ### TLS
 
 - A TLS-only cluster bootstraps and serves; a plaintext connection to it is rejected. **Real-cluster.**
-- A missing TLS Secret puts the cluster in `Invalid`, and the cluster recovers to `Active` on its own once a valid Secret exists, without recreating the resource. **Real-cluster.**
+- In v0.6.0, a missing TLS Secret put the cluster in Invalid and creation recovered once a valid Secret appeared. **Real-cluster.** In v0.9.0, missing or invalid TLS material during creation causes Failed and requires recreation after correction.
 - Full CA-plus-leaf rotation using the documented CA-bundle procedure completes with zero pod restarts and the cluster reachable over TLS at every asserted checkpoint (continuous request success is not measured; see the availability gap below). **Real-cluster.** See [TLS](../security/tls.md).
 
 ### ACLs

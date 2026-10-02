@@ -4,6 +4,8 @@ description: Version floors, access requirements, optional dependencies, and Pod
 sidebar_position: 2
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Prerequisites
 
 This page lists what your Kubernetes cluster and access level need to provide before you install the Momento Valkey Operator. It is a reference. For the install steps themselves, go to [Installation](installation.md).
@@ -13,7 +15,7 @@ This page lists what your Kubernetes cluster and access level need to provide be
 | Requirement | Minimum |
 |---|---|
 | Kubernetes | 1.27+ |
-| Valkey (in any `ValkeyImage` you register) | 9+ |
+| Valkey (in any `ValkeyImage` you register) | 9.0.1+ |
 | Architecture | amd64 or arm64 |
 
 [Compatibility](../support/compatibility.md) is the canonical source for version and architecture support, including why these floors apply and what is tested versus merely supported. Treat the table above as a summary, not the authority.

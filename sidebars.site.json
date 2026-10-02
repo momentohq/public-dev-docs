@@ -118,6 +118,7 @@
               "self-hosted/valkey-operator/team-guide/provisioning",
               "self-hosted/valkey-operator/team-guide/connecting",
               "self-hosted/valkey-operator/team-guide/scaling",
+              "self-hosted/valkey-operator/team-guide/autoscaling",
               "self-hosted/valkey-operator/team-guide/changing-configuration"
             ],
             "key": "self-hosted-valkey-operator-for-product-teams"
@@ -135,7 +136,8 @@
               "self-hosted/valkey-operator/platform-guide/operator-upgrades",
               "self-hosted/valkey-operator/platform-guide/kubernetes-maintenance",
               "self-hosted/valkey-operator/platform-guide/monitoring",
-              "self-hosted/valkey-operator/platform-guide/logging"
+              "self-hosted/valkey-operator/platform-guide/logging",
+              "self-hosted/valkey-operator/platform-guide/usage-metering"
             ],
             "key": "self-hosted-valkey-operator-for-platform-teams"
           },
@@ -192,7 +194,8 @@
                   "self-hosted/valkey-operator/reference/api/valkeyconfig",
                   "self-hosted/valkey-operator/reference/api/valkeyrole",
                   "self-hosted/valkey-operator/reference/api/valkeycluster",
-                  "self-hosted/valkey-operator/reference/api/valkeynode"
+                  "self-hosted/valkey-operator/reference/api/valkeynode",
+                  "self-hosted/valkey-operator/reference/api/valkeymeteringrecord"
                 ],
                 "key": "valkey-operator-api-reference"
               }

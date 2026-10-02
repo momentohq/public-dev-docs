@@ -4,9 +4,11 @@ description: Operator logs, cluster state, the label taxonomy for dashboards, wh
 sidebar_position: 7
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Monitoring
 
-This guide covers observing the Momento Valkey Operator and the clusters it manages: the operator's own logs, the per-cluster state signal, and the label taxonomy for building dashboards and alerts. Since the operator exposes no Valkey metrics itself, this guide also covers how to get them today.
+This guide covers observing the Momento Valkey Operator and the clusters it manages: the operator's own logs, the per-cluster state signal, and the label taxonomy for building dashboards and alerts. It also covers utilization samples in ValkeyNode status and collecting Valkey metrics for external dashboards.
 
 ## Operator logs
 
@@ -26,7 +28,7 @@ Each `ValkeyCluster`'s `status.state` and `status.message` are the primary healt
 kubectl get valkeyclusters -A -w
 ```
 
-`state` is one of `Creating`, `Active`, or `Invalid` (`Updating` is reserved and not reported; a cluster mid-upgrade still shows `Active`). `message` is populated with a specific reason when `state` is `Invalid`. See [Cluster status](../reference/cluster-status.md) for the full schema.
+state is one of Creating, Active, Updating, Invalid, or Failed. status.message explains recoverable running-cluster problems and terminal creation failures. See [Cluster status](../reference/cluster-status.md) for the status fields and inspection commands.
 
 ## Watching ValkeyNode lifecycle
 
@@ -44,9 +46,10 @@ Every Valkey pod carries a stable set of labels (`app.kubernetes.io/name=valkey`
 
 ## What to alert on
 
-Three signals cover most of what you need at the fleet level:
+Monitor these fleet-level signals:
 
 - **`state` not `Active` for longer than your normal roll or bootstrap takes.** A cluster stuck in `Creating` or `Invalid` past the time a routine change normally needs is worth paging on. See [Troubleshooting](../operations/troubleshooting.md) for the common causes.
+- **CertificateExpiringSoon is True.** Rotate TLS certificates before expiry; the condition becomes True within 30 days of expiry.
 - **Pod churn on a cluster.** Repeated replacement of members in the same shard, outside of a change you initiated, points at an underlying failure (a bad node, a resource limit being hit, an unschedulable placement) rather than routine self-healing.
 - **The operator Deployment itself not available.** See below.
 
@@ -59,7 +62,7 @@ The operator exposes no liveness or readiness probe, no health endpoint, and no 
 
 ## Valkey-level metrics
 
-The operator does not expose Valkey metrics anywhere: Valkey pods are single-container with no metrics endpoint, and the operator adds none. To collect Valkey-level metrics today, deploy your own standalone exporter as a separate Deployment, pointed at the cluster's headless Service:
+The operator samples node utilization every 30 seconds and publishes it in ValkeyNode status for [autoscaling](../team-guide/autoscaling.md). Scaling decisions also appear as Kubernetes Events on the cluster. This status interface is separate from a Prometheus scrape endpoint. Valkey pods have no metrics endpoint added by the operator. To collect Valkey-level metrics today, deploy your own standalone exporter as a separate Deployment, pointed at the cluster's headless Service:
 
 ```text
 {cluster}.{namespace}.svc.cluster.local:6379
@@ -73,4 +76,4 @@ Built-in metrics export is on the roadmap but not available today. See [Roadmap]
 
 ## Certificate expiry
 
-The operator does not monitor or alert on TLS certificate expiry: an expired certificate leaves the cluster reporting `Active` while client connections fail. Monitoring certificate expiry is your responsibility. See [TLS](../security/tls.md) for the validation the operator does perform and how expiry is handled if you use cert-manager.
+Alert on CertificateExpiringSoon in each TLS cluster's status.conditions. It becomes True within 30 days of expiry while the cluster remains Active. A broken or expired Secret on a running cluster can cause Invalid. See [TLS](../security/tls.md) for the validation the operator does perform and how expiry is handled if you use cert-manager.

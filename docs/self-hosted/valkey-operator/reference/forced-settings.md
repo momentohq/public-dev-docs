@@ -4,6 +4,8 @@ description: The Valkey configuration directives the operator always injects, th
 sidebar_position: 3
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Forced Valkey settings
 
 The Momento Valkey Operator injects a fixed set of Valkey configuration directives into every node it creates, regardless of what the `valkey` map in the resolved `ValkeyConfig` specifies. This page lists every injected setting and its value, so platform teams know exactly which parts of the node configuration are operator-owned.
@@ -47,16 +49,11 @@ When `spec.tls` is set on a `ValkeyCluster`, the operator additionally injects t
 
 See [TLS](../security/tls.md) for the Secret shape and SAN requirements these settings depend on.
 
-## Everything else passes through
+## Settings rejected at admission
 
-:::info
-The operator does **not** validate or reject any other Valkey setting. Two consequences:
+The valkey map accepts ordinary valkey.conf settings. Operator-managed authentication (including requirepass and primaryauth), ACL directives (aclfile and user), TLS directives (tls-*), and include are rejected at admission.
 
-- If you specify a value for one of the forced settings above, it is **silently overridden**: there is no error, no event, and no status message. The forced value wins.
-- Any other key in the `valkey` map (including unknown, mistyped, or dangerous directives such as `requirepass` or raw `user` lines) passes through to the node's configuration file **unchecked**. A bad directive can prevent nodes from starting or silently undermine the cluster's authentication and ACL model.
-
-Platform teams should treat the `valkey` map in curated `ValkeyConfig` resources as production configuration and review it accordingly.
-:::
+Use the structured ACL and TLS fields instead of those directives. Other settings still require platform review; admission protection of these categories does not validate every Valkey directive.
 
 ## Enforcement is at render time, not runtime
 

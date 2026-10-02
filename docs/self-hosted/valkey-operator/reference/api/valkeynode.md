@@ -4,6 +4,8 @@ description: Reference for the ValkeyNode custom resource, the operator-internal
 sidebar_position: 6
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # ValkeyNode
 
 `ValkeyNode` represents a single member (one pod) of a Valkey cluster managed by the Momento Valkey Operator. The operator creates, mutates, and deletes these resources itself; they are documented here because you will see them with `kubectl` and they are useful for observing cluster transitions.
@@ -47,14 +49,14 @@ kubectl get valkeynodes -n my-app -w
 
 ```text
 NAME               CLUSTER      IMAGE                LIFECYCLE
-my-cluster-3f9a1   my-cluster   valkey/valkey:9.0.0   Active
-my-cluster-8c04d   my-cluster   valkey/valkey:9.0.0   Joining
-my-cluster-b52e7   my-cluster   valkey/valkey:9.0.0   Leaving
+my-cluster-3f9a1   my-cluster   valkey/valkey:9.0.1   Active
+my-cluster-8c04d   my-cluster   valkey/valkey:9.0.1   Joining
+my-cluster-b52e7   my-cluster   valkey/valkey:9.0.1   Leaving
 ```
 
 ## Status
 
-`ValkeyNode` has no status subresource. It is the only one of the five resources without one. Observe node health through the pod of the same name and the owning cluster's status.
+The operator samples utilization every 30 seconds and publishes measurements in each ValkeyNode's status. Inspect them with kubectl get valkeynodes -n my-app -o yaml. See [Autoscaling](../../team-guide/autoscaling.md) for the measurements and scaling rules. Use kubectl explain valkeynode.status --recursive for the installed schema.
 
 ## Printer columns
 
@@ -85,7 +87,7 @@ metadata:
   # ownerReferences to the ValkeyCluster omitted
 spec:
   clusterName: my-cluster
-  image: valkey/valkey:9.0.0
+  image: valkey/valkey:9.0.1
   cpu: "1"
   memory: "2Gi"
   shardIndex: 0

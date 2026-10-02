@@ -4,9 +4,11 @@ description: The ordered teardown procedure for removing the Momento Valkey Oper
 sidebar_position: 7
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-pricing -->
+
 # Uninstall
 
-This page removes the Momento Valkey Operator from a Kubernetes cluster: Valkey clusters, then the operator, then the CRDs, in that order. The order matters: reversing it leaves resources stuck. It is written for platform teams decommissioning the operator entirely; to remove one Valkey cluster and keep the operator, delete only that `ValkeyCluster`.
+This page removes the Momento Valkey Operator from a Kubernetes cluster: Valkey clusters, then export and release retained metering records, then the operator and CRDs, in that order. The order matters: reversing it can leave resources stuck or remove retained billing records before export. It is written for platform teams decommissioning the operator entirely; to remove one Valkey cluster and keep the operator, delete only that `ValkeyCluster`.
 
 ## Match your installed version before you start
 
@@ -19,7 +21,7 @@ kubectl -n valkey-operator get deployment valkey-operator \
   -o jsonpath='{.spec.template.spec.containers[0].image}'
 ```
 
-The tag in the output (for example, `gomomento/valkey-operator:v0.6.0`) tells you which release's `crds.json` and `operator.yaml` to reference throughout this page.
+The tag in the output (for example, `gomomento/valkey-operator:v0.9.0`) tells you which release's `crds.json` and `operator.yaml` to reference throughout this page.
 
 ## 1. Delete all ValkeyClusters first
 
@@ -33,27 +35,48 @@ Deleting a `ValkeyCluster` triggers the operator's cleanup finalizer, which reli
 kubectl get valkeycluster -A
 ```
 
-Confirm the list is empty (or contains only clusters you intend to keep on a different operator installation) before proceeding. If a cluster stays `Terminating`, do not continue to the next step: the operator must still be running to finish the cleanup. See the [stuck-`Terminating` entry in Troubleshooting](troubleshooting.md#cluster-stuck-terminating) if it doesn't clear.
+Confirm the list is empty before proceeding. If a cluster stays `Terminating`, do not continue to the next step: the operator must still be running to finish the cleanup. See the [stuck-`Terminating` entry in Troubleshooting](troubleshooting.md#cluster-stuck-terminating) if it doesn't clear.
 
-## 2. Delete the operator
+## 2. Export and release metering records
+
+With every cluster deleted and the operator still running, export the records:
 
 ```bash
-kubectl delete -f https://github.com/momentohq/valkey-operator/releases/download/v0.6.0/operator.yaml
+kubectl get valkeymeteringrecords -n valkey-operator -o json > usage-final.json
+```
+
+:::warning
+This export is your retained copy. Records for deleted clusters cannot be reconstructed. Confirm that the export succeeded before releasing them.
+:::
+
+Release the records while the operator is still available to process the annotation:
+
+```bash
+kubectl annotate valkeymeteringrecords -n valkey-operator --all \
+  valkey.gomomento.com/release=true
+```
+
+The command makes one request per record and can take minutes for a large fleet. It is safe to rerun. Releasing records before deleting clusters lets the operator recreate them; removing the operator first leaves no controller to process release. See [Usage metering](../platform-guide/usage-metering.md).
+
+## 3. Delete the operator
+
+```bash
+kubectl delete -f https://github.com/momentohq/valkey-operator/releases/download/v0.9.0/operator.yaml
 ```
 
 Use the manifest URL matching the version you installed. This removes the operator's Deployment, ServiceAccount, ClusterRole, ClusterRoleBinding, ConfigMap, and namespace.
 
-## 3. Delete the CRDs
+## 4. Delete the CRDs
 
 ```bash
-kubectl delete -f https://github.com/momentohq/valkey-operator/releases/download/v0.6.0/crds.json
+kubectl delete -f https://github.com/momentohq/valkey-operator/releases/download/v0.9.0/crds.json
 ```
 
 :::warning
 Deleting a CustomResourceDefinition cascades deletion of every custom resource of that kind, cluster-wide. If any `ValkeyCluster` (on this or another operator installation sharing the same CRDs) still exists at this point, deleting the CRDs deletes it too, bypassing the finalizer-driven cleanup from step 1. Confirm step 1 is complete across every namespace you care about before running this.
 :::
 
-This removes all five CRDs: `ValkeyImage`, `ValkeyConfig`, `ValkeyRole`, `ValkeyCluster`, and `ValkeyNode`.
+This removes the Operator CRDs, including ValkeyImage, ValkeyConfig, ValkeyRole, ValkeyCluster, ValkeyMeteringRecord, and ValkeyNode.
 
 ## Verify cleanup
 

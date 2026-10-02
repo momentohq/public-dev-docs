@@ -4,6 +4,8 @@ description: Definitions of the Valkey terms and operator vocabulary used throug
 sidebar_position: 5
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Glossary
 
 This page defines the Valkey terms and the operator's own vocabulary that the rest of these docs use. It serves two readers: Kubernetes engineers who haven't run Valkey before, and Valkey engineers meeting this operator's resource model for the first time. Kubernetes fundamentals (pods, custom resources, controllers, RBAC) are assumed throughout these docs and aren't defined here.
@@ -34,8 +36,8 @@ The word "cluster" names three different things in any conversation about this o
 - **the menu.** The cluster-scoped resources the platform team curates and product teams consume by reference: [`ValkeyImage`](../reference/api/valkeyimage.md) (allowlisted engine images), [`ValkeyConfig`](../reference/api/valkeyconfig.md) (named configuration profiles), and [`ValkeyRole`](../reference/api/valkeyrole.md) (reusable ACL permission sets). Cluster scoping is what makes the menu a governance mechanism; see [Resource model](../concepts/resource-model.md).
 - **platform team and product team.** The two personas the operator is built around. The platform team installs the operator and owns the menu; product teams create `ValkeyCluster` resources in their own namespaces. The split is enforced by Kubernetes RBAC, not by a policy engine; see [Multi-tenancy and RBAC](../platform-guide/multi-tenancy-and-rbac.md).
 - **reconciliation tick.** One pass of a control loop comparing desired state against observed state. The cluster loop takes at most one cluster-changing action per tick, which is why changes roll out as a sequence of small observable steps. See [Reconciliation](../concepts/reconciliation.md).
-- **`targetSpec`.** The snapshot of a cluster's spec that the operator is currently driving toward. Spec edits made while a transition is in progress are deferred until the current target is reached. See [Cluster status](../reference/cluster-status.md).
-- **cluster states.** The `state` printer column of a `ValkeyCluster`: `Creating`, `Active`, or `Invalid` in practice, with `Updating` reserved in the schema but not reported. [Cluster status](../reference/cluster-status.md) defines each.
+- **Creation spec.** The cluster spec is frozen during Creating. Edits are rejected at admission until the cluster is Active. See [Cluster status](../reference/cluster-status.md).
+- **cluster states.** The `state` printer column of a `ValkeyCluster`: Creating, Active, Updating, Invalid, or Failed. [Cluster status](../reference/cluster-status.md) defines each.
 - **node lifecycle.** The join/leave progression of a `ValkeyNode`: `Joining` (being added to the Valkey cluster), `Active` (full member), `Leaving` (being drained and retired). Watching lifecycles is the practical way to observe a bootstrap or a rolling replacement; see the [`ValkeyNode` API reference](../reference/api/valkeynode.md).
 - **forced settings.** Valkey configuration directives the operator injects into every node's rendered config, overriding any user-supplied value, because the cluster doesn't function without them. The exact list is in [Forced Valkey settings](../reference/forced-settings.md).
 - **zone spread.** The per-shard topology spread constraint that spreads a shard's nodes across availability zones, strictly or best-effort depending on the configured mode. Configured through `placement`; see [Zone-aware placement](../operations/zone-aware-placement.md).
@@ -43,5 +45,5 @@ The word "cluster" names three different things in any conversation about this o
 ## Where to go next
 
 - **New to Valkey?** Read [Data durability](../concepts/data-durability.md) first: it states the in-memory storage model and its consequences plainly. Then [Connecting to your cluster](../team-guide/connecting.md) for how clients are expected to behave.
-- **New to the operator's model?** [Resource model](../concepts/resource-model.md) explains the five resources and the governance split; [Reconciliation](../concepts/reconciliation.md) explains how changes actually happen.
+- **New to the operator's model?** [Resource model](../concepts/resource-model.md) explains the resource model and the governance split; [Reconciliation](../concepts/reconciliation.md) explains how changes actually happen.
 - **Ready to try it?** The [quickstart](quickstart.md) has you running a sharded cluster in roughly 20 minutes.

@@ -4,6 +4,8 @@ description: Reference for the ValkeyCluster custom resource, the product team's
 sidebar_position: 5
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # ValkeyCluster
 
 `ValkeyCluster` is the product team's interface for provisioning a Valkey cluster with the Momento Valkey Operator. It selects a [`ValkeyConfig`](valkeyconfig.md) from the platform team's menu and declares topology, placement, TLS, ACL bindings, and pod annotations. For the provisioning workflow, see [Provisioning](../../team-guide/provisioning.md).
@@ -19,12 +21,15 @@ sidebar_position: 5
 
 ## Spec
 
+While a cluster is Creating, spec edits are rejected at admission. Wait for Active before changing the spec.
+
 An admission rule on the spec as a whole enforces TLS immutability on updates: the `tls` field must be present on both the old and new spec, or absent from both. In practice, you cannot enable TLS on a cluster created without it, and you cannot disable TLS on a cluster created with it. Only the `secretRef` inside `tls` may change, for certificate rotation. See [TLS](../../security/tls.md).
 
 | Field | Type | Required | Default | Validation | Description |
 |---|---|---|---|---|---|
 | `configRef` | string | Yes | — | none | Name of a `ValkeyConfig` on the platform menu. The named config (and the `ValkeyImage` it resolves to) must exist for the cluster to progress. |
-| `shards` | integer | Yes | — | Minimum 1. | Number of shards (hash-slot ranges). Changing this triggers slot rebalancing: see [Scaling](../../team-guide/scaling.md). |
+| `shards` | integer | Yes | — | Minimum 1. | Number of shards. With autoscaling enabled, only the initial count; otherwise changing it triggers rebalancing. See [Scaling](../../team-guide/scaling.md). |
+| autoscaling | object | No | Disabled | maxShards >= minShards; scaleIn thresholds below their scaleOut counterparts. | Utilization-based shard scaling. See [Autoscaling](../../team-guide/autoscaling.md) for fields, defaults, and measurements. |
 | `replicasPerShard` | integer | Yes | — | Minimum 0. | Number of replicas per shard, **not counting the primary**. `replicasPerShard: 1` yields two nodes per shard. |
 | `acl` | array of [`AclBinding`](#aclbinding) | No | — | Max 64 entries. Admission rule: no two entries may share a `username` ("duplicate username in ACL bindings"). | Per-cluster ACL user bindings. Additive to the config-level bindings, but cannot reuse a username defined at the config level. See [ACLs](../../security/acls.md). |
 | `placement` | object ([`Placement`](#placement)) | No | — | none | Zone and node-pool placement constraints for the cluster's pods. |
@@ -40,9 +45,7 @@ Changes propagate as follows:
 - **Adding a key or changing a value** is patched onto running pods in place. No pods are replaced.
 - **Removing a key** does not remove the annotation from running pods. The removal takes effect on each pod as it is next replaced for other reasons.
 
-:::note
-`kubectl explain valkeycluster.spec.podAnnotations` currently shows outdated description text claiming that existing pods keep their original annotations. The behavior above (in-place patching of additions and edits) is correct.
-:::
+The annotations affect pods only, not Services, ConfigMaps, or Secrets. Annotations added by other controllers are left untouched.
 
 ### Tls
 
@@ -52,7 +55,7 @@ Appears in: [`spec.tls`](#spec).
 |---|---|---|---|---|---|
 | `secretRef` | string | Yes | — | none | Name of a [`kubernetes.io/tls` Secret](https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets) in the same namespace as the cluster. Mutable: point it at a new Secret (or update the Secret in place) to rotate certificates. |
 
-The referenced Secret must contain `tls.crt`, `tls.key`, and `ca.crt`, and the certificate's SANs must include both `{cluster}.{namespace}.svc.cluster.local` and `*.{cluster}.{namespace}.svc.cluster.local`. A Secret that fails validation puts the cluster into the `Invalid` state with detail in `status.message`. Requirements, rotation, and a cert-manager walkthrough: [TLS](../../security/tls.md).
+The referenced Secret must contain `tls.crt`, `tls.key`, and `ca.crt`, and the certificate's SANs must include both `{cluster}.{namespace}.svc.cluster.local` and `*.{cluster}.{namespace}.svc.cluster.local`. A missing or invalid Secret during creation causes Failed; a broken or expired Secret on a running cluster can cause Invalid with detail in status.message. Requirements, rotation, and a cert-manager walkthrough: [TLS](../../security/tls.md).
 
 ### Placement
 
@@ -99,36 +102,13 @@ Appears in: [`Permission.keys`](#permission).
 
 ## Status
 
-`ValkeyCluster` has a status subresource. For state semantics and transitions in depth, see [Cluster status](../cluster-status.md).
+Status includes the lifecycle state and explanatory message, TLS certificate conditions, and the autoscaling target when enabled. The supported states are Creating, Active, Updating, Invalid, and Failed. See [Cluster status](../cluster-status.md) for semantics, creation-spec immutability, recovery, and inspection commands.
 
-| Field | Type | Description |
-|---|---|---|
-| `state` | string (enum) | High-level lifecycle state. One of `Creating` (default), `Active`, `Updating`, `Invalid`: see below. |
-| `targetSpec` | object (same shape as [`spec`](#spec)) | Snapshot of the spec the operator is working toward, taken when a transition starts and cleared when the cluster reaches `Active`. Bootstrap drives its **topology** (`shards`, `replicasPerShard`) from this snapshot rather than the live spec, so topology edits made during a transition are deferred until it completes; other fields are read live but only shape nodes not yet created. See [Cluster status](../cluster-status.md#targetspec-snapshot-semantics). |
-| `nodes` | array of string | Schema-reserved; not populated in the current release. Use `kubectl get valkeynodes` to list members. See [Cluster status](../cluster-status.md). |
-| `message` | string | Human-readable detail for the current state, populated when `state` is `Invalid`. |
-
-States:
-
-| Value | Meaning |
-|---|---|
-| `Creating` | The operator is bootstrapping the Valkey cluster toward `targetSpec`. |
-| `Active` | The cluster matches its spec and is serving. |
-| `Updating` | Reserved. This value is defined in the schema but is not currently reported; running clusters show `Active` while changes roll out. |
-| `Invalid` | The spec references something invalid (for example, a TLS Secret that fails validation). `message` carries the detail. Reconciliation resumes automatically once the problem is corrected. |
-
-The status does not include a Kubernetes `conditions` array; `state` and `message` carry the health signal.
+With autoscaling enabled, status.autoscaling.desiredShards is the current target, shown in DESIRED SHARDS. For TLS clusters, CertificateExpiringSoon in status.conditions becomes True within 30 days of certificate expiry while the cluster stays Active.
 
 ## Printer columns
 
-`kubectl get valkeyclusters` shows:
-
-| Column | Source |
-|---|---|
-| `Config` | `.spec.configRef` |
-| `Shards` | `.spec.shards` |
-| `Replicas` | `.spec.replicasPerShard` |
-| `State` | `.status.state` |
+kubectl get valkeyclusters includes Config, Shards, Replicas, State, and DESIRED SHARDS for the autoscaling target. See [Cluster status](../cluster-status.md#printer-columns) for their sources and meanings.
 
 ## References and referenced by
 

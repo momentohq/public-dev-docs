@@ -4,6 +4,8 @@ description: Enable TLS at cluster creation, the required Secret shape, certific
 sidebar_position: 2
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # TLS
 
 This page covers enabling and operating TLS on a Valkey cluster managed by the Momento Valkey Operator: the Secret shape the operator expects, what TLS-only mode enforces, how validation and rotation work, and how to provision the certificate with cert-manager. It is written for platform and product-team engineers configuring a cluster for encrypted traffic.
@@ -40,7 +42,7 @@ The Secret referenced by `spec.tls.secretRef` must be type `kubernetes.io/tls` a
 | `tls.key` | The private key matching `tls.crt`. |
 | `ca.crt` | The CA bundle used to verify peer certificates on replication and the cluster bus. |
 
-The certificate's SANs must include exactly:
+The certificate's SANs must include:
 
 - `{cluster}.{namespace}.svc.cluster.local`, for example `my-cluster.my-app.svc.cluster.local`
 - `*.{cluster}.{namespace}.svc.cluster.local`: the wildcard, covering the per-pod DNS names each node announces in TLS mode
@@ -51,7 +53,7 @@ When `spec.tls` is set, every node runs TLS-only: the plaintext port is closed (
 
 ## Validation on every reconcile
 
-The operator validates the referenced Secret on every reconcile, in any cluster state, not only at creation. It checks that the Secret exists and has data, that all three keys are present, that `tls.crt` parses as PEM/X.509, and that its SANs cover both required names. Any failure sets the cluster to `Invalid` with the exact reason in `status.message`; the operator takes no topology actions while `Invalid` but keeps re-checking the Secret. Once validation passes again, the cluster recovers to `Active` automatically: no action on the `ValkeyCluster` resource itself is needed. See [Cluster status](../reference/cluster-status.md) for the full state model.
+The operator validates the referenced Secret on every reconcile, in any cluster state, not only at creation. It checks that the Secret exists and has data, that all three keys are present, that `tls.crt` parses as PEM/X.509, and that its SANs cover both required names. A missing or invalid Secret during creation causes Failed and requires deletion and recreation after the prerequisite is fixed. On a running cluster, a broken or expired Secret can cause Invalid with the reason in status.message; the operator takes no topology actions while `Invalid` but keeps re-checking the Secret. Once validation passes again, the cluster recovers to `Active` automatically: no action on the `ValkeyCluster` resource itself is needed. See [Cluster status](../reference/cluster-status.md) for the full state model.
 
 ## Rotating the leaf certificate
 
@@ -69,11 +71,9 @@ Skipping the bundle step and rotating straight to a new CA breaks verification f
 
 ## Certificate expiry
 
-:::warning
-Certificate expiry is a warn-only condition. An expired certificate does **not** move the cluster to `Invalid`: the cluster stays `Active` and continues to be managed normally, while client connections that depend on the expired certificate fail. The operator does not alert on approaching or past expiry.
-:::
+TLS clusters publish CertificateExpiringSoon in status.conditions. It becomes True when the certificate is within 30 days of expiry while the cluster stays Active. Alert on this condition and rotate before expiry. An expired Secret on a running cluster can cause Invalid; rotation restores Active automatically.
 
-You are responsible for monitoring certificate expiry and rotating before it happens. If you provision the Secret with cert-manager, its renewal cycle covers this automatically. See the walkthrough below. Otherwise, wire certificate expiry into your own alerting; see [Monitoring](../platform-guide/monitoring.md).
+cert-manager can automate renewal. See the walkthrough below and [Monitoring](../platform-guide/monitoring.md).
 
 ## Provisioning certificates with cert-manager
 
@@ -193,4 +193,4 @@ openssl s_client -connect my-cluster.my-app.svc.cluster.local:6379 \
   | openssl x509 -noout -enddate -subject
 ```
 
-The `notAfter` date tells you whether the rotation you just performed is what clients now receive. Wire this check into your expiry monitoring; recall that an expired certificate leaves the cluster `Active` while clients fail (see [Certificate expiry](#certificate-expiry)).
+The `notAfter` date tells you whether the rotation you just performed is what clients now receive. Wire this check into your expiry monitoring; alert on CertificateExpiringSoon before expiry (see [Certificate expiry](#certificate-expiry)).

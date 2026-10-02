@@ -4,6 +4,8 @@ description: Set resources in a ValkeyConfig for Guaranteed quality of service, 
 sidebar_position: 4
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Sizing
 
 This page covers sizing decisions for a `ValkeyConfig`, managed by the Momento Valkey Operator: how `resources` determines pod quality of service, how much headroom to leave between the memory limit and Valkey's own `maxmemory`, and when to size up versus scale out. It is written primarily for platform teams curating the config menu, and for product teams choosing among curated configs. For the resource fields themselves, see [ValkeyConfig](../reference/api/valkeyconfig.md).
@@ -48,15 +50,17 @@ Valkey is memory-bound far more than it is CPU-bound for typical cache-shaped wo
 
 This is general Kubernetes and Valkey capacity-planning guidance; nothing here is operator-specific behavior.
 
-## Scale out, not up
+## Choose horizontal or manual vertical scaling
 
 When a curated config's memory ceiling stops being enough for the workload, the operator-native lever is horizontal: increase `shards` on the `ValkeyCluster` and let the operator rebalance slots across the larger shard count, rather than repeatedly raising one config's `resources.memory`. Scaling shards distributes both the dataset and the request load, and it composes with placement: more shards means more opportunities for zone and host spread to matter. See [Scaling](../team-guide/scaling.md) for the mechanics and client impact of a shard-count change.
 
-## Autoscalers do not apply
+You can also change per-node resources manually by publishing a config variant and switching configRef. This applies a rolling replacement. Operator autoscaling adjusts shard count, while resource profiles remain under your control.
+
+## Kubernetes HPA and VPA
 
 Do not point Kubernetes autoscalers at operator-managed resources; neither has anything to act on:
 
-- **Horizontal Pod Autoscaler.** No operator resource exposes a `scale` subresource, and the Valkey pods are bare pods with no Deployment or StatefulSet behind them, so HPA has no valid target. Horizontal scaling is `spec.shards` and `spec.replicasPerShard`, changed by you (or your own tooling) editing the `ValkeyCluster`.
+- **Horizontal Pod Autoscaler.** No operator resource exposes a `scale` subresource, and the Valkey pods are bare pods with no Deployment or StatefulSet behind them, so HPA has no valid target. Set spec.shards/spec.replicasPerShard manually, or enable the operator's [shard autoscaling](../team-guide/autoscaling.md).
 - **Vertical Pod Autoscaler.** Pod resources come from the resolved `ValkeyConfig`, and the operator compares declared specs, not live pods. A VPA-mutated pod is invisible to the operator and reverts to config-declared resources on the next replacement; a VPA that evicts pods to resize them triggers the operator's failure recovery instead, which rebuilds the pod from the declared config. Either way the VPA value does not stick. Resize by publishing a config variant and repointing `configRef`, which rolls the cluster deliberately.
 
 The cluster autoscaler (which scales Kubernetes nodes, not pods) is compatible; see [Kubernetes maintenance](../platform-guide/kubernetes-maintenance.md) for how it interacts with the operator.

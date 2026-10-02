@@ -1,12 +1,14 @@
 ---
 title: Architecture
-description: "The Momento Valkey Operator at runtime: one deployment, four control loops, the objects it owns, how clients discover topology, and what it deliberately does not manage."
+description: "The Momento Valkey Operator at runtime: one deployment, control loops, the objects it owns, how clients discover topology, and what it deliberately does not manage."
 sidebar_position: 3
 ---
 
+<!-- Projects: self-hosted-operator-operations -->
+
 # Architecture
 
-This page describes what actually runs when the Momento Valkey Operator is installed: the operator process itself, its four control loops, the Kubernetes objects it creates for each Valkey cluster, and the boundaries of its responsibility. It is for anyone evaluating or operating the system; no prior page is required, though [Resource model](resource-model.md) explains the resources these loops act on.
+This page describes what actually runs when the Momento Valkey Operator is installed: the operator process itself, its control loops, the Kubernetes objects it creates for each Valkey cluster, and the boundaries of its responsibility. It is for anyone evaluating or operating the system; no prior page is required, though [Resource model](resource-model.md) explains the resources these loops act on.
 
 ## The operator deployment
 
@@ -14,9 +16,9 @@ The operator is a single Deployment (`valkey-operator`, in the `valkey-operator`
 
 One replica is not the liability it would be for a data plane, because the operator is not on the data path. Valkey clusters serve traffic entirely on their own; the operator only converges them toward their declared specs. If the operator is down, running Valkey clusters keep serving. See [Why this architecture holds up](#why-this-architecture-holds-up) below.
 
-## Four control loops
+## Control loops
 
-The operator process runs four independent controllers. Each is described here by its observable behavior.
+The core cluster, node, ACL, and TLS controllers are described below. The operator also samples utilization every 30 seconds for [autoscaling](../team-guide/autoscaling.md) and writes retained [usage-metering records](../platform-guide/usage-metering.md).
 
 | Controller | Trigger | Responsibility |
 |---|---|---|
@@ -68,6 +70,8 @@ ValkeyCluster my-cluster (namespace: my-app)
 
 Every object carries an owner reference to its parent, so deletion is a clean cascade with no orphans: deleting a `ValkeyCluster` removes its Service, Secret, ConfigMap, and all `ValkeyNode` resources, and each `ValkeyNode` takes its ConfigMap and Pod with it. Node (and therefore pod) names are the cluster name plus a short random suffix, not ordinal indexes; [Pod management](pod-management.md) explains why. The label taxonomy on these objects is documented in [Labels and annotations](../reference/labels-annotations.md).
 
+A ValkeyMeteringRecord for each cluster is stored separately in the operator namespace and retained after cluster deletion. Export and release it through [Usage metering](../platform-guide/usage-metering.md).
+
 ## The cluster Service and client discovery
 
 The operator creates exactly one Service per Valkey cluster: a **headless** Service named after the cluster (`my-cluster`), exposing port 6379 (client) and 16379 (cluster bus), selecting all of the cluster's pods. The operator creates no LoadBalancer, NodePort, or per-shard Service.
@@ -87,12 +91,12 @@ The operator's scope is Valkey clusters, deliberately nothing more. You (or your
 
 - **The Kubernetes cluster itself**: Kubernetes node capacity, zones, upgrades, and the scheduler the operator relies on. For how drains and Kubernetes upgrades interact with Valkey pods, see [Kubernetes maintenance](../platform-guide/kubernetes-maintenance.md).
 - **Networking beyond the headless Service**: the operator creates no Ingress, no LoadBalancer, and has no service-mesh integration. Exposure beyond the Kubernetes cluster boundary is your design decision.
-- **Certificates themselves**: the operator validates, mounts, and hot-reloads the TLS Secret you provide, but it does not issue, renew, or monitor certificates. Issuance and renewal belong to your PKI (cert-manager works well); see [TLS](../security/tls.md).
+- **Certificates themselves**: the operator validates, mounts, and hot-reloads the TLS Secret you provide, but it does not issue or renew certificates. It publishes CertificateExpiringSoon for expiry monitoring. Issuance and renewal belong to your PKI (cert-manager works well); see [TLS](../security/tls.md).
 - **Persistent storage**: the operator provisions no PersistentVolumes, by design; Valkey data is in-memory and durability comes from replication and failover, not disks. Read [Data durability](data-durability.md) before relying on any survivability assumption.
 
 ## Why this architecture holds up
 
-The operator keeps **no required state in memory between reconcile passes**. Everything it needs to act is in the Kubernetes API (resource specs, `ValkeyCluster` status, including the `targetSpec` snapshot, owner references) and in what the Valkey nodes themselves report. Each pass re-reads the world, takes at most one action, and re-queues.
+The operator keeps **no required state in memory between reconcile passes**. Everything it needs to act is in the Kubernetes API (resource specs, `ValkeyCluster` status, owner references) and in what the Valkey nodes themselves report. Each pass re-reads the world, takes at most one action, and re-queues.
 
 That property is what makes the single-replica design safe in practice:
 

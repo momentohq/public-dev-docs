@@ -4,6 +4,8 @@ description: Trust boundaries, secret material, and pod security posture of the 
 sidebar_position: 1
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Security model
 
 This page describes the security model of the Momento Valkey Operator: what the operator can touch, what secret material it creates and where that material lands, and the pod security posture it ships with. It is written for platform teams and security reviewers evaluating the operator for production use. The four companion pages cover practice: [TLS](tls.md), [ACLs](acls.md), [RBAC](rbac.md), and [Networking and ports](networking.md).
@@ -66,4 +68,4 @@ Work through these before a production rollout:
 2. **Define ACL users and roles**: remove the permissive default user by binding at least one user, and scope key patterns per application. [ACLs](acls.md).
 3. **Scope Kubernetes RBAC**: grant product teams only the namespaced cluster grants; treat ConfigMap and Secret read access in Valkey namespaces as credential access; restrict the operator namespace. [RBAC](rbac.md).
 4. **Apply NetworkPolicies**: the operator creates none; network segmentation is your responsibility. [Networking and ports](networking.md) states the full connection matrix and gives a worked policy; [Labels and annotations](../reference/labels-annotations.md) states the guaranteed label set.
-5. **Monitor certificate expiry**: the operator does not block or alert on an expiring certificate; an expired certificate leaves the cluster `Active` while clients fail to connect. [TLS](tls.md) and [Monitoring](../platform-guide/monitoring.md).
+5. **Monitor certificate expiry**: alert on the CertificateExpiringSoon condition, which becomes True within 30 days of expiry. A broken or expired Secret on a running cluster can cause Invalid. [TLS](tls.md) and [Monitoring](../platform-guide/monitoring.md).

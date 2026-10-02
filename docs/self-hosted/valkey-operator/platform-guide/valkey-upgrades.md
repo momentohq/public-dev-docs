@@ -4,6 +4,8 @@ description: How registering a new image and repointing a config rolls the fleet
 sidebar_position: 4
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Managing Valkey upgrades
 
 This guide covers upgrading (and downgrading) the Valkey engine version across a fleet managed by the Momento Valkey Operator. It covers how a version change propagates from a `ValkeyConfig` to every cluster that uses it, what a rolling upgrade looks like at the shard level, and how to control the blast radius of a fleet-wide change.
@@ -16,16 +18,16 @@ No per-cluster upgrade action exists. An upgrade is a menu change: register the 
 apiVersion: valkey.gomomento.com/v1alpha1
 kind: ValkeyImage
 metadata:
-  name: valkey-9-0-1
+  name: valkey-9-0-2
 spec:
   repository: valkey/valkey
-  tag: "9.0.1"
-  version: "9.0.1"
+  tag: "9.0.2"
+  version: "9.0.2"
 ```
 
 ```bash
 kubectl patch valkeyconfig standard \
-  --type merge -p '{"spec": {"imageRef": "valkey-9-0-1"}}'
+  --type merge -p '{"spec": {"imageRef": "valkey-9-0-2"}}'
 ```
 
 :::info
@@ -44,7 +46,7 @@ Within each cluster, the operator upgrades strictly one shard at a time, replaci
 
 A node is only ever retired while the shard is above its replica target, so the shard never dips below its configured replica count at any point in the sequence.
 
-The cluster reports `Active` throughout: there is no `Updating` state you will observe. The full change-impact table, including which other spec changes trigger this same rolling-replacement mechanism, lives in [Reconciliation](../concepts/reconciliation.md); this page covers the image-upgrade case specifically.
+The cluster reports Updating while the rolling change is in progress. The full change-impact table, including which other spec changes trigger this same rolling-replacement mechanism, lives in [Reconciliation](../concepts/reconciliation.md); this page covers the image-upgrade case specifically.
 
 ## Client impact
 
@@ -65,7 +67,7 @@ This gives you a canary and a rollback point that repointing `imageRef` in place
 Watch the same signals as any rolling replacement:
 
 - `kubectl get valkeynodes -n <namespace>`: new nodes appear with `Joining` lifecycle, then flip to `Active`; outdated nodes disappear as they are retired.
-- `kubectl get valkeycluster -n <namespace> -w`: the cluster's node list and printer columns update as the roll proceeds; state stays `Active`.
+- `kubectl get valkeycluster -n <namespace> -w`: the cluster's node list and printer columns update as the roll proceeds; watch Updating converge to Active.
 - Pod image column: confirm pods are coming up on the new image.
 
 See [Cluster status](../reference/cluster-status.md) for status field semantics and [Labels and annotations](../reference/labels-annotations.md) for the labels you can use to build a dashboard across the fleet. [Monitoring](monitoring.md) covers fleet-wide observability in depth.
@@ -75,5 +77,5 @@ See [Cluster status](../reference/cluster-status.md) for status field semantics 
 Downgrading uses the identical mechanism in reverse: register a `ValkeyImage` for the older version and repoint the config at it. The same per-shard procedure, concurrency behavior, and staged-rollout option all apply.
 
 :::warning
-Downgrade paths are not routinely exercised in practice: most fleets move forward only. Treat a downgrade as you would any under-tested operation: stage it (see above) rather than repointing a widely-shared config directly, and verify the target version behaves as expected on a non-critical cluster first. The engine version floor is firm regardless of direction: never downgrade below Valkey 9, since resharding depends on slot-migration commands introduced in that version, and older engines do not support them.
+Downgrade paths are not routinely exercised in practice: most fleets move forward only. Treat a downgrade as you would any under-tested operation: stage it (see above) rather than repointing a widely-shared config directly, and verify the target version behaves as expected on a non-critical cluster first. The engine version floor is firm regardless of direction: never downgrade below the supported Valkey 9.0.1 floor.
 :::

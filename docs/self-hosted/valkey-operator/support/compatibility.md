@@ -4,6 +4,8 @@ description: The canonical version floors, supported architectures, and release 
 sidebar_position: 2
 ---
 
+<!-- Projects: self-hosted-operator-operations, self-hosted-operator-capabilities -->
+
 # Compatibility
 
 This page is the canonical source for version and platform support for the Momento Valkey Operator. Other pages that mention version requirements ([Prerequisites](../getting-started/prerequisites.md) among them) summarize and link back here.
@@ -12,9 +14,9 @@ This page is the canonical source for version and platform support for the Momen
 
 | Requirement | Minimum | Why |
 |---|---|---|
-| Operator | v0.6.0 | The version these docs describe. |
+| Operator | v0.9.0 | Supported customer release used in the installation examples. |
 | Kubernetes | 1.27+ | Per-shard placement relies on `matchLabelKeys` in topology spread constraints, a scheduling feature enabled by default starting in Kubernetes 1.27. On an older Kubernetes cluster, per-shard spread silently does not work as documented. |
-| Valkey (in any `ValkeyImage` you register) | 9+ | Shard scaling moves hash slots with the server-side slot-migration commands introduced in Valkey 9. This is also the practical floor for any image you allowlist: an older Valkey version can bootstrap a cluster, but resharding will fail against it. |
+| Valkey (in any `ValkeyImage` you register) | 9.0.1+ | Admission rejects older declared versions; the operator also checks the running binary against this floor before a node joins. |
 | Architecture | amd64 or arm64 | Both the operator image and the images you register can run on either architecture. |
 
 :::note
@@ -33,4 +35,4 @@ See [Installation](../getting-started/installation.md) for how these artifacts f
 
 ## Tested vs. supported
 
-These version floors derive from specific mechanisms (the Kubernetes scheduling feature per-shard placement depends on, and the Valkey server commands shard scaling depends on), not from a certification matrix run against named Kubernetes distributions. The operator does not check or enforce these floors at runtime: it targets any Kubernetes cluster meeting the floor above, on any CNCF-conformant distribution, and any Valkey image meeting the Valkey version floor. [What we test](what-we-test.md) states exactly which behaviors the test suites verify, and on what kind of cluster. If you hit behavior that looks version-related, check both floors before filing a report. See [Getting support](getting-support.md).
+These version floors derive from specific mechanisms (the Kubernetes scheduling feature per-shard placement depends on, and the Valkey server commands shard scaling depends on), not from a certification matrix run against named Kubernetes distributions. The operator targets CNCF-conformant Kubernetes distributions meeting the Kubernetes floor. Valkey images must declare a full MAJOR.MINOR.PATCH version of at least 9.0.1, and the running binary must meet that floor. An unsupported binary causes cluster creation to report Failed with an explanation. [What we test](what-we-test.md) retains the historical v0.6.0 coverage snapshot; it does not establish a new test audit for v0.9.0. If you hit behavior that looks version-related, check both floors before filing a report. See [Getting support](getting-support.md).
