@@ -14,10 +14,10 @@ This page is the canonical source for version and platform support for the Momen
 
 | Requirement | Minimum | Why |
 |---|---|---|
-| Operator | v0.9.0 | Supported customer release used in the installation examples. |
-| Kubernetes | 1.27+ | Per-shard placement relies on `matchLabelKeys` in topology spread constraints, a scheduling feature enabled by default starting in Kubernetes 1.27. On an older Kubernetes cluster, per-shard spread silently does not work as documented. |
-| Valkey (in any `ValkeyImage` you register) | 9.0.1+ | Admission rejects older declared versions; the operator also checks the running binary against this floor before a node joins. |
-| Architecture | amd64 or arm64 | Both the operator image and the images you register can run on either architecture. |
+| Operator | v0.9.0 | |
+| Kubernetes | 1.27+ | `matchLabelKeys` in topology spread constraints for per-shard placement. |
+| Valkey (in any `ValkeyImage` you register) | 9.0.1+ | Atomic slot migration for shard scaling. |
+| Architecture | amd64 or arm64 | |
 
 :::note
 Every Valkey pod the operator creates carries a built-in toleration for `kubernetes.io/arch=arm64:NoSchedule`, regardless of which architecture you actually run. If your platform taints arm64 node pools to keep workloads off them unless explicitly opted in, account for this. See [Labels, annotations, and naming](../reference/labels-annotations.md).
