@@ -4,7 +4,7 @@ title: Valkey compatibility
 description: Supported and unsupported Valkey commands and protocol details for Momento Cache.
 ---
 
-<!-- Projects: cache2/capabilities/valkey-compatibility, cache2/constraints/database-fgac, cross-product/authentication -->
+<!-- Projects: cache2/capabilities/valkey-compatibility, cache2/constraints/database-fgac, cross-product/authentication, cache2/capabilities/custom-modules -->
 
 # Valkey compatibility
 
@@ -49,6 +49,14 @@ unsupported upstream Valkey command.
 - **Other notable exclusions:** `SCAN`, `SORT`, `RENAME`, `RENAMENX`, `COPY`, `RANDOMKEY`,
   `CLIENT`, `SUNIONSTORE`, `SINTERSTORE`, `SDIFFSTORE`, `ZUNIONSTORE`, `ZINTERSTORE`, and
   `ZDIFFSTORE`. Use `HSCAN`, `SSCAN`, or `ZSCAN` instead of top-level `SCAN`.
+
+## Custom modules
+
+Accounts with an Enterprise support plan can coordinate
+[custom-module deployments](/product/cache/custom-modules) with their account support representative. Recommended modules include
+[JSON](/product/cache/custom-modules/json) and [Search](/product/cache/custom-modules/search),
+which also provides vector search. Review required module commands with your representative
+when arranging deployment.
 
 ## Protocol
 
