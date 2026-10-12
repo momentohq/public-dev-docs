@@ -23,6 +23,7 @@ and commands available for your Capacity Pool with your representative before de
 | --- | --- |
 | [JSON](/product/cache/custom-modules/json) | Store JSON documents, query nested values with JSONPath, and update individual fields. |
 | [Search](/product/cache/custom-modules/search) | Index and query Hash or JSON data with full-text, tag, numeric, and vector search. |
+| [Bloom](/product/cache/custom-modules/bloom) | Check probable membership and screen duplicate candidates with compact filters that can return false positives. |
 
 For embeddings and semantic retrieval, use the
 [Search module's vector features](/product/cache/custom-modules/search#vector-search).

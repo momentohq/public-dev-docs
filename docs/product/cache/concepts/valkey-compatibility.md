@@ -54,8 +54,9 @@ unsupported upstream Valkey command.
 
 Accounts with an Enterprise support plan can coordinate
 [custom-module deployments](/product/cache/custom-modules) with their account support representative. Recommended modules include
-[JSON](/product/cache/custom-modules/json) and [Search](/product/cache/custom-modules/search),
-which also provides vector search. Review required module commands with your representative
+[JSON](/product/cache/custom-modules/json), [Search](/product/cache/custom-modules/search), and
+[Bloom](/product/cache/custom-modules/bloom). Search also provides vector search.
+Review required module commands with your representative
 when arranging deployment.
 
 ## Protocol

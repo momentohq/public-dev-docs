@@ -80,3 +80,24 @@ the manual sidebar category and this recovery record. No stack dependencies,
 remote Git, merge or publication. Child owner controls review/merge/publication;
 later supplied-main ingestion may reconcile KB receipts. Source processing
 baselines and prior observed-main projection receipts remain unchanged.
+
+## R2 — Bloom expansion
+
+Owner approved adding Bloom to the common module recommendations and its own reference page.
+Bloom, overview, two discovery summaries and one sidebar membership are prepared atop
+c2050ca4b6f61c0d1aa17d5d8d78db5c1dbabb5b on the existing local branch. JSON/Search remain unchanged.
+The reference covers eight BF commands, false positives, exact positive verification, and
+complete authoritative-data coverage before using negatives to skip lookups. Module configuration
+and usable commands remain coordinated with Enterprise account support. LDAP incompatibility
+and TimeSeries general-list exclusion are retained by the canonical owner; neither is recommended.
+
+Independent review returned zero findings. Navigation passes 258 documents per locale; both
+EN/JA local-only builds pass. Render inspection passes 277 observations across six routes per
+locale, including English fallback, Bloom navigation and scoped links. Unrelated warnings concern
+untouched pages. No content-specific tests or runtime module execution. Five frozen input hashes
+match the verified content. Exact acceptance/evidence live in KB readme/quality/0268-r2-bloom-docs.md
+and readme/tasks/0268-work/r2/.
+
+The local preview is restored on port 3000 and the Bloom route responds HTTP 200 with the
+Docusaurus app shell after successful client compilation. No remote Git, merge or publication.
+Previous projection receipts and source processing checkpoints remain unchanged.

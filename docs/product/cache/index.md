@@ -68,7 +68,7 @@ Use the management guides to operate [Capacity Pools](/product/cache/manage/pool
 and [Capacity Pool metrics](/product/cache/manage/metrics), then scope credentials with the
 [security guidance](/product/cache/security).
 
-For [custom modules](/product/cache/custom-modules), including JSON and Search, coordinate a
+For [custom modules](/product/cache/custom-modules), including JSON, Search, and Bloom, coordinate a
 Capacity Pool deployment with your account support representative through your Enterprise support plan.
 
 ## Availability
