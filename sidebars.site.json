@@ -42,6 +42,22 @@
             ],
             "key": "cloud-momento-cache-concepts"
           },
+          {
+            "type": "category",
+            "label": "Custom modules",
+            "collapsible": true,
+            "collapsed": true,
+            "link": {
+              "type": "doc",
+              "id": "product/cache/custom-modules/index"
+            },
+            "items": [
+              "product/cache/custom-modules/json",
+              "product/cache/custom-modules/search",
+              "product/cache/custom-modules/bloom"
+            ],
+            "key": "cloud-momento-cache-custom-modules"
+          },
           "product/cache/connect/clients",
           "product/cache/security",
           {
