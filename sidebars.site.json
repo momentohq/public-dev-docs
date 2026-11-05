@@ -273,7 +273,8 @@
         "items": [
           "platform/how-to/locate-account-id",
           "platform/how-to/aws-marketplace-billing",
-          "platform/how-to/activate-support-plan"
+          "platform/how-to/activate-support-plan",
+          "platform/how-to/configure-iam-role-federation"
         ],
         "key": "platform-how-to",
         "className": "sidebar-group-product"
