@@ -116,6 +116,27 @@ Callers authenticate with a Momento API key, the same way they would against any
 
 Of note, authorization is only applied to access to the Function. The Function executes with a privileged role from Momento's point of view. If certain callers are allowed to do certain things and others are not, that is, if *you* have extra authorization constraints, you need to apply them via the trusted `WebEnvironment::token_metadata`.
 
+### Using `x-momento-authorization`
+
+By default, callers pass their Momento API key in the standard `authorization` header. If your Function needs the `authorization` header for something else, such as a credential for another service, callers can pass the Momento API key in the `x-momento-authorization` header instead:
+
+```bash
+curl \
+  https://api.cache.$MOMENTO_CELL_HOSTNAME/functions/$MOMENTO_CACHE_NAME/my-proxy \
+  -H "x-momento-authorization: $USER_API_KEY" \
+  -H "authorization: $OTHER_SERVICE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"hello":"world"}'
+```
+
+When `x-momento-authorization` is present, Momento uses it to authorize the call and ignores `authorization`. The `authorization` header is passed through to your Function untouched in `WebEnvironment::headers()`, so your Function can forward it upstream.
+
+This is useful when your Function proxies a request that the caller has already signed, such as an [AWS SigV4](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html)-signed request to an AWS service. The SigV4 signature lives in the `authorization` header, so the caller moves their Momento API key to `x-momento-authorization` and the Function forwards the signed `authorization` header to AWS as-is.
+
+:::warning[Note]
+Both headers are visible to your Function. When forwarding headers upstream, strip `x-momento-authorization` so you don't leak your caller's Momento API key to another service.
+:::
+
 ## Updating and deleting
 
 To **update** a Function, run `put-function` again with the same name. Each call uploads a new **version**; the Function's **current version** points at whichever version invocations actually run. By default, the current version follows the latest upload. A fresh `put-function` is picked up within a few milliseconds. To freeze production on a known-good version while you iterate, see [Versions and pinning](#versions-and-pinning) below.
