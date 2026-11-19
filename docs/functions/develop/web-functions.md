@@ -107,7 +107,7 @@ fn echo_details(Json(request): Json<Request>) -> WebResult<WebResponse> {
     // Don't echo secrets back!
     let to_echo = headers
         .iter()
-        .filter(|(k, _)| *k != "authorization")
+        .filter(|(k, _)| *k != "authorization" && *k != "x-momento-authorization")
         .map(|(k, v)| format!("'{k}'='{v}'"))
         .collect::<Vec<_>>()
         .join(", ");
@@ -151,4 +151,4 @@ This pattern makes Functions effective as a low latency [proxy](/functions/patte
 * **Pick the lightest type your handler needs.** `Data` for bytes-through, `Json<T>` for typed APIs.
 * **Return `WebResult<WebResponse>` when you care about status or headers.** Otherwise return the body directly.
 * **Use `WebEnvironment::load()` for request details.** Headers, env vars, token metadata, function name.
-* **Mind your headers.** Don't be passing `authorization` to places it doesn't belong!
+* **Mind your headers.** Don't be passing `authorization` or [`x-momento-authorization`](/functions/develop/deploy-and-invoke#using-x-momento-authorization) to places they don't belong!
